@@ -1,0 +1,46 @@
+.mobile-landing {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+
+  .top-stroke {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 200px;
+  }
+
+  .center-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .bottom-stroke {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+  }
+}
