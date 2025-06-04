@@ -97,7 +97,7 @@ function MobileProductPage() {
   const [showPromoCode, setShowPromoCode] = useState(false);
   const [previousModal, setPreviousModal] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
