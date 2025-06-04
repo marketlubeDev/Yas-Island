@@ -36,8 +36,8 @@ function MobileHeader() {
           className="mobile-header__icon-btn"
           aria-label="Accessibility"
           onClick={() => {
-            navigate("/accessibility");
-            window.scrollTo(0, 0);
+            // navigate("/accessibility");
+            // window.scrollTo(0, 0);
           }}
         >
           <img src={accessibilityIcon} alt="Accessibility" />
