@@ -7,6 +7,7 @@ import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 
+// Responsive Landing Page
 const ResponsiveLanding = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
