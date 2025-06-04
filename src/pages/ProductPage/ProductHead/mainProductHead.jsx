@@ -1,9 +1,9 @@
 import React from "react";
-import arrow from "../../../../assets/icons/left.svg";
-import accessibility from "../../../../assets/icons/assess.svg";
-import globe from "../../../../assets/icons/globe.svg";
-import cart from "../../../../assets/icons/cart.svg";
-import downArrow from "../../../../assets/icons/downArrow.svg";
+import arrow from "../../../assets/icons/left.svg";
+import accessibility from "../../../assets/icons/assess.svg";
+import globe from "../../../assets/icons/globe.svg";
+import cart from "../../../assets/icons/cart.svg";
+import downArrow from "../../../assets/icons/downArrow.svg";
 export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
   return (
     <div className="product-header">
