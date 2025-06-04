@@ -1,9 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
-// Define your routes
+import MobileLanding from "../pages/Home/MobileLandingPage";
+
+const ResponsiveLanding = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  return isMobile ? <MobileLanding /> : <LandingPage />;
+};
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -11,7 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <ResponsiveLanding />,
       },
       {
         path: "product",
