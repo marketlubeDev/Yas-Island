@@ -1,0 +1,96 @@
+.mobile-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px 26px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  z-index: 10;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__logo {
+    height: 50px;
+    width: auto;
+    display: block;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__icon-btn,
+  &__lang-btn {
+    background: white;
+    border: 2px solid #bcbcc9;
+    border-radius: 2rem;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  &__icon-btn img,
+  &__lang-btn img {
+    height: 20px;
+    width: 20px;
+    display: block;
+  }
+
+  &__lang-btn span {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .chevron {
+    font-size: 12px;
+    margin-left: 2px;
+    color: #333;
+  }
+
+  &__lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+
+  &__lang-option {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  &__lang-text {
+    font-size: 14px;
+    color: #333;
+  }
+
+  &__lang-check {
+    color: #007bff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}

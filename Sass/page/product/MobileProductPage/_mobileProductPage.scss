@@ -1,0 +1,108 @@
+.attractions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 0;
+  background-color: white;
+}
+
+.attraction-card {
+  display: flex;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px white;
+  overflow: hidden;
+  border: 1.5px solid #f2f2f2;
+  padding: 9px;
+  align-items: flex-start;
+  gap: 12px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: -0.5rem;
+
+  &__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #231942;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  &__desc {
+    font-size: 16px;
+    color: #6c6c8a;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__add-btn {
+    background: #fff8a5;
+    color: #231942;
+    border: none;
+    border: 1px solid #f7d148;
+    border-radius: 2rem;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+    transition: background 0.2s;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #231942;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  &__vat {
+    font-size: 12px;
+    color: #bdbdc6;
+    font-weight: 400;
+    margin-top: 2px;
+    text-align: right;
+  }
+}

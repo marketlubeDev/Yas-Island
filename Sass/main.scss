@@ -29,3 +29,9 @@
 @use "page/Payment/promoCodeModalContent";
 @use "page/Home/mobileLandingPage";
 @use "page/Home/logo";
+
+// Mobile Product Page
+@use "page/product/MobileProductPage/mobileProductPage";
+@use "page/product/MobileProductPage/Components/mobileHeader";
+@use "page/product/MobileProductPage/Components/mobileTop";
+@use "page/product/MobileProductPage/Components/mobileBottomNav";

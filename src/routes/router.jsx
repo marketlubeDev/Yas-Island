@@ -1,14 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
+import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 
 const ResponsiveLanding = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  return isMobile ? <MobileLanding /> : <LandingPage />;
+  return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
+};
+
+const ResponsiveProduct = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  return isMobile ? <MobileProductPage /> : <ProductPage />;
 };
 
 export const router = createBrowserRouter([
@@ -22,7 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "product",
-        element: <ProductPage />,
+        element: <ResponsiveProduct />,
       },
       {
         path: "payment",
