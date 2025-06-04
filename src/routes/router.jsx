@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import ProductPage from "../pages/Home/ProductPage/ProductPage";
+import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
 // Define your routes
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <div>Contact Page</div>,
-      }
+      },
     ],
   },
 ]);

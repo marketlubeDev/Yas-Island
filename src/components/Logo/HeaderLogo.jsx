@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import desc from "../../assets/logo/desc.svg";
 import "./_logo.scss";
-import MainProductHead from "../../pages/Home/ProductPage/ProductHead/mainProductHead";
-import ProductHead from "../../pages/Home/ProductPage/ProductHead/ProductHead";
-import AccessibilityModal from "../../pages/Home/Components/AccessibilityModal";
+import MainProductHead from "../../pages/ProductPage/ProductHead/mainProductHead";
+import ProductHead from "../../pages/ProductPage/ProductHead/ProductHead";
+import AccessibilityModal from "../../pages/ProductPage/Components/AccessibilityModal";
 import CartModal from "../../pages/Home/Components/CartModal";
 
 export default function HeaderLogo() {

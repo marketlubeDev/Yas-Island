@@ -1,5 +1,5 @@
 import React from "react";
-import Selector from "../../../../components/Common/Selectors/Selector";
+import Selector from "../../../components/Common/Selectors/Selector";
 
 export default function MobSelectorGroup() {
   return (

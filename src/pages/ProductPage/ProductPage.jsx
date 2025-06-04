@@ -3,13 +3,13 @@ import ProductHead from "./ProductHead/ProductHead";
 import { useSelector } from "react-redux";
 import ProductSoloThumbnail from "./ProductSoloThumnail/ProductSoloThumbnail";
 import MobSelectorGroup from "./MobSelectorGroup/MobSelectorGroup";
-import ProductCard from "../Components/ProductCard";
-import SideBar from "../../../layouts/SideBar/SideBar";
-import ChatWithUsButton from "../../../components/buttons/ChatWithUsButton";
-import AccessibilityModal from "../Components/AccessibilityModal";
-import CartModal from "../Components/CartModal";
+import ProductCard from "./Components/ProductCard";
+import SideBar from "../../layouts/SideBar/SideBar";
+import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
+import AccessibilityModal from "./Components/AccessibilityModal";
+import CartModal from "./Components/CartModal";
 import MainProductHead from "./ProductHead/mainProductHead";
-import PaymentCheckoutBody from "../../PaymentCheckout/Components/PaymentCheckoutBody";
+// import PaymentCheckoutBody from "../../PaymentCheckout/Components/PaymentCheckoutBody";
 
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import product1 from "../../../../assets/images/product1.png";
+import product1 from "../../../assets/images/product1.png";
 
 export default function ProductSoloThumbnail() {
   const product = {
