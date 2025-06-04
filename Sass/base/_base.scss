@@ -1,0 +1,13 @@
+@use "../abstract/variables" as variables;
+@use "../base/responive" as responsive;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "YAS Font", sans-serif !important;
+  overflow-x: hidden;
+}

@@ -1,0 +1,31 @@
+@use "../../abstract/variables" as *;
+
+.landing-page {
+  height: calc(100vh - $header-size);
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 100% 100%;
+
+  &-body {
+    height: 70%;
+    width: 60%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7rem;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    gap: 1rem;
+  }
+}

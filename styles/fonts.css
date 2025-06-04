@@ -1,0 +1,44 @@
+/* Bebas Neue Font Family */
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/Babas_Neue/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: bold;
+  font-display: swap;
+}
+
+/* YAS Font Family - Regular */
+@font-face {
+  font-family: "YAS Font";
+  src: url("../fonts/Yas Font/YASfont-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* YAS Font Family - Regular Italic */
+@font-face {
+  font-family: "YAS Font";
+  src: url("../fonts/Yas Font/YASfont-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* YAS Font Family - Light */
+@font-face {
+  font-family: "YAS Font";
+  src: url("../fonts/Yas Font/YASfont-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* YAS Font Family - Bold */
+@font-face {
+  font-family: "YAS Font";
+  src: url("../fonts/Yas Font/YASfont-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

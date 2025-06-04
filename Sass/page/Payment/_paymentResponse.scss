@@ -1,0 +1,183 @@
+.payment-response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // min-height: 100vh;
+  width: 100%;
+  background: #fff;
+
+  .ticket-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+
+    .ticket-image {
+      width: 100px;
+      height: 180px;
+      object-fit: cover;
+      border: 2px dashed #b3b3ff;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #f6f6ff;
+    }
+
+    .ticket-message {
+      margin-top: 8px;
+      text-align: center;
+      border-radius: 6px;
+      padding: 6px 12px;
+      color: #594f67;
+      font-size: 1.2rem;
+      font-weight: 400;
+      // text-transform: lowercase;
+    }
+  }
+
+  .divider {
+    width: 98%;
+    margin: 20px 0 20px 0;
+    border: none;
+    border-top: 2px solid #d9d9d9;
+  }
+
+  .feedback-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .feedback-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 18px;
+      text-align: center;
+      color: #18142b;
+      text-align: center;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .feedback-options {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+    }
+
+    .option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .emoji {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2.597px solid #d3b8ff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+      box-shadow: 0 0 0 2px #e6eaff;
+    }
+
+    .emoji.green {
+      padding: 15px;
+      background: #e1f1ff;
+    }
+
+    .emoji.yellow {
+      padding: 15px;
+      background: #e1f1ff;
+    }
+
+    .emoji.red {
+      padding: 15px;
+      background: #e1f1ff;
+    }
+
+    .label {
+      margin-top: 4px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      color: #594f67;
+      text-align: center;
+      // font-family: Urbanist;
+      font-size: 1.125rem;
+      font-style: normal;
+    }
+  }
+}
+
+.feedback-text {
+  color: #594f67;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  // text-transform: lowercase;
+}
+
+.payment-response {
+  // min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thankyou-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smiley-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #e1f1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(100, 100, 200, 0.08);
+
+  // Remove the old border property
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2.5px;
+    background: linear-gradient(to right, #d3b8ff, #66aae7);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.smiley-img {
+  width: 70px;
+  height: 70px;
+}
+
+.feedback-text {
+  font-size: 1.2rem;
+  color: #5a5363;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0;
+}

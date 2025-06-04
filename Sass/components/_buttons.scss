@@ -1,0 +1,27 @@
+@use "../abstract/variables" as *;
+
+.btn {
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.chat-with-us {
+  color: #fff;
+  border-radius: 5rem;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: $chat-with-us-btn-bg-color;
+  display: flex;
+
+  gap: 0.5rem;
+}
+
+.yellow-btn {
+  background-color: $color-yellow;
+  color: $color-white;
+  border-radius: 5rem;
+  // padding: 0.8rem 1.2rem;
+  color: $color-dark-gray;
+  width: 23rem;
+}

@@ -1,0 +1,22 @@
+@use "../../../../Sass/base/responive" as *;
+
+.search {
+  width: 80%;
+  max-width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include respond(smallPhone) {
+    margin: 0 auto;
+  }
+  @include respond(phone) {
+    margin: 0 auto;
+  }
+
+  & input {
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+}

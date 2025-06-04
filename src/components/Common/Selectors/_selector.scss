@@ -1,0 +1,34 @@
+.selector {
+  max-width: 12rem;
+  display: flex;
+  align-items: center;
+
+  & select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.selector-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+
+  // position: relative;
+  // bottom: 19.5px;
+}
+
+.Selector-label {
+  padding-left: 8px;
+  color: #18142b;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: lowercase;
+}
