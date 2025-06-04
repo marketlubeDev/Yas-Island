@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import frame1 from "../../../assets/images/product1.png";
 import frame2 from "../../../assets/images/product2.png";
 import frame3 from "../../../assets/images/product3.png";
-import MobileBottomNav from "./Components/MobileBottomNav";
+import MobileBottomNav from "./Components/MobilebottomNav";
 // import AttractionDetailModal from "./AttractionDetailModal";
 // import BookingModal from "./BookingModal";
 // import Mycart from "./Mycart";
