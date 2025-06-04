@@ -10,7 +10,7 @@
 @use "base/responive";
 @use "components/buttons";
 
-@use "page/home/home";
+@use "page/Home/home";
 @use "page/product/product";
 @use "layout/header";
 
@@ -26,4 +26,4 @@
 @use "page/Payment/paymentDetails";
 @use "page/Payment/cardPaymentDetail";
 @use "page/Payment/paymentResponse";
-@use "page/Payment//promoCodeModalContent"
+@use "page/Payment//promoCodeModalContent";
