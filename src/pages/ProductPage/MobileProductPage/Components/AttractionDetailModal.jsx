@@ -2,7 +2,7 @@ import React from "react";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow icon
 
-function AttractionDetailModal({ attraction, onClose, onBack, onAddToCart }) {
+function AttractionDetailModal({ attraction, onClose, onBack, onAddToCart,setShowBookingModal,setShowAttractionDetail }) {
   if (!attraction) return null;
 
   return (

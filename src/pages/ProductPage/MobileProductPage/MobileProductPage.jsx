@@ -103,6 +103,9 @@ function MobileProductPage() {
   const [showPromoCode, setShowPromoCode] = useState(false);
   const [previousModal, setPreviousModal] = useState(null);
 
+
+  console.log(showBookingModal,"skhdkhsdkhskh")
+
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
     setShowConfirmEmail(true);
@@ -152,6 +155,13 @@ function MobileProductPage() {
         ))}
         <MobileBottomNav />
       </div>
+
+
+
+
+  {/* components */}
+
+      
       {showAttractionDetail && selectedAttraction && (
         <AttractionDetailModal
           attraction={selectedAttraction}
@@ -161,6 +171,8 @@ function MobileProductPage() {
             setShowAttractionDetail(false);
             setShowBookingModal(true);
           }}
+          setShowAttractionDetail={setShowAttractionDetail}
+          setShowBookingModal={setShowBookingModal}
         />
       )}
       {showBookingModal && (
