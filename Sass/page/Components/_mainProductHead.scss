@@ -1,0 +1,146 @@
+.language-selector {
+  position: relative;
+  margin: 0 16px;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #231942;
+  font-size: 15px;
+  font-weight: 500;
+
+  .globe-icon {
+    display: flex;
+    align-items: center;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .chevron-down {
+    display: flex;
+    align-items: center;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(44, 44, 84, 0.12);
+  min-width: 160px;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.language-option {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+  &:first-child {
+    border-radius: 16px 16px 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 16px 16px;
+  }
+}
+
+.language-text {
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+}
+
+.language-check {
+  color: #007bff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.mobile-header__lang-btn {
+  background: white;
+  border: 2px solid #bcbcc9;
+  border-radius: 2rem;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mobile-header__lang-btn img {
+  height: 20px;
+  width: 20px;
+  display: block;
+}
+
+.mobile-header__lang-btn span {
+  font-size: 16px;
+  color: #333;
+}
+
+.chevron {
+  font-size: 12px;
+  margin-left: 2px;
+  color: #333;
+}
+
+.mobile-header__lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.mobile-header__lang-option {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.mobile-header__lang-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.mobile-header__lang-check {
+  color: #007bff;
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -6,6 +6,7 @@ import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
+import { Accessibility } from "lucide-react";
 
 const ResponsiveLanding = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });

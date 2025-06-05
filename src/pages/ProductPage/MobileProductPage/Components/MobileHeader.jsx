@@ -3,10 +3,12 @@ import logo from "../../../../assets/images/moblogo.svg";
 import accessibilityIcon from "../../../../assets/icons/assess.svg";
 import globeIcon from "../../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
+import Accessibility from "../Components/Accessibility";
 
 function MobileHeader() {
   const navigate = useNavigate();
   const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const [showAccessibility, setShowAccessibility] = useState(false);
   const langBtnRef = useRef(null);
 
   // Optional: Close dropdown when clicking outside
@@ -36,12 +38,15 @@ function MobileHeader() {
           className="mobile-header__icon-btn"
           aria-label="Accessibility"
           onClick={() => {
-            // navigate("/accessibility");
-            // window.scrollTo(0, 0);
+            setShowAccessibility(!showAccessibility);
+            window.scrollTo(0, 0);
           }}
         >
           <img src={accessibilityIcon} alt="Accessibility" />
         </button>
+        {showAccessibility && (
+          <Accessibility onClose={() => setShowAccessibility(false)} />
+        )}
         <div style={{ position: "relative" }} ref={langBtnRef}>
           <button
             className="mobile-header__lang-btn"

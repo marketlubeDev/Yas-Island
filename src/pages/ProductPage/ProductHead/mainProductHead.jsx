@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import arrow from "../../../assets/icons/left.svg";
 import accessibility from "../../../assets/icons/assess.svg";
 import globe from "../../../assets/icons/globe.svg";
 import cart from "../../../assets/icons/cart.svg";
 import downArrow from "../../../assets/icons/downArrow.svg";
+
 export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("English");
+  const langBtnRef = useRef(null);
+
+  // Optional: Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (langBtnRef.current && !langBtnRef.current.contains(event.target)) {
+        setShowLangDropdown(false);
+      }
+    }
+    if (showLangDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showLangDropdown]);
+
   return (
     <div className="product-header">
       <button className="back-buttonn" onClick={() => window.history.back()}>
@@ -22,16 +44,49 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
             <img src={accessibility} alt="Accessibility" />
           </span>
         </button>
-        <div className="language-selector">
-          <button className="language-button">
-            <span className="globe-icon">
-              <img src={globe} alt="Globe" />
-            </span>
-            <span>English</span>
-            <span className="chevron-down">
-              <img src={downArrow} />
-            </span>
+        <div
+          className="language-selector"
+          ref={langBtnRef}
+          style={{ position: "relative" }}
+        >
+          <button
+            className="mobile-header__lang-btn"
+            aria-label="Language"
+            onClick={() => setShowLangDropdown((v) => !v)}
+            type="button"
+          >
+            <img src={globe} alt="Language" />
+            <span>{selectedLang === "English" ? "English" : "العربية"}</span>
+            <span className="chevron">&#9662;</span>
           </button>
+          {showLangDropdown && (
+            <div className="mobile-header__lang-dropdown">
+              <div
+                className="mobile-header__lang-option"
+                onClick={() => {
+                  setSelectedLang("English");
+                  setShowLangDropdown(false);
+                }}
+              >
+                <span className="mobile-header__lang-text">English</span>
+                {selectedLang === "English" && (
+                  <span className="mobile-header__lang-check">✓</span>
+                )}
+              </div>
+              <div
+                className="mobile-header__lang-option"
+                onClick={() => {
+                  setSelectedLang("العربية");
+                  setShowLangDropdown(false);
+                }}
+              >
+                <span className="mobile-header__lang-text">العربية</span>
+                {selectedLang === "العربية" && (
+                  <span className="mobile-header__lang-check">✓</span>
+                )}
+              </div>
+            </div>
+          )}
         </div>
         <button className="cart-button" onClick={onCartOpen}>
           <span className="cart-icon">
