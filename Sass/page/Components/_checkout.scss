@@ -1,0 +1,246 @@
+// === Modal Overlay and Container ===
+.email-checkout__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #f4f3f3;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-checkout__container {
+  max-width: 400px;
+  width: 100%;
+  height: 100vh;
+  // border-radius: 24px;
+  // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #f4f3f3;
+  overflow: hidden;
+}
+
+// === Header ===
+.email-checkout__header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  background: #f4f3f3;
+}
+
+// === Scrollable Content ===
+.email-checkout__content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  // padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // margin-top: 70px;
+  margin-top: -30px;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f4f3f3;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #bdbdc6;
+    border-radius: 3px;
+  }
+}
+
+// === Title ===
+.email-checkout__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #231942;
+  margin: 24px 0 12px 0;
+  text-align: center;
+}
+
+// === Steps ===
+.email-checkout__steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 0;
+}
+
+.email-checkout__step {
+  font-size: 15px;
+  color: #bdbdc6;
+  text-align: center;
+  font-weight: 500;
+  span {
+    display: block;
+    font-size: 15px;
+    margin-top: 2px;
+  }
+  &--active {
+    color: #231942;
+    font-weight: 700;
+    border-bottom: 2px solid #1976d2;
+  }
+}
+
+.email-checkout__underline {
+  width: 100%;
+  max-width: 340px;
+  height: 2px;
+  background: #e3e3e3;
+  margin: 0 auto 24px auto;
+}
+
+// === Form Container ===
+.email-checkout__form-container {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto 24px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  padding: 32px 18px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #bdbdc6;
+    border-radius: 3px;
+  }
+}
+
+// === Form ===
+.email-checkout__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.email-checkout__label {
+  font-size: 15px;
+  color: #231942;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.email-checkout__input {
+  border: none;
+  border-bottom: 2px solid #231942;
+  font-size: 16px;
+  padding: 8px 0;
+  outline: none;
+  background: transparent;
+  color: #231942;
+  width: 100%;
+}
+
+.email-checkout__btn {
+  background: #ffea00;
+  color: #231942;
+  border: none;
+  border-radius: 2rem;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  transition: background 0.2s;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// === Summary Box ===
+.email-checkout__summary {
+  background: #f6f8fa;
+  border-radius: 12px;
+  padding: 18px 12px 12px 12px;
+  margin: 8px 0 18px;
+  font-size: 15px;
+  color: #231942;
+
+  &-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 15px;
+
+    &--total {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+  }
+}
+
+// === Promo Code ===
+.email-checkout__promo {
+  margin-bottom: 16px;
+
+  &-apply {
+    background: white;
+    color: #231942;
+    border: 1px solid #231942;
+    border-radius: 0.5rem;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover {
+      background: #fff700;
+    }
+  }
+}
+
+// === Checkboxes ===
+.email-checkout__checkboxes {
+  margin-bottom: 12px;
+  label {
+    font-size: 14px;
+    color: #231942;
+    margin-bottom: 6px;
+    a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+  }
+}

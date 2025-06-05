@@ -5,14 +5,20 @@ import frame3 from "../../../assets/images/product3.png";
 import MobileBottomNav from "./Components/MobilebottomNav";
 // import AttractionDetailModal from "./AttractionDetailModal";
 // import BookingModal from "./BookingModal";
-// import Mycart from "./Mycart";
-// import EmailVerification from "./EmailVerification";
-// import ConfirmEmail from "./ConfirmEmail";
-// import CheckOut from "./CheckOut";
+import Mycart from "./Components/Mycart";
+import EmailVerification from "./Components/EmailVerification";
+import ConfirmEmail from "./Components/ConfirmEmail";
+import CheckOut from "./Components/CheckOut";
 // import MakePayment from "./MakePayment";
 // import Accessibility from "./Accessibility";
 import MobileHeader from "./Components/MobileHeader";
 import MobileTop from "./Components/MobileTop";
+import MakePayment from "./Components/MakePayment";
+import PaymentSuccessModal from "./Components/PaymentSuccessful";
+import Experience1 from "./Components/Experience1";
+import PromoCodeModal from "./Components/PromoCode";
+import AttractionDetailModal from "./Components/AttractionDetailModal";
+import BookingModal from "./Components/BookingModal";
 import { useNavigate, Outlet } from "react-router-dom";
 // import MobileLanding from "./MobileLanding";
 // import PromoCodeModal from "./PromoCode";
@@ -89,7 +95,7 @@ function MobileProductPage() {
   const [showMyCart, setShowMyCart] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(true);
   const [showEmailVerification, setShowEmailVerification] = useState(false);
-  const [showConfirmEmail, setShowConfirmEmail] = useState(true);
+  const [showConfirmEmail, setShowConfirmEmail] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
   const [showMakePayment, setShowMakePayment] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
@@ -97,7 +103,15 @@ function MobileProductPage() {
   const [showPromoCode, setShowPromoCode] = useState(false);
   const [previousModal, setPreviousModal] = useState(null);
 
-  // const navigate = useNavigate();
+  const handleConfirmEmail = () => {
+    setShowEmailVerification(false);
+    setShowConfirmEmail(true);
+  };
+
+  const handleConfirmOTP = () => {
+    setShowConfirmEmail(false);
+    setShowCheckOut(true);
+  };
 
   return (
     <>
@@ -138,7 +152,7 @@ function MobileProductPage() {
         ))}
         <MobileBottomNav />
       </div>
-      {/* {showAttractionDetail && selectedAttraction && (
+      {showAttractionDetail && selectedAttraction && (
         <AttractionDetailModal
           attraction={selectedAttraction}
           onClose={() => setShowAttractionDetail(false)}
@@ -148,8 +162,8 @@ function MobileProductPage() {
             setShowBookingModal(true);
           }}
         />
-      )} */}
-      {/* {showBookingModal && (
+      )}
+      {showBookingModal && (
         <BookingModal
           onClose={() => setShowBookingModal(false)}
           onSaveToCart={() => {
@@ -166,8 +180,8 @@ function MobileProductPage() {
             setShowAttractionDetail(true);
           }}
         />
-      )} */}
-      {/* {showMyCart && (
+      )}
+      {showMyCart && (
         <Mycart
           onClose={() => {
             setShowMyCart(false);
@@ -190,23 +204,33 @@ function MobileProductPage() {
             }
           }}
         />
-      )} */}
-      {/* {showEmailVerification && (
+      )}
+      {showEmailVerification && (
         <EmailVerification
           onClose={() => setShowEmailVerification(false)}
           onBack={() => {
             setShowEmailVerification(false);
             setShowMyCart(true);
           }}
-          onConfirmEmail={() => {
-            setShowEmailVerification(false);
-            setShowCheckOut(true);
-          }}
+          onConfirmEmail={handleConfirmEmail}
         />
       )}
-      {/* {showCheckOut && (
+      {showConfirmEmail && (
+        <ConfirmEmail
+          onBack={() => {
+            setShowConfirmEmail(false);
+            setShowEmailVerification(true);
+          }}
+          onConfirm={handleConfirmOTP}
+        />
+      )}
+      {showCheckOut && (
         <CheckOut
           onClose={() => setShowCheckOut(false)}
+          onBack={() => {
+            setShowCheckOut(false);
+            setShowEmailVerification(true);
+          }}
           onApplyPromo={() => {
             setShowCheckOut(false);
             setShowPromoCode(true);
@@ -217,17 +241,15 @@ function MobileProductPage() {
           }}
         />
       )}
-
-      {/* {showPromoCode && (
+      {showPromoCode && (
         <PromoCodeModal
           onClose={() => {
             setShowPromoCode(false);
             setShowCheckOut(true);
           }}
         />
-      )} */}
-
-      {/* {showMakePayment && (
+      )}
+      {showMakePayment && (
         <MakePayment
           onClose={() => setShowMakePayment(false)}
           onPaymentSuccess={() => {
@@ -235,9 +257,8 @@ function MobileProductPage() {
             setShowPaymentSuccess(true);
           }}
         />
-      )} */}
-
-      {/* {showPaymentSuccess && (
+      )}
+      {showPaymentSuccess && (
         <PaymentSuccessModal
           onClose={() => setShowPaymentSuccess(false)}
           onShowExperience={() => {
@@ -245,14 +266,13 @@ function MobileProductPage() {
             setShowExperience(true);
           }}
         />
-      )} */}
-
-      {/* {showExperience && (
+      )}
+      {showExperience && (
         <Experience1
           onClose={() => setShowExperience(false)}
           // ...other props as needed
         />
-      )} */}
+      )}
     </>
   );
 }
