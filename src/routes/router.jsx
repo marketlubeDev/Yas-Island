@@ -1,20 +1,21 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
+import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 
-// Responsive Landing Page
 const ResponsiveLanding = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const { isSmallPhone, isPhone } = useResponsive();
+  const isMobile = isSmallPhone || isPhone;
   return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
 };
 
 const ResponsiveProduct = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const { isSmallPhone, isPhone } = useResponsive();
+  const isMobile = isSmallPhone || isPhone;
   return isMobile ? <MobileProductPage /> : <ProductPage />;
 };
 
