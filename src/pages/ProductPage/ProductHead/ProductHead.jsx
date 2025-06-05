@@ -4,26 +4,29 @@ import { useSelector } from "react-redux";
 import Selector from "../../../components/Common/Selectors/Selector";
 
 export default function ProductHead() {
-  const { isDesktop, isBigDesktop } = useSelector((state) => state.responsive);
+  const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
+    (state) => state.responsive
+  );
+
+  console.log(isDesktop, isBigDesktop, isExtraBigDesktop, "saldhslajhdlash");
 
   return (
     <div className="product-head">
       <Search />
-      {isDesktop ||
-        (isBigDesktop && (
-          <div className="product-head__right">
-            <Selector
-              label="Sort by"
-              value="price (high to low)"
-              options={["price (high to low)"]}
-            />
-            <Selector
-              label="Filter by"
-              value="attractions"
-              options={["attractions"]}
-            />
-          </div>
-        ))}
+      {(isDesktop || isBigDesktop || isExtraBigDesktop) && (
+        <div className="product-head__right">
+          <Selector
+            label="Sort by"
+            value="price (high to low)"
+            options={["price (high to low)"]}
+          />
+          <Selector
+            label="Filter by"
+            value="attractions"
+            options={["attractions"]}
+          />
+        </div>
+      )}
     </div>
   );
 }

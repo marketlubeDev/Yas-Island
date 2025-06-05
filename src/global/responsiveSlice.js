@@ -7,6 +7,7 @@ const initialState = {
   isBigTablets: false, // 992px - 1199.98px
   isDesktop: false, // 1200px - 1399.98px
   isBigDesktop: false, // 1400px - 1699.98px
+  isExtraBigDesktop: false, // 1700px and above
   windowWidth: window.innerWidth,
   windowHeight: window.innerHeight,
 };
@@ -33,6 +34,9 @@ const responsiveSlice = createSlice({
     setIsBigDesktop: (state, action) => {
       state.isBigDesktop = action.payload;
     },
+    setIsExtraBigDesktop: (state, action) => {
+      state.isExtraBigDesktop = action.payload;
+    },
   },
 });
 
@@ -43,6 +47,7 @@ export const {
   setIsBigTablets,
   setIsDesktop,
   setIsBigDesktop,
+  setIsExtraBigDesktop,
 } = responsiveSlice.actions;
 
 export default responsiveSlice.reducer;

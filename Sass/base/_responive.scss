@@ -23,5 +23,9 @@
     @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
       @content;
     }
+  } @else if $breakPoint == extraBigDesktop {
+    @media only screen and (min-width: 1700px) {
+      @content;
+    }
   }
 }

@@ -8,6 +8,7 @@ import {
   setIsBigTablets,
   setIsDesktop,
   setIsBigDesktop,
+  setIsExtraBigDesktop,
 } from "../../global/responsiveSlice";
 
 export const useResponsive = () => {
@@ -30,6 +31,9 @@ export const useResponsive = () => {
   const isBigDesktop = useMediaQuery({
     query: "(min-width: 1400px) and (max-width: 1699.98px)",
   });
+  const isExtraBigDesktop = useMediaQuery({
+    query: "(min-width: 1700px)",
+  });
 
   // Update Redux state when media queries change
   useEffect(() => {
@@ -39,6 +43,7 @@ export const useResponsive = () => {
     dispatch(setIsBigTablets(isBigTablets));
     dispatch(setIsDesktop(isDesktop));
     dispatch(setIsBigDesktop(isBigDesktop));
+    dispatch(setIsExtraBigDesktop(isExtraBigDesktop));
   }, [
     dispatch,
     isSmallPhone,
@@ -47,6 +52,7 @@ export const useResponsive = () => {
     isBigTablets,
     isDesktop,
     isBigDesktop,
+    isExtraBigDesktop,
   ]);
 
   // Return Redux state values and current breakpoint
@@ -57,5 +63,6 @@ export const useResponsive = () => {
     isBigTablets,
     isDesktop,
     isBigDesktop,
+    isExtraBigDesktop,
   };
 };
