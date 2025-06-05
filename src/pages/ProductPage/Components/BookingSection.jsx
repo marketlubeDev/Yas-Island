@@ -1,8 +1,10 @@
 import { useState } from "react";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
+import { useTranslation } from "react-i18next";
 
 export default function BookingSection() {
+  const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState({
@@ -72,14 +74,17 @@ export default function BookingSection() {
 
   // Format month and year
   const formatMonthYear = (date) => {
-    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    return date.toLocaleDateString(i18n.language === "ar" ? "ar-SA" : "en-US", {
+      month: "long",
+      year: "numeric",
+    });
   };
 
   return (
     <div className="booking-section">
       {/* Date Selection */}
       <div className="calendar-container">
-        <h2>Choose your date</h2>
+        <h2>{t("booking.chooseDate")}</h2>
         <div className="calendar-wrapper">
           <div className="calendar-header">
             <button onClick={handlePrevMonth}>
@@ -93,13 +98,13 @@ export default function BookingSection() {
 
           <div className="calendar-body">
             <div className="calendar-weekdays">
-              <span>Sun</span>
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
+              <span>{t("booking.weekDays.sun")}</span>
+              <span>{t("booking.weekDays.mon")}</span>
+              <span>{t("booking.weekDays.tue")}</span>
+              <span>{t("booking.weekDays.wed")}</span>
+              <span>{t("booking.weekDays.thu")}</span>
+              <span>{t("booking.weekDays.fri")}</span>
+              <span>{t("booking.weekDays.sat")}</span>
             </div>
             <div className="calendar-days">{generateCalendarDays()}</div>
           </div>
@@ -109,12 +114,15 @@ export default function BookingSection() {
       {/* Guest Selection */}
       <div className="guest-section h-full flex flex-col justify-between">
         <div className="guest-section-header-container">
-          <h2 className="section-title">Choose guests</h2>
+          <h2 className="section-title">{t("booking.chooseGuests")}</h2>
           <div className="guest-container">
-            <h3 className="guest-summary">2 Adults / 1 Child</h3>
+            <h3 className="guest-summary">
+              {guests.adults} {t("booking.adults")} / {guests.children}{" "}
+              {t("booking.children")}
+            </h3>
             <div className="guest-controls">
               <div className="guest-row">
-                <span className="guest-label">Adult ( 12 Yrs+ )</span>
+                <span className="guest-label">{t("booking.adults")}</span>
                 <div className="counter-controls">
                   <button
                     className="counter-btn"
@@ -139,7 +147,7 @@ export default function BookingSection() {
               <div className="guest-row-divider"></div>
 
               <div className="guest-row">
-                <span className="guest-label">Children ( &lt;12 Yrs )</span>
+                <span className="guest-label">{t("booking.children")}</span>
                 <div className="counter-controls">
                   <button
                     className="counter-btn"
@@ -163,18 +171,19 @@ export default function BookingSection() {
               <div className="guest-row-divider"></div>
             </div>
 
-            <p className="guest-note">Kids below 3 go free</p>
+            <p className="guest-note">{t("booking.kidsFree")}</p>
           </div>
         </div>
 
         <div className="booking-actions">
           <button
             className="checkout-btnn"
-            onClick={() => window.location.href = "/payment"}
+            onClick={() => (window.location.href = "/payment")}
           >
-            Check out <span style={{ color: "red" }}>AED 985.00</span>
+            {t("booking.checkOut")}{" "}
+            <span style={{ color: "red" }}>AED 985.00</span>
           </button>
-          <button className="cart-btn">Save to cart</button>
+          <button className="cart-btn">{t("booking.saveToCart")}</button>
         </div>
       </div>
     </div>

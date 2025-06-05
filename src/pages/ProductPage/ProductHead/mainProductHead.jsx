@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import arrow from "../../../assets/icons/left.svg";
 import accessibility from "../../../assets/icons/assess.svg";
 import globe from "../../../assets/icons/globe.svg";
 import cart from "../../../assets/icons/cart.svg";
-import downArrow from "../../../assets/icons/downArrow.svg";
 
 export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("English");
   const langBtnRef = useRef(null);
+  const { t, i18n } = useTranslation();
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -27,21 +27,25 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <div className="product-header">
       <button className="back-buttonn" onClick={() => window.history.back()}>
-        <img src={arrow} alt="Back" />
-        Back
+        <img src={arrow} alt={t("common.back")} />
+        {t("common.back")}
       </button>
-      <h1 className="product-header__title">Select attractions</h1>
+      <h1 className="product-header__title">{t("common.selectAttractions")}</h1>
       <div className="header-actions">
         <button
           className="accessibility-button"
-          aria-label="Accessibility options"
+          aria-label={t("common.accessibility")}
           onClick={onAccessibilityOpen}
         >
           <span className="product-header__icon">
-            <img src={accessibility} alt="Accessibility" />
+            <img src={accessibility} alt={t("common.accessibility")} />
           </span>
         </button>
         <div
@@ -51,12 +55,12 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
         >
           <button
             className="mobile-header__lang-btn"
-            aria-label="Language"
+            aria-label={t("common.language")}
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"
           >
-            <img src={globe} alt="Language" />
-            <span>{selectedLang === "English" ? "English" : "العربية"}</span>
+            <img src={globe} alt={t("common.language")} />
+            <span>{i18n.language === "en" ? "English" : "العربية"}</span>
             <span className="chevron">&#9662;</span>
           </button>
           {showLangDropdown && (
@@ -64,24 +68,24 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
               <div
                 className="mobile-header__lang-option"
                 onClick={() => {
-                  setSelectedLang("English");
+                  changeLanguage("en");
                   setShowLangDropdown(false);
                 }}
               >
                 <span className="mobile-header__lang-text">English</span>
-                {selectedLang === "English" && (
+                {i18n.language === "en" && (
                   <span className="mobile-header__lang-check">✓</span>
                 )}
               </div>
               <div
                 className="mobile-header__lang-option"
                 onClick={() => {
-                  setSelectedLang("العربية");
+                  changeLanguage("ar");
                   setShowLangDropdown(false);
                 }}
               >
                 <span className="mobile-header__lang-text">العربية</span>
-                {selectedLang === "العربية" && (
+                {i18n.language === "ar" && (
                   <span className="mobile-header__lang-check">✓</span>
                 )}
               </div>
@@ -90,9 +94,9 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
         </div>
         <button className="cart-button" onClick={onCartOpen}>
           <span className="cart-icon">
-            <img src={cart} alt="Cart" />
+            <img src={cart} alt={t("common.viewCart")} />
           </span>
-          View Cart
+          {t("common.viewCart")}
         </button>
       </div>
     </div>

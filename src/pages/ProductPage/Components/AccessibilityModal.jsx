@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "antd";
+import { useTranslation } from "react-i18next";
 import Invert from "../../../assets/icons/invert.svg";
 import Zoom from "../../../assets/icons/lens.svg";
 import closeIcon from "../../../assets/icons/close.svg";
@@ -7,6 +8,8 @@ import closeIcon from "../../../assets/icons/close.svg";
 // import "./AccessibilityModal.css";
 
 export default function AccessibilityModal({ isOpen, onClose }) {
+  const { t } = useTranslation();
+
   return (
     <Modal
       open={isOpen}
@@ -15,38 +18,34 @@ export default function AccessibilityModal({ isOpen, onClose }) {
       centered
       closeIcon={
         <span className="custom-modal-close">
-          <img src={closeIcon} alt="close" />
+          <img src={closeIcon} alt={t("accessibility.close")} />
         </span>
       }
       className="accessibility-modal"
       width="40%"
     >
       <div className="modal-content">
-        <h2>Accessibility</h2>
-        <p className="subtitle">choose options</p>
+        <h2>{t("accessibility.title")}</h2>
+        <p className="subtitle">{t("accessibility.subtitle")}</p>
 
         <div className="options-container">
           <div className="option-card">
             <div className="option-icon">
-              <img src={Invert} alt="Invert" />
+              <img src={Invert} alt={t("accessibility.colorBlindness")} />
             </div>
-            <p>
-              Color blindness
-              <br />
-              mode
-            </p>
+            <p>{t("accessibility.colorBlindness")}</p>
           </div>
 
           <div className="option-card">
             <div className="option-icon">
-              <img src={Zoom} alt="Zoom" />
+              <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>
-            <p>Zoom mode</p>
+            <p>{t("accessibility.zoomMode")}</p>
           </div>
         </div>
 
         <button className="continue-button" onClick={onClose}>
-          Continue
+          {t("accessibility.continue")}
         </button>
       </div>
     </Modal>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Logo from "../../components/Logo/Logo";
 import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
 import dash from "../../assets/icons/dash.svg";
@@ -12,20 +13,25 @@ import shop from "../../assets/icons/shop.svg";
 
 export default function SideBar() {
   const [activeItem, setActiveItem] = useState("All");
+  const { t } = useTranslation();
 
   const handleClick = (item) => {
     setActiveItem(item);
   };
 
-  // Define the sidebar items
+  // Define the sidebar items with translation keys
   const sideBarItems = [
-    { name: "All", icon: dash },
-    { name: "Top Attractions", icon: beach },
-    { name: "Packages", icon: dropbox },
-    { name: "Hotels", icon: house },
-    { name: "Dining", icon: chef },
-    { name: "Live", icon: camera },
-    { name: "Shopping", icon: shop },
+    { name: "all", icon: dash, translationKey: "sidebar.all" },
+    {
+      name: "topAttractions",
+      icon: beach,
+      translationKey: "sidebar.topAttractions",
+    },
+    { name: "packages", icon: dropbox, translationKey: "sidebar.packages" },
+    { name: "hotels", icon: house, translationKey: "sidebar.hotels" },
+    { name: "dining", icon: chef, translationKey: "sidebar.dining" },
+    { name: "live", icon: camera, translationKey: "sidebar.live" },
+    { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
   ];
 
   return (
@@ -34,23 +40,25 @@ export default function SideBar() {
       <ul className="side-bar-list">
         {sideBarItems.map((item) => (
           <div
+            key={item.name}
             className={`side-bar-list-item-container ${
               activeItem === item.name ? "active" : ""
             }`}
             onClick={() => handleClick(item.name)}
           >
             <li
-              key={item.name}
-              className="side-bar-list-item "
+              className="side-bar-list-item"
               onClick={() => handleClick(item.name)}
             >
               <div className="item-icon">
-                <img src={item.icon} alt={item.name} />
+                <img src={item.icon} alt={t(item.translationKey)} />
               </div>
               <div className="item-text">
-                {item.name.split(" ").map((word, index) => (
-                  <div key={index}>{word}</div>
-                ))}
+                {t(item.translationKey)
+                  .split(" ")
+                  .map((word, index) => (
+                    <div key={index}>{word}</div>
+                  ))}
               </div>
             </li>
           </div>

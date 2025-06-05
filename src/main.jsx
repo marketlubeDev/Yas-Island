@@ -7,8 +7,8 @@ import "./index.css";
 import "./../styles/styles.css";
 import "./../Sass/main.scss";
 import "./../Sass/main.css";
-
 import { router } from "./routes/router";
+import "./i18n";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

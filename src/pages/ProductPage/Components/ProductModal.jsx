@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import BookingSection from "./BookingSection";
 import Product1 from "../../../assets/images/product1.png";
 
+import { useTranslation } from "react-i18next";
+
 export default function ProductModal({ selectedProduct }) {
   const [showBookingSection, setShowBookingSection] = useState(false);
+  const { t } = useTranslation();
 
   const handleAddToCart = () => {
     setShowBookingSection(true);
@@ -32,7 +35,7 @@ export default function ProductModal({ selectedProduct }) {
                 </div>
                 <div className="vertical-divider"></div>
                 <button className="add-to-cart-btn" onClick={handleAddToCart}>
-                  Add to cart
+                  {t("product.addToCart")}
                 </button>
               </div>
             </div>
