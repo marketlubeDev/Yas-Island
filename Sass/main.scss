@@ -38,3 +38,13 @@
 
 @use "page/Components/accessibility";
 @use "page/Components/mycart";
+@use "page/Components/emailverification";
+@use "page/Components/confirmemail";
+@use "page/Components/checkout";
+@use "page/Components/makepayment";
+@use "page/Components/paymentsuccessful";
+@use "page/Components/experience";
+@use "page/Components/promocode";
+@use "page/Components/attractiondetailmodal";
+
+@use "page/Components/producthead";

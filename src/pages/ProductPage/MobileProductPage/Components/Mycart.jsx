@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import backIcon from "../../../../assets/icons/back.svg";
-import expandIcon from "../../../../assets/icons/expand.svg";
+
 import trashIcon from "../../../../assets/icons/trash.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";

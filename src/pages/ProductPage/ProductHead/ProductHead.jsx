@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Search from "../../../components/Common/Search/Search";
 import { useSelector } from "react-redux";
@@ -11,6 +11,34 @@ export default function ProductHead() {
   );
 
   console.log(isDesktop, isBigDesktop, isExtraBigDesktop, "saldhslajhdlash");
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const [selectedSort, setSelectedSort] = useState("Price (High to Low)");
+  const [selectedFilter, setSelectedFilter] = useState("Attractions");
+  const sortBtnRef = useRef(null);
+  const filterBtnRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (sortBtnRef.current && !sortBtnRef.current.contains(event.target)) {
+        setShowSortDropdown(false);
+      }
+      if (
+        filterBtnRef.current &&
+        !filterBtnRef.current.contains(event.target)
+      ) {
+        setShowFilterDropdown(false);
+      }
+    }
+    if (showSortDropdown || showFilterDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSortDropdown, showFilterDropdown]);
 
   return (
     <div className="product-head">
