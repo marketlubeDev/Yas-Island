@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./_search.scss";
 import CommonIcons from "../../../assets/icons/lens.svg";
 
 export default function Search() {
+  const { t } = useTranslation();
   const fontSize = ".8rem";
 
   return (
@@ -16,7 +18,7 @@ export default function Search() {
           marginRight: "10px",
         }}
       />
-      <input type="text" placeholder="what are you looking for?" />
+      <input type="text" placeholder={t("common.searchPlaceholder")} />
     </div>
   );
 }

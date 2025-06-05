@@ -1,9 +1,11 @@
 import React from "react";
 import { Modal } from "antd";
+import { useTranslation } from "react-i18next";
 import PromoCodeModalContent from "../Components/PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
 
 export default function OrderSummary({ formData, setFormData }) {
+  const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const handleOk = () => {
@@ -16,38 +18,38 @@ export default function OrderSummary({ formData, setFormData }) {
 
   return (
     <div className="order-summary">
-      <h3 className="order-summary__title">1 day FERRARI WORLD YAS ISLAND</h3>
+      <h3 className="order-summary__title">{t("payment.orderSummary.title")}</h3>
 
       <div className="order-summary__details">
         <div className="detail-row">
-          <span className="label">DATES & GUESTS</span>
+          <span className="label">{t("payment.orderSummary.datesAndGuests")}</span>
           <div className="values">
             <div>THU 08- FEB 2025</div>
-            <div>ADULT - 2</div>
-            <div>CHILDREN - 1</div>
+            <div>{t("payment.orderSummary.adult")} - 2</div>
+            <div>{t("payment.orderSummary.children")} - 1</div>
           </div>
         </div>
       </div>
 
       <div className="order-summary__pricing">
         <div className="price-row">
-          <span className="price-row__label">Sub total :</span>
+          <span className="price-row__label">{t("payment.orderSummary.subTotal")}</span>
           <span className="price-row__values">AED 935.71</span>
         </div>
         <div className="price-row">
-          <span className="price-row__label">vat & tax :</span>
+          <span className="price-row__label">{t("payment.orderSummary.vatAndTax")}</span>
           <span className="price-row__values">+ 49.29 VAT & Tax</span>
         </div>
         <div className="divider-line"></div>
         <div className="price-row total">
-          <span className="price-row__label-total">Total :</span>
+          <span className="price-row__label-total">{t("payment.orderSummary.total")}</span>
           <span className="price-row__values-total">AED 985.00</span>
         </div>
       </div>
 
       <div className="promo-code">
         <p className="promo-code__label">
-          ENTER YOUR PROMO CODE TO GET DISCOUNT
+          {t("payment.orderSummary.promoCode.label")}
         </p>
         <div className="promo-code__input-group">
           <input
@@ -56,10 +58,10 @@ export default function OrderSummary({ formData, setFormData }) {
             onChange={(e) =>
               setFormData({ ...formData, promoCode: e.target.value })
             }
-            placeholder="Enter promo code"
+            placeholder={t("payment.orderSummary.promoCode.placeholder")}
           />
           <button className="apply-btn" onClick={() => setIsModalVisible(true)}>
-            Apply
+            {t("payment.orderSummary.promoCode.apply")}
           </button>
         </div>
       </div>
@@ -69,9 +71,9 @@ export default function OrderSummary({ formData, setFormData }) {
           <input type="checkbox" className="checkbox-input" />
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
-            I have read and accept the{" "}
+            {t("payment.orderSummary.terms.acceptTerms")}{" "}
             <a href="#" className="terms-link">
-              terms and conditions *
+              {t("payment.orderSummary.terms.termsAndConditions")}
             </a>
           </span>
         </label>
@@ -80,7 +82,7 @@ export default function OrderSummary({ formData, setFormData }) {
           <input type="checkbox" className="checkbox-input" />
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
-            Receive communications via email
+            {t("payment.orderSummary.terms.receiveCommunications")}
           </span>
         </label>
       </div>

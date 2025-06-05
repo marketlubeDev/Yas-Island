@@ -7,6 +7,7 @@ export const en = {
     language: "Language",
     chatWithUs: "Chat With Us",
     addToCart: "Add to Cart",
+    searchPlaceholder: "What are you looking for?",
   },
   accessibility: {
     title: "Accessibility",
@@ -119,5 +120,103 @@ export const en = {
       fri: "Fri",
       sat: "Sat",
     },
+  },
+  payment: {
+    title: "Payment Checkout",
+    back: "Back",
+    arrow: "Back arrow",
+    steps: {
+      step1: "Step 1",
+      step2: "Step 2",
+      emailVerification: "Email verification",
+      checkout: "Checkout"
+    },
+    emailConfirmation: {
+      emailLabel: "EMAIL ADDRESS *",
+      emailPlaceholder: "vivek@dev.vanasthi.ae",
+      confirmButton: "Confirm email",
+      completeVerification: "Complete Verification"
+    },
+    verification: {
+      codeSent: "Verification code has been sent to",
+      checkSpam: "Please check your spam or junk mail folder",
+      enterCode: "ENTER VERIFICATION CODE",
+      willExpire: "Will Expire In",
+      resend: "Resend"
+    },
+    personalDetails: {
+      firstName: "FIRST NAME *",
+      lastName: "LAST NAME *",
+      countryOfResidence: "COUNTRY OF RESIDENCE *",
+      nationality: "NATIONALITY *",
+      phoneNumber: "PHONE NUMBER (PREFERRED NUMBER) *",
+      countries: {
+        UAE: "UAE"
+      },
+      nationalities: {
+        UAE: "UAE"
+      },
+      phoneCodes: {
+        UAE: "+971"
+      }
+    },
+    orderSummary: {
+      title: "1 day FERRARI WORLD YAS ISLAND",
+      datesAndGuests: "DATES & GUESTS",
+      adult: "ADULT",
+      children: "CHILDREN",
+      subTotal: "Sub total :",
+      vatAndTax: "vat & tax :",
+      total: "Total :",
+      promoCode: {
+        label: "ENTER YOUR PROMO CODE TO GET DISCOUNT",
+        placeholder: "Enter promo code",
+        apply: "Apply"
+      },
+      terms: {
+        acceptTerms: "I have read and accept the",
+        termsAndConditions: "terms and conditions *",
+        receiveCommunications: "Receive communications via email"
+      }
+    },
+    paymentDetails: {
+      proceedToPayment: "Proceed to payment"
+    },
+    cardPayment: {
+      title: "Please enter payment details",
+      paymentMethods: {
+        creditDebitCard: "CREDIT/DEBIT CARD",
+        paypal: "PAYPAL"
+      },
+      form: {
+        cardNumber: {
+          label: "CREDIT/DEBIT CARD NUMBER",
+          placeholder: "0000 0000 0000 0000"
+        },
+        expiryDate: {
+          label: "EXPIRY DATE",
+          placeholder: "MM/YYYY"
+        },
+        cvv: {
+          label: "CVV",
+          placeholder: "***"
+        }
+      },
+      makePayment: "Make payment"
+    },
+    success: {
+      title: "Payment Successful",
+      message: "Your payment has been processed successfully. You will receive a confirmation email shortly.",
+      viewBooking: "View Booking",
+      backToHome: "Back to Home"
+    },
+    response: {
+      ticketSent: "Your ticket has been sent to the registered mail ID!",
+      rateExperience: "How would you rate your experience",
+      excellent: "Excellent",
+      average: "Average",
+      poor: "Poor",
+      thankYou: "Thank you! Visit again"
+    }
   },
 };

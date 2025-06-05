@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Ticket from "../../../assets/icons/ticket.svg";
 import Excellent from "../../../assets/icons/great.svg";
 import Average from "../../../assets/icons/smile.svg";
@@ -7,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import thanksmile from "../../../assets/icons/thanksmile.svg";
 
 export default function PaymentResponse() {
+  const { t } = useTranslation();
   const [selectedEmoji, setSelectedEmoji] = useState(null); // 'excellent', 'average', 'poor', or null
   const emojiRef = useRef(null);
   const navigate = useNavigate();
@@ -41,13 +43,13 @@ export default function PaymentResponse() {
           <div className="ticket-section">
             <img src={Ticket} alt="Ticket" />
             <div className="ticket-message">
-              Your ticket has been sent <br /> to the registered mail ID!
+              {t("payment.response.ticketSent")}
             </div>
           </div>
           <hr className="divider" />
           <div className="feedback-section">
             <div className="feedback-title">
-              How would you rate your experience
+              {t("payment.response.rateExperience")}
             </div>
 
             <div className="feedback-options" ref={emojiRef}>
@@ -58,7 +60,7 @@ export default function PaymentResponse() {
                 <img
                   className="emoji green"
                   src={Excellent}
-                  alt="Excellent"
+                  alt={t("payment.response.excellent")}
                   style={{
                     cursor: "pointer",
                     backgroundColor:
@@ -66,7 +68,7 @@ export default function PaymentResponse() {
                     transition: "background-color 0.3s ease",
                   }}
                 />
-                <div className="label">Excellent</div>
+                <div className="label">{t("payment.response.excellent")}</div>
               </div>
               <div
                 className="option"
@@ -75,7 +77,7 @@ export default function PaymentResponse() {
                 <img
                   className="emoji yellow"
                   src={Average}
-                  alt="Average"
+                  alt={t("payment.response.average")}
                   style={{
                     cursor: "pointer",
                     backgroundColor:
@@ -83,13 +85,13 @@ export default function PaymentResponse() {
                     transition: "background-color 0.3s ease",
                   }}
                 />
-                <div className="label">Average</div>
+                <div className="label">{t("payment.response.average")}</div>
               </div>
               <div className="option" onClick={() => handleEmojiClick("poor")}>
                 <img
                   className="emoji red"
                   src={Poor}
-                  alt="Poor"
+                  alt={t("payment.response.poor")}
                   style={{
                     cursor: "pointer",
                     backgroundColor:
@@ -97,7 +99,7 @@ export default function PaymentResponse() {
                     transition: "background-color 0.3s ease",
                   }}
                 />
-                <div className="label">Poor</div>
+                <div className="label">{t("payment.response.poor")}</div>
               </div>
             </div>
 
@@ -110,7 +112,7 @@ export default function PaymentResponse() {
           <div className="smiley-circle">
             <img src={thanksmile} alt="Smiley" className="smiley-img" />
           </div>
-          <p className="feedback-text">Thank you! Visit again</p>
+          <p className="feedback-text">{t("payment.response.thankYou")}</p>
         </div>
       )}
     </div>

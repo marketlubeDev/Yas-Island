@@ -1,16 +1,19 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function VerificationBox({ email }) {
+  const { t } = useTranslation();
+
   return (
     <div className="verification-containerBox">
       <p className="verification-text">
-        Verification code has been sent to{" "}
+        {t("payment.verification.codeSent")}{" "}
         <span className="email">{email}</span>
       </p>
-      <p className="spam-notice">Please check your spam or junk mail folder</p>
+      <p className="spam-notice">{t("payment.verification.checkSpam")}</p>
 
       <div className="verification-container">
-        <p className="verification-label">ENTER VERIFICATION CODE</p>
+        <p className="verification-label">{t("payment.verification.enterCode")}</p>
         <div className="code-inputs">
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <input
@@ -23,9 +26,9 @@ export default function VerificationBox({ email }) {
         </div>
       </div>
       <div className="timer-section">
-        <span className="expire-text">Will Expire In</span>
+        <span className="expire-text">{t("payment.verification.willExpire")}</span>
         <span className="timer">03:00</span>
-        <button className="resend-btn">Resend</button>
+        <button className="resend-btn">{t("payment.verification.resend")}</button>
       </div>
     </div>
   );

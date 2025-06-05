@@ -1,9 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import cardIcon from "../../../assets/icons/card.png";
 import paypalIcon from "../../../assets/icons/paypal.png";
 import visaIcon from "../../../assets/icons/payment.png";
 
 export default function CardPaymentDetail({ onPaymentComplete }) {
+  const { t } = useTranslation();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you would typically handle the payment processing
@@ -13,7 +16,7 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
 
   return (
     <div className="payment-container">
-      <h2 className="payment-title">Please enter payment details</h2>
+      <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
       <div className="payment-methods">
         <label className="method active">
@@ -29,7 +32,7 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
             <span className="card-icon">
               <img src={cardIcon} alt="card" />
             </span>
-            <span className="method-title">CREDIT/DEBIT CARD</span>
+            <span className="method-title">{t("payment.cardPayment.paymentMethods.creditDebitCard")}</span>
           </div>
         </label>
 
@@ -45,7 +48,7 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
             <span className="paypal-icon">
               <img src={paypalIcon} alt="paypal" />
             </span>
-            <span className="method-title">PAYPAL</span>
+            <span className="method-title">{t("payment.cardPayment.paymentMethods.paypal")}</span>
           </div>
         </label>
       </div>
@@ -54,26 +57,34 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
         <div className="payment-input-row">
           <div className="payment-input-group">
             <label className="payment-input-label">
-              CREDIT/DEBIT CARD NUMBER
+              {t("payment.cardPayment.form.cardNumber.label")}
             </label>
             <input
               type="text"
-              placeholder="0000 0000 0000 0000"
+              placeholder={t("payment.cardPayment.form.cardNumber.placeholder")}
               className="card-input"
             />
           </div>
           <div className="payment-input-group">
-            <label className="payment-input-label">EXPIRY DATE</label>
-            <input type="text" placeholder="MM/YYYY" className="date-input" />
+            <label className="payment-input-label">
+              {t("payment.cardPayment.form.expiryDate.label")}
+            </label>
+            <input 
+              type="text" 
+              placeholder={t("payment.cardPayment.form.expiryDate.placeholder")} 
+              className="date-input" 
+            />
           </div>
         </div>
 
         <div className="payment-input-row">
           <div className="payment-input-group">
-            <label className="payment-input-label">CVV</label>
+            <label className="payment-input-label">
+              {t("payment.cardPayment.form.cvv.label")}
+            </label>
             <input
               type="text"
-              placeholder="***"
+              placeholder={t("payment.cardPayment.form.cvv.placeholder")}
               maxLength="3"
               className="cvv-input"
             />
@@ -82,7 +93,7 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
       </form>
       <div className="payment-button-container">
         <button type="submit" onClick={handleSubmit} className="payment-button">
-          Make payment
+          {t("payment.cardPayment.makePayment")}
         </button>
         <div className="card-logos">
           {/* <img src="/path-to/visa.png" alt="visa" className="card-logo" />

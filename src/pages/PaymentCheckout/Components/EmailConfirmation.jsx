@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import VerificationBox from "./VerificationBox";
 
 export default function EmailConfirmation({ onVerificationComplete, showVerification, setShowVerification }) {
- 
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
 
   const handleConfirmEmail = () => {
@@ -18,10 +19,10 @@ export default function EmailConfirmation({ onVerificationComplete, showVerifica
   return (
     <div className="form-container">
       <div className="form-group">
-        <label>EMAIL ADDRESS *</label>
+        <label>{t("payment.emailConfirmation.emailLabel")}</label>
         <input
           type="email"
-          placeholder="vivek@dev.vanasthi.ae"
+          placeholder={t("payment.emailConfirmation.emailPlaceholder")}
           className="form-control"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -35,7 +36,10 @@ export default function EmailConfirmation({ onVerificationComplete, showVerifica
         className="confirm-button"
         onClick={handleConfirmEmail}
       >
-        {showVerification ? "Complete Verification" : "Confirm email"}
+        {showVerification 
+          ? t("payment.emailConfirmation.completeVerification")
+          : t("payment.emailConfirmation.confirmButton")
+        }
       </button>
     </div>
   );

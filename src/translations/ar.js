@@ -7,6 +7,7 @@ export const ar = {
     language: "اللغة",
     chatWithUs: "تواصل معنا",
     addToCart: "أضف إلى السلة",
+    searchPlaceholder: "ماذا تبحث عن؟",
   },
   accessibility: {
     title: "إمكانية الوصول",
@@ -119,5 +120,103 @@ export const ar = {
       fri: "الجمعة",
       sat: "السبت",
     },
+  },
+  payment: {
+    title: "إتمام الدفع",
+    back: "رجوع",
+    arrow: "سهم الرجوع",
+    steps: {
+      step1: "الخطوة 1",
+      step2: "الخطوة 2",
+      emailVerification: "التحقق من البريد الإلكتروني",
+      checkout: "إتمام الشراء"
+    },
+    emailConfirmation: {
+      emailLabel: "البريد الإلكتروني *",
+      emailPlaceholder: "vivek@dev.vanasthi.ae",
+      confirmButton: "تأكيد البريد الإلكتروني",
+      completeVerification: "إكمال التحقق"
+    },
+    verification: {
+      codeSent: "تم إرسال رمز التحقق إلى",
+      checkSpam: "يرجى التحقق من مجلد البريد المزعج أو غير المرغوب فيه",
+      enterCode: "أدخل رمز التحقق",
+      willExpire: "سينتهي خلال",
+      resend: "إعادة الإرسال"
+    },
+    personalDetails: {
+      firstName: "الاسم الأول *",
+      lastName: "اسم العائلة *",
+      countryOfResidence: "بلد الإقامة *",
+      nationality: "الجنسية *",
+      phoneNumber: "رقم الهاتف (الرقم المفضل) *",
+      countries: {
+        UAE: "الإمارات العربية المتحدة"
+      },
+      nationalities: {
+        UAE: "الإمارات العربية المتحدة"
+      },
+      phoneCodes: {
+        UAE: "+971"
+      }
+    },
+    orderSummary: {
+      title: "فيراري وورلد ياس آيلاند ليوم واحد",
+      datesAndGuests: "التواريخ والضيوف",
+      adult: "بالغ",
+      children: "أطفال",
+      subTotal: "المجموع الفرعي :",
+      vatAndTax: "ضريبة القيمة المضافة :",
+      total: "المجموع :",
+      promoCode: {
+        label: "أدخل رمز الخصم للحصول على تخفيض",
+        placeholder: "أدخل رمز الخصم",
+        apply: "تطبيق"
+      },
+      terms: {
+        acceptTerms: "لقد قرأت وأوافق على",
+        termsAndConditions: "الشروط والأحكام *",
+        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني"
+      }
+    },
+    paymentDetails: {
+      proceedToPayment: "المتابعة إلى الدفع"
+    },
+    cardPayment: {
+      title: "يرجى إدخال تفاصيل الدفع",
+      paymentMethods: {
+        creditDebitCard: "بطاقة ائتمان/خصم",
+        paypal: "باي بال"
+      },
+      form: {
+        cardNumber: {
+          label: "رقم بطاقة الائتمان/الخصم",
+          placeholder: "0000 0000 0000 0000"
+        },
+        expiryDate: {
+          label: "تاريخ الانتهاء",
+          placeholder: "MM/YYYY"
+        },
+        cvv: {
+          label: "رمز الأمان",
+          placeholder: "***"
+        }
+      },
+      makePayment: "إتمام الدفع"
+    },
+    success: {
+      title: "تم الدفع بنجاح",
+      message: "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
+      viewBooking: "عرض الحجز",
+      backToHome: "العودة إلى الصفحة الرئيسية"
+    },
+    response: {
+      ticketSent: "تم إرسال تذكرتك إلى البريد الإلكتروني المسجل!",
+      rateExperience: "كيف تقيم تجربتك",
+      excellent: "ممتاز",
+      average: "متوسط",
+      poor: "ضعيف",
+      thankYou: "شكراً لك! نتمنى زيارتك مرة أخرى"
+    }
   },
 };

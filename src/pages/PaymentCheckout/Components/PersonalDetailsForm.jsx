@@ -1,11 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function PersonalDetailsForm({ formData, setFormData }) {
+  const { t } = useTranslation();
+
   return (
     <div className="payment-form__left">
       <div className="form-group-row">
         <div className="form-group">
-          <label className="form-group__label">FIRST NAME *</label>
+          <label className="form-group__label">{t("payment.personalDetails.firstName")}</label>
           <input
             type="text"
             className="form-group__input"
@@ -17,7 +20,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
         </div>
 
         <div className="form-group">
-          <label className="form-group__label">LAST NAME *</label>
+          <label className="form-group__label">{t("payment.personalDetails.lastName")}</label>
           <input
             type="text"
             className="form-group__input"
@@ -31,7 +34,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
 
       <div className="form-group-row">
         <div className="form-group">
-          <label className="form-group__label">COUNTRY OF RESIDENCE *</label>
+          <label className="form-group__label">{t("payment.personalDetails.countryOfResidence")}</label>
           <select
             className="form-group__select"
             value={formData.country}
@@ -39,13 +42,13 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
               setFormData({ ...formData, country: e.target.value })
             }
           >
-            <option value="UAE">UAE</option>
+            <option value="UAE">{t("payment.personalDetails.countries.UAE")}</option>
             {/* Add more countries as needed */}
           </select>
         </div>
 
         <div className="form-group">
-          <label className="form-group__label">NATIONALITY *</label>
+          <label className="form-group__label">{t("payment.personalDetails.nationality")}</label>
           <select
             className="form-group__select"
             value={formData.nationality}
@@ -53,7 +56,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
               setFormData({ ...formData, nationality: e.target.value })
             }
           >
-            <option value="UAE">UAE</option>
+            <option value="UAE">{t("payment.personalDetails.nationalities.UAE")}</option>
             {/* Add more nationalities as needed */}
           </select>
         </div>
@@ -61,7 +64,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
 
       <div className="form-group">
         <label className="form-group__label">
-          PHONE NUMBER (PREFERRED NUMBER) *
+          {t("payment.personalDetails.phoneNumber")}
         </label>
         <div className="form-group__phone">
           <select
@@ -71,7 +74,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
               setFormData({ ...formData, phoneCode: e.target.value })
             }
           >
-            <option value="+971">+971</option>
+            <option value="+971">{t("payment.personalDetails.phoneCodes.UAE")}</option>
             {/* Add more country codes as needed */}
           </select>
           <input

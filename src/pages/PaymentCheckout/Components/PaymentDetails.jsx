@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import PersonalDetailsForm from "./PersonalDetailsForm";
 import OrderSummary from "./OrderSummary";
+import { useTranslation } from "react-i18next";
 
 export default function PaymentDetails({ onProceed }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "vivek",
     lastName: "panashi",
@@ -19,7 +21,7 @@ export default function PaymentDetails({ onProceed }) {
       <div className="payment-form__right">
         <OrderSummary formData={formData} setFormData={setFormData} />
         <button className="proceedbtn" onClick={onProceed}>
-          Proceed to payment
+          {t("payment.paymentDetails.proceedToPayment")}
         </button>
       </div>
     </div>

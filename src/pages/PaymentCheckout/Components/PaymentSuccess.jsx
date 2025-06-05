@@ -1,7 +1,9 @@
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useTranslation } from "react-i18next";
 
 export default function PaymentSuccess({ onLottieClick }) {
+  const { t } = useTranslation();
   return (
     <div
       className="payment-success"
@@ -32,7 +34,7 @@ export default function PaymentSuccess({ onLottieClick }) {
       </div>
       {/* Success Text */}
       <div style={{ color: "#594F67", fontSize: 24, fontWeight: 700, cursor: "pointer" }} onClick={onLottieClick}>
-        Payment Successful
+        {t("payment.success.title")}
       </div>
     </div>
   );
