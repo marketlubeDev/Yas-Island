@@ -10,9 +10,10 @@ import EmailVerification from "../pages/ProductPage/MobileProductPage/Components
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 
 const ResponsiveLanding = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
+  // const { isSmallPhone, isPhone } = useResponsive();
+  // const isMobile = isSmallPhone || isPhone;
+  // return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
+  return <Navigate to="/product" replace />;
 };
 
 const ResponsiveProduct = () => {
