@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
@@ -6,6 +6,7 @@ import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
+import EmailVerification from "../pages/ProductPage/MobileProductPage/Components/EmailVerification";
 import { Accessibility } from "lucide-react";
 
 const ResponsiveLanding = () => {
@@ -16,6 +17,11 @@ const ResponsiveLanding = () => {
 const ResponsiveProduct = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return isMobile ? <MobileProductPage /> : <ProductPage />;
+};
+
+const ResponsiveEmailVerification = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  return isMobile ? <EmailVerification /> : <PaymentCheckout />;
 };
 
 export const router = createBrowserRouter([
@@ -33,7 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element: <PaymentCheckout />,
+        element: <ResponsiveEmailVerification />,
       },
       {
         path: "contact",
