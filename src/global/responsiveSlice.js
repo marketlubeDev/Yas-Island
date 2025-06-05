@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isMobile: false,
-  isTablet: false,
-  isBigTablets: false,
-  isDesktop: false,
-  isBigDesktop: false,
+  isSmallPhone: false, // max-width: 575.98px
+  isPhone: false, // 576px - 767.98px
+  isTablets: false, // 768px - 991.98px
+  isBigTablets: false, // 992px - 1199.98px
+  isDesktop: false, // 1200px - 1399.98px
+  isBigDesktop: false, // 1400px - 1699.98px
   windowWidth: window.innerWidth,
   windowHeight: window.innerHeight,
 };
@@ -14,11 +15,14 @@ const responsiveSlice = createSlice({
   name: "responsive",
   initialState,
   reducers: {
-    setIsMobile: (state, action) => {
-      state.isMobile = action.payload;
+    setIsSmallPhone: (state, action) => {
+      state.isSmallPhone = action.payload;
     },
-    setIsTablet: (state, action) => {
-      state.isTablet = action.payload;
+    setIsPhone: (state, action) => {
+      state.isPhone = action.payload;
+    },
+    setIsTablets: (state, action) => {
+      state.isTablets = action.payload;
     },
     setIsBigTablets: (state, action) => {
       state.isBigTablets = action.payload;
@@ -33,8 +37,9 @@ const responsiveSlice = createSlice({
 });
 
 export const {
-  setIsMobile,
-  setIsTablet,
+  setIsSmallPhone,
+  setIsPhone,
+  setIsTablets,
   setIsBigTablets,
   setIsDesktop,
   setIsBigDesktop,
