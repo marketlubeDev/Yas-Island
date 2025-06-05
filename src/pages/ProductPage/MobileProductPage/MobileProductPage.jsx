@@ -17,6 +17,8 @@ import MakePayment from "./Components/MakePayment";
 import PaymentSuccessModal from "./Components/PaymentSuccessful";
 import Experience1 from "./Components/Experience1";
 import PromoCodeModal from "./Components/PromoCode";
+import AttractionDetailModal from "./Components/AttractionDetailModal";
+import BookingModal from "./Components/BookingModal";
 import { useNavigate, Outlet } from "react-router-dom";
 // import MobileLanding from "./MobileLanding";
 // import PromoCodeModal from "./PromoCode";
@@ -93,7 +95,7 @@ function MobileProductPage() {
   const [showMyCart, setShowMyCart] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(true);
   const [showEmailVerification, setShowEmailVerification] = useState(false);
-  const [showConfirmEmail, setShowConfirmEmail] = useState(true);
+  const [showConfirmEmail, setShowConfirmEmail] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
   const [showMakePayment, setShowMakePayment] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);

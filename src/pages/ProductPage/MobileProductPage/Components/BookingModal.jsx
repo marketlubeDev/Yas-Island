@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import closeIcon from "../../../../assets/images/close.svg"; // Use your close icon
-import backIcon from "../../../../assets/images/back.svg"; // Use your back icon
-import leftIcon from "../../../../assets/images/left.svg";
+import closeIcon from "../../../../assets/icons/close.svg"; // Use your close icon
+import backIcon from "../../../../assets/icons/back.svg"; // Use your back icon
+import leftIcon from "../../../../assets/icons/left.svg";
 
 function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
   // Example state for guests

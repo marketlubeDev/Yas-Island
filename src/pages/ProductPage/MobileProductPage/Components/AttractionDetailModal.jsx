@@ -1,6 +1,6 @@
 import React from "react";
-import closeIcon from "../../../../assets/images/close.svg"; // Replace with your close icon
-import backIcon from "../../../../assets/images/back.svg"; // Replace with your back arrow icon
+import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
+import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow icon
 
 function AttractionDetailModal({ attraction, onClose, onBack, onAddToCart }) {
   if (!attraction) return null;
@@ -46,7 +46,10 @@ function AttractionDetailModal({ attraction, onClose, onBack, onAddToCart }) {
           <div className="attraction-detail-modal__footer-right">
             <button
               className="attraction-detail-modal__add-btn"
-              onClick={onAddToCart}
+              onClick={() => {
+                setShowAttractionDetail(false);
+                setShowBookingModal(true);
+              }}
             >
               + Add to cart
             </button>
