@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Drawer, Button } from "antd";
-import { MinusOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import Expand from "../../../assets/icons/shrink.svg";
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
 
 const CartModal = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // Example local state for quantity of the first item
   const [item1Quantity, setItem1Quantity] = useState(2); // Starting with quantity 2
@@ -55,35 +57,35 @@ const CartModal = ({ isOpen, onClose }) => {
     >
       <div className="cart-content">
         <div className="cart-header">
-          <h2>My Cart</h2>
+          <h2>{t("cart.title")}</h2>
           <button className="expand-icon" onClick={onClose}>
-            <img src={Expand} alt="Expand" />
+            <img src={Expand} alt={t("cart.expand")} />
           </button>
         </div>
 
         <div className="booking-date">
           <p>
-            Booking for <span>Thu 08- Feb 2025</span>
+            {t("cart.bookingFor")} <span>Thu 08- Feb 2025</span>
           </p>
         </div>
 
         <div className="cart-items">
           {/* First hardcoded cart item */}
           <div className="cart-item">
-            <img src={Ferrari} alt="Ferrari World" />
+            <img src={Ferrari} alt={t("cart.item.ferrariWorld")} />
             <div className="item-details">
-              <h4>1 day Ferrari World</h4>
-              <p>AED 328.57</p>
-              <small>16.43 VAT & Tax</small>
+              <h4>{t("cart.item.ferrariWorld")}</h4>
+              <p>{t("cart.item.price")}</p>
+              <small>{t("cart.item.vatAndTax")}</small>
             </div>
             <div className="quantity-controls">
-              <span>Adults</span>
+              <span>{t("cart.adults")}</span>
               <div className="controls">
                 <Button icon={<MinusOutlined />} onClick={handleDecreaseItem1Quantity} />
                 <span>{item1Quantity}</span> {/* Display the item1Quantity state */}
                 <Button icon={<PlusOutlined />} onClick={handleIncreaseItem1Quantity} />
                 <Button className="delete-btn">
-                  <img src={DeleteIcon} alt="Delete" />
+                  <img src={DeleteIcon} alt={t("cart.delete")} />
                 </Button>
               </div>
             </div>
@@ -91,20 +93,20 @@ const CartModal = ({ isOpen, onClose }) => {
 
           {/* Second hardcoded cart item */}
            <div className="cart-item">
-            <img src={Ferrari} alt="Ferrari World" />
+            <img src={Ferrari} alt={t("cart.item.ferrariWorld")} />
             <div className="item-details">
-              <h4>1 day Ferrari World</h4>
-              <p>AED 328.57</p>
-              <small>16.43 VAT & Tax</small>
+              <h4>{t("cart.item.ferrariWorld")}</h4>
+              <p>{t("cart.item.price")}</p>
+              <small>{t("cart.item.vatAndTax")}</small>
             </div>
             <div className="quantity-controls">
-              <span>Adults</span>
+              <span>{t("cart.adults")}</span>
               <div className="controls">
                 <Button icon={<MinusOutlined />} onClick={handleDecreaseItem2Quantity} />
                 <span>{item2Quantity}</span> {/* Display the item2Quantity state */}
                 <Button icon={<PlusOutlined />} onClick={handleIncreaseItem2Quantity} />
                 <Button className="delete-btn">
-                  <img src={DeleteIcon} alt="Delete" />
+                  <img src={DeleteIcon} alt={t("cart.delete")} />
                 </Button>
               </div>
             </div>
@@ -114,26 +116,26 @@ const CartModal = ({ isOpen, onClose }) => {
         <div className="cart-summary">
           <div className="subtotal">
             <div className="summary-row">
-              <span>Sub total :</span>
+              <span>{t("cart.subTotal")}</span>
               <span>AED 935.71</span>
             </div>
             <div className="summary-row">
-              <span>VAT & Tax :</span>
+              <span>{t("cart.vatAndTax")}</span>
               <span>+ 49.29 VAT & Tax</span>
             </div>
           </div>
           <div className="custom-divider"></div>
           <div className="total">
-            <span>Total :</span>
+            <span>{t("cart.total")}</span>
             <span>AED 985.00</span>
           </div>
 
           <div className="cart-actions">
             <button className="save-cart-btn" onClick={handleSaveCart}>
-              Save cart & pay later
+              {t("cart.saveCartAndPayLater")}
             </button>
             <button className="checkout-btn" onClick={handleCheckout}>
-              Check out
+              {t("cart.checkOut")}
             </button>
           </div>
         </div>

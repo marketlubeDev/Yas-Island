@@ -99,6 +99,11 @@ export const en = {
     checkOut: "Check out",
     delete: "Delete",
     expand: "Expand",
+    item: {
+      ferrariWorld: "1 day Ferrari World",
+      price: "AED 328.57",
+      vatAndTax: "16.43 VAT & Tax"
+    }
   },
   product: {
     addToCart: "Add to cart",

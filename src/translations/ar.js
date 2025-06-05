@@ -99,6 +99,11 @@ export const ar = {
     checkOut: "إتمام الشراء",
     delete: "حذف",
     expand: "توسيع",
+    item: {
+      ferrariWorld: "فيراري وورلد ليوم واحد",
+      price: "درهم 328.57",
+      vatAndTax: "ضريبة القيمة المضافة 16.43"
+    }
   },
   product: {
     addToCart: "أضف إلى السلة",
