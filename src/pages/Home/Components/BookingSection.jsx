@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
 
 export default function BookingSection() {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState({
@@ -170,7 +172,7 @@ export default function BookingSection() {
         <div className="booking-actions">
           <button
             className="checkout-btnn"
-            onClick={() => window.location.href = "/payment"}
+            onClick={() => navigate("/payment")}
           >
             Check out <span style={{ color: "red" }}>AED 985.00</span>
           </button>
