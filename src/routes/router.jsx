@@ -8,24 +8,30 @@ import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 import EmailVerification from "../pages/ProductPage/MobileProductPage/Components/EmailVerification";
 import MobilePaymentFlow from "../pages/ProductPage/MobileProductPage/Components/MobilePaymentFlow";
+
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
+import UnderConstruction from "../components/UnderConstruction";
 
 const ResponsiveLanding = () => {
   // const { isSmallPhone, isPhone } = useResponsive();
   // const isMobile = isSmallPhone || isPhone;
   // return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
-  return <Navigate to="/product" replace />;
+  // return <Navigate to="/product" replace />;
+  const { isSmallPhone, isPhone } = useResponsive();
+  const isMobile = isSmallPhone || isPhone;
+  return isMobile ? <UnderConstruction /> : <LandingPage />;
 };
 
 const ResponsiveProduct = () => {
   const { isSmallPhone, isPhone } = useResponsive();
   const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobileProductPage /> : <ProductPage />;
+  return isMobile ? <UnderConstruction /> : <ProductPage />;
 };
 
 const ResponsiveEmailVerification = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
+  const { isSmallPhone, isPhone } = useResponsive();
+  const isMobile = isSmallPhone || isPhone;
+  return isMobile ? <UnderConstruction /> : <PaymentCheckout />;
 };
 
 export const router = createBrowserRouter([
