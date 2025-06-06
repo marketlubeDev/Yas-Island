@@ -78,7 +78,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               <label className="email-checkout__label">
                 COUNTRY OF RESIDENCE *
                 <select
-                  className="email-checkout__input"
+                  className="email-checkout__input email-checkout__select"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   required

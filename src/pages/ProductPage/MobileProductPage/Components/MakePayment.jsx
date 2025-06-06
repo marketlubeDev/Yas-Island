@@ -15,14 +15,21 @@ function MakePayment({ onClose, onPaymentSuccess }) {
         <div className="make-payment__content">
           {/* Order Summary */}
           <div className="make-payment__summary">
-            <div className="make-payment__summary-title">
-              1 day FERRARI WORLD YAS ISLAND
-            </div>
-            <div className="make-payment__summary-row">
-              <span>DATES & GUESTS</span>
-              <span>
-                <b>THU 08- FEB 2025</b> &nbsp; ADULT - 2 &nbsp; CHILDREN - 1
-              </span>
+            <div className="make-payment__summary-top">
+              <div className="make-payment__summary-title">
+                1 day FERRARI WORLD YAS ISLAND
+              </div>
+              <div className="make-payment__summary-dates-row">
+                <div>
+                  <span className="make-payment__summary-dates-label">
+                    DATES & GUESTS
+                  </span>
+                </div>
+                <div>
+                  <b>THU 08- FEB 2025</b>
+                  &nbsp;&nbsp; ADULT - 2 &nbsp;&nbsp; CHILDREN - 1
+                </div>
+              </div>
             </div>
             <div className="make-payment__summary-row">
               <span>Sub total :</span>
