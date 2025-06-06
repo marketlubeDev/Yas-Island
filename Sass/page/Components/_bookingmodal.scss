@@ -4,7 +4,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
+  background: rgba(20, 20, 40, 0.6);
+  backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -15,9 +16,10 @@
   background: white;
   border-radius: 24px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
-  max-width: 350px;
+  max-width: 380px;
+  margin-top: 1rem;
   width: 100%;
-  height: 95vh;
+  height: 97vh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -33,9 +35,10 @@
 }
 
 .booking-modal__title {
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 500;
   color: #231942;
+  margin-bottom: 1rem;
   flex: 1;
   text-align: center;
 }
@@ -106,18 +109,30 @@
 }
 
 .booking-modal__guests-title {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 500;
   color: #231942;
   margin-bottom: 8px;
   text-align: center;
 }
 
 .booking-modal__guests-summary {
+  position: relative;
   font-size: 15px;
-  color: #231942;
+  font-weight: 500;
+  color: #18142b;
+  margin-bottom: 0;
   text-align: center;
-  margin-bottom: 8px;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 90%;
+    height: 1px;
+    background: #e1e1ef;
+    margin: 8px auto 0 auto;
+    border-radius: 1px;
+  }
 }
 
 .booking-modal__guests-box {
@@ -126,40 +141,48 @@
   border-radius: 1rem;
   padding: 12px;
   margin-bottom: 6px;
-}
-
-.booking-modal__guests-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 15px;
-  color: #231942;
-  font-weight: 500;
-  gap: 8px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  button {
-    background: #f6f6fa;
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
+  .booking-modal__guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 15px;
     color: #231942;
-    cursor: pointer;
-    margin: 0 4px;
-  }
-  span {
-    min-width: 18px;
-    display: inline-block;
-    text-align: center;
+    font-weight: 500;
+    gap: 8px;
+    position: relative;
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background: #e1e1ef;
+      border-radius: 1px;
+    }
+    button {
+      background: #f6f6fa;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      color: #231942;
+      cursor: pointer;
+      margin: 0 4px;
+    }
+    span {
+      min-width: 18px;
+      display: inline-block;
+      text-align: center;
+    }
   }
 }
 
 .booking-modal__guests-note {
-  font-size: 13px;
+  font-size: 10px;
+  font-weight: 300;
   color: #bdbdc6;
   text-align: center;
   margin-top: 4px;
@@ -180,8 +203,8 @@
   border: none;
   border-radius: 2rem;
   padding: 12px 0;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   cursor: pointer;
   width: 100%;
   margin-bottom: 4px;
@@ -193,8 +216,8 @@
   border: 1.5px solid #e3dff1;
   border-radius: 2rem;
   padding: 12px 0;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   cursor: pointer;
   width: 100%;
 }
@@ -215,8 +238,8 @@
 }
 
 .booking-modal__calendar-month {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: #231942;
   letter-spacing: 0.5px;
 }
@@ -239,26 +262,168 @@
 
 .booking-modal__close {
   position: absolute;
-  top: -1%;
-  right: 0px;
+  top: 1%;
+  right: 10%;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   font-size: 32px;
   line-height: 1;
-  // border-radius: 70.476px;
-
   cursor: pointer;
-  background: black;
+  background: transparent;
+  border: 2px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
+  transition: background 0.2s, border-color 0.2s;
   &:hover {
     background: #fff;
+    border-color: #231942;
   }
   img {
-    width: 35px;
-    height: 35px;
+    width: 18px;
+    height: 18px;
   }
+}
+
+.guests-box {
+  background: #fff;
+  border: 1.5px solid #d3b8ff;
+  border-radius: 16px;
+  padding: 18px 0 10px 0;
+  max-width: 320px;
+  margin: 0 auto 16px auto;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+
+  .guests-summary {
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+    color: #18142b;
+    margin-bottom: 0;
+    text-align: center;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 90%;
+      height: 1px;
+      background: #e1e1ef;
+      margin: 8px auto 0 auto;
+      border-radius: 1px;
+    }
+  }
+
+  .guests-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    font-size: 15px;
+    color: #231942;
+    font-weight: 500;
+    min-height: 44px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 5%;
+      bottom: 0;
+      width: 90%;
+      height: 1px;
+      background: #e1e1ef;
+      border-radius: 1px;
+    }
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+  .guests-divider {
+    width: 90%;
+    height: 1px;
+    background: #e1e1ef;
+    margin: 0 auto;
+    border-radius: 1px;
+  }
+
+  .guests-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .guests-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #d3b8ff;
+    background: #fff;
+    color: #594f67;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    &:hover {
+      background: #f4f3f3;
+      border-color: #66aae7;
+    }
+  }
+
+  .guests-count {
+    min-width: 18px;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    color: #231942;
+    font-weight: 500;
+  }
+
+  .guests-note {
+    font-size: 13px;
+    color: #bdbdc6;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+.guests-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.guests-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  font-size: 15px;
+  color: #231942;
+  font-weight: 500;
+  min-height: 44px;
+}
+
+.guests-row:not(:first-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid #e1e1ef; // light purple/gray
+}
+
+/* Remove the line from the last row if you don't want it there: */
+.guests-row:last-child::after {
+  display: none;
 }

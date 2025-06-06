@@ -3,7 +3,7 @@ import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 
 function PaymentSuccessful({ onShowExperience }) {
   return (
-    <div className="outer-modal-bg">
+    <div className="outer-modal-bg-payment-successful">
       <div className="payment-success-modal">
         <div className="email-verification-header-fixed">
           <MobileHeader />

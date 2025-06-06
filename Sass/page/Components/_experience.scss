@@ -16,18 +16,18 @@
 
 .experience-modal {
   background: #fff;
-  border-radius: 24px;
+  border-radius: 15px;
   box-shadow: 0 4px 24px rgba(44, 44, 84, 0.12);
   max-width: 420px;
   width: 100%;
-  margin: 32px 0;
+  margin: 10px 10px;
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 95vh;
 }
 
 .email-verification-header-fixed {
-  position: sticky;
+  // position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 400px;
-  padding: 32px 0 24px 0;
+  // padding: 10px 0 10px 0;
 }
 
 .experience-ticket-img {
