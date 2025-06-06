@@ -7,6 +7,7 @@ import LandingPage from "../pages/Home/LandingPage";
 import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 import EmailVerification from "../pages/ProductPage/MobileProductPage/Components/EmailVerification";
+import MobilePaymentFlow from "../pages/ProductPage/MobileProductPage/Components/MobilePaymentFlow";
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 
 const ResponsiveLanding = () => {
@@ -24,7 +25,7 @@ const ResponsiveProduct = () => {
 
 const ResponsiveEmailVerification = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  return isMobile ? <EmailVerification /> : <PaymentCheckout />;
+  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
 };
 
 export const router = createBrowserRouter([

@@ -46,9 +46,8 @@ function ConfirmEmail({
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <div className="confirm-email__header">
-          <MobileHeader />
-        </div>
+        <MobileHeader />
+
         <div className="confirm-email__content">
           <div className="confirm-email__title">Guest details and payment</div>
           <button
@@ -71,13 +70,8 @@ function ConfirmEmail({
           <div className="confirm-email__step-underline"></div>
           <div className="confirm-email__form-container">
             <div className="confirm-email__label">EMAIL ADDRESS *</div>
-            <div
-              className="confirm-email__input-value"
-              style={{ marginBottom: 16 }}
-            >
-              {email}
-            </div>
-            <div className="confirm-email__otp-section">
+            <div className="confirm-email__input-underline">{email}</div>
+            <div className="confirm-email__otp-section-bg">
               <div className="confirm-email__otp-label">
                 ENTER VERIFICATION CODE
               </div>
@@ -95,36 +89,43 @@ function ConfirmEmail({
                   />
                 ))}
               </div>
-              <div className="confirm-email__otp-info">
-                Verification code has been sent to <b>{email}</b>
-                <br />
-                <span className="confirm-email__otp-warning">
-                  Please check your spam or junk mail folder
-                </span>
-              </div>
-              <div className="confirm-email__otp-actions">
-                <span>
-                  Will Expire In <b>{formatTime(timer)}</b>
-                </span>
-                <button
-                  className="confirm-email__otp-resend"
-                  onClick={() => {
-                    setTimer(180);
-                    if (onResend) onResend();
-                  }}
-                  disabled={timer > 0}
-                >
-                  Resend
-                </button>
-              </div>
             </div>
-            <button
-              className="confirm-email__confirm-btn"
-              style={{ marginTop: 24 }}
-              onClick={onConfirm}
+            <div className="confirm-email__otp-info">
+              Verification code has been sent to <b>{email}</b>
+              <br />
+              <span className="confirm-email__otp-warning">
+                Please check your spam or junk mail folder{" "}
+              </span>
+            </div>
+            <div className="confirm-email__otp-actions">
+              <span>
+                Will Expire In <b>{formatTime(timer)}</b>
+              </span>
+              <button
+                className="confirm-email__otp-resend"
+                onClick={() => {
+                  setTimer(180);
+                  if (onResend) onResend();
+                }}
+                disabled={timer > 0}
+              >
+                Resend
+              </button>
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                onConfirm();
+              }}
             >
-              Confirm OTP
-            </button>
+              <button
+                className="confirm-email__confirm-btn"
+                type="submit"
+                style={{ marginTop: 24 }}
+              >
+                Confirm OTP
+              </button>
+            </form>
           </div>
         </div>
       </div>

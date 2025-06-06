@@ -12,7 +12,7 @@ import camera from "../../assets/icons/cam.svg";
 import shop from "../../assets/icons/shop.svg";
 
 export default function SideBar() {
-  const [activeItem, setActiveItem] = useState("All");
+  const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
 
   const handleClick = (item) => {
@@ -31,7 +31,7 @@ export default function SideBar() {
     { name: "hotels", icon: house, translationKey: "sidebar.hotels" },
     { name: "dining", icon: chef, translationKey: "sidebar.dining" },
     { name: "live", icon: camera, translationKey: "sidebar.live" },
-    { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
+    // { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
   ];
 
   return (
@@ -47,13 +47,47 @@ export default function SideBar() {
             onClick={() => handleClick(item.name)}
           >
             <li
-              className="side-bar-list-item"
+              className={`side-bar-list-item ${
+                activeItem === item.name ? "activeItem" : ""
+              }`}
               onClick={() => handleClick(item.name)}
+              style={{
+                boxShadow:
+                  activeItem === item.name
+                    ? "0px 0px 7px var(--Number, 4px) #c3d7f5"
+                    : "",
+                border:
+                  activeItem === item.name
+                    ? "2px solid #80bfe4"
+                    : "2px solid #e3daf2",
+              }}
             >
-              <div className="item-icon">
-                <img src={item.icon} alt={t(item.translationKey)} />
+              <div
+                className="item-icon"
+                style={{
+                  background:
+                    activeItem === item.name
+                      ? "linear-gradient(135deg, #da3164 0%, #ae219f 50%, #547ee0 100%)"
+                      : "",
+                }}
+              >
+                <img
+                  src={item.icon}
+                  alt={t(item.translationKey)}
+                  style={{
+                    filter:
+                      activeItem === item.name
+                        ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1)"
+                        : "none",
+                  }}
+                />
               </div>
-              <div className="item-text">
+              <div
+                className="item-text"
+                style={{
+                  color: activeItem === item.name ? "#2563C0" : "",
+                }}
+              >
                 {t(item.translationKey)
                   .split(" ")
                   .map((word, index) => (
