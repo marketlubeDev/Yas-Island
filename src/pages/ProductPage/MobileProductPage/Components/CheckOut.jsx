@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MobileHeader from "./MobileHeader";
+import backIcon from "../../../../assets/icons/back.svg";
 
 function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
   const [firstName, setFirstName] = useState("vivek");
@@ -25,7 +26,22 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
           <MobileHeader />
         </div>
         <div className="email-checkout__content">
-          <div className="email-checkout__title">Guest details and payment</div>
+          <div className="email-checkout__title-row">
+            <button
+              className="email-checkout__back-btn"
+              onClick={onClose}
+              type="button"
+            >
+              <img
+                src={backIcon}
+                alt="Back"
+                style={{ width: 24, height: 24 }}
+              />
+            </button>
+            <div className="email-checkout__title">
+              Guest details and payment
+            </div>
+          </div>
           <div className="email-checkout__steps">
             <div className="email-checkout__step">
               Step 1<br />

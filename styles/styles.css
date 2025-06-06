@@ -3332,10 +3332,11 @@ border- .side-bar-list a {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
-  padding: 28px 38px 24px 38px;
+  padding: 38px 48px 34px 48px;
   margin-top: 24px;
   height: 100%;
   width: 100%;
+  margin-top: -1rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -3347,7 +3348,7 @@ border- .side-bar-list a {
   font-weight: 600;
   margin-bottom: 18px;
   margin-top: 100px;
-  margin-left: -200px;
+  margin-left: -180px;
   display: block;
 }
 
@@ -3711,12 +3712,31 @@ border- .side-bar-list a {
   border-radius: 3px;
 }
 
+.email-checkout__title-row {
+  display: flex;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+.email-checkout__back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 50px;
+  cursor: pointer;
+}
+.email-checkout__back-btn img {
+  width: 24px;
+  height: 24px;
+}
+
 .email-checkout__title {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
   color: #231942;
-  margin: 24px 0 12px 0;
-  text-align: center;
+  text-align: left;
+  margin-left: -10px;
 }
 
 .email-checkout__steps {
@@ -3731,7 +3751,7 @@ border- .side-bar-list a {
   font-size: 15px;
   color: #bdbdc6;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
 }
 .email-checkout__step span {
   display: block;
@@ -3740,7 +3760,7 @@ border- .side-bar-list a {
 }
 .email-checkout__step--active {
   color: #231942;
-  font-weight: 700;
+  font-weight: 400;
   border-bottom: 2px solid #1976d2;
 }
 
@@ -3787,7 +3807,7 @@ border- .side-bar-list a {
 .email-checkout__label {
   font-size: 15px;
   color: #231942;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
@@ -3812,7 +3832,7 @@ border- .side-bar-list a {
   border-radius: 2rem;
   padding: 14px 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
   width: 100%;
   margin-top: 12px;
@@ -3827,13 +3847,14 @@ border- .side-bar-list a {
 .email-checkout__summary {
   background: #f6f8fa;
   border-radius: 12px;
+  width: 120%;
   padding: 18px 12px 12px 12px;
-  margin: 8px 0 18px;
+  margin: 8px 0 18px -1.5rem;
   font-size: 15px;
   color: #231942;
 }
 .email-checkout__summary-title {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
 }

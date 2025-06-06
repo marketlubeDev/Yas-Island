@@ -112,13 +112,20 @@ function ConfirmEmail({
                 Resend
               </button>
             </div>
-            <button
-              className="confirm-email__confirm-btn"
-              style={{ marginTop: 24 }}
-              onClick={onConfirm}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                onConfirm();
+              }}
             >
-              Confirm OTP
-            </button>
+              <button
+                className="confirm-email__confirm-btn"
+                type="submit"
+                style={{ marginTop: 24 }}
+              >
+                Confirm OTP
+              </button>
+            </form>
           </div>
         </div>
       </div>
