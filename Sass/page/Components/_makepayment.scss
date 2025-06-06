@@ -57,7 +57,7 @@
   color: #231942;
 
   &-title {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     margin-bottom: 8px;
   }
@@ -70,6 +70,40 @@
       font-weight: 700;
       font-size: 16px;
       margin-top: 8px;
+    }
+  }
+}
+
+.make-payment__summary-top {
+  background: #f4f7f8;
+  border-radius: 12px 12px 0 0;
+  padding: 18px 16px 12px 16px;
+  margin-bottom: 0;
+  width: 100%;
+  font-size: 15px;
+  color: #231942;
+  border-bottom: 1px solid #f0f0f0;
+
+  .make-payment__summary-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .make-payment__summary-dates-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    .make-payment__summary-dates-label {
+      color: #bdbdc6;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    b {
+      font-size: 15px;
+      font-weight: 700;
+      color: #231942;
     }
   }
 }
