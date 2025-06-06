@@ -9,7 +9,7 @@ function Experience1() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
 
   return (
-    <div className="outer-modal-bg">
+    <div className="outer-modal-bg-experience">
       <div className="experience-modal">
         <div className="email-verification-header-fixed">
           <MobileHeader />
