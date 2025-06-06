@@ -31,7 +31,7 @@ export default function SideBar() {
     { name: "hotels", icon: house, translationKey: "sidebar.hotels" },
     { name: "dining", icon: chef, translationKey: "sidebar.dining" },
     { name: "live", icon: camera, translationKey: "sidebar.live" },
-    { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
+    // { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
   ];
 
   return (
