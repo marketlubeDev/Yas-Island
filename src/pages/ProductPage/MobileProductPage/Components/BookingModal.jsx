@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import closeIcon from "../../../../assets/icons/close.svg"; // Use your close icon
-import backIcon from "../../../../assets/icons/back.svg"; // Use your back icon
 import leftIcon from "../../../../assets/icons/left.svg";
 
 function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
@@ -18,9 +17,6 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
     <div className="booking-modal-overlay">
       <div className="booking-modal" style={{ height: "90vh" }}>
         <div className="booking-modal__header">
-          <button className="booking-modal__back" onClick={onBack}>
-            <img src={backIcon} alt="Back" />
-          </button>
           <span className="booking-modal__title">Choose date</span>
         </div>
         <div className="booking-modal__body">
@@ -65,35 +61,28 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
           {/* Guests */}
           <div className="booking-modal__guests-section">
             <div className="booking-modal__guests-title">Choose guests</div>
-            <div className="booking-modal__guests-summary">
-              {adults} Adults / {children} Child
-            </div>
-            <div className="booking-modal__guests-box">
-              <div className="booking-modal__guests-row">
-                <span>Adult (12 Yrs+)</span>
-                <div>
-                  <button onClick={() => setAdults(Math.max(1, adults - 1))}>
-                    -
-                  </button>
-                  <span>{adults}</span>
-                  <button onClick={() => setAdults(adults + 1)}>+</button>
+            <div className="guests-box">
+              <div className="guests-summary">2 Adults / 1 Child</div>
+              <div className="guests-divider"></div>
+              <div className="guests-row">
+                <span>Adult ( 12 Yrs+ )</span>
+                <div className="guests-controls">
+                  <button className="guests-btn">−</button>
+                  <span className="guests-count">2</span>
+                  <button className="guests-btn">+</button>
                 </div>
               </div>
-              <div className="booking-modal__guests-row">
-                <span>Children (&lt;12 Yrs)</span>
-                <div>
-                  <button
-                    onClick={() => setChildren(Math.max(0, children - 1))}
-                  >
-                    -
-                  </button>
-                  <span>{children}</span>
-                  <button onClick={() => setChildren(children + 1)}>+</button>
+              <div className="guests-divider"></div>
+              <div className="guests-row">
+                <span>Children ( 12 Yrs )</span>
+                <div className="guests-controls">
+                  <button className="guests-btn">−</button>
+                  <span className="guests-count">1</span>
+                  <button className="guests-btn">+</button>
                 </div>
               </div>
-            </div>
-            <div className="booking-modal__guests-note">
-              Kids below 3 go free
+              <div className="guests-divider"></div>
+              <div className="guests-note">Kids below 3 go free</div>
             </div>
           </div>
         </div>

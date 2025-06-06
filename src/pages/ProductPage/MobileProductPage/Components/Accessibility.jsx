@@ -1,6 +1,7 @@
 import React from "react";
 import colorblindIcon from "../../../../assets/icons/colorblindness.svg";
 import zoomIcon from "../../../../assets/icons/zoom.svg";
+import closeIcon from "../../../../assets/icons/close.svg";
 import { useNavigate } from "react-router-dom";
 
 function Accessibility({ onClose }) {
@@ -18,10 +19,10 @@ function Accessibility({ onClose }) {
 
   return (
     <div className="accessibility-popup-overlay">
+      <button className="accessibility-popup-close" onClick={handleClose}>
+        <img src={closeIcon} alt="Close" width={28} height={28} />
+      </button>
       <div className="accessibility-popup-card">
-        <button className="accessibility-popup-close" onClick={handleClose}>
-          ×
-        </button>
         <div className="accessibility-popup-title">Accessibility</div>
         <div className="accessibility-popup-subtitle">Choose options</div>
         <div className="accessibility-popup-options">
