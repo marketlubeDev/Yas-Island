@@ -31,7 +31,13 @@ function MobileHeader() {
   return (
     <div className="mobile-header">
       <div className="mobile-header__left">
-        <img src={logo} alt="YAS Island Logo" className="mobile-header__logo" />
+        <img
+          src={logo}
+          alt="YAS Island Logo"
+          className="mobile-header__logo"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        />
       </div>
       <div className="mobile-header__right">
         <button
