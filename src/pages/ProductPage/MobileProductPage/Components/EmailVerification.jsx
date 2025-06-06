@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import ConfirmEmail from "./ConfirmEmail";
 import backIcon from "../../../../assets/icons/back.svg";
+import { useNavigate } from "react-router-dom";
 
 function EmailVerification({ onClose, onConfirmEmail, onBack }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("vivek@dev.panashi.ae");
   const [step, setStep] = useState(1); // 1 = email, 2 = confirm email
   const [showEmailVerification, setShowEmailVerification] = useState(true);
@@ -29,7 +31,13 @@ function EmailVerification({ onClose, onConfirmEmail, onBack }) {
             </div>
             <button
               className="email-verification__back-btn"
-              onClick={onBack}
+              onClick={() => {
+                if (onBack) {
+                  onBack();
+                } else {
+                  navigate(-1); // Go back to previous page
+                }
+              }}
               type="button"
             >
               <img

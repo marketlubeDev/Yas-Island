@@ -28,17 +28,17 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
           <div className="booking-modal__calendar">
             <div className="booking-modal__calendar-header">
               <button>
-                <img
-                  src={leftIcon}
-                  alt="Previous"
-                  className="booking-modal__calendar-arrow--rotated"
-                />
+                <img src={leftIcon} alt="Next" />
               </button>
               <span className="booking-modal__calendar-month">
                 February 2025
               </span>
               <button>
-                <img src={leftIcon} alt="Next" />
+                <img
+                  src={leftIcon}
+                  alt="Previous"
+                  className="booking-modal__calendar-arrow--rotated"
+                />
               </button>
             </div>
             <div className="booking-modal__calendar-divider"></div>

@@ -3,9 +3,7 @@ import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 // Example image imports (replace with your actual paths)
 import cardIcon from "../../../../assets/images/creditcard.png";
 import paypalIcon from "../../../../assets/images/paypal.png";
-import visaIcon from "../../../../assets/images/creditcard.png";
-import mastercardIcon from "../../../../assets/images/paypal.png";
-import amexIcon from "../../../../assets/images/creditcard.png";
+import visaIcon from "../../../../assets/images/visa.svg";
 
 function MakePayment({ onClose, onPaymentSuccess }) {
   return (
@@ -94,14 +92,8 @@ function MakePayment({ onClose, onPaymentSuccess }) {
             <img
               src={visaIcon}
               alt="Visa"
-              style={{ width: 40, height: 24, marginRight: 8 }}
+              style={{ width: 160, height: 50, marginRight: 8 }}
             />
-            <img
-              src={mastercardIcon}
-              alt="Mastercard"
-              style={{ width: 40, height: 24, marginRight: 8 }}
-            />
-            <img src={amexIcon} alt="Amex" style={{ width: 40, height: 24 }} />
           </div>
         </div>
       </div>

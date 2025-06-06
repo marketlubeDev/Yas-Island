@@ -4,7 +4,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
+  background: rgba(20, 20, 40, 0.6);
+  backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -239,26 +240,27 @@
 
 .booking-modal__close {
   position: absolute;
-  top: -1%;
-  right: 0px;
+  top: 1%;
+  right: 10%;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   font-size: 32px;
   line-height: 1;
-  // border-radius: 70.476px;
-
   cursor: pointer;
-  background: black;
+  background: transparent;
+  border: 2px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
+  transition: background 0.2s, border-color 0.2s;
   &:hover {
     background: #fff;
+    border-color: #231942;
   }
   img {
-    width: 35px;
-    height: 35px;
+    width: 18px;
+    height: 18px;
   }
 }

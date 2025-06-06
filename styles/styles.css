@@ -2629,7 +2629,7 @@ border- .side-bar-list a {
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
+  min-width: 150px;
   padding: 8px 0;
   z-index: 1000;
 }
@@ -2804,6 +2804,25 @@ border- .side-bar-list a {
 }
 .accessibility-popup-continue:hover {
   background: #fff700;
+}
+
+.accessibility-popup-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e1f1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border: 2.5px solid;
+  border-image: linear-gradient(135deg, #d3b8ff, #66aae7) 1;
+  box-sizing: border-box;
+}
+.accessibility-popup-icon-circle img {
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 .cart-modal-overlay {
@@ -3869,7 +3888,7 @@ border- .side-bar-list a {
   padding: 2px 4px;
 }
 
-.outer-modal-bg {
+.outer-modal-bg-payment-successful {
   position: fixed;
   top: 0;
   left: 0;
@@ -3877,7 +3896,7 @@ border- .side-bar-list a {
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: #f4f3f3;
+  background: white;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -3887,14 +3906,12 @@ border- .side-bar-list a {
 
 .payment-success-modal {
   background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 4px 24px rgba(44, 44, 84, 0.12);
   max-width: 420px;
   width: 100%;
   margin: 32px 0;
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 .email-verification-header-fixed {
@@ -3917,7 +3934,7 @@ border- .side-bar-list a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  min-height: 800px;
   padding: 32px 0;
 }
 
@@ -3954,14 +3971,14 @@ border- .side-bar-list a {
 
 .experience-modal {
   background: #fff;
-  border-radius: 24px;
+  border-radius: 15px;
   box-shadow: 0 4px 24px rgba(44, 44, 84, 0.12);
   max-width: 420px;
   width: 100%;
-  margin: 32px 0;
+  margin: 10px 10px;
   display: flex;
   flex-direction: column;
-  min-height: 80vh;
+  min-height: 95vh;
 }
 
 .email-verification-header-fixed {
@@ -3985,7 +4002,6 @@ border- .side-bar-list a {
   align-items: center;
   justify-content: flex-start;
   min-height: 400px;
-  padding: 32px 0 24px 0;
 }
 
 .experience-ticket-img {
@@ -4214,7 +4230,7 @@ border- .side-bar-list a {
 }
 .attraction-detail-modal__close {
   position: absolute;
-  top: -0.3%;
+  top: 1%;
   right: 10%;
   border-radius: 50%;
   height: 50px;
@@ -4404,7 +4420,8 @@ border- .side-bar-list a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
+  background: rgba(20, 20, 40, 0.6);
+  backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -4641,24 +4658,27 @@ border- .side-bar-list a {
 
 .booking-modal__close {
   position: absolute;
-  top: -1%;
-  right: 0px;
+  top: 1%;
+  right: 10%;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   font-size: 32px;
   line-height: 1;
   cursor: pointer;
-  background: black;
+  background: transparent;
+  border: 2px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
+  transition: background 0.2s, border-color 0.2s;
 }
 .booking-modal__close:hover {
   background: #fff;
+  border-color: #231942;
 }
 .booking-modal__close img {
-  width: 35px;
-  height: 35px;
+  width: 18px;
+  height: 18px;
 }
