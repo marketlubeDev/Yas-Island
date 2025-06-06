@@ -135,6 +135,10 @@ border- .side-bar-list a {
   border-left: 4px solid #f7d148;
   border-radius: 126.103px;
 }
+.side-bar-list-item-container.activeItem {
+  box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #0345a7;
+  border: 2px solid #80bfe4;
+}
 
 .btn {
   border: none;

@@ -12,7 +12,7 @@ import camera from "../../assets/icons/cam.svg";
 import shop from "../../assets/icons/shop.svg";
 
 export default function SideBar() {
-  const [activeItem, setActiveItem] = useState("All");
+  const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
 
   const handleClick = (item) => {
@@ -47,8 +47,20 @@ export default function SideBar() {
             onClick={() => handleClick(item.name)}
           >
             <li
-              className="side-bar-list-item"
+              className={`side-bar-list-item ${
+                activeItem === item.name ? "activeItem" : ""
+              }`}
               onClick={() => handleClick(item.name)}
+              style={{
+                boxShadow:
+                  activeItem === item.name
+                    ? "0px 0px 7px var(--Number, 4px) #c3d7f5"
+                    : "",
+                border:
+                  activeItem === item.name
+                    ? "2px solid #80bfe4"
+                    : "2px solid #e3daf2",
+              }}
             >
               <div className="item-icon">
                 <img src={item.icon} alt={t(item.translationKey)} />
