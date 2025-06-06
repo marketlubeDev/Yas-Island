@@ -87,7 +87,6 @@
 
   &:hover:not(.active):not(.selected) {
     border: 2px solid #80bfe4;
-
     box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #e9ebef;
     .item-icon {
       // background: linear-gradient(to bottom right, lighten(#6277D7, 20%), lighten(#9535ba, 20%), lighten(#cc2669, 20%));
@@ -106,6 +105,7 @@
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   // border-right-color: transparent;
+  // box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #0345a7;
 
   &.active {
     border-top: 4px solid #f7d148;
@@ -113,7 +113,10 @@
     border-bottom: 4px solid #f7d148;
     border-left: 4px solid #f7d148;
     border-radius: 126.103px;
+  }
 
-
+  &.activeItem {
+    box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #0345a7;
+    border: 2px solid #80bfe4;
   }
 }
