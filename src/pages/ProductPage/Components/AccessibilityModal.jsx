@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "antd";
 import { useTranslation } from "react-i18next";
 import Invert from "../../../assets/icons/invert.svg";
@@ -9,6 +9,23 @@ import closeIcon from "../../../assets/icons/close.svg";
 
 export default function AccessibilityModal({ isOpen, onClose }) {
   const { t } = useTranslation();
+  const [zoomLevel, setZoomLevel] = useState(1);
+
+  const handleZoomClick = () => {
+    setZoomLevel((prevZoom) => {
+      if (prevZoom === 1) return 1.12;
+      if (prevZoom === 1.12) return 1.25;
+      return 1;
+    });
+  };
+
+  // Apply zoom to the document body
+  React.useEffect(() => {
+    document.body.style.zoom = zoomLevel;
+    return () => {
+      document.body.style.zoom = 1;
+    };
+  }, [zoomLevel]);
 
   return (
     <Modal
@@ -36,11 +53,14 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             <p>{t("accessibility.colorBlindness")}</p>
           </div>
 
-          <div className="option-card">
+          <div className="option-card" onClick={handleZoomClick}>
             <div className="option-icon">
               <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>
-            <p>{t("accessibility.zoomMode")}</p>
+            <p>
+              {t("accessibility.zoomMode")} (
+              {zoomLevel === 1.12 ? "1.25" : zoomLevel === 1.25 ? "1.5" : "1"}x)
+            </p>
           </div>
         </div>
 
