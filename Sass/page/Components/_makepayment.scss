@@ -27,7 +27,7 @@
   padding-top: 56px;
 }
 
-.email-verification-header-fixed {
+.make-payment-header-fixed {
   // position: sticky;
   top: 0;
   left: 0;
@@ -230,15 +230,15 @@
   }
 }
 
-.mobile-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 10001;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
-}
+// .mobile-header {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   z-index: 10001;
+//   background: #fff;
+//   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+// }
 
 .make-payment__summary-totals {
   background: #fff;

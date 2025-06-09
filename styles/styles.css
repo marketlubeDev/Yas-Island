@@ -2878,9 +2878,10 @@ border- .side-bar-list a {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(44, 44, 84, 0.6);
+  backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -2888,15 +2889,17 @@ border- .side-bar-list a {
 }
 
 .cart-modal {
+  position: relative;
   background: #fff;
   border-radius: 24px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.14);
   max-width: 400px;
-  width: 95vw;
-  max-height: 90vh;
+  width: 93vw;
+  max-height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
-  position: relative;
+  outline: none;
   padding-bottom: 12px;
   overflow: hidden;
 }
@@ -3100,7 +3103,8 @@ border- .side-bar-list a {
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  width: 100%;
+  margin-left: 50px;
+  width: 75%;
   margin-bottom: 4px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
@@ -3115,13 +3119,18 @@ border- .side-bar-list a {
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  width: 100%;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  width: 75%;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
 }
 
+.body--modal-open {
+  overflow: hidden !important;
+}
+
 .email-verification-header-fixed {
-  position: fixed;
   left: 0;
   width: 100vw;
   z-index: 100;
@@ -4035,7 +4044,7 @@ border- .side-bar-list a {
   padding-top: 56px;
 }
 
-.email-verification-header-fixed {
+.make-payment-header-fixed {
   top: 0;
   left: 0;
   width: 100%;
@@ -4227,16 +4236,6 @@ border- .side-bar-list a {
   padding: 2px 4px;
 }
 
-.mobile-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 10001;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
-}
-
 .make-payment__summary-totals {
   background: #fff;
   color: #594f67;
@@ -4352,7 +4351,7 @@ border- .side-bar-list a {
   flex-direction: column;
 }
 
-.email-verification-header-fixed {
+.experience-header-fixed {
   top: 0;
   left: 0;
   width: 100%;
@@ -4570,10 +4569,9 @@ border- .side-bar-list a {
 .attraction-detail-modal {
   background: white;
   border-radius: 20px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
   padding: 0 0 18px 0;
   max-width: 390px;
-  height: 97vh;
+  height: 90vh;
   margin: 2rem auto -1rem auto;
   position: relative;
   display: flex;
@@ -4720,6 +4718,27 @@ border- .side-bar-list a {
   height: 40px;
   background: #e6e6ef;
   border-radius: 2px;
+}
+
+.attraction-detail-modal__close--outside {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10001;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.1);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.attraction-detail-modal__close--outside:hover {
+  background: #f6f6fa;
 }
 
 .product-head__filters {
