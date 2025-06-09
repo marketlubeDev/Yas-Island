@@ -113,21 +113,21 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
             </div>
           ))}
         </div>
-        <div className="cart-modal__summary">
-          <div className="cart-modal__summary-row">
-            <span>Sub total :</span>
-            <span>AED {subtotal.toFixed(2)}</span>
-          </div>
-          <div className="cart-modal__summary-row">
-            <span>vat & tax :</span>
-            <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
-          </div>
-          <div className="cart-modal__summary-row cart-modal__summary-row--total">
-            <span>Total :</span>
-            <span>AED {total.toFixed(2)}</span>
-          </div>
-        </div>
         <div className="cart-modal__footer">
+          <div className="cart-modal__summary">
+            <div className="cart-modal__summary-row">
+              <span>Sub total :</span>
+              <span>AED {subtotal.toFixed(2)}</span>
+            </div>
+            <div className="cart-modal__summary-row">
+              <span>vat & tax :</span>
+              <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
+            </div>
+            <div className="cart-modal__summary-row cart-modal__summary-row--total">
+              <span>Total :</span>
+              <span>AED {total.toFixed(2)}</span>
+            </div>
+          </div>
           <button className="cart-modal__checkout" onClick={onCheckout}>
             Check out
           </button>

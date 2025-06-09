@@ -11,6 +11,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
   const [promo, setPromo] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receiveComms, setReceiveComms] = useState(false);
+  const [countryCode, setCountryCode] = useState("+971");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,7 +92,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               <label className="email-checkout__label">
                 NATIONALITY *
                 <select
-                  className="email-checkout__input"
+                  className="email-checkout__input email-checkout__select"
                   value={nationality}
                   onChange={(e) => setNationality(e.target.value)}
                   required
@@ -101,47 +102,86 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   <option value="USA">USA</option>
                 </select>
               </label>
-              <label className="email-checkout__label">
-                PHONE NUMBER (PREFERRED NUMBER) *
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontWeight: 600, color: "#231942" }}>
-                    +971
-                  </span>
+              <label
+                className="email-checkout__label"
+                style={{ flexDirection: "column" }}
+              >
+                <span style={{ whiteSpace: "nowrap" }}>
+                  PHONE NUMBER{" "}
+                  <span
+                    style={{
+                      color: "#18142B",
+                      fontSize: 14,
+                      fontWeight: 200,
+                    }}
+                  >
+                    (PREFERRED NUMBER)
+                  </span>{" "}
+                  *
+                </span>
+                <div className="email-checkout__phone-row">
+                  <select
+                    className="email-checkout__country-code-select"
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                  >
+                    <option value="+971">+971</option>
+                    <option value="+91">+91</option>
+                    <option value="+1">+1</option>
+                  </select>
                   <input
                     type="tel"
                     className="email-checkout__input"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
+                    style={{ letterSpacing: "5px", width: "120px" }}
                   />
                 </div>
               </label>
 
               <div className="email-checkout__summary">
-                <div className="email-checkout__summary-title">
+                <div
+                  className="email-checkout__summary-title"
+                  style={{ color: "#18142B" }}
+                >
                   1 day FERRARI WORLD YAS ISLAND
                 </div>
-                <div className="email-checkout__summary-row">
-                  <span>DATES & GUESTS</span>
-                  <span>
+                <div className="email-checkout__summary-row email-checkout__summary-row--column">
+                  <span
+                    className="email-checkout__summary-label"
+                    style={{ color: "#908999" }}
+                  >
+                    DATES & GUESTS
+                  </span>
+                  <span
+                    className="email-checkout__summary-value"
+                    style={{
+                      color: "#18142B",
+                      fontWeight: 600,
+                      fontSize: 15,
+                    }}
+                  >
                     THU 08- FEB 2025 &nbsp; ADULT - 2 &nbsp; CHILDREN - 1
                   </span>
                 </div>
-                <div className="email-checkout__summary-row">
-                  <span>Sub total :</span>
-                  <span>AED 935.71</span>
-                </div>
-                <div className="email-checkout__summary-row">
-                  <span>vat & tax :</span>
-                  <span>+ 49.29 VAT & Tax</span>
-                </div>
-                <div className="email-checkout__summary-row email-checkout__summary-row--total">
-                  <span>Total :</span>
-                  <span>AED 985.00</span>
+                <div className="email-checkout__summary-totals">
+                  <div className="email-checkout__summary-row">
+                    <span>Sub total :</span>
+                    <span>AED 935.71</span>
+                  </div>
+                  <div className="email-checkout__summary-row">
+                    <span>vat & tax :</span>
+                    <span>+ 49.29 VAT & Tax</span>
+                  </div>
+                  <div className="email-checkout__summary-row email-checkout__summary-row--total">
+                    <span>Total :</span>
+                    <span>AED 985.00</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="email-checkout__promo">
+              <div className="email-checkout__promo-box">
                 <label
                   className="email-checkout__label"
                   style={{ marginBottom: 0 }}
@@ -151,7 +191,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                 <div style={{ display: "flex", gap: 8 }}>
                   <input
                     type="text"
-                    className="email-checkout__input"
+                    className="email-checkout__input email-checkout__promo-input"
                     value={promo}
                     onChange={(e) => setPromo(e.target.value)}
                   />
@@ -167,7 +207,14 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
 
               <div className="email-checkout__checkboxes">
                 <label
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    whiteSpace: "nowrap",
+                    marginLeft: "-37px",
+                    color: "#908999",
+                  }}
                 >
                   <input
                     type="checkbox"
@@ -178,13 +225,20 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   I have read and accept the{" "}
                   <a
                     href="#"
-                    style={{ color: "#1976d2", textDecoration: "underline" }}
+                    style={{ color: "#18142B", textDecoration: "underline" }}
                   >
                     terms and conditions
                   </a>
                 </label>
                 <label
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    color: "#908999",
+                    marginLeft: "-37px",
+                    marginTop: "20px",
+                  }}
                 >
                   <input
                     type="checkbox"

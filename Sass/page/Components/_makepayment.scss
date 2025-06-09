@@ -24,10 +24,24 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
+  padding-top: 56px;
 }
 
 .email-verification-header-fixed {
   // position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  background: #fff;
+  // border-radius: 24px 24px 0 0;
+}
+
+.make-payment-header-fixed {
   top: 0;
   left: 0;
   width: 100%;
@@ -42,6 +56,7 @@
 
 .make-payment__content {
   padding: 0 18px 18px 18px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,8 +65,9 @@
 .make-payment__summary {
   background: #f6f8fa;
   border-radius: 16px;
-  padding: 18px 12px 12px 12px;
+  padding: 5px 12px 12px 12px;
   margin-bottom: 24px;
+  margin-top: -18px;
   width: 100%;
   font-size: 15px;
   color: #231942;
@@ -67,9 +83,11 @@
     margin-bottom: 4px;
     font-size: 15px;
     &--total {
+      border-top: 1.5px solid #e3e3e3;
+      padding-top: 12px;
+      margin-top: 8px;
       font-weight: 700;
       font-size: 16px;
-      margin-top: 8px;
     }
   }
 }
@@ -87,7 +105,7 @@
   .make-payment__summary-title {
     font-weight: 700;
     font-size: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 18px;
   }
   .make-payment__summary-dates-row {
     display: flex;
@@ -214,4 +232,23 @@
     box-shadow: 0 1px 4px rgba(44, 44, 84, 0.06);
     padding: 2px 4px;
   }
+}
+
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10001;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+}
+
+.make-payment__summary-totals {
+  background: #fff;
+  color: #594f67;
+  border-radius: 10px;
+  padding: 34px 24px 24px 44px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
 }
