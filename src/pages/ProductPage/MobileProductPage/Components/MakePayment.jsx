@@ -52,11 +52,9 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                 <label>
                   <input type="radio" name="payment" defaultChecked />
                   <span>
-                    <img
-                      src={cardIcon}
-                      alt="Card"
-                      style={{ width: 24, height: 24, marginRight: 8 }}
-                    />
+                    <span className="make-payment__payment-imgbox">
+                      <img src={cardIcon} alt="Card" />
+                    </span>
                     CREDIT/DEBIT CARD
                   </span>
                 </label>

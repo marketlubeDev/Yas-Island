@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: white;
+  background: rgba(44, 44, 84, 0.18); // Dimmed overlay
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -12,16 +12,17 @@
 }
 
 .cart-modal {
-  background: white;
-  // border-radius: 24px;
-  // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.14);
   max-width: 400px;
-  width: 100%;
-  height: 100vh;
+  width: 95vw;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   position: relative;
   padding-bottom: 12px;
+  overflow: hidden;
 }
 
 .cart-modal__header {
@@ -29,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 18px 18px 0 18px;
-  background: white;
+  background: #fff;
   border-radius: 24px 24px 0 0;
 }
 

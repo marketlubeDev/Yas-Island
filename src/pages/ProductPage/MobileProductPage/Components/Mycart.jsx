@@ -60,7 +60,7 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
 
   return (
     <div className="cart-modal-overlay">
-      <div className="cart-modal" style={{ height: "95vh" }}>
+      <div className="cart-modal">
         <div className="cart-modal__header">
           <button className="cart-modal__back" onClick={handleBack}>
             <img src={backIcon} alt="Back" />
