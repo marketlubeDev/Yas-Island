@@ -9,11 +9,14 @@ import "./../Sass/main.scss";
 import "./../Sass/main.css";
 import { router } from "./routes/router";
 import "./i18n";
+import { LanguageProvider } from "./context/LanguageContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <LanguageProvider>
+        <RouterProvider router={router} />
+      </LanguageProvider>
     </Provider>
   </StrictMode>
 );

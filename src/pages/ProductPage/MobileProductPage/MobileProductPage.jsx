@@ -20,6 +20,7 @@ import PromoCodeModal from "./Components/PromoCode";
 import AttractionDetailModal from "./Components/AttractionDetailModal";
 import BookingModal from "./Components/BookingModal";
 import { useNavigate, Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 // import MobileLanding from "./MobileLanding";
 // import PromoCodeModal from "./PromoCode";
 // import PaymentSuccessModal from "./PaymentSuccessful";
@@ -29,8 +30,8 @@ const attraction = [
   {
     id: 1,
     image: frame1,
-    title: "1 day Ferrari World",
-    desc: "Love speed? Then gear up for the ride of your...",
+    titleKey: "products.ferrariWorld.name",
+    descKey: "products.ferrariWorld.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
     detailDesc:
@@ -41,48 +42,48 @@ const attraction = [
   {
     id: 2,
     image: frame2,
-    title: "VIP experience",
-    desc: "Buckle up for exclusive ac... Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.",
+    titleKey: "products.vipExperience.name",
+    descKey: "products.vipExperience.description",
     price: "AED 10,000",
     vat: "+ 96.43 VAT & tax",
   },
   {
     id: 3,
     image: frame3,
-    title: "Driving experience",
-    desc: "Drive your dream car with. Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.....",
+    titleKey: "products.drivingExperience.name",
+    descKey: "products.drivingExperience.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
   },
   {
     id: 4,
     image: frame1,
-    title: "Driving experience",
-    desc: "Drive your dream car with. Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.....",
+    titleKey: "products.drivingExperience.name",
+    descKey: "products.drivingExperience.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
   },
   {
     id: 5,
     image: frame2,
-    title: "Driving experience",
-    desc: "Drive your dream car with. Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.....",
+    titleKey: "products.drivingExperience.name",
+    descKey: "products.drivingExperience.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
   },
   {
     id: 6,
     image: frame2,
-    title: "Driving experience",
-    desc: "Drive your dream car with. Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.....",
+    titleKey: "products.drivingExperience.name",
+    descKey: "products.drivingExperience.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
   },
   {
     id: 7,
     image: frame2,
-    title: "Driving experience",
-    desc: "Drive your dream car with. Love speed? Then gear up for the ride of your life only here at Ferrari World Abu Dhabi. Home to the world's fastest rollercoaster, the highest loop ride, the tallest space-frame structure ever built on the planet and over 40 record-breaking attractions.....",
+    titleKey: "products.drivingExperience.name",
+    descKey: "products.drivingExperience.description",
     price: "AED 1,295",
     vat: "+ 96.43 VAT & tax",
   },
@@ -102,9 +103,9 @@ function MobileProductPage() {
   const [showExperience, setShowExperience] = useState(false);
   const [showPromoCode, setShowPromoCode] = useState(false);
   const [previousModal, setPreviousModal] = useState(null);
+  const { t } = useTranslation();
 
-
-  console.log(showBookingModal,"skhdkhsdkhskh")
+  console.log(showBookingModal, "skhdkhsdkhskh");
 
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
@@ -125,14 +126,16 @@ function MobileProductPage() {
           <div className="attraction-card" key={item.id}>
             <img
               src={item.image}
-              alt={item.title}
+              alt={t(item.titleKey)}
               className="attraction-card__img"
             />
             <div className="attraction-card__content">
               <div className="attraction-card__header">
                 <div>
-                  <div className="attraction-card__title">{item.title}</div>
-                  <div className="attraction-card__desc">{item.desc}</div>
+                  <div className="attraction-card__title">
+                    {t(item.titleKey)}
+                  </div>
+                  <div className="attraction-card__desc">{t(item.descKey)}</div>
                 </div>
                 <div className="attraction-card__action">
                   <button
@@ -142,7 +145,7 @@ function MobileProductPage() {
                       setShowAttractionDetail(true);
                     }}
                   >
-                    Add
+                    {t("common.addToCart")}
                   </button>
                   <div className="attraction-card__price">
                     <span>{item.price}</span>
@@ -156,12 +159,8 @@ function MobileProductPage() {
         <MobileBottomNav />
       </div>
 
+      {/* components */}
 
-
-
-  {/* components */}
-
-      
       {showAttractionDetail && selectedAttraction && (
         <AttractionDetailModal
           attraction={selectedAttraction}

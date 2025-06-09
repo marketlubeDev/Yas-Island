@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import allIcon from "../../../../assets/icons/dash.svg";
 import attractionsIcon from "../../../../assets/icons/beach.svg";
@@ -12,6 +13,7 @@ function MobileTop() {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const sortBtnRef = useRef(null);
   const filterBtnRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -39,39 +41,54 @@ function MobileTop() {
     <div>
       <div className="mobile-top">
         <div className="mobile-top__item">
-          <img src={allIcon} alt="All" className="mobile-top__icon" />
-          <span>All</span>
+          <img
+            src={allIcon}
+            alt={t("sidebar.all")}
+            className="mobile-top__icon"
+          />
+          <span>{t("sidebar.all")}</span>
         </div>
         <div className="mobile-top__item mobile-top__item--active">
           <img
             src={attractionsIcon}
-            alt="Attractions"
+            alt={t("sidebar.topAttractions")}
             className="mobile-top__icon"
           />
-          <span>Attractions</span>
+          <span>{t("sidebar.topAttractions")}</span>
           <div className="mobile-top__underline"></div>
         </div>
         <div className="mobile-top__item">
-          <img src={packagesIcon} alt="Packages" className="mobile-top__icon" />
-          <span>Packages</span>
+          <img
+            src={packagesIcon}
+            alt={t("sidebar.packages")}
+            className="mobile-top__icon"
+          />
+          <span>{t("sidebar.packages")}</span>
         </div>
         <div className="mobile-top__item">
-          <img src={hotelsIcon} alt="Hotels" className="mobile-top__icon" />
-          <span>Hotels</span>
+          <img
+            src={hotelsIcon}
+            alt={t("sidebar.hotels")}
+            className="mobile-top__icon"
+          />
+          <span>{t("sidebar.hotels")}</span>
         </div>
         <div className="mobile-top__item">
-          <img src={diningIcon} alt="Dining" className="mobile-top__icon" />
-          <span>Dining</span>
+          <img
+            src={diningIcon}
+            alt={t("sidebar.dining")}
+            className="mobile-top__icon"
+          />
+          <span>{t("sidebar.dining")}</span>
         </div>
       </div>
 
       <div className="mobile-top-search-section">
-        <h2 className="mobile-top-search-section__title">Select attractions</h2>
+        <h2 className="mobile-top-search-section__title">
+          {t("common.selectAttractions")}
+        </h2>
         <div className="mobile-top-search-section__searchbar">
-          <input
-            type="text"
-            placeholder='Search Attractions " Ferrari World"'
-          />
+          <input type="text" placeholder={t("common.searchPlaceholder")} />
           <button>
             <img src={searchIcon} alt="Search" />
           </button>
@@ -82,17 +99,17 @@ function MobileTop() {
               className="mobile-top-search-section__filter-btn"
               onClick={() => setShowSortDropdown(!showSortDropdown)}
             >
-              Sort by <span className="chevron">&#9662;</span>
+              {t("productHead.sortBy")} <span className="chevron">&#9662;</span>
             </button>
             {showSortDropdown && (
               <div className="mobile-top-search-section__dropdown">
                 <div className="mobile-top-search-section__dropdown-option">
-                  <span>Price (High to Low)</span>
+                  <span>{t("productHead.priceHighToLow")}</span>
                   <span className="mobile-top-search-section__check">✓</span>
                 </div>
-                <div className="mobile-top-search-section__dropdown-option">
-                  <span>Price (Low to High)</span>
-                </div>
+                {/* <div className="mobile-top-search-section__dropdown-option">
+                  <span>{t("productHead.priceLowToHigh")}</span>
+                </div> */}
               </div>
             )}
           </div>
@@ -101,12 +118,13 @@ function MobileTop() {
               className="mobile-top-search-section__filter-btn"
               onClick={() => setShowFilterDropdown(!showFilterDropdown)}
             >
-              Filter by <span className="chevron">&#9662;</span>
+              {t("productHead.filterBy")}{" "}
+              <span className="chevron">&#9662;</span>
             </button>
             {showFilterDropdown && (
               <div className="mobile-top-search-section__dropdown">
                 <div className="mobile-top-search-section__dropdown-option">
-                  <span>Attractions</span>
+                  <span>{t("productHead.attractions")}</span>
                   <span className="mobile-top-search-section__check">✓</span>
                 </div>
               </div>
