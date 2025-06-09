@@ -2695,58 +2695,36 @@ border- .side-bar-list a {
   filter: brightness(0) saturate(100%);
 }
 
-.accessibility-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(20, 20, 40, 0.75);
-  backdrop-filter: blur(8px);
-  z-index: 20000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .accessibility-popup-card {
-  background: #f4f3f3;
-  border-radius: 20px;
-  box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
-  padding: 32px 24px 24px 24px;
   max-width: 380px;
-  height: 650px;
   width: 100%;
-  position: relative;
   text-align: center;
 }
 
-.accessibility-popup-close {
+.custom-modal-close {
   position: absolute;
-  top: 40px;
-  right: 30px;
+  top: -10%;
+  right: 0;
   border-radius: 50%;
-  height: 45px;
-  width: 45px;
+  height: 50px;
+  width: 50px;
   font-size: 32px;
   line-height: 1;
   border: 3.5px solid #dcd6e5;
   cursor: pointer;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.3411764706);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   transition: background 0.2s;
 }
-.accessibility-popup-close:hover {
+.custom-modal-close:hover {
   background: #fff;
 }
-.accessibility-popup-close img {
-  width: 18px;
-  height: 18px;
+.custom-modal-close img {
+  width: 28px;
+  height: 28px;
 }
 
 .accessibility-popup-title {
@@ -2872,36 +2850,6 @@ border- .side-bar-list a {
 .accessibility-modal .ant-modal-mask {
   background: rgba(20, 20, 40, 0.75) !important;
   backdrop-filter: blur(8px) !important;
-}
-
-.cart-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(44, 44, 84, 0.6);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-modal {
-  position: relative;
-  background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.14);
-  max-width: 400px;
-  width: 93vw;
-  max-height: 100vh;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  outline: none;
-  padding-bottom: 12px;
-  overflow: hidden;
 }
 
 .cart-modal__header {
@@ -3151,7 +3099,7 @@ border- .side-bar-list a {
   font-size: 22px;
   font-weight: 500;
   color: #231942;
-  margin: 24px 0 12px 0;
+  margin: 12px 0 12px 0;
   text-align: center;
 }
 
@@ -3250,12 +3198,6 @@ border- .side-bar-list a {
   transform: translateY(0);
 }
 
-.email-verification-modal,
-.outer-modal-bg {
-  padding-top: 56px;
-  box-sizing: border-box;
-}
-
 .email-verification-bg {
   min-height: 100vh;
   background: #f4f3f3;
@@ -3324,7 +3266,7 @@ border- .side-bar-list a {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
-  padding: 38px 48px 34px 48px;
+  padding: 38px 40px 34px 40px;
   margin-top: 24px;
   height: 100%;
   width: 100%;
@@ -3363,10 +3305,10 @@ border- .side-bar-list a {
   padding: 12px 0;
   font-size: 16px;
   font-weight: 500;
-  margin-left: 10%;
+  text-align: center;
   cursor: pointer;
   width: 75%;
-  margin-top: 80px;
+  margin: 80px auto 0 auto;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
 
@@ -4015,22 +3957,6 @@ border- .side-bar-list a {
   height: 13px;
 }
 
-.outer-modal-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #f4f3f3;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-}
-
 .make-payment-modal {
   background: #fff;
   border-radius: 24px;
@@ -4261,22 +4187,6 @@ border- .side-bar-list a {
   border: 2px solid #00d084; /* or your active color */
 }
 
-.outer-modal-bg-payment-successful {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: white;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-}
-
 .payment-success-modal {
   background: #fff;
   max-width: 420px;
@@ -4323,22 +4233,6 @@ border- .side-bar-list a {
   font-weight: 600;
   color: #231942;
   text-align: center;
-}
-
-.outer-modal-bg-experience {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: white;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
 }
 
 .experience-modal {
@@ -4566,17 +4460,6 @@ border- .side-bar-list a {
   margin-top: 8px;
 }
 
-.attraction-detail-modal {
-  background: white;
-  border-radius: 20px;
-  padding: 0 0 18px 0;
-  max-width: 390px;
-  height: 90vh;
-  margin: 2rem auto -1rem auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
 .attraction-detail-modal__header {
   display: flex;
   align-items: center;
@@ -4800,33 +4683,6 @@ border- .side-bar-list a {
 .product-head__check {
   color: #007bff;
   font-weight: bold;
-}
-
-.booking-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(20, 20, 40, 0.6);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.booking-modal {
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
-  max-width: 380px;
-  margin-top: 1rem;
-  width: 100%;
-  height: 97vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
 }
 
 .booking-modal__header {

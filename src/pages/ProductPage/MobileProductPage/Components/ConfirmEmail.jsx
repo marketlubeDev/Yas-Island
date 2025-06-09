@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import backIcon from "../../../../assets/icons/back.svg";
+import PaymentHeader from "./paymentHeader";
 
 function ConfirmEmail({
   email = "vivek@dev.panashi.ae",
@@ -46,28 +47,8 @@ function ConfirmEmail({
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <MobileHeader />
-
         <div className="confirm-email__content">
-          <div className="confirm-email__title">Guest details and payment</div>
-          <button
-            className="confirm-email__back-btn"
-            onClick={onBack}
-            type="button"
-          >
-            <img src={backIcon} alt="Back" style={{ width: 24, height: 24 }} />
-          </button>
-          <div className="confirm-email__steps">
-            <div className="confirm-email__step confirm-email__step--active">
-              Step 1<br />
-              <span>Email verification</span>
-            </div>
-            <div className="confirm-email__step">
-              Step 2<br />
-              <span>Checkout</span>
-            </div>
-          </div>
-          <div className="confirm-email__step-underline"></div>
+          <PaymentHeader />
           <div className="confirm-email__form-container">
             <div className="confirm-email__label">EMAIL ADDRESS *</div>
             <div className="confirm-email__input-underline">{email}</div>

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Modal } from "antd";
 import backIcon from "../../../../assets/icons/back.svg";
 import trashIcon from "../../../../assets/icons/trash.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
-import Modal from "react-modal";
 
-// Set the app element for react-modal
-Modal.setAppElement("#root");
-
-function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
+function Mycart({ onClose, visible }) {
   // Example cart data
   const [cartItems, setCartItems] = useState([
     {
@@ -57,8 +54,7 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    onClose(); // Close the modal first
-    window.history.back(); // Go back to the previous page
+    onClose(); 
   };
 
   useEffect(() => {
@@ -70,13 +66,12 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
 
   return (
     <Modal
-      isOpen={true}
-      onRequestClose={onClose}
+      open={visible}
+      onCancel={onClose}
+      footer={null}
+      width="100%"
+      closable={false}
       className="cart-modal"
-      overlayClassName="cart-modal-overlay"
-      closeTimeoutMS={300}
-      shouldCloseOnOverlayClick={true}
-      shouldCloseOnEsc={true}
     >
       <div className="cart-modal__header">
         <button className="cart-modal__back" onClick={handleBack}>
@@ -96,7 +91,7 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
               className="cart-modal__item-img"
               onError={(e) => {
                 console.error("Image failed to load:", e);
-                e.target.src = frame1; // Fallback to frame1
+                e.target.src = frame1; 
               }}
             />
             <div className="cart-modal__item-content">
@@ -145,14 +140,16 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
             <span>AED {total.toFixed(2)}</span>
           </div>
         </div>
-        <button className="cart-modal__checkout" onClick={onCheckout}>
+        <button className="cart-modal__checkout" >
           Check out
         </button>
-        <button className="cart-modal__save" onClick={onSaveAndPayLater}>
+        <button className="cart-modal__save" >
           Save cart & pay later
         </button>
       </div>
     </Modal>
+
+    
   );
 }
 

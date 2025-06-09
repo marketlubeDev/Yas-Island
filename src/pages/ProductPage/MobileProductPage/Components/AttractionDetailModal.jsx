@@ -1,58 +1,40 @@
 import React from "react";
-import Modal from "react-modal";
+import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow icon
 
-// Set the app element for accessibility
-Modal.setAppElement("#root");
-
-function AttractionDetailModal({
-  attraction,
-  onClose,
-  onBack,
-  onAddToCart,
-  setShowBookingModal,
-  setShowAttractionDetail,
-  isOpen, // <-- pass this prop from parent
-}) {
+function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
+  const { t } = useTranslation();
+  
   if (!attraction) return null;
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      className="attraction-detail-modal"
-      overlayClassName="attraction-detail-modal-overlay"
-      shouldCloseOnOverlayClick={true}
-      shouldCloseOnEsc={true}
-      closeTimeoutMS={300}
-      ariaHideApp={false}
-    >
-      <span
+    <>
+      {/* <span
         className="attraction-detail-modal__close attraction-detail-modal__close--outside"
         onClick={onClose}
       >
         <img src={closeIcon} alt="close" />
-      </span>
+      </span> */}
       <div className="attraction-detail-modal__header">
-        <button className="attraction-detail-modal__back" onClick={onBack}>
+        <button className="attraction-detail-modal__back" onClick={onClose}>
           <img src={backIcon} alt="Back" />
         </button>
         <span className="attraction-detail-modal__title">
-          {attraction.title}
+          {t(attraction.titleKey)}
         </span>
       </div>
       <div className="attraction-detail-modal__body">
         <img
           src={attraction.image}
-          alt={attraction.title}
+          alt={t(attraction.titleKey)}
           className="attraction-detail-modal__image"
         />
         <div className="attraction-detail-modal__main-title">
-          {attraction.title}
+          {t(attraction.titleKey)}
         </div>
         <div className="attraction-detail-modal__desc">
-          {attraction.detailDesc || attraction.desc}
+          {t(attraction.detailDesc || attraction.descKey)}
         </div>
       </div>
       <div className="attraction-detail-modal__footer-divider"></div>
@@ -67,18 +49,15 @@ function AttractionDetailModal({
         </div>
         <div className="attraction-detail-modal__footer-vertical-divider"></div>
         <div className="attraction-detail-modal__footer-right">
-          <button
+          <button 
             className="attraction-detail-modal__add-btn"
-            onClick={() => {
-              setShowAttractionDetail(false);
-              setShowBookingModal(true);
-            }}
+            onClick={onAddToCart}
           >
             + Add to cart
           </button>
         </div>
       </div>
-    </Modal>
+    </>
   );
 }
 

@@ -3,16 +3,14 @@ import frame1 from "../../../assets/images/product1.png";
 import frame2 from "../../../assets/images/product2.png";
 import frame3 from "../../../assets/images/product3.png";
 import MobileBottomNav from "./Components/MobilebottomNav";
-// import AttractionDetailModal from "./AttractionDetailModal";
-// import BookingModal from "./BookingModal";
+import MobileHeader from "./Components/MobileHeader";
+import MobileTop from "./Components/MobileTop";
+import AttractionsList from "./Components/AttractionsList";
+
 import Mycart from "./Components/Mycart";
 import EmailVerification from "./Components/EmailVerification";
 import ConfirmEmail from "./Components/ConfirmEmail";
 import CheckOut from "./Components/CheckOut";
-// import MakePayment from "./MakePayment";
-// import Accessibility from "./Accessibility";
-import MobileHeader from "./Components/MobileHeader";
-import MobileTop from "./Components/MobileTop";
 import MakePayment from "./Components/MakePayment";
 import PaymentSuccessModal from "./Components/PaymentSuccessful";
 import Experience1 from "./Components/Experience1";
@@ -21,11 +19,6 @@ import AttractionDetailModal from "./Components/AttractionDetailModal";
 import BookingModal from "./Components/BookingModal";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// import MobileLanding from "./MobileLanding";
-// import PromoCodeModal from "./PromoCode";
-// import PaymentSuccessModal from "./PaymentSuccessful";
-// import Experience1 from "./Experience1";
-// Example data (replace with your real data or props)
 const attraction = [
   {
     id: 1,
@@ -105,7 +98,6 @@ function MobileProductPage() {
   const [previousModal, setPreviousModal] = useState(null);
   const { t } = useTranslation();
 
-  console.log(showBookingModal, "skhdkhsdkhskh");
 
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
@@ -121,102 +113,12 @@ function MobileProductPage() {
     <>
       <MobileHeader />
       <MobileTop />
-      <div className="attractions-list">
-        {attraction.map((item) => (
-          <div className="attraction-card" key={item.id}>
-            <img
-              src={item.image}
-              alt={t(item.titleKey)}
-              className="attraction-card__img"
-            />
-            <div className="attraction-card__content">
-              <div className="attraction-card__header">
-                <div>
-                  <div className="attraction-card__title">
-                    {t(item.titleKey)}
-                  </div>
-                  <div className="attraction-card__desc">{t(item.descKey)}</div>
-                </div>
-                <div className="attraction-card__action">
-                  <button
-                    className="attraction-card__add-btn"
-                    onClick={() => {
-                      setSelectedAttraction(item);
-                      setShowAttractionDetail(true);
-                    }}
-                  >
-                    {t("common.addToCart")}
-                  </button>
-                  <div className="attraction-card__price">
-                    <span>{item.price}</span>
-                  </div>
-                  <span className="attraction-card__vat">{item.vat}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        <MobileBottomNav />
-      </div>
+      <AttractionsList 
+        attractions={attraction}
+      />
+      <MobileBottomNav />
 
-      {/* components */}
-
-      {showAttractionDetail && selectedAttraction && (
-        <AttractionDetailModal
-          attraction={selectedAttraction}
-          onClose={() => setShowAttractionDetail(false)}
-          onBack={() => setShowAttractionDetail(false)}
-          onAddToCart={() => {
-            setShowAttractionDetail(false);
-            setShowBookingModal(true);
-          }}
-          setShowAttractionDetail={setShowAttractionDetail}
-          setShowBookingModal={setShowBookingModal}
-        />
-      )}
-      {showBookingModal && (
-        <BookingModal
-          onClose={() => setShowBookingModal(false)}
-          onSaveToCart={() => {
-            setShowBookingModal(false);
-            setPreviousModal("booking");
-            setShowMyCart(true);
-          }}
-          onCheckout={() => {
-            setShowBookingModal(false);
-            setShowEmailVerification(true);
-          }}
-          onBack={() => {
-            setShowBookingModal(false);
-            setShowAttractionDetail(true);
-          }}
-        />
-      )}
-      {showMyCart && (
-        <Mycart
-          onClose={() => {
-            setShowMyCart(false);
-            if (previousModal === "booking") {
-              setShowBookingModal(true);
-            }
-          }}
-          onCheckout={() => {
-            setShowMyCart(false);
-            setShowEmailVerification(true);
-          }}
-          onSaveAndPayLater={() => {
-            setShowMyCart(false);
-            setShowBookingModal(true);
-          }}
-          onBack={() => {
-            setShowMyCart(false);
-            if (previousModal === "booking") {
-              setShowBookingModal(true);
-            }
-          }}
-        />
-      )}
-      {showEmailVerification && (
+  {/*    {showEmailVerification && (
         <EmailVerification
           onClose={() => setShowEmailVerification(false)}
           onBack={() => {
@@ -283,9 +185,10 @@ function MobileProductPage() {
           onClose={() => setShowExperience(false)}
           // ...other props as needed
         />
-      )}
+      )} */}
     </>
   );
 }
 
 export default MobileProductPage;
+

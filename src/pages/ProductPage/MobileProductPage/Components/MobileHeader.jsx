@@ -31,72 +31,77 @@ function MobileHeader() {
   }, [showLangDropdown]);
 
   return (
-    <div className="mobile-header">
-      <div className="mobile-header__left">
-        <img
-          src={logo}
-          alt="YAS Island Logo"
-          className="mobile-header__logo"
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        />
-      </div>
-      <div className="mobile-header__right">
-        <button
-          className="mobile-header__icon-btn"
-          aria-label="Accessibility"
-          onClick={() => {
-            setShowAccessibility(!showAccessibility);
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img src={accessibilityIcon} alt="Accessibility" />
-        </button>
-        {showAccessibility && (
-          <Accessibility onClose={() => setShowAccessibility(false)} />
-        )}
-        <div style={{ position: "relative" }} ref={langBtnRef}>
+    <>
+      <div className="mobile-header">
+        <div className="mobile-header__left">
+          <img
+            src={logo}
+            alt="YAS Island Logo"
+            className="mobile-header__logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
+        </div>
+        <div className="mobile-header__right">
           <button
-            className="mobile-header__lang-btn"
-            aria-label="Language"
-            onClick={() => setShowLangDropdown((v) => !v)}
-            type="button"
+            className="mobile-header__icon-btn"
+            aria-label="Accessibility"
+            onClick={() => {
+              setShowAccessibility(!showAccessibility);
+              window.scrollTo(0, 0);
+            }}
           >
-            <img src={globeIcon} alt="Language" />
-            <span>{language === "العربية" ? "العربية" : "English"}</span>
-            <span className="chevron">&#9662;</span>
+            <img src={accessibilityIcon} alt="Accessibility" />
           </button>
-          {showLangDropdown && (
-            <div className="mobile-header__lang-dropdown">
-              <div
-                className="mobile-header__lang-option"
-                onClick={() => {
-                  toggleLanguage("English");
-                  setShowLangDropdown(false);
-                }}
-              >
-                <span className="mobile-header__lang-text">English</span>
-                {language === "English" && (
-                  <span className="mobile-header__lang-check">✓</span>
-                )}
+
+          <div style={{ position: "relative" }} ref={langBtnRef}>
+            <button
+              className="mobile-header__lang-btn"
+              aria-label="Language"
+              onClick={() => setShowLangDropdown((v) => !v)}
+              type="button"
+            >
+              <img src={globeIcon} alt="Language" />
+              <span>{language === "العربية" ? "العربية" : "English"}</span>
+              <span className="chevron">&#9662;</span>
+            </button>
+            {showLangDropdown && (
+              <div className="mobile-header__lang-dropdown">
+                <div
+                  className="mobile-header__lang-option"
+                  onClick={() => {
+                    toggleLanguage("English");
+                    setShowLangDropdown(false);
+                  }}
+                >
+                  <span className="mobile-header__lang-text">English</span>
+                  {language === "English" && (
+                    <span className="mobile-header__lang-check">✓</span>
+                  )}
+                </div>
+                <div
+                  className="mobile-header__lang-option"
+                  onClick={() => {
+                    toggleLanguage("العربية");
+                    setShowLangDropdown(false);
+                  }}
+                >
+                  <span className="mobile-header__lang-text">العربية</span>
+                  {language === "العربية" && (
+                    <span className="mobile-header__lang-check">✓</span>
+                  )}
+                </div>
               </div>
-              <div
-                className="mobile-header__lang-option"
-                onClick={() => {
-                  toggleLanguage("العربية");
-                  setShowLangDropdown(false);
-                }}
-              >
-                <span className="mobile-header__lang-text">العربية</span>
-                {language === "العربية" && (
-                  <span className="mobile-header__lang-check">✓</span>
-                )}
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+
+      <Accessibility
+        onClose={() => setShowAccessibility(false)}
+        visible={showAccessibility}
+      />
+    </>
   );
 }
 

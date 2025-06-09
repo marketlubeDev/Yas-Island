@@ -6,19 +6,29 @@ import PromoCodePopup from "./PromoCode";
 import MakePayment from "./MakePayment";
 import PaymentSuccessful from "./PaymentSuccessful";
 import Experience1 from "./Experience1";
+import MobileHeader from "./MobileHeader";
 
 const MobilePaymentFlow = () => {
-  const [step, setStep] = useState(1);
+  // const [step, setStep] = useState(1);
 
   return (
     <>
-      {step === 1 && (
+     <MobileHeader />
+     <EmailVerification
+          onBack={() => window.history.back()}
+        />
+
+
+
+
+
+     {/* {step === 1 && (
         <EmailVerification
           onConfirmEmail={() => setStep(2)}
           onBack={() => window.history.back()}
         />
-      )}
-      {step === 2 && (
+      )} */}
+       {/* {step === 2 && (
         <ConfirmEmail onBack={() => setStep(1)} onConfirm={() => setStep(3)} />
       )}
       {step === 3 && (
@@ -37,7 +47,7 @@ const MobilePaymentFlow = () => {
         />
       )}
       {step === 6 && <PaymentSuccessful onShowExperience={() => setStep(7)} />}
-      {step === 7 && <Experience1 />}
+      {step === 7 && <Experience1 />} */}
     </>
   );
 };

@@ -27,7 +27,7 @@
   font-size: 22px;
   font-weight: 500;
   color: #231942;
-  margin: 24px 0 12px 0;
+  margin: 12px 0 12px 0;
   text-align: center;
 }
 
@@ -141,8 +141,8 @@
 
 .email-verification-modal,
 .outer-modal-bg {
-  padding-top: 56px; // adjust as needed to match your header height
-  box-sizing: border-box;
+  // padding-top: 56px; // adjust as needed to match your header height
+  // box-sizing: border-box;
 }
 
 .email-verification-bg {
@@ -213,7 +213,7 @@
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
-  padding: 38px 48px 34px 48px;
+  padding: 38px 40px 34px 40px;
   margin-top: 24px;
   height: 100%;
   width: 100%;
@@ -252,10 +252,10 @@
   padding: 12px 0;
   font-size: 16px;
   font-weight: 500;
-  margin-left: 10%;
+  text-align: center;
   cursor: pointer;
   width: 75%;
-  margin-top: 80px;
+  margin: 80px auto 0 auto;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
 
