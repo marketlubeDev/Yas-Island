@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import { useResponsive } from "./hooks/responsiveHook/useResponsive";
 import Header from "./layouts/Header/Header";
 import GlobalZoomEffect from "./components/GlobalZoomEffect";
+import GlobalInvertColor from "./components/GlobalInvertColor";
 
 export default function App() {
   useResponsive();
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div>
       <GlobalZoomEffect />
+      <GlobalInvertColor />
       <Header />
       <Home>
         <Outlet />

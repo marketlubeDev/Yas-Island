@@ -1,3 +1,5 @@
+@use "../../abstract/variables" as *;
+
 .product {
   // min-height: 100vh;
   // max-height: 100vh;
@@ -6,6 +8,7 @@
   display: grid;
   grid-template-columns: 12rem 1fr;
   gap: 2rem;
+  background-color: var(--color-base-bg);
 
   &-head {
     display: flex;
@@ -63,7 +66,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
@@ -77,7 +80,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 500;
@@ -88,21 +91,21 @@
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
-  background: #fff;
+  background: var(--color-base-btn-bg);
   cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  top: -0rem;
+  top: -2px;
   right: -5rem;
   width: 19.625rem;
   height: 5rem;
   border-radius: 0rem 0rem 0rem 1.25rem;
-  border: 0.83px solid #ccdaf6;
+  border: 0.83px solid var(--color-base-btn-border);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
-  color: #000;
+  color: var(--color-base-text);
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 500;
@@ -113,10 +116,10 @@
   // font-size: 18px;
   font-weight: 500;
   margin: 0;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.5rem;
   font-style: normal;
-  
+
   line-height: normal;
   text-transform: capitalize;
 }
@@ -128,8 +131,8 @@
 }
 
 .accessibility-button {
-  background: #fff;
-  border: 2.6px solid #dcd6e5;
+  background: var(--color-base-btn-bg);
+  border: 2.6px solid var(--color-base-btn-border);
   border-radius: 50%;
   width: 40.5px;
   height: 40.5px;

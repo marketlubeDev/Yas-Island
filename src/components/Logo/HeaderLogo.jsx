@@ -7,10 +7,14 @@ import MainProductHead from "../../pages/ProductPage/ProductHead/mainProductHead
 import ProductHead from "../../pages/ProductPage/ProductHead/ProductHead";
 import AccessibilityModal from "../../pages/ProductPage/Components/AccessibilityModal";
 import CartModal from "../../pages/Home/Components/CartModal";
+import invertDesc from "../../assets/images/invertDesc.svg";
+import { useSelector } from "react-redux";
 
 export default function HeaderLogo() {
   const navigate = useNavigate();
   const location = useLocation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
@@ -24,12 +28,9 @@ export default function HeaderLogo() {
   return (
     <>
       <div
+        className="header-logo-container"
         style={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
           justifyContent: isProductRoute ? "space-between" : "flex-start",
-          gap: "1rem",
         }}
       >
         <div
@@ -57,7 +58,7 @@ export default function HeaderLogo() {
             }}
           />
           <img
-            src={desc}
+            src={isDarkMode ? invertDesc : desc}
             alt="desc"
             className="header-logo-desc"
             style={{

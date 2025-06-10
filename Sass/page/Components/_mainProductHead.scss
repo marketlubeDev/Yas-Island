@@ -1,3 +1,5 @@
+@use "../../abstract/variables" as *;
+
 .language-selector {
   position: relative;
   margin: 0 16px;
@@ -80,8 +82,8 @@
 }
 
 .mobile-header__lang-btn {
-  background: white;
-  border: 2px solid #bcbcc9;
+  background: var(--color-base-btn-bg) !important;
+  border: 2px solid var(--color-base-btn-border) !important;
   border-radius: 2rem;
   padding: 6px 12px;
   display: flex;
@@ -100,7 +102,7 @@
 
 .mobile-header__lang-btn span {
   font-size: 16px;
-  color: #333;
+  color: var(--color-base-text);
 }
 
 .chevron {

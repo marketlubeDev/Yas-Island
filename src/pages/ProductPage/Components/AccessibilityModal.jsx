@@ -2,7 +2,10 @@ import React from "react";
 import { Modal } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { setZoomLevel } from "../../../global/accessibilitySlice";
+import {
+  setZoomLevel,
+  toggleDarkMode,
+} from "../../../global/accessibilitySlice";
 import Invert from "../../../assets/icons/invert.svg";
 import Zoom from "../../../assets/icons/lens.svg";
 import closeIcon from "../../../assets/icons/close.svg";
@@ -13,6 +16,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const handleZoomClick = () => {
     let newZoomLevel;
@@ -21,6 +25,10 @@ export default function AccessibilityModal({ isOpen, onClose }) {
     else newZoomLevel = 1;
 
     dispatch(setZoomLevel(newZoomLevel));
+  };
+
+  const handleDarkModeClick = () => {
+    dispatch(toggleDarkMode());
   };
 
   return (
@@ -42,11 +50,13 @@ export default function AccessibilityModal({ isOpen, onClose }) {
         <p className="subtitle">{t("accessibility.subtitle")}</p>
 
         <div className="options-container">
-          <div className="option-card">
+          <div className="option-card" onClick={handleDarkModeClick}>
             <div className="option-icon">
               <img src={Invert} alt={t("accessibility.colorBlindness")} />
             </div>
-            <p>{t("accessibility.colorBlindness")}</p>
+            <p>
+              {isDarkMode ? "Invert Colors" : t("accessibility.colorBlindness")}
+            </p>
           </div>
 
           <div

@@ -1,3 +1,5 @@
+@use "../../abstract/variables" as *;
+
 .selector {
   max-width: 12rem;
   display: flex;
@@ -9,6 +11,7 @@
     border: none;
     outline: none;
     background-color: transparent;
+    color: var(--color-base-text);
     cursor: pointer;
   }
 }
@@ -18,14 +21,11 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 5px;
-
-  // position: relative;
-  // bottom: 19.5px;
 }
 
 .Selector-label {
   padding-left: 8px;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
