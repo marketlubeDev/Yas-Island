@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "antd";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setZoomLevel } from "../../../global/accessibilitySlice";
 import Invert from "../../../assets/icons/invert.svg";
 import Zoom from "../../../assets/icons/lens.svg";
 import closeIcon from "../../../assets/icons/close.svg";
@@ -9,23 +11,17 @@ import closeIcon from "../../../assets/icons/close.svg";
 
 export default function AccessibilityModal({ isOpen, onClose }) {
   const { t } = useTranslation();
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const dispatch = useDispatch();
+  const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
 
   const handleZoomClick = () => {
-    setZoomLevel((prevZoom) => {
-      if (prevZoom === 1) return 1.12;
-      if (prevZoom === 1.12) return 1.25;
-      return 1;
-    });
-  };
+    let newZoomLevel;
+    if (zoomLevel === 1) newZoomLevel = 1.12;
+    else if (zoomLevel === 1.12) newZoomLevel = 1.25;
+    else newZoomLevel = 1;
 
-  // Apply zoom to the document body
-  React.useEffect(() => {
-    document.body.style.zoom = zoomLevel;
-    return () => {
-      document.body.style.zoom = 1;
-    };
-  }, [zoomLevel]);
+    dispatch(setZoomLevel(newZoomLevel));
+  };
 
   return (
     <Modal

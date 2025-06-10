@@ -16,22 +16,22 @@ const ResponsiveLanding = () => {
   // const { isSmallPhone, isPhone } = useResponsive();
   // const isMobile = isSmallPhone || isPhone;
   // return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
-  // return <Navigate to="/product" replace />;
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <UnderConstruction /> : <LandingPage />;
+  return <Navigate to="/product" replace />;
+  // const { isSmallPhone, isPhone } = useResponsive();
+  // const isMobile = isSmallPhone || isPhone;
+  // return isMobile ? <UnderConstruction /> : <LandingPage />;
 };
 
 const ResponsiveProduct = () => {
   const { isSmallPhone, isPhone } = useResponsive();
   const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <UnderConstruction /> : <ProductPage />;
+  return isMobile ? <MobileProductPage /> : <ProductPage />;
 };
 
 const ResponsiveEmailVerification = () => {
   const { isSmallPhone, isPhone } = useResponsive();
   const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <UnderConstruction /> : <PaymentCheckout />;
+  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
 };
 
 export const router = createBrowserRouter([
