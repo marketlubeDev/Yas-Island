@@ -56,19 +56,10 @@ function MobileBottomNav() {
           <span>Cart</span>
         </div>
       </div>
-      {isCartModalOpen && (
-        <Mycart
-          onClose={() => setIsCartModalOpen(false)}
-          onCheckout={() => {
-            setIsCartModalOpen(false);
-            navigate("/payment");
-          }}
-          onSaveAndPayLater={() => {
-            setIsCartModalOpen(false);
-            navigate("/");
-          }}
-        />
-      )}
+      <Mycart 
+        onClose={() => setIsCartModalOpen(false)}
+        visible={isCartModalOpen}
+      />
     </>
   );
 }

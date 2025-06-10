@@ -15,7 +15,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
 
   return (
     <div className="booking-modal-overlay">
-      <div className="booking-modal" style={{ height: "90vh" }}>
+      <div className="booking-modal" >
         <div className="booking-modal__header">
           <span className="booking-modal__title">Choose date</span>
         </div>

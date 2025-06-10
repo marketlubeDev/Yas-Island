@@ -1,10 +1,11 @@
 import React from "react";
+import { Modal } from "antd";
 import colorblindIcon from "../../../../assets/icons/colorblindness.svg";
 import zoomIcon from "../../../../assets/icons/zoom.svg";
 import closeIcon from "../../../../assets/icons/close.svg";
 import { useNavigate } from "react-router-dom";
 
-function Accessibility({ onClose }) {
+function Accessibility({ onClose, visible }) {
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -18,16 +19,26 @@ function Accessibility({ onClose }) {
   };
 
   return (
-    <div className="accessibility-popup-overlay">
-      <button className="accessibility-popup-close" onClick={handleClose}>
-        <img src={closeIcon} alt="Close" width={28} height={28} />
-      </button>
+    <Modal
+      open={visible}
+      onCancel={handleClose}
+      footer={null}
+      closable={true}
+      centered
+      width={400}
+      className="accessibility-modal"
+      closeIcon={
+        <span className="custom-modal-close">
+          <img src={closeIcon} alt="accessibility.close" />
+        </span>
+      }
+    >
       <div className="accessibility-popup-card">
         <div className="accessibility-popup-title">Accessibility</div>
         <div className="accessibility-popup-subtitle">Choose options</div>
         <div className="accessibility-popup-options">
           <div className="accessibility-popup-option">
-            {/* Color blindness SVG */}
+            
             <div className="accessibility-popup-icon-circle">
               <img
                 src={colorblindIcon}
@@ -43,7 +54,7 @@ function Accessibility({ onClose }) {
             </div>
           </div>
           <div className="accessibility-popup-option">
-            {/* Search/Zoom SVG */}
+           
             <div className="accessibility-popup-icon-circle">
               <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
             </div>
@@ -57,7 +68,7 @@ function Accessibility({ onClose }) {
           Continue
         </button>
       </div>
-    </div>
+    </Modal>
   );
 }
 

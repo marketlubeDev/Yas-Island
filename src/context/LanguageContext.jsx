@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
+import i18n from "../i18n";
 
 const LanguageContext = createContext();
 
@@ -7,8 +8,14 @@ export function LanguageProvider({ children }) {
 
   const toggleLanguage = (newLang) => {
     setLanguage(newLang);
-    // Set the HTML dir attribute for RTL support
-    document.documentElement.dir = newLang === "العربية" ? "rtl" : "ltr";
+    // REMOVE or COMMENT OUT the next line to keep direction always LTR
+    // document.documentElement.dir = newLang === "العربية" ? "rtl" : "ltr";
+    // Switch i18n language as well
+    if (newLang === "العربية") {
+      i18n.changeLanguage("ar");
+    } else {
+      i18n.changeLanguage("en");
+    }
   };
 
   return (
