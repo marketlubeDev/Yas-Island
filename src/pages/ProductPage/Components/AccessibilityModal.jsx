@@ -49,7 +49,10 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             <p>{t("accessibility.colorBlindness")}</p>
           </div>
 
-          <div className="option-card" onClick={handleZoomClick}>
+          <div
+            className={`option-card ${zoomLevel !== 1 ? "active" : ""}`}
+            onClick={handleZoomClick}
+          >
             <div className="option-icon">
               <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>

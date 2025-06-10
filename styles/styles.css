@@ -977,6 +977,11 @@ border- .side-bar-list a {
   flex-direction: column;
   cursor: pointer;
 }
+.option-card.active {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: rgba(0, 123, 255, 0.1);
+}
 
 .option-card:hover {
   border-color: #1976d2;
@@ -993,6 +998,11 @@ border- .side-bar-list a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.option-icon.active {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .option-card p {
