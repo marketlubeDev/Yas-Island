@@ -8,6 +8,9 @@ export const en = {
     chatWithUs: "Chat With Us",
     addToCart: "Add to Cart",
     searchPlaceholder: "What are you looking for?",
+    home: "Home",
+    add: "Add",
+    myCart: "My Cart",
   },
   accessibility: {
     title: "Accessibility",
@@ -102,8 +105,8 @@ export const en = {
     item: {
       ferrariWorld: "1 day Ferrari World",
       price: "AED 328.57",
-      vatAndTax: "16.43 VAT & Tax"
-    }
+      vatAndTax: "16.43 VAT & Tax",
+    },
   },
   product: {
     addToCart: "Add to cart",
@@ -134,20 +137,21 @@ export const en = {
       step1: "Step 1",
       step2: "Step 2",
       emailVerification: "Email verification",
-      checkout: "Checkout"
+      checkout: "Checkout",
     },
     emailConfirmation: {
+      title: "Guest details and payment",
       emailLabel: "EMAIL ADDRESS *",
       emailPlaceholder: "vivek@dev.vanasthi.ae",
       confirmButton: "Confirm email",
-      completeVerification: "Complete Verification"
+      completeVerification: "Complete Verification",
     },
     verification: {
       codeSent: "Verification code has been sent to",
       checkSpam: "Please check your spam or junk mail folder",
       enterCode: "ENTER VERIFICATION CODE",
       willExpire: "Will Expire In",
-      resend: "Resend"
+      resend: "Resend",
     },
     personalDetails: {
       firstName: "FIRST NAME *",
@@ -156,14 +160,14 @@ export const en = {
       nationality: "NATIONALITY *",
       phoneNumber: "PHONE NUMBER (PREFERRED NUMBER) *",
       countries: {
-        UAE: "UAE"
+        UAE: "UAE",
       },
       nationalities: {
-        UAE: "UAE"
+        UAE: "UAE",
       },
       phoneCodes: {
-        UAE: "+971"
-      }
+        UAE: "+971",
+      },
     },
     orderSummary: {
       title: "1 day FERRARI WORLD YAS ISLAND",
@@ -176,44 +180,45 @@ export const en = {
       promoCode: {
         label: "ENTER YOUR PROMO CODE TO GET DISCOUNT",
         placeholder: "Enter promo code",
-        apply: "Apply"
+        apply: "Apply",
       },
       terms: {
         acceptTerms: "I have read and accept the",
         termsAndConditions: "terms and conditions *",
-        receiveCommunications: "Receive communications via email"
-      }
+        receiveCommunications: "Receive communications via email",
+      },
     },
     paymentDetails: {
-      proceedToPayment: "Proceed to payment"
+      proceedToPayment: "Proceed to payment",
     },
     cardPayment: {
       title: "Please enter payment details",
       paymentMethods: {
         creditDebitCard: "CREDIT/DEBIT CARD",
-        paypal: "PAYPAL"
+        paypal: "PAYPAL",
       },
       form: {
         cardNumber: {
           label: "CREDIT/DEBIT CARD NUMBER",
-          placeholder: "0000 0000 0000 0000"
+          placeholder: "0000 0000 0000 0000",
         },
         expiryDate: {
           label: "EXPIRY DATE",
-          placeholder: "MM/YYYY"
+          placeholder: "MM/YYYY",
         },
         cvv: {
           label: "CVV",
-          placeholder: "***"
-        }
+          placeholder: "***",
+        },
       },
-      makePayment: "Make payment"
+      makePayment: "Make payment",
     },
     success: {
       title: "Payment Successful",
-      message: "Your payment has been processed successfully. You will receive a confirmation email shortly.",
+      message:
+        "Your payment has been processed successfully. You will receive a confirmation email shortly.",
       viewBooking: "View Booking",
-      backToHome: "Back to Home"
+      backToHome: "Back to Home",
     },
     response: {
       ticketSent: "Your ticket has been sent to the registered mail ID!",
@@ -221,7 +226,7 @@ export const en = {
       excellent: "Excellent",
       average: "Average",
       poor: "Poor",
-      thankYou: "Thank you! Visit again"
-    }
+      thankYou: "Thank you! Visit again",
+    },
   },
 };

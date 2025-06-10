@@ -145,7 +145,7 @@ function MobileProductPage() {
                       setShowAttractionDetail(true);
                     }}
                   >
-                    {t("common.addToCart")}
+                    {t("common.add")}
                   </button>
                   <div className="attraction-card__price">
                     <span>{item.price}</span>

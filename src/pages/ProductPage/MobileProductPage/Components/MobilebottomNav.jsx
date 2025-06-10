@@ -4,12 +4,14 @@ import chatIcon from "../../../../assets/icons/message.svg";
 import cartIcon from "../../../../assets/icons/shopping.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import Mycart from "../Components/Mycart";
+import { useTranslation } from "react-i18next";
 // import MobileLanding from "./MobileLanding";
 
 function MobileBottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleCartClick = () => {
     setIsCartModalOpen(true);
@@ -41,11 +43,11 @@ function MobileBottomNav() {
                   : "brightness(0) saturate(100%)",
             }}
           />
-          <span>Home</span>
+          <span>{t("common.home")}</span>
         </div>
         <div className="mobile-bottom-nav__item">
           <img src={chatIcon} alt="Chat with us" />
-          <span>Chat with us</span>
+          <span>{t("common.chatWithUs")}</span>
         </div>
         <div
           className="mobile-bottom-nav__item"
@@ -53,7 +55,7 @@ function MobileBottomNav() {
           style={{ cursor: "pointer" }}
         >
           <img src={cartIcon} alt="Cart" />
-          <span>Cart</span>
+          <span>{t("common.viewCart")}</span>
         </div>
       </div>
       {isCartModalOpen && (

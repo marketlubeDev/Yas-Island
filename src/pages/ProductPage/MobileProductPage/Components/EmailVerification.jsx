@@ -3,9 +3,11 @@ import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import ConfirmEmail from "./ConfirmEmail";
 import backIcon from "../../../../assets/icons/back.svg";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function EmailVerification({ onClose, onConfirmEmail, onBack }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [email, setEmail] = useState("vivek@dev.panashi.ae");
   const [step, setStep] = useState(1); // 1 = email, 2 = confirm email
   const [showEmailVerification, setShowEmailVerification] = useState(true);
@@ -31,7 +33,7 @@ function EmailVerification({ onClose, onConfirmEmail, onBack }) {
                   onSubmit={handleSubmit}
                 >
                   <div className="email-verification__title">
-                    Guest details and payment
+                    {t("payment.emailConfirmation.title")}
                   </div>
                   <button
                     className="email-verification__back-btn"
@@ -46,7 +48,7 @@ function EmailVerification({ onClose, onConfirmEmail, onBack }) {
                   >
                     <img
                       src={backIcon}
-                      alt="Back"
+                      alt={t("payment.back")}
                       style={{ width: 24, height: 24 }}
                     />
                   </button>
@@ -57,8 +59,9 @@ function EmailVerification({ onClose, onConfirmEmail, onBack }) {
                         (step === 1 ? " email-verification__step--active" : "")
                       }
                     >
-                      Step 1<br />
-                      <span>Email verification</span>
+                      {t("payment.steps.step1")}
+                      <br />
+                      <span>{t("payment.steps.emailVerification")}</span>
                     </div>
                     <div
                       className={
@@ -66,28 +69,34 @@ function EmailVerification({ onClose, onConfirmEmail, onBack }) {
                         (step === 2 ? " email-verification__step--active" : "")
                       }
                     >
-                      Step 2<br />
-                      <span>Confirm Email</span>
+                      {t("payment.steps.step2")}
+                      <br />
+                      <span>
+                        {t("payment.emailConfirmation.confirmButton")}
+                      </span>
                     </div>
                   </div>
 
                   <div className="email-verification__step-underline"></div>
                   <div className="email-verification-form-box">
                     <label className="email-verification-label">
-                      EMAIL ADDRESS *
+                      {t("payment.emailConfirmation.emailLabel")}
                     </label>
                     <input
                       type="email"
                       className="email-verification-input"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      placeholder={t(
+                        "payment.emailConfirmation.emailPlaceholder"
+                      )}
                       required
                     />
                     <button
                       className="email-verification-confirm-btn"
                       type="submit"
                     >
-                      Confirm Email
+                      {t("payment.emailConfirmation.confirmButton")}
                     </button>
                   </div>
                 </form>

@@ -8,6 +8,8 @@ export const ar = {
     chatWithUs: "تواصل معنا",
     addToCart: "أضف إلى السلة",
     searchPlaceholder: "ماذا تبحث عن؟",
+    home: "الرئيسية",
+    add: "أضف",
   },
   accessibility: {
     title: "إمكانية الوصول",
@@ -89,7 +91,7 @@ export const ar = {
     phoneNumber: "رقم الهاتف (الرقم المفضل) *",
   },
   cart: {
-    title: "سلة المشتريات",
+    myCart: "سلة المشتريات",
     bookingFor: "الحجز لـ",
     adults: "البالغين",
     subTotal: "المجموع الفرعي :",
@@ -102,8 +104,8 @@ export const ar = {
     item: {
       ferrariWorld: "فيراري وورلد ليوم واحد",
       price: "درهم 328.57",
-      vatAndTax: "ضريبة القيمة المضافة 16.43"
-    }
+      vatAndTax: "ضريبة القيمة المضافة 16.43",
+    },
   },
   product: {
     addToCart: "أضف إلى السلة",
@@ -134,20 +136,21 @@ export const ar = {
       step1: "الخطوة 1",
       step2: "الخطوة 2",
       emailVerification: "التحقق من البريد الإلكتروني",
-      checkout: "إتمام الشراء"
+      checkout: "إتمام الشراء",
     },
     emailConfirmation: {
+      title: "تفاصيل الضيف والدفع",
       emailLabel: "البريد الإلكتروني *",
       emailPlaceholder: "vivek@dev.vanasthi.ae",
       confirmButton: "تأكيد البريد الإلكتروني",
-      completeVerification: "إكمال التحقق"
+      completeVerification: "إكمال التحقق",
     },
     verification: {
       codeSent: "تم إرسال رمز التحقق إلى",
       checkSpam: "يرجى التحقق من مجلد البريد المزعج أو غير المرغوب فيه",
       enterCode: "أدخل رمز التحقق",
       willExpire: "سينتهي خلال",
-      resend: "إعادة الإرسال"
+      resend: "إعادة الإرسال",
     },
     personalDetails: {
       firstName: "الاسم الأول *",
@@ -156,14 +159,14 @@ export const ar = {
       nationality: "الجنسية *",
       phoneNumber: "رقم الهاتف (الرقم المفضل) *",
       countries: {
-        UAE: "الإمارات العربية المتحدة"
+        UAE: "الإمارات العربية المتحدة",
       },
       nationalities: {
-        UAE: "الإمارات العربية المتحدة"
+        UAE: "الإمارات العربية المتحدة",
       },
       phoneCodes: {
-        UAE: "+971"
-      }
+        UAE: "+971",
+      },
     },
     orderSummary: {
       title: "فيراري وورلد ياس آيلاند ليوم واحد",
@@ -176,44 +179,45 @@ export const ar = {
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",
         placeholder: "أدخل رمز الخصم",
-        apply: "تطبيق"
+        apply: "تطبيق",
       },
       terms: {
         acceptTerms: "لقد قرأت وأوافق على",
         termsAndConditions: "الشروط والأحكام *",
-        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني"
-      }
+        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني",
+      },
     },
     paymentDetails: {
-      proceedToPayment: "المتابعة إلى الدفع"
+      proceedToPayment: "المتابعة إلى الدفع",
     },
     cardPayment: {
       title: "يرجى إدخال تفاصيل الدفع",
       paymentMethods: {
         creditDebitCard: "بطاقة ائتمان/خصم",
-        paypal: "باي بال"
+        paypal: "باي بال",
       },
       form: {
         cardNumber: {
           label: "رقم بطاقة الائتمان/الخصم",
-          placeholder: "0000 0000 0000 0000"
+          placeholder: "0000 0000 0000 0000",
         },
         expiryDate: {
           label: "تاريخ الانتهاء",
-          placeholder: "MM/YYYY"
+          placeholder: "MM/YYYY",
         },
         cvv: {
           label: "رمز الأمان",
-          placeholder: "***"
-        }
+          placeholder: "***",
+        },
       },
-      makePayment: "إتمام الدفع"
+      makePayment: "إتمام الدفع",
     },
     success: {
       title: "تم الدفع بنجاح",
-      message: "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
+      message:
+        "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
       viewBooking: "عرض الحجز",
-      backToHome: "العودة إلى الصفحة الرئيسية"
+      backToHome: "العودة إلى الصفحة الرئيسية",
     },
     response: {
       ticketSent: "تم إرسال تذكرتك إلى البريد الإلكتروني المسجل!",
@@ -221,7 +225,7 @@ export const ar = {
       excellent: "ممتاز",
       average: "متوسط",
       poor: "ضعيف",
-      thankYou: "شكراً لك! نتمنى زيارتك مرة أخرى"
-    }
+      thankYou: "شكراً لك! نتمنى زيارتك مرة أخرى",
+    },
   },
 };

@@ -4,31 +4,33 @@ import trashIcon from "../../../../assets/icons/trash.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
+import { useTranslation } from "react-i18next";
 
 // Set the app element for react-modal
 Modal.setAppElement("#root");
 
 function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
+  const { t } = useTranslation();
   // Example cart data
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
       image: frame1,
-      title: "1 day Ferrari World Yas Island",
+      title: t("cart.item.ferrariWorld"),
       price: 328.57,
-      vat: "16.43 VAT & tax",
+      vat: t("cart.item.vatAndTax"),
       date: "08 Feb 2025",
-      type: "Adults",
+      type: t("cart.adults"),
       quantity: 2,
     },
     {
       id: 2,
       image: frame1,
-      title: "1 day Ferrari World Yas Island",
+      title: t("cart.item.ferrariWorld"),
       price: 278.57,
-      vat: "16.43 VAT & tax",
+      vat: t("cart.item.vatAndTax"),
       date: "08 Feb 2025",
-      type: "Children",
+      type: t("cart.adults"),
       quantity: 1,
     },
   ]);
@@ -82,10 +84,10 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
         <button className="cart-modal__back" onClick={handleBack}>
           <img src={backIcon} alt="Back" />
         </button>
-        <span className="cart-modal__title">My cart</span>
+        <span className="cart-modal__title">{t("cart.myCart")}</span>
       </div>
       <div className="cart-modal__booking-date">
-        Booking for <b>Thu 08- Feb 2025</b>
+        {t("cart.bookingFor")} <b>Thu 08- Feb 2025</b>
       </div>
       <div className="cart-modal__items">
         {cartItems.map((item) => (
@@ -106,12 +108,12 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
                   className="cart-modal__item-delete"
                   onClick={() => deleteItem(item.id)}
                 >
-                  <img src={trashIcon} alt="Delete" />
+                  <img src={trashIcon} alt={t("cart.delete")} />
                 </button>
               </div>
               <div className="cart-modal__item-price">
                 <span className="cart-modal__item-price-main">
-                  AED {item.price}
+                  {t("cart.item.price")}
                 </span>
                 <span className="cart-modal__item-vat">{item.vat}</span>
               </div>
@@ -133,23 +135,25 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
       <div className="cart-modal__footer">
         <div className="cart-modal__summary">
           <div className="cart-modal__summary-row">
-            <span>Sub total :</span>
+            <span>{t("cart.subTotal")}</span>
             <span>AED {subtotal.toFixed(2)}</span>
           </div>
           <div className="cart-modal__summary-row">
-            <span>vat & tax :</span>
-            <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
+            <span>{t("cart.vatAndTax")}</span>
+            <span>
+              + {vatTotal.toFixed(2)} {t("cart.vatAndTax")}
+            </span>
           </div>
           <div className="cart-modal__summary-row cart-modal__summary-row--total">
-            <span>Total :</span>
+            <span>{t("cart.total")}</span>
             <span>AED {total.toFixed(2)}</span>
           </div>
         </div>
         <button className="cart-modal__checkout" onClick={onCheckout}>
-          Check out
+          {t("cart.checkOut")}
         </button>
         <button className="cart-modal__save" onClick={onSaveAndPayLater}>
-          Save cart & pay later
+          {t("cart.saveCartAndPayLater")}
         </button>
       </div>
     </Modal>
