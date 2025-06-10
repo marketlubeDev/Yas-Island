@@ -5,6 +5,7 @@ import AttractionDetailModal from "./AttractionDetailModal";
 import BookingModal from "./BookingModal";
 import { Modal } from "antd";
 import Mycart from "./Mycart";
+import closeIcon from "../../../../assets/icons/close.svg";
 
 const AttractionsList = ({ attractions }) => {
   const { t } = useTranslation();
@@ -88,7 +89,7 @@ const AttractionsList = ({ attractions }) => {
                     className="attraction-card__add-btn"
                     onClick={() => handleAttractionClick(item)}
                   >
-                    add
+                    Add
                   </button>
                   <div className="attraction-card__price">
                     <span>{item.price}</span>
@@ -105,7 +106,12 @@ const AttractionsList = ({ attractions }) => {
         open={modalType !== null}
         onCancel={handleCloseModal}
         footer={null}
-        closable={false}
+        closable={true}
+        closeIcon={
+          <span className="custom-modal-close">
+            <img src={closeIcon} alt="close" />
+          </span>
+        }
         width="100%"
         className={
           modalType === "attraction"

@@ -15,7 +15,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
 
   return (
     <div className="booking-modal-overlay">
-      <div className="booking-modal" >
+      <div className="booking-modal">
         <div className="booking-modal__header">
           <span className="booking-modal__title">Choose date</span>
         </div>
@@ -95,9 +95,9 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
           </button>
         </div>
       </div>
-      <span className="booking-modal__close" onClick={onClose}>
+      {/* <span className="booking-modal__close" onClick={onClose}>
         <img src={closeIcon} alt="Close" />
-      </span>
+      </span> */}
     </div>
   );
 }

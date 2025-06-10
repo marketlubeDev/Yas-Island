@@ -13,7 +13,7 @@
 }
 
 .email-checkout__container {
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
   height: 100vh;
   // border-radius: 24px;
@@ -115,12 +115,13 @@
   &--active {
     color: #231942;
     font-weight: 400;
-    border-bottom: 2px solid #1976d2;
+    border-bottom: 2px solid #231942;
   }
 }
 
 .email-checkout__underline {
   width: 100%;
+
   max-width: 340px;
   height: 2px;
   background: #e3e3e3;
@@ -187,7 +188,7 @@
 .email-checkout__input[type="text"],
 .email-checkout__input[type="tel"],
 .email-checkout__input[type="number"] {
-  width: 150px;
+  width: 200px;
   max-width: 100%;
 }
 
@@ -220,6 +221,7 @@
   margin: 8px 0 18px -2.5rem;
   font-size: 15px;
   color: #231942;
+  margin-left: -3rem;
 
   &-title {
     font-weight: 600;
@@ -281,15 +283,25 @@
 
 .email-checkout__select {
   width: 200px;
-  min-width: unset;
   max-width: 100%;
-  height: 32px;
-  font-size: 14px;
-  padding: 2px 8px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid #e3e3e3;
+  font-size: 16px;
+  padding: 8px 0 6px 0;
+  border: none;
+  border-bottom: 2px solid #231942;
+  border-radius: 0;
+  background: transparent;
+  color: #231942;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   margin-top: 2px;
+  box-shadow: none;
+
+  &:focus {
+    border-bottom: 2px solid #231942;
+    background: transparent;
+  }
 }
 
 .email-checkout__phone-row {
@@ -364,10 +376,10 @@
   padding: 16px 14px 14px 14px;
   margin-top: 18px;
   margin-bottom: 18px;
-  width: 110%;
+  width: 120%;
   max-width: 700px;
   box-sizing: border-box;
-  margin-left: -15px;
+  margin-left: -20px;
 }
 
 .email-checkout__promo-input {

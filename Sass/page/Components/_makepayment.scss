@@ -133,32 +133,64 @@
 
 .make-payment__payment-options {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 18px;
 
   label {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 15px;
     transition: border 0.2s, background 0.2s;
+    min-width: 140px;
+
+    .payment-method-radio-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
 
     input[type="radio"] {
-      accent-color: #1976d2;
-      margin-right: 8px;
+      accent-color: #14cf86;
+      margin: 0 8px 0 0;
+      border: 1px solid #e3e3e3;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
     }
 
-    &:has(input[type="radio"]:checked) {
-      border: 2px solid #1976d2;
+    .payment-method-card__img,
+    img[alt="PayPal"] {
+      width: 56px !important;
+      height: 40px !important;
+      margin-bottom: 0;
+      object-fit: contain;
+      display: block;
+      border: 1.5px solid #e3e3e3;
+      // border-radius: 8px;
       background: #fff;
+      box-shadow: 0 1px 4px rgba(44, 44, 84, 0.04);
     }
 
-    img {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
+    .payment-method-card__label1 {
+      font-size: 12px;
+      color: #908999;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 6px;
+      // padding-left: 80px;
+    }
+    .payment-method-card__label2 {
+      font-size: 12px;
+      color: #908999;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 6px;
     }
   }
 }
@@ -170,7 +202,10 @@
     font-size: 14px;
     color: #231942;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 500;
+    width: 70%;
+    margin-left: 50px;
+    margin-top: 50px;
 
     input {
       width: 100%;
@@ -188,23 +223,30 @@
 
 .make-payment__card-row {
   display: flex;
-  gap: 16px;
+  width: 85%;
+  // gap: 16px;
   label {
     flex: 1;
   }
 }
 
 .make-payment__pay-btn {
-  background: #ffe600;
+  display: flex;
+  width: 15.25rem;
+  height: 2.75rem;
+  padding: 1.67931rem 3.24519rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.22694rem;
+  flex-shrink: 0;
+  border-radius: 1.58856rem;
+  background: #ffea00;
   color: #231942;
   border: none;
-  border-radius: 2rem;
-  padding: 16px 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
-  width: 100%;
-  margin: 24px 0 8px 0;
+  margin: 24px auto 8px auto;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
   &:hover {
@@ -243,6 +285,7 @@
 .make-payment__summary-totals {
   background: #fff;
   color: #594f67;
+
   border-radius: 10px;
   padding: 34px 44px 24px 44px;
   margin-top: 10px;
@@ -254,15 +297,35 @@
   align-items: center;
   justify-content: center;
   background: #fff;
-  border: 2px solid #e3e3e3;
-  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  // border-radius: 8px;
   padding: 4px 8px;
   margin-right: 8px;
   transition: border 0.2s;
 }
 
-.make-payment__payment-options
-  label:has(input[type="radio"]:checked)
-  .make-payment__payment-imgbox {
-  border: 2px solid #00d084; /* or your active color */
+// .make-payment__payment-options
+//   label:has(input[type="radio"]:checked)
+//   .make-payment__payment-imgbox {
+//   border: 2px solid #00d084; /* or your active color */
+// }
+
+.payment-method-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+
+  &__img {
+    width: 48px; // or your preferred size
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    font-size: 15px;
+    color: #231942;
+    font-weight: 500;
+    text-align: center;
+  }
 }

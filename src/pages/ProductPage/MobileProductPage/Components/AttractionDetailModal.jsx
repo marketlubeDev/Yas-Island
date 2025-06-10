@@ -37,9 +37,9 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
           {t(attraction.detailDesc || attraction.descKey)}
         </div>
       </div>
-      <div className="attraction-detail-modal__footer-divider"></div>
+
       <div className="attraction-detail-modal__footer">
-        <div className="attraction-detail-modal__footer-vertical-divider"></div>
+        <div className="attraction-detail-modal__footer-divider"></div>
         <div className="attraction-detail-modal__footer-left">
           <div className="attraction-detail-modal__price">
             {attraction.detailPrice || attraction.price}
@@ -48,6 +48,7 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
             {attraction.detailVat || attraction.vat}
           </div>
         </div>
+        <div className="attraction-detail-modal__footer-vertical-divider"></div>
         <div className="attraction-detail-modal__footer-right">
           <button
             className="attraction-detail-modal__add-btn"
