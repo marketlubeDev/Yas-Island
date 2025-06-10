@@ -54,7 +54,7 @@ function Mycart({ onClose, visible }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    onClose(); 
+    onClose();
   };
 
   useEffect(() => {
@@ -91,7 +91,7 @@ function Mycart({ onClose, visible }) {
               className="cart-modal__item-img"
               onError={(e) => {
                 console.error("Image failed to load:", e);
-                e.target.src = frame1; 
+                e.target.src = frame1;
               }}
             />
             <div className="cart-modal__item-content">
@@ -140,16 +140,10 @@ function Mycart({ onClose, visible }) {
             <span>AED {total.toFixed(2)}</span>
           </div>
         </div>
-        <button className="cart-modal__checkout" >
-          Check out
-        </button>
-        <button className="cart-modal__save" >
-          Save cart & pay later
-        </button>
+        <button className="cart-modal__checkout">Check out</button>
+        <button className="cart-modal__save">Save cart & pay later</button>
       </div>
     </Modal>
-
-    
   );
 }
 
