@@ -10,10 +10,12 @@ import house from "../../assets/icons/house.svg";
 import chef from "../../assets/icons/chef.svg";
 import camera from "../../assets/icons/cam.svg";
 import shop from "../../assets/icons/shop.svg";
+import { useSelector } from "react-redux";
 
 export default function SideBar() {
   const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const handleClick = (item) => {
     setActiveItem(item);
@@ -51,42 +53,24 @@ export default function SideBar() {
                 activeItem === item.name ? "activeItem" : ""
               }`}
               onClick={() => handleClick(item.name)}
-              style={{
-                boxShadow:
-                  activeItem === item.name
-                    ? "0px 0px 7px var(--Number, 4px) #c3d7f5"
-                    : "",
-                border:
-                  activeItem === item.name
-                    ? "2px solid #80bfe4"
-                    : "2px solid #e3daf2",
-              }}
             >
               <div
-                className="item-icon"
-                style={{
-                  background:
-                    activeItem === item.name
-                      ? "linear-gradient(135deg, #da3164 0%, #ae219f 50%, #547ee0 100%)"
-                      : "",
-                }}
+                className={`item-icon ${
+                  activeItem === item.name ? "active" : ""
+                }`}
               >
                 <img
                   src={item.icon}
                   alt={t(item.translationKey)}
-                  style={{
-                    filter:
-                      activeItem === item.name
-                        ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1)"
-                        : "none",
-                  }}
+                  className={`${activeItem === item.name ? "active" : ""} ${
+                    isDarkMode ? "dark-mode" : ""
+                  }`}
                 />
               </div>
               <div
-                className="item-text"
-                style={{
-                  color: activeItem === item.name ? "#2563C0" : "",
-                }}
+                className={`item-text ${
+                  activeItem === item.name ? "active" : ""
+                }`}
               >
                 {t(item.translationKey)
                   .split(" ")

@@ -21,6 +21,20 @@ $color-yellow: #ffea00;
   --color-base-side-bar-border: #f7d148;
   --color-base-side-bar-invert-border: #fff;
   --color-base-side-bar-item-bg: #e9f7fd;
+  --color-base-side-bar-item-box: #e9ebef;
+  --color-base-side-bar-item-box-border: #80bfe4;
+  --color-base-side-bar-item-icon-bg: linear-gradient(
+    135deg,
+    #da3164 0%,
+    #ae219f 50%,
+    #547ee0 100%
+  );
+  --color-base-side-bar-item-right-bg: #fff;
+  --color-base-side-bar-item-right-text: rgba(#18142b80, 0.5);
+  --color-base-side-bar-item-right-text-active: #2563c0;
+  --color-base-side-bar-item-inactive-border: #e3daf2;
+  //
+  --color-base-product-card-bg: #f0f0f0;
 }
 
 $header-size: 118px;
