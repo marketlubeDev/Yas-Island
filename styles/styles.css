@@ -4465,6 +4465,12 @@ border- .side-bar-list a {
   margin-top: 8px;
 }
 
+.attraction-detail-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 99vh;
+  height: 97vh;
+}
 .attraction-detail-modal__header {
   display: flex;
   align-items: center;
@@ -4478,10 +4484,12 @@ border- .side-bar-list a {
   border: none;
   padding: 0;
   cursor: pointer;
+  margin-left: -20px;
+  margin-right: 14px;
 }
 .attraction-detail-modal__back img {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
 }
 .attraction-detail-modal__close {
   position: absolute;
@@ -4508,31 +4516,28 @@ border- .side-bar-list a {
   height: 45px;
 }
 .attraction-detail-modal__title {
-  font-size: 23px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   color: #231942;
   flex: 1;
   text-align: center;
 }
 .attraction-detail-modal__body {
-  padding: 0 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 1 auto;
-  overflow-y: auto;
+  padding: 24px 6px 24px 6px;
 }
 .attraction-detail-modal__image {
-  width: 100%;
   border-radius: 16px;
-  margin: 18px 0 12px 0;
   object-fit: cover;
-  max-height: 180px;
+  max-height: 270px;
+  height: 270px;
+  display: block;
+  width: 100%;
 }
 .attraction-detail-modal__main-title {
-  font-size: 23px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   color: #231942;
+  margin-top: 20px;
   margin-bottom: 8px;
   text-align: left;
   width: 100%;
@@ -4548,9 +4553,9 @@ border- .side-bar-list a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px 18px 18px;
+  padding: 0 4px 18px 4px;
   gap: 12px;
-  margin-top: auto;
+  margin-top: 10rem;
   background: #fff;
   border-radius: 0 0 24px 24px;
 }
@@ -4595,10 +4600,10 @@ border- .side-bar-list a {
 }
 
 .attraction-detail-modal__footer-divider {
-  width: 90%;
+  width: 95%;
   height: 1px;
   background: #e6e6ef;
-  margin: 0 0px 12px 15px;
+  margin: 0 auto 4px auto;
 }
 
 .attraction-detail-modal__footer-vertical-divider {
@@ -4627,6 +4632,24 @@ border- .side-bar-list a {
 
 .attraction-detail-modal__close--outside:hover {
   background: #f6f6fa;
+}
+
+.attraction-detail-modal .ant-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 100vh;
+  height: 98vh;
+  top: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.attraction-detail-modal .ant-modal-content {
+  height: 90vh;
+  margin-top: -2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-head__filters {

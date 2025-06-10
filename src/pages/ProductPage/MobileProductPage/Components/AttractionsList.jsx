@@ -32,7 +32,6 @@ const AttractionsList = ({ attractions }) => {
   };
 
   const handleSaveToCart = () => {
-
     handleCloseModal();
     setIsCartModalOpen(true);
   };
@@ -108,7 +107,11 @@ const AttractionsList = ({ attractions }) => {
         footer={null}
         closable={false}
         width="100%"
-        className={`${modalType}-modal`}
+        className={
+          modalType === "attraction"
+            ? "attraction-detail-modal"
+            : "booking-modal"
+        }
       >
         {renderModalContent()}
       </Modal>

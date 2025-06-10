@@ -5,7 +5,7 @@ import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with y
 
 function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   const { t } = useTranslation();
-  
+
   if (!attraction) return null;
 
   return (
@@ -39,6 +39,7 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
       </div>
       <div className="attraction-detail-modal__footer-divider"></div>
       <div className="attraction-detail-modal__footer">
+        <div className="attraction-detail-modal__footer-vertical-divider"></div>
         <div className="attraction-detail-modal__footer-left">
           <div className="attraction-detail-modal__price">
             {attraction.detailPrice || attraction.price}
@@ -47,9 +48,8 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
             {attraction.detailVat || attraction.vat}
           </div>
         </div>
-        <div className="attraction-detail-modal__footer-vertical-divider"></div>
         <div className="attraction-detail-modal__footer-right">
-          <button 
+          <button
             className="attraction-detail-modal__add-btn"
             onClick={onAddToCart}
           >
