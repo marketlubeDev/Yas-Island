@@ -2,6 +2,7 @@ import { useState } from "react";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function BookingSection() {
   const { t, i18n } = useTranslation();
@@ -11,6 +12,7 @@ export default function BookingSection() {
     adults: 2,
     children: 1,
   });
+  const navigate = useNavigate();
 
   // Calendar helper functions
   const getDaysInMonth = (date) => {
@@ -178,7 +180,7 @@ export default function BookingSection() {
         <div className="booking-actions">
           <button
             className="checkout-btnn"
-            onClick={() => (window.location.href = "/payment")}
+            onClick={() => navigate("/payment")}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED 985.00</span>

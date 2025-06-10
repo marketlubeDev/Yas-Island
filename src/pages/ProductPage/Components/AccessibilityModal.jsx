@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal } from "antd";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setZoomLevel } from "../../../global/accessibilitySlice";
 import Invert from "../../../assets/icons/invert.svg";
 import Zoom from "../../../assets/icons/lens.svg";
 import closeIcon from "../../../assets/icons/close.svg";
@@ -9,6 +11,17 @@ import closeIcon from "../../../assets/icons/close.svg";
 
 export default function AccessibilityModal({ isOpen, onClose }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
+
+  const handleZoomClick = () => {
+    let newZoomLevel;
+    if (zoomLevel === 1) newZoomLevel = 1.12;
+    else if (zoomLevel === 1.12) newZoomLevel = 1.25;
+    else newZoomLevel = 1;
+
+    dispatch(setZoomLevel(newZoomLevel));
+  };
 
   return (
     <Modal
@@ -36,11 +49,17 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             <p>{t("accessibility.colorBlindness")}</p>
           </div>
 
-          <div className="option-card">
+          <div
+            className={`option-card ${zoomLevel !== 1 ? "active" : ""}`}
+            onClick={handleZoomClick}
+          >
             <div className="option-icon">
               <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>
-            <p>{t("accessibility.zoomMode")}</p>
+            <p>
+              {t("accessibility.zoomMode")} (
+              {zoomLevel === 1.12 ? "1.25" : zoomLevel === 1.25 ? "1.5" : "1"}x)
+            </p>
           </div>
         </div>
 
