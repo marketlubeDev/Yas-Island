@@ -135,6 +135,10 @@ border- .side-bar-list a {
   border-left: 4px solid #f7d148;
   border-radius: 126.103px;
 }
+.side-bar-list-item-container.activeItem {
+  box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #0345a7;
+  border: 2px solid #80bfe4;
+}
 
 .btn {
   border: none;
@@ -358,18 +362,18 @@ border- .side-bar-list a {
   border-radius: 0.5rem;
   padding: 2rem;
   overflow-y: scroll;
-  height: 70vh;
+  height: calc(100vh - 250px);
   scroll-behavior: smooth;
 }
 .ProductCard::-webkit-scrollbar {
-  width: 8px; /* Width of the vertical scrollbar */
+  width: 8px;
 }
 .ProductCard::-webkit-scrollbar-track {
-  background: transparent; /* Make the track transparent or a light color */
+  background: transparent;
 }
 .ProductCard::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%); /* Gradient for the scrollbar thumb */
-  border-radius: 4px; /* Rounded corners for the thumb */
+  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
+  border-radius: 4px;
 }
 .ProductCard__grid {
   display: grid;
