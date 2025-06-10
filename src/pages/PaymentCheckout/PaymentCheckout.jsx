@@ -3,11 +3,14 @@ import PaymentCheckoutHeader from "./Components/PaymentCheckoutHeader";
 import PaymentCheckoutBody from "./Components/PaymentCheckoutBody";
 export default function PaymentCheckout() {
   const [showVerification, setShowVerification] = useState(false);
-  console.log(showVerification,"akjshdjsahdjha");
+
   return (
     <div style={{ background: "#f4f3f3" }}>
       {/* <PaymentCheckoutHeader /> */}
-      <PaymentCheckoutBody showVerification={showVerification} setShowVerification={setShowVerification} />
+      <PaymentCheckoutBody
+        showVerification={showVerification}
+        setShowVerification={setShowVerification}
+      />
     </div>
   );
 }

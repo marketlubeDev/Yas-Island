@@ -67,6 +67,12 @@
   border: 1.494px solid #e3daf2;
   flex-direction: column;
   cursor: pointer;
+
+  &.active {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: rgba(0, 123, 255, 0.1);
+  }
 }
 
 .option-card:hover {
@@ -84,6 +90,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.active {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 8px;
+  }
 }
 
 .option-card p {
