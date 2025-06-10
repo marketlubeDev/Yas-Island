@@ -27,6 +27,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
         <PaymentHeader />
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>
+            <div className="email-checkout__steps-underline"></div>
             <label className="email-checkout__label">
               FIRST NAME *
               <input

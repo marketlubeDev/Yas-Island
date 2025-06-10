@@ -23,13 +23,12 @@ function Accessibility({ onClose, visible }) {
       open={visible}
       onCancel={handleClose}
       footer={null}
-      closable={true}
       centered
       width={400}
       className="accessibility-modal"
       closeIcon={
         <span className="custom-modal-close">
-          <img src={closeIcon} alt="accessibility.close" />
+          <img src={closeIcon} alt="close" />
         </span>
       }
     >
@@ -38,7 +37,6 @@ function Accessibility({ onClose, visible }) {
         <div className="accessibility-popup-subtitle">Choose options</div>
         <div className="accessibility-popup-options">
           <div className="accessibility-popup-option">
-            
             <div className="accessibility-popup-icon-circle">
               <img
                 src={colorblindIcon}
@@ -54,7 +52,6 @@ function Accessibility({ onClose, visible }) {
             </div>
           </div>
           <div className="accessibility-popup-option">
-           
             <div className="accessibility-popup-icon-circle">
               <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
             </div>

@@ -19,8 +19,6 @@
   width: 100%;
   // position: relative;
   text-align: center;
-
-
 }
 
 // .accessibility-popup-close {
@@ -60,9 +58,9 @@
   width: 50px;
   font-size: 32px;
   line-height: 1;
-  border: 3.5px solid #dcd6e5;
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: #ffffff57;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,18 +164,34 @@
   }
 }
 
-.custom-modal-close {
+.accessibility-modal {
+  .ant-modal-content {
+    background: #f4f3f3;
+  }
+  .ant-modal-close {
+    display: none;
+  }
+}
+
+.accessibility-modal ~ .ant-modal-root .ant-modal-mask,
+.accessibility-modal .ant-modal-mask {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.accessibility-modal .ant-modal-close {
   position: absolute;
-  top: -10%;
-  right: 0;
+  top: -12%;
+  right: 0px;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   font-size: 32px;
   line-height: 1;
-  border: 3.5px solid #dcd6e5;
+  border-radius: 70.476px;
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: #ffffff57;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,17 +208,7 @@
   }
 }
 
-.accessibility-modal {
-  .ant-modal-content {
-    background: #f4f3f3;
-  }
-  .ant-modal-close {
-    display: none;
-  }
-}
-
-.accessibility-modal ~ .ant-modal-root .ant-modal-mask,
-.accessibility-modal .ant-modal-mask {
-  background: rgba(20, 20, 40, 0.75) !important;
+.ant-modal-mask {
+  background: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(8px) !important;
 }

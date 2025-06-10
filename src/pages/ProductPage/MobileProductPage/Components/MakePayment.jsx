@@ -9,7 +9,7 @@ import PaymentHeader from "./paymentHeader";
 function MakePayment({ onClose, onPaymentSuccess }) {
   return (
     <>
-      <PaymentHeader />
+      {/* <PaymentHeader /> */}
       <div className="outer-modal-bg">
         <div className="make-payment-modal">
           <div className="make-payment__content">
@@ -51,24 +51,28 @@ function MakePayment({ onClose, onPaymentSuccess }) {
             <div className="make-payment__payment-method">
               <div className="make-payment__payment-options">
                 <label>
-                  <input type="radio" name="payment" defaultChecked />
-                  <span>
-                    <span className="make-payment__payment-imgbox">
-                      <img src={cardIcon} alt="Card" />
-                    </span>
-                    CREDIT/DEBIT CARD
+                  <span className="payment-method-radio-row">
+                    <input type="radio" name="payment" defaultChecked />
+                    <img
+                      src={cardIcon}
+                      alt="Credit Card"
+                      className="payment-method-card__img"
+                    />
                   </span>
+                  <div className="payment-method-card__label1">
+                    CREDIT/DEBIT CARD
+                  </div>
                 </label>
                 <label>
-                  <input type="radio" name="payment" />
-                  <span>
+                  <span className="payment-method-radio-row">
+                    <input type="radio" name="payment" />
                     <img
                       src={paypalIcon}
                       alt="PayPal"
-                      style={{ width: 24, height: 24, marginRight: 8 }}
+                      style={{ width: 56, height: 40 }}
                     />
-                    PAYPAL
                   </span>
+                  <div className="payment-method-card__label2">PAYPAL</div>
                 </label>
               </div>
               <div className="make-payment__card-fields">
@@ -102,7 +106,7 @@ function MakePayment({ onClose, onPaymentSuccess }) {
               <img
                 src={visaIcon}
                 alt="Visa"
-                style={{ width: 160, height: 50, marginRight: 8 }}
+                style={{ width: 110, height: 50, marginRight: 8 }}
               />
             </div>
           </div>
