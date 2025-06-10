@@ -4,11 +4,12 @@ import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import cardIcon from "../../../../assets/images/creditcard.png";
 import paypalIcon from "../../../../assets/images/paypal.png";
 import visaIcon from "../../../../assets/images/visa.svg";
+import PaymentHeader from "./paymentHeader";
 
 function MakePayment({ onClose, onPaymentSuccess }) {
   return (
     <>
-      <MobileHeader />
+      <PaymentHeader />
       <div className="outer-modal-bg">
         <div className="make-payment-modal">
           <div className="make-payment__content">

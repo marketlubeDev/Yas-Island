@@ -11,9 +11,9 @@ function Experience1() {
   return (
     <div className="outer-modal-bg-experience">
       <div className="experience-modal">
-        <div className="email-verification-header-fixed">
+        {/* <div className="email-verification-header-fixed">
           <MobileHeader />
-        </div>
+        </div> */}
         <div className="experience-content">
           <img src={ticketImg} alt="Ticket" className="experience-ticket-img" />
           <div className="experience-message">

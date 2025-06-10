@@ -3322,19 +3322,6 @@ border- .side-bar-list a {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
 }
 
-.confirm-email__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .confirm-email__modal {
   max-width: 500px;
   width: 100vw;
@@ -3576,29 +3563,16 @@ border- .side-bar-list a {
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-top: 12px;
+  transform: translateX(16.5%);
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
 }
 .confirm-email__confirm-btn:hover {
   background: #fff700;
-  transform: translateY(-1px);
+  transform: translateX(16.5%) translateY(-1px);
 }
 .confirm-email__confirm-btn:active {
-  transform: translateY(0);
-}
-
-.email-checkout__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #f4f3f3;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: translateX(16.5%) translateY(0);
 }
 
 .email-checkout__container {
