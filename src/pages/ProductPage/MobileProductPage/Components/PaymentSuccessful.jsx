@@ -5,9 +5,9 @@ function PaymentSuccessful({ onShowExperience }) {
   return (
     <div className="outer-modal-bg-payment-successful">
       <div className="payment-success-modal">
-        <div className="email-verification-header-fixed">
+        {/* <div className="email-verification-header-fixed">
           <MobileHeader />
-        </div>
+        </div> */}
         <div className="payment-success-content">
           <div className="payment-success-icon">
             {/* Inline SVG for checkmark */}

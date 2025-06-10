@@ -1,14 +1,14 @@
 .confirm-email__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(44, 44, 84, 0.18);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // width: 100vw;
+  // height: 100vh;
+  // background: rgba(44, 44, 84, 0.18);
+  // z-index: 9999;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .confirm-email__modal {
@@ -256,14 +256,15 @@
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-top: 12px;
+  // margin-top: 12px;
+  transform: translateX(16.5%);
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
   &:hover {
     background: #fff700;
-    transform: translateY(-1px);
+    transform: translateX(16.5%) translateY(-1px);
   }
   &:active {
-    transform: translateY(0);
+    transform: translateX(16.5%) translateY(0);
   }
 }
