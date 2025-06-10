@@ -2,7 +2,6 @@ $color-white-blue: #e9f7fd;
 $color-lightest-blue: #80bfe4;
 $color-light-blue: #0597e5;
 $color-mid-blue: #0758dd;
-
 $color-light-gray: #e3daf2;
 $color-bg-gray: #f4f3f3;
 $color-text-gray: #514760;
@@ -11,6 +10,18 @@ $color-dark-gray: #333;
 $color-white: #fff;
 $color-black: #000;
 $color-yellow: #ffea00;
+
+:root {
+  --color-base-bg: #fff;
+  --color-base-text: #000;
+  --color-base-btn-bg: #fff;
+  --color-base-btn-border: #dcd6e5;
+  --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
+  --color-base-chat-btn-text: #fff;
+  --color-base-side-bar-border: #f7d148;
+  --color-base-side-bar-invert-border: #fff;
+  --color-base-side-bar-item-bg: #e9f7fd;
+}
 
 $header-size: 118px;
 

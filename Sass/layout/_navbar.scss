@@ -15,8 +15,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 0rem;
-    // border: 1px solid red;
-    // overflow-x: hidden;
+
     border- & a {
       padding: 0;
       border: none;
@@ -97,10 +96,9 @@
 
 .side-bar-list-item-container {
   padding: 0.5rem;
-  border-top: 4px solid #ffffff;
-  // border-right: none;
-  border-bottom: 4px solid #ffffff;
-  border-left: 4px solid #ffffff;
+  border-top: 4px solid var(--color-base-side-bar-invert-border);
+  border-bottom: 4px solid var(--color-base-side-bar-invert-border);
+  border-left: 4px solid var(--color-base-side-bar-invert-border);
   border-radius: 126.103px;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -108,10 +106,9 @@
   // box-shadow: 0px 0.901px 7.206px var(--Number, 6px) #0345a7;
 
   &.active {
-    border-top: 4px solid #f7d148;
-    // border-right: none;
-    border-bottom: 4px solid #f7d148;
-    border-left: 4px solid #f7d148;
+    border-top: 4px solid var(--color-base-side-bar-border);
+    border-bottom: 4px solid var(--color-base-side-bar-border);
+    border-left: 4px solid var(--color-base-side-bar-border);
     border-radius: 126.103px;
   }
 

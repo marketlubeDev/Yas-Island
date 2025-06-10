@@ -1,4 +1,5 @@
-@use "../../../../Sass/base/responive" as *;
+@use "../../base/responive" as *;
+@use "../../abstract/variables" as *;
 
 .search {
   width: 80%;
@@ -18,5 +19,11 @@
     border: none;
     outline: none;
     width: 100%;
+    color: var(--color-base-text);
+
+    &::placeholder {
+      color: var(--color-base-text);
+      opacity: 0.6;
+    }
   }
 }

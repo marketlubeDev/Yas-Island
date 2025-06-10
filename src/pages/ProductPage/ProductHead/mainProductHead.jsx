@@ -1,14 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import arrow from "../../../assets/icons/left.svg";
+import invertLeft from "../../../assets/icons/invertLeft.svg";
 import accessibility from "../../../assets/icons/assess.svg";
+import invertAccessibility from "../../../assets/icons/invertAccess.svg";
 import globe from "../../../assets/icons/globe.svg";
+import invertGlobe from "../../../assets/icons/invertGlob.svg";
 import cart from "../../../assets/icons/cart.svg";
+import invertCart from "../../../assets/icons/invertCart.svg";
 
 export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -34,7 +40,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
   return (
     <div className="product-header">
       <button className="back-buttonn" onClick={() => window.history.back()}>
-        <img src={arrow} alt={t("common.back")} />
+        <img src={isDarkMode ? invertLeft : arrow} alt={t("common.back")} />
         {t("common.back")}
       </button>
       <h1 className="product-header__title">{t("common.selectAttractions")}</h1>
@@ -45,7 +51,10 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
           onClick={onAccessibilityOpen}
         >
           <span className="product-header__icon">
-            <img src={accessibility} alt={t("common.accessibility")} />
+            <img
+              src={isDarkMode ? invertAccessibility : accessibility}
+              alt={t("common.accessibility")}
+            />
           </span>
         </button>
         <div
@@ -59,7 +68,10 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"
           >
-            <img src={globe} alt={t("common.language")} />
+            <img
+              src={isDarkMode ? invertGlobe : globe}
+              alt={t("common.language")}
+            />
             <span>{i18n.language === "en" ? "English" : "العربية"}</span>
             <span className="chevron">&#9662;</span>
           </button>
@@ -92,9 +104,18 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
             </div>
           )}
         </div>
-        <button className="cart-button" onClick={onCartOpen}>
+        <button
+          className="cart-button"
+          style={{
+            borderWidth: isDarkMode ? "2px" : "1px",
+          }}
+          onClick={onCartOpen}
+        >
           <span className="cart-icon">
-            <img src={cart} alt={t("common.viewCart")} />
+            <img
+              src={isDarkMode ? invertCart : cart}
+              alt={t("common.viewCart")}
+            />
           </span>
           {t("common.viewCart")}
         </button>
