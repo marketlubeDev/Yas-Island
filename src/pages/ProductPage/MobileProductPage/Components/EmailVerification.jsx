@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MobileHeader from "./MobileHeader";
 import ConfirmEmail from "./ConfirmEmail";
-import PaymentHeader from "./paymentHeader";
+import PaymentHeader from "./PaymentHeader";
 
 function EmailVerification({ onConfirmEmail }) {
   const [email, setEmail] = useState("vivek@dev.panashi.ae");

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import backIcon from "../../../../assets/icons/back.svg";
 
-function paymentHeader({ step, onBack }) {
+function PaymentHeader({ step, onBack }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -46,4 +46,4 @@ function paymentHeader({ step, onBack }) {
   );
 }
 
-export default paymentHeader;
+export default PaymentHeader;
