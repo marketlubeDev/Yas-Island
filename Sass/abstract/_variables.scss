@@ -13,7 +13,9 @@ $color-yellow: #ffea00;
 
 :root {
   --color-base-bg: #fff;
-  --color-base-text: #000;
+  --color-base-text: #18142b;
+  --color-base-text-secondary: #514760;
+
   --color-base-btn-bg: #fff;
   --color-base-btn-border: #dcd6e5;
   --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
@@ -33,8 +35,23 @@ $color-yellow: #ffea00;
   --color-base-side-bar-item-right-text: rgba(#18142b80, 0.5);
   --color-base-side-bar-item-right-text-active: #2563c0;
   --color-base-side-bar-item-inactive-border: #e3daf2;
-  //
+  // Product Card
   --color-base-product-card-bg: #f0f0f0;
+  --color-base-product-card-scroll-bar: linear-gradient(
+    180deg,
+    #d1b8ff 0%,
+    #68abe7 100%
+  );
+  --color-base-product-card-scroll-bar-border: linear-gradient(
+    180deg,
+    #ff8ff0 0%,
+    #68abe7 100%
+  );
+  --color-base-product-card-card-item-bg: #fff;
+  --color-base-product-card-card-item-border: #ccdaf6;
+  --color-base-product-card-divider: #d9d9d9;
+  --color-base-product-card-price: #594f67;
+  --color-base-product-card-add-cart-btn-bg: #fff8a5;
 }
 
 $header-size: 118px;

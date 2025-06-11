@@ -11,7 +11,11 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-text",
-      isDarkMode ? "#E7EBD4" : "#000"
+      isDarkMode ? "#FFFFFFCC" : "#18142B"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-text-secondary",
+      isDarkMode ? "#E7EBD4" : "#514760"
     );
     document.documentElement.style.setProperty(
       "--color-base-btn-bg",
@@ -79,10 +83,48 @@ export default function GlobalInvertColor() {
       "--color-base-product-card-bg",
       isDarkMode ? "#0B0C0C" : "#f0f0f0"
     );
-
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-scroll-bar",
+      isDarkMode
+        ? "#FFAD33"
+        : "linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%)"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-scroll-bar-border",
+      isDarkMode
+        ? "#81A343"
+        : "linear-gradient(180deg, #ff8ff0 0%, #68abe7 100%)"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-card-item-bg",
+      isDarkMode ? "#000" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-card-item-border",
+      isDarkMode ? "#332509" : "#ccdaf6"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-divider",
+      isDarkMode ? "#262626" : "#d9d9d9"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-price",
+      isDarkMode ? "#CED0AB" : "#594f67"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-add-cart-btn-bg",
+      isDarkMode ? "#1A1206" : "#fff8a5"
+    );
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
-      document.documentElement.style.setProperty("--color-base-text", "#000");
+      document.documentElement.style.setProperty(
+        "--color-base-text",
+        "#18142B"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-text-secondary",
+        "#514760"
+      );
       document.documentElement.style.setProperty("--color-base-btn-bg", "#fff");
       document.documentElement.style.setProperty(
         "--color-base-btn-border",
@@ -141,6 +183,36 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-product-card-bg",
         "#f0f0f0"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-scroll-bar",
+        "linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%)"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-scroll-bar-border",
+        "#ccdaf6"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-card-item-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-card-item-border",
+        "#ccdaf6"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-divider",
+        "#d9d9d9"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-price",
+        "#594f67"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-add-cart-btn-bg",
+        "#fff8a5"
       );
     };
   }, [isDarkMode]);
