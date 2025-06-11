@@ -4,7 +4,7 @@ import backIcon from "../../../../assets/icons/back.svg";
 import PaymentHeader from "./paymentHeader";
 import { useTranslation } from "react-i18next";
 
-function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
+function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
   const { t, i18n } = useTranslation();
   const [firstName, setFirstName] = useState("vivek");
   const [lastName, setLastName] = useState("panashi");
@@ -37,7 +37,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
 
   return (
     <div className="email-checkout__overlay">
-      <PaymentHeader />
+      <PaymentHeader step={3} onBack={onBack} />
       <div className="email-checkout__container">
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>

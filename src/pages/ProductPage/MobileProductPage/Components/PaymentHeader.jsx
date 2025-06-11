@@ -9,19 +9,12 @@ function paymentHeader({ step, onBack }) {
 
   const handleBack = () => {
     switch (step) {
-      case 1: // Email verification page
-        // Go back to booking modal
+      case 1:
+      case 2:
+      case 3:
         if (onBack) {
           onBack();
         }
-        break;
-      case 2: // Confirm email page
-        // Go back to email verification
-        navigate("/email-verification");
-        break;
-      case 3: // Checkout page
-        // Go back to confirm email
-        navigate("/confirm-email");
         break;
       default:
         navigate(-1);

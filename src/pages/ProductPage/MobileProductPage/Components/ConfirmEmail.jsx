@@ -49,7 +49,7 @@ function ConfirmEmail({
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <PaymentHeader />
+        <PaymentHeader step={2} onBack={onBack} />
         <div className="confirm-email__content">
           <div className="confirm-email__form-container">
             <div className="confirm-email__label">

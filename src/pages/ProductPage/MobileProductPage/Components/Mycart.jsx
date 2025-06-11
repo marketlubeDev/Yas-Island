@@ -140,8 +140,21 @@ function Mycart({ onClose, visible }) {
             <span>AED {total.toFixed(2)}</span>
           </div>
         </div>
-        <button className="cart-modal__checkout">Check out</button>
-        <button className="cart-modal__save">Save cart & pay later</button>
+        <button
+          className="cart-modal__checkout"
+          onClick={() => navigate("/payment")}
+        >
+          Check out
+        </button>
+        <button
+          className="cart-modal__save"
+          onClick={() => {
+            onClose();
+            navigate("/product");
+          }}
+        >
+          Save cart & pay later
+        </button>
       </div>
     </Modal>
   );

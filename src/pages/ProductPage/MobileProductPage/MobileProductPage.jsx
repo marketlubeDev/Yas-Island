@@ -98,7 +98,6 @@ function MobileProductPage() {
   const [previousModal, setPreviousModal] = useState(null);
   const { t } = useTranslation();
 
-
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
     setShowConfirmEmail(true);
@@ -113,18 +112,12 @@ function MobileProductPage() {
     <>
       <MobileHeader />
       <MobileTop />
-      <AttractionsList 
-        attractions={attraction}
-      />
+      <AttractionsList attractions={attraction} />
       <MobileBottomNav />
 
-  {/*    {showEmailVerification && (
+      {showEmailVerification && (
         <EmailVerification
-          onClose={() => setShowEmailVerification(false)}
-          onBack={() => {
-            setShowEmailVerification(false);
-            setShowMyCart(true);
-          }}
+          onBack={() => setShowEmailVerification(false)}
           onConfirmEmail={handleConfirmEmail}
         />
       )}
@@ -185,10 +178,9 @@ function MobileProductPage() {
           onClose={() => setShowExperience(false)}
           // ...other props as needed
         />
-      )} */}
+      )}
     </>
   );
 }
 
 export default MobileProductPage;
-

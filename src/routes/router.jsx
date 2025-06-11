@@ -34,6 +34,12 @@ const ResponsiveEmailVerification = () => {
   return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
 };
 
+const ResponsiveCheckOut = () => {
+  const { isSmallPhone, isPhone } = useResponsive();
+  const isMobile = isSmallPhone || isPhone;
+  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
+};
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +57,7 @@ export const router = createBrowserRouter([
         path: "payment",
         element: <ResponsiveEmailVerification />,
       },
+
       {
         path: "contact",
         element: <div>Contact Page</div>,
