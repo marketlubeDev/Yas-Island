@@ -36,11 +36,11 @@ function PromoCodePopup({ onClose }) {
         <button className="promo-popup-close" onClick={onClose}>
           ×
         </button>
-        <div className="promo-popup-title">{t("payment.promo.applied")}</div>
+        <div className="promo-popup-title">{t("promo.applied")}</div>
         <div className="promo-popup-amount">
-          {t("payment.promo.amount")} {toArabicNumeral(100.0)}
+          {t("promo.amount")} {toArabicNumeral(100.0)}
         </div>
-        <div className="promo-popup-saved">{t("payment.promo.saved")}</div>
+        <div className="promo-popup-saved">{t("promo.saved")}</div>
         <hr className="promo-popup-divider" />
         <div className="promo-popup-row">
           <span>{t("payment.orderSummary.subTotal")}</span>
@@ -53,7 +53,7 @@ function PromoCodePopup({ onClose }) {
           <span>+ 49.29 {t("payment.orderSummary.vatAndTax")}</span>
         </div>
         <div className="promo-popup-row">
-          <span>{t("payment.promo.savings")}</span>
+          <span>{t("promo.savings")}</span>
           <span>-{toArabicNumeral(100.0)}</span>
         </div>
         <hr className="promo-popup-divider" />
