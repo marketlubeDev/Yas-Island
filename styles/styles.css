@@ -2780,9 +2780,9 @@ body {
   text-align: center;
 }
 
-.custom-modal-close {
+.accessibility-modal .custom-modal-close {
   position: absolute;
-  top: -10%;
+  top: -50%;
   right: 0;
   border-radius: 50%;
   height: 50px;
@@ -2798,10 +2798,10 @@ body {
   z-index: 10000;
   transition: background 0.2s;
 }
-.custom-modal-close:hover {
+.accessibility-modal .custom-modal-close:hover {
   background: #fff;
 }
-.custom-modal-close img {
+.accessibility-modal .custom-modal-close img {
   width: 28px;
   height: 28px;
 }
