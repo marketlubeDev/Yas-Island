@@ -37,6 +37,11 @@
   --color-base-product-card-divider: #d9d9d9;
   --color-base-product-card-price: #594f67;
   --color-base-product-card-add-cart-btn-bg: #fff8a5;
+  --color-base-accessibility-modal-title: #18142b;
+  --color-base-accessibility-modal-subtitle: #514760;
+  --color-base-accessibility-modal-card-bg: #ffffff;
+  --color-base-accessibility-modal-card-border: #e3daf2;
+  --color-base-accessibility-modal-btn-bg: #ffe600;
 }
 
 * {
@@ -548,8 +553,8 @@ body {
 .product-modal .ant-modal-content {
   padding: 3.5rem 3rem 2rem 3rem;
   border-radius: 40px;
-  border: 2.353px solid #ccdaf6;
-  background: #fff;
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  background: var(--color-base-product-card-card-item-bg);
 }
 
 .product-modal .ant-modal-mask {
@@ -997,7 +1002,7 @@ body {
 }
 
 .modal-content h2 {
-  color: #18142b;
+  color: var(--color-base-accessibility-modal-title);
   font-size: 2.125rem;
   font-style: normal;
   font-weight: 700;
@@ -1006,7 +1011,7 @@ body {
 }
 
 .subtitle {
-  color: #514760;
+  color: var(--color-base-accessibility-modal-subtitle);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
@@ -1029,9 +1034,9 @@ body {
   align-items: center;
   gap: 0.46694rem;
   flex-shrink: 0;
-  background: #ffffff;
+  background: var(--color-base-accessibility-modal-card-bg);
   border-radius: 0.74706rem;
-  border: 1.494px solid #e3daf2;
+  border: 1.494px solid var(--color-base-accessibility-modal-card-border);
   flex-direction: column;
   cursor: pointer;
 }
@@ -1074,7 +1079,7 @@ body {
 }
 
 .continue-button {
-  background: #ffe600;
+  background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
   border-radius: 24px;
   padding: 15px 58px;
@@ -2893,7 +2898,8 @@ body {
 }
 
 .accessibility-modal .ant-modal-content {
-  background: #f4f3f3;
+  background: var(--color-base-product-card-card-item-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
 }
 .accessibility-modal .ant-modal-close {
   display: none;

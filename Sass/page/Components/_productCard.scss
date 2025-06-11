@@ -153,12 +153,13 @@
   }
 }
 
+// Product Modal
+
 .product-modal .ant-modal-content {
   padding: 3.5rem 3rem 2rem 3rem;
-  // overflow: hidden;
   border-radius: 40px;
-  border: 2.353px solid #ccdaf6;
-  background: #fff;
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  background: var(--color-base-product-card-card-item-bg);
 }
 .product-modal .ant-modal-mask {
   background: rgba(2, 7, 19, 0.67) !important;

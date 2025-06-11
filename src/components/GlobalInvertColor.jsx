@@ -115,6 +115,27 @@ export default function GlobalInvertColor() {
       "--color-base-product-card-add-cart-btn-bg",
       isDarkMode ? "#1A1206" : "#fff8a5"
     );
+    // Accessibility Modal
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-title",
+      isDarkMode ? "#E7EBD4" : "#18142B"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-subtitle",
+      isDarkMode ? "#A6B098" : "#514760"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-card-bg",
+      isDarkMode ? "#472F1B" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-card-border",
+      isDarkMode ? "#FFAD33" : "#e3daf2"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-btn-bg",
+      isDarkMode ? "#FFAD33" : "#ffe600"
+    );
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
       document.documentElement.style.setProperty(
@@ -213,6 +234,28 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-product-card-add-cart-btn-bg",
         "#fff8a5"
+      );
+
+      // Accessibility Modal
+      document.documentElement.style.setProperty(
+        "--color-base-accessibility-modal-title",
+        "#18142B"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-accessibility-modal-subtitle",
+        "#514760"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-accessibility-modal-card-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-accessibility-modal-card-border",
+        "#e3daf2"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-accessibility-modal-btn-bg",
+        "#ffe600"
       );
     };
   }, [isDarkMode]);

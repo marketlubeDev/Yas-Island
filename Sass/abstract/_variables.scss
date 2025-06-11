@@ -15,7 +15,6 @@ $color-yellow: #ffea00;
   --color-base-bg: #fff;
   --color-base-text: #18142b;
   --color-base-text-secondary: #514760;
-
   --color-base-btn-bg: #fff;
   --color-base-btn-border: #dcd6e5;
   --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
@@ -52,6 +51,14 @@ $color-yellow: #ffea00;
   --color-base-product-card-divider: #d9d9d9;
   --color-base-product-card-price: #594f67;
   --color-base-product-card-add-cart-btn-bg: #fff8a5;
+
+  // Accessibility Modal
+
+  --color-base-accessibility-modal-title: #18142b;
+  --color-base-accessibility-modal-subtitle: #514760;
+  --color-base-accessibility-modal-card-bg: #ffffff;
+  --color-base-accessibility-modal-card-border: #e3daf2;
+  --color-base-accessibility-modal-btn-bg: #ffe600;
 }
 
 $header-size: 118px;
