@@ -1078,6 +1078,13 @@ body {
   text-transform: capitalize;
 }
 
+.invert-colors {
+  color: #18142b;
+}
+.invert-colors.active {
+  color: #e7ebd4;
+}
+
 .continue-button {
   background: var(--color-base-accessibility-modal-btn-bg);
   border: none;

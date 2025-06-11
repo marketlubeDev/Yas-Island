@@ -54,9 +54,13 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             <div className="option-icon">
               <img src={Invert} alt={t("accessibility.colorBlindness")} />
             </div>
-            <p>
-              {isDarkMode ? "Invert Colors" : t("accessibility.colorBlindness")}
-            </p>
+            <p>{t("accessibility.colorBlindness")}</p>
+            <span>
+              <span className={`invert-colors ${isDarkMode ? "active" : ""}`}>
+                Invert Colors
+              </span>{" "}
+              | <span className="high-contrast">High Contrast</span>
+            </span>
           </div>
 
           <div
