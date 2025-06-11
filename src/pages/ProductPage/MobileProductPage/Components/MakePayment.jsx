@@ -5,8 +5,37 @@ import cardIcon from "../../../../assets/images/creditcard.png";
 import paypalIcon from "../../../../assets/images/paypal.png";
 import visaIcon from "../../../../assets/images/visa.svg";
 import PaymentHeader from "./paymentHeader";
+import { useTranslation } from "react-i18next";
 
 function MakePayment({ onClose, onPaymentSuccess }) {
+  const { t, i18n } = useTranslation();
+
+  const toArabicNumeral = (num) => {
+    if (i18n.language === "ar") {
+      const arabicNumerals = [
+        "٠",
+        "١",
+        "٢",
+        "٣",
+        "٤",
+        "٥",
+        "٦",
+        "٧",
+        "٨",
+        "٩",
+        ".",
+      ];
+      return num
+        .toString()
+        .split("")
+        .map((digit) =>
+          digit === "." ? "." : arabicNumerals[parseInt(digit, 10)]
+        )
+        .join("");
+    }
+    return num;
+  };
+
   return (
     <>
       {/* <PaymentHeader /> */}
@@ -17,12 +46,12 @@ function MakePayment({ onClose, onPaymentSuccess }) {
             <div className="make-payment__summary">
               <div className="make-payment__summary-top">
                 <div className="make-payment__summary-title">
-                  1 day FERRARI WORLD YAS ISLAND
+                  {t("payment.orderSummary.title")}
                 </div>
                 <div className="make-payment__summary-dates-row">
                   <div>
                     <span className="make-payment__summary-dates-label">
-                      DATES & GUESTS
+                      {t("payment.orderSummary.datesAndGuests")}
                     </span>
                   </div>
                   <div>
@@ -33,16 +62,16 @@ function MakePayment({ onClose, onPaymentSuccess }) {
               </div>
               <div className="make-payment__summary-totals">
                 <div className="make-payment__summary-row">
-                  <span>Sub total :</span>
-                  <span>AED 935.71</span>
+                  <span>{t("payment.orderSummary.subTotal")}</span>
+                  <span>AED {toArabicNumeral(935.71)}</span>
                 </div>
                 <div className="make-payment__summary-row">
-                  <span>vat & tax :</span>
+                  <span>{t("payment.orderSummary.vatAndTax")}</span>
                   <span>+ 49.29 VAT & Tax</span>
                 </div>
                 <div className="make-payment__summary-row make-payment__summary-row--total">
-                  <span>Total :</span>
-                  <span>AED 985.00</span>
+                  <span>{t("payment.orderSummary.total")}</span>
+                  <span>AED {toArabicNumeral(985.0)}</span>
                 </div>
               </div>
             </div>
@@ -60,7 +89,7 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                     />
                   </span>
                   <div className="payment-method-card__label1">
-                    CREDIT/DEBIT CARD
+                    {t("payment.cardPayment.paymentMethods.creditDebitCard")}
                   </div>
                 </label>
                 <label>
@@ -72,21 +101,23 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                       style={{ width: 56, height: 40 }}
                     />
                   </span>
-                  <div className="payment-method-card__label2">PAYPAL</div>
+                  <div className="payment-method-card__label2">
+                    {t("payment.cardPayment.paymentMethods.paypal")}
+                  </div>
                 </label>
               </div>
               <div className="make-payment__card-fields">
                 <label>
-                  CREDIT/DEBIT CARD NUMBER
+                  {t("payment.cardPayment.form.cardNumber.label")}
                   <input type="text" value="90494847473" readOnly />
                 </label>
                 <div className="make-payment__card-row">
                   <label>
-                    EXPIRY DATE
+                    {t("payment.cardPayment.form.expiryDate.label")}
                     <input type="text" value="06-2030" readOnly />
                   </label>
                   <label>
-                    CVV
+                    {t("payment.cardPayment.form.cvv.label")}
                     <input type="password" value="xxx" readOnly />
                   </label>
                 </div>
@@ -98,7 +129,7 @@ function MakePayment({ onClose, onPaymentSuccess }) {
               className="make-payment__pay-btn"
               onClick={onPaymentSuccess}
             >
-              Make payment
+              {t("payment.cardPayment.makePayment")}
             </button>
 
             {/* Card Logos */}

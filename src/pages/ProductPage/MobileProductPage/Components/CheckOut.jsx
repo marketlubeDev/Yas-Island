@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import MobileHeader from "./MobileHeader";
 import backIcon from "../../../../assets/icons/back.svg";
 import PaymentHeader from "./paymentHeader";
+import { useTranslation } from "react-i18next";
 
 function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
+  const { t, i18n } = useTranslation();
   const [firstName, setFirstName] = useState("vivek");
   const [lastName, setLastName] = useState("panashi");
   const [country, setCountry] = useState("UAE");
@@ -21,15 +23,27 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
     }
   };
 
+  // For country/nationality options
+  const countryOptions = [
+    { value: "UAE", label: t("payment.personalDetails.countries.UAE") },
+    { value: "India", label: t("payment.personalDetails.countries.India") },
+    { value: "USA", label: t("payment.personalDetails.countries.USA") },
+  ];
+  const phoneCodeOptions = [
+    { value: "+971", label: t("payment.personalDetails.phoneCodes.UAE") },
+    { value: "+91", label: t("payment.personalDetails.phoneCodes.India") },
+    { value: "+1", label: t("payment.personalDetails.phoneCodes.USA") },
+  ];
+
   return (
     <div className="email-checkout__overlay">
+      <PaymentHeader />
       <div className="email-checkout__container">
-        <PaymentHeader />
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>
             <div className="email-checkout__steps-underline"></div>
             <label className="email-checkout__label">
-              FIRST NAME *
+              {t("payment.personalDetails.firstName")}
               <input
                 type="text"
                 className="email-checkout__input"
@@ -39,7 +53,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               />
             </label>
             <label className="email-checkout__label">
-              LAST NAME *
+              {t("payment.personalDetails.lastName")}
               <input
                 type="text"
                 className="email-checkout__input"
@@ -49,29 +63,33 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               />
             </label>
             <label className="email-checkout__label">
-              COUNTRY OF RESIDENCE *
+              {t("payment.personalDetails.countryOfResidence")}
               <select
                 className="email-checkout__input email-checkout__select"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 required
               >
-                <option value="UAE">UAE</option>
-                <option value="India">India</option>
-                <option value="USA">USA</option>
+                {countryOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
               </select>
             </label>
             <label className="email-checkout__label">
-              NATIONALITY *
+              {t("payment.personalDetails.nationality")}
               <select
                 className="email-checkout__input email-checkout__select"
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
                 required
               >
-                <option value="UAE">UAE</option>
-                <option value="India">India</option>
-                <option value="USA">USA</option>
+                {countryOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
               </select>
             </label>
             <label
@@ -79,7 +97,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               style={{ flexDirection: "column" }}
             >
               <span style={{ whiteSpace: "nowrap" }}>
-                PHONE NUMBER{" "}
+                {t("payment.personalDetails.phoneNumber")}
                 <span
                   style={{
                     color: "#18142B",
@@ -87,9 +105,9 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                     fontWeight: 200,
                   }}
                 >
-                  (PREFERRED NUMBER)
+                  {/* (PREFERRED NUMBER) */}
                 </span>{" "}
-                *
+                {/* * */}
               </span>
               <div className="email-checkout__phone-row">
                 <select
@@ -97,9 +115,11 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
                 >
-                  <option value="+971">+971</option>
-                  <option value="+91">+91</option>
-                  <option value="+1">+1</option>
+                  {phoneCodeOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
                 <input
                   type="tel"
@@ -117,14 +137,14 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                 className="email-checkout__summary-title"
                 style={{ color: "#18142B" }}
               >
-                1 day FERRARI WORLD YAS ISLAND
+                {t("payment.orderSummary.title")}
               </div>
               <div className="email-checkout__summary-row email-checkout__summary-row--column">
                 <span
                   className="email-checkout__summary-label"
                   style={{ color: "#908999" }}
                 >
-                  DATES & GUESTS
+                  {t("payment.orderSummary.datesAndGuests")}
                 </span>
                 <span
                   className="email-checkout__summary-value"
@@ -139,15 +159,15 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
               </div>
               <div className="email-checkout__summary-totals">
                 <div className="email-checkout__summary-row">
-                  <span>Sub total :</span>
+                  <span>{t("payment.orderSummary.subTotal")}</span>
                   <span>AED 935.71</span>
                 </div>
                 <div className="email-checkout__summary-row">
-                  <span>vat & tax :</span>
+                  <span>{t("payment.orderSummary.vatAndTax")}</span>
                   <span>+ 49.29 VAT & Tax</span>
                 </div>
                 <div className="email-checkout__summary-row email-checkout__summary-row--total">
-                  <span>Total :</span>
+                  <span>{t("payment.orderSummary.total")}</span>
                   <span>AED 985.00</span>
                 </div>
               </div>
@@ -158,7 +178,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                 className="email-checkout__label"
                 style={{ marginBottom: 0 }}
               >
-                ENTER YOUR PROMO CODE TO GET DISCOUNT
+                {t("payment.orderSummary.promoCode.label")}
               </label>
               <div style={{ display: "flex", gap: 8 }}>
                 <input
@@ -172,7 +192,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   className="email-checkout__promo-apply"
                   onClick={onApplyPromo}
                 >
-                  Apply
+                  {t("payment.orderSummary.promoCode.apply")}
                 </button>
               </div>
             </div>
@@ -194,12 +214,12 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   onChange={() => setAcceptTerms((v) => !v)}
                   required
                 />
-                I have read and accept the{" "}
+                {t("payment.orderSummary.terms.acceptTerms")}{" "}
                 <a
                   href="#"
                   style={{ color: "#18142B", textDecoration: "underline" }}
                 >
-                  terms and conditions
+                  {t("payment.orderSummary.terms.termsAndConditions")}
                 </a>
               </label>
               <label
@@ -217,7 +237,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                   checked={receiveComms}
                   onChange={() => setReceiveComms((v) => !v)}
                 />
-                Receive communications via email
+                {t("payment.orderSummary.terms.receiveCommunications")}
               </label>
             </div>
 
@@ -231,7 +251,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
                 }
               }}
             >
-              Proceed to payment
+              {t("payment.paymentDetails.proceedToPayment")}
             </button>
           </form>
         </div>

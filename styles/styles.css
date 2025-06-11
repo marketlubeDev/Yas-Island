@@ -2786,8 +2786,9 @@ body {
   background: #fff;
 }
 .custom-modal-close img {
-  width: 28px;
-  height: 28px;
+  width: 0.76263rem;
+  height: 0.76263rem;
+  flex-shrink: 0;
 }
 
 .accessibility-popup-title {
@@ -3244,8 +3245,7 @@ body {
 
 .email-verification__form {
   background: #f4f3f3;
-  height: 90vh;
-  border-radius: 16px;
+  height: 69.3vh;
   padding: 32px 14px;
   max-width: 800px;
   width: 100%;
@@ -3362,7 +3362,7 @@ body {
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
   padding: 38px 40px 34px 40px;
   margin-top: 24px;
-  height: 100%;
+  height: 85%;
   width: 100%;
   margin-top: -1rem;
   display: flex;
@@ -3373,10 +3373,9 @@ body {
 .email-verification-label {
   font-size: 14px;
   color: #231942;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 18px;
   margin-top: 100px;
-  margin-left: -170px;
   display: block;
 }
 
@@ -3414,6 +3413,82 @@ body {
   z-index: 10001;
   background: white;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+}
+
+.confirm-email__title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #231942;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: -13px;
+}
+
+.confirm-email__back-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  margin-left: 12px;
+  margin-top: -1.5rem;
+  cursor: pointer;
+}
+
+.confirm-email__steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  gap: 32px;
+  margin: 50px auto 0 auto;
+  position: relative;
+}
+
+.confirm-email__step1 {
+  font-size: 15px;
+  color: #594f67;
+  font-weight: 500;
+  text-align: center;
+  min-width: 50%;
+}
+
+.confirm-email__step2 {
+  font-size: 15px;
+  color: #594f67;
+  text-align: center;
+  font-weight: 500;
+  margin-right: 20px;
+  width: 30%;
+}
+
+.confirm-email__step--active {
+  color: #231942;
+  font-weight: 700;
+}
+
+.confirm-email__steps-underline {
+  width: 100%;
+  height: 2.5px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+}
+.confirm-email__steps-underline::before, .confirm-email__steps-underline::after {
+  content: "";
+  display: block;
+  height: 100%;
+}
+.confirm-email__steps-underline::before {
+  width: 50%;
+  background: #1976d2;
+}
+.confirm-email__steps-underline::after {
+  width: 50%;
+  background: #dcdcdc;
 }
 
 .confirm-email__modal {
@@ -3531,7 +3606,6 @@ body {
   color: #231942;
   font-weight: 500;
   margin-bottom: 8px;
-  margin-left: -200px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4446,7 +4520,7 @@ body {
 
 .experience-rate-title {
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 600;
   color: #231942;
   text-align: center;
   margin-bottom: 18px;
@@ -4580,7 +4654,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
   padding: 32px 24px 24px 24px;
-  max-width: 340px;
+  max-width: 380px;
   width: 100%;
   position: relative;
   text-align: center;
@@ -4604,22 +4678,23 @@ body {
 
 .promo-popup-title {
   font-size: 22px;
-  font-weight: 700;
-  color: #231942;
+  font-weight: 600;
+  color: #18142b;
   margin-bottom: 8px;
 }
 
 .promo-popup-amount {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1976d2;
+  font-size: 18px;
+  font-weight: 500;
+  color: #594f67;
   margin-bottom: 6px;
 }
 
 .promo-popup-saved {
   font-size: 15px;
-  color: #bdbdc6;
+  color: #ada5b7;
   margin-bottom: 18px;
+  font-weight: 300;
 }
 
 .promo-popup-divider {
@@ -4632,11 +4707,12 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 15px;
-  color: #231942;
+  color: #594f67;
+  font-weight: 300;
   margin-bottom: 4px;
 }
 .promo-popup-row--total {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 17px;
   margin-top: 8px;
 }
@@ -5289,6 +5365,86 @@ body {
 /* Remove the line from the last row if you don't want it there: */
 .guests-row:last-child::after {
   display: none;
+}
+
+.payment-header__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f3f3;
+  width: 100%;
+}
+.payment-header__title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #231942;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: -13px;
+}
+.payment-header__back-button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  margin-left: 12px;
+  margin-top: -1rem;
+  cursor: pointer;
+}
+.payment-header__steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  gap: 32px;
+  margin: 50px auto 0 auto;
+  position: relative;
+}
+.payment-header__step {
+  font-size: 15px;
+  color: #594f67;
+  font-weight: 500;
+  text-align: center;
+}
+.payment-header__step--email {
+  min-width: 50%;
+}
+.payment-header__step--checkout {
+  width: 30%;
+  margin-right: 20px;
+}
+.payment-header__step--active {
+  color: #231942;
+  font-weight: 700;
+}
+.payment-header__step span {
+  display: block;
+  margin-top: 4px;
+}
+.payment-header__steps-divider {
+  width: 100%;
+  height: 2.5px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+}
+.payment-header__steps-divider::before, .payment-header__steps-divider::after {
+  content: "";
+  display: block;
+  height: 100%;
+}
+.payment-header__steps-divider::before {
+  width: 50%;
+  background: #1976d2;
+}
+.payment-header__steps-divider::after {
+  width: 50%;
+  background: #dcdcdc;
 }
 
 .search {

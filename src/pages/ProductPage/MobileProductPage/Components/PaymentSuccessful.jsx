@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function PaymentSuccessful({ onShowExperience }) {
+  const { t } = useTranslation();
+
   return (
     // <div className="outer-modal-bg-payment-successful">
     <div className="payment-success-modal-container">
@@ -23,7 +26,7 @@ function PaymentSuccessful({ onShowExperience }) {
           style={{ cursor: "pointer" }}
           onClick={onShowExperience}
         >
-          Payment Successful
+          {t("payment.success.title")}
         </div>
       </div>{" "}
     </div>

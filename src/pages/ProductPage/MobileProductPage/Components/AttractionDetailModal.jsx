@@ -18,7 +18,7 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
       </span> */}
       <div className="attraction-detail-modal__header">
         <button className="attraction-detail-modal__back" onClick={onClose}>
-          <img src={backIcon} alt="Back" />
+          <img src={backIcon} alt={t("common.back")} />
         </button>
         <span className="attraction-detail-modal__title">
           {t(attraction.titleKey)}
@@ -54,7 +54,7 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
             className="attraction-detail-modal__add-btn"
             onClick={onAddToCart}
           >
-            + Add to cart
+            + {t("common.addToCart")}
           </button>
         </div>
       </div>

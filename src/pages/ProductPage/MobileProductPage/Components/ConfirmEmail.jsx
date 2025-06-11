@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import backIcon from "../../../../assets/icons/back.svg";
 import PaymentHeader from "./paymentHeader";
@@ -9,6 +10,7 @@ function ConfirmEmail({
   onBack,
   onResend,
 }) {
+  const { t } = useTranslation();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(180); // 3 minutes in seconds
 
@@ -47,14 +49,16 @@ function ConfirmEmail({
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
+        <PaymentHeader />
         <div className="confirm-email__content">
-          <PaymentHeader />
           <div className="confirm-email__form-container">
-            <div className="confirm-email__label">EMAIL ADDRESS *</div>
+            <div className="confirm-email__label">
+              {t("payment.emailConfirmation.emailLabel")}
+            </div>
             <div className="confirm-email__input-underline">{email}</div>
             <div className="confirm-email__otp-section-bg">
               <div className="confirm-email__otp-label">
-                ENTER VERIFICATION CODE
+                {t("payment.verification.enterCode")}
               </div>
               <div className="confirm-email__otp-inputs">
                 {otp.map((digit, idx) => (
@@ -72,15 +76,16 @@ function ConfirmEmail({
               </div>
             </div>
             <div className="confirm-email__otp-info">
-              Verification code has been sent to <b>{email}</b>
+              {t("payment.verification.codeSent")} <b>{email}</b>
               <br />
               <span className="confirm-email__otp-warning">
-                Please check your spam or junk mail folder{" "}
+                {t("payment.verification.checkSpam")}
               </span>
             </div>
             <div className="confirm-email__otp-actions">
               <span>
-                Will Expire In <b>{formatTime(timer)}</b>
+                {t("payment.verification.willExpire")}{" "}
+                <b>{formatTime(timer)}</b>
               </span>
               <button
                 className="confirm-email__otp-resend"
@@ -90,7 +95,7 @@ function ConfirmEmail({
                 }}
                 disabled={timer > 0}
               >
-                Resend
+                {t("payment.verification.resend")}
               </button>
             </div>
             <form
@@ -104,7 +109,7 @@ function ConfirmEmail({
                 type="submit"
                 style={{ marginTop: 24 }}
               >
-                Confirm OTP
+                {t("payment.verification.confirmOtp")}
               </button>
             </form>
           </div>

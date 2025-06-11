@@ -89,7 +89,7 @@ const AttractionsList = ({ attractions }) => {
                     className="attraction-card__add-btn"
                     onClick={() => handleAttractionClick(item)}
                   >
-                    Add
+                    {t("common.add")}
                   </button>
                   <div className="attraction-card__price">
                     <span>{item.price}</span>

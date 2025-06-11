@@ -7,12 +7,17 @@ export const ar = {
     language: "اللغة",
     chatWithUs: "تواصل معنا",
     addToCart: "أضف إلى السلة",
+    add: "أضف",
     searchPlaceholder: "ماذا تبحث عن؟",
+    home: "الرئيسية",
+    cart: "السلة",
   },
   accessibility: {
     title: "إمكانية الوصول",
     subtitle: "اختر الخيارات",
     colorBlindness: "وضع عمى الألوان",
+    mode: "الوضع",
+    colorBlindnessMode1: "عمى الألوان",
     zoomMode: "وضع التكبير",
     continue: "متابعة",
     close: "إغلاق",
@@ -26,6 +31,7 @@ export const ar = {
   sidebar: {
     all: "الكل",
     topAttractions: "أفضل المعالم",
+    attractions: "المعالم",
     packages: "الباقات",
     hotels: "الفنادق",
     dining: "المطاعم",
@@ -102,20 +108,23 @@ export const ar = {
     item: {
       ferrariWorld: "فيراري وورلد ليوم واحد",
       price: "درهم 328.57",
-      vatAndTax: "ضريبة القيمة المضافة 16.43"
-    }
+      vatAndTax: "ضريبة القيمة المضافة 16.43",
+    },
   },
   product: {
     addToCart: "أضف إلى السلة",
   },
   booking: {
-    chooseDate: "اختر تاريخك",
+    chooseDate: "اختر التاريخ",
     chooseGuests: "اختر الضيوف",
-    adults: "بالغ ( 12 سنة+ )",
-    children: "أطفال ( <12 سنة )",
-    kidsFree: "الأطفال أقل من 3 سنوات مجاناً",
+    adults: "بالغ ( ١٢ سنة+ )",
+    children: "أطفال ( <١٢ سنة )",
+    kidsFree: "الأطفال أقل من ٣ سنوات مجاناً",
     checkOut: "إتمام الشراء",
     saveToCart: "حفظ في السلة",
+    year: "٢٠٢٥",
+    guestsSummary: "2 بالغ / 1 طفل",
+    month: "فبراير",
     weekDays: {
       sun: "الأحد",
       mon: "الاثنين",
@@ -131,23 +140,25 @@ export const ar = {
     back: "رجوع",
     arrow: "سهم الرجوع",
     steps: {
-      step1: "الخطوة 1",
-      step2: "الخطوة 2",
+      step1: "الخطوة ١",
+      step2: "الخطوة ٢",
       emailVerification: "التحقق من البريد الإلكتروني",
-      checkout: "إتمام الشراء"
+      checkout: "إتمام الشراء",
+      guestDetails: "تفاصيل الضيف والدفع",
     },
     emailConfirmation: {
       emailLabel: "البريد الإلكتروني *",
       emailPlaceholder: "vivek@dev.vanasthi.ae",
       confirmButton: "تأكيد البريد الإلكتروني",
-      completeVerification: "إكمال التحقق"
+      completeVerification: "إكمال التحقق",
     },
     verification: {
+      enterCode: "أدخل رمز التحقق",
       codeSent: "تم إرسال رمز التحقق إلى",
       checkSpam: "يرجى التحقق من مجلد البريد المزعج أو غير المرغوب فيه",
-      enterCode: "أدخل رمز التحقق",
       willExpire: "سينتهي خلال",
-      resend: "إعادة الإرسال"
+      resend: "إعادة الإرسال",
+      confirmOtp: "تأكيد رمز التحقق",
     },
     personalDetails: {
       firstName: "الاسم الأول *",
@@ -156,14 +167,16 @@ export const ar = {
       nationality: "الجنسية *",
       phoneNumber: "رقم الهاتف (الرقم المفضل) *",
       countries: {
-        UAE: "الإمارات العربية المتحدة"
+        UAE: "الإمارات العربية المتحدة",
       },
       nationalities: {
-        UAE: "الإمارات العربية المتحدة"
+        UAE: "الإمارات العربية المتحدة",
       },
       phoneCodes: {
-        UAE: "+971"
-      }
+        UAE: "+٩٧١",
+        India: "+٩١",
+        USA: "+١",
+      },
     },
     orderSummary: {
       title: "فيراري وورلد ياس آيلاند ليوم واحد",
@@ -176,52 +189,67 @@ export const ar = {
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",
         placeholder: "أدخل رمز الخصم",
-        apply: "تطبيق"
+        apply: "تطبيق",
       },
       terms: {
         acceptTerms: "لقد قرأت وأوافق على",
         termsAndConditions: "الشروط والأحكام *",
-        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني"
-      }
+        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني",
+      },
     },
     paymentDetails: {
-      proceedToPayment: "المتابعة إلى الدفع"
+      proceedToPayment: "المتابعة إلى الدفع",
     },
     cardPayment: {
       title: "يرجى إدخال تفاصيل الدفع",
       paymentMethods: {
         creditDebitCard: "بطاقة ائتمان/خصم",
-        paypal: "باي بال"
+        paypal: "باي بال",
       },
       form: {
         cardNumber: {
           label: "رقم بطاقة الائتمان/الخصم",
-          placeholder: "0000 0000 0000 0000"
+          placeholder: "0000 0000 0000 0000",
         },
         expiryDate: {
           label: "تاريخ الانتهاء",
-          placeholder: "MM/YYYY"
+          placeholder: "MM/YYYY",
         },
         cvv: {
           label: "رمز الأمان",
-          placeholder: "***"
-        }
+          placeholder: "***",
+        },
       },
-      makePayment: "إتمام الدفع"
+      makePayment: "إتمام الدفع",
     },
     success: {
       title: "تم الدفع بنجاح",
-      message: "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
+      message:
+        "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
       viewBooking: "عرض الحجز",
-      backToHome: "العودة إلى الصفحة الرئيسية"
+      backToHome: "العودة إلى الصفحة الرئيسية",
     },
     response: {
       ticketSent: "تم إرسال تذكرتك إلى البريد الإلكتروني المسجل!",
+      ticketSent1: "تم إرسال تذكرتك",
+      ticketSent2: "إلى البريد الإلكتروني المسجل",
       rateExperience: "كيف تقيم تجربتك",
       excellent: "ممتاز",
       average: "متوسط",
       poor: "ضعيف",
-      thankYou: "شكراً لك! نتمنى زيارتك مرة أخرى"
-    }
+      thankYou: "شكراً لك! نتمنى زيارتك مرة أخرى",
+    },
+    promo: {
+      applied: "تم تطبيق رمز الخصم",
+      saved: "تم الحفظ! شعور رائع، أليس كذلك؟",
+      savings: "توفير رمز الخصم :",
+      amount: "درهم",
+    },
+  },
+  promo: {
+    applied: "تم تطبيق رمز الخصم",
+    saved: "تم الحفظ! شعور رائع، أليس كذلك؟",
+    savings: "توفير رمز الخصم :",
+    amount: "درهم",
   },
 };

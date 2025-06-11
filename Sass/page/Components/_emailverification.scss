@@ -78,8 +78,8 @@
 
 .email-verification__form {
   background: #f4f3f3;
-  height: 90vh;
-  border-radius: 16px;
+  height: 69.3vh;
+  // border-radius: 16px;
   // box-shadow: 0 4px 20px rgba(44, 44, 84, 0.1);
   padding: 32px 14px;
   max-width: 800px;
@@ -215,7 +215,7 @@
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
   padding: 38px 40px 34px 40px;
   margin-top: 24px;
-  height: 100%;
+  height: 85%;
   width: 100%;
   margin-top: -1rem;
   display: flex;
@@ -226,10 +226,10 @@
 .email-verification-label {
   font-size: 14px;
   color: #231942;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 18px;
   margin-top: 100px;
-  margin-left: -170px;
+  // margin-left: -10px;
   display: block;
 }
 
@@ -267,4 +267,79 @@
   z-index: 10001;
   background: white;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+}
+.confirm-email__title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #231942;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: -13px;
+}
+.confirm-email__back-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  margin-left: 12px;
+  margin-top: -1.5rem;
+  cursor: pointer;
+}
+.confirm-email__steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  gap: 32px;
+  margin: 50px auto 0 auto;
+  position: relative;
+}
+.confirm-email__step1 {
+  font-size: 15px;
+  color: #594f67;
+  font-weight: 500;
+  text-align: center;
+  min-width: 50%;
+}
+
+.confirm-email__step2 {
+  font-size: 15px;
+  color: #594f67;
+  text-align: center;
+  font-weight: 500;
+  margin-right: 20px;
+
+  width: 30%;
+}
+
+.confirm-email__step--active {
+  color: #231942;
+  font-weight: 700;
+}
+
+.confirm-email__steps-underline {
+  width: 100%;
+  height: 2.5px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    height: 100%;
+  }
+  &::before {
+    width: 50%;
+    background: #1976d2; // blue
+  }
+  &::after {
+    width: 50%;
+    background: #dcdcdc; // gray
+  }
 }

@@ -4,9 +4,11 @@ import ticketImg from "../../../../assets/images/ticket.svg"; // Replace with yo
 import smileGreen from "../../../../assets/images/green.png";
 import smileYellow from "../../../../assets/images/yellow.jpg";
 import smileRed from "../../../../assets/images/red.jpg";
+import { useTranslation } from "react-i18next";
 
 function Experience1() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
+  const { t } = useTranslation();
 
   return (
     <div className="experience-outer-bg">
@@ -14,13 +16,13 @@ function Experience1() {
         <div className="experience-content">
           <img src={ticketImg} alt="Ticket" className="experience-ticket-img" />
           <div className="experience-message">
-            Your ticket has been sent
+            {t("payment.response.ticketSent1")}
             <br />
-            to the registered mail ID
+            {t("payment.response.ticketSent2")}
           </div>
           <hr className="experience-divider" />
           <div className="experience-rate-title">
-            How Would You Rate Your Experience
+            {t("payment.response.rateExperience")}
           </div>
           <div className="experience-rate-options">
             <div
@@ -32,7 +34,7 @@ function Experience1() {
               <div className="smile-circle">
                 <img src={smileGreen} alt="Excellent" />
               </div>
-              <div>Excellent</div>
+              <div>{t("payment.response.excellent")}</div>
             </div>
             <div
               className={`experience-rate-option${
@@ -43,7 +45,7 @@ function Experience1() {
               <div className="smile-circle">
                 <img src={smileYellow} alt="Average" />
               </div>
-              <div>Average</div>
+              <div>{t("payment.response.average")}</div>
             </div>
             <div
               className={`experience-rate-option${
@@ -54,12 +56,12 @@ function Experience1() {
               <div className="smile-circle">
                 <img src={smileRed} alt="Poor" />
               </div>
-              <div>Poor</div>
+              <div>{t("payment.response.poor")}</div>
             </div>
           </div>
           {selected && (
             <div style={{ marginTop: 24, color: "#bdbdc6", fontSize: 15 }}>
-              Thank you! visit again
+              {t("payment.response.thankYou")}
             </div>
           )}
         </div>

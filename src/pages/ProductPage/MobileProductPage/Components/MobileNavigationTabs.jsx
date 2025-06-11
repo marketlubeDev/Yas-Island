@@ -15,46 +15,44 @@ function MobileNavigationTabs() {
       icon: allIcon,
       label: t("sidebar.all"),
       alt: t("sidebar.all"),
-      isActive: false
+      isActive: false,
     },
     {
       icon: attractionsIcon,
-      label: "attraction",
-      alt: t("sidebar.topAttractions"),
-      isActive: true
+      label: t("sidebar.attractions"),
+      alt: t("sidebar.attractions"),
+      isActive: true,
     },
     {
       icon: packagesIcon,
       label: t("sidebar.packages"),
       alt: t("sidebar.packages"),
-      isActive: false
+      isActive: false,
     },
     {
       icon: hotelsIcon,
       label: t("sidebar.hotels"),
       alt: t("sidebar.hotels"),
-      isActive: false
+      isActive: false,
     },
     {
       icon: diningIcon,
       label: t("sidebar.dining"),
       alt: t("sidebar.dining"),
-      isActive: false
-    }
+      isActive: false,
+    },
   ];
 
   return (
     <div className="mobile-top">
       {navigationItems.map((item, index) => (
-        <div 
+        <div
           key={index}
-          className={`mobile-top__item ${item.isActive ? 'mobile-top__item--active' : ''}`}
+          className={`mobile-top__item ${
+            item.isActive ? "mobile-top__item--active" : ""
+          }`}
         >
-          <img
-            src={item.icon}
-            alt={item.alt}
-            className="mobile-top__icon"
-          />
+          <img src={item.icon} alt={item.alt} className="mobile-top__icon" />
           <span>{item.label}</span>
           {item.isActive && <div className="mobile-top__underline"></div>}
         </div>
@@ -63,4 +61,4 @@ function MobileNavigationTabs() {
   );
 }
 
-export default MobileNavigationTabs; 
+export default MobileNavigationTabs;
