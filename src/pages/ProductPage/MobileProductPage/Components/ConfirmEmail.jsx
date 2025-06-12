@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import backIcon from "../../../../assets/icons/back.svg";
-import PaymentHeader from "./paymentHeader";
+import PaymentHeader from "./PaymentHeader";
 
 function ConfirmEmail({
   email = "vivek@dev.panashi.ae",
