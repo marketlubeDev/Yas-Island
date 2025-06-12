@@ -4,7 +4,7 @@ import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import cardIcon from "../../../../assets/images/creditcard.png";
 import paypalIcon from "../../../../assets/images/paypal.png";
 import visaIcon from "../../../../assets/images/visa.svg";
-import PaymentHeader from "./paymentHeader";
+import PaymentHeader from "./PaymentHeader";
 import { useTranslation } from "react-i18next";
 
 function MakePayment({ onClose, onPaymentSuccess }) {
