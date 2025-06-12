@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MobileHeader from "./MobileHeader";
 import backIcon from "../../../../assets/icons/back.svg";
-import PaymentHeader from "./paymentHeader";
+import PaymentHeader from "./PaymentHeader";
 
 function CheckOut({ onClose, onProceedToPayment, onApplyPromo }) {
   const [firstName, setFirstName] = useState("vivek");
