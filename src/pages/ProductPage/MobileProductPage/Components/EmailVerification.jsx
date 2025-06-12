@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "./MobileHeader";
 import ConfirmEmail from "./ConfirmEmail";
-import PaymentHeader from "./paymentHeader";
+import PaymentHeader from "./PaymentHeader";
 import CheckOut from "./CheckOut";
 
 function EmailVerification({ onConfirmEmail, onBack }) {

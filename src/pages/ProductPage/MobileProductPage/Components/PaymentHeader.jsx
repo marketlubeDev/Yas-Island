@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import backIcon from "../../../../assets/icons/back.svg";
 
-function paymentHeader({ step, onBack }) {
+function PaymentHeader({ step, onBack }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -64,4 +64,4 @@ function paymentHeader({ step, onBack }) {
   );
 }
 
-export default paymentHeader;
+export default PaymentHeader;
