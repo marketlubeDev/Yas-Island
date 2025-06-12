@@ -27,9 +27,16 @@ function Accessibility({ onClose, visible }) {
     let newZoomLevel;
     if (zoomLevel === 1) newZoomLevel = 1.12;
     else if (zoomLevel === 1.12) newZoomLevel = 1.25;
+    else if (zoomLevel === 1.25) newZoomLevel = 1.5;
     else newZoomLevel = 1;
 
     dispatch(setZoomLevel(newZoomLevel));
+  };
+  const getZoomLabel = () => {
+    if (zoomLevel === 1.5) return "2x";
+    if (zoomLevel === 1.25) return "1.5x";
+    if (zoomLevel === 1.12) return "1.25x";
+    return "1x";
   };
 
   const handleClose = () => {
@@ -118,8 +125,7 @@ function Accessibility({ onClose, visible }) {
               <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
             </div>
             <div className="accessibility-popup-label">
-              {t("accessibility.zoomMode")} (
-              {zoomLevel === 1.12 ? "1.25" : zoomLevel === 1.25 ? "1.5" : "1"}x)
+              {t("accessibility.zoomMode")} ({getZoomLabel()})
             </div>
           </div>
         </div>
