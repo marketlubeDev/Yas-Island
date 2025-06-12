@@ -17,6 +17,9 @@ export default function AccessibilityModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const isHighContrast = useSelector(
+    (state) => state.accessibility.isHighContrast
+  );
 
   const handleZoomClick = () => {
     let newZoomLevel;
@@ -50,7 +53,12 @@ export default function AccessibilityModal({ isOpen, onClose }) {
         <p className="subtitle">{t("accessibility.subtitle")}</p>
 
         <div className="options-container">
-          <div className="option-card" onClick={handleDarkModeClick}>
+          <div
+            className={`option-card ${
+              isDarkMode || isHighContrast ? "active" : ""
+            }`}
+            onClick={handleDarkModeClick}
+          >
             <div className="option-icon">
               <img src={Invert} alt={t("accessibility.colorBlindness")} />
             </div>
@@ -59,7 +67,12 @@ export default function AccessibilityModal({ isOpen, onClose }) {
               <span className={`invert-colors ${isDarkMode ? "active" : ""}`}>
                 Invert Colors
               </span>{" "}
-              | <span className="high-contrast">High Contrast</span>
+              <span className="vertical-divider"></span>
+              <span
+                className={`high-contrast ${isHighContrast ? "active" : ""}`}
+              >
+                High Contrast
+              </span>
             </span>
           </div>
 

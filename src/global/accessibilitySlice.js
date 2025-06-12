@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   zoomLevel: 1,
   isDarkMode: false,
+  isHighContrast: false,
   backgroundColor: "#FFFFFF",
   textColor: "#000",
 };
@@ -15,10 +16,25 @@ const accessibilitySlice = createSlice({
       state.zoomLevel = action.payload;
     },
     toggleDarkMode: (state) => {
-      state.isDarkMode = !state.isDarkMode;
-
-      state.backgroundColor = state.isDarkMode ? "#0B0C0C" : "#FFFFFF";
-      state.textColor = state.isDarkMode ? "#FFFFFF" : "#000";
+      if (!state.isDarkMode && !state.isHighContrast) {
+        // First click: Enable dark mode
+        state.isDarkMode = true;
+        state.isHighContrast = false;
+        state.backgroundColor = "#0B0C0C";
+        state.textColor = "#FFFFFF";
+      } else if (state.isDarkMode && !state.isHighContrast) {
+        // Second click: Enable high contrast
+        state.isDarkMode = false;
+        state.isHighContrast = true;
+        state.backgroundColor = "#000000";
+        state.textColor = "#FFFF00";
+      } else {
+        // Third click: Return to normal
+        state.isDarkMode = false;
+        state.isHighContrast = false;
+        state.backgroundColor = "#FFFFFF";
+        state.textColor = "#000";
+      }
     },
   },
 });
