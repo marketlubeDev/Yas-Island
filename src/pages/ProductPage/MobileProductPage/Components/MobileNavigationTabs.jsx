@@ -53,7 +53,9 @@ function MobileNavigationTabs() {
           }`}
         >
           <img src={item.icon} alt={item.alt} className="mobile-top__icon" />
-          <span>{item.label}</span>
+          <span style={{ color: "var(--color-base-mobile-top-item-text)" }}>
+            {item.label}
+          </span>
           {item.isActive && <div className="mobile-top__underline"></div>}
         </div>
       ))}

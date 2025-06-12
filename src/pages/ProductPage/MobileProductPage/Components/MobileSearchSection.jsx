@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import searchIcon from "../../../../assets/icons/lens.svg";
+import downArrow from "../../../../assets/icons/down.svg";
 
 function MobileSearchSection() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -83,7 +84,17 @@ function MobileSearchSection() {
               className="mobile-top-search-section__filter-btn"
               onClick={button.onClick}
             >
-              {button.label} <span className="chevron">&#9662;</span>
+              {button.label}{" "}
+              <img
+                src={downArrow}
+                alt="down arrow"
+                className="chevron"
+                style={{
+                  width: 12,
+                  height: 12,
+                  marginTop: 5,
+                }}
+              />
             </button>
             {button.isOpen && (
               <div className="mobile-top-search-section__dropdown">

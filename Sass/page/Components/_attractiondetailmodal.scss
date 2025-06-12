@@ -3,6 +3,7 @@
   width: 98vw;
   max-height: 99vh;
   height: 97vh;
+
   // background: white;
   // border-radius: 20px;
   // // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
@@ -18,7 +19,7 @@
     justify-content: space-between;
     padding: 18px 18px 0 18px;
     border-radius: 24px 24px 0 0;
-    background: white;
+    background: var(--color-dtl-header-bg);
   }
 
   &__back {
@@ -37,13 +38,14 @@
   &__title {
     font-size: 20px;
     font-weight: 700;
-    color: #231942;
+    color: var(--color-dtl-header-color);
     flex: 1;
     text-align: center;
   }
 
   &__body {
     padding: 24px 6px 24px 6px;
+    background-color: var(--color-dtl-body-bg);
   }
 
   &__image {
@@ -60,7 +62,7 @@
   &__main-title {
     font-size: 20px;
     font-weight: 700;
-    color: #231942;
+    color: var(--color-dtl-main-title);
     margin-top: 20px;
     margin-bottom: 8px;
     text-align: left;
@@ -69,7 +71,8 @@
 
   &__desc {
     font-size: 15px;
-    color: #6c6c8a;
+    color: var(--color-dtl-desc);
+
     margin-bottom: 18px;
     text-align: left;
     width: 100%;
@@ -81,7 +84,7 @@
     justify-content: space-between;
     padding: 0 18px 18px 18px;
     gap: 18px;
-    background: #fff;
+    background: var(--color-dtl-footer-bg);
     border-radius: 0 0 24px 24px;
     position: relative;
     flex-direction: row;
@@ -93,7 +96,7 @@
       left: 2.5%;
       width: 95%;
       height: 2px;
-      background: #e6e6ef;
+      background: var(--color-dtl-footer-divider);
       content: "";
       z-index: 1;
     }
@@ -115,7 +118,7 @@
   &__footer-vertical-divider {
     width: 1.5px;
     height: 48px;
-    background: #e6e6ef;
+    background: var(--color-dtl-footer-vrl-divider);
     border-radius: 2px;
     margin: 0 1px 0 -1rem;
     flex-shrink: 0;
@@ -124,17 +127,17 @@
   &__price {
     font-size: 16px;
     font-weight: 500;
-    color: #231942;
+    color: var(--color-dtl-footer-price);
   }
 
   &__vat {
     font-size: 13px;
-    color: #bdbdc6;
+    color: var(--color-dtl-footer-vat);
   }
 
   &__add-btn {
-    background: #ffe600;
-    color: #231942;
+    background: var(--color-dtl-add-btn-bg);
+    color: var(--color-dtl-add-btn-clr);
     border: none;
     border-radius: 2rem;
     padding: 10px 55px;
@@ -149,29 +152,6 @@
     gap: 8px;
     margin-left: -0.5rem;
   }
-  &__price {
-    font-size: 16px;
-    font-weight: 500;
-    color: #231942;
-  }
-  &__vat {
-    font-size: 13px;
-    color: #bdbdc6;
-  }
-}
-
-.attraction-detail-modal-overlay {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  // height: 100vh;
-  // background: rgba(44, 44, 84, 0.6);
-  // z-index: 9999;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // backdrop-filter: blur(8px);
 }
 
 .attraction-detail-modal__close--outside {
@@ -192,7 +172,7 @@
 }
 
 .attraction-detail-modal__close--outside:hover {
-  background: #f6f6fa;
+  background: var(--color-dtl-close-btn-bg);
 }
 
 // This targets the Ant Design modal container when your modal is open
@@ -215,7 +195,10 @@
   flex-direction: column;
   padding: 20px 8px;
   // background-color: #231942;
+  border-radius: 20px;
   justify-content: space-between;
+  background-color: var(--color-dtl-content-bg);
+  border: 1px solid var(--color-dtl-content-border);
 }
 
 .attraction-detail-modal .ant-modal-close,
@@ -240,4 +223,7 @@
     width: 25px;
     height: 25px;
   }
+}
+.attraction-detail-modal.ant-modal-wrap {
+  background-color: red !important;
 }

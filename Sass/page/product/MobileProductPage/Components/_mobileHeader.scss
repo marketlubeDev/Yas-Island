@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: var(--color-base-mobile-header-bg);
   padding: 20px 26px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   z-index: 10;
@@ -28,8 +28,8 @@
 
   &__icon-btn,
   &__lang-btn {
-    background: white;
-    border: 2px solid #bcbcc9;
+    background: var(--color-base-mobile-header-icon-btn-bg);
+    border: 2px solid var(--color-base-mobile-header-icon-btn-border);
     border-radius: 2rem;
     padding: 6px 12px;
     display: flex;

@@ -81,6 +81,81 @@ $color-yellow: #ffea00;
   --color-base-mobile-search-section-input-text: #231942;
   --color-base-mobile-search-section-input-placeholder: #978fa1;
   --color-base-mobile-search-section-input-placeholder-color: #978fa1;
+  --color-base-mobile-search-section-filter-btn-bg: #fff;
+  --color-base-mobile-search-section-filter-btn-text: #231942;
+  --color-base-mobile-search-section-filter-btn-border: #e3dff1;
+  --color-base-mobile-top-item-bg: #fff;
+  --color-base-mobile-top-item-text: rgba(89, 79, 103, 0.6);
+  --color-base-mobile-top-item-borderbottom: #b9b3d3;
+  --color-base-mobile-top-item-bordertop: #b9b3d3;
+  --color-base-mobile-top-item-rightborder: #e0e0e0;
+
+  //searchdropdown
+  --color-search-dropdown-bg: #fff;
+  --color-search-dropdown-option: #f5f5f5;
+  --color-search-dropdown-option-text: #222;
+
+  //mobileheader
+  --color-base-mobile-header-bg: #fff;
+  --color-base-mobile-header-icon-btn-border: #bcbcc9;
+  --color-base-mobile-header-icon-btn-bg: #fff;
+
+  //mobilebottomnav
+  --color-base-mobile-bottom-nav-bg: #fff;
+  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-mobile-bottom-nav-item-text: #231942;
+
+  --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
+    90deg,
+    #fff8a5 0%,
+    #fff 100%
+  );
+  --color-base-mobile-bottom-nav-item-icon-active-color: #231942;
+
+  //mobileheaderlangdropdown
+  --color-base-mobile-header-lang-dropdown-bg: #fff;
+  --color-base-mobile-header-lang-dropdown-boxshadow: 0 4px 12px
+    rgba(0, 0, 0, 0.1);
+  --color-base-mobile-header-lang-dropdown-item-lang-bg: #f5f5f5;
+  --color-base-mobile-header-lang-dropdown-item-lang-text: #222;
+  --color-base-mobile-header-lang-dropdown-item-lang-check: #007bff;
+  --color-base-mobile-header-lang-dropdown-border: #e3dff1;
+  --color-base-mobile-header-lang-dropdown-item-text: #231942;
+
+  //mobile attraction detail modal
+
+  --color-dtl-header-bg: #fff;
+  --color-dtl-header-color: #231942;
+  --color-dtl-main-title: #231942;
+  --color-dtl-desc: #6c6c8a;
+  --color-dtl-footer-bg: #fff;
+  --color-dtl-footer-divider: #e6e6ef;
+  --color-dtl-footer-vrl-divider: #e6e6ef;
+  --color-dtl-footer-price: #231942;
+  --color-dtl-footer-vat: #bdbdc6;
+  --color-dtl-add-btn-bg: #ffe600;
+  --color-dtl-add-btn-clr: #231942;
+  --color-dtl-add-btn-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  --color-dtl-close-btn-bg: #f6f6fa;
+  --color-dtl-body-bg: #fff;
+  --color-dtl-content-bg: #fff;
+  --color-dtl-content-border: #fff;
+
+  //mobile booking modal
+  --color-bkg-header-bg: #fff;
+  --color-bkg-title-clr: #231942;
+  --color-bkg-clndr-bg: #fff;
+  --color-bkg-clndr-border: #e3dff1;
+  --color-bkg-clndr-dayname-clr: #ff69b4;
+  --color-bkg-clndr-date-clr: #231942;
+  --color-bkg-clndr-date-slct-bg: #231942;
+  --color-bkg-clndr-date-slct-clr: #fff;
+  --color-bkg-guest-title-clr: #231942;
+  --color-bkg-guest-summary-clr: #18142b;
+  --color-bkg-guest-summary-after: #e1e1ef;
+  --color-bkg-guest-summary-before: #e1e1ef;
+  --color-bkg-guest-btn-border: #d3b8ff;
+  --color-bkg-guest-note: #bdbdc6;
 }
 
 $header-size: 118px;

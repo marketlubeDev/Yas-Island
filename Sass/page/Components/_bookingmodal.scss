@@ -30,14 +30,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 18px 18px 0 18px;
-  background: white;
+  background: var(--color-bkg-header-bg);
   border-radius: 24px 24px 0 0;
 }
 
 .booking-modal__title {
   font-size: 21px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-bkg-title-clr);
   margin-bottom: 1rem;
   flex: 1;
   text-align: center;
@@ -54,9 +54,9 @@
 
 .booking-modal__calendar {
   width: 111.5%;
-  background: #fff;
+  background: var(--color-bkg-clndr-bg);
   border-radius: 16px;
-  border: 1px solid #6f677c;
+  border: 1px solid var(--color-bkg-clndr-border);
   margin-bottom: 24px;
   padding: 12px 0;
 }
@@ -79,7 +79,7 @@
 }
 
 .booking-modal__calendar-dayname {
-  color: #ff69b4;
+  color: var(--color-bkg-clndr-dayname-clr);
   font-size: 13px;
   text-align: center;
   font-weight: 500;
@@ -93,13 +93,13 @@
   width: 32px;
   height: 32px;
   font-size: 15px;
-  color: #231942;
+  color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
   transition: background 0.2s;
 }
 .booking-modal__calendar-date.selected {
-  background: #231942;
+  background: var(--color-bkg-clndr-date-slct-bg);
   color: #fff;
 }
 
@@ -111,7 +111,7 @@
 .booking-modal__guests-title {
   font-size: 19px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-bkg-guest-title-clr);
   margin-bottom: 8px;
   text-align: center;
 }
@@ -120,7 +120,7 @@
   position: relative;
   font-size: 15px;
   font-weight: 500;
-  color: #18142b;
+  color: var(--color-bkg-guest-summary-clr);
   margin-bottom: 0;
   text-align: center;
 
@@ -129,15 +129,15 @@
     display: block;
     width: 90%;
     height: 1px;
-    background: #e1e1ef;
+    background: var(--color-bkg-guest-summary-before);
     margin: 8px auto 0 auto;
     border-radius: 1px;
   }
 }
 
 .booking-modal__guests-box {
-  background: #fff;
-  border: 1.5px solid #e3dff1;
+  background: var(--color-bkg-body-bg);
+  border: 1.5px solid var(--color-bkg-body-border);
   border-radius: 1rem;
   padding: 12px;
   margin-bottom: 6px;
@@ -147,7 +147,7 @@
     justify-content: space-between;
     margin-bottom: 8px;
     font-size: 15px;
-    color: #231942;
+    color: var(--color-bkg-body-text);
     font-weight: 500;
     gap: 8px;
     position: relative;
@@ -158,17 +158,17 @@
       bottom: -4px;
       width: 100%;
       height: 1px;
-      background: #e1e1ef;
+      background: var(--color-bkg-guest-summary-before);
       border-radius: 1px;
     }
     button {
-      background: #f6f6fa;
+      background: var(--color-bkg-guest-btn-border);
       border: none;
       border-radius: 50%;
       width: 28px;
       height: 28px;
       font-size: 18px;
-      color: #231942;
+      color: var(--color-bkg-guest-btn-clr);
       cursor: pointer;
       margin: 0 4px;
     }
@@ -183,7 +183,7 @@
 .booking-modal__guests-note {
   font-size: 10px;
   font-weight: 300;
-  color: #bdbdc6;
+  color: var(--color-bkg-guest-note);
   text-align: center;
   margin-top: 4px;
 }
@@ -193,14 +193,14 @@
   flex-direction: column;
   gap: 10px;
   padding: 18px 18px 18px 18px;
-  background: #fff;
+  background: var(--color-bkg-footer-bg);
   border-radius: 0 0 24px 24px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
 }
 
 .booking-modal__checkout {
-  background: #ffe600;
-  color: #231942;
+  background: var(--color-bkg-add-btn-bg);
+  color: var(--color-bkg-add-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 12px 0;
@@ -213,9 +213,9 @@
 }
 
 .booking-modal__save {
-  background: #fff;
-  color: #231942;
-  border: 1.5px solid #dcd6e5;
+  background: var(--color-bkg-footer-bg);
+  color: var(--color-bkg-footer-clr);
+  border: 1.5px solid var(--color-bkg-footer-border);
   border-radius: 2rem;
   padding: 12px 0;
   font-size: 18px;
@@ -228,7 +228,7 @@
 .booking-modal__calendar-header button {
   background: none;
   border: none;
-  color: #231942 !important;
+  color: var(--color-bkg-footer-clr) !important;
   font-size: 20px;
   cursor: pointer;
   padding: 4px 10px;
@@ -237,13 +237,13 @@
 }
 .booking-modal__calendar-header button:active,
 .booking-modal__calendar-header button:focus {
-  background: black;
+  background: var(--color-bkg-footer-bg);
 }
 
 .booking-modal__calendar-month {
   font-size: 15px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-bkg-footer-clr);
   letter-spacing: 0.5px;
 }
 
@@ -258,7 +258,7 @@
 .booking-modal__calendar-divider {
   width: 90%;
   height: 1px;
-  background: #d9d9d9;
+  background: var(--color-bkg-footer-divider);
   margin: 11px 0 12px 15px;
   border-radius: 1px;
 }
@@ -274,15 +274,15 @@
   line-height: 1;
   cursor: pointer;
   background: transparent;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-bkg-footer-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   transition: background 0.2s, border-color 0.2s;
   &:hover {
-    background: #fff;
-    border-color: #231942;
+    background: var(--color-bkg-footer-bg);
+    border-color: var(--color-bkg-footer-clr);
   }
   img {
     width: 18px;
@@ -291,8 +291,8 @@
 }
 
 .guests-box {
-  background: #fff;
-  border: 1px solid #6f677c;
+  background: var(--color-bkg-body-bg);
+  border: 1px solid var(--color-bkg-body-border);
   border-radius: 16px;
   padding: 18px 0 10px 0;
   max-width: 320px;
@@ -304,7 +304,7 @@
     position: relative;
     font-size: 15px;
     font-weight: 500;
-    color: #18142b;
+    color: var(--color-bkg-guest-summary-clr);
     margin-bottom: 0;
     text-align: center;
 
@@ -313,7 +313,7 @@
       display: block;
       width: 90%;
       height: 1px;
-      background: #e1e1ef;
+      background: var(--color-bkg-guest-summary-before);
       margin: 8px auto 0 auto;
       border-radius: 1px;
     }
@@ -326,7 +326,7 @@
     justify-content: space-between;
     padding: 0 18px;
     font-size: 15px;
-    color: #231942;
+    color: var(--color-bkg-body-text);
     font-weight: 500;
     min-height: 44px;
 
@@ -338,7 +338,7 @@
       bottom: 0;
       width: 90%;
       height: 1px;
-      background: #e1e1ef;
+      background: var(--color-bkg-guest-summary-before);
       border-radius: 1px;
     }
     &:last-child::after {
@@ -349,7 +349,7 @@
   .guests-divider {
     width: 90%;
     height: 1px;
-    background: #e1e1ef;
+    background: var(--color-bkg-guest-summary-before);
     margin: 0 auto;
     border-radius: 1px;
   }
@@ -364,9 +364,9 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1.5px solid #d3b8ff;
-    background: #fff;
-    color: #594f67;
+    border: 1.5px solid var(--color-bkg-guest-btn-border);
+    background: var(--color-bkg-guest-btn-bg);
+    color: var(--color-bkg-guest-btn-clr);
     font-size: 20px;
     font-weight: 700;
     display: flex;
@@ -375,8 +375,8 @@
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s;
     &:hover {
-      background: #f4f3f3;
-      border-color: #66aae7;
+      background: var(--color-bkg-guest-btn-bg);
+      border-color: var(--color-bkg-guest-btn-border);
     }
   }
 
@@ -385,13 +385,13 @@
     display: inline-block;
     text-align: center;
     font-size: 16px;
-    color: #231942;
+    color: var(--color-bkg-body-text);
     font-weight: 500;
   }
 
   .guests-note {
     font-size: 13px;
-    color: #bdbdc6;
+    color: var(--color-bkg-guest-note);
     text-align: center;
     margin-top: 10px;
   }
@@ -412,7 +412,7 @@
   justify-content: space-between;
   padding: 0 18px;
   font-size: 15px;
-  color: #231942;
+  color: var(--color-bkg-body-text);
   font-weight: 500;
   min-height: 44px;
 }
@@ -422,7 +422,7 @@
   display: block;
   width: 90%;
   height: 1px;
-  background: #e1e1ef;
+  background: var(--color-bkg-guest-summary-before);
   margin: 8px auto 0 auto;
   border-radius: 1px; // light purple/gray
 }
