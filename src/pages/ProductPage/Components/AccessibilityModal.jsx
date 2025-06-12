@@ -25,9 +25,17 @@ export default function AccessibilityModal({ isOpen, onClose }) {
     let newZoomLevel;
     if (zoomLevel === 1) newZoomLevel = 1.12;
     else if (zoomLevel === 1.12) newZoomLevel = 1.25;
+    else if (zoomLevel === 1.25) newZoomLevel = 1.5;
     else newZoomLevel = 1;
 
     dispatch(setZoomLevel(newZoomLevel));
+  };
+
+  const getZoomLabel = () => {
+    if (zoomLevel === 1.5) return "2x";
+    if (zoomLevel === 1.25) return "1.5x";
+    if (zoomLevel === 1.12) return "1.25x";
+    return "1x";
   };
 
   const handleDarkModeClick = () => {
@@ -84,8 +92,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
               <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>
             <p>
-              {t("accessibility.zoomMode")} (
-              {zoomLevel === 1.12 ? "1.25" : zoomLevel === 1.25 ? "1.5" : "1"}x)
+              {t("accessibility.zoomMode")} ({getZoomLabel()})
             </p>
           </div>
         </div>
