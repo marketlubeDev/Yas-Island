@@ -6,17 +6,31 @@ import closeIcon from "../../../../assets/icons/close.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleDarkMode } from "../../../../global/accessibilitySlice";
+import {
+  setZoomLevel,
+  toggleDarkMode,
+} from "../../../../global/accessibilitySlice";
+
 function Accessibility({ onClose, visible }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   console.log("hello", isDarkMode);
 
   const isHighContrast = useSelector(
     (state) => state.accessibility.isHighContrast
   );
+
+  const handleZoomClick = () => {
+    let newZoomLevel;
+    if (zoomLevel === 1) newZoomLevel = 1.12;
+    else if (zoomLevel === 1.12) newZoomLevel = 1.25;
+    else newZoomLevel = 1;
+
+    dispatch(setZoomLevel(newZoomLevel));
+  };
 
   const handleClose = () => {
     onClose();
@@ -93,12 +107,19 @@ function Accessibility({ onClose, visible }) {
               </div>
             </div>
           </div>
-          <div className="accessibility-popup-option">
+          <div
+            className={`accessibility-popup-option ${
+              zoomLevel !== 1 ? "active" : ""
+            }`}
+            onClick={handleZoomClick}
+            style={{ cursor: "pointer" }}
+          >
             <div className="accessibility-popup-icon-circle">
               <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
             </div>
             <div className="accessibility-popup-label">
-              {t("accessibility.zoomMode")}
+              {t("accessibility.zoomMode")} (
+              {zoomLevel === 1.12 ? "1.25" : zoomLevel === 1.25 ? "1.5" : "1"}x)
             </div>
           </div>
         </div>
