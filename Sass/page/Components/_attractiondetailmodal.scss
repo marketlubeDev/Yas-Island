@@ -149,6 +149,15 @@
     gap: 8px;
     margin-left: -0.5rem;
   }
+  &__price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #231942;
+  }
+  &__vat {
+    font-size: 13px;
+    color: #bdbdc6;
+  }
 }
 
 .attraction-detail-modal-overlay {

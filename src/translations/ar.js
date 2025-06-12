@@ -21,6 +21,8 @@ export const ar = {
     zoomMode: "وضع التكبير",
     continue: "متابعة",
     close: "إغلاق",
+    invertColors: "عكس الألوان",
+    highContrast: "تباين عالي",
   },
   productHead: {
     sortBy: "ترتيب حسب",

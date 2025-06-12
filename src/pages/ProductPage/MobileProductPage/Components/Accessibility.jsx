@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "antd";
 import colorblindIcon from "../../../../assets/icons/colorblindness.svg";
 import zoomIcon from "../../../../assets/icons/zoom.svg";
 import closeIcon from "../../../../assets/icons/close.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { useSelector, useDispatch } from "react-redux";
+import { toggleDarkMode } from "../../../../global/accessibilitySlice";
 function Accessibility({ onClose, visible }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  console.log("hello", isDarkMode);
+
+  const isHighContrast = useSelector(
+    (state) => state.accessibility.isHighContrast
+  );
 
   const handleClose = () => {
     onClose();
@@ -19,6 +27,15 @@ function Accessibility({ onClose, visible }) {
     onClose();
     window.scrollTo(0, 0);
   };
+
+  const handleDarkModeClick = () => {
+    dispatch(toggleDarkMode());
+  };
+
+  // const handleHighContrastClick = () => {
+  //   setIsHighContrast((prev) => !prev);
+  //   setIsDarkMode(false);
+  // };
 
   return (
     <Modal
@@ -55,6 +72,25 @@ function Accessibility({ onClose, visible }) {
               {t("accessibility.colorBlindnessMode1")}
               <br />
               {t("accessibility.mode")}
+              <div className="color-blindness-options">
+                <span
+                  className={`invert-colors ${isDarkMode ? "active" : ""}`}
+                  onClick={handleDarkModeClick}
+                  style={{ cursor: "pointer", marginRight: 8 }}
+                >
+                  {t("accessibility.invertColors") || "Invert Colors"}
+                </span>
+                <span className="vertical-divider" style={{ margin: "0 4px" }}>
+                  |
+                </span>
+                <span
+                  className={`high-contrast ${isHighContrast ? "active" : ""}`}
+                  // onClick={handleHighContrastClick}
+                  style={{ cursor: "pointer" }}
+                >
+                  {t("accessibility.highContrast") || "High Contrast"}
+                </span>
+              </div>
             </div>
           </div>
           <div className="accessibility-popup-option">

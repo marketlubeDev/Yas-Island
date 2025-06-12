@@ -21,6 +21,8 @@ export const en = {
     zoomMode: "Zoom mode",
     continue: "Continue",
     close: "close",
+    invertColors: "Invert Colors",
+    highContrast: "High Contrast",
   },
   productHead: {
     sortBy: "Sort by",

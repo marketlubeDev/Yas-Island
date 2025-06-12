@@ -136,6 +136,58 @@ export default function GlobalInvertColor() {
       "--color-base-accessibility-modal-btn-bg",
       isDarkMode ? "#FFAD33" : "#ffe600"
     );
+
+    //mobile product page
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-bg",
+      isDarkMode ? "#0B0C0C" : "#fff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-title",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-subtitle",
+      isDarkMode ? "#FFFFFFCC" : "#6c6c8a"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-btn-bg",
+      isDarkMode ? "#1A1206" : "#fff8a5"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-btn-text",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-btn-border",
+      isDarkMode ? "#FFAD33" : "#f7d148"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-vat-text",
+      isDarkMode ? "#CED0AB" : "#bdbdc6"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-price",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-card-bg",
+      isDarkMode ? "#000000" : "#fff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-product-page-card-border",
+      isDarkMode ? "#332509" : "#f2f2f2"
+    );
+
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
       document.documentElement.style.setProperty(
@@ -256,6 +308,49 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-accessibility-modal-btn-bg",
         "#ffe600"
+      );
+
+      //mobile product page
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-title",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-subtitle",
+        "#6c6c8a"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-btn-bg",
+        "#fff8a5"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-btn-text",
+        "#23194"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-btn-border",
+        "#f7d148"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-vat-text",
+        "#bdbdc6"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-price",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-card-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-card-border",
+        "#f2f2f2"
       );
     };
   }, [isDarkMode]);

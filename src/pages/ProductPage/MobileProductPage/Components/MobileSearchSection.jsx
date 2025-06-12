@@ -13,8 +13,8 @@ function MobileSearchSection() {
   const sortOptions = [
     {
       label: t("productHead.priceHighToLow"),
-      isSelected: true
-    }
+      isSelected: true,
+    },
     // Uncomment to add more options:
     // { label: t("productHead.priceLowToHigh"), isSelected: false }
   ];
@@ -22,8 +22,8 @@ function MobileSearchSection() {
   const filterOptions = [
     {
       label: t("productHead.attractions"),
-      isSelected: true
-    }
+      isSelected: true,
+    },
   ];
 
   const filterButtons = [
@@ -32,15 +32,15 @@ function MobileSearchSection() {
       isOpen: showSortDropdown,
       onClick: () => setShowSortDropdown(!showSortDropdown),
       ref: sortBtnRef,
-      options: sortOptions
+      options: sortOptions,
     },
     {
       label: t("productHead.filterBy"),
       isOpen: showFilterDropdown,
       onClick: () => setShowFilterDropdown(!showFilterDropdown),
       ref: filterBtnRef,
-      options: filterOptions
-    }
+      options: filterOptions,
+    },
   ];
 
   useEffect(() => {
@@ -88,10 +88,15 @@ function MobileSearchSection() {
             {button.isOpen && (
               <div className="mobile-top-search-section__dropdown">
                 {button.options.map((option, optionIndex) => (
-                  <div key={optionIndex} className="mobile-top-search-section__dropdown-option">
+                  <div
+                    key={optionIndex}
+                    className="mobile-top-search-section__dropdown-option"
+                  >
                     <span>{option.label}</span>
                     {option.isSelected && (
-                      <span className="mobile-top-search-section__check">✓</span>
+                      <span className="mobile-top-search-section__check">
+                        ✓
+                      </span>
                     )}
                   </div>
                 ))}
@@ -104,4 +109,4 @@ function MobileSearchSection() {
   );
 }
 
-export default MobileSearchSection; 
+export default MobileSearchSection;
