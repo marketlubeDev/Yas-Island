@@ -570,6 +570,30 @@ export default function GlobalInvertColor() {
       "--color-confirm-otp-label",
       isDarkMode ? "#F1F1F1" : "#231942"
     );
+    document.documentElement.style.setProperty(
+      "--color-confirm-otp-input-border",
+      isDarkMode ? "#DCE1D4" : "#e3e3e3"
+    );
+    document.documentElement.style.setProperty(
+      "--color-otp-btn-border",
+      isDarkMode ? "#FFAD33" : "#d3b8ff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-otp-btn-clr",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+
+    //checkout
+    document.documentElement.style.setProperty(
+      "--color-checkout-summary-bg",
+      isDarkMode ? "#0B0807" : "#f4f3f3"
+    );
+
+    //accessibility
+    document.documentElement.style.setProperty(
+      "--color-accessibility-popup-option-border",
+      isDarkMode ? "#FFAD33" : "#e3daf2"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1039,6 +1063,30 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-confirm-otp-label",
         "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-confirm-otp-input-border",
+        "#e3e3e3"
+      );
+      document.documentElement.style.setProperty(
+        "--color-otp-btn-border",
+        "#dcd6e5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-otp-btn-clr",
+        "#231942"
+      );
+
+      //checkout
+      document.documentElement.style.setProperty(
+        "--color-checkout-summary-bg",
+        "#f4f3f3"
+      );
+
+      //accessibility
+      document.documentElement.style.setProperty(
+        "--color-accessibility-popup-option-border",
+        "#e3daf2"
       );
     };
   }, [isDarkMode]);

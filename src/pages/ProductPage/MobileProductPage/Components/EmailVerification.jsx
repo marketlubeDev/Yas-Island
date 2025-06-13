@@ -38,10 +38,11 @@ function EmailVerification({ onConfirmEmail, onBack }) {
           <PaymentHeader step={1} onBack={onBack} />
           <form className="email-verification__form" onSubmit={handleSubmit}>
             <div className="email-verification-form-box">
-              <label className="email-verification-label">
+              <label className="email-verification-label" id="email">
                 {t("payment.emailConfirmation.emailLabel")}
               </label>
               <input
+                id="email"
                 type="email"
                 className="email-verification-input"
                 value={email}

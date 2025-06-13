@@ -46,7 +46,7 @@
 
 .experience-message {
   font-size: 16px;
-  color: #231942;
+  color: var(--color-email-form-label);
   text-align: center;
   margin-bottom: 18px;
 }
@@ -61,7 +61,7 @@
 .experience-rate-title {
   font-size: 17px;
   font-weight: 600;
-  color: #231942;
+  color: var(--color-email-form-label);
   text-align: center;
   margin-bottom: 18px;
   margin-top: 3rem;
@@ -95,7 +95,7 @@
   }
   div {
     font-size: 14px;
-    color: #231942;
+    color: var(--color-email-form-label);
     font-weight: 500;
     margin-top: 2px;
   }
@@ -162,7 +162,7 @@
 }
 
 .experience-outer-bg {
-  background: #f4f3f3;
+  background: var(--color-checkout-summary-bg);
   min-height: 90vh;
   width: 100vw;
   padding: 10px;
@@ -172,7 +172,7 @@
 }
 
 .experience-content-container {
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(44, 44, 84, 0.1);
   padding: 32px 24px;

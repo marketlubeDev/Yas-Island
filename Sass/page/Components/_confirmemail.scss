@@ -100,7 +100,7 @@
 .confirm-email__otp-input {
   width: 38px;
   height: 48px;
-  border: 1.5px solid #e3e3e3;
+  border: 1.5px solid var(--color-confirm-otp-input-border);
   border-radius: 8px;
   font-size: 22px;
   text-align: center;
@@ -116,11 +116,11 @@
 
 .confirm-email__otp-info {
   font-size: 13px;
-  color: #18142b;
+  color: var(--color-email-form-label);
   text-align: center;
   margin-bottom: 4px;
   b {
-    color: black;
+    color: var(--color-email-form-label);
   }
 }
 
@@ -138,14 +138,14 @@
   justify-content: center;
   margin-top: 18px;
   font-size: 13px;
-  color: #231942;
+  color: var(--color-email-form-label);
   button {
-    background: #fff;
-    border: 1.5px solid #e3e3e3;
+    background: var(--color-email-form-box);
+    border: 3px solid var(--color-otp-btn-border);
     border-radius: 2rem;
     padding: 4px 18px;
     font-size: 14px;
-    color: #231942;
+    color: var(--color-otp-btn-clr);
     font-weight: 500;
     cursor: pointer;
     margin-left: 8px;
@@ -158,8 +158,8 @@
 }
 
 .confirm-email__confirm-btn {
-  background: #ffe600;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 14px 0;
@@ -172,7 +172,7 @@
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
   &:hover {
-    background: #fff700;
+    background: var(--color-email-form-confirm-btn);
     transform: translateX(16.5%) translateY(-1px);
   }
   &:active {

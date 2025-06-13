@@ -42,9 +42,10 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>
             <div className="email-checkout__steps-underline"></div>
-            <label className="email-checkout__label">
+            <label className="email-checkout__label" id="firstName">
               {t("payment.personalDetails.firstName")}
               <input
+                id="firstName"
                 type="text"
                 className="email-checkout__input"
                 value={firstName}
@@ -52,9 +53,10 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 required
               />
             </label>
-            <label className="email-checkout__label">
+            <label className="email-checkout__label" id="lastName">
               {t("payment.personalDetails.lastName")}
               <input
+                id="lastName"
                 type="text"
                 className="email-checkout__input"
                 value={lastName}
@@ -62,9 +64,10 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 required
               />
             </label>
-            <label className="email-checkout__label">
+            <label className="email-checkout__label" id="country">
               {t("payment.personalDetails.countryOfResidence")}
               <select
+                id="country"
                 className="email-checkout__input email-checkout__select"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
@@ -77,9 +80,10 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 ))}
               </select>
             </label>
-            <label className="email-checkout__label">
+            <label className="email-checkout__label" id="nationality">
               {t("payment.personalDetails.nationality")}
               <select
+                id="nationality"
                 className="email-checkout__input email-checkout__select"
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
@@ -93,12 +97,14 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               </select>
             </label>
             <label
+              id="phoneNumber"
               className="email-checkout__label"
               style={{ flexDirection: "column" }}
             >
               <span style={{ whiteSpace: "nowrap" }}>
                 {t("payment.personalDetails.phoneNumber")}
                 <span
+                  id="phoneNumber"
                   style={{
                     color: "#18142B",
                     fontSize: 14,
@@ -111,6 +117,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               </span>
               <div className="email-checkout__phone-row">
                 <select
+                  id="countryCode"
                   className="email-checkout__country-code-select"
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
@@ -122,6 +129,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                   ))}
                 </select>
                 <input
+                  id="phoneNumber"
                   type="tel"
                   className="email-checkout__input"
                   value={phone}
@@ -132,24 +140,29 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               </div>
             </label>
 
-            <div className="email-checkout__summary">
+            <div
+              className="email-checkout__summary"
+              style={{
+                border: "1px solid var(--color-email-form-input-border)",
+              }}
+            >
               <div
                 className="email-checkout__summary-title"
-                style={{ color: "#18142B" }}
+                style={{ color: "var(--color-email-form-label)" }}
               >
                 {t("payment.orderSummary.title")}
               </div>
               <div className="email-checkout__summary-row email-checkout__summary-row--column">
                 <span
                   className="email-checkout__summary-label"
-                  style={{ color: "#908999" }}
+                  style={{ color: "var(--color-email-form-label)" }}
                 >
                   {t("payment.orderSummary.datesAndGuests")}
                 </span>
                 <span
                   className="email-checkout__summary-value"
                   style={{
-                    color: "#18142B",
+                    color: "var(--color-email-form-label)",
                     fontWeight: 600,
                     fontSize: 15,
                   }}
@@ -157,7 +170,14 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                   THU 08- FEB 2025 &nbsp; ADULT - 2 &nbsp; CHILDREN - 1
                 </span>
               </div>
-              <div className="email-checkout__summary-totals">
+              <div
+                className="email-checkout__summary-totals"
+                style={{
+                  color: "var(--color-email-form-label)",
+                  backgroundColor: "var(--color-checkout-summary-bg)",
+                  border: "1px solid var(--color-email-form-input-border)",
+                }}
+              >
                 <div className="email-checkout__summary-row">
                   <span>{t("payment.orderSummary.subTotal")}</span>
                   <span>AED 935.71</span>
@@ -173,8 +193,15 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               </div>
             </div>
 
-            <div className="email-checkout__promo-box">
+            <div
+              className="email-checkout__promo-box"
+              style={{
+                backgroundColor: "var(--color-checkout-summary-bg)",
+                border: "1px solid var(--color-email-form-input-border)",
+              }}
+            >
               <label
+                id="promoCode"
                 className="email-checkout__label"
                 style={{ marginBottom: 0 }}
               >
@@ -182,6 +209,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               </label>
               <div style={{ display: "flex", gap: 8 }}>
                 <input
+                  id="promoCode"
                   type="text"
                   className="email-checkout__input email-checkout__promo-input"
                   value={promo}
@@ -199,6 +227,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
 
             <div className="email-checkout__checkboxes">
               <label
+                id="acceptTerms"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -209,6 +238,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 }}
               >
                 <input
+                  id="acceptTerms"
                   type="checkbox"
                   checked={acceptTerms}
                   onChange={() => setAcceptTerms((v) => !v)}
@@ -223,6 +253,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 </a>
               </label>
               <label
+                id="receiveComms"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -233,6 +264,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 }}
               >
                 <input
+                  id="receiveComms"
                   type="checkbox"
                   checked={receiveComms}
                   onChange={() => setReceiveComms((v) => !v)}
@@ -244,6 +276,11 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
             <button
               className="email-checkout__btn"
               type="button"
+              style={{
+                backgroundColor: "var(--color-email-form-confirm-btn)",
+                color: "var(--color-email-form-confirm-btn-clr)",
+                border: "1px solid var(--color-email-form-input-border)",
+              }}
               disabled={!acceptTerms}
               onClick={() => {
                 if (acceptTerms) {

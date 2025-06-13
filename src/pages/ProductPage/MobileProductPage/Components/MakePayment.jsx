@@ -54,8 +54,10 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                       {t("payment.orderSummary.datesAndGuests")}
                     </span>
                   </div>
-                  <div>
-                    <b>THU 08- FEB 2025</b>
+                  <div style={{ color: "var(--color-email-form-label)" }}>
+                    <b style={{ color: "var(--color-email-form-label)" }}>
+                      THU 08- FEB 2025
+                    </b>
                     &nbsp;&nbsp; ADULT - 2 &nbsp;&nbsp; CHILDREN - 1
                   </div>
                 </div>
@@ -79,9 +81,14 @@ function MakePayment({ onClose, onPaymentSuccess }) {
             {/* Payment Method */}
             <div className="make-payment__payment-method">
               <div className="make-payment__payment-options">
-                <label>
+                <label id="paymentMethod">
                   <span className="payment-method-radio-row">
-                    <input type="radio" name="payment" defaultChecked />
+                    <input
+                      type="radio"
+                      name="payment"
+                      id="paymentMethod"
+                      defaultChecked
+                    />
                     <img
                       src={cardIcon}
                       alt="Credit Card"
@@ -92,9 +99,13 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                     {t("payment.cardPayment.paymentMethods.creditDebitCard")}
                   </div>
                 </label>
-                <label>
+                <label id="paymentMethod">
                   <span className="payment-method-radio-row">
-                    <input type="radio" name="payment" />
+                    <input
+                      type="radio"
+                      name="payment"
+                      id="paymentMethod"
+                    />
                     <img
                       src={paypalIcon}
                       alt="PayPal"
@@ -107,18 +118,23 @@ function MakePayment({ onClose, onPaymentSuccess }) {
                 </label>
               </div>
               <div className="make-payment__card-fields">
-                <label>
+                <label id="cardNumber">
                   {t("payment.cardPayment.form.cardNumber.label")}
-                  <input type="text" value="90494847473" readOnly />
+                  <input
+                    type="text"
+                    id="cardNumber"
+                    value="90494847473"
+                    readOnly
+                  />
                 </label>
                 <div className="make-payment__card-row">
-                  <label>
+                  <label id="expiryDate">
                     {t("payment.cardPayment.form.expiryDate.label")}
-                    <input type="text" value="06-2030" readOnly />
+                    <input type="text" id="expiryDate" value="06-2030" readOnly />
                   </label>
-                  <label>
+                  <label id="cvv">
                     {t("payment.cardPayment.form.cvv.label")}
-                    <input type="password" value="xxx" readOnly />
+                    <input type="password" id="cvv" value="xxx" readOnly />
                   </label>
                 </div>
               </div>

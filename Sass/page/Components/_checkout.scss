@@ -1,42 +1,13 @@
-// === Modal Overlay and Container ===
-.email-checkout__overlay {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  // height: 100vh;
-  // background: #f4f3f3;
-  // z-index: 9999;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
-
 .email-checkout__container {
   max-width: 500px;
   width: 100%;
   height: 100vh;
-  // border-radius: 24px;
-  // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+
   display: flex;
   flex-direction: column;
   position: relative;
-  background: #f4f3f3;
+  background: var(--color-email-form-bg);
   overflow: hidden;
-}
-
-// === Header ===
-.email-checkout__header {
-  // position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  padding: 18px 0;
-  background: #f4f3f3;
 }
 
 // === Scrollable Content ===
@@ -103,38 +74,12 @@
   margin-bottom: 0;
 }
 
-.email-checkout__step {
-  font-size: 15px;
-  color: #bdbdc6;
-  text-align: center;
-  font-weight: 400;
-  span {
-    display: block;
-    font-size: 15px;
-    margin-top: 2px;
-  }
-  &--active {
-    color: #231942;
-    font-weight: 400;
-    border-bottom: 2px solid #231942;
-  }
-}
-
-.email-checkout__underline {
-  width: 100%;
-
-  max-width: 340px;
-  height: 2px;
-  background: #e3e3e3;
-  margin: 0 auto 24px auto;
-}
-
 // === Form Container ===
 .email-checkout__form-container {
   width: 90%;
   max-width: 400px;
   margin: 0 auto 24px auto;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
   padding: 32px 40px;
@@ -158,14 +103,14 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  background: #fff;
+  background: var(--color-email-form-box);
   padding: 24px;
   border-radius: 12px;
 }
 
 .email-checkout__label {
   font-size: 15px;
-  color: #231942;
+  color: var(--color-email-form-label);
   font-weight: 500;
   margin-bottom: 8px;
   display: flex;
@@ -175,12 +120,12 @@
 
 .email-checkout__input {
   border: none;
-  border-bottom: 2px solid #231942;
+  border-bottom: 2px solid var(--color-email-form-input-border);
   font-size: 16px;
   padding: 8px 0;
   outline: none;
   background: transparent;
-  color: #231942;
+  color: var(--color-email-form-label);
   width: 200px;
   max-width: 100%;
   box-sizing: border-box;
@@ -194,8 +139,8 @@
 }
 
 .email-checkout__btn {
-  background: #ffea00;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 14px 0;
@@ -214,20 +159,21 @@
 
 // === Summary Box ===
 .email-checkout__summary {
-  background: #f6f8fa;
+  background: var(--color-checkout-summary-bg);
   border-radius: 12px;
   width: 140%;
   max-width: 100vw;
   padding: 18px 12px 12px 12px;
   margin: 8px 0 18px -2.5rem;
   font-size: 15px;
-  color: #231942;
+  color: var(--color-email-form-label);
   margin-left: -3rem;
 
   &-title {
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 30px;
+    color: var(--color-email-form-label);
   }
 
   &-row {
@@ -251,9 +197,9 @@
   margin-bottom: 16px;
 
   &-apply {
-    background: #fff;
-    color: #231942;
-    border: 1.5px solid #e3e3e3;
+    background: var(--color-email-form-box);
+    color: var(--color-email-form-label);
+    border: 1.5px solid var(--color-email-form-input-border);
     border-radius: 6px;
     padding: 8px 10px;
     font-size: 15px;
@@ -288,10 +234,10 @@
   font-size: 16px;
   padding: 8px 0 6px 0;
   border: none;
-  border-bottom: 2px solid #231942;
+  border-bottom: 2px solid var(--color-email-form-input-border);
   border-radius: 0;
   background: transparent;
-  color: #231942;
+  color: var(--color-email-form-label);
   outline: none;
   appearance: none;
   -webkit-appearance: none;
@@ -372,7 +318,7 @@
 }
 
 .email-checkout__promo-box {
-  background: #f6f8fa;
+  background: var(--color-checkout-summary-bg);
   border-radius: 10px;
   padding: 16px 14px 14px 14px;
   margin-top: 18px;
@@ -386,18 +332,18 @@
 .email-checkout__promo-input {
   letter-spacing: 0.5em;
   font-size: 18px;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 6px;
-  border: 1.5px solid #e3e3e3;
+  border: 1.5px solid var(--color-email-form-input-border);
   padding: 8px 10px;
   width: 120px;
   box-sizing: border-box;
 }
 
 .email-checkout__checkboxes input[type="checkbox"] {
-  accent-color: white; /* This sets the checkmark color to black (or your desired color) */
-  background-color: black; /* Ensures the background stays white */
-  border: 2px solid #bdbdc6; /* Optional: custom border */
+  accent-color: var(--color-email-form-input-border);
+  background-color: var(--color-email-form-box);
+  border: 2px solid var(--color-email-form-input-border);
   width: 15px;
   height: 13px;
 }
