@@ -15,7 +15,8 @@
 }
 
 .promo-popup-card {
-  background: #fff;
+  background: var(--color-email-form-box);
+  border: 1px solid var(--color-email-form-input-border);
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
   padding: 32px 24px 24px 24px;
@@ -44,20 +45,20 @@
 .promo-popup-title {
   font-size: 22px;
   font-weight: 600;
-  color: #18142b;
+  color: var(--color-email-form-label);
   margin-bottom: 8px;
 }
 
 .promo-popup-amount {
   font-size: 18px;
   font-weight: 500;
-  color: #594f67;
+  color: var(--color-email-form-label);
   margin-bottom: 6px;
 }
 
 .promo-popup-saved {
   font-size: 15px;
-  color: #ada5b7;
+  color: var(--color-email-form-label);
   margin-bottom: 18px;
   font-weight: 300;
 }
@@ -72,7 +73,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 15px;
-  color: #594f67;
+  color: var(--color-email-form-label);
   font-weight: 300;
   margin-bottom: 4px;
 

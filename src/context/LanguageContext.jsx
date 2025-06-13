@@ -26,7 +26,6 @@ export const LanguageProvider = ({ children }) => {
     // Update i18n language
     i18n.changeLanguage(newLanguage === "العربية" ? "ar" : "en");
 
-    // Update document direction
     document.documentElement.dir = newLanguage === "العربية" ? "rtl" : "ltr";
     document.documentElement.lang = newLanguage === "العربية" ? "ar" : "en";
 
