@@ -594,6 +594,14 @@ export default function GlobalInvertColor() {
       "--color-accessibility-popup-option-border",
       isDarkMode ? "#FFAD33" : "#e3daf2"
     );
+    document.documentElement.style.setProperty(
+      "--color-otp-action-btn-border",
+      isDarkMode ? "#FFAD33" : "#dcd6e5"
+    );
+    document.documentElement.style.setProperty(
+      "--color-checkout-summary-border",
+      isDarkMode ? "#909883" : "none"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1076,6 +1084,10 @@ export default function GlobalInvertColor() {
         "--color-otp-btn-clr",
         "#231942"
       );
+      document.documentElement.style.setProperty(
+        "--color-otp-action-btn-border",
+        "#dcd6e5"
+      );
 
       //checkout
       document.documentElement.style.setProperty(
@@ -1087,6 +1099,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-accessibility-popup-option-border",
         "#e3daf2"
+      );
+      document.documentElement.style.setProperty(
+        "--color-checkout-summary-border",
+        "none"
       );
     };
   }, [isDarkMode]);

@@ -188,12 +188,39 @@ $color-yellow: #ffea00;
   --color-confirm-otp-label: #231942;
   --color-confirm-otp-input-border: #e3e3e3;
   --color-otp-btn-border: #dcd6e5;
+  --color-otp-action-btn-border: #dcd6e5;
+  --color-checkout-summary-border: none;
 
   //checkout
   --color-checkout-summary-bg: #f4f3f3;
 
   //accessibility
   --color-accessibility-popup-option-border: #e3daf2;
+
+  // RTL specific variables
+  --direction: ltr;
+  --text-align: left;
+  --float-start: left;
+  --float-end: right;
+  --margin-start: margin-left;
+  --margin-end: margin-right;
+  --padding-start: padding-left;
+  --padding-end: padding-right;
+  --border-start: border-left;
+  --border-end: border-right;
+}
+
+[dir="rtl"] {
+  --direction: rtl;
+  --text-align: right;
+  --float-start: right;
+  --float-end: left;
+  --margin-start: margin-right;
+  --margin-end: margin-left;
+  --padding-start: padding-right;
+  --padding-end: padding-left;
+  --border-start: border-right;
+  --border-end: border-left;
 }
 
 $header-size: 118px;

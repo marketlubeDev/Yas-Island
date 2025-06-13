@@ -141,7 +141,7 @@
 .email-checkout__btn {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
-  border: none;
+  border: 1px solid var(--color-email-form-confirm-btn);
   border-radius: 2rem;
   padding: 14px 0;
   font-size: 18px;

@@ -143,7 +143,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
             <div
               className="email-checkout__summary"
               style={{
-                border: "1px solid var(--color-email-form-input-border)",
+                border: "1px solid var(--color-checkout-summary-border)",
               }}
             >
               <div
@@ -175,7 +175,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 style={{
                   color: "var(--color-email-form-label)",
                   backgroundColor: "var(--color-checkout-summary-bg)",
-                  border: "1px solid var(--color-email-form-input-border)",
+                  border: "1px solid var(--color-checkout-summary-border)",
                 }}
               >
                 <div className="email-checkout__summary-row">
@@ -197,7 +197,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               className="email-checkout__promo-box"
               style={{
                 backgroundColor: "var(--color-checkout-summary-bg)",
-                border: "1px solid var(--color-email-form-input-border)",
+                border: "1px solid var(--color-checkout-summary-border)",
               }}
             >
               <label
@@ -279,7 +279,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
               style={{
                 backgroundColor: "var(--color-email-form-confirm-btn)",
                 color: "var(--color-email-form-confirm-btn-clr)",
-                border: "1px solid var(--color-email-form-input-border)",
+                border: "1px solid var(--color-checkout-summary-border)",
               }}
               disabled={!acceptTerms}
               onClick={() => {
