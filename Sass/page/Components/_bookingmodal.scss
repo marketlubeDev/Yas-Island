@@ -31,7 +31,8 @@
   justify-content: space-between;
   padding: 18px 18px 0 18px;
   background: var(--color-bkg-header-bg);
-  border-radius: 24px 24px 0 0;
+  // border: 1px solid var(--color-bkg-modal-border);
+  // border-radius: 24px 24px 0 0;
 }
 
 .booking-modal__title {
@@ -50,13 +51,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--color-bkg-body-bg);
+  // border: 1px solid var(--color-bkg-modal-border);
 }
 
 .booking-modal__calendar {
   width: 111.5%;
   background: var(--color-bkg-clndr-bg);
-  border-radius: 16px;
-  border: 1px solid var(--color-bkg-clndr-border);
+  border-radius: 16px 16px 16px 16px;
+  border: 1px solid var(--color-bkg-modal-border);
   margin-bottom: 24px;
   padding: 12px 0;
 }
@@ -69,6 +72,7 @@
   font-size: 16px;
   margin-bottom: 8px;
   padding: 0 12px;
+  border-bottom: 1px solid var(--color-bkg-modal-border);
 }
 
 .booking-modal__calendar-grid {
@@ -100,7 +104,7 @@
 }
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
-  color: #fff;
+  color: var(--color-bkg-clndr-date-slct-clr);
 }
 
 .booking-modal__guests-section {
@@ -194,14 +198,18 @@
   gap: 10px;
   padding: 18px 18px 18px 18px;
   background: var(--color-bkg-footer-bg);
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
+
+  // border-radius: 0 0 24px 24px;
+  width: 113%;
+  margin-left: -1.5rem;
+  box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.08);
 }
 
 .booking-modal__checkout {
-  background: var(--color-bkg-add-btn-bg);
-  color: var(--color-bkg-add-btn-clr);
-  border: none;
+  background: var(--color-bkg-checkout-btn-bg);
+  border: 3px solid var(--color-bkg-checkout-btn-border);
+  color: var(--color-bkg-checkout-btn-clr);
+  // border: none;
   border-radius: 2rem;
   padding: 12px 0;
   font-size: 18px;
@@ -213,9 +221,9 @@
 }
 
 .booking-modal__save {
-  background: var(--color-bkg-footer-bg);
-  color: var(--color-bkg-footer-clr);
-  border: 1.5px solid var(--color-bkg-footer-border);
+  background: var(--color-bkg-save-btn-bg);
+  color: var(--color-bkg-save-btn-clr);
+  border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
   padding: 12px 0;
   font-size: 18px;
@@ -243,7 +251,7 @@
 .booking-modal__calendar-month {
   font-size: 15px;
   font-weight: 500;
-  color: var(--color-bkg-footer-clr);
+  color: var(--color-bkg-title-clr);
   letter-spacing: 0.5px;
 }
 
@@ -292,7 +300,7 @@
 
 .guests-box {
   background: var(--color-bkg-body-bg);
-  border: 1px solid var(--color-bkg-body-border);
+  border: 1px solid var(--color-bkg-modal-border);
   border-radius: 16px;
   padding: 18px 0 10px 0;
   max-width: 320px;

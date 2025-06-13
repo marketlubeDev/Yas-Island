@@ -4,13 +4,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f4f3f3;
+    background-color: var(--color-pymnt-container-bg);
     width: 100%;
   }
   &__title {
     font-size: 22px;
     font-weight: 500;
-    color: #231942;
+    color: var(--color-pymnt-title-clr);
     text-align: center;
     margin-left: 10px;
     margin-top: 30px;
@@ -40,7 +40,7 @@
 
   &__step {
     font-size: 15px;
-    color: #594f67;
+    color: var(--color-pymnt-step-clr);
     font-weight: 500;
     text-align: center;
 
@@ -54,7 +54,7 @@
     }
 
     &--active {
-      color: #231942;
+      color: var(--color-pymnt-step-active-clr);
       font-weight: 700;
     }
 
@@ -82,12 +82,12 @@
 
     &::before {
       width: 50%;
-      background: #1976d2; // blue
+      background: var(--color-pymnt-step-divider-before); // blue
     }
 
     &::after {
       width: 50%;
-      background: #dcdcdc; // gray
+      background: var(--color-pymnt-step-divider-after); // gray
     }
   }
 }

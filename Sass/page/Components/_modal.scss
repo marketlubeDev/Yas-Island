@@ -1,0 +1,39 @@
+.ant-modal {
+  .ant-modal-content {
+    position: relative;
+    background-color: var(--color-base-mobile-product-page-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--color-bkg-modal-border);
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    padding: 20px 24px;
+
+    // Dark mode styles
+    .dark-mode & {
+      background-color: var(--color-base-mobile-product-page-text, #18142b);
+      color: var(--color-base-mobile-product-page-bg, #ffffff);
+    }
+  }
+
+  // Custom close button styles
+  .ant-modal-close {
+    top: 16px;
+    right: 16px;
+
+    .ant-modal-close-x {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+}
+
+// Accessibility modal specific styles
+.accessibility-modal {
+  .ant-modal-content {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

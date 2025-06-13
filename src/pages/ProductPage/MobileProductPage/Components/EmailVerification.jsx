@@ -48,6 +48,7 @@ function EmailVerification({ onConfirmEmail, onBack }) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("payment.emailConfirmation.emailPlaceholder")}
                 required
+                style={{ color: "var(--color-email-form-input-border)" }}
               />
               <button className="email-verification-confirm-btn" type="submit">
                 {t("payment.emailConfirmation.confirmButton")}

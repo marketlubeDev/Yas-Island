@@ -56,7 +56,7 @@ $color-yellow: #ffea00;
 
   --color-base-accessibility-modal-title: #18142b;
   --color-base-accessibility-modal-subtitle: #514760;
-  --color-base-accessibility-modal-card-bg: #ffffff;
+  --color-base-accessibility-modal-card-bg: ;
   --color-base-accessibility-modal-card-border: #e3daf2;
   --color-base-accessibility-modal-btn-bg: #ffe600;
 
@@ -143,19 +143,50 @@ $color-yellow: #ffea00;
 
   //mobile booking modal
   --color-bkg-header-bg: #fff;
+  --color-bkg-body-bg: #fff;
+  --color-bkg-footer-bg: #fff;
   --color-bkg-title-clr: #231942;
   --color-bkg-clndr-bg: #fff;
   --color-bkg-clndr-border: #e3dff1;
   --color-bkg-clndr-dayname-clr: #ff69b4;
   --color-bkg-clndr-date-clr: #231942;
   --color-bkg-clndr-date-slct-bg: #231942;
-  --color-bkg-clndr-date-slct-clr: #fff;
+  --color-bkg-clndr-date-slct-clr: #dcdbff;
   --color-bkg-guest-title-clr: #231942;
   --color-bkg-guest-summary-clr: #18142b;
   --color-bkg-guest-summary-after: #e1e1ef;
-  --color-bkg-guest-summary-before: #e1e1ef;
+  --color-bkg-guest-summary-before: #d9d9d9;
   --color-bkg-guest-btn-border: #d3b8ff;
   --color-bkg-guest-note: #bdbdc6;
+  --color-bkg-modal-border: #6f677c;
+  --color-bkg-checkout-btn-bg: #ffea00;
+  --color-bkg-checkout-btn-clr: #18142b;
+  --color-bkg-checkout-btn-border: #ffea00;
+  --color-bkg-checkout-btn-clr-span: #f83482;
+  --color-bkg-save-btn-bg: #fff;
+  --color-bkg-save-btn-clr: #18142b;
+  --color-bkg-save-btn-border: #dcd6e5;
+
+  //PAYMENT HEADER
+  --color-pymnt-container-bg: #f4f3f3;
+  --color-pymnt-title-clr: #231942;
+  --color-pymnt-step-clr: #594f67;
+  --color-pymnt-step-active-clr: #231942;
+  --color-pymnt-step-divider-before: #1976d2;
+  --color-pymnt-step-divider-after: #dcdcdc;
+
+  //email verification
+  --color-email-form-bg: #f4f3f3;
+  --color-email-form-box: #fff;
+  --color-email-form-label: #231942;
+  --color-email-form-input-border: #231942;
+  --color-email-form-confirm-btn: #ffe600;
+  --color-email-form-confirm-btn-clr: #231942;
+
+  //confirm email
+  --color-confirm-otp-bg: #f4f3f3;
+  --color-confirm-otp-label: #231942;
+  --color-confirm-otp-input-border: #e3e3e3;
 }
 
 $header-size: 118px;

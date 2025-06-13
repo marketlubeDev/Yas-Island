@@ -438,11 +438,11 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-date-slct-bg",
-      isDarkMode ? "#000000" : "#fff"
+      isDarkMode ? "#F8A622" : "#231942"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-date-slct-clr",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      isDarkMode ? "#000000" : "#DCDBFF"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-guest-title-clr",
@@ -457,16 +457,118 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#E7EBD4" : "#231942"
     );
     document.documentElement.style.setProperty(
-      "--color-bkg-guest-summary-after",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      "--color-bkg-guest-summary-before",
+      isDarkMode ? "#262626" : "#d9d9d9"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-guest-btn-border",
-      isDarkMode ? "#FFAD33" : "#d3b8ff"
+      isDarkMode ? "#909883" : "#d3b8ff"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-guest-note",
       isDarkMode ? "#CED0AB" : "#bdbdc6"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-body-bg",
+      isDarkMode ? "#000000" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-footer-bg",
+      isDarkMode ? "#000000" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-modal-border",
+      isDarkMode ? "#909883" : "#6f677c"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-checkout-btn-bg",
+      isDarkMode ? "#000000" : "#FFEA00"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-checkout-btn-clr",
+      isDarkMode ? "#E7EBD4" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-checkout-btn-border",
+      isDarkMode ? "#FFAD33" : "#ffea00"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-checkout-btn-clr-span",
+      isDarkMode ? "#E7EBD4" : "#f83482"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-save-btn-bg",
+      isDarkMode ? "#F8A622" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-save-btn-clr",
+      isDarkMode ? "#000" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
+      "--color-bkg-save-btn-border",
+      isDarkMode ? "#F8A622" : "#DCD6E5"
+    );
+
+    //payment header
+    document.documentElement.style.setProperty(
+      "--color-pymnt-container-bg",
+      isDarkMode ? "#0B0C0C" : "#f4f3f3"
+    );
+    document.documentElement.style.setProperty(
+      "--color-pymnt-title-clr",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+    document.documentElement.style.setProperty(
+      "--color-pymnt-step-clr",
+      isDarkMode ? "#A6B098" : "#594f67"
+    );
+    document.documentElement.style.setProperty(
+      "--color-pymnt-step-active-clr",
+      isDarkMode ? "#A6B098" : "#231942"
+    );
+    document.documentElement.style.setProperty(
+      "--color-pymnt-step-divider-before",
+      isDarkMode ? "#F8A622" : "#1976d2"
+    );
+    document.documentElement.style.setProperty(
+      "--color-pymnt-step-divider-after",
+      isDarkMode ? "#232323" : "#dcdcdc"
+    );
+
+    //email verification
+    document.documentElement.style.setProperty(
+      "--color-email-form-bg",
+      isDarkMode ? "#0B0C0C" : "#f4f3f3"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-box",
+      isDarkMode ? "#000000" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-label",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-input-border",
+      isDarkMode ? "#909883" : "#231942"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-confirm-btn",
+      isDarkMode ? "#FFAD33" : "#ffe600"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-confirm-btn-clr",
+      isDarkMode ? "#000000" : "#231942"
+    );
+
+    //confirm email
+    document.documentElement.style.setProperty(
+      "--color-confirm-otp-bg",
+      isDarkMode ? "#000000" : "#f4f3f3"
+    );
+    document.documentElement.style.setProperty(
+      "--color-confirm-otp-label",
+      isDarkMode ? "#F1F1F1" : "#231942"
     );
 
     return () => {
@@ -805,10 +907,11 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-bkg-clndr-date-slct-bg",
         "#231942"
+        // "#F8A622"
       );
       document.documentElement.style.setProperty(
         "--color-bkg-clndr-date-slct-clr",
-        "#fff"
+        "#DCDBFF"
       );
       document.documentElement.style.setProperty(
         "--color-bkg-guest-title-clr",
@@ -833,6 +936,109 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-bkg-guest-note",
         "#bdbdc6"
+      );
+      document.documentElement.style.setProperty("--color-bkg-body-bg", "#fff");
+      document.documentElement.style.setProperty(
+        "--color-bkg-footer-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-modal-border",
+        "#6F677C"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-checkout-btn-bg",
+        "#ffea00"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-checkout-btn-border",
+        "#ffea00"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-checkout-btn-clr",
+        "#18142b"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-checkout-btn-clr-span",
+        "#f83482"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-save-btn-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-save-btn-clr",
+        "#18142b"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-save-btn-border",
+        "#dcd6e5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-bkg-guest-summary-before",
+        "#d9d9d9"
+      );
+
+      //payment header
+      document.documentElement.style.setProperty(
+        "--color-pymnt-container-bg",
+        "#f4f3f3"
+      );
+      document.documentElement.style.setProperty(
+        "--color-pymnt-title-clr",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-pymnt-step-clr",
+        "#594f67"
+      );
+      document.documentElement.style.setProperty(
+        "--color-pymnt-step-active-clr",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-pymnt-step-divider-before",
+        "#1976d2"
+      );
+      document.documentElement.style.setProperty(
+        "--color-pymnt-step-divider-after",
+        "#dcdcdc"
+      );
+
+      //email verification
+      document.documentElement.style.setProperty(
+        "--color-email-form-bg",
+        "#f4f3f3"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-box",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-label",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-input-border",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-confirm-btn",
+        "#ffe600"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-confirm-btn-clr",
+        "#231942"
+      );
+
+      //confirm email
+      document.documentElement.style.setProperty(
+        "--color-confirm-otp-bg",
+        "#f4f3f3"
+      );
+      document.documentElement.style.setProperty(
+        "--color-confirm-otp-label",
+        "#231942"
       );
     };
   }, [isDarkMode]);

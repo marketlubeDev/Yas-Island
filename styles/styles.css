@@ -39,7 +39,7 @@
   --color-base-product-card-add-cart-btn-bg: #fff8a5;
   --color-base-accessibility-modal-title: #18142b;
   --color-base-accessibility-modal-subtitle: #514760;
-  --color-base-accessibility-modal-card-bg: #ffffff;
+  --color-base-accessibility-modal-card-bg: ;
   --color-base-accessibility-modal-card-border: #e3daf2;
   --color-base-accessibility-modal-btn-bg: #ffe600;
   --color-base-mobile-product-page-bg: #fff;
@@ -108,19 +108,44 @@
   --color-dtl-content-bg: #fff;
   --color-dtl-content-border: #fff;
   --color-bkg-header-bg: #fff;
+  --color-bkg-body-bg: #fff;
+  --color-bkg-footer-bg: #fff;
   --color-bkg-title-clr: #231942;
   --color-bkg-clndr-bg: #fff;
   --color-bkg-clndr-border: #e3dff1;
   --color-bkg-clndr-dayname-clr: #ff69b4;
   --color-bkg-clndr-date-clr: #231942;
   --color-bkg-clndr-date-slct-bg: #231942;
-  --color-bkg-clndr-date-slct-clr: #fff;
+  --color-bkg-clndr-date-slct-clr: #dcdbff;
   --color-bkg-guest-title-clr: #231942;
   --color-bkg-guest-summary-clr: #18142b;
   --color-bkg-guest-summary-after: #e1e1ef;
-  --color-bkg-guest-summary-before: #e1e1ef;
+  --color-bkg-guest-summary-before: #d9d9d9;
   --color-bkg-guest-btn-border: #d3b8ff;
   --color-bkg-guest-note: #bdbdc6;
+  --color-bkg-modal-border: #6f677c;
+  --color-bkg-checkout-btn-bg: #ffea00;
+  --color-bkg-checkout-btn-clr: #18142b;
+  --color-bkg-checkout-btn-border: #ffea00;
+  --color-bkg-checkout-btn-clr-span: #f83482;
+  --color-bkg-save-btn-bg: #fff;
+  --color-bkg-save-btn-clr: #18142b;
+  --color-bkg-save-btn-border: #dcd6e5;
+  --color-pymnt-container-bg: #f4f3f3;
+  --color-pymnt-title-clr: #231942;
+  --color-pymnt-step-clr: #594f67;
+  --color-pymnt-step-active-clr: #231942;
+  --color-pymnt-step-divider-before: #1976d2;
+  --color-pymnt-step-divider-after: #dcdcdc;
+  --color-email-form-bg: #f4f3f3;
+  --color-email-form-box: #fff;
+  --color-email-form-label: #231942;
+  --color-email-form-input-border: #231942;
+  --color-email-form-confirm-btn: #ffe600;
+  --color-email-form-confirm-btn-clr: #231942;
+  --color-confirm-otp-bg: #f4f3f3;
+  --color-confirm-otp-label: #231942;
+  --color-confirm-otp-input-border: #e3e3e3;
 }
 
 * {
@@ -246,12 +271,10 @@ body {
   transition: all 0.3s ease;
 }
 .side-bar-list-item .item-icon img.active {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
-    hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
 }
 .side-bar-list-item .item-icon img.dark-mode {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
-    hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
 }
 .side-bar-list-item .item-text {
   flex-grow: 1;
@@ -263,8 +286,7 @@ body {
 }
 .side-bar-list-item:hover:not(.active):not(.selected) {
   border: 2px solid var(--color-base-side-bar-item-box-border);
-  box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
-    var(--color-base-side-bar-item-box);
+  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
 }
 
 .side-bar-list-item-container {
@@ -1056,11 +1078,7 @@ body {
   background: transparent; /* Make the track transparent or a light color */
 }
 .guest-section-header-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    #d1b8ff 0%,
-    #68abe7 100%
-  ); /* Gradient for the scrollbar thumb */
+  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%); /* Gradient for the scrollbar thumb */
   border-radius: 4px; /* Rounded corners for the thumb */
 }
 
@@ -1941,26 +1959,14 @@ body {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.payment-form__right
-  .terms
-  .checkbox-container:hover
-  .checkbox-input
-  ~ .checkbox-custom {
+.payment-form__right .terms .checkbox-container:hover .checkbox-input ~ .checkbox-custom {
   border-color: #594f67;
 }
-.payment-form__right
-  .terms
-  .checkbox-container
-  .checkbox-input:checked
-  ~ .checkbox-custom {
+.payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom {
   background-color: #594f67;
   border-color: #594f67;
 }
-.payment-form__right
-  .terms
-  .checkbox-container
-  .checkbox-input:checked
-  ~ .checkbox-custom:after {
+.payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom:after {
   display: block;
 }
 .payment-form__right .terms .checkbox-container .checkbox-text {
@@ -2614,8 +2620,7 @@ body {
   align-items: center;
   gap: 12px;
 }
-.mobile-header__icon-btn,
-.mobile-header__lang-btn {
+.mobile-header__icon-btn, .mobile-header__lang-btn {
   background: var(--color-base-mobile-header-icon-btn-bg);
   border: 2px solid var(--color-base-mobile-header-icon-btn-border);
   border-radius: 2rem;
@@ -2627,8 +2632,7 @@ body {
   cursor: pointer;
   transition: background 0.2s;
 }
-.mobile-header__icon-btn img,
-.mobile-header__lang-btn img {
+.mobile-header__icon-btn img, .mobile-header__lang-btn img {
   height: 20px;
   width: 20px;
   display: block;
@@ -3319,25 +3323,6 @@ body {
   align-items: center;
 }
 
-.email-verification__title {
-  font-size: 22px;
-  font-weight: 500;
-  color: #231942;
-  margin: 12px 0 12px 0;
-  text-align: center;
-}
-
-.email-verification__back-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: #231942;
-  margin-top: -4rem;
-  align-self: flex-start;
-  margin-left: 8px;
-  cursor: pointer;
-}
-
 .email-verification__steps {
   display: flex;
   justify-content: center;
@@ -3346,34 +3331,8 @@ body {
   margin-bottom: 0;
 }
 
-.email-verification__step {
-  font-size: 15px;
-  color: #bdbdc6;
-  text-align: center;
-  font-weight: 500;
-}
-.email-verification__step span {
-  display: block;
-  font-size: 15px;
-  margin-top: 2px;
-}
-
-.email-verification__step--active {
-  color: #231942;
-  font-weight: 500;
-  border-bottom: 2px solid #1976d2;
-}
-
-.email-verification__step-underline {
-  width: 100%;
-  max-width: 340px;
-  height: 2px;
-  background: #e3e3e3;
-  margin: 0 auto 24px auto;
-}
-
 .email-verification__form {
-  background: #f4f3f3;
+  background: var(--color-email-form-bg);
   height: 69.3vh;
   padding: 32px 14px;
   max-width: 800px;
@@ -3384,109 +3343,8 @@ body {
   gap: 24px;
 }
 
-.email-verification__input {
-  border: 1.5px solid #e3e3e3;
-  border-radius: 12px;
-  font-size: 16px;
-  padding: 12px 16px;
-  outline: none;
-  background: #fff;
-  color: #231942;
-  width: 100%;
-  transition: border-color 0.2s;
-}
-.email-verification__input:focus {
-  border-color: #1976d2;
-}
-
-.email-verification__confirm-btn {
-  background: #ffe600;
-  color: #231942;
-  border: none;
-  border-radius: 2rem;
-  padding: 14px 0;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 12px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
-  transition: all 0.2s;
-}
-.email-verification__confirm-btn:hover {
-  background: #fff700;
-  transform: translateY(-1px);
-}
-.email-verification__confirm-btn:active {
-  transform: translateY(0);
-}
-
-.email-verification-bg {
-  min-height: 100vh;
-  background: #f4f3f3;
-  padding-bottom: 32px;
-}
-
-.email-verification-content {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
-.email-verification-header-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  margin-bottom: 8px;
-}
-
-.email-verification-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #231942;
-}
-
-.email-verification-steps {
-  display: flex;
-  justify-content: flex-start;
-  gap: 32px;
-  margin-bottom: 0;
-  margin-top: 12px;
-}
-
-.email-verification-step {
-  font-size: 14px;
-  color: #bdbdc6;
-  font-weight: 500;
-}
-.email-verification-step.active {
-  color: #231942;
-  font-weight: 700;
-}
-
-.email-verification-step-underline {
-  width: 100%;
-  height: 2px;
-  background: #e1e1ef;
-  margin: 6px 0 18px 0;
-  border-radius: 1px;
-  position: relative;
-}
-.email-verification-step-underline::before {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 2px;
-  background: #66aae7;
-  border-radius: 1px;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
 .email-verification-form-box {
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
   padding: 38px 40px 34px 40px;
@@ -3501,7 +3359,7 @@ body {
 
 .email-verification-label {
   font-size: 14px;
-  color: #231942;
+  color: var(--color-email-form-label);
   font-weight: 500;
   margin-bottom: 18px;
   margin-top: 100px;
@@ -3511,7 +3369,7 @@ body {
 .email-verification-input {
   width: 100%;
   border: none;
-  border-bottom: 2px solid #231942;
+  border-bottom: 2px solid var(--color-email-form-input-border);
   background: transparent;
   font-size: 16px;
   padding: 8px 0;
@@ -3520,8 +3378,8 @@ body {
 }
 
 .email-verification-confirm-btn {
-  background: #ffe600;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 12px 0;
@@ -3534,93 +3392,6 @@ body {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
 
-.mobile-header-email-verification {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 10001;
-  background: white;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
-}
-
-.confirm-email__title {
-  font-size: 22px;
-  font-weight: 500;
-  color: #231942;
-  text-align: center;
-  margin-left: 10px;
-  margin-top: 30px;
-  margin-bottom: -13px;
-}
-
-.confirm-email__back-btn {
-  background: none;
-  border: none;
-  font-size: 15px;
-  margin-bottom: 8px;
-  align-self: flex-start;
-  margin-left: 12px;
-  margin-top: -1.5rem;
-  cursor: pointer;
-}
-
-.confirm-email__steps {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  gap: 32px;
-  margin: 50px auto 0 auto;
-  position: relative;
-}
-
-.confirm-email__step1 {
-  font-size: 15px;
-  color: #594f67;
-  font-weight: 500;
-  text-align: center;
-  min-width: 50%;
-}
-
-.confirm-email__step2 {
-  font-size: 15px;
-  color: #594f67;
-  text-align: center;
-  font-weight: 500;
-  margin-right: 20px;
-  width: 30%;
-}
-
-.confirm-email__step--active {
-  color: #231942;
-  font-weight: 700;
-}
-
-.confirm-email__steps-underline {
-  width: 100%;
-  height: 2.5px;
-  margin: 0 auto 18px auto;
-  display: flex;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
-}
-.confirm-email__steps-underline::before,
-.confirm-email__steps-underline::after {
-  content: "";
-  display: block;
-  height: 100%;
-}
-.confirm-email__steps-underline::before {
-  width: 50%;
-  background: #1976d2;
-}
-.confirm-email__steps-underline::after {
-  width: 50%;
-  background: #dcdcdc;
-}
-
 .confirm-email__modal {
   max-width: 500px;
   width: 100vw;
@@ -3628,20 +3399,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: #f4f3f3;
+  background: var(--color-email-form-bg);
   overflow: hidden;
-}
-
-.confirm-email__header {
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  padding: 18px 0;
-  background: #be4a4a;
 }
 
 .confirm-email__content {
@@ -3654,64 +3413,11 @@ body {
   padding: 32px 0 24px 0;
 }
 
-.confirm-email__title {
-  font-size: 22px;
-  font-weight: 500;
-  color: #231942;
-  text-align: center;
-  margin-left: 10px;
-  margin-top: 30px;
-  margin-bottom: -13px;
-}
-
-.confirm-email__back-btn {
-  background: none;
-  border: none;
-  font-size: 15px;
-  margin-bottom: 8px;
-  align-self: flex-start;
-  margin-left: 12px;
-  margin-top: -0.9rem;
-  cursor: pointer;
-}
-
-.confirm-email__steps {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  gap: 32px;
-  margin: 50px auto 0 auto;
-  position: relative;
-}
-
-.confirm-email__step1 {
-  font-size: 15px;
-  color: #594f67;
-  font-weight: 500;
-  text-align: center;
-  min-width: 50%;
-}
-
-.confirm-email__step2 {
-  font-size: 15px;
-  color: #594f67;
-  text-align: center;
-  font-weight: 500;
-  margin-right: 20px;
-  width: 30%;
-}
-
-.confirm-email__step--active {
-  color: #231942;
-  font-weight: 700;
-}
-
 .confirm-email__form-container {
   width: 90%;
   max-width: 400px;
   margin: 20px auto;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
   padding: 32px 18px;
@@ -3723,17 +3429,10 @@ body {
 .confirm-email__form-container::-webkit-scrollbar {
   width: 6px;
 }
-.confirm-email__form-container::-webkit-scrollbar-track {
-  background: #fff;
-}
-.confirm-email__form-container::-webkit-scrollbar-thumb {
-  background: #bdbdc6;
-  border-radius: 3px;
-}
 
 .confirm-email__label {
   font-size: 15px;
-  color: #231942;
+  color: var(--color-email-form-label);
   font-weight: 500;
   margin-bottom: 8px;
   display: flex;
@@ -3744,9 +3443,9 @@ body {
 
 .confirm-email__input-underline {
   font-size: 16px;
-  color: #231942;
+  color: var(--color-email-form-label);
   padding-bottom: 4px;
-  border-bottom: 2px solid #231942;
+  border-bottom: 2px solid var(--color-email-form-input-border);
   margin-bottom: 16px;
   background: none;
   text-align: left;
@@ -3756,7 +3455,7 @@ body {
 }
 
 .confirm-email__otp-section-bg {
-  background: #f4f7f8;
+  background: var(--color-confirm-otp-bg);
   border-radius: 12px;
   padding: 18px 8px 12px 8px;
   margin-bottom: 18px;
@@ -3778,7 +3477,7 @@ body {
 .confirm-email__otp-label {
   font-size: 15px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-confirm-otp-label);
   margin-bottom: 10px;
   text-align: center;
 }
@@ -3797,7 +3496,7 @@ body {
   border-radius: 8px;
   font-size: 22px;
   text-align: center;
-  background: #fff;
+  background: var(--color-email-form-box);
   font-weight: 700;
   color: #231942;
   outline: none;
@@ -3881,8 +3580,7 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
-.confirm-email__steps-underline::before,
-.confirm-email__steps-underline::after {
+.confirm-email__steps-underline::before, .confirm-email__steps-underline::after {
   content: "";
   display: block;
   height: 100%;
@@ -4056,9 +3754,9 @@ body {
   box-sizing: border-box;
 }
 
-.email-checkout__input[type="text"],
-.email-checkout__input[type="tel"],
-.email-checkout__input[type="number"] {
+.email-checkout__input[type=text],
+.email-checkout__input[type=tel],
+.email-checkout__input[type=number] {
   width: 200px;
   max-width: 100%;
 }
@@ -4254,7 +3952,7 @@ body {
   box-sizing: border-box;
 }
 
-.email-checkout__checkboxes input[type="checkbox"] {
+.email-checkout__checkboxes input[type=checkbox] {
   accent-color: white; /* This sets the checkmark color to black (or your desired color) */
   background-color: black; /* Ensures the background stays white */
   border: 2px solid #bdbdc6; /* Optional: custom border */
@@ -4356,9 +4054,7 @@ body {
   flex-direction: column;
   gap: 2px;
 }
-.make-payment__summary-top
-  .make-payment__summary-dates-row
-  .make-payment__summary-dates-label {
+.make-payment__summary-top .make-payment__summary-dates-row .make-payment__summary-dates-label {
   color: #bdbdc6;
   font-size: 13px;
   font-weight: 600;
@@ -4399,7 +4095,7 @@ body {
   gap: 10px;
   justify-content: center;
 }
-.make-payment__payment-options label input[type="radio"] {
+.make-payment__payment-options label input[type=radio] {
   accent-color: #14cf86;
   margin: 0 8px 0 0;
   border: 1px solid #e3e3e3;
@@ -4408,7 +4104,7 @@ body {
   height: 18px;
 }
 .make-payment__payment-options label .payment-method-card__img,
-.make-payment__payment-options label img[alt="PayPal"] {
+.make-payment__payment-options label img[alt=PayPal] {
   width: 56px !important;
   height: 40px !important;
   margin-bottom: 0;
@@ -4681,8 +4377,7 @@ body {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
   margin-bottom: 4px;
   transition: box-shadow 0.2s, background 0.2s, border 0.2s;
-  background-image: linear-gradient(#e1f1ff, #e1f1ff),
-    linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: linear-gradient(#e1f1ff, #e1f1ff), linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -5116,7 +4811,6 @@ body {
   justify-content: space-between;
   padding: 18px 18px 0 18px;
   background: var(--color-bkg-header-bg);
-  border-radius: 24px 24px 0 0;
 }
 
 .booking-modal__title {
@@ -5135,13 +4829,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--color-bkg-body-bg);
 }
 
 .booking-modal__calendar {
   width: 111.5%;
   background: var(--color-bkg-clndr-bg);
-  border-radius: 16px;
-  border: 1px solid var(--color-bkg-clndr-border);
+  border-radius: 16px 16px 16px 16px;
+  border: 1px solid var(--color-bkg-modal-border);
   margin-bottom: 24px;
   padding: 12px 0;
 }
@@ -5154,6 +4849,7 @@ body {
   font-size: 16px;
   margin-bottom: 8px;
   padding: 0 12px;
+  border-bottom: 1px solid var(--color-bkg-modal-border);
 }
 
 .booking-modal__calendar-grid {
@@ -5186,7 +4882,7 @@ body {
 
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
-  color: #fff;
+  color: var(--color-bkg-clndr-date-slct-clr);
 }
 
 .booking-modal__guests-section {
@@ -5279,14 +4975,15 @@ body {
   gap: 10px;
   padding: 18px 18px 18px 18px;
   background: var(--color-bkg-footer-bg);
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
+  width: 113%;
+  margin-left: -1.5rem;
+  box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.08);
 }
 
 .booking-modal__checkout {
-  background: var(--color-bkg-add-btn-bg);
-  color: var(--color-bkg-add-btn-clr);
-  border: none;
+  background: var(--color-bkg-checkout-btn-bg);
+  border: 3px solid var(--color-bkg-checkout-btn-border);
+  color: var(--color-bkg-checkout-btn-clr);
   border-radius: 2rem;
   padding: 12px 0;
   font-size: 18px;
@@ -5298,9 +4995,9 @@ body {
 }
 
 .booking-modal__save {
-  background: var(--color-bkg-footer-bg);
-  color: var(--color-bkg-footer-clr);
-  border: 1.5px solid var(--color-bkg-footer-border);
+  background: var(--color-bkg-save-btn-bg);
+  color: var(--color-bkg-save-btn-clr);
+  border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
   padding: 12px 0;
   font-size: 18px;
@@ -5329,7 +5026,7 @@ body {
 .booking-modal__calendar-month {
   font-size: 15px;
   font-weight: 500;
-  color: var(--color-bkg-footer-clr);
+  color: var(--color-bkg-title-clr);
   letter-spacing: 0.5px;
 }
 
@@ -5378,7 +5075,7 @@ body {
 
 .guests-box {
   background: var(--color-bkg-body-bg);
-  border: 1px solid var(--color-bkg-body-border);
+  border: 1px solid var(--color-bkg-modal-border);
   border-radius: 16px;
   padding: 18px 0 10px 0;
   max-width: 320px;
@@ -5514,13 +5211,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f4f3f3;
+  background-color: var(--color-pymnt-container-bg);
   width: 100%;
 }
 .payment-header__title {
   font-size: 22px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-pymnt-title-clr);
   text-align: center;
   margin-left: 10px;
   margin-top: 30px;
@@ -5547,7 +5244,7 @@ body {
 }
 .payment-header__step {
   font-size: 15px;
-  color: #594f67;
+  color: var(--color-pymnt-step-clr);
   font-weight: 500;
   text-align: center;
 }
@@ -5559,7 +5256,7 @@ body {
   margin-right: 20px;
 }
 .payment-header__step--active {
-  color: #231942;
+  color: var(--color-pymnt-step-active-clr);
   font-weight: 700;
 }
 .payment-header__step span {
@@ -5575,19 +5272,18 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
-.payment-header__steps-divider::before,
-.payment-header__steps-divider::after {
+.payment-header__steps-divider::before, .payment-header__steps-divider::after {
   content: "";
   display: block;
   height: 100%;
 }
 .payment-header__steps-divider::before {
   width: 50%;
-  background: #1976d2;
+  background: var(--color-pymnt-step-divider-before);
 }
 .payment-header__steps-divider::after {
   width: 50%;
-  background: #dcdcdc;
+  background: var(--color-pymnt-step-divider-after);
 }
 
 .search {
@@ -5789,4 +5485,33 @@ body {
   display: flex;
   gap: 16px;
   align-items: center;
+}
+
+.ant-modal .ant-modal-content {
+  position: relative;
+  background-color: var(--color-base-mobile-product-page-bg);
+  background-clip: padding-box;
+  border: 1px solid var(--color-bkg-modal-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  padding: 20px 24px;
+}
+.dark-mode .ant-modal .ant-modal-content {
+  background-color: var(--color-base-mobile-product-page-text, #18142b);
+  color: var(--color-base-mobile-product-page-bg, #ffffff);
+}
+.ant-modal .ant-modal-close {
+  top: 16px;
+  right: 16px;
+}
+.ant-modal .ant-modal-close .ant-modal-close-x {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.accessibility-modal .ant-modal-content {
+  max-width: 400px;
+  margin: 0 auto;
 }
