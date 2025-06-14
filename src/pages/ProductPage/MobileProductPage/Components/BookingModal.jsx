@@ -29,7 +29,10 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
   };
 
   return (
-    <div className="booking-modal-overlay">
+    <div
+      className="booking-modal-overlay"
+      style={{ background: "var(--color-bkg-body-bg)" }}
+    >
       <div className="booking-modal">
         <div className="booking-modal__header">
           <span className="booking-modal__title">
@@ -86,20 +89,54 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
               <div className="guests-summary">{t("booking.guestsSummary")}</div>
               <div className="guests-divider"></div>
               <div className="guests-row">
-                <span>{t("booking.adults")}</span>
+                <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
+                  {t("booking.adults")}
+                </span>
                 <div className="guests-controls">
-                  <button className="guests-btn">−</button>
-                  <span className="guests-count">{toArabicNumeral(2)}</span>
-                  <button className="guests-btn">+</button>
+                  <button
+                    className="guests-btn"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    −
+                  </button>
+                  <span
+                    className="guests-count"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    {toArabicNumeral(2)}
+                  </span>
+                  <button
+                    className="guests-btn"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="guests-divider"></div>
               <div className="guests-row">
-                <span>{t("booking.children")}</span>
+                <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
+                  {t("booking.children")}
+                </span>
                 <div className="guests-controls">
-                  <button className="guests-btn">−</button>
-                  <span className="guests-count">{toArabicNumeral(1)}</span>
-                  <button className="guests-btn">+</button>
+                  <button
+                    className="guests-btn"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    −
+                  </button>
+                  <span
+                    className="guests-count"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    {toArabicNumeral(1)}
+                  </span>
+                  <button
+                    className="guests-btn"
+                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="guests-divider"></div>
@@ -110,7 +147,9 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
         <div className="booking-modal__footer">
           <button className="booking-modal__checkout" onClick={onCheckout}>
             {t("booking.checkOut")}{" "}
-            <span style={{ color: "red" }}>AED {toArabicNumeral(985.0)}</span>
+            <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
+              AED {toArabicNumeral(985.0)}
+            </span>
           </button>
           <button className="booking-modal__save" onClick={onSaveToCart}>
             {t("booking.saveToCart")}

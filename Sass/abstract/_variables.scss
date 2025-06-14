@@ -56,9 +56,179 @@ $color-yellow: #ffea00;
 
   --color-base-accessibility-modal-title: #18142b;
   --color-base-accessibility-modal-subtitle: #514760;
-  --color-base-accessibility-modal-card-bg: #ffffff;
+  --color-base-accessibility-modal-card-bg: ;
   --color-base-accessibility-modal-card-border: #e3daf2;
   --color-base-accessibility-modal-btn-bg: #ffe600;
+
+  //mobile product page
+  --color-base-mobile-product-page-bg: #fff;
+  --color-base-mobile-product-page-card-bg: #fff;
+  --color-base-mobile-product-page-card-border: #f2f2f2;
+  --color-base-mobile-product-page-title: #231942;
+  --color-base-mobile-product-page-subtitle: #6c6c8a;
+  --color-base-mobile-product-page-btn-bg: #fff8a5;
+  --color-base-mobile-product-page-btn-text: #231942;
+  --color-base-mobile-product-page-btn-border: #f7d148;
+  --color-base-mobile-product-page-vat-tax-text: #bdbdc6;
+  --color-base-mobile-product-page-price: #231942;
+  --color-base-mobile-product-page-vat-text: #bdbdc6;
+
+  //mobiletop
+  --color-base-mobile-top-bg: #fff;
+  --color-base-mobile-search-section-title: #231942;
+  --color-base-mobile-search-section-input-bg: #fff;
+  --color-base-mobile-search-section-input-border: #dcd6e5;
+  --color-base-mobile-search-section-input-text: #231942;
+  --color-base-mobile-search-section-input-placeholder: #978fa1;
+  --color-base-mobile-search-section-input-placeholder-color: #978fa1;
+  --color-base-mobile-search-section-filter-btn-bg: #fff;
+  --color-base-mobile-search-section-filter-btn-text: #231942;
+  --color-base-mobile-search-section-filter-btn-border: #e3dff1;
+  --color-base-mobile-top-item-bg: #fff;
+  --color-base-mobile-top-item-text: rgba(89, 79, 103, 0.6);
+  --color-base-mobile-top-item-borderbottom: #b9b3d3;
+  --color-base-mobile-top-item-bordertop: #b9b3d3;
+  --color-base-mobile-top-item-rightborder: #e0e0e0;
+
+  //searchdropdown
+  --color-search-dropdown-bg: #fff;
+  --color-search-dropdown-option: #f5f5f5;
+  --color-search-dropdown-option-text: #222;
+
+  //mobileheader
+  --color-base-mobile-header-bg: #fff;
+  --color-base-mobile-header-icon-btn-border: #bcbcc9;
+  --color-base-mobile-header-icon-btn-bg: #fff;
+
+  //mobilebottomnav
+  --color-base-mobile-bottom-nav-bg: #fff;
+  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-mobile-bottom-nav-item-text: #231942;
+
+  --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
+    90deg,
+    #fff8a5 0%,
+    #fff 100%
+  );
+  --color-base-mobile-bottom-nav-item-icon-active-color: #231942;
+
+  //mobileheaderlangdropdown
+  --color-base-mobile-header-lang-dropdown-bg: #fff;
+  --color-base-mobile-header-lang-dropdown-boxshadow: 0 4px 12px
+    rgba(0, 0, 0, 0.1);
+  --color-base-mobile-header-lang-dropdown-item-lang-bg: #f5f5f5;
+  --color-base-mobile-header-lang-dropdown-item-lang-text: #222;
+  --color-base-mobile-header-lang-dropdown-item-lang-check: #007bff;
+  --color-base-mobile-header-lang-dropdown-border: #e3dff1;
+  --color-base-mobile-header-lang-dropdown-item-text: #231942;
+
+  //mobile attraction detail modal
+
+  --color-dtl-header-bg: #fff;
+  --color-dtl-header-color: #231942;
+  --color-dtl-main-title: #231942;
+  --color-dtl-desc: #6c6c8a;
+  --color-dtl-footer-bg: #fff;
+  --color-dtl-footer-divider: #e6e6ef;
+  --color-dtl-footer-vrl-divider: #e6e6ef;
+  --color-dtl-footer-price: #231942;
+  --color-dtl-footer-vat: #bdbdc6;
+  --color-dtl-add-btn-bg: #ffe600;
+  --color-dtl-add-btn-clr: #231942;
+  --color-dtl-add-btn-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  --color-dtl-close-btn-bg: #f6f6fa;
+  --color-dtl-body-bg: #fff;
+  --color-dtl-content-bg: #fff;
+  --color-dtl-content-border: #fff;
+
+  //mobile booking modal
+  --color-bkg-header-bg: #fff;
+  --color-bkg-body-bg: #fff;
+  --color-bkg-footer-bg: #fff;
+  --color-bkg-title-clr: #231942;
+  --color-bkg-clndr-bg: #fff;
+  --color-bkg-clndr-border: #e3dff1;
+  --color-bkg-clndr-dayname-clr: #ff69b4;
+  --color-bkg-clndr-date-clr: #231942;
+  --color-bkg-clndr-date-slct-bg: #231942;
+  --color-bkg-clndr-date-slct-clr: #dcdbff;
+  --color-bkg-guest-title-clr: #231942;
+  --color-bkg-guest-summary-clr: #18142b;
+  --color-bkg-guest-summary-after: #e1e1ef;
+  --color-bkg-guest-summary-before: #d9d9d9;
+  --color-bkg-guest-btn-border: #d3b8ff;
+  --color-bkg-guest-note: #bdbdc6;
+  --color-bkg-modal-border: #6f677c;
+  --color-bkg-checkout-btn-bg: #ffea00;
+  --color-bkg-checkout-btn-clr: #18142b;
+  --color-bkg-checkout-btn-border: #ffea00;
+  --color-bkg-checkout-btn-clr-span: #f83482;
+  --color-bkg-save-btn-bg: #fff;
+  --color-bkg-save-btn-clr: #18142b;
+  --color-bkg-save-btn-border: #dcd6e5;
+
+  //PAYMENT HEADER
+  --color-pymnt-container-bg: #f4f3f3;
+  --color-pymnt-title-clr: #231942;
+  --color-pymnt-step-clr: #594f67;
+  --color-pymnt-step-active-clr: #231942;
+  --color-pymnt-step-divider-before: #1976d2;
+  --color-pymnt-step-divider-after: #dcdcdc;
+
+  //email verification
+  --color-email-form-bg: #f4f3f3;
+  --color-email-form-box: #fff;
+  --color-email-form-label: #231942;
+  --color-email-form-input-border: #231942;
+  --color-email-form-confirm-btn: #ffe600;
+  --color-email-form-confirm-btn-clr: #231942;
+
+  //confirm email
+  --color-confirm-otp-bg: #f4f3f3;
+  --color-confirm-otp-label: #231942;
+  --color-confirm-otp-input-border: #e3e3e3;
+  --color-otp-btn-border: #dcd6e5;
+  --color-otp-action-btn-border: #dcd6e5;
+  --color-checkout-summary-border: none;
+
+  //checkout
+  --color-checkout-summary-bg: #f4f3f3;
+
+  //accessibility
+  --color-accessibility-popup-option-border: #e3daf2;
+  --color-accessibility-popup-icon-border: #d3b8ff;
+
+  //mycart
+  --color-cart-item-border: none;
+  --color-cart-price-color: #075faf;
+  --color-country-code-clr: #ada5b7;
+  --color-checkout-summary-row-bg: #fff;
+  --color-promo-input-border: #6f677c;
+
+  // RTL specific variables
+  --direction: ltr;
+  --text-align: left;
+  --float-start: left;
+  --float-end: right;
+  --margin-start: margin-left;
+  --margin-end: margin-right;
+  --padding-start: padding-left;
+  --padding-end: padding-right;
+  --border-start: border-left;
+  --border-end: border-right;
+}
+
+[dir="rtl"] {
+  --direction: rtl;
+  --text-align: right;
+  --float-start: right;
+  --float-end: left;
+  --margin-start: margin-right;
+  --margin-end: margin-left;
+  --padding-start: padding-right;
+  --padding-end: padding-left;
+  --border-start: border-right;
+  --border-end: border-left;
 }
 
 $header-size: 118px;

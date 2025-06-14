@@ -21,6 +21,8 @@ export const en = {
     zoomMode: "Zoom mode",
     continue: "Continue",
     close: "close",
+    invertColors: "Invert Colors",
+    highContrast: "High Contrast",
   },
   productHead: {
     sortBy: "Sort by",
@@ -97,7 +99,11 @@ export const en = {
   cart: {
     title: "My Cart",
     bookingFor: "Booking for",
+    currency: "AED",
+    validFrom: "Valid from",
+    to: "to",
     adults: "Adults",
+    children: "Children",
     subTotal: "Sub total :",
     vatAndTax: "VAT & Tax :",
     total: "Total :",
@@ -169,12 +175,17 @@ export const en = {
       phoneNumber: "PHONE NUMBER (PREFERRED NUMBER) *",
       countries: {
         UAE: "UAE",
+        India: "India",
+        USA: "USA",
       },
       nationalities: {
         UAE: "UAE",
+        India: "India",
       },
       phoneCodes: {
         UAE: "+971",
+        India: "+91",
+        USA: "+1",
       },
     },
     orderSummary: {

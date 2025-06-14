@@ -21,6 +21,8 @@ export const ar = {
     zoomMode: "وضع التكبير",
     continue: "متابعة",
     close: "إغلاق",
+    invertColors: "عكس الألوان",
+    highContrast: "تباين عالي",
   },
   productHead: {
     sortBy: "ترتيب حسب",
@@ -110,6 +112,10 @@ export const ar = {
       price: "درهم 328.57",
       vatAndTax: "ضريبة القيمة المضافة 16.43",
     },
+    currency: "درهم",
+    validFrom: "صالح من",
+    to: "إلى",
+    children: "الأطفال",
   },
   product: {
     addToCart: "أضف إلى السلة",
@@ -171,6 +177,8 @@ export const ar = {
       },
       nationalities: {
         UAE: "الإمارات العربية المتحدة",
+        India: "الهند",
+        USA: "الولايات المتحدة",
       },
       phoneCodes: {
         UAE: "+٩٧١",

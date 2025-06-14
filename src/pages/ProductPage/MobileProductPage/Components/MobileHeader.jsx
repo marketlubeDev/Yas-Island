@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import logo from "../../../../assets/images/moblogo.svg";
+import mobLogo from "../../../../assets/images/moblogo.svg";
+import invertedLogo from "../../../../assets/icons/invertedlogo.svg";
 import accessibilityIcon from "../../../../assets/icons/assess.svg";
+import dropdownIcon from "../../../../assets/icons/down.svg";
 import globeIcon from "../../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
 import Accessibility from "../Components/Accessibility";
 import { useLanguage } from "../../../../context/LanguageContext";
+import { useSelector } from "react-redux";
 
 function MobileHeader() {
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const navigate = useNavigate();
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(false);
@@ -35,7 +39,7 @@ function MobileHeader() {
       <div className="mobile-header">
         <div className="mobile-header__left">
           <img
-            src={logo}
+            src={isDarkMode ? invertedLogo : mobLogo}
             alt="YAS Island Logo"
             className="mobile-header__logo"
             style={{ cursor: "pointer" }}
@@ -63,7 +67,12 @@ function MobileHeader() {
             >
               <img src={globeIcon} alt="Language" />
               <span>{language === "العربية" ? "العربية" : "English"}</span>
-              <span className="chevron">&#9662;</span>
+              <img
+                src={dropdownIcon}
+                alt="down arrow"
+                className="chevron"
+                style={{ width: 12, height: 12, marginLeft: 4 }}
+              />
             </button>
             {showLangDropdown && (
               <div className="mobile-header__lang-dropdown">

@@ -3,16 +3,19 @@
   flex-direction: column;
   gap: 16px;
   padding: 12px 0;
-  background-color: white;
+  // background-color: white;
+  background-color: var(--color-base-mobile-product-page-bg);
 }
 
 .attraction-card {
   display: flex;
-  background: #fff;
+  // background: #fff;
+  background-color: var(--color-base-mobile-product-page-card-bg);
   border-radius: 10px;
-  box-shadow: 0 2px 8px white;
+  // box-shadow: 0 2px 8px white;
   overflow: hidden;
-  border: 1.5px solid #f2f2f2;
+  // border: 1.5px solid #f2f2f2;
+  border: 1.5px solid var(--color-base-mobile-product-page-card-border);
   padding: 9px;
   align-items: flex-start;
   gap: 12px;
@@ -46,7 +49,8 @@
   &__title {
     font-size: 16px;
     font-weight: 500;
-    color: #231942;
+    // color: #231942;
+    color: var(--color-base-mobile-product-page-title);
     margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -56,7 +60,8 @@
 
   &__desc {
     font-size: 16px;
-    color: #6c6c8a;
+    // color: #6c6c8a;
+    color: var(--color-base-mobile-product-page-subtitle);
     margin-bottom: 4px;
     white-space: nowrap;
     overflow: hidden;
@@ -72,10 +77,15 @@
   }
 
   &__add-btn {
-    background: #fff8a5;
-    color: #231942;
-    border: none;
-    border: 1px solid #f7d148;
+    // background: #fff8a5;
+    background-color: var(--color-base-mobile-product-page-btn-bg);
+
+    color: var(--color-base-mobile-product-page-btn-text);
+    // color: #231942;
+
+    // border: 1px solid #f7d148;
+    border: 1px solid var(--color-base-mobile-product-page-btn-border);
+
     border-radius: 2rem;
     padding: 8px 22px;
     font-size: 16px;
@@ -93,14 +103,16 @@
     gap: 8px;
     font-size: 15px;
     font-weight: 500;
-    color: #231942;
+    // color: #231942;
+    color: var(--color-base-mobile-product-page-price);
     margin-top: 4px;
     text-align: right;
   }
 
   &__vat {
     font-size: 12px;
-    color: #bdbdc6;
+    // color: #bdbdc6;
+    color: var(--color-base-mobile-product-page-vat-text);
     font-weight: 400;
     margin-top: 2px;
     text-align: right;

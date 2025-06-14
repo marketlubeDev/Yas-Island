@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "./MobileHeader";
 import ConfirmEmail from "./ConfirmEmail";
-import PaymentHeader from "./PaymentHeader";
+import PaymentHeader from "./paymentHeader";
 import CheckOut from "./CheckOut";
 
 function EmailVerification({ onConfirmEmail, onBack }) {
@@ -38,16 +38,18 @@ function EmailVerification({ onConfirmEmail, onBack }) {
           <PaymentHeader step={1} onBack={onBack} />
           <form className="email-verification__form" onSubmit={handleSubmit}>
             <div className="email-verification-form-box">
-              <label className="email-verification-label">
+              <label className="email-verification-label" id="email">
                 {t("payment.emailConfirmation.emailLabel")}
               </label>
               <input
+                id="email"
                 type="email"
                 className="email-verification-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("payment.emailConfirmation.emailPlaceholder")}
                 required
+                style={{ color: "var(--color-email-form-input-border)" }}
               />
               <button className="email-verification-confirm-btn" type="submit">
                 {t("payment.emailConfirmation.confirmButton")}

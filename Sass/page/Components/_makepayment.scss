@@ -1,57 +1,14 @@
-.outer-modal-bg {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // width: 100vw;
-  // height: 100vh;
-  // background: #f4f3f3;
-  // z-index: 9999;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // overflow-y: auto;
-}
-
 .make-payment-modal {
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 24px;
   box-shadow: 0 4px 24px rgba(44, 44, 84, 0.12);
-  max-width: 420px;
+  max-width: 400px;
   width: 100%;
-  margin: 32px 0;
+  margin: 15px 3px 15px 7px;
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
   padding-top: 56px;
-}
-
-.make-payment-header-fixed {
-  // position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  padding: 18px 0;
-  background: #fff;
-  // border-radius: 24px 24px 0 0;
-}
-
-.make-payment-header-fixed {
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  padding: 18px 0;
-  background: #fff;
-  border-radius: 24px 24px 0 0;
 }
 
 .make-payment__content {
@@ -63,19 +20,21 @@
 }
 
 .make-payment__summary {
-  background: #f6f8fa;
+  background: var(--color-checkout-summary-bg);
   border-radius: 16px;
   padding: 5px 12px 12px 12px;
   margin-bottom: 24px;
   margin-top: -18px;
   width: 100%;
   font-size: 15px;
-  color: #231942;
+  border: 1px solid var(--color-checkout-summary-border);
+  color: var(--color-email-form-label);
 
   &-title {
     font-weight: 500;
     font-size: 16px;
     margin-bottom: 8px;
+    color: var(--color-email-form-label);
   }
   &-row {
     display: flex;
@@ -93,7 +52,7 @@
 }
 
 .make-payment__summary-top {
-  background: #f4f7f8;
+  background: var(--color-checkout-summary-bg);
   border-radius: 12px 12px 0 0;
   padding: 18px 16px 12px 16px;
   margin-bottom: 0;
@@ -200,7 +159,7 @@
   label {
     display: block;
     font-size: 14px;
-    color: #231942;
+    color: var(--color-email-form-label);
     margin-bottom: 8px;
     font-weight: 500;
     width: 70%;
@@ -210,12 +169,12 @@
     input {
       width: 100%;
       border: none;
-      border-bottom: 2px solid #231942;
+      border-bottom: 2px solid var(--color-email-form-input-border);
       font-size: 16px;
       padding: 8px 0;
       outline: none;
       background: transparent;
-      color: #231942;
+      color: var(--color-email-form-label);
       margin-top: 4px;
     }
   }
@@ -224,7 +183,6 @@
 .make-payment__card-row {
   display: flex;
   width: 85%;
-  // gap: 16px;
   label {
     flex: 1;
   }
@@ -240,8 +198,8 @@
   gap: 0.22694rem;
   flex-shrink: 0;
   border-radius: 1.58856rem;
-  background: #ffea00;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   font-size: 18px;
   font-weight: 500;
@@ -250,7 +208,7 @@
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
   &:hover {
-    background: #fff700;
+    background: var(--color-email-form-confirm-btn);
   }
 }
 
@@ -272,32 +230,22 @@
   }
 }
 
-// .mobile-header {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   z-index: 10001;
-//   background: #fff;
-//   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
-// }
-
 .make-payment__summary-totals {
-  background: #fff;
-  color: #594f67;
+  background-color: var(--color-checkout-summary-row-bg);
+  color: var(--color-email-form-label);
 
-  border-radius: 10px;
-  padding: 34px 44px 24px 44px;
-  margin-top: 10px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+  padding: 14px 40px 10px 35px;
+  width: 110%;
+  margin-left: -12px;
+  margin-top: 25px;
 }
 
 .make-payment__payment-imgbox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  border: 1px solid #e3e3e3;
+  background: var(--color-email-form-box);
+  border: 1px solid var(--color-email-form-input-border);
   // border-radius: 8px;
   padding: 4px 8px;
   margin-right: 8px;

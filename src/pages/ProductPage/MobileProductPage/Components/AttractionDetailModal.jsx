@@ -10,12 +10,6 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
 
   return (
     <>
-      {/* <span
-        className="attraction-detail-modal__close attraction-detail-modal__close--outside"
-        onClick={onClose}
-      >
-        <img src={closeIcon} alt="close" />
-      </span> */}
       <div className="attraction-detail-modal__header">
         <button className="attraction-detail-modal__back" onClick={onClose}>
           <img src={backIcon} alt={t("common.back")} />

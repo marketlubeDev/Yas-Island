@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import closeIcon from "../../../../assets/icons/close.svg";
 
 function PromoCodePopup({ onClose }) {
   const { t, i18n } = useTranslation();
@@ -33,9 +34,9 @@ function PromoCodePopup({ onClose }) {
   return (
     <div className="promo-popup-overlay">
       <div className="promo-popup-card">
-        <button className="promo-popup-close" onClick={onClose}>
-          ×
-        </button>
+        <span className="promo-popup-custom-close" onClick={onClose}>
+          <img src={closeIcon} alt="close" />
+        </span>
         <div className="promo-popup-title">{t("promo.applied")}</div>
         <div className="promo-popup-amount">
           {t("promo.amount")} {toArabicNumeral(100.0)}

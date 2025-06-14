@@ -1,20 +1,6 @@
-// .cart-modal-overlay {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background-color: rgba(44, 44, 84, 0.6);
-//   backdrop-filter: blur(6px);
-//   z-index: 9999;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
 .cart-modal {
   position: relative;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 24px;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.14);
   max-width: 420px;
@@ -36,14 +22,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 18px 18px 0 18px;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 24px 24px 0 0;
 }
 
 .cart-modal__title {
   font-size: 22px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-email-form-label);
   flex: 1;
   text-align: center;
 }
@@ -71,14 +57,14 @@
 
 .cart-modal__booking-date {
   font-size: 15px;
-  color: #231942;
-  background: #f4f7f8;
+  color: var(--color-email-form-label);
+  background: var(--color-checkout-summary-bg);
   padding: 8px 18px;
   text-align: center;
   margin: 12px 0 8px 0;
   border-radius: 12px;
   font-weight: 500;
-  border-top: 1px solid #1976d2;
+  border-top: 1px solid var(--color-pymnt-step-divider-before);
 }
 
 .cart-modal__items {
@@ -89,10 +75,10 @@
 
 .cart-modal__item {
   display: flex;
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
-  border: 1.5px solid #f2f2f2;
+  border: 1.5px solid var(--color-cart-item-border);
   margin-bottom: 12px;
   padding: 8px;
   align-items: flex-start;
@@ -117,7 +103,7 @@
 .cart-modal__item-title {
   font-size: 15px;
   font-weight: 500;
-  color: #231942;
+  color: var(--color-email-form-label);
   margin-bottom: 2px;
   white-space: nowrap;
   overflow: hidden;
@@ -125,7 +111,7 @@
 }
 
 .cart-modal__item-price-main {
-  color: #1976d2;
+  color: var(--color-cart-price-color);
   font-weight: 500;
   font-size: 15px;
   margin-right: 8px;
@@ -134,12 +120,12 @@
 .cart-modal__item-vat {
   font-size: 12px;
   font-weight: 300;
-  color: #908999;
+  color: var(--color-email-form-label);
 }
 
 .cart-modal__item-date {
   font-size: 12px;
-  color: #6c6c8a;
+  color: var(--color-email-form-label);
   margin-bottom: 4px;
 }
 
@@ -155,9 +141,9 @@
   align-items: center;
   gap: 4px;
   button {
-    background: #fff;
-    border: 1.5px solid #ffe600;
-    color: #231942;
+    background: var(--color-email-form-box);
+    border: 1.5px solid var(--color-email-form-confirm-btn);
+    color: var(--color-email-form-label);
     border-radius: 50%;
     width: 28px;
     height: 28px;
@@ -204,7 +190,7 @@
 .cart-modal__summary {
   padding: 20px 50px 20px 50px;
   font-size: 15px;
-  color: #594f67;
+  color: var(--color-email-form-label);
 }
 
 .cart-modal__summary-row {
@@ -216,7 +202,7 @@
     font-weight: 500;
     font-size: 17px;
     margin-top: 20px;
-    color: black;
+    color: var(--color-email-form-label);
   }
 }
 
@@ -226,7 +212,7 @@
   gap: 10px;
   padding: 18px;
   box-shadow: 0 -4px 12px rgba(44, 44, 84, 0.08);
-  background: #fff;
+  background: var(--color-email-form-box);
   border-radius: 0 0 24px 24px;
   margin-top: 4rem;
   width: 120%;
