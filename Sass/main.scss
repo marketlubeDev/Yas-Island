@@ -45,7 +45,11 @@
 @use "page/Components/experience";
 @use "page/Components/promocode";
 @use "page/Components/attractiondetailmodal";
-
 @use "page/Components/producthead";
-
 @use "page/Components/bookingmodal";
+@use "page/Components/paymentheader";
+
+@use "page/Home/search";
+@use "page/Home/selector";
+
+@use "page/Components/mainProductHead";

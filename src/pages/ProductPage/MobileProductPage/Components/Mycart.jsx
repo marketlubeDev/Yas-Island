@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Modal } from "antd";
 import backIcon from "../../../../assets/icons/back.svg";
-
 import trashIcon from "../../../../assets/icons/trash.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
 
-function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
+function Mycart({ onClose, visible }) {
   // Example cart data
   const [cartItems, setCartItems] = useState([
     {
@@ -54,65 +54,78 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    onClose(); // Close the modal first
-    window.history.back(); // Go back to the previous page
+    onClose();
   };
 
+  useEffect(() => {
+    document.body.classList.add("body--modal-open");
+    return () => {
+      document.body.classList.remove("body--modal-open");
+    };
+  }, []);
+
   return (
-    <div className="cart-modal-overlay">
-      <div className="cart-modal" style={{ height: "95vh" }}>
-        <div className="cart-modal__header">
-          <button className="cart-modal__back" onClick={handleBack}>
-            <img src={backIcon} alt="Back" />
-          </button>
-          <span className="cart-modal__title">My cart</span>
-        </div>
-        <div className="cart-modal__booking-date">
-          Booking for <b>Thu 08- Feb 2025</b>
-        </div>
-        <div className="cart-modal__items">
-          {cartItems.map((item) => (
-            <div className="cart-modal__item" key={item.id}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="cart-modal__item-img"
-              />
-              <div className="cart-modal__item-content">
-                <div className="cart-modal__item-title-row">
-                  <div className="cart-modal__item-title">{item.title}</div>
-                  <button
-                    className="cart-modal__item-delete"
-                    onClick={() => deleteItem(item.id)}
-                  >
-                    <img src={trashIcon} alt="Delete" />
-                  </button>
-                </div>
-                <div className="cart-modal__item-price">
-                  <span className="cart-modal__item-price-main">
-                    AED {item.price}
-                  </span>
-                  <span className="cart-modal__item-vat">{item.vat}</span>
-                </div>
-                <div className="cart-modal__item-date">
-                  Valid from {item.date} to {item.date}
-                </div>
-                <div className="cart-modal__item-qty-row">
-                  <span>{item.type}</span>
-                  <div className="cart-modal__item-qty-controls">
-                    <button onClick={() => updateQuantity(item.id, -1)}>
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, 1)}>
-                      +
-                    </button>
-                  </div>
+    <Modal
+      open={visible}
+      onCancel={onClose}
+      footer={null}
+      width="100%"
+      closable={false}
+      className="cart-modal"
+    >
+      <div className="cart-modal__header">
+        <button className="cart-modal__back" onClick={handleBack}>
+          <img src={backIcon} alt="Back" />
+        </button>
+        <span className="cart-modal__title">My cart</span>
+      </div>
+      <div className="cart-modal__booking-date">
+        Booking for <b>Thu 08- Feb 2025</b>
+      </div>
+      <div className="cart-modal__items">
+        {cartItems.map((item) => (
+          <div className="cart-modal__item" key={item.id}>
+            <img
+              src={item.image}
+              alt={item.title}
+              className="cart-modal__item-img"
+              onError={(e) => {
+                console.error("Image failed to load:", e);
+                e.target.src = frame1;
+              }}
+            />
+            <div className="cart-modal__item-content">
+              <div className="cart-modal__item-title-row">
+                <div className="cart-modal__item-title">{item.title}</div>
+                <button
+                  className="cart-modal__item-delete"
+                  onClick={() => deleteItem(item.id)}
+                >
+                  <img src={trashIcon} alt="Delete" />
+                </button>
+              </div>
+              <div className="cart-modal__item-price">
+                <span className="cart-modal__item-price-main">
+                  AED {item.price}
+                </span>
+                <span className="cart-modal__item-vat">{item.vat}</span>
+              </div>
+              <div className="cart-modal__item-date">
+                Valid from {item.date} to {item.date}
+              </div>
+              <div className="cart-modal__item-qty-row">
+                <span>{item.type}</span>
+                <div className="cart-modal__item-qty-controls">
+                  <button onClick={() => updateQuantity(item.id, -1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item.id, 1)}>+</button>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
+      <div className="cart-modal__footer">
         <div className="cart-modal__summary">
           <div className="cart-modal__summary-row">
             <span>Sub total :</span>
@@ -127,16 +140,23 @@ function Mycart({ onClose, onCheckout, onSaveAndPayLater }) {
             <span>AED {total.toFixed(2)}</span>
           </div>
         </div>
-        <div className="cart-modal__footer">
-          <button className="cart-modal__checkout" onClick={onCheckout}>
-            Check out
-          </button>
-          <button className="cart-modal__save" onClick={onSaveAndPayLater}>
-            Save cart & pay later
-          </button>
-        </div>
+        <button
+          className="cart-modal__checkout"
+          onClick={() => navigate("/payment")}
+        >
+          Check out
+        </button>
+        <button
+          className="cart-modal__save"
+          onClick={() => {
+            onClose();
+            navigate("/product");
+          }}
+        >
+          Save cart & pay later
+        </button>
       </div>
-    </div>
+    </Modal>
   );
 }
 

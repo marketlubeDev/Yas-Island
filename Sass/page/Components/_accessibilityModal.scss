@@ -1,16 +1,4 @@
-// .custom-modal-wrapper .ant-modal-content {
-//   border-radius: 2.5rem !important;
-//   box-shadow: 0px -3.27px 25.546px 18.645px rgba(27, 36, 53, 0.3) !important;
-//   padding: 3rem !important;
-//   background: #ffffff;
-// }
-
-// .custom-modal-wrapper .ant-modal {
-//   width: 43.5625rem !important;
-//   padding: 2rem !important;
-//   border-radius: 2.5rem;
-//   background: #f4f3f3;
-// }
+// @use "../abstract/variables" as *;
 
 .accessibility-modal .ant-modal-content {
   border-radius: 16px;
@@ -30,7 +18,7 @@
 }
 
 .modal-content h2 {
-  color: #18142b;
+  color: var(--color-base-accessibility-modal-title);
   font-size: 2.125rem;
   font-style: normal;
   font-weight: 700;
@@ -39,7 +27,7 @@
 }
 
 .subtitle {
-  color: #514760;
+  color: var(--color-base-accessibility-modal-subtitle);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
@@ -62,11 +50,17 @@
   align-items: center;
   gap: 0.46694rem;
   flex-shrink: 0;
-  background: #ffffff;
+  background: var(--color-base-accessibility-modal-card-bg);
   border-radius: 0.74706rem;
-  border: 1.494px solid #e3daf2;
+  border: 1.494px solid var(--color-base-accessibility-modal-card-border);
   flex-direction: column;
   cursor: pointer;
+
+  &.active {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: rgba(0, 123, 255, 0.1);
+  }
 }
 
 .option-card:hover {
@@ -84,6 +78,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.active {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 8px;
+  }
 }
 
 .option-card p {
@@ -97,8 +97,15 @@
   text-transform: capitalize;
 }
 
+.invert-colors {
+  color: #18142b;
+  &.active {
+    color: #e7ebd4;
+  }
+}
+
 .continue-button {
-  background: #ffe600;
+  background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
   border-radius: 24px;
   padding: 15px 58px;

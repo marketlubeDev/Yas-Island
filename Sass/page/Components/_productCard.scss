@@ -1,7 +1,9 @@
+@use "../../abstract/variables" as *;
+
 .ProductCard {
   width: 100%;
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: var(--color-base-product-card-bg);
   border-radius: 0.5rem;
   padding: 2rem;
   overflow-y: scroll;
@@ -9,7 +11,7 @@
   scroll-behavior: smooth;
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
   }
 
   &::-webkit-scrollbar-track {
@@ -17,8 +19,9 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
+    background: var(--color-base-product-card-scroll-bar);
     border-radius: 4px;
+    border: 2px solid var(--color-base-product-card-scroll-bar-border);
   }
 
   &__grid {
@@ -32,11 +35,10 @@
     width: 306.491px;
     height: 446.105px;
     flex-shrink: 0;
-    background-color: #f0f0f0;
+    background-color: var(--color-base-product-card-card-item-bg);
     padding: 0.8rem;
     border-radius: 16.522px;
-    border: 0.826px solid #ccdaf6;
-    background: #fff;
+    border: 0.826px solid var(--color-base-product-card-card-item-border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +68,7 @@
       margin-top: 1.2rem;
 
       &__title {
-        color: #18142b;
+        color: var(--color-base-text);
         text-align: right;
         // font-family: Urbanist;
         font-size: 23px;
@@ -76,11 +78,11 @@
       }
 
       &__description {
-        color: #514760;
+        color: var(--color-base-text-secondary);
         // font-family: Urbanist;
         font-size: 18px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 28.8px;
         margin-top: 0.8rem;
       }
@@ -88,7 +90,7 @@
       &__divider {
         width: 100%;
         height: 0.826px;
-        background: #d9d9d9;
+        background: var(--color-base-product-card-divider);
         margin-top: 1rem;
       }
     }
@@ -108,7 +110,7 @@
         gap: 0.7rem;
 
         &__text {
-          color: #18142b;
+          color: var(--color-base-text);
           font-size: 18px;
           font-style: normal;
           font-weight: 600;
@@ -117,7 +119,7 @@
         }
 
         &__tax {
-          color: #594f67;
+          color: var(--color-base-product-card-price);
           font-size: 14px;
           font-style: normal;
           font-weight: 500;
@@ -139,9 +141,9 @@
     gap: 8.261px;
     flex-shrink: 0;
     border-radius: 57.828px;
-    border: 3.304px solid #f7d148;
-    background: #fff8a5;
-    color: #18142b;
+    border: 3.304px solid var(--color-base-side-bar-border);
+    background: var(--color-base-product-card-add-cart-btn-bg);
+    color: var(--color-base-text);
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -151,12 +153,13 @@
   }
 }
 
+// Product Modal
+
 .product-modal .ant-modal-content {
   padding: 3.5rem 3rem 2rem 3rem;
-  // overflow: hidden;
   border-radius: 40px;
-  border: 2.353px solid #ccdaf6;
-  background: #fff;
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  background: var(--color-base-product-card-card-item-bg);
 }
 .product-modal .ant-modal-mask {
   background: rgba(2, 7, 19, 0.67) !important;

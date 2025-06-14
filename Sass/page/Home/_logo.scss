@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // max-width: 48px;
   width: 12rem;
   padding: 2rem;
   background-color: yellow;
@@ -18,6 +17,12 @@
   &-desc {
     margin-top: -2rem;
   }
+}
+.header-logo-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
 }
 .header-logo {
   display: flex;

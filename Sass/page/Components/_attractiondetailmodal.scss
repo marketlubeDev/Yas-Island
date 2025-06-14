@@ -1,14 +1,16 @@
 .attraction-detail-modal {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
-  padding: 0 0 18px 0;
-  max-width: 390px;
+  max-width: 420px;
+  width: 98vw;
+  max-height: 99vh;
   height: 97vh;
-  margin: 2rem auto -1rem auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  // background: white;
+  // border-radius: 20px;
+  // // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  // padding: 0 0 18px 0;
+  // margin: 2rem auto -1rem auto;
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
 
   &__header {
     display: flex;
@@ -24,69 +26,42 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    margin-left: -20px;
+    margin-right: 14px;
     img {
-      width: 28px;
-      height: 28px;
-    }
-  }
-
-  &__close {
-    position: absolute;
-    top: 2%;
-    right: 10%;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    font-size: 32px;
-    line-height: 1;
-    border-radius: 70.476px;
-    // border: 3.524px solid #dcd6e5;
-    cursor: pointer;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-
-    &:hover {
-      background: #fff;
-    }
-
-    img {
-      width: 45px;
-      height: 45px;
+      width: 25px;
+      height: 25px;
     }
   }
 
   &__title {
-    font-size: 23px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
     color: #231942;
     flex: 1;
     text-align: center;
   }
 
   &__body {
-    padding: 0 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 auto;
-    overflow-y: auto;
+    padding: 24px 6px 24px 6px;
   }
 
   &__image {
-    width: 100%;
+    // width: 100%;
     border-radius: 16px;
-    margin: 18px 0 12px 0;
+    // margin: 5px 0 5px 0;
     object-fit: cover;
-    max-height: 180px;
+    max-height: 270px;
+    height: 270px;
+    display: block;
+    width: 100%;
   }
 
   &__main-title {
-    font-size: 23px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
     color: #231942;
+    margin-top: 20px;
     margin-bottom: 8px;
     text-align: left;
     width: 100%;
@@ -105,10 +80,45 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 18px 18px 18px;
-    gap: 12px;
-    margin-top: auto;
+    gap: 18px;
     background: #fff;
     border-radius: 0 0 24px 24px;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .attraction-detail-modal__footer-divider {
+      position: absolute;
+      top: -15px;
+      left: 2.5%;
+      width: 95%;
+      height: 2px;
+      background: #e6e6ef;
+      content: "";
+      z-index: 1;
+    }
+  }
+
+  &__footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 110px;
+  }
+
+  &__footer-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__footer-vertical-divider {
+    width: 1.5px;
+    height: 48px;
+    background: #e6e6ef;
+    border-radius: 2px;
+    margin: 0 1px 0 -1rem;
+    flex-shrink: 0;
   }
 
   &__price {
@@ -127,7 +137,7 @@
     color: #231942;
     border: none;
     border-radius: 2rem;
-    padding: 10px 67px;
+    padding: 10px 55px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -137,34 +147,88 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-left: -0.5rem;
   }
 }
 
 .attraction-detail-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(44, 44, 84, 0.6);
-  z-index: 9999;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // width: 100vw;
+  // height: 100vh;
+  // background: rgba(44, 44, 84, 0.6);
+  // z-index: 9999;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // backdrop-filter: blur(8px);
+}
+
+.attraction-detail-modal__close--outside {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10001;
+  // background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.1);
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.attraction-detail-modal__footer-divider {
-  width: 90%;
-  height: 1px;
-  background: #e6e6ef;
-  margin: 0 0px 12px 15px;
+.attraction-detail-modal__close--outside:hover {
+  background: #f6f6fa;
 }
 
-.attraction-detail-modal__footer-vertical-divider {
-  width: 1px;
-  height: 40px;
-  background: #e6e6ef;
+// This targets the Ant Design modal container when your modal is open
+.attraction-detail-modal .ant-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 100vh;
+  // height: 98vh;
+  // top: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
 
-  border-radius: 2px;
+// This targets the modal content area
+.attraction-detail-modal .ant-modal-content {
+  // height: 90vh;
+  margin-top: -2.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 8px;
+  // background-color: #231942;
+  justify-content: space-between;
+}
+
+.attraction-detail-modal .ant-modal-close,
+.booking-modal .ant-modal-close,
+.accessibility-modal .ant-modal-close {
+  position: absolute;
+  top: -8%;
+  right: 0px;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  background: transparent !important;
+  border: none !important;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
 }

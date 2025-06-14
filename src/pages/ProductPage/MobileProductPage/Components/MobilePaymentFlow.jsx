@@ -6,38 +6,51 @@ import PromoCodePopup from "./PromoCode";
 import MakePayment from "./MakePayment";
 import PaymentSuccessful from "./PaymentSuccessful";
 import Experience1 from "./Experience1";
+import MobileHeader from "./MobileHeader";
 
 const MobilePaymentFlow = () => {
   const [step, setStep] = useState(1);
 
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <EmailVerification
+            onBack={() => window.history.back()}
+            onConfirmEmail={() => setStep(2)}
+          />
+        );
+      case 2:
+        return (
+          <CheckOut
+            onBack={() => setStep(1)}
+            onClose={() => window.history.back()}
+            onApplyPromo={() => setStep(3)}
+            onProceedToPayment={() => setStep(4)}
+          />
+        );
+      case 3:
+        return <PromoCodePopup onClose={() => setStep(2)} />;
+      case 4:
+        return (
+          <MakePayment
+            onClose={() => window.history.back()}
+            onPaymentSuccess={() => setStep(5)}
+          />
+        );
+      case 5:
+        return <PaymentSuccessful onShowExperience={() => setStep(6)} />;
+      case 6:
+        return <Experience1 />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      {step === 1 && (
-        <EmailVerification
-          onConfirmEmail={() => setStep(2)}
-          onBack={() => window.history.back()}
-        />
-      )}
-      {step === 2 && (
-        <ConfirmEmail onBack={() => setStep(1)} onConfirm={() => setStep(3)} />
-      )}
-      {step === 3 && (
-        <CheckOut
-          onBack={() => setStep(2)}
-          onClose={() => window.history.back()}
-          onApplyPromo={() => setStep(4)}
-          onProceedToPayment={() => setStep(5)}
-        />
-      )}
-      {step === 4 && <PromoCodePopup onClose={() => setStep(3)} />}
-      {step === 5 && (
-        <MakePayment
-          onClose={() => window.history.back()}
-          onPaymentSuccess={() => setStep(6)}
-        />
-      )}
-      {step === 6 && <PaymentSuccessful onShowExperience={() => setStep(7)} />}
-      {step === 7 && <Experience1 />}
+      <MobileHeader />
+      {renderStep()}
     </>
   );
 };
