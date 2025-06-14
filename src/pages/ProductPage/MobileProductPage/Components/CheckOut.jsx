@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MobileHeader from "./MobileHeader";
 import backIcon from "../../../../assets/icons/back.svg";
-import PaymentHeader from "./PaymentHeader";
+import PaymentHeader from "./paymentHeader";
 import { useTranslation } from "react-i18next";
 
 function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
@@ -37,7 +37,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
 
   return (
     <div className="email-checkout__overlay">
-      <PaymentHeader step={3} onBack={onBack} />
+      <PaymentHeader step={2} onBack={onBack} />
       <div className="email-checkout__container">
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>
@@ -174,7 +174,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 className="email-checkout__summary-totals"
                 style={{
                   color: "var(--color-email-form-label)",
-                  backgroundColor: "var(--color-checkout-summary-bg)",
+                  backgroundColor: "var(--color-checkout-summary-row-bg)",
                   border: "1px solid var(--color-checkout-summary-border)",
                 }}
               >

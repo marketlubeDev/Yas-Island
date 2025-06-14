@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import ticketImg from "../../../../assets/images/ticket.svg"; // Replace with your actual ticket image path
 import smileGreen from "../../../../assets/images/green.png";
 import smileYellow from "../../../../assets/images/yellow.jpg";
 import smileRed from "../../../../assets/images/red.jpg";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 function Experience1() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selected) {
+      const timer = setTimeout(() => {
+        navigate("/product"); // Go to MobileProductList page
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [selected, navigate]);
 
   return (
     <div className="experience-outer-bg">

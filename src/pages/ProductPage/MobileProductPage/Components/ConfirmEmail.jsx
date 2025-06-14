@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
 import backIcon from "../../../../assets/icons/back.svg";
-import PaymentHeader from "./PaymentHeader";
+import PaymentHeader from "./paymentHeader";
 
 function ConfirmEmail({
   email = "vivek@dev.panashi.ae",
@@ -49,7 +49,7 @@ function ConfirmEmail({
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <PaymentHeader step={2} onBack={onBack} />
+        <PaymentHeader step={1} onBack={onBack} />
         <div className="confirm-email__content">
           <div className="confirm-email__form-container">
             <div className="confirm-email__label">

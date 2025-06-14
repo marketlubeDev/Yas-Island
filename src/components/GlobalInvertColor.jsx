@@ -616,6 +616,18 @@ export default function GlobalInvertColor() {
       "--color-cart-price-color",
       isDarkMode ? "#FFAD33" : "#075faf"
     );
+    document.documentElement.style.setProperty(
+      "--color-country-code-clr",
+      isDarkMode ? "#E7EBD4" : "#ada5b7"
+    );
+    document.documentElement.style.setProperty(
+      "--color-checkout-summary-row-bg",
+      isDarkMode ? "#0B0807" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-promo-input-border",
+      isDarkMode ? "#909883" : "#6f677c"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1131,6 +1143,18 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-cart-price-color",
         "#FFAD33"
+      );
+      document.documentElement.style.setProperty(
+        "--color-country-code-clr",
+        "#ada5b7"
+      );
+      document.documentElement.style.setProperty(
+        "--color-checkout-summary-row-bg",
+        "#0B0807"
+      );
+      document.documentElement.style.setProperty(
+        "--color-promo-input-border",
+        "#6f677c"
       );
     };
   }, [isDarkMode]);

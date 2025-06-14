@@ -173,6 +173,8 @@ export const ar = {
       },
       nationalities: {
         UAE: "الإمارات العربية المتحدة",
+        India: "الهند",
+        USA: "الولايات المتحدة",
       },
       phoneCodes: {
         UAE: "+٩٧١",

@@ -90,4 +90,17 @@
       background: var(--color-pymnt-step-divider-after); // gray
     }
   }
+
+  &__steps-divider--step1::before {
+    background: var(--color-pymnt-step-divider-before); // blue
+  }
+  &__steps-divider--step1::after {
+    background: var(--color-pymnt-step-divider-after); // gray
+  }
+  &__steps-divider--step2::before {
+    background: var(--color-pymnt-step-divider-after); // gray
+  }
+  &__steps-divider--step2::after {
+    background: var(--color-pymnt-step-divider-before); // blue
+  }
 }

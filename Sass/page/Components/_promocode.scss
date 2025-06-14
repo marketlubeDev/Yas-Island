@@ -83,3 +83,27 @@
     margin-top: 8px;
   }
 }
+
+.promo-popup-custom-close {
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #dcd6e5;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.2s;
+}
+.promo-popup-custom-close:hover {
+  background: #fff;
+}
+.promo-popup-custom-close img {
+  width: 25px;
+  height: 25px;
+}

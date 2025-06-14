@@ -58,7 +58,9 @@ function PaymentHeader({ step, onBack }) {
             <span>{t("payment.steps.checkout")}</span>
           </div>
         </div>
-        <div className="payment-header__steps-divider"></div>
+        <div
+          className={`payment-header__steps-divider payment-header__steps-divider--step${step}`}
+        ></div>
       </div>
     </>
   );

@@ -199,15 +199,15 @@
   &-apply {
     background: var(--color-email-form-box);
     color: var(--color-email-form-label);
-    border: 1.5px solid var(--color-email-form-input-border);
-    border-radius: 6px;
-    padding: 8px 10px;
+    border: 0.554px solid var(--color-promo-input-border);
+    border-radius: 0.55381rem;
+    padding: 9px 10px;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
     box-shadow: none;
-    height: 40px;
+    height: 50px;
     margin: 0;
     align-self: stretch;
   }
@@ -231,7 +231,7 @@
 .email-checkout__select {
   width: 200px;
   max-width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 0 6px 0;
   border: none;
   border-bottom: 2px solid var(--color-email-form-input-border);
@@ -244,11 +244,39 @@
   -moz-appearance: none;
   margin-top: 2px;
   box-shadow: none;
+  background-image: url("../../../src/assets/icons/down.svg");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 0.5545rem 0.5545rem;
 
   &:focus {
     border-bottom: 2px solid #231942;
     background: transparent;
   }
+}
+
+.email-checkout__select option,
+.email-checkout__country-code-select option {
+  font-size: 13px;
+  background-color: var(--color-email-form-box) !important;
+}
+
+.email-checkout__select:focus option:checked,
+.email-checkout__country-code-select:focus option:checked {
+  // background: #ffea00 !important;
+  color: var(--color-email-form-label) !important;
+}
+
+/* For Chrome, Edge, Safari: */
+.email-checkout__select:focus,
+.email-checkout__country-code-select:focus {
+  outline: none;
+}
+
+.email-checkout__select option:checked,
+.email-checkout__country-code-select option:checked {
+  // background: #ffea00 !important;
+  color: var(--color-email-form-label) !important;
 }
 
 .email-checkout__phone-row {
@@ -259,20 +287,20 @@
 
 .email-checkout__country-code {
   font-weight: 500;
-  color: #ada5b7;
+  color: var(--color-country-code-clr);
   font-size: 16px;
   // border-bottom: 2px solid #231942;
   padding-bottom: 2px;
 }
 
 .email-checkout__country-code-select {
-  width: 60px;
+  width: 55px;
   min-width: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  color: #ada5b7;
+  color: var(--color-country-code-clr);
   border: none;
-  border-bottom: 2px solid #231942;
+  border-bottom: 2px solid var(--color-country-code-clr);
   background: transparent;
   padding: 2px 0 12px 2px;
   appearance: none;
@@ -281,11 +309,10 @@
   outline: none;
   cursor: pointer;
   margin-right: 6px;
-  /* Optional: add a custom arrow */
-  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-image: url("../../../src/assets/icons/down.svg");
   background-repeat: no-repeat;
   background-position: right 2px center;
-  background-size: 16px 16px;
+  background-size: 0.5545rem 0.5545rem;
 }
 
 .email-checkout__summary-row--column {
@@ -310,11 +337,12 @@
 
 .email-checkout__summary-totals {
   background: #fff;
-  border-radius: 10px;
-  padding: 14px 25px 10px 25px;
-
+  // border-radius: 10px;
+  padding: 14px 40px 10px 35px;
+  width: 110%;
+  margin-left: -12px;
   margin-top: 25px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+  // box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
 }
 
 .email-checkout__promo-box {
@@ -333,16 +361,16 @@
   letter-spacing: 0.5em;
   font-size: 18px;
   background: var(--color-email-form-box);
-  border-radius: 6px;
-  border: 1.5px solid var(--color-email-form-input-border);
+  border-radius: 0.55381rem;
+  border: 0.554px solid var(--color-promo-input-border);
   padding: 8px 10px;
-  width: 120px;
+  width: 70px;
   box-sizing: border-box;
 }
 
 .email-checkout__checkboxes input[type="checkbox"] {
-  accent-color: var(--color-email-form-input-border);
-  background-color: var(--color-email-form-box);
+  accent-color: #ffea00;
+  background-color: #fff;
   border: 2px solid var(--color-email-form-input-border);
   width: 15px;
   height: 13px;

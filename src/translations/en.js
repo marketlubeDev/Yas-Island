@@ -171,12 +171,17 @@ export const en = {
       phoneNumber: "PHONE NUMBER (PREFERRED NUMBER) *",
       countries: {
         UAE: "UAE",
+        India: "India",
+        USA: "USA",
       },
       nationalities: {
         UAE: "UAE",
+        India: "India",
       },
       phoneCodes: {
         UAE: "+971",
+        India: "+91",
+        USA: "+1",
       },
     },
     orderSummary: {
