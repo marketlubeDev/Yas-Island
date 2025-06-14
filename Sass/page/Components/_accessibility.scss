@@ -1,19 +1,3 @@
-// .accessibility-popup-overlay {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background: rgba(20, 20, 40, 0.75);
-//   backdrop-filter: blur(8px);
-//   z-index: 20000;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
 .accessibility-popup-card {
   max-width: 380px;
   width: 100%;
@@ -21,37 +5,9 @@
   text-align: center;
 }
 
-// .accessibility-popup-close {
-//   position: absolute;
-//   top: 40px;
-//   right: 30px;
-//   border-radius: 50%;
-//   height: 45px;
-//   width: 45px;
-//   font-size: 32px;
-//   line-height: 1;
-//   border: 3.5px solid #dcd6e5;
-//   cursor: pointer;
-//   background: transparent;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   z-index: 10000;
-//   transition: background 0.2s;
-
-//   &:hover {
-//     background: #fff;
-//   }
-
-//   img {
-//     width: 18px;
-//     height: 18px;
-//   }
-// }
-
 .accessibility-modal .custom-modal-close {
   position: absolute;
-  top: -150%;
+  top: -20%;
   right: 0;
   border-radius: 50%;
   height: 50px;
@@ -100,7 +56,7 @@
 }
 
 .accessibility-popup-option {
-  background: white;
+  background: var(--color-email-form-box);
   border-radius: 12px;
   padding: 28px 10px 28px 10px;
   display: flex;
@@ -123,14 +79,14 @@
 
 .accessibility-popup-label {
   font-size: 14px;
-  color: #18142b;
+  color: var(--color-email-form-label);
   font-weight: 500;
   line-height: 1.2;
 }
 
 .accessibility-popup-continue {
-  background: #ffe600;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 14px 0;
@@ -142,7 +98,7 @@
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
   &:hover {
-    background: #fff700;
+    background: var(--color-email-form-confirm-btn);
   }
 }
 
@@ -151,7 +107,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 3.31513rem;
-  border: 3.183px solid #d3b8ff;
+  border: 3.183px solid var(--color-accessibility-popup-icon-border);
   background: #e1f1ff;
   padding: 1rem;
   display: flex;

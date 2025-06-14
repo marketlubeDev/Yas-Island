@@ -602,6 +602,20 @@ export default function GlobalInvertColor() {
       "--color-checkout-summary-border",
       isDarkMode ? "#909883" : "none"
     );
+    document.documentElement.style.setProperty(
+      "--color-accessibility-popup-icon-border",
+      isDarkMode
+        ? "linear-gradient(135deg, #3F6270 0%, #D37B2F 50%, #FFAD33 100%)"
+        : "#d3b8ff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-cart-item-border",
+      isDarkMode ? "#909883" : "none"
+    );
+    document.documentElement.style.setProperty(
+      "--color-cart-price-color",
+      isDarkMode ? "#FFAD33" : "#075faf"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1103,6 +1117,20 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-checkout-summary-border",
         "none"
+      );
+      document.documentElement.style.setProperty(
+        "--color-accessibility-popup-icon-border",
+        "#d3b8ff"
+      );
+
+      //mycart
+      document.documentElement.style.setProperty(
+        "--color-cart-item-border",
+        "none"
+      );
+      document.documentElement.style.setProperty(
+        "--color-cart-price-color",
+        "#FFAD33"
       );
     };
   }, [isDarkMode]);

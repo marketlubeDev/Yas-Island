@@ -247,7 +247,10 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                 {t("payment.orderSummary.terms.acceptTerms")}{" "}
                 <a
                   href="#"
-                  style={{ color: "#18142B", textDecoration: "underline" }}
+                  style={{
+                    color: "rgb(144, 137, 153)",
+                    textDecoration: "underline",
+                  }}
                 >
                   {t("payment.orderSummary.terms.termsAndConditions")}
                 </a>

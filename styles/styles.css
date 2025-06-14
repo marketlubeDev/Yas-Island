@@ -151,6 +151,9 @@
   --color-checkout-summary-border: none;
   --color-checkout-summary-bg: #f4f3f3;
   --color-accessibility-popup-option-border: #e3daf2;
+  --color-accessibility-popup-icon-border: #d3b8ff;
+  --color-cart-item-border: none;
+  --color-cart-price-color: #075faf;
   --direction: ltr;
   --text-align: left;
   --float-start: left;
@@ -2926,7 +2929,7 @@ body {
 
 .accessibility-modal .custom-modal-close {
   position: absolute;
-  top: -150%;
+  top: -20%;
   right: 0;
   border-radius: 50%;
   height: 50px;
@@ -2973,7 +2976,7 @@ body {
 }
 
 .accessibility-popup-option {
-  background: white;
+  background: var(--color-email-form-box);
   border-radius: 12px;
   padding: 28px 10px 28px 10px;
   display: flex;
@@ -2996,14 +2999,14 @@ body {
 
 .accessibility-popup-label {
   font-size: 14px;
-  color: #18142b;
+  color: var(--color-email-form-label);
   font-weight: 500;
   line-height: 1.2;
 }
 
 .accessibility-popup-continue {
-  background: #ffe600;
-  color: #231942;
+  background: var(--color-email-form-confirm-btn);
+  color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
   padding: 14px 0;
@@ -3016,7 +3019,7 @@ body {
   transition: background 0.2s;
 }
 .accessibility-popup-continue:hover {
-  background: #fff700;
+  background: var(--color-email-form-confirm-btn);
 }
 
 .accessibility-popup-icon-circle {
@@ -3024,7 +3027,7 @@ body {
   width: 4rem;
   height: 4rem;
   border-radius: 3.31513rem;
-  border: 3.183px solid #d3b8ff;
+  border: 3.183px solid var(--color-accessibility-popup-icon-border);
   background: #e1f1ff;
   padding: 1rem;
   display: flex;
@@ -3161,7 +3164,7 @@ body {
   background: var(--color-email-form-box);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
-  border: 1.5px solid var(--color-pymnt-step-divider-before);
+  border: 1.5px solid var(--color-cart-item-border);
   margin-bottom: 12px;
   padding: 8px;
   align-items: flex-start;
@@ -3194,7 +3197,7 @@ body {
 }
 
 .cart-modal__item-price-main {
-  color: var(--color-email-form-label);
+  color: var(--color-cart-price-color);
   font-weight: 500;
   font-size: 15px;
   margin-right: 8px;
@@ -5470,10 +5473,6 @@ body {
 .dark-mode .ant-modal .ant-modal-content {
   background-color: var(--color-base-mobile-product-page-text, #18142b);
   color: var(--color-base-mobile-product-page-bg, #ffffff);
-}
-.ant-modal .ant-modal-close {
-  top: 16px;
-  right: 16px;
 }
 .ant-modal .ant-modal-close .ant-modal-close-x {
   width: 24px;

@@ -1,17 +1,3 @@
-// .cart-modal-overlay {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background-color: rgba(44, 44, 84, 0.6);
-//   backdrop-filter: blur(6px);
-//   z-index: 9999;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
 .cart-modal {
   position: relative;
   background: var(--color-email-form-box);
@@ -92,7 +78,7 @@
   background: var(--color-email-form-box);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
-  border: 1.5px solid var(--color-pymnt-step-divider-before);
+  border: 1.5px solid var(--color-cart-item-border);
   margin-bottom: 12px;
   padding: 8px;
   align-items: flex-start;
@@ -125,7 +111,7 @@
 }
 
 .cart-modal__item-price-main {
-  color: var(--color-email-form-label);
+  color: var(--color-cart-price-color);
   font-weight: 500;
   font-size: 15px;
   margin-right: 8px;

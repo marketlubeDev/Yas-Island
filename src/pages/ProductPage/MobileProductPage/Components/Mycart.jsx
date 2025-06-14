@@ -114,10 +114,14 @@ function Mycart({ onClose, visible }) {
                 Valid from {item.date} to {item.date}
               </div>
               <div className="cart-modal__item-qty-row">
-                <span>{item.type}</span>
+                <span style={{ color: "var(--color-email-form-label)" }}>
+                  {item.type}
+                </span>
                 <div className="cart-modal__item-qty-controls">
                   <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                  <span>{item.quantity}</span>
+                  <span style={{ color: "var(--color-email-form-label)" }}>
+                    {item.quantity}
+                  </span>
                   <button onClick={() => updateQuantity(item.id, 1)}>+</button>
                 </div>
               </div>
