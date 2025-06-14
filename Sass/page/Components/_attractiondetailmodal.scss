@@ -140,7 +140,7 @@
     color: var(--color-dtl-add-btn-clr);
     border: none;
     border-radius: 2rem;
-    padding: 10px 55px;
+    padding: 10px 48px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -154,28 +154,6 @@
   }
 }
 
-// .attraction-detail-modal__close--outside {
-//   position: absolute;
-//   top: 18px;
-//   right: 18px;
-//   z-index: 10001;
-//   // background: #fff;
-//   border-radius: 50%;
-//   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.1);
-//   width: 48px;
-//   height: 48px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-//   transition: background 0.2s;
-// }
-
-// .attraction-detail-modal__close--outside:hover {
-//   background: var(--color-dtl-close-btn-bg);
-// }
-
-// This targets the Ant Design modal container when your modal is open
 .attraction-detail-modal .ant-modal {
   max-width: 420px;
   width: 98vw;
@@ -227,7 +205,7 @@
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -8%;
+  top: -9%;
   right: 0;
   border-radius: 50%;
   height: 50px;

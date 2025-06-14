@@ -109,11 +109,13 @@ function MobileProductPage() {
   };
 
   return (
-    <>
-      <MobileHeader />
-      <MobileTop />
-      <AttractionsList attractions={attraction} />
-      <MobileBottomNav />
+    <div className="mobile-product-page">
+      <MobileHeader className="mobile-header" />
+      <MobileTop className="mobile-topnav" />
+      <MobileBottomNav className="mobile-bottomnav" />
+      <div className="scroll-section">
+        <AttractionsList attractions={attraction} />
+      </div>
 
       {showEmailVerification && (
         <EmailVerification
@@ -179,7 +181,7 @@ function MobileProductPage() {
           // ...other props as needed
         />
       )}
-    </>
+    </div>
   );
 }
 

@@ -157,6 +157,7 @@
   --color-country-code-clr: #ada5b7;
   --color-checkout-summary-row-bg: #fff;
   --color-promo-input-border: #6f677c;
+  --color-email-form-box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
   --direction: ltr;
   --text-align: left;
   --float-start: left;
@@ -2629,7 +2630,46 @@ body {
   text-align: right;
 }
 
+.mobile-product-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mobile-header,
+.mobile-topnav,
+.mobile-bottomnav {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 .mobile-header {
+  top: 0;
+  height: 56px;
+}
+
+.mobile-topnav {
+  top: 56px;
+  height: 48px;
+}
+
+.mobile-bottomnav {
+  bottom: 0;
+  height: 56px;
+}
+
+.scroll-section {
+  flex: 1 1 auto;
+  margin-bottom: 56px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-header {
+  height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -2713,6 +2753,7 @@ body {
 }
 
 .mobile-top {
+  margin-top: 5rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -3276,8 +3317,7 @@ body {
   background: var(--color-email-form-box);
   border-radius: 0 0 24px 24px;
   margin-top: 4rem;
-  width: 120%;
-  margin-left: -10%;
+  width: 100%;
 }
 
 .cart-modal__checkout,
@@ -3353,7 +3393,7 @@ body {
 .email-verification-form-box {
   background: var(--color-email-form-box);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
+  box-shadow: var(--color-email-form-box-shadow);
   padding: 38px 40px 34px 40px;
   margin-top: 24px;
   height: 85%;
@@ -3426,7 +3466,7 @@ body {
   margin: 20px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  box-shadow: var(--color-email-form-box-shadow);
   padding: 32px 18px;
   height: 60vh;
   overflow-y: auto;
@@ -3672,10 +3712,10 @@ body {
 .email-checkout__form-container {
   width: 90%;
   max-width: 400px;
-  margin: 0 auto 24px auto;
+  margin: 30px auto 24px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  box-shadow: var(--color-email-form-box-shadow);
   padding: 32px 40px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -3920,7 +3960,7 @@ body {
 .email-checkout__summary-totals {
   background: #fff;
   padding: 14px 40px 10px 35px;
-  width: 110%;
+  width: 108%;
   margin-left: -12px;
   margin-top: 25px;
 }
@@ -4180,7 +4220,7 @@ body {
   background-color: var(--color-checkout-summary-row-bg);
   color: var(--color-email-form-label);
   padding: 14px 40px 10px 35px;
-  width: 110%;
+  width: 107%;
   margin-left: -12px;
   margin-top: 25px;
 }
@@ -4662,7 +4702,7 @@ body {
   color: var(--color-dtl-add-btn-clr);
   border: none;
   border-radius: 2rem;
-  padding: 10px 55px;
+  padding: 10px 48px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -4720,7 +4760,7 @@ body {
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -8%;
+  top: -9%;
   right: 0;
   border-radius: 50%;
   height: 50px;
@@ -5022,8 +5062,8 @@ body {
   gap: 10px;
   padding: 18px 18px 18px 18px;
   background: var(--color-bkg-footer-bg);
-  width: 113%;
-  margin-left: -1.5rem;
+  width: 100%;
+  margin-left: 0;
   box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.08);
 }
 
