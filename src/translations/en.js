@@ -99,7 +99,11 @@ export const en = {
   cart: {
     title: "My Cart",
     bookingFor: "Booking for",
+    currency: "AED",
+    validFrom: "Valid from",
+    to: "to",
     adults: "Adults",
+    children: "Children",
     subTotal: "Sub total :",
     vatAndTax: "VAT & Tax :",
     total: "Total :",

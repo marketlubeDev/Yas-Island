@@ -112,6 +112,10 @@ export const ar = {
       price: "درهم 328.57",
       vatAndTax: "ضريبة القيمة المضافة 16.43",
     },
+    currency: "درهم",
+    validFrom: "صالح من",
+    to: "إلى",
+    children: "الأطفال",
   },
   product: {
     addToCart: "أضف إلى السلة",
