@@ -5,7 +5,7 @@ export default function PaymentCheckout() {
   const [showVerification, setShowVerification] = useState(false);
 
   return (
-    <div style={{ background: "#f4f3f3" }}>
+    <div className="payment-checkout-page">
       {/* <PaymentCheckoutHeader /> */}
       <PaymentCheckoutBody
         showVerification={showVerification}

@@ -159,6 +159,7 @@ export default function ProductCard({ productList }) {
 
       <Modal
         title={null}
+        header={null}
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}

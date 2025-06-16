@@ -156,10 +156,10 @@
 // Product Modal
 
 .product-modal .ant-modal-content {
-  padding: 3.5rem 3rem 2rem 3rem;
+  padding: 3rem !important;
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
-  background: var(--color-base-product-card-card-item-bg);
+  background: var(--color-base-bg) !important;
 }
 .product-modal .ant-modal-mask {
   background: rgba(2, 7, 19, 0.67) !important;
@@ -168,7 +168,7 @@
 
 .product-modal .ant-modal-close {
   position: relative;
-  top: -90px;
+  top: -110px;
   right: -98.5%;
   border-radius: 50%;
   height: 50px;
@@ -229,7 +229,7 @@
 
 .product-modal-details .description {
   margin-bottom: 32px;
-  color: #514760;
+  color: var(--color-base-text-secondary);
   // font-family: Urbanist;
   font-size: 1rem;
   font-style: normal;
@@ -243,11 +243,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding-top: 2rem;
-  border-top: 0.14706rem solid #d9d9d9;
+  border-top: 0.14706rem solid var(--color-base-product-card-divider);
 }
 
 .price-details h3 {
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.375rem;
   font-style: normal;
   font-weight: 600;
@@ -256,7 +256,7 @@
 }
 
 .price-details .tax {
-  color: #594f67;
+  color: var(--color-base-text-secondary);
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -265,7 +265,7 @@
 }
 
 .add-to-cart-btn {
-  background: #ffe600;
+  background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
   border-radius: 48px;
   font-weight: 600;
@@ -282,14 +282,10 @@
   flex-shrink: 0;
 }
 
-.add-to-cart-btn:hover {
-  background: #ffe600;
-}
-
 .vertical-divider {
   height: 100%;
   width: 0.14706rem;
-  background: #d9d9d9;
+  background: var(--color-base-product-card-divider);
   margin: 0 15px;
 }
 
@@ -465,13 +461,13 @@
 
 /* Calendar container */
 .calendar-container {
-  background: white;
+  background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
   padding: 0 40px;
   width: 40%;
 
   h2 {
-    color: #18142b;
+    color: var(--color-base-text);
     // font-family: Urbanist;
     font-size: 2.125rem !important;
     font-style: normal;
@@ -483,10 +479,10 @@
 }
 
 .calendar-wrapper {
-  border: 0.826px solid #ccdaf6;
+  border: 0.826px solid var(--color-base-product-card-card-item-border);
   border-radius: 2.6825rem;
-  border: 1px solid #6f677c;
-  background: #fff;
+  border: 1px solid var(--color-base-product-card-card-item-border);
+  background: var(--color-base-product-card-card-item-bg);
   padding: 2rem;
 }
 
@@ -507,7 +503,7 @@
 .calendar-header h3 {
   font-size: 18px;
   font-weight: 500;
-  color: #18142b;
+  color: var(--color-base-text);
   text-align: right;
   font-size: 1.5rem;
   font-style: normal;
@@ -534,7 +530,7 @@
 
 .calendar-weekdays span {
   font-size: 14px;
-  color: #ff69b4; /* Pink color as shown in the image */
+  color: var(--color-bkg-clndr-dayname-clr);
   padding: 8px;
 }
 
@@ -591,8 +587,7 @@
 }
 
 .section-title {
-  color: #18142b;
-  // font-family: Urbanist;
+  color: var(--color-base-text);
   font-size: 2.125rem !important;
   font-style: normal;
   font-weight: 700;
@@ -602,11 +597,11 @@
 }
 
 .guest-container {
-  background: white;
+  background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border: 0.826px solid #ccdaf6;
+  border: 0.826px solid var(--color-base-product-card-card-item-border);
   width: 25.5625rem;
   height: fit-content;
   flex-shrink: 0;
@@ -617,9 +612,9 @@
   font-weight: 500;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-base-product-card-divider);
   text-align: center;
-  color: #18142b;
+  color: var(--color-base-text);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -639,7 +634,7 @@
 }
 
 .guest-label {
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -657,14 +652,14 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 3.524px solid #dcd6e5;
-  background: white;
+  border: 3.524px solid var(--color-base-product-card-card-item-border);
+  background: var(--color-base-product-card-card-item-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  color: #18142b;
+  color: var(--color-base-text);
   font-weight: 700;
 }
 
@@ -672,11 +667,11 @@
   font-size: 16px;
   min-width: 20px;
   text-align: center;
-  color: #18142b;
+  color: var(--color-base-text);
 }
 
 .guest-note {
-  color: #666;
+  color: var(--color-base-text-secondary);
   font-size: 12px;
   text-align: center;
   margin-top: 16px;
@@ -732,7 +727,7 @@
 .booking-section-divider {
   width: 2px;
   height: 600px;
-  background-color: #d9d9d9;
+  background-color: var(--color-base-product-card-divider);
   margin: 0 3rem;
 }
 
