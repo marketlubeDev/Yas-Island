@@ -150,3 +150,14 @@
   gap: 16px;
   align-items: center;
 }
+
+.ar-product-head {
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  gap: 2rem;
+  position: relative;
+  top: 1.6rem;
+  right: -1.5rem;
+  width: 100%;
+}
