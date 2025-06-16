@@ -158,6 +158,8 @@ export default function ProductCard() {
       </div>
 
       <Modal
+        title={null}
+        header={null}
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
@@ -169,7 +171,6 @@ export default function ProductCard() {
             <img src={closeIcon} alt="close" />
           </span>
         }
-        closable={false}
       >
         {selectedProduct && (
           <ProductModal
