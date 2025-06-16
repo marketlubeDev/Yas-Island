@@ -703,8 +703,8 @@ body {
 
 .product-modal .ant-modal-close {
   position: relative;
-  top: -115px;
-  right: -99%;
+  top: -90px;
+  right: -98.5%;
   border-radius: 50%;
   height: 50px;
   width: 50px;
@@ -715,6 +715,12 @@ body {
 }
 .product-modal .ant-modal-close:hover {
   background: #fff;
+}
+
+.product-modal .ant-modal-close .custom-modal-close {
+  width: 100%;
+  color: #fff;
+  transform: translateX(40%);
 }
 
 .product-modal-content {
@@ -747,7 +753,7 @@ body {
 .product-modal-details h2 {
   font-size: 24px;
   margin-bottom: 16px;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 2.125rem;
   font-style: normal;
   font-weight: 700;
