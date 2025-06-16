@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PersonalDetailsForm from "./PersonalDetailsForm";
 import OrderSummary from "./OrderSummary";
 import { useTranslation } from "react-i18next";
+import AmazonPayDemoButton from "../../../components/payment/amazonpay";
 
 export default function PaymentDetails({ onProceed }) {
   const { t } = useTranslation();
@@ -20,9 +21,10 @@ export default function PaymentDetails({ onProceed }) {
       <PersonalDetailsForm formData={formData} setFormData={setFormData} />
       <div className="payment-form__right">
         <OrderSummary formData={formData} setFormData={setFormData} />
-        <button className="proceedbtn" onClick={onProceed}>
+        {/* <button className="proceedbtn" onClick={onProceed}>
           {t("payment.paymentDetails.proceedToPayment")}
-        </button>
+        </button> */}
+        <AmazonPayDemoButton />
       </div>
     </div>
   );

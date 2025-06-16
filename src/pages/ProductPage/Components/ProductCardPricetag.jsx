@@ -4,8 +4,8 @@ import AddtoCartbtn from "./AddtoCartbtn";
 export default function ProductCardPricetag({
   price,
   tax,
-  currency,
-  taxDescription,
+  currency = "AED",
+  taxDescription = "Tax",
   onAddToCart,
 }) {
   return (

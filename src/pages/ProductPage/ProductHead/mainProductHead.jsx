@@ -37,6 +37,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
+  
   const changeLanguage = (lng) => {
     console.log(lng, "lndfdfdfdfg");
 

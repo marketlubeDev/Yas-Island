@@ -9,6 +9,7 @@ import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
 import AccessibilityModal from "./Components/AccessibilityModal";
 import CartModal from "./Components/CartModal";
 import MainProductHead from "./ProductHead/mainProductHead";
+import useGetProductList from "../../apiHooks/product/product";
 // import PaymentCheckoutBody from "../../PaymentCheckout/Components/PaymentCheckoutBody";
 
 export default function ProductPage() {
@@ -17,6 +18,7 @@ export default function ProductPage() {
     useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
+  const { productList, isLoading, isError } = useGetProductList();
   return (
     <div className="product">
       <SideBar />
@@ -26,7 +28,7 @@ export default function ProductPage() {
           onCartOpen={() => setIsCartModalOpen(true)}
         />
         <ProductHead label="Sort by" /> */}
-        <ProductCard />
+        <ProductCard productList={productList} />
         {(isMobile || isTablet) && <ProductSoloThumbnail />}
         {(isMobile || isTablet) && <MobSelectorGroup />}
         <AccessibilityModal
