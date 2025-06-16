@@ -18,6 +18,7 @@ import closeIcon from "../../../assets/icons/close.svg";
 export default function ProductCard({ productList }) {  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showBookingSection, setShowBookingSection] = useState(false);
 
   const showModal = (product) => {
     setSelectedProduct(product);
@@ -27,6 +28,7 @@ export default function ProductCard({ productList }) {
   const handleCancel = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
+    setShowBookingSection(false);
   };
 
   // const product = [
@@ -173,6 +175,8 @@ export default function ProductCard({ productList }) {
           <ProductModal
             selectedProduct={selectedProduct}
             onClose={handleCancel}
+            showBookingSection={showBookingSection}
+            setShowBookingSection={setShowBookingSection}
           />
         )}
       </Modal>

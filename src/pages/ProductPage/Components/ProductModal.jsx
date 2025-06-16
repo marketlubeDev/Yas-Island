@@ -4,8 +4,11 @@ import Product1 from "../../../assets/images/product1.png";
 
 import { useTranslation } from "react-i18next";
 
-export default function ProductModal({ selectedProduct }) {
-  const [showBookingSection, setShowBookingSection] = useState(false);
+export default function ProductModal({
+  selectedProduct,
+  showBookingSection,
+  setShowBookingSection,
+}) {
   const { t } = useTranslation();
 
   const handleAddToCart = () => {

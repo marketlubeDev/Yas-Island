@@ -118,3 +118,42 @@
     text-align: right;
   }
 }
+
+.mobile-product-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // full viewport height
+  overflow: hidden;
+}
+
+.mobile-header,
+.mobile-topnav,
+.mobile-bottomnav {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.mobile-header {
+  top: 0;
+  height: 56px; // adjust as needed
+}
+
+.mobile-topnav {
+  top: 56px; // adjust based on header height
+  height: 48px; // adjust as needed
+}
+
+.mobile-bottomnav {
+  bottom: 0;
+  height: 56px; // adjust as needed
+}
+
+.scroll-section {
+  flex: 1 1 auto;
+  // margin-top: 104px; // 56px header + 48px topnav
+  margin-bottom: 56px; // bottomnav height
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

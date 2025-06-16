@@ -38,7 +38,7 @@
 .email-verification-form-box {
   background: var(--color-email-form-box);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
+  box-shadow: var(--color-email-form-box-shadow);
   padding: 38px 40px 34px 40px;
   margin-top: 24px;
   height: 85%;

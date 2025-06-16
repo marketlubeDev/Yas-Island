@@ -168,9 +168,8 @@
 
 .product-modal .ant-modal-close {
   position: relative;
-  top: -115px;
-  right: -99%;
-  // z-index: 10;
+  top: -90px;
+  right: -98.5%;
   border-radius: 50%;
   height: 50px;
   width: 50px;
@@ -184,13 +183,11 @@
   }
 }
 
-// .product-modal .ant-modal-close .custom-modal-close {
-//   position: absolute;
-//   top: -16px;
-//   right: 16px;
-//   color: #fff;
-//   background: rgba(0, 0, 0, 0.5);
-// }
+.product-modal .ant-modal-close .custom-modal-close {
+  width: 100%;
+  color: #fff;
+  transform: translateX(40%);
+}
 
 .product-modal-content {
   display: flex;
@@ -222,7 +219,7 @@
 .product-modal-details h2 {
   font-size: 24px;
   margin-bottom: 16px;
-  color: #18142b;
+  color: var(--color-base-text);
   // font-family: Urbanist;
   font-size: 2.125rem;
   font-style: normal;

@@ -4,7 +4,7 @@ import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-export default function BookingSection() {
+export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
