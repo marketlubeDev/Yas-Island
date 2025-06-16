@@ -170,6 +170,7 @@
   --border-end: border-right;
   --ip-border: #ddd;
   --ip-label: #333;
+  --cupon-bg: #ddd;
 }
 
 [dir=rtl] {
@@ -692,7 +693,7 @@ body {
 }
 
 .product-modal .ant-modal-content {
-  padding: 3.5rem 3rem 2rem 3rem;
+  padding: 3rem !important;
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
@@ -5597,7 +5598,7 @@ body {
   background-color: var(--color-base-bg);
   background-clip: padding-box;
   border: 1px solid var(--color-bkg-modal-border);
-  border-radius: 8px;
+  border-radius: 40px;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   pointer-events: auto;
   padding: 20px 24px;
