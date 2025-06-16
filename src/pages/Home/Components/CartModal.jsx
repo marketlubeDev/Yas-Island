@@ -6,6 +6,7 @@ import Expand from "../../../assets/icons/shrink.svg";
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CartModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
@@ -14,6 +15,8 @@ const CartModal = ({ isOpen, onClose }) => {
   const [item1Quantity, setItem1Quantity] = useState(2); // Starting with quantity 2
   // Example local state for quantity of the second item
   const [item2Quantity, setItem2Quantity] = useState(2); // Starting with quantity 2
+
+  const { language } = useLanguage();
 
   const handleCheckout = () => {
     navigate("/payment");
@@ -26,20 +29,24 @@ const CartModal = ({ isOpen, onClose }) => {
 
   // Handlers for the first item's quantity
   const handleIncreaseItem1Quantity = () => {
-    setItem1Quantity(prevQuantity => prevQuantity + 1);
+    setItem1Quantity((prevQuantity) => prevQuantity + 1);
   };
 
   const handleDecreaseItem1Quantity = () => {
-    setItem1Quantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1)); // Prevent quantity from going below 1
+    setItem1Quantity((prevQuantity) =>
+      prevQuantity > 1 ? prevQuantity - 1 : 1
+    ); // Prevent quantity from going below 1
   };
 
   // Handlers for the second item's quantity
   const handleIncreaseItem2Quantity = () => {
-    setItem2Quantity(prevQuantity => prevQuantity + 1);
+    setItem2Quantity((prevQuantity) => prevQuantity + 1);
   };
 
   const handleDecreaseItem2Quantity = () => {
-    setItem2Quantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1)); // Prevent quantity from going below 1
+    setItem2Quantity((prevQuantity) =>
+      prevQuantity > 1 ? prevQuantity - 1 : 1
+    ); // Prevent quantity from going below 1
   };
 
   if (!isOpen) return null;
@@ -47,7 +54,7 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <Drawer
       title={null}
-      placement="right"
+      placement={language === "العربية" ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
       width="34%"
@@ -81,9 +88,16 @@ const CartModal = ({ isOpen, onClose }) => {
             <div className="quantity-controls">
               <span>{t("cart.adults")}</span>
               <div className="controls">
-                <Button icon={<MinusOutlined />} onClick={handleDecreaseItem1Quantity} />
-                <span>{item1Quantity}</span> {/* Display the item1Quantity state */}
-                <Button icon={<PlusOutlined />} onClick={handleIncreaseItem1Quantity} />
+                <Button
+                  icon={<MinusOutlined />}
+                  onClick={handleDecreaseItem1Quantity}
+                />
+                <span>{item1Quantity}</span>{" "}
+                {/* Display the item1Quantity state */}
+                <Button
+                  icon={<PlusOutlined />}
+                  onClick={handleIncreaseItem1Quantity}
+                />
                 <Button className="delete-btn">
                   <img src={DeleteIcon} alt={t("cart.delete")} />
                 </Button>
@@ -92,7 +106,7 @@ const CartModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Second hardcoded cart item */}
-           <div className="cart-item">
+          <div className="cart-item">
             <img src={Ferrari} alt={t("cart.item.ferrariWorld")} />
             <div className="item-details">
               <h4>{t("cart.item.ferrariWorld")}</h4>
@@ -102,9 +116,16 @@ const CartModal = ({ isOpen, onClose }) => {
             <div className="quantity-controls">
               <span>{t("cart.adults")}</span>
               <div className="controls">
-                <Button icon={<MinusOutlined />} onClick={handleDecreaseItem2Quantity} />
-                <span>{item2Quantity}</span> {/* Display the item2Quantity state */}
-                <Button icon={<PlusOutlined />} onClick={handleIncreaseItem2Quantity} />
+                <Button
+                  icon={<MinusOutlined />}
+                  onClick={handleDecreaseItem2Quantity}
+                />
+                <span>{item2Quantity}</span>{" "}
+                {/* Display the item2Quantity state */}
+                <Button
+                  icon={<PlusOutlined />}
+                  onClick={handleIncreaseItem2Quantity}
+                />
                 <Button className="delete-btn">
                   <img src={DeleteIcon} alt={t("cart.delete")} />
                 </Button>
