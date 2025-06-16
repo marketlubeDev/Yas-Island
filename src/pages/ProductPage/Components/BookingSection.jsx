@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
@@ -8,11 +8,22 @@ export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [guests, setGuests] = useState({
-    adults: 2,
-    children: 1,
-  });
+  const [guests, setGuests] = useState(getVariants());
   const navigate = useNavigate();
+
+  function getVariants() {
+    const variants = {};
+    product?.product_variants?.forEach(variant => {
+      variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
+    });
+    return variants;
+  }
+
+  useEffect(() => {
+    setGuests(getVariants());
+  }, [product]);
+
+
 
   // Calendar helper functions
   const getDaysInMonth = (date) => {
@@ -119,27 +130,40 @@ export default function BookingSection({ product, onBack }) {
           <h2 className="section-title">{t("booking.chooseGuests")}</h2>
           <div className="guest-container">
             <h3 className="guest-summary">
-              {guests.adults} {t("booking.adults")} / {guests.children}{" "}
-              {t("booking.children")}
+              {Object.keys(guests).map((variant, idx, arr) => (
+                <span className="" key={variant}>
+                  {variant}: {guests[variant]}{idx < arr.length - 1 ? " / " : ""}
+                </span>
+              ))}
             </h3>
             <div className="guest-controls">
+              
+           {Object.keys(guests)?.map((variant) => ( 
+            <>
               <div className="guest-row">
-                <span className="guest-label">{t("booking.adults")}</span>
+                <span className="guest-label">{variant}</span>
                 <div className="counter-controls">
                   <button
                     className="counter-btn"
                     onClick={() =>
-                      setGuests({ ...guests, adults: guests.adults - 1 })
-                    }
+                        setGuests(prev => ({
+                          ...prev,
+                          [variant]: Math.max(0, prev[variant] - 1)
+                        }))
+                      }
                   >
                     -
                   </button>
-                  <span className="counter-value">{guests.adults}</span>
+                  <span className="counter-value">{guests[variant]}</span>
                   <button
                     className="counter-btn"
                     onClick={() =>
-                      setGuests({ ...guests, adults: guests.adults + 1 })
+                      setGuests(prev => ({
+                        ...prev,
+                        [variant]: prev[variant] + 1
+                      }))
                     }
+  
                   >
                     +
                   </button>
@@ -147,8 +171,10 @@ export default function BookingSection({ product, onBack }) {
               </div>
 
               <div className="guest-row-divider"></div>
+              </>
+           ))}
 
-              <div className="guest-row">
+              {/* <div className="guest-row">
                 <span className="guest-label">{t("booking.children")}</span>
                 <div className="counter-controls">
                   <button
@@ -169,8 +195,8 @@ export default function BookingSection({ product, onBack }) {
                     +
                   </button>
                 </div>
-              </div>
-              <div className="guest-row-divider"></div>
+              </div> */}
+              {/* <div className="guest-row-divider"></div> */}
             </div>
 
             <p className="guest-note">{t("booking.kidsFree")}</p>

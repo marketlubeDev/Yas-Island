@@ -35,24 +35,19 @@ export default function ProductCard({ productList }) {
     <div className="ProductCard">
       <div className="ProductCard__grid">
         {productList?.map((product) => (
-          <div className="ProductCard__card" key={product.name}>
+          <div className="ProductCard__card" key={product?.product_title}>
             <div className="ProductCard__card__image">
-              <img
-                src={product?.product?.productImages?.thumbnailUrl}
-                alt={product.name}
-              />
+              <img src={product?.product_images?.thumbnail_url} alt={product?.product?.product_title} />
             </div>
             <ProductCardContent
-              name={product.product.product_title}
-              description={product.product.productshortdesc}
+              name={product?.product_title}
+              description={product?.productshortdesc}
             />
             <ProductCardPricetag
-              price={product?.product?.productVariants?.[0]?.gross}
-              tax={(
-                product?.product?.productVariants?.[0]?.gross * 0.05
-              ).toFixed(2)}
-              currency={product.currency}
-              taxDescription={product.taxDescription}
+              price={product?.product_variants?.[0]?.gross}
+              tax={(product?.product_variants?.[0]?.gross * 0.05).toFixed(2)}
+              currency={product?.currency}
+              taxDescription={product?.taxDescription}
               onAddToCart={() => showModal(product)}
             />
           </div>
@@ -61,6 +56,7 @@ export default function ProductCard({ productList }) {
 
       <Modal
         title={null}
+        header={null}
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}

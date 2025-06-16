@@ -21,20 +21,20 @@ export default function ProductModal({
         <div className="product-modal-content">
           <>
             <div className="product-modal-image">
-              <img src={selectedProduct?.product?.productImages?.imageUrls?.[0]} alt={selectedProduct.name} />
+              <img src={selectedProduct?.product_images?.image_urls?.[0]} alt={selectedProduct.name} />
             </div>
             <div className="product-modal-details">
               <h2>{selectedProduct.name}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: selectedProduct.product.productdesc }}></div>
+              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"40vh" , overflowY:"auto"}}></div>
 
               <div className="price-section">
                 <div className="price-details">
                   <h3>
-                    {selectedProduct.currency || "AED"} {selectedProduct?.product?.productVariants?.[0]?.gross}
+                    {selectedProduct.currency || "AED"} {selectedProduct?.product_variants?.[0]?.gross}
                   </h3>
                   <p className="tax">
-                    +{(selectedProduct?.product?.productVariants?.[0]?.gross * 0.05).toFixed(2)} {selectedProduct.taxDescription || "Tax"}
+                    +{(selectedProduct?.product_variants?.[0]?.gross * 0.05).toFixed(2)} {selectedProduct?.taxDescription || "Tax"}
                   </p>
                 </div>
                 <div className="vertical-divider"></div>

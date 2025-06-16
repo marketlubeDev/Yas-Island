@@ -33,6 +33,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
+  
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };

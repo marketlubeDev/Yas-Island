@@ -519,7 +519,7 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#E7EBD4" : "#231942"
     );
     document.documentElement.style.setProperty(
-      "--color-pymnt-step-clr",
+      "#f4f3f3",
       isDarkMode ? "#A6B098" : "#594f67"
     );
     document.documentElement.style.setProperty(
@@ -633,6 +633,16 @@ export default function GlobalInvertColor() {
       isDarkMode
         ? "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
         : "0 2px 16px rgba(44, 44, 84, 0.09)"
+    );
+
+    document.documentElement.style.setProperty(
+      "--ip-border",
+      isDarkMode ? "##909883" : "#ddd"
+    );
+
+    document.documentElement.style.setProperty(
+      "--ip-label",
+      isDarkMode ? "#E7EBD4" : "#333"
     );
 
     return () => {
@@ -1166,6 +1176,10 @@ export default function GlobalInvertColor() {
         "--color-email-form-box-shadow",
         "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
       );
+
+      document.documentElement.style.setProperty("--ip-label", "#333");
+
+      document.documentElement.style.setProperty("--ip-border", "#ddd");
     };
   }, [isDarkMode]);
 
