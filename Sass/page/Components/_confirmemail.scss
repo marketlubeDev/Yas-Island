@@ -26,7 +26,7 @@
   margin: 20px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
+  box-shadow: var(--color-email-form-box-shadow);
   padding: 32px 18px;
   height: 60vh;
   overflow-y: auto;

@@ -628,6 +628,12 @@ export default function GlobalInvertColor() {
       "--color-promo-input-border",
       isDarkMode ? "#909883" : "#6f677c"
     );
+    document.documentElement.style.setProperty(
+      "--color-email-form-box-shadow",
+      isDarkMode
+        ? "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
+        : "0 2px 16px rgba(44, 44, 84, 0.09)"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1155,6 +1161,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-promo-input-border",
         "#6f677c"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-box-shadow",
+        "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
       );
     };
   }, [isDarkMode]);
