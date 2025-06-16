@@ -15,7 +15,7 @@ import ProductCardPricetag from "./ProductCardPricetag";
 import ProductModal from "./ProductModal";
 import closeIcon from "../../../assets/icons/close.svg";
 
-export default function ProductCard() {
+export default function ProductCard({ productList }) {  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -29,124 +29,124 @@ export default function ProductCard() {
     setSelectedProduct(null);
   };
 
-  const product = [
-    {
-      image: Product1,
-      name: "Driving Experience",
-      description:
-        "Drive your dream car with a Ferrari-trained instructor and experience the thrill of high-performance driving on a professional race track.",
-      price: 100,
-      tax: +96.43,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product2,
-      name: "Roof Walk Experience",
-      description:
-        "Experience the thrill of dune bashing, camel riding, and a traditional Bedouin dinner under the stars in the Arabian desert.",
-      price: 150,
-      tax: +144.65,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product3,
-      name: "4 Yas Island Theme Parks",
-      description:
-        "Enjoy a luxury yacht cruise along the coastline with stunning views, water activities, and gourmet refreshments.",
-      price: 300,
-      tax: +289.29,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product4,
-      name: "1 Day Yas Waterworld Ya...",
-      description:
-        "Take in breathtaking aerial views of the city's landmarks during an exclusive helicopter sightseeing tour.",
-      price: 500,
-      tax: +482.15,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product5,
-      name: "3 Yas Island Theme Parks",
-      description:
-        "Indulge in a full-day spa retreat featuring luxury treatments, massage therapy, and wellness activities.",
-      price: 250,
-      tax: +241.07,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product6,
-      name: "2 Yas Island Theme Parks",
-      description:
-        "Learn to prepare authentic local cuisine with expert chefs in a professional kitchen setting.",
-      price: 180,
-      tax: +173.57,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product7,
-      name: "1 Day Warner Bros. Wor...",
-      description:
-        "Experience the ultimate adrenaline rush with a tandem skydiving jump over spectacular landscapes.",
-      price: 450,
-      tax: +433.93,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product8,
-      name: "1 Day Seaworld Yas Isla...",
-      description:
-        "Enjoy a round of golf at a championship course with professional instruction and premium equipment rental.",
-      price: 200,
-      tax: +192.86,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product9,
-      name: "1 Day Ferrari World Yas....",
-      description:
-        "Discover local heritage with guided visits to historical sites, museums, and traditional markets.",
-      price: 120,
-      tax: +115.71,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-    {
-      image: Product10,
-      name: "VIP Experience",
-      description:
-        "Discover local heritage with guided visits to historical sites, museums, and traditional markets.",
-      price: 120,
-      tax: +115.71,
-      taxDescription: "VAT & tax",
-      currency: "AED",
-    },
-  ];
+  // const product = [
+  //   {
+  //     image: Product1,
+  //     name: "Driving Experience",
+  //     description:
+  //       "Drive your dream car with a Ferrari-trained instructor and experience the thrill of high-performance driving on a professional race track.",
+  //     price: 100,
+  //     tax: +96.43,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product2,
+  //     name: "Roof Walk Experience",
+  //     description:
+  //       "Experience the thrill of dune bashing, camel riding, and a traditional Bedouin dinner under the stars in the Arabian desert.",
+  //     price: 150,
+  //     tax: +144.65,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product3,
+  //     name: "4 Yas Island Theme Parks",
+  //     description:
+  //       "Enjoy a luxury yacht cruise along the coastline with stunning views, water activities, and gourmet refreshments.",
+  //     price: 300,
+  //     tax: +289.29,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product4,
+  //     name: "1 Day Yas Waterworld Ya...",
+  //     description:
+  //       "Take in breathtaking aerial views of the city's landmarks during an exclusive helicopter sightseeing tour.",
+  //     price: 500,
+  //     tax: +482.15,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product5,
+  //     name: "3 Yas Island Theme Parks",
+  //     description:
+  //       "Indulge in a full-day spa retreat featuring luxury treatments, massage therapy, and wellness activities.",
+  //     price: 250,
+  //     tax: +241.07,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product6,
+  //     name: "2 Yas Island Theme Parks",
+  //     description:
+  //       "Learn to prepare authentic local cuisine with expert chefs in a professional kitchen setting.",
+  //     price: 180,
+  //     tax: +173.57,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product7,
+  //     name: "1 Day Warner Bros. Wor...",
+  //     description:
+  //       "Experience the ultimate adrenaline rush with a tandem skydiving jump over spectacular landscapes.",
+  //     price: 450,
+  //     tax: +433.93,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product8,
+  //     name: "1 Day Seaworld Yas Isla...",
+  //     description:
+  //       "Enjoy a round of golf at a championship course with professional instruction and premium equipment rental.",
+  //     price: 200,
+  //     tax: +192.86,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product9,
+  //     name: "1 Day Ferrari World Yas....",
+  //     description:
+  //       "Discover local heritage with guided visits to historical sites, museums, and traditional markets.",
+  //     price: 120,
+  //     tax: +115.71,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  //   {
+  //     image: Product10,
+  //     name: "VIP Experience",
+  //     description:
+  //       "Discover local heritage with guided visits to historical sites, museums, and traditional markets.",
+  //     price: 120,
+  //     tax: +115.71,
+  //     taxDescription: "VAT & tax",
+  //     currency: "AED",
+  //   },
+  // ];
 
   return (
     <div className="ProductCard">
       <div className="ProductCard__grid">
-        {product.map((product) => (
+        {productList?.map((product) => (
           <div className="ProductCard__card" key={product.name}>
             <div className="ProductCard__card__image">
-              <img src={product.image} alt={product.name} />
+              <img src={product?.product?.productImages?.thumbnailUrl} alt={product.name} />
             </div>
             <ProductCardContent
-              name={product.name}
-              description={product.description}
+              name={product.product.product_title}
+              description={product.product.productshortdesc}
             />
             <ProductCardPricetag
-              price={product.price}
-              tax={product.tax}
+              price={product?.product?.productVariants?.[0]?.gross}
+              tax={(product?.product?.productVariants?.[0]?.gross * 0.05).toFixed(2)}
               currency={product.currency}
               taxDescription={product.taxDescription}
               onAddToCart={() => showModal(product)}

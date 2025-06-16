@@ -9,6 +9,7 @@ const useGetProductList = () => {
   });
   return {
     data: response.data,
+    productList: response?.data?.data?.results,
     isLoading: response.isLoading,
     isError: response.isError,
   };

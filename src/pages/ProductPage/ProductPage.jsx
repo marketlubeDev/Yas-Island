@@ -18,9 +18,8 @@ export default function ProductPage() {
     useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
-  const { data, isLoading, isError } = useGetProductList();
+  const { productList, isLoading, isError } = useGetProductList();
 
-  console.log(data);
 
   return (
     <div className="product">
@@ -31,7 +30,7 @@ export default function ProductPage() {
           onCartOpen={() => setIsCartModalOpen(true)}
         />
         <ProductHead label="Sort by" /> */}
-        <ProductCard />
+        <ProductCard productList={productList} />
         {(isMobile || isTablet) && <ProductSoloThumbnail />}
         {(isMobile || isTablet) && <MobSelectorGroup />}
         <AccessibilityModal
