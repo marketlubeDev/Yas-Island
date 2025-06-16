@@ -19,8 +19,6 @@ export default function ProductPage() {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   const { productList, isLoading, isError } = useGetProductList();
-
-
   return (
     <div className="product">
       <SideBar />
