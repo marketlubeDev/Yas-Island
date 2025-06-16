@@ -87,6 +87,22 @@
   line-height: normal;
 }
 
+.ar-back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-base-text);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transform: rotate(180deg);
+  flex-direction: row-reverse;
+}
+
 .cart-button {
   padding: 8px 16px;
   border: none;

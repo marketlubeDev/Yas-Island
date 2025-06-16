@@ -1,17 +1,41 @@
 import React, { useState } from "react";
 import { Drawer, Button } from "antd";
-import { MinusOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import Expand from "../../../assets/icons/shrink.svg";
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 const CartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [item1Quantity, setItem1Quantity] = useState(2);
-  const [item2Quantity, setItem2Quantity] = useState(2);
+  // Example cart data - in a real app, this would come from a cart context or state management
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      image: Ferrari,
+      title: "1 day Ferrari World",
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: "08 feb 2025",
+      validTo: "08 feb 2025",
+    },
+    {
+      id: 2,
+      image: Ferrari,
+      title: "1 day Ferrari World",
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: "08 feb 2025",
+      validTo: "08 feb 2025",
+    },
+  ]);
 
   const handleCheckout = () => {
     navigate("/payment");
@@ -22,31 +46,32 @@ const CartModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  // Handlers for the first item's quantity
-  const handleIncreaseItem1Quantity = () => {
-    setItem1Quantity((prevQuantity) => prevQuantity + 1);
+  const updateQuantity = (id, delta) => {
+    setCartItems((items) =>
+      items.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item
+      )
+    );
   };
 
-  const handleDecreaseItem1Quantity = () => {
-    setItem1Quantity((prevQuantity) =>
-      prevQuantity > 1 ? prevQuantity - 1 : 1
-    ); // Prevent quantity from going below 1
+  const deleteItem = (id) => {
+    setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
-  // Handlers for the second item's quantity
-  const handleIncreaseItem2Quantity = () => {
-    setItem2Quantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const handleDecreaseItem2Quantity = () => {
-    setItem2Quantity((prevQuantity) =>
-      prevQuantity > 1 ? prevQuantity - 1 : 1
-    ); // Prevent quantity from going below 1
-  };
+  // Calculate totals
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const vatTotal = cartItems.reduce(
+    (sum, item) => sum + item.vat * item.quantity,
+    0
+  );
+  const total = subtotal + vatTotal;
 
   if (!isOpen) return null;
-
-  console.log(t("cart.title"), "sdkgfkdgfkjdskg");
 
   return (
     <Drawer
@@ -74,78 +99,55 @@ const CartModal = ({ isOpen, onClose }) => {
         </div>
 
         <div className="cart-items">
-          {/* First hardcoded cart item */}
-          <div className="cart-item">
-            <img src={Ferrari} alt="Ferrari World" />
-            <div className="item-details">
-              <h4>1 day Ferrari World</h4>
-              <p>AED 328.57</p>
-              <small>16.43 VAT & Tax</small>
-            </div>
-            <div className="quantity-controls">
-              <span>{t("cart.adults")}</span>
-              <div className="controls">
-                <Button
-                  icon={<MinusOutlined />}
-                  onClick={handleDecreaseItem1Quantity}
-                />
-                <span>{item1Quantity}</span>{" "}
-                {/* Display the item1Quantity state */}
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={handleIncreaseItem1Quantity}
-                />
-                <Button className="delete-btn">
-                  <img src={DeleteIcon} alt="Delete" />
-                </Button>
+          {cartItems.map((item) => (
+            <div className="cart-item" key={item.id}>
+              <img src={item.image} alt={item.title} />
+              <div className="item-details">
+                <h4>{item.title}</h4>
+                <p>AED {item.price.toFixed(2)}</p>
+                <div className="item-date">
+                  Valid from <b>{item.validFrom}</b> to <b>{item.validTo}</b>
+                </div>
+              </div>
+              <div className="quantity-controls">
+                <span>{t(`cart.${item.type}`)}</span>
+                <div className="controls">
+                  <Button
+                    icon={<MinusOutlined />}
+                    onClick={() => updateQuantity(item.id, -1)}
+                  />
+                  <span>{item.quantity}</span>
+                  <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => updateQuantity(item.id, 1)}
+                  />
+                  <Button
+                    className="delete-btn"
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    <img src={DeleteIcon} alt="Delete" />
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Second hardcoded cart item */}
-          <div className="cart-item">
-            <img src={Ferrari} alt="Ferrari World" />
-            <div className="item-details">
-              <h4>1 day Ferrari World</h4>
-              <p>AED 328.57</p>
-              <small>16.43 VAT & Tax</small>
-            </div>
-            <div className="quantity-controls">
-              <span>Adults</span>
-              <div className="controls">
-                <Button
-                  icon={<MinusOutlined />}
-                  onClick={handleDecreaseItem2Quantity}
-                />
-                <span>{item2Quantity}</span>{" "}
-                {/* Display the item2Quantity state */}
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={handleIncreaseItem2Quantity}
-                />
-                <Button className="delete-btn">
-                  <img src={DeleteIcon} alt="Delete" />
-                </Button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="cart-summary">
           <div className="subtotal">
             <div className="summary-row">
               <span>{t("cart.subTotal")}</span>
-              <span>AED 935.71</span>
+              <span>AED {subtotal.toFixed(2)}</span>
             </div>
             <div className="summary-row">
               <span>{t("cart.vatAndTax")}</span>
-              <span>+ 49.29 VAT & Tax</span>
+              <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
             </div>
           </div>
           <div className="custom-divider"></div>
           <div className="total">
             <span>{t("cart.total")}</span>
-            <span>AED 985.00</span>
+            <span>AED {total.toFixed(2)}</span>
           </div>
 
           <div className="cart-actions">

@@ -37,7 +37,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
-  
+
   const changeLanguage = (lng) => {
     console.log(lng, "lndfdfdfdfg");
 
@@ -48,7 +48,10 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
 
   return (
     <div className="product-header">
-      <button className="back-buttonn" onClick={() => window.history.back()}>
+      <button
+        className={language === "العربية" ? "ar-back-button" : "back-buttonn"}
+        onClick={() => window.history.back()}
+      >
         <img src={isDarkMode ? invertLeft : arrow} alt={t("common.back")} />
         {t("common.back")}
       </button>
