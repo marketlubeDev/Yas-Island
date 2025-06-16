@@ -622,7 +622,7 @@ body {
 }
 .ProductCard__card__content__title {
   color: var(--color-base-text);
-  text-align: right;
+  text-align: left;
   font-size: 23px;
   font-style: normal;
   font-weight: 700;

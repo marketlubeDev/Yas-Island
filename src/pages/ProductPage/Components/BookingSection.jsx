@@ -13,8 +13,8 @@ export default function BookingSection({ product, onBack }) {
 
   function getVariants() {
     const variants = {};
-    product?.product?.productVariants?.forEach(variant => {
-      variants[variant.productvariantname] = 1; // or 0 if you want to start from 0
+    product?.product_variants?.forEach(variant => {
+      variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
     });
     return variants;
   }
