@@ -500,6 +500,29 @@ body {
   line-height: normal;
 }
 
+.ar-cart-button {
+  padding: 8px 16px;
+  border: none;
+  background: var(--color-base-btn-bg);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  left: -4rem;
+  width: 19.625rem;
+  height: 5rem;
+  border-radius: 0rem 0rem 1.25rem 0rem;
+  border: 0.83px solid var(--color-base-btn-border);
+  box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
+  color: var(--color-base-text);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .product-header__title {
   font-weight: 500;
   margin: 0;
@@ -5591,6 +5614,17 @@ body {
   display: flex;
   gap: 16px;
   align-items: center;
+}
+
+.ar-product-head {
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  gap: 2rem;
+  position: relative;
+  top: 1.6rem;
+  right: -1.5rem;
+  width: 100%;
 }
 
 .ant-modal .ant-modal-content {
