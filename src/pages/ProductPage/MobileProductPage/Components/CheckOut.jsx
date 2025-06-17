@@ -164,7 +164,7 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
                   style={{
                     color: "var(--color-email-form-label)",
                     fontWeight: 600,
-                    fontSize: 15,
+                    fontSize: 14,
                   }}
                 >
                   THU 08- FEB 2025 &nbsp; ADULT - 2 &nbsp; CHILDREN - 1

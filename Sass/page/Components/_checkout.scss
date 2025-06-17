@@ -109,7 +109,7 @@
 }
 
 .email-checkout__label {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--color-email-form-label);
   font-weight: 500;
   margin-bottom: 8px;
@@ -121,7 +121,7 @@
 .email-checkout__input {
   border: none;
   border-bottom: 2px solid var(--color-email-form-input-border);
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 0;
   outline: none;
   background: transparent;
@@ -161,7 +161,7 @@
 .email-checkout__summary {
   background: var(--color-checkout-summary-bg);
   border-radius: 12px;
-  width: 140%;
+  width: 145%;
   max-width: 100vw;
   padding: 18px 12px 12px 12px;
   margin: 8px 0 18px -2.5rem;
@@ -171,7 +171,7 @@
 
   &-title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 30px;
     color: var(--color-email-form-label);
   }
@@ -217,7 +217,7 @@
 .email-checkout__checkboxes {
   margin-bottom: 12px;
   label {
-    font-size: 14px;
+    font-size: 12px;
     color: #231942;
     margin-bottom: 6px;
     a {
@@ -325,7 +325,7 @@
 .email-checkout__summary-label {
   font-weight: 500;
   color: #231942;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 2px;
 }
 
@@ -351,10 +351,10 @@
   padding: 16px 14px 14px 14px;
   margin-top: 18px;
   margin-bottom: 18px;
-  width: 120%;
+  width: 140%;
   max-width: 700px;
   box-sizing: border-box;
-  margin-left: -20px;
+  margin-left: -2.5rem;
 }
 
 .email-checkout__promo-input {
