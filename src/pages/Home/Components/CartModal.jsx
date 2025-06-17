@@ -79,12 +79,6 @@ const CartModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* <div className="booking-date">
-          <p>
-            {t("cart.bookingFor")} <span>Thu 08- Feb 2025</span>
-          </p>
-        </div> */}
-
         <div className="cart-items">
           {cartItems.map((item) => (
             <div key={item.id} className="cart-item">

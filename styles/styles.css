@@ -171,6 +171,7 @@
   --ip-border: #ddd;
   --ip-label: #333;
   --cupon-bg: #ddd;
+  --cart-border: linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1;
 }
 
 [dir=rtl] {
@@ -1398,6 +1399,10 @@ body {
   border-bottom-left-radius: 1.70444rem !important;
 }
 
+.cart-drawer .ant-drawer .ant-drawer-body {
+  background-color: #065dae !important;
+}
+
 .cart-content {
   height: 100vh;
   overflow-y: auto;
@@ -1418,7 +1423,7 @@ body {
   flex: 1;
   text-align: center;
   margin: 0;
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.75rem;
   font-style: normal;
   font-weight: 700;
@@ -1625,6 +1630,10 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+
+.cart-drawer .ant-drawer-body {
+  background-color: var(--color-base-bg) !important;
 }
 
 .payment-header {

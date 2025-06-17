@@ -644,6 +644,12 @@ export default function GlobalInvertColor() {
       "--ip-label",
       isDarkMode ? "#E7EBD4" : "#333"
     );
+    document.documentElement.style.setProperty(
+      "--cart-border",
+      isDarkMode
+        ? "linear-gradient(90deg, #F9A251 0%, #CB5F26 100%)"
+        : "linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
