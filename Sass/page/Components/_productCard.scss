@@ -167,27 +167,34 @@
 }
 
 .product-modal .ant-modal-close {
-  position: relative;
-  top: -110px;
-  right: -98.5%;
+  position: absolute;
+  top: -9%;
+  right: 5px;
   border-radius: 50%;
   height: 50px;
   width: 50px;
+  font-size: 32px;
   line-height: 1;
-  border: 3.524px solid #dcd6e5;
+  border-radius: 50%;
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: #ffffff57;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: background 0.2s;
 
   &:hover {
     background: #fff;
   }
 }
 
-.product-modal .ant-modal-close .custom-modal-close {
-  width: 100%;
-  color: #fff;
-  transform: translateX(40%);
-}
+// .product-modal .ant-modal-close .custom-modal-close {
+//   width: 100%;
+//   color: #fff;
+//   transform: translateX(40%);
+// }
 
 .product-modal-content {
   display: flex;
@@ -289,16 +296,15 @@
   margin: 0 15px;
 }
 
-
 /* Make Swiper pagination bullets white and position them at the bottom */
 .swiper-pagination-bullets {
-  bottom: 10px !important;         /* Adjust as needed */
+  bottom: 10px !important; /* Adjust as needed */
   text-align: center;
   width: 100%;
 }
 
 .swiper-pagination-bullet {
-  background: #fff !important;     /* White color */
+  background: #fff !important; /* White color */
   opacity: 0.7;
   width: 10px;
   height: 10px;
@@ -308,7 +314,7 @@
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #fff !important;     /* Active bullet is also white, but fully opaque */
+  background: #fff !important; /* Active bullet is also white, but fully opaque */
   box-shadow: 0 0 4px #0002;
 }
 
@@ -648,7 +654,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  
 }
 
 .guest-row {

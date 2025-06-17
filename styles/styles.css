@@ -827,25 +827,26 @@ body {
 }
 
 .product-modal .ant-modal-close {
-  position: relative;
-  top: -110px;
-  right: -98.5%;
+  position: absolute;
+  top: -9%;
+  right: 5px;
   border-radius: 50%;
   height: 50px;
   width: 50px;
+  font-size: 32px;
   line-height: 1;
-  border: 3.524px solid #dcd6e5;
+  border-radius: 50%;
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.3411764706);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: background 0.2s;
 }
 .product-modal .ant-modal-close:hover {
   background: #fff;
-}
-
-.product-modal .ant-modal-close .custom-modal-close {
-  width: 100%;
-  color: #fff;
-  transform: translateX(40%);
 }
 
 .product-modal-content {
