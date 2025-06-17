@@ -705,6 +705,11 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#18142b" : isHighContrast ? "#fff" : "#18142b"
     );
 
+    document.documentElement.style.setProperty(
+      "--btn-save",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffa500"
+    );
+
     return () => {
       document.documentElement.style.setProperty(
         "--color-base-bg",

@@ -185,8 +185,8 @@
 }
 
 .save-cart-btn {
-  background-color: #ffa500;
-  color: black;
+  background-color: var(--btn-save);
+  color: var(--btn-clr);
   border: none;
   flex: 1;
   display: flex;
