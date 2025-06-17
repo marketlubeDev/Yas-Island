@@ -4772,7 +4772,6 @@ body {
   max-width: 420px;
   width: 98vw;
   max-height: 99vh;
-  height: 97vh;
 }
 .attraction-detail-modal__header {
   display: flex;
@@ -4804,6 +4803,8 @@ body {
 .attraction-detail-modal__body {
   padding: 24px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
+  height: 75vh;
+  overflow-y: auto;
 }
 .attraction-detail-modal__image {
   border-radius: 16px;
@@ -4942,7 +4943,7 @@ body {
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -9%;
+  top: -6%;
   right: 0;
   border-radius: 50%;
   height: 50px;

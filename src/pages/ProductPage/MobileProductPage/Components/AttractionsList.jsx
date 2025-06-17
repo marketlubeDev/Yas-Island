@@ -7,7 +7,7 @@ import { Modal } from "antd";
 import Mycart from "./Mycart";
 import closeIcon from "../../../../assets/icons/close.svg";
 
-const AttractionsList = ({ attractions }) => {
+const AttractionsList = ({ productList }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
@@ -59,6 +59,7 @@ const AttractionsList = ({ attractions }) => {
             onBack={handleBookingModalBack}
             onSaveToCart={handleSaveToCart}
             onCheckout={handleCheckout}
+            product={selectedAttraction}
           />
         );
       default:
@@ -69,20 +70,20 @@ const AttractionsList = ({ attractions }) => {
   return (
     <>
       <div className="attractions-list">
-        {attractions.map((item) => (
+        {productList?.map((item) => (
           <div className="attraction-card" key={item.id}>
             <img
-              src={item.image}
-              alt={t(item.titleKey)}
+              src={item?.product_images?.thumbnail_url}
+              alt={item?.product_title}
               className="attraction-card__img"
             />
             <div className="attraction-card__content">
               <div className="attraction-card__header">
                 <div>
                   <div className="attraction-card__title">
-                    {t(item.titleKey)}
+                    {item?.product_title}
                   </div>
-                  <div className="attraction-card__desc">{t(item.descKey)}</div>
+                  <div className="attraction-card__desc">{item?.productshortdesc}</div>
                 </div>
                 <div className="attraction-card__action">
                   <button
@@ -92,9 +93,9 @@ const AttractionsList = ({ attractions }) => {
                     {t("common.add")}
                   </button>
                   <div className="attraction-card__price">
-                    <span>{item.price}</span>
+                    <span>AED {item?.product_variants[0]?.gross}</span>
                   </div>
-                  <span className="attraction-card__vat">{item.vat}</span>
+                  <span className="attraction-card__vat"> + {(item?.product_variants[0]?.gross * 0.05 ).toFixed(2)} Tax</span>
                 </div>
               </div>
             </div>
