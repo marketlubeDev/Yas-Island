@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import BookingSection from "./BookingSection";
-import Product1 from "../../../assets/images/product1.png";
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
 import { useTranslation } from "react-i18next";
+import 'swiper/css';
+import "swiper/css/pagination";
+
+
+
+
 
 export default function ProductModal({
   selectedProduct,
@@ -21,12 +27,25 @@ export default function ProductModal({
         <div className="product-modal-content">
           <>
             <div className="product-modal-image">
-              <img src={selectedProduct?.product_images?.image_urls?.[0]} alt={selectedProduct.name} />
+              <Swiper
+              modules={[Pagination, Autoplay]}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              loop={true}
+              spaceBetween={10}
+              slidesPerView={1}
+              >
+                {selectedProduct?.product_images?.image_urls?.map((img, idx) => ( 
+                  <SwiperSlide key={idx}>
+                    <img src={img} alt={selectedProduct.name} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
             <div className="product-modal-details">
               <h2>{selectedProduct.name}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"40vh" , overflowY:"auto"}}></div>
+              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"50vh" , overflowY:"auto"}}></div>
 
               <div className="price-section">
                 <div className="price-details">

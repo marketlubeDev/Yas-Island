@@ -173,7 +173,7 @@
   --cupon-bg: #ddd;
 }
 
-[dir=rtl] {
+[dir="rtl"] {
   --direction: rtl;
   --text-align: right;
   --float-start: right;
@@ -309,10 +309,12 @@ body {
   transition: all 0.3s ease;
 }
 .side-bar-list-item .item-icon img.active {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(1) contrast(1);
 }
 .side-bar-list-item .item-icon img.dark-mode {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(1) contrast(1);
 }
 .side-bar-list-item .item-text {
   flex-grow: 1;
@@ -324,7 +326,8 @@ body {
 }
 .side-bar-list-item:hover:not(.active):not(.selected) {
   border: 2px solid var(--color-base-side-bar-item-box-border);
-  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
+  box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
+    var(--color-base-side-bar-item-box);
 }
 
 .ar-side-bar-list-item {
@@ -368,10 +371,12 @@ body {
   transition: all 0.3s ease;
 }
 .ar-side-bar-list-item .item-icon img.active {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(1) contrast(1);
 }
 .ar-side-bar-list-item .item-icon img.dark-mode {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(1) contrast(1);
 }
 .ar-side-bar-list-item .item-text {
   flex-grow: 1;
@@ -384,7 +389,8 @@ body {
 }
 .ar-side-bar-list-item:hover:not(.active):not(.selected) {
   border: 2px solid var(--color-base-side-bar-item-box-border);
-  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
+  box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
+    var(--color-base-side-bar-item-box);
 }
 
 .side-bar-list-item-container {
@@ -938,6 +944,28 @@ body {
   margin: 0 15px;
 }
 
+/* Make Swiper pagination bullets white and position them at the bottom */
+.swiper-pagination-bullets {
+  bottom: 10px !important; /* Adjust as needed */
+  text-align: center;
+  width: 100%;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important; /* White color */
+  opacity: 0.7;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px !important;
+  transition: opacity 0.2s;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #fff !important; /* Active bullet is also white, but fully opaque */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1333333333);
+}
+
 .booking-section {
   padding: 24px;
   width: 100%;
@@ -1244,7 +1272,11 @@ body {
   background: transparent; /* Make the track transparent or a light color */
 }
 .guest-section-header-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%); /* Gradient for the scrollbar thumb */
+  background: linear-gradient(
+    180deg,
+    #d1b8ff 0%,
+    #68abe7 100%
+  ); /* Gradient for the scrollbar thumb */
   border-radius: 4px; /* Rounded corners for the thumb */
 }
 
@@ -1252,7 +1284,7 @@ body {
   width: 100%;
   height: 0.826px;
   background: #d9d9d9;
-  margin-top: 0rem;
+  margin-top: 1rem;
 }
 
 .accessibility-modal .ant-modal-content {
@@ -2154,14 +2186,26 @@ body {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.payment-form__right .terms .checkbox-container:hover .checkbox-input ~ .checkbox-custom {
+.payment-form__right
+  .terms
+  .checkbox-container:hover
+  .checkbox-input
+  ~ .checkbox-custom {
   border-color: #594f67;
 }
-.payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom {
+.payment-form__right
+  .terms
+  .checkbox-container
+  .checkbox-input:checked
+  ~ .checkbox-custom {
   background-color: #594f67;
   border-color: #594f67;
 }
-.payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom:after {
+.payment-form__right
+  .terms
+  .checkbox-container
+  .checkbox-input:checked
+  ~ .checkbox-custom:after {
   display: block;
 }
 .payment-form__right .terms .checkbox-container .checkbox-text {
@@ -2854,7 +2898,8 @@ body {
   align-items: center;
   gap: 12px;
 }
-.mobile-header__icon-btn, .mobile-header__lang-btn {
+.mobile-header__icon-btn,
+.mobile-header__lang-btn {
   background: var(--color-base-mobile-header-icon-btn-bg);
   border: 2px solid var(--color-base-mobile-header-icon-btn-border);
   border-radius: 2rem;
@@ -2866,7 +2911,8 @@ body {
   cursor: pointer;
   transition: background 0.2s;
 }
-.mobile-header__icon-btn img, .mobile-header__lang-btn img {
+.mobile-header__icon-btn img,
+.mobile-header__lang-btn img {
   height: 20px;
   width: 20px;
   display: block;
@@ -3893,7 +3939,8 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
-.confirm-email__steps-underline::before, .confirm-email__steps-underline::after {
+.confirm-email__steps-underline::before,
+.confirm-email__steps-underline::after {
   content: "";
   display: block;
   height: 100%;
@@ -4030,9 +4077,9 @@ body {
   box-sizing: border-box;
 }
 
-.email-checkout__input[type=text],
-.email-checkout__input[type=tel],
-.email-checkout__input[type=number] {
+.email-checkout__input[type="text"],
+.email-checkout__input[type="tel"],
+.email-checkout__input[type="number"] {
   width: 200px;
   max-width: 100%;
 }
@@ -4254,7 +4301,7 @@ body {
   box-sizing: border-box;
 }
 
-.email-checkout__checkboxes input[type=checkbox] {
+.email-checkout__checkboxes input[type="checkbox"] {
   accent-color: #ffea00;
   background-color: #fff;
   border: 2px solid var(--color-email-form-input-border);
@@ -4333,7 +4380,9 @@ body {
   flex-direction: column;
   gap: 2px;
 }
-.make-payment__summary-top .make-payment__summary-dates-row .make-payment__summary-dates-label {
+.make-payment__summary-top
+  .make-payment__summary-dates-row
+  .make-payment__summary-dates-label {
   color: #bdbdc6;
   font-size: 13px;
   font-weight: 600;
@@ -4374,7 +4423,7 @@ body {
   gap: 10px;
   justify-content: center;
 }
-.make-payment__payment-options label input[type=radio] {
+.make-payment__payment-options label input[type="radio"] {
   accent-color: #14cf86;
   margin: 0 8px 0 0;
   border: 1px solid #e3e3e3;
@@ -4383,7 +4432,7 @@ body {
   height: 18px;
 }
 .make-payment__payment-options label .payment-method-card__img,
-.make-payment__payment-options label img[alt=PayPal] {
+.make-payment__payment-options label img[alt="PayPal"] {
   width: 56px !important;
   height: 40px !important;
   margin-bottom: 0;
@@ -4656,7 +4705,8 @@ body {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
   margin-bottom: 4px;
   transition: box-shadow 0.2s, background 0.2s, border 0.2s;
-  background-image: linear-gradient(#e1f1ff, #e1f1ff), linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: linear-gradient(#e1f1ff, #e1f1ff),
+    linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -4856,7 +4906,6 @@ body {
   max-width: 420px;
   width: 98vw;
   max-height: 99vh;
-  height: 97vh;
 }
 .attraction-detail-modal__header {
   display: flex;
@@ -4888,6 +4937,8 @@ body {
 .attraction-detail-modal__body {
   padding: 24px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
+  height: 75vh;
+  overflow-y: auto;
 }
 .attraction-detail-modal__image {
   border-radius: 16px;
@@ -5026,7 +5077,7 @@ body {
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -8.2%;
+  top: -6%;
   right: 0;
   border-radius: 50%;
   height: 50px;
@@ -5236,6 +5287,11 @@ body {
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
+}
+
+.booking-modal__calendar-date.disabled {
+  color: #ccc;
+  cursor: not-allowed;
 }
 
 .booking-modal__guests-section {
@@ -5625,7 +5681,8 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
-.payment-header__steps-divider::before, .payment-header__steps-divider::after {
+.payment-header__steps-divider::before,
+.payment-header__steps-divider::after {
   content: "";
   display: block;
   height: 100%;
