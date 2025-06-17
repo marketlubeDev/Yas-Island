@@ -10,6 +10,7 @@ export default function BookingSection({ product, onBack }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
+  const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const { language } = useLanguage();
 
@@ -104,6 +105,19 @@ export default function BookingSection({ product, onBack }) {
       year: "numeric",
     });
   };
+
+  useEffect(() => {
+    let newTotalPrice = 0;
+    product.product_variants.forEach(variant => {   
+      const variantName = variant.productvariantname;
+
+      if (guests[variantName]) {
+        newTotalPrice += variant.gross * guests[variantName];
+      }
+    });    
+    setTotalPrice(newTotalPrice);
+  }, [guests, product]);
+
 
   return (
     <div className="booking-section">
@@ -226,7 +240,7 @@ export default function BookingSection({ product, onBack }) {
             onClick={() => navigate("/payment")}
           >
             {t("booking.checkOut")}{" "}
-            <span style={{ color: "red" }}>AED 985.00</span>
+            <span style={{ color: "red" }}>AED {totalPrice}</span>
           </button>
           <button className="cart-btn">{t("booking.saveToCart")}</button>
         </div>
