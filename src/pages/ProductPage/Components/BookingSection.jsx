@@ -30,15 +30,19 @@ export default function BookingSection({ product, onBack }) {
 
   function getValidDateRange(product) {
     const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1); // Start from tomorrow
+    today.setHours(0, 0, 0, 0);  // Normalize today's date
+    
+    let tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);  // Normalize tomorrow's date
 
     let endDate;
     if (product.calendar_end_date) {
       endDate = new Date(product.calendar_end_date);
     } else {
-      endDate = new Date(today.getFullYear(), 11, 31); // End of current year
+      endDate = new Date(today.getFullYear(), 11, 31);
     }
+    endDate.setHours(23, 59, 59, 999);  // Set end date to end of day
 
     return { startDate: tomorrow, endDate };
   }
@@ -66,10 +70,18 @@ export default function BookingSection({ product, onBack }) {
 
     // Add the actual days
     for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+      const date = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        day,
+        0, 0, 0, 0  // Normalize the date for comparison
+      );
+      
       const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
       const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled = date < startDate || date > endDate;
+      
+      // Compare normalized dates
+      const isDisabled = date.getTime() < startDate.getTime() || date.getTime() > endDate.getTime();
 
       days.push(
         <div
@@ -87,15 +99,24 @@ export default function BookingSection({ product, onBack }) {
 
   // Handle month navigation
   const handlePrevMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
-    );
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+    const today = new Date();
+    
+    // Only allow going back to current month
+    if (newDate.getMonth() >= today.getMonth() || 
+        newDate.getFullYear() > today.getFullYear()) {
+      setCurrentDate(newDate);
+    }
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
-    );
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    const { endDate } = getValidDateRange(product);
+    
+    // Only allow going forward if within the valid range
+    if (newDate <= endDate) {
+      setCurrentDate(newDate);
+    }
   };
 
   // Format month and year

@@ -39,8 +39,11 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
 
   function getValidDateRange(product) {
     const today = new Date();
-    const tomorrow = new Date(today);
+    today.setHours(0, 0, 0, 0);  // Normalize today's date
+    
+    let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);  // Normalize tomorrow's date
 
     let endDate;
     if (product?.calendar_end_date) {
@@ -48,6 +51,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
+    endDate.setHours(23, 59, 59, 999);  // Set end date to end of day
 
     return { startDate: tomorrow, endDate };
   }
@@ -79,12 +83,16 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
       const date = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        day
+        day,
+        0, 0, 0, 0  // Normalize the date for comparison
       );
+      
       const isSelected =
         selectedDate && date.toDateString() === selectedDate.toDateString();
       const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled = date < startDate || date > endDate;
+      
+      // Compare normalized dates
+      const isDisabled = date.getTime() < startDate.getTime() || date.getTime() > endDate.getTime();
 
       days.push(
         <button
