@@ -985,6 +985,31 @@ body {
   text-align: center;
   margin-bottom: 2rem;
 }
+.calendar-container .selected-dates {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #666;
+}
+.calendar-container .selected-dates div {
+  margin: 5px 0;
+}
+.calendar-container .day.in-range {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 0;
+}
+.calendar-container .day.selected {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+}
+.calendar-container .day.selected:first-child {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+.calendar-container .day.selected:last-child {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
 
 .calendar-wrapper {
   border: 0.826px solid var(--color-base-product-card-card-item-border);

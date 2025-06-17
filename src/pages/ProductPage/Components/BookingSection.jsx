@@ -7,7 +7,8 @@ import { useLanguage } from "../../../context/LanguageContext";
 
 export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
@@ -56,12 +57,33 @@ export default function BookingSection({ product, onBack }) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
+  const handleDateClick = (date) => {
+    if (!startDate || (startDate && endDate)) {
+      // Start new selection
+      setStartDate(date);
+      setEndDate(null);
+    } else {
+      // Complete the selection
+      if (date < startDate) {
+        setStartDate(date);
+        setEndDate(startDate);
+      } else {
+        setEndDate(date);
+      }
+    }
+  };
+
+  const isDateInRange = (date) => {
+    if (!startDate || !endDate) return false;
+    return date >= startDate && date <= endDate;
+  };
+
   // Generate calendar days
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate, endDate } = getValidDateRange(product);
+    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -80,22 +102,24 @@ export default function BookingSection({ product, onBack }) {
         0 // Normalize the date for comparison
       );
 
-      const isSelected =
-        selectedDate && date.toDateString() === selectedDate.toDateString();
+      const isSelected = 
+        (startDate && date.toDateString() === startDate.toDateString()) ||
+        (endDate && date.toDateString() === endDate.toDateString());
+      const isInRange = isDateInRange(date);
       const isToday = date.toDateString() === new Date().toDateString();
-
-      // Compare normalized dates
       const isDisabled =
-        date.getTime() < startDate.getTime() ||
-        date.getTime() > endDate.getTime();
+        date.getTime() < minDate.getTime() ||
+        date.getTime() > maxDate.getTime();
 
       days.push(
         <div
           key={day}
-          className={`day ${isSelected ? "selected" : ""} ${
-            isToday ? "today" : ""
-          } ${isDisabled ? "disabled" : ""}`}
-          onClick={() => !isDisabled && setSelectedDate(date)}
+          className={`day 
+            ${isSelected ? "selected" : ""} 
+            ${isInRange ? "in-range" : ""}
+            ${isToday ? "today" : ""} 
+            ${isDisabled ? "disabled" : ""}`}
+          onClick={() => !isDisabled && handleDateClick(date)}
         >
           {day}
         </div>
@@ -160,6 +184,18 @@ export default function BookingSection({ product, onBack }) {
       {/* Date Selection */}
       <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
+        {/* <div className="selected-dates">
+          {startDate && (
+            <div>
+              {t("booking.startDate")}: {startDate.toLocaleDateString()}
+            </div>
+          )}
+          {endDate && (
+            <div>
+              {t("booking.endDate")}: {endDate.toLocaleDateString()}
+            </div>
+          )}
+        </div> */}
         <div className="calendar-wrapper">
           <div className="calendar-header">
             <button onClick={handlePrevMonth}>

@@ -499,6 +499,39 @@
     text-align: center;
     margin-bottom: 2rem;
   }
+
+  .selected-dates {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+    
+    div {
+      margin: 5px 0;
+    }
+  }
+
+  .day {
+    &.in-range {
+      background-color: rgba(0, 123, 255, 0.1);
+      border-radius: 0;
+    }
+
+    &.selected {
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+
+      &:first-child {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+
+      &:last-child {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+      }
+    }
+  }
 }
 
 .calendar-wrapper {
