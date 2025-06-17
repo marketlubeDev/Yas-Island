@@ -3,6 +3,7 @@ import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
@@ -10,12 +11,13 @@ export default function BookingSection({ product, onBack }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
-  console.log(product);
+  console.log(language, "uselang");
 
   function getVariants() {
     const variants = {};
-    product?.product_variants?.forEach(variant => {
+    product?.product_variants?.forEach((variant) => {
       variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
     });
     return variants;
@@ -142,7 +144,8 @@ export default function BookingSection({ product, onBack }) {
             <h3 className="guest-summary">
               {Object.keys(guests).map((variant, idx, arr) => (
                 <span className="" key={variant}>
-                  {variant}: {guests[variant]}{idx < arr.length - 1 ? " / " : ""}
+                  {variant}: {guests[variant]}
+                  {idx < arr.length - 1 ? " / " : ""}
                 </span>
               ))}
             </h3>
@@ -213,7 +216,11 @@ export default function BookingSection({ product, onBack }) {
           </div>
         </div>
 
-        <div className="booking-actions">
+        <div
+          className={
+            language === "العربية" ? "ar-booking-actions" : "booking-actions"
+          }
+        >
           <button
             className="checkout-btnn"
             onClick={() => navigate("/payment")}

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLanguage } from "../../../context/LanguageContext";
 import arrow from "../../../assets/icons/left.svg";
 import invertLeft from "../../../assets/icons/invertLeft.svg";
 import accessibility from "../../../assets/icons/assess.svg";
@@ -9,12 +10,15 @@ import globe from "../../../assets/icons/globe.svg";
 import invertGlobe from "../../../assets/icons/invertGlob.svg";
 import cart from "../../../assets/icons/cart.svg";
 import invertCart from "../../../assets/icons/invertCart.svg";
+import { setLanguage } from "../../../global/languageSlice";
 
 export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const { toggleLanguage, language } = useLanguage();
+  const dispatch = useDispatch();
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -33,14 +37,21 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
-  
+
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    console.log(lng, "lndfdfdfdfg");
+
+    const newLanguage = lng === "en" ? "English" : "العربية";
+    toggleLanguage(newLanguage);
+    dispatch(setLanguage(lng));
   };
 
   return (
     <div className="product-header">
-      <button className="back-buttonn" onClick={() => window.history.back()}>
+      <button
+        className={language === "العربية" ? "ar-back-button" : "back-buttonn"}
+        onClick={() => window.history.back()}
+      >
         <img src={isDarkMode ? invertLeft : arrow} alt={t("common.back")} />
         {t("common.back")}
       </button>
@@ -106,7 +117,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
           )}
         </div>
         <button
-          className="cart-button"
+          className={language === "العربية" ? "ar-cart-button" : "cart-button"}
           style={{
             borderWidth: isDarkMode ? "2px" : "1px",
           }}

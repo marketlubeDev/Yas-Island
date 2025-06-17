@@ -11,11 +11,15 @@ import chef from "../../assets/icons/chef.svg";
 import camera from "../../assets/icons/cam.svg";
 import shop from "../../assets/icons/shop.svg";
 import { useSelector } from "react-redux";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function SideBar() {
   const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const { language } = useLanguage();
+
+  console.log(language, "langDFDFDuage");
 
   const handleClick = (item) => {
     setActiveItem(item);
@@ -43,15 +47,27 @@ export default function SideBar() {
         {sideBarItems.map((item) => (
           <div
             key={item.name}
-            className={`side-bar-list-item-container ${
-              activeItem === item.name ? "active" : ""
-            }`}
+            className={
+              language === "العربية"
+                ? `ar-side-bar-list-item-container ${
+                    activeItem === item.name ? "active" : ""
+                  }`
+                : `side-bar-list-item-container ${
+                    activeItem === item.name ? "active" : ""
+                  }`
+            }
             onClick={() => handleClick(item.name)}
           >
             <li
-              className={`side-bar-list-item ${
-                activeItem === item.name ? "activeItem" : ""
-              }`}
+              className={
+                language === "العربية"
+                  ? `ar-side-bar-list-item ${
+                      activeItem === item.name ? "activeItem" : ""
+                    }`
+                  : `side-bar-list-item ${
+                      activeItem === item.name ? "activeItem" : ""
+                    }`
+              }
               onClick={() => handleClick(item.name)}
             >
               <div
