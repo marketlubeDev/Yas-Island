@@ -13,13 +13,7 @@ import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 import UnderConstruction from "../components/UnderConstruction";
 
 const ResponsiveLanding = () => {
-  // const { isSmallPhone, isPhone } = useResponsive();
-  // const isMobile = isSmallPhone || isPhone;
-  // return isMobile ? <Navigate to="/product" replace /> : <LandingPage />;
   return <Navigate to="/product" replace />;
-  // const { isSmallPhone, isPhone } = useResponsive();
-  // const isMobile = isSmallPhone || isPhone;
-  // return isMobile ? <UnderConstruction /> : <LandingPage />;
 };
 
 const ResponsiveProduct = () => {

@@ -736,7 +736,7 @@
   cursor: pointer;
 }
 .checkout-btnn {
-  background: #ffe600;
+  background: var(--color-base-accessibility-modal-btn-bg);
   color: black;
   border: none;
   border-radius: 25px;
