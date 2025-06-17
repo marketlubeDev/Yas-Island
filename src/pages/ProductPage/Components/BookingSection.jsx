@@ -30,11 +30,11 @@ export default function BookingSection({ product, onBack }) {
 
   function getValidDateRange(product) {
     const today = new Date();
-    today.setHours(0, 0, 0, 0);  // Normalize today's date
-    
+    today.setHours(0, 0, 0, 0); // Normalize today's date
+
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);  // Normalize tomorrow's date
+    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
 
     let endDate;
     if (product.calendar_end_date) {
@@ -42,7 +42,7 @@ export default function BookingSection({ product, onBack }) {
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
-    endDate.setHours(23, 59, 59, 999);  // Set end date to end of day
+    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
 
     return { startDate: tomorrow, endDate };
   }
@@ -74,19 +74,27 @@ export default function BookingSection({ product, onBack }) {
         currentDate.getFullYear(),
         currentDate.getMonth(),
         day,
-        0, 0, 0, 0  // Normalize the date for comparison
+        0,
+        0,
+        0,
+        0 // Normalize the date for comparison
       );
-      
-      const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+
+      const isSelected =
+        selectedDate && date.toDateString() === selectedDate.toDateString();
       const isToday = date.toDateString() === new Date().toDateString();
-      
+
       // Compare normalized dates
-      const isDisabled = date.getTime() < startDate.getTime() || date.getTime() > endDate.getTime();
+      const isDisabled =
+        date.getTime() < startDate.getTime() ||
+        date.getTime() > endDate.getTime();
 
       days.push(
         <div
           key={day}
-          className={`day ${isSelected ? "selected" : ""} ${isToday ? "today" : ""} ${isDisabled ? "disabled" : ""}`}
+          className={`day ${isSelected ? "selected" : ""} ${
+            isToday ? "today" : ""
+          } ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && setSelectedDate(date)}
         >
           {day}
@@ -99,20 +107,28 @@ export default function BookingSection({ product, onBack }) {
 
   // Handle month navigation
   const handlePrevMonth = () => {
-    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1
+    );
     const today = new Date();
-    
+
     // Only allow going back to current month
-    if (newDate.getMonth() >= today.getMonth() || 
-        newDate.getFullYear() > today.getFullYear()) {
+    if (
+      newDate.getMonth() >= today.getMonth() ||
+      newDate.getFullYear() > today.getFullYear()
+    ) {
       setCurrentDate(newDate);
     }
   };
 
   const handleNextMonth = () => {
-    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1
+    );
     const { endDate } = getValidDateRange(product);
-    
+
     // Only allow going forward if within the valid range
     if (newDate <= endDate) {
       setCurrentDate(newDate);
@@ -129,16 +145,15 @@ export default function BookingSection({ product, onBack }) {
 
   useEffect(() => {
     let newTotalPrice = 0;
-    product.product_variants.forEach(variant => {   
+    product.product_variants.forEach((variant) => {
       const variantName = variant.productvariantname;
 
       if (guests[variantName]) {
         newTotalPrice += variant.gross * guests[variantName];
       }
-    });    
+    });
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
-
 
   return (
     <div className="booking-section">
@@ -185,66 +200,48 @@ export default function BookingSection({ product, onBack }) {
               ))}
             </h3>
             <div className="guest-controls">
-              
-           {Object.keys(guests)?.map((variant , idx) => ( 
-            <div key={idx}>
-              <div className="guest-row">
-                <span className="guest-label">{variant}</span>
-                <div className="counter-controls">
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                        setGuests(prev => ({
-                          ...prev,
-                          [variant]: Math.max(0, prev[variant] - 1)
-                        }))
-                      }
-                  >
-                    -
-                  </button>
-                  <span className="counter-value">{guests[variant]}</span>
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                      setGuests(prev => ({
-                        ...prev,
-                        [variant]: prev[variant] + 1
-                      }))
-                    }
-  
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
+              {Object.keys(guests)?.map((variant, idx) => (
+                <div key={idx}>
+                  <div className="guest-row">
+                    <div className="guest-label-container">
+                      <span className="guest-label">{variant}</span>
+                      <span className="guest-label-price">
+                        AED{" "}
+                        {product.product_variants.find(
+                          (v) => v.productvariantname === variant
+                        )?.gross * guests[variant]}{" "}
+                      </span>
+                    </div>
+                    <div className="counter-controls">
+                      <button
+                        className="counter-btn"
+                        onClick={() =>
+                          setGuests((prev) => ({
+                            ...prev,
+                            [variant]: Math.max(0, prev[variant] - 1),
+                          }))
+                        }
+                      >
+                        -
+                      </button>
+                      <span className="counter-value">{guests[variant]}</span>
+                      <button
+                        className="counter-btn"
+                        onClick={() =>
+                          setGuests((prev) => ({
+                            ...prev,
+                            [variant]: prev[variant] + 1,
+                          }))
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
 
-              <div className="guest-row-divider"></div>
-              </div>
-           ))}
-
-              {/* <div className="guest-row">
-                <span className="guest-label">{t("booking.children")}</span>
-                <div className="counter-controls">
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                      setGuests({ ...guests, children: guests.children - 1 })
-                    }
-                  >
-                    -
-                  </button>
-                  <span className="counter-value">{guests.children}</span>
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                      setGuests({ ...guests, children: guests.children + 1 })
-                    }
-                  >
-                    +
-                  </button>
+                  <div className="guest-row-divider"></div>
                 </div>
-              </div> */}
-              {/* <div className="guest-row-divider"></div> */}
+              ))}
             </div>
 
             <p className="guest-note">{t("booking.kidsFree")}</p>

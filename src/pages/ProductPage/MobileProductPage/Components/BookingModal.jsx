@@ -202,9 +202,11 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
               {Object.keys(guests).map((variant, idx) => (
                 <React.Fragment key={idx}>
                   <div className="guests-row">
-                    <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
-                      {variant}
-                    </span>
+                    <div className="guest-label-container">
+                      <span className="guest-label">{variant}</span>
+                      <span className="guest-label-price">AED {product.product_variants.find(v => v.productvariantname === variant)?.gross * guests[variant] } </span>
+                    </div>
+         
                     <div className="guests-controls">
                       <button
                         className="guests-btn"
