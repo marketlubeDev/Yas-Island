@@ -3,14 +3,14 @@ import { useTranslation } from "react-i18next";
 import Search from "../../../components/Common/Search/Search";
 import { useSelector } from "react-redux";
 import Selector from "../../../components/Common/Selectors/Selector";
+import { useLanguage } from "../../../context/LanguageContext";
 
 export default function ProductHead() {
+  const { language } = useLanguage();
   const { t } = useTranslation();
   const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
     (state) => state.responsive
   );
-
-  console.log(isDesktop, isBigDesktop, isExtraBigDesktop, "saldhslajhdlash");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Price (High to Low)");
@@ -41,7 +41,9 @@ export default function ProductHead() {
   }, [showSortDropdown, showFilterDropdown]);
 
   return (
-    <div className="product-head">
+    <div
+      className={language === "العربية" ? "ar-product-head" : "product-head"}
+    >
       <Search />
       {(isDesktop || isBigDesktop || isExtraBigDesktop) && (
         <div className="product-head__right">

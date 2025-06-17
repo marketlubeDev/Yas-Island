@@ -6,14 +6,38 @@ import Expand from "../../../assets/icons/shrink.svg";
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CartModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // Example local state for quantity of the first item
-  const [item1Quantity, setItem1Quantity] = useState(2); // Starting with quantity 2
-  // Example local state for quantity of the second item
-  const [item2Quantity, setItem2Quantity] = useState(2); // Starting with quantity 2
+  const { language } = useLanguage();
+
+  // Cart items data
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      image: Ferrari,
+      title: "1 day Ferrari World",
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: "08 feb 2025",
+      validTo: "08 feb 2025",
+    },
+    {
+      id: 2,
+      image: Ferrari,
+      title: "1 day Ferrari World",
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: "08 feb 2025",
+      validTo: "08 feb 2025",
+    },
+  ]);
 
   const handleCheckout = () => {
     navigate("/payment");
@@ -24,22 +48,14 @@ const CartModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  // Handlers for the first item's quantity
-  const handleIncreaseItem1Quantity = () => {
-    setItem1Quantity(prevQuantity => prevQuantity + 1);
-  };
-
-  const handleDecreaseItem1Quantity = () => {
-    setItem1Quantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1)); // Prevent quantity from going below 1
-  };
-
-  // Handlers for the second item's quantity
-  const handleIncreaseItem2Quantity = () => {
-    setItem2Quantity(prevQuantity => prevQuantity + 1);
-  };
-
-  const handleDecreaseItem2Quantity = () => {
-    setItem2Quantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1)); // Prevent quantity from going below 1
+  const handleQuantityChange = (id, change) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + change) }
+          : item
+      )
+    );
   };
 
   if (!isOpen) return null;
@@ -47,7 +63,7 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <Drawer
       title={null}
-      placement="right"
+      placement={language === "العربية" ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
       width="34%"
@@ -63,54 +79,43 @@ const CartModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="booking-date">
+        {/* <div className="booking-date">
           <p>
             {t("cart.bookingFor")} <span>Thu 08- Feb 2025</span>
           </p>
-        </div>
+        </div> */}
 
         <div className="cart-items">
-          {/* First hardcoded cart item */}
-          <div className="cart-item">
-            <img src={Ferrari} alt={t("cart.item.ferrariWorld")} />
-            <div className="item-details">
-              <h4>{t("cart.item.ferrariWorld")}</h4>
-              <p>{t("cart.item.price")}</p>
-              <small>{t("cart.item.vatAndTax")}</small>
-            </div>
-            <div className="quantity-controls">
-              <span>{t("cart.adults")}</span>
-              <div className="controls">
-                <Button icon={<MinusOutlined />} onClick={handleDecreaseItem1Quantity} />
-                <span>{item1Quantity}</span> {/* Display the item1Quantity state */}
-                <Button icon={<PlusOutlined />} onClick={handleIncreaseItem1Quantity} />
-                <Button className="delete-btn">
-                  <img src={DeleteIcon} alt={t("cart.delete")} />
-                </Button>
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.title} />
+              <div className="item-details">
+                <h4>{item.title}</h4>
+                <p>{item.price}</p>
+                <div className="validity-date" style={{}}>
+                  Valid from <span>{item.validFrom}</span> to{" "}
+                  <bspan>{item.validTo}</bspan>
+                </div>
+              </div>
+              <div className="quantity-controls">
+                <span>{t("cart.adults")}</span>
+                <div className="controls">
+                  <Button
+                    icon={<MinusOutlined />}
+                    onClick={() => handleQuantityChange(item.id, -1)}
+                  />
+                  <span>{item.quantity}</span>
+                  <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => handleQuantityChange(item.id, 1)}
+                  />
+                  <Button className="delete-btn">
+                    <img src={DeleteIcon} alt={t("cart.delete")} />
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Second hardcoded cart item */}
-           <div className="cart-item">
-            <img src={Ferrari} alt={t("cart.item.ferrariWorld")} />
-            <div className="item-details">
-              <h4>{t("cart.item.ferrariWorld")}</h4>
-              <p>{t("cart.item.price")}</p>
-              <small>{t("cart.item.vatAndTax")}</small>
-            </div>
-            <div className="quantity-controls">
-              <span>{t("cart.adults")}</span>
-              <div className="controls">
-                <Button icon={<MinusOutlined />} onClick={handleDecreaseItem2Quantity} />
-                <span>{item2Quantity}</span> {/* Display the item2Quantity state */}
-                <Button icon={<PlusOutlined />} onClick={handleIncreaseItem2Quantity} />
-                <Button className="delete-btn">
-                  <img src={DeleteIcon} alt={t("cart.delete")} />
-                </Button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="cart-summary">
