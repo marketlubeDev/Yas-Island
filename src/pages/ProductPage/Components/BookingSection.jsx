@@ -27,6 +27,21 @@ export default function BookingSection({ product, onBack }) {
     setGuests(getVariants());
   }, [product]);
 
+  function getValidDateRange(product) {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Start from tomorrow
+
+    let endDate;
+    if (product.calendar_end_date) {
+      endDate = new Date(product.calendar_end_date);
+    } else {
+      endDate = new Date(today.getFullYear(), 11, 31); // End of current year
+    }
+
+    return { startDate: tomorrow, endDate };
+  }
+
   // Calendar helper functions
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -41,6 +56,7 @@ export default function BookingSection({ product, onBack }) {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
+    const { startDate, endDate } = getValidDateRange(product);
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -49,22 +65,16 @@ export default function BookingSection({ product, onBack }) {
 
     // Add the actual days
     for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        day
-      );
-      const isSelected =
-        selectedDate && date.toDateString() === selectedDate.toDateString();
+      const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+      const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
       const isToday = date.toDateString() === new Date().toDateString();
+      const isDisabled = date < startDate || date > endDate;
 
       days.push(
         <div
           key={day}
-          className={`day ${isSelected ? "selected" : ""} ${
-            isToday ? "today" : ""
-          }`}
-          onClick={() => setSelectedDate(date)}
+          className={`day ${isSelected ? "selected" : ""} ${isToday ? "today" : ""} ${isDisabled ? "disabled" : ""}`}
+          onClick={() => !isDisabled && setSelectedDate(date)}
         >
           {day}
         </div>
@@ -140,40 +150,42 @@ export default function BookingSection({ product, onBack }) {
               ))}
             </h3>
             <div className="guest-controls">
-              {Object.keys(guests)?.map((variant) => (
-                <>
-                  <div className="guest-row">
-                    <span className="guest-label">{variant}</span>
-                    <div className="counter-controls">
-                      <button
-                        className="counter-btn"
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: Math.max(0, prev[variant] - 1),
-                          }))
-                        }
-                      >
-                        -
-                      </button>
-                      <span className="counter-value">{guests[variant]}</span>
-                      <button
-                        className="counter-btn"
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: prev[variant] + 1,
-                          }))
-                        }
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
+              
+           {Object.keys(guests)?.map((variant , idx) => ( 
+            <div key={idx}>
+              <div className="guest-row">
+                <span className="guest-label">{variant}</span>
+                <div className="counter-controls">
+                  <button
+                    className="counter-btn"
+                    onClick={() =>
+                        setGuests(prev => ({
+                          ...prev,
+                          [variant]: Math.max(0, prev[variant] - 1)
+                        }))
+                      }
+                  >
+                    -
+                  </button>
+                  <span className="counter-value">{guests[variant]}</span>
+                  <button
+                    className="counter-btn"
+                    onClick={() =>
+                      setGuests(prev => ({
+                        ...prev,
+                        [variant]: prev[variant] + 1
+                      }))
+                    }
+  
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
 
-                  <div className="guest-row-divider"></div>
-                </>
-              ))}
+              <div className="guest-row-divider"></div>
+              </div>
+           ))}
 
               {/* <div className="guest-row">
                 <span className="guest-label">{t("booking.children")}</span>
