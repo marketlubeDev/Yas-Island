@@ -1284,14 +1284,49 @@ body {
   margin-top: 1rem;
 }
 
-.accessibility-modal .ant-modal-content {
-  border-radius: 16px;
+.accessibility-web-modal .ant-modal-content {
+  background: var(--color-pymnt-container-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  border-radius: 40px;
   padding: 3rem;
-  background: #f4f3f3;
-  width: 100% !important;
+}
+.accessibility-web-modal .ant-modal-close {
+  display: none;
 }
 
-.accessibility-modal .close-button {
+.accessibility-web-modal .ant-modal-close {
+  position: absolute;
+  top: -14%;
+  right: 5px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
+  line-height: 1;
+  border-radius: 70.476px;
+  border: 2px solid #dcd6e5;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: background 0.2s;
+}
+.accessibility-web-modal .ant-modal-close:hover {
+  background: #fff;
+}
+.accessibility-web-modal .ant-modal-close img {
+  width: 28px;
+  height: 28px;
+}
+
+.ant-modal-mask {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.accessibility-web-modal .close-button {
   font-size: 1.4rem;
   color: #666;
 }
@@ -1333,7 +1368,7 @@ body {
   align-items: center;
   gap: 0.46694rem;
   flex-shrink: 0;
-  background: var(--color-base-accessibility-modal-card-bg);
+  background-color: var(--color-base-product-card-card-item-bg);
   border-radius: 0.74706rem;
   border: 1.494px solid var(--color-base-accessibility-modal-card-border);
   flex-direction: column;
@@ -1342,7 +1377,7 @@ body {
 .option-card.active {
   border: 2px solid #007bff;
   border-radius: 8px;
-  background-color: rgba(0, 123, 255, 0.1);
+  background-color: var(--color-base-accessibility-modal-card-bg);
 }
 
 .option-card:hover {
@@ -1368,7 +1403,7 @@ body {
 }
 
 .option-card p {
-  color: #18142b;
+  color: var(--color-base-accessibility-modal-title);
   text-align: center;
   font-size: 1rem;
   font-style: normal;
@@ -1420,6 +1455,15 @@ body {
 }
 .accessibility-modal .ant-modal-close:hover {
   background: #fff;
+}
+
+.vertical-divider {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background: var(--color-base-accessibility-modal-subtitle);
+  margin: 0 0.5rem;
+  vertical-align: middle;
 }
 
 .ant-drawer-content {
@@ -3264,6 +3308,7 @@ body {
 .accessibility-modal .ant-modal-content {
   background: var(--color-base-product-card-card-item-bg);
   border: 2.353px solid var(--color-base-product-card-card-item-border);
+  border-radius: 40px;
 }
 .accessibility-modal .ant-modal-close {
   display: none;
@@ -5799,24 +5844,4 @@ body {
   top: 1.6rem;
   right: -1.5rem;
   width: 100%;
-}
-
-.ant-modal .ant-modal-content {
-  position: relative;
-  background-color: var(--color-base-bg);
-  background-clip: padding-box;
-  border: 1px solid var(--color-bkg-modal-border);
-  border-radius: 40px;
-  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-  pointer-events: auto;
-  padding: 20px 24px;
-}
-.dark-mode .ant-modal .ant-modal-content {
-  background-color: var(--color-base-mobile-product-page-text, #18142b);
-  color: var(--color-base-mobile-product-page-bg, #ffffff);
-}
-.ant-modal .ant-modal-close .ant-modal-close-x {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
 }

@@ -1,14 +1,50 @@
-// @use "../abstract/variables" as *;
-
-.accessibility-modal .ant-modal-content {
-  border-radius: 16px;
-  padding: 3rem;
-  background: #f4f3f3;
-  width: 100% !important;
+.accessibility-web-modal {
+  .ant-modal-content {
+    background: var(--color-pymnt-container-bg);
+    border: 2.353px solid var(--color-base-product-card-card-item-border);
+    border-radius: 40px;
+    padding: 3rem;
+  }
+  .ant-modal-close {
+    display: none;
+  }
 }
 
-.accessibility-modal .close-button {
-  // font-size: 24px;
+.accessibility-web-modal .ant-modal-close {
+  position: absolute;
+  top: -14%;
+  right: 5px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
+  line-height: 1;
+  border-radius: 70.476px;
+  border: 2px solid #dcd6e5;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #fff;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.ant-modal-mask {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.accessibility-web-modal .close-button {
   font-size: 1.4rem;
   color: #666;
 }
@@ -50,7 +86,7 @@
   align-items: center;
   gap: 0.46694rem;
   flex-shrink: 0;
-  background: var(--color-base-accessibility-modal-card-bg);
+  background-color: var(--color-base-product-card-card-item-bg);
   border-radius: 0.74706rem;
   border: 1.494px solid var(--color-base-accessibility-modal-card-border);
   flex-direction: column;
@@ -59,7 +95,7 @@
   &.active {
     border: 2px solid #007bff;
     border-radius: 8px;
-    background-color: rgba(0, 123, 255, 0.1);
+    background-color: var(--color-base-accessibility-modal-card-bg);
   }
 }
 
@@ -87,9 +123,8 @@
 }
 
 .option-card p {
-  color: #18142b;
+  color: var(--color-base-accessibility-modal-title);
   text-align: center;
-  // font-family: Urbanist;
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
@@ -142,4 +177,13 @@
   &:hover {
     background: #fff;
   }
+}
+
+.vertical-divider {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background: var(--color-base-accessibility-modal-subtitle);
+  margin: 0 0.5rem;
+  vertical-align: middle;
 }

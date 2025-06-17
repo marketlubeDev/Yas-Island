@@ -53,7 +53,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
           <img src={closeIcon} alt={t("accessibility.close")} />
         </span>
       }
-      className="accessibility-modal"
+      className="accessibility-web-modal"
       width="40%"
     >
       <div className="modal-content">
