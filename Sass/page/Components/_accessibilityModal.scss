@@ -147,7 +147,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s;
-  color: #18142b;
+  color: var(--btn-clr);
   // font-family: Urbanist;
   font-size: 1.1rem;
   font-style: normal;
@@ -157,7 +157,7 @@
 }
 
 .continue-button:hover {
-  background: #ffd600;
+  background: var(--color-base-accessibility-modal-btn-bg);
 }
 
 .accessibility-modal .ant-modal-close {

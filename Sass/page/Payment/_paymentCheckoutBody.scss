@@ -141,11 +141,12 @@
   width: 100%;
   padding: 16px;
   border-radius: 4.375rem;
-  background: #ffea00;
+  background: var(--cnfm-btn-clr);
   border: none;
   font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
+  color: var(--btn-clr);
 }
 .payment-checkout__header {
   display: flex;

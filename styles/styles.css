@@ -178,6 +178,9 @@
   --cart-item-day: #594f67;
   --cart-item-var: #4c4358;
   --cart-total-price: #4f475b;
+  --payment-right-bg: #f4f7f8;
+  --btn-clr: "#18142b";
+  --cnfm-btn-clr: "#ffea00";
 }
 
 [dir=rtl] {
@@ -202,7 +205,7 @@
 body {
   font-family: "YAS Font", sans-serif !important;
   overflow-x: hidden;
-  background-color: var(--color-base-bg);
+  background-color: #f4f3f3;
 }
 
 .normal-title-txt {
@@ -937,6 +940,7 @@ body {
   align-items: center;
   gap: 0.625rem;
   flex-shrink: 0;
+  color: var(--btn-clr);
 }
 
 .vertical-divider {
@@ -1225,7 +1229,7 @@ body {
 
 .checkout-btnn {
   background: var(--color-base-accessibility-modal-btn-bg);
-  color: black;
+  color: var(--btn-clr);
   border: none;
   border-radius: 25px;
   padding: 16px;
@@ -1428,7 +1432,7 @@ body {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s;
-  color: #18142b;
+  color: var(--btn-clr);
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 500;
@@ -1437,7 +1441,7 @@ body {
 }
 
 .continue-button:hover {
-  background: #ffd600;
+  background: var(--color-base-accessibility-modal-btn-bg);
 }
 
 .accessibility-modal .ant-modal-close {
@@ -1865,11 +1869,12 @@ body {
   width: 100%;
   padding: 16px;
   border-radius: 4.375rem;
-  background: #ffea00;
+  background: var(--cnfm-btn-clr);
   border: none;
   font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
+  color: var(--btn-clr);
 }
 
 .payment-checkout__header {
@@ -2101,7 +2106,7 @@ body {
   width: 35%;
 }
 .payment-form__right .order-summary {
-  background: #f4f7f8;
+  background: var(--payment-right-bg);
 }
 .payment-form__right .order-summary__title {
   font-size: 1.25rem;

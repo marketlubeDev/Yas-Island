@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 
 export default function GlobalInvertColor() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const isHighContrast = useSelector(
+    (state) => state.accessibility.isHighContrast
+  );
 
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--color-base-bg",
-      isDarkMode ? "#000" : "#fff"
+      isDarkMode ? "#000" : isHighContrast ? "#fff" : "#fff"
     );
     document.documentElement.style.setProperty(
       "--color-base-text",
@@ -23,12 +26,14 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-btn-border",
-      isDarkMode ? "#FFAD33" : "#dcd6e5"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#7E85B4" : "#dcd6e5"
     );
     document.documentElement.style.setProperty(
       "--color-base-chat-btn-bg",
       isDarkMode
         ? "#FFAD33"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(180deg, #0597e5 0%, #0758dd 100%)"
     );
     document.documentElement.style.setProperty(
@@ -37,7 +42,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-side-bar-border",
-      isDarkMode ? "#F7B141" : "#F7D148"
+      isDarkMode ? "#F7B141" : isHighContrast ? "#084EBE" : "#F7D148"
     );
     document.documentElement.style.setProperty(
       "--color-base-side-bar-invert-border",
@@ -59,6 +64,8 @@ export default function GlobalInvertColor() {
       "--color-base-side-bar-item-icon-bg",
       isDarkMode
         ? "#F8A622"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(135deg, #da3164 0%, #ae219f 50%, #547ee0 100%)"
     );
     document.documentElement.style.setProperty(
@@ -87,6 +94,8 @@ export default function GlobalInvertColor() {
       "--color-base-product-card-scroll-bar",
       isDarkMode
         ? "#FFAD33"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%)"
     );
     document.documentElement.style.setProperty(
@@ -113,7 +122,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-product-card-add-cart-btn-bg",
-      isDarkMode ? "#1A1206" : "#fff8a5"
+      isDarkMode ? "#1A1206" : isHighContrast ? "#E5EDF9" : "#fff8a5"
     );
     // Accessibility Modal
     document.documentElement.style.setProperty(
@@ -134,7 +143,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-accessibility-modal-btn-bg",
-      isDarkMode ? "#FFAD33" : "#ffe600"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
     );
 
     //mobile product page
@@ -408,7 +417,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-dtl-content-border",
-      isDarkMode ? "rgba(255, 173, 51, 0.50)" : "#fff"
+      isDarkMode ? "#ffad337f" : "#fff"
     );
 
     //mobile booking modal
@@ -492,6 +501,12 @@ export default function GlobalInvertColor() {
       "--color-bkg-checkout-btn-border",
       isDarkMode ? "#FFAD33" : "#ffea00"
     );
+
+    document.documentElement.style.setProperty(
+      "--cnfm-btn-clr",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
+    );
+
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-clr-span",
       isDarkMode ? "#E7EBD4" : "#f83482"
@@ -680,8 +695,21 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#A6B098" : "#4f475b"
     );
 
+    document.documentElement.style.setProperty(
+      "--payment-right-bg",
+      isDarkMode ? "#4c4358" : "#f4f7f8"
+    );
+
+    document.documentElement.style.setProperty(
+      "--btn-clr",
+      isDarkMode ? "#18142b" : isHighContrast ? "#fff" : "#18142b"
+    );
+
     return () => {
-      document.documentElement.style.setProperty("--color-base-bg", "#fff");
+      document.documentElement.style.setProperty(
+        "--color-base-bg",
+        isDarkMode ? "#000" : isHighContrast ? "#dcd6e5" : "#fff"
+      );
       document.documentElement.style.setProperty(
         "--color-base-text",
         "#18142B"
@@ -1238,8 +1266,13 @@ export default function GlobalInvertColor() {
         "--cart-total-price",
         "#4f475b"
       );
+
+      document.documentElement.style.setProperty(
+        "--payment-right-bg",
+        "#f4f7f8"
+      );
     };
-  }, [isDarkMode]);
+  }, [isDarkMode, isHighContrast]);
 
   return null;
 }
