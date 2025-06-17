@@ -519,7 +519,7 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#E7EBD4" : "#231942"
     );
     document.documentElement.style.setProperty(
-      "#f4f3f3",
+      "--color-pymnt-step-clr",
       isDarkMode ? "#A6B098" : "#594f67"
     );
     document.documentElement.style.setProperty(
