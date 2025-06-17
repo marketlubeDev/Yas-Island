@@ -27,7 +27,11 @@ const checkoutSlice = createSlice({
         clearCheckout: (state) => {
             state.checkout = {};
         },  
+        setEmail: (state, action) => {
+            state.checkout.email = action.payload;
+        },
+            
     },
 });
 
-export const { setCheckout } = checkoutSlice.actions;
+export const { setCheckout, setEmail } = checkoutSlice.actions;

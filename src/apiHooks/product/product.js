@@ -1,12 +1,17 @@
 import apiClient from "../../../config/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+
 
 
 const useGetProductList = () => {
+  const language = useSelector((state) => state.language.currentLanguage);
   const response = useQuery({
-    queryKey: ["productList"],
-    queryFn: () => apiClient.get("/products/GetProductList?langcode=en"),
+    queryKey: ["productList", language],
+    queryFn: () => apiClient.get(`/products/GetProductList?lang=${language}`),
+    keepPreviousData: false,
   });
+ 
   return {
     data: response.data,
     productList: response?.data?.data?.results,

@@ -4,6 +4,8 @@ import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useDispatch } from "react-redux";
+import { setCheckout } from "../../../global/checkoutSlice";
 
 export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
@@ -14,8 +16,8 @@ export default function BookingSection({ product, onBack }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const dispatch = useDispatch();
 
-  console.log(language, "uselang");
 
   function getVariants() {
     const variants = {};
@@ -179,6 +181,23 @@ export default function BookingSection({ product, onBack }) {
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
+  const handleCheckout = () => {
+    const variants = {}
+
+    product?.product_variants.forEach((variant) => {
+      variants[variant?.productid] = guests[variant?.productvariantname];
+    });
+
+    console.log(variants, "varinats");
+    dispatch(setCheckout({
+      startDate,
+      endDate,
+      guests:variants,
+      totalPrice,
+    }));
+    navigate("/payment");
+  };
+
   return (
     <div className="booking-section">
       {/* Date Selection */}
@@ -291,7 +310,7 @@ export default function BookingSection({ product, onBack }) {
         >
           <button
             className="checkout-btnn"
-            onClick={() => navigate("/payment")}
+            onClick={handleCheckout}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED {totalPrice}</span>

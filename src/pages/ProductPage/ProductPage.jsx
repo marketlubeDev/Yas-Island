@@ -14,11 +14,15 @@ import useGetProductList from "../../apiHooks/product/product";
 
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
-    useState(false);
+  
+  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-
   const { productList, isLoading, isError } = useGetProductList();
+
+
+
+  
+
   return (
     <div className="product">
       <SideBar />
@@ -28,7 +32,11 @@ export default function ProductPage() {
           onCartOpen={() => setIsCartModalOpen(true)}
         />
         <ProductHead label="Sort by" /> */}
-        <ProductCard productList={productList} />
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <ProductCard productList={productList} />
+        )}
         {(isMobile || isTablet) && <ProductSoloThumbnail />}
         {(isMobile || isTablet) && <MobSelectorGroup />}
         <AccessibilityModal
