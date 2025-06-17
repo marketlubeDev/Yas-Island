@@ -647,8 +647,37 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--cart-border",
       isDarkMode
-        ? "linear-gradient(90deg, #F9A251 0%, #CB5F26 100%)"
+        ? "linear-gradient(90deg, #F9A251 0%, #CB5F26 100%) 1"
         : "linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-item-name",
+      isDarkMode ? "#AEB89F" : "#514760"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-price",
+      isDarkMode ? "#F8A050" : "#075faf"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-date",
+      isDarkMode ? "#CBCBCB" : "#514760"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-day",
+      isDarkMode ? "#fff" : "#594f67"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-var",
+      isDarkMode ? "#A6B098" : "#4c4358"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-total-price",
+      isDarkMode ? "#A6B098" : "#4f475b"
     );
 
     return () => {
@@ -1186,6 +1215,29 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty("--ip-label", "#333");
 
       document.documentElement.style.setProperty("--ip-border", "#ddd");
+
+      document.documentElement.style.setProperty(
+        "--cart-border",
+        "linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1"
+      );
+
+      document.documentElement.style.setProperty("--cart-item-name", "#514760");
+
+      document.documentElement.style.setProperty(
+        "--cart-item-price",
+        "#075faf"
+      );
+
+      document.documentElement.style.setProperty("--cart-item-date", "#514760");
+
+      document.documentElement.style.setProperty("--cart-item-day", "#594f67");
+
+      document.documentElement.style.setProperty("--cart-item-var", "#4c4358");
+
+      document.documentElement.style.setProperty(
+        "--cart-total-price",
+        "#4f475b"
+      );
     };
   }, [isDarkMode]);
 

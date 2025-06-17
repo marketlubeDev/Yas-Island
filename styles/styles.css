@@ -172,6 +172,12 @@
   --ip-label: #333;
   --cupon-bg: #ddd;
   --cart-border: linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1;
+  --cart-item-name: #514760;
+  --cart-item-price: #075faf;
+  --cart-item-date: #514760;
+  --cart-item-day: #594f67;
+  --cart-item-var: #4c4358;
+  --cart-total-price: #4f475b;
 }
 
 [dir=rtl] {
@@ -1421,10 +1427,6 @@ body {
   border-bottom-left-radius: 1.70444rem !important;
 }
 
-.cart-drawer .ant-drawer .ant-drawer-body {
-  background-color: #065dae !important;
-}
-
 .cart-content {
   height: 100vh;
   overflow-y: auto;
@@ -1438,7 +1440,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid transparent;
-  border-image: linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1;
+  border-image: var(--cart-border);
   padding: 10px 20px 10px 20px;
 }
 .cart-header h2 {
@@ -1478,10 +1480,14 @@ body {
 }
 
 .expand-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   flex-shrink: 0;
   cursor: pointer;
+}
+.expand-icon img {
+  width: 100%;
+  height: 100%;
 }
 
 .cart-item {
@@ -1505,7 +1511,7 @@ body {
   justify-content: space-between;
 }
 .item-details p {
-  color: #075faf;
+  color: var(--cart-item-price);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 700;
@@ -1515,7 +1521,7 @@ body {
 
 .item-details h4 {
   margin: 0;
-  color: #514760;
+  color: var(--cart-item-name);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 500;
@@ -1547,7 +1553,7 @@ body {
   gap: 30px;
 }
 .quantity-controls span {
-  color: #4c4358;
+  color: var(--cart-item-var);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 600;
@@ -1564,14 +1570,18 @@ body {
 .cart-summary {
   margin-top: auto;
   padding: 20px;
-  background: #fff;
+  background: var(--color-base-bg);
   box-shadow: 0px -10.908px 36.816px 0px rgba(27, 36, 53, 0.17);
+  border-radius: 12px;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+.summary-row span {
+  color: var(--color-base-text);
 }
 
 .total {
@@ -1580,6 +1590,9 @@ body {
   font-weight: bold;
   font-size: 18px;
   margin: 20px 0;
+}
+.total span {
+  color: var(--cart-total-price);
 }
 
 .cart-actions {
@@ -1639,7 +1652,7 @@ body {
 }
 
 .validity-date {
-  color: #514760;
+  color: var(--cart-item-date);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -1647,7 +1660,7 @@ body {
   text-transform: lowercase;
 }
 .validity-date span {
-  color: #594f67;
+  color: var(--cart-item-day);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

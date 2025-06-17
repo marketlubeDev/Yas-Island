@@ -3,15 +3,21 @@ import { Drawer, Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import Expand from "../../../assets/icons/shrink.svg";
+import ExpandDark from "../../../assets/icons/invertShrink.svg";
+
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useSelector } from "react-redux";
 
 const CartModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+
+  console.log(isDarkMode, "isDargfgfkMode");
 
   // Cart items data
   const [cartItems, setCartItems] = useState([
@@ -74,8 +80,18 @@ const CartModal = ({ isOpen, onClose }) => {
       <div className="cart-content">
         <div className="cart-header">
           <h2>{t("cart.title")}</h2>
-          <button className="expand-icon" onClick={onClose}>
-            <img src={Expand} alt={t("cart.expand")} />
+          <button
+            className="expand-icon"
+            onClick={onClose}
+            style={{
+              height: isDarkMode ? "1.5rem" : "2.5rem",
+              width: isDarkMode ? "1.5rem" : "2.5rem",
+            }}
+          >
+            <img
+              src={isDarkMode ? ExpandDark : Expand}
+              alt={t("cart.expand")}
+            />
           </button>
         </div>
 
@@ -88,7 +104,7 @@ const CartModal = ({ isOpen, onClose }) => {
                 <p>{item.price}</p>
                 <div className="validity-date" style={{}}>
                   Valid from <span>{item.validFrom}</span> to{" "}
-                  <bspan>{item.validTo}</bspan>
+                  <span>{item.validTo}</span>
                 </div>
               </div>
               <div className="quantity-controls">

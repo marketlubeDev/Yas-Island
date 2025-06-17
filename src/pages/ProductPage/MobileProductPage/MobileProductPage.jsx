@@ -116,7 +116,7 @@ function MobileProductPage() {
       <div className="scroll-section">
         <AttractionsList attractions={attraction} />
       </div>
-
+      {/*
       {showEmailVerification && (
         <EmailVerification
           onBack={() => setShowEmailVerification(false)}
@@ -180,7 +180,7 @@ function MobileProductPage() {
           onClose={() => setShowExperience(false)}
           // ...other props as needed
         />
-      )}
+      )} */}
     </div>
   );
 }
