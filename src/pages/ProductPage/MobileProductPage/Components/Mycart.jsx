@@ -76,98 +76,104 @@ function Mycart({ onClose, visible }) {
       footer={null}
       width="100%"
       closable={false}
-      className="cart-modal"
+      className="mycart-modal-mobile"
     >
-      <div className="cart-modal__header">
-        <button className="cart-modal__back" onClick={handleBack}>
-          <img src={backIcon} alt="Back" />
-        </button>
-        <span className="cart-modal__title">{t.cart.title}</span>
-      </div>
-      <div className="cart-modal__booking-date">
-        {t.cart.bookingFor} <b>Thu 08- Feb 2025</b>
-      </div>
-      <div className="cart-modal__items">
-        {cartItems.map((item) => (
-          <div className="cart-modal__item" key={item.id}>
-            <img
-              src={item.image}
-              alt={item.titleKey}
-              className="cart-modal__item-img"
-              onError={(e) => {
-                console.error("Image failed to load:", e);
-                e.target.src = frame1;
-              }}
-            />
-            <div className="cart-modal__item-content">
-              <div className="cart-modal__item-title-row">
-                <div className="cart-modal__item-title">
-                  {t.cart.item[item.titleKey]}
+      <div className="mycart-modal__content">
+        <div className="mycart-modal__header">
+          <button className="mycart-modal__back" onClick={handleBack}>
+            <img src={backIcon} alt="Back" />
+          </button>
+          <span className="mycart-modal__title">{t.cart.title}</span>
+        </div>
+        {/* <div className="mycart-modal__booking-date">
+          {t.cart.bookingFor} <b>Thu 08- Feb 2025</b>
+        </div> */}
+        <div className="mycart-modal__items">
+          {cartItems.map((item) => (
+            <div className="mycart-modal__item" key={item.id}>
+              <img
+                src={item.image}
+                alt={item.titleKey}
+                className="mycart-modal__item-img"
+                onError={(e) => {
+                  console.error("Image failed to load:", e);
+                  e.target.src = frame1;
+                }}
+              />
+              <div className="mycart-modal__item-content">
+                <div className="mycart-modal__item-title-row">
+                  <div className="mycart-modal__item-title">
+                    {t.cart.item[item.titleKey]}
+                  </div>
+                  <button
+                    className="mycart-modal__item-delete"
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    <img src={trashIcon} alt="Delete" />
+                  </button>
                 </div>
-                <button
-                  className="cart-modal__item-delete"
-                  onClick={() => deleteItem(item.id)}
-                >
-                  <img src={trashIcon} alt="Delete" />
-                </button>
-              </div>
-              <div className="cart-modal__item-price">
-                <span className="cart-modal__item-price-main">
-                  {t.cart.currency} {item.price}
-                </span>
-                <span className="cart-modal__item-vat">{item.vat}</span>
-              </div>
-              <div className="cart-modal__item-date">
-                {t.cart.validFrom} {item.date} {t.cart.to} {item.date}
-              </div>
-              <div className="cart-modal__item-qty-row">
-                <span style={{ color: "var(--color-email-form-label)" }}>
-                  {t.cart[item.typeKey]}
-                </span>
-                <div className="cart-modal__item-qty-controls">
-                  <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                  <span style={{ color: "var(--color-email-form-label)" }}>
-                    {item.quantity}
+                <div className="mycart-modal__item-price">
+                  <span className="mycart-modal__item-price-main">
+                    {t.cart.currency} {item.price}
                   </span>
-                  <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+                  <span className="mycart-modal__item-vat">{item.vat}</span>
+                </div>
+                <div className="mycart-modal__item-date">
+                  {t.cart.validFrom} {item.date} {t.cart.to} {item.date}
+                </div>
+                <div className="mycart-modal__item-qty-row">
+                  <span style={{ color: "var(--color-email-form-label)" }}>
+                    {t.cart[item.typeKey]}
+                  </span>
+                  <div className="mycart-modal__item-qty-controls">
+                    <button onClick={() => updateQuantity(item.id, -1)}>
+                      -
+                    </button>
+                    <span style={{ color: "var(--color-email-form-label)" }}>
+                      {item.quantity}
+                    </span>
+                    <button onClick={() => updateQuantity(item.id, 1)}>
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="cart-modal__footer">
-        <div className="cart-modal__summary">
-          <div className="cart-modal__summary-row">
-            <span>{t.cart.subTotal}</span>
-            <span>
-              {t.cart.currency} {subtotal.toFixed(2)}
-            </span>
-          </div>
-          <div className="cart-modal__summary-row">
-            <span>{t.cart.vatAndTax}</span>
-            <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
-          </div>
-          <div className="cart-modal__summary-row cart-modal__summary-row--total">
-            <span>{t.cart.total}</span>
-            <span>AED {total.toFixed(2)}</span>
-          </div>
+          ))}
         </div>
-        <button
-          className="cart-modal__checkout"
-          onClick={() => navigate("/payment")}
-        >
-          {t.cart.checkOut}
-        </button>
-        <button
-          className="cart-modal__save"
-          onClick={() => {
-            onClose();
-            navigate("/product");
-          }}
-        >
-          {t.cart.saveCartAndPayLater}
-        </button>
+        <div className="mycart-modal__footer">
+          <div className="mycart-modal__summary">
+            <div className="mycart-modal__summary-row">
+              <span>{t.cart.subTotal}</span>
+              <span>
+                {t.cart.currency} {subtotal.toFixed(2)}
+              </span>
+            </div>
+            <div className="mycart-modal__summary-row">
+              <span>{t.cart.vatAndTax}</span>
+              <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
+            </div>
+            <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
+              <span>{t.cart.total}</span>
+              <span>AED {total.toFixed(2)}</span>
+            </div>
+          </div>
+          <button
+            className="mycart-modal__checkout"
+            onClick={() => navigate("/payment")}
+          >
+            {t.cart.checkOut}
+          </button>
+          <button
+            className="mycart-modal__save"
+            onClick={() => {
+              onClose();
+              navigate("/product");
+            }}
+          >
+            {t.cart.saveCartAndPayLater}
+          </button>
+        </div>
       </div>
     </Modal>
   );

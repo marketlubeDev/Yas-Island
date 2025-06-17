@@ -45,7 +45,7 @@ export default function ProductModal({
             <div className="product-modal-details">
               <h2>{selectedProduct.name}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"40vh" , overflowY:"auto"}}></div>
+              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"50vh" , overflowY:"auto"}}></div>
 
               <div className="price-section">
                 <div className="price-details">

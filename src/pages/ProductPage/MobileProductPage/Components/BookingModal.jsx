@@ -1,21 +1,135 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close.svg"; // Use your close icon
 import leftIcon from "../../../../assets/icons/left.svg";
+import { useLanguage } from "../../../../context/LanguageContext";
 
-function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
+function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
   const { t, i18n } = useTranslation();
-  // Example state for guests
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(1);
+  const { language } = useLanguage();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [guests, setGuests] = useState(getVariants());
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  // Example state for selected date
-  const [selectedDate, setSelectedDate] = useState(8);
+  function getVariants() {
+    const variants = {};
+    product?.product_variants?.forEach((variant) => {
+      variants[variant?.productvariantname] = 1;
+    });
+    return variants;
+  }
 
-  // Example: handle date selection (replace with your calendar logic)
-  const handleDateClick = (date) => setSelectedDate(date);
+  useEffect(() => {
+    setGuests(getVariants());
+  }, [product]);
 
-  // Function to convert numbers to Arabic numerals
+  useEffect(() => {
+    let newTotalPrice = 0;
+
+    product?.product_variants?.forEach((variant) => {
+      const variantName = variant.productvariantname;
+      if (guests[variantName]) {
+        newTotalPrice += variant.gross * guests[variantName];
+      }
+    });
+
+    setTotalPrice(newTotalPrice);
+  }, [guests, product]);
+
+  function getValidDateRange(product) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);  // Normalize today's date
+    
+    let tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);  // Normalize tomorrow's date
+
+    let endDate;
+    if (product?.calendar_end_date) {
+      endDate = new Date(product.calendar_end_date);
+    } else {
+      endDate = new Date(today.getFullYear(), 11, 31);
+    }
+    endDate.setHours(23, 59, 59, 999);  // Set end date to end of day
+
+    return { startDate: tomorrow, endDate };
+  }
+
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  };
+
+  const generateCalendarDays = () => {
+    const daysInMonth = getDaysInMonth(currentDate);
+    const firstDayOfMonth = getFirstDayOfMonth(currentDate);
+    const days = [];
+    const { startDate, endDate } = getValidDateRange(product);
+
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(
+        <div
+          key={`empty-${i}`}
+          className="booking-modal__calendar-date empty"
+        ></div>
+      );
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        day,
+        0, 0, 0, 0  // Normalize the date for comparison
+      );
+      
+      const isSelected =
+        selectedDate && date.toDateString() === selectedDate.toDateString();
+      const isToday = date.toDateString() === new Date().toDateString();
+      
+      // Compare normalized dates
+      const isDisabled = date.getTime() < startDate.getTime() || date.getTime() > endDate.getTime();
+
+      days.push(
+        <button
+          key={day}
+          className={`booking-modal__calendar-date${
+            isSelected ? " selected" : ""
+          }${isDisabled ? " disabled" : ""}`}
+          onClick={() => !isDisabled && setSelectedDate(date)}
+          disabled={isDisabled}
+        >
+          {toArabicNumeral(day)}
+        </button>
+      );
+    }
+
+    return days;
+  };
+
+  const handlePrevMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
+  };
+
+  const formatMonthYear = (date) => {
+    return date.toLocaleDateString(i18n.language === "ar" ? "ar-SA" : "en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   const toArabicNumeral = (num) => {
     if (i18n.language === "ar") {
       const arabicNumerals = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
@@ -43,16 +157,16 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
           {/* Calendar */}
           <div className="booking-modal__calendar">
             <div className="booking-modal__calendar-header">
-              <button>
-                <img src={leftIcon} alt="Next" />
+              <button onClick={handlePrevMonth}>
+                <img src={leftIcon} alt="Previous" />
               </button>
               <span className="booking-modal__calendar-month">
-                {t("booking.month")} {t("booking.year")}
+                {formatMonthYear(currentDate)}
               </span>
-              <button>
+              <button onClick={handleNextMonth}>
                 <img
                   src={leftIcon}
-                  alt="Previous"
+                  alt="Next"
                   className="booking-modal__calendar-arrow--rotated"
                 />
               </button>
@@ -66,17 +180,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
                   {d}
                 </span>
               ))}
-              {Array.from({ length: 28 }, (_, i) => i + 1).map((date) => (
-                <button
-                  key={date}
-                  className={`booking-modal__calendar-date${
-                    selectedDate === date ? " selected" : ""
-                  }`}
-                  onClick={() => handleDateClick(date)}
-                >
-                  {toArabicNumeral(date)}
-                </button>
-              ))}
+              {generateCalendarDays()}
             </div>
           </div>
 
@@ -86,72 +190,79 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout }) {
               {t("booking.chooseGuests")}
             </div>
             <div className="guests-box">
-              <div className="guests-summary">{t("booking.guestsSummary")}</div>
-              <div className="guests-divider"></div>
-              <div className="guests-row">
-                <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
-                  {t("booking.adults")}
-                </span>
-                <div className="guests-controls">
-                  <button
-                    className="guests-btn"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    −
-                  </button>
-                  <span
-                    className="guests-count"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    {toArabicNumeral(2)}
+              <div className="guests-summary">
+                {Object.keys(guests).map((variant, idx, arr) => (
+                  <span key={variant}>
+                    {variant}: {toArabicNumeral(guests[variant])}
+                    {idx < arr.length - 1 ? " / " : ""}
                   </span>
-                  <button
-                    className="guests-btn"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    +
-                  </button>
-                </div>
+                ))}
               </div>
               <div className="guests-divider"></div>
-              <div className="guests-row">
-                <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
-                  {t("booking.children")}
-                </span>
-                <div className="guests-controls">
-                  <button
-                    className="guests-btn"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    −
-                  </button>
-                  <span
-                    className="guests-count"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    {toArabicNumeral(1)}
-                  </span>
-                  <button
-                    className="guests-btn"
-                    style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <div className="guests-divider"></div>
+              {Object.keys(guests).map((variant, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="guests-row">
+                    <span style={{ color: "var(--color-bkg-guest-title-clr)" }}>
+                      {variant}
+                    </span>
+                    <div className="guests-controls">
+                      <button
+                        className="guests-btn"
+                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                        onClick={() =>
+                          setGuests((prev) => ({
+                            ...prev,
+                            [variant]: Math.max(0, prev[variant] - 1),
+                          }))
+                        }
+                      >
+                        −
+                      </button>
+                      <span
+                        className="guests-count"
+                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                      >
+                        {toArabicNumeral(guests[variant])}
+                      </span>
+                      <button
+                        className="guests-btn"
+                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                        onClick={() =>
+                          setGuests((prev) => ({
+                            ...prev,
+                            [variant]: prev[variant] + 1,
+                          }))
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="guests-divider"></div>
+                </React.Fragment>
+              ))}
               <div className="guests-note">{t("booking.kidsFree")}</div>
             </div>
           </div>
         </div>
         <div className="booking-modal__footer">
-          <button className="booking-modal__checkout" onClick={onCheckout}>
+          <button
+            className="booking-modal__checkout"
+            onClick={() =>
+              onCheckout && onCheckout({ selectedDate, guests, totalPrice })
+            }
+          >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
-              AED {toArabicNumeral(985.0)}
+              AED {toArabicNumeral(totalPrice)}
             </span>
           </button>
-          <button className="booking-modal__save" onClick={onSaveToCart}>
+          <button
+            className="booking-modal__save"
+            onClick={() =>
+              onSaveToCart && onSaveToCart({ selectedDate, guests, totalPrice })
+            }
+          >
             {t("booking.saveToCart")}
           </button>
         </div>

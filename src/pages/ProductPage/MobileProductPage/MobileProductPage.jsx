@@ -19,6 +19,7 @@ import AttractionDetailModal from "./Components/AttractionDetailModal";
 import BookingModal from "./Components/BookingModal";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useGetProductList from "../../../apiHooks/product/product";
 const attraction = [
   {
     id: 1,
@@ -98,6 +99,10 @@ function MobileProductPage() {
   const [previousModal, setPreviousModal] = useState(null);
   const { t } = useTranslation();
 
+  const { productList, isLoading, isError } = useGetProductList();
+
+  console.log(productList, "productList>> mobile");
+
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
     setShowConfirmEmail(true);
@@ -114,7 +119,7 @@ function MobileProductPage() {
       <MobileTop className="mobile-topnav" />
       <MobileBottomNav className="mobile-bottomnav" />
       <div className="scroll-section">
-        <AttractionsList attractions={attraction} />
+        <AttractionsList productList={productList} />
       </div>
       {/*
       {showEmailVerification && (
