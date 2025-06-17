@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import homeIcon from "../../../../assets/icons/home.svg";
+import homeIconInverter from "../../../../assets/icons/invertedhome.svg";
 import chatIcon from "../../../../assets/icons/message.svg";
+import chatIconInverter from "../../../../assets/icons/invertedmessage.svg";
 import cartIcon from "../../../../assets/icons/shopping.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import Mycart from "../Components/Mycart";
+import { useSelector } from "react-redux";
 // import MobileLanding from "./MobileLanding";
 
 function MobileBottomNav() {
@@ -12,7 +15,9 @@ function MobileBottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
+  const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
   const handleCartClick = () => {
     setIsCartModalOpen(true);
     window.scrollTo(0, 0);
@@ -34,7 +39,7 @@ function MobileBottomNav() {
           style={{ cursor: "pointer" }}
         >
           <img
-            src={homeIcon}
+            src={homeIconSrc}
             alt={t("common.home")}
             style={{
               filter:
@@ -46,7 +51,7 @@ function MobileBottomNav() {
           <span>{t("common.home")}</span>
         </div>
         <div className="mobile-bottom-nav__item">
-          <img src={chatIcon} alt={t("common.chatWithUs")} />
+          <img src={chatIconSrc} alt={t("common.chatWithUs")} />
           <span>{t("common.chatWithUs")}</span>
         </div>
         <div

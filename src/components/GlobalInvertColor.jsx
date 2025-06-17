@@ -644,6 +644,14 @@ export default function GlobalInvertColor() {
       "--ip-label",
       isDarkMode ? "#E7EBD4" : "#333"
     );
+    document.documentElement.style.setProperty(
+      "--color-close-btn-border",
+      isDarkMode ? " rgba(255, 173, 51, 0.50)" : "#dcd6e5"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-top-item-text-active",
+      isDarkMode ? "#FFAD33" : "#1976d2"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--color-base-bg", "#fff");
@@ -1175,6 +1183,14 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-email-form-box-shadow",
         "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
+      );
+      document.documentElement.style.setProperty(
+        "--color-close-btn-border",
+        "#dcd6e5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-top-item-text-active",
+        "#FFAD33"
       );
 
       document.documentElement.style.setProperty("--ip-label", "#333");

@@ -186,11 +186,11 @@
   top: -10%;
   right: 0;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
-  border: 2px solid #dcd6e5;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -200,21 +200,21 @@
   transition: background 0.2s;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
   }
 }
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -6%;
-  right: 0;
+  top: -7%;
+  right: 1%;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
-  border: 2px solid #dcd6e5;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -224,8 +224,8 @@
   transition: background 0.2s;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
   }
 }
 .booking-modal .ant-modal-close {
@@ -233,11 +233,11 @@
   top: -7%;
   right: 0;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
-  border: 2px solid #dcd6e5;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -247,20 +247,20 @@
   transition: background 0.2s;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
   }
 }
 .promo-popup-custom-close {
   position: absolute;
-  top: -18%;
-  right: 0;
+  top: -15%;
+  right: 2%;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
-  border: 2px solid #dcd6e5;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -270,8 +270,8 @@
   transition: background 0.2s;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
   }
 }
 .attraction-detail-modal.ant-modal-wrap {
