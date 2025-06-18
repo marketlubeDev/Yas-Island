@@ -752,9 +752,9 @@
 }
 
 .cart-btn {
-  background: white;
-  color: black;
-  border: 1px solid #ddd;
+  background: var(--cart-btn-var);
+  color: var(--cart-btn-text);
+  border: 2px solid var(--cart-btn-brd);
   border-radius: 25px;
   padding: 16px;
   font-weight: 500;
@@ -801,6 +801,6 @@
 .guest-row-divider {
   width: 100%;
   height: 0.826px;
-  background: #d9d9d9;
+  background: var(--color-base-product-card-divider);
   margin-top: 1rem;
 }

@@ -705,7 +705,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--payment-right-bg",
-      isDarkMode ? "#4c4358" : "#f4f7f8"
+      isDarkMode ? "##0B0C0C" : "#f4f7f8"
     );
 
     document.documentElement.style.setProperty(
@@ -717,12 +717,62 @@ export default function GlobalInvertColor() {
       "--btn-save",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffa500"
     );
+    document.documentElement.style.setProperty(
+      "--main-body",
+      isDarkMode ? "#0B0C0C" : "#f4f3f3"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-btn-var",
+      isDarkMode ? "#000" : isHighContrast ? "#fff" : "#ffea00"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-btn-text",
+      isDarkMode ? "#fff" : isHighContrast ? "#18142b" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-btn-brd",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
+    );
+    document.documentElement.style.setProperty(
+      "--payment-right-bg",
+      isDarkMode ? "#0B0C0C" : "#f4f7f8"
+    );
+    document.documentElement.style.setProperty(
+      "--payment-right-title",
+      isDarkMode ? "#000" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--apply-btn-bg",
+      isDarkMode ? "#0B0C0C" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--verifi-cont",
+      isDarkMode ? "#0B0C0C" : "#f4f7f8"
+    );
+    document.documentElement.style.setProperty(
+      "--email-text",
+      isDarkMode ? "#A49DAD" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
+      "--spam-notice",
+      isDarkMode ? "#FFAD33" : "#ff63af"
+    );
 
     return () => {
+      document.documentElement.style.setProperty("--verifi-cont", "#f4f7f8");
+      document.documentElement.style.setProperty("--apply-btn-bg", "#fff");
       document.documentElement.style.setProperty(
-        "--color-base-bg",
-        isDarkMode ? "#000" : isHighContrast ? "#dcd6e5" : "#fff"
+        "--payment-right-title",
+        "#fff"
       );
+      document.documentElement.style.setProperty(
+        "--payment-right-bg",
+        "#f4f7f8"
+      );
+      document.documentElement.style.setProperty("--cart-btn-brd", "#ffea00");
+      document.documentElement.style.setProperty("--cart-btn-text", "#18142b");
+      document.documentElement.style.setProperty("--main-body", "#f4f3f3");
+      document.documentElement.style.setProperty("--color-base-bg", "#fff");
       document.documentElement.style.setProperty(
         "--color-base-text",
         "#18142B"
