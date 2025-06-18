@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
-import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow icon
+import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
+import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import { useSelector } from "react-redux";
 
 function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
-  console.log(attraction , "attraction>>");
+  console.log(attraction, "attraction>>");
   const { t } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   if (!attraction) return null;
 
@@ -32,7 +35,9 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
           {t(attraction.detailDesc || attraction.descKey)}
         </div> */}
 
-        <div dangerouslySetInnerHTML={{ __html: attraction?.productdesc }}></div>
+        <div
+          dangerouslySetInnerHTML={{ __html: attraction?.productdesc }}
+        ></div>
       </div>
 
       <div className="attraction-detail-modal__footer">

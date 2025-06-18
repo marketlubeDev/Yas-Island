@@ -40,6 +40,12 @@ function PaymentHeader({ step, onBack }) {
         </button>
         <div className="payment-header__steps-container">
           <div
+            style={{
+              color:
+                step === 1
+                  ? "var(--color-base-text)"
+                  : "var(--color-base-text-secondary)",
+            }}
             className={`payment-header__step payment-header__step--email${
               step === 1 ? " payment-header__step--active" : ""
             }`}
@@ -49,6 +55,12 @@ function PaymentHeader({ step, onBack }) {
             <span>{t("payment.steps.emailVerification")}</span>
           </div>
           <div
+            style={{
+              color:
+                step === 2
+                  ? "var(--color-base-text)"
+                  : "var(--color-base-text-secondary)",
+            }}
             className={`payment-header__step payment-header__step--checkout${
               step === 2 ? " payment-header__step--active" : ""
             }`}
