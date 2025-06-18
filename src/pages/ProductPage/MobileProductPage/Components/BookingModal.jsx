@@ -151,10 +151,34 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
   };
 
   const formatMonthYear = (date) => {
-    return date.toLocaleDateString(i18n.language === "ar" ? "ar-SA" : "en-US", {
-      month: "long",
-      year: "numeric",
-    });
+    if (i18n.language === "ar") {
+      const arabicMonths = {
+        0: "يناير", // Yanāyir
+        1: "فبراير", // Fibrayir
+        2: "مارس", // Māris
+        3: "أبريل", // Abrīl
+        4: "مايو", // Māyū
+        5: "يونيو", // Yūniyū
+        6: "يوليو", // Yūlyū
+        7: "أغسطس", // Aghustus
+        8: "سبتمبر", // Septambir
+        9: "أكتوبر", // Oktūbar
+        10: "نوفمبر", // Nūfambir
+        11: "ديسمبر", // Dīsambir
+      };
+      const arabicMonth = arabicMonths[date.getMonth()];
+      const gregorianYear = date
+        .getFullYear()
+        .toString()
+        .split("")
+        .map(
+          (digit) =>
+            ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"][parseInt(digit)]
+        )
+        .join("");
+      return `${arabicMonth} ${gregorianYear}`;
+    }
+    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
   const toArabicNumeral = (num) => {

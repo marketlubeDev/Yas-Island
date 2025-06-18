@@ -18,7 +18,6 @@ export default function BookingSection({ product, onBack }) {
   const { language } = useLanguage();
   const dispatch = useDispatch();
 
-
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
@@ -104,7 +103,7 @@ export default function BookingSection({ product, onBack }) {
         0 // Normalize the date for comparison
       );
 
-      const isSelected = 
+      const isSelected =
         (startDate && date.toDateString() === startDate.toDateString()) ||
         (endDate && date.toDateString() === endDate.toDateString());
       const isInRange = isDateInRange(date);
@@ -163,10 +162,35 @@ export default function BookingSection({ product, onBack }) {
 
   // Format month and year
   const formatMonthYear = (date) => {
-    return date.toLocaleDateString(i18n.language === "ar" ? "ar-SA" : "en-US", {
-      month: "long",
-      year: "numeric",
-    });
+    if (!date) return "";
+    if (i18n.language === "ar") {
+      const arabicMonths = {
+        0: "يناير", // Yanāyir
+        1: "فبراير", // Fibrayir
+        2: "مارس", // Māris
+        3: "أبريل", // Abrīl
+        4: "مايو", // Māyū
+        5: "يونيو", // Yūniyū
+        6: "يوليو", // Yūlyū
+        7: "أغسطس", // Aghustus
+        8: "سبتمبر", // Septambir
+        9: "أكتوبر", // Oktūbar
+        10: "نوفمبر", // Nūfambir
+        11: "ديسمبر", // Dīsambir
+      };
+      const arabicMonth = arabicMonths[date.getMonth()];
+      const gregorianYear = date
+        .getFullYear()
+        .toString()
+        .split("")
+        .map(
+          (digit) =>
+            ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"][parseInt(digit)]
+        )
+        .join("");
+      return `${arabicMonth} ${gregorianYear}`;
+    }
+    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
   useEffect(() => {
@@ -182,19 +206,21 @@ export default function BookingSection({ product, onBack }) {
   }, [guests, product]);
 
   const handleCheckout = () => {
-    const variants = {}
+    const variants = {};
 
     product?.product_variants.forEach((variant) => {
       variants[variant?.productid] = guests[variant?.productvariantname];
     });
 
     console.log(variants, "varinats");
-    dispatch(setCheckout({
-      startDate,
-      endDate,
-      guests:variants,
-      totalPrice,
-    }));
+    dispatch(
+      setCheckout({
+        startDate,
+        endDate,
+        guests: variants,
+        totalPrice,
+      })
+    );
     navigate("/payment");
   };
 
@@ -206,12 +232,12 @@ export default function BookingSection({ product, onBack }) {
         {/* <div className="selected-dates">
           {startDate && (
             <div>
-              {t("booking.startDate")}: {startDate.toLocaleDateString()}
+              {t("booking.startDate")}: {formatMonthYear(startDate)}
             </div>
           )}
           {endDate && (
             <div>
-              {t("booking.endDate")}: {endDate.toLocaleDateString()}
+              {t("booking.endDate")}: {formatMonthYear(endDate)}
             </div>
           )}
         </div> */}
@@ -308,10 +334,7 @@ export default function BookingSection({ product, onBack }) {
             language === "العربية" ? "ar-booking-actions" : "booking-actions"
           }
         >
-          <button
-            className="checkout-btnn"
-            onClick={handleCheckout}
-          >
+          <button className="checkout-btnn" onClick={handleCheckout}>
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED {totalPrice}</span>
           </button>

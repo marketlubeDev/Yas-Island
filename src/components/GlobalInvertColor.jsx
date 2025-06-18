@@ -495,15 +495,15 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-bg",
-      isDarkMode ? "#000000" : "#FFEA00"
+      isDarkMode ? "#000000" : isHighContrast ? "#0759DD" : "#FFEA00"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-clr",
-      isDarkMode ? "#E7EBD4" : "#18142b"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#FFFFFF" : "#18142b"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-border",
-      isDarkMode ? "#FFAD33" : "#ffea00"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0759DD" : "#ffea00"
     );
 
     document.documentElement.style.setProperty(
@@ -513,7 +513,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-clr-span",
-      isDarkMode ? "#E7EBD4" : "#f83482"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#F1F834" : "#f83482"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-save-btn-bg",
@@ -525,7 +525,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-save-btn-border",
-      isDarkMode ? "#F8A622" : "#DCD6E5"
+      isDarkMode ? "#F8A622" : isHighContrast ? "#0052CC" : "#DCD6E5"
     );
 
     //payment header
@@ -577,11 +577,17 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-email-form-confirm-btn",
-      isDarkMode ? "#FFAD33" : "#ffe600"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
     );
     document.documentElement.style.setProperty(
       "--color-email-form-confirm-btn-clr",
-      isDarkMode ? "#000000" : "#231942"
+      isDarkMode ? "#000000" : isHighContrast ? "#fff" : "#231942"
+    );
+
+    //producthead
+    document.documentElement.style.setProperty(
+      "--color-text-primary-chevron",
+      isHighContrast ? "#000" : "#bdbdc6"
     );
 
     //confirm email

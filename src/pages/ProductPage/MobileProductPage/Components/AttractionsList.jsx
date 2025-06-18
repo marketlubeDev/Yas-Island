@@ -42,18 +42,31 @@ const AttractionsList = ({ productList }) => {
     setIsCartModalOpen(true);
   };
 
+  // Helper to format date for checkout
+  const formatDate = (date) => {
+    if (!date) return "";
+    // You can use the same Arabic mapping as BookingModal if needed
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    });
+  };
+
   const handleCheckout = (data) => {
     const variants = {};
     selectedAttraction?.product_variants.forEach((variant) => {
       variants[variant?.productid] = data.guests[variant?.productvariantname];
     });
 
-    dispatch(setCheckout({
-      startDate: data.startDate.toLocaleDateString(),
-      endDate: data.endDate.toLocaleDateString(),
-      guests: variants,
-      totalPrice: data.totalPrice,
-    }));
+    dispatch(
+      setCheckout({
+        startDate: formatDate(data.startDate),
+        endDate: formatDate(data.endDate),
+        guests: variants,
+        totalPrice: data.totalPrice,
+      })
+    );
 
     navigate("/payment");
     handleCloseModal();

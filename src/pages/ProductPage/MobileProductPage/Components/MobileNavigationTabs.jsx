@@ -6,6 +6,7 @@ import allIcon from "../../../../assets/icons/dash.svg";
 import allIconInverter from "../../../../assets/icons/inverteddash.svg";
 import attractionsIcon from "../../../../assets/icons/beach.svg";
 import attractionsIconInverter from "../../../../assets/icons/invertedbeach.svg";
+import attractionsIconHighContrast from "../../../../assets/icons/highbeach.svg";
 import packagesIcon from "../../../../assets/icons/dropbox.svg";
 import packagesIconInverter from "../../../../assets/icons/inverteddropbox.svg";
 import hotelsIcon from "../../../../assets/icons/house.svg";
@@ -23,6 +24,9 @@ function MobileNavigationTabs() {
   const attractionsIconSrc = isDarkMode
     ? attractionsIconInverter
     : attractionsIcon;
+  const attractionsIconSrcHighContrast = isHighContrast
+    ? attractionsIconHighContrast
+    : attractionsIcon;
   const packagesIconSrc = isDarkMode ? packagesIconInverter : packagesIcon;
   const hotelsIconSrc = isDarkMode ? hotelsIconInverter : hotelsIcon;
   const diningIconSrc = isDarkMode ? diningIconInverter : diningIcon;
@@ -34,7 +38,9 @@ function MobileNavigationTabs() {
       isActive: false,
     },
     {
-      icon: attractionsIconSrc,
+      icon: isHighContrast
+        ? attractionsIconSrcHighContrast
+        : attractionsIconSrc,
       label: t("sidebar.attractions"),
       alt: t("sidebar.attractions"),
       isActive: true,
