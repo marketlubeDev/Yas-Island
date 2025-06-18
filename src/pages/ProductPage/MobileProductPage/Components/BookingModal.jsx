@@ -7,7 +7,8 @@ import { useLanguage } from "../../../../context/LanguageContext";
 function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
@@ -64,11 +65,32 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
+  const handleDateClick = (date) => {
+    if (!startDate || (startDate && endDate)) {
+      // Start new selection
+      setStartDate(date);
+      setEndDate(null);
+    } else {
+      // Complete the selection
+      if (date < startDate) {
+        setStartDate(date);
+        setEndDate(startDate);
+      } else {
+        setEndDate(date);
+      }
+    }
+  };
+
+  const isDateInRange = (date) => {
+    if (!startDate || !endDate) return false;
+    return date >= startDate && date <= endDate;
+  };
+
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate, endDate } = getValidDateRange(product);
+    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(
@@ -87,20 +109,22 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
         0, 0, 0, 0  // Normalize the date for comparison
       );
       
-      const isSelected =
-        selectedDate && date.toDateString() === selectedDate.toDateString();
+      const isSelected = 
+        (startDate && date.toDateString() === startDate.toDateString()) ||
+        (endDate && date.toDateString() === endDate.toDateString());
+      const isInRange = isDateInRange(date);
       const isToday = date.toDateString() === new Date().toDateString();
-      
-      // Compare normalized dates
-      const isDisabled = date.getTime() < startDate.getTime() || date.getTime() > endDate.getTime();
+      const isDisabled = date.getTime() < minDate.getTime() || date.getTime() > maxDate.getTime();
 
       days.push(
         <button
           key={day}
           className={`booking-modal__calendar-date${
             isSelected ? " selected" : ""
-          }${isDisabled ? " disabled" : ""}`}
-          onClick={() => !isDisabled && setSelectedDate(date)}
+          }${isInRange ? " in-range" : ""}${
+            isDisabled ? " disabled" : ""
+          }`}
+          onClick={() => !isDisabled && handleDateClick(date)}
           disabled={isDisabled}
         >
           {toArabicNumeral(day)}
@@ -251,7 +275,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
           <button
             className="booking-modal__checkout"
             onClick={() =>
-              onCheckout && onCheckout({ selectedDate, guests, totalPrice })
+              onCheckout && onCheckout({ startDate, endDate, guests, totalPrice })
             }
           >
             {t("booking.checkOut")}{" "}
@@ -262,7 +286,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
           <button
             className="booking-modal__save"
             onClick={() =>
-              onSaveToCart && onSaveToCart({ selectedDate, guests, totalPrice })
+              onSaveToCart && onSaveToCart({ startDate, endDate, guests, totalPrice })
             }
           >
             {t("booking.saveToCart")}
