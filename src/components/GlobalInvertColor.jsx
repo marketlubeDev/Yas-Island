@@ -771,8 +771,16 @@ export default function GlobalInvertColor() {
       "--spam-notice",
       isDarkMode ? "#FFAD33" : "#ff63af"
     );
+    document.documentElement.style.setProperty(
+      "--pay-check-price",
+      isDarkMode ? "#E7EBD4" : "#594f67"
+    );
 
     return () => {
+      document.documentElement.style.setProperty(
+        "--pay-check-price",
+        "#594f67"
+      );
       document.documentElement.style.setProperty("--verifi-cont", "#f4f7f8");
       document.documentElement.style.setProperty("--apply-btn-bg", "#fff");
       document.documentElement.style.setProperty(
