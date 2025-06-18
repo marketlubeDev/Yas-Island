@@ -22,7 +22,7 @@ export default function BookingSection({ product, onBack }) {
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = 1;
+      variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
     });
     return variants;
   }
@@ -35,11 +35,8 @@ export default function BookingSection({ product, onBack }) {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize today's date
 
-    today.setHours(0, 0, 0, 0); // Normalize today's date
-
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
     tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
 
     let endDate;
@@ -48,7 +45,6 @@ export default function BookingSection({ product, onBack }) {
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
-    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
     endDate.setHours(23, 59, 59, 999); // Set end date to end of day
 
     return { startDate: tomorrow, endDate };
@@ -141,18 +137,9 @@ export default function BookingSection({ product, onBack }) {
       currentDate.getFullYear(),
       currentDate.getMonth() - 1
     );
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() - 1
-    );
     const today = new Date();
 
-
     // Only allow going back to current month
-    if (
-      newDate.getMonth() >= today.getMonth() ||
-      newDate.getFullYear() > today.getFullYear()
-    ) {
     if (
       newDate.getMonth() >= today.getMonth() ||
       newDate.getFullYear() > today.getFullYear()
@@ -166,12 +153,7 @@ export default function BookingSection({ product, onBack }) {
       currentDate.getFullYear(),
       currentDate.getMonth() + 1
     );
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1
-    );
     const { endDate } = getValidDateRange(product);
-
 
     // Only allow going forward if within the valid range
     if (newDate <= endDate) {
@@ -190,13 +172,11 @@ export default function BookingSection({ product, onBack }) {
   useEffect(() => {
     let newTotalPrice = 0;
     product.product_variants.forEach((variant) => {
-    product.product_variants.forEach((variant) => {
       const variantName = variant.productvariantname;
 
       if (guests[variantName]) {
         newTotalPrice += variant.gross * guests[variantName];
       }
-    });
     });
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
