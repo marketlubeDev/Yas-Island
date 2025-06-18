@@ -206,9 +206,9 @@
 }
 
 .checkout-btn {
-  background-color: #ffd700;
-  color: black;
-  border: none;
+  background-color: var(--cart-btn-var);
+  color: var(--cart-btn-text);
+  border: 2px solid var(--cart-btn-brd);
   flex: 1;
   display: flex;
   justify-content: center;
