@@ -21,10 +21,10 @@ export default function PaymentDetails({ onProceed }) {
       <PersonalDetailsForm formData={formData} setFormData={setFormData} />
       <div className="payment-form__right">
         <OrderSummary formData={formData} setFormData={setFormData} />
-        {/* <button className="proceedbtn" onClick={onProceed}>
+        <button className="proceedbtn" onClick={onProceed}>
           {t("payment.paymentDetails.proceedToPayment")}
-        </button> */}
-        <AmazonPayDemoButton />
+        </button>
+        {/* <AmazonPayDemoButton /> */}
       </div>
     </div>
   );
