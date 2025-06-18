@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import homeIcon from "../../../../assets/icons/home.svg";
-import homeIconInverter from "../../../../assets/icons/invertedhome.svg";
+import homeIconInverter from "../../../../assets/icons/homecolor.svg";
 import chatIcon from "../../../../assets/icons/message.svg";
-import chatIconInverter from "../../../../assets/icons/invertedmessage.svg";
+import chatIconInverter from "../../../../assets/icons/chatcolor.svg";
 import cartIcon from "../../../../assets/icons/shopping.svg";
+import cartIconInverter from "../../../../assets/icons/cartcolor.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import Mycart from "../Components/Mycart";
 import { useSelector } from "react-redux";
@@ -18,6 +19,7 @@ function MobileBottomNav() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
   const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
+  const cartIconSrc = isDarkMode ? cartIconInverter : cartIcon;
   const handleCartClick = () => {
     setIsCartModalOpen(true);
     window.scrollTo(0, 0);
@@ -59,7 +61,7 @@ function MobileBottomNav() {
           onClick={handleCartClick}
           style={{ cursor: "pointer" }}
         >
-          <img src={cartIcon} alt={t("common.cart")} />
+          <img src={cartIconSrc} alt={t("common.cart")} />
           <span>{t("common.cart")}</span>
         </div>
       </div>

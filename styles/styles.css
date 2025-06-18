@@ -2943,7 +2943,7 @@ body {
   gap: 8px;
 }
 .mobile-header__logo {
-  height: 50px;
+  height: 54px;
   width: auto;
   display: block;
 }
@@ -2955,8 +2955,8 @@ body {
 .mobile-header__icon-btn, .mobile-header__lang-btn {
   background: var(--color-base-mobile-header-icon-btn-bg);
   border: 2px solid var(--color-base-mobile-header-icon-btn-border);
-  border-radius: 2rem;
-  padding: 6px 12px;
+  border-radius: 12rem;
+  padding: 4px 4px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2965,12 +2965,12 @@ body {
   transition: background 0.2s;
 }
 .mobile-header__icon-btn img, .mobile-header__lang-btn img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   display: block;
 }
 .mobile-header__lang-btn span {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
 }
 .mobile-header .chevron {
@@ -3188,7 +3188,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 50px;
+  height: 55px;
   width: 100vw;
   background: var(--color-base-mobile-bottom-nav-bg);
   display: flex;
@@ -3621,7 +3621,7 @@ body {
   background: var(--color-email-form-box);
   border-radius: 0 0 24px 24px;
   width: 100%;
-  margin-top: 0;
+  margin-top: 106px;
   z-index: 10;
 }
 
@@ -5129,7 +5129,8 @@ body {
 }
 
 .attraction-detail-modal .ant-modal-content {
-  margin-top: -2.5rem;
+  height: 100vh;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   padding: 20px 8px;
@@ -5731,8 +5732,7 @@ body {
   color: var(--color-pymnt-title-clr);
   text-align: center;
   margin-left: 10px;
-  margin-top: 30px;
-  margin-bottom: -13px;
+  margin-top: 105px;
 }
 .payment-header__back-button {
   background: none;
@@ -5741,7 +5741,7 @@ body {
   margin-bottom: 8px;
   align-self: flex-start;
   margin-left: 12px;
-  margin-top: -1rem;
+  margin-top: -1.5rem;
   cursor: pointer;
 }
 .payment-header__steps-container {
@@ -5948,8 +5948,8 @@ body {
 .mobile-header__lang-btn {
   background: var(--color-base-btn-bg) !important;
   border: 2px solid var(--color-base-btn-border) !important;
-  border-radius: 2rem;
-  padding: 6px 12px;
+  border-radius: 12rem;
+  padding: 3px 9px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -5959,13 +5959,13 @@ body {
 }
 
 .mobile-header__lang-btn img {
-  height: 20px;
-  width: 20px;
+  height: 17px;
+  width: 17px;
   display: block;
 }
 
 .mobile-header__lang-btn span {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-base-text);
 }
 

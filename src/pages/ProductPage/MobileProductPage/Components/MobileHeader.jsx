@@ -74,7 +74,7 @@ function MobileHeader() {
               type="button"
             >
               <img src={globeIconSrc} alt="Language" />
-              <span>{language === "العربية" ? "العربية" : "English"}</span>
+              <span>{language === "العربية" ? "Ar" : "En"}</span>
               <img
                 src={dropdownIconSrc}
                 alt="down arrow"
@@ -103,7 +103,7 @@ function MobileHeader() {
                     setShowLangDropdown(false);
                   }}
                 >
-                  <span className="mobile-header__lang-text">العربية</span>
+                  <span className="mobile-header__lang-text">Arabic</span>
                   {language === "العربية" && (
                     <span className="mobile-header__lang-check">✓</span>
                   )}

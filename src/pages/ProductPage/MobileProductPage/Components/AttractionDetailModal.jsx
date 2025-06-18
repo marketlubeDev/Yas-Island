@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
@@ -11,6 +11,15 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+
+  useEffect(() => {
+    // When modal is open, prevent background scroll
+    document.body.style.overflow = "hidden";
+    return () => {
+      // Restore scroll when modal closes
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   if (!attraction) return null;
 

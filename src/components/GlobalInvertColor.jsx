@@ -26,7 +26,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-btn-border",
-      isDarkMode ? "#FFAD33" : isHighContrast ? "#7E85B4" : "#dcd6e5"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#075ADD" : "#dcd6e5"
     );
     document.documentElement.style.setProperty(
       "--color-base-chat-btn-bg",
@@ -154,17 +154,17 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-product-page-title",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#18142B" : "#231942"
     );
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-product-page-subtitle",
-      isDarkMode ? "#FFFFFFCC" : "#6c6c8a"
+      isDarkMode ? "#FFFFFFCC" : isHighContrast ? "#312F54" : "#6c6c8a"
     );
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-product-page-btn-bg",
-      isDarkMode ? "#1A1206" : "#fff8a5"
+      isDarkMode ? "#1A1206" : isHighContrast ? "#E5EDF9" : "#fff8a5"
     );
 
     document.documentElement.style.setProperty(
@@ -174,12 +174,12 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-product-page-btn-border",
-      isDarkMode ? "#FFAD33" : "#f7d148"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#f7d148"
     );
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-product-page-vat-text",
-      isDarkMode ? "#CED0AB" : "#bdbdc6"
+      isDarkMode ? "#CED0AB" : isHighContrast ? "#312F54" : "#bdbdc6"
     );
 
     document.documentElement.style.setProperty(
@@ -215,7 +215,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-input-border",
-      isDarkMode ? "#FFAD33" : "#dcd6e5"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#7E85B4" : "#dcd6e5"
     );
 
     document.documentElement.style.setProperty(
@@ -225,7 +225,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-input-placeholder",
-      isDarkMode ? "#E7EBD4" : "#978FA1"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#18142B" : "#978FA1"
     );
 
     document.documentElement.style.setProperty(
@@ -235,12 +235,16 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-filter-btn-text",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#18142B" : "#231942"
     );
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-filter-btn-border",
-      isDarkMode ? "rgba(255, 173, 51, 0.50)" : "#DCD6E5"
+      isDarkMode
+        ? "rgba(255, 173, 51, 0.50)"
+        : isHighContrast
+        ? "#7E85B4"
+        : "#DCD6E5"
     );
 
     document.documentElement.style.setProperty(
@@ -276,7 +280,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-header-icon-btn-border",
-      isDarkMode ? "#F7B141" : "#bcbcc9"
+      isDarkMode ? "#F7B141" : isHighContrast ? "#075ADD" : "#bcbcc9"
     );
 
     document.documentElement.style.setProperty(
@@ -349,7 +353,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-search-dropdown-option-text",
-      isDarkMode ? "#E7EBD4" : "#222"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#18142B" : "#222"
     );
 
     //attraction detail modal
@@ -384,19 +388,19 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-dtl-footer-price",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#18142B" : "#231942"
     );
     document.documentElement.style.setProperty(
       "--color-dtl-footer-vat",
-      isDarkMode ? "#CED0AB" : "#bdbdc6"
+      isDarkMode ? "#CED0AB" : isHighContrast ? "#312F54" : "#bdbdc6"
     );
     document.documentElement.style.setProperty(
       "--color-dtl-add-btn-bg",
-      isDarkMode ? "#FFAD33" : "#ffe600"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
     );
     document.documentElement.style.setProperty(
       "--color-dtl-add-btn-clr",
-      isDarkMode ? "#000" : "#231942"
+      isDarkMode ? "#000" : isHighContrast ? "#FFFFFF" : "#231942"
     );
     document.documentElement.style.setProperty(
       "--color-dtl-add-btn-shadow",
@@ -1299,6 +1303,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--payment-right-bg",
         "#f4f7f8"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-product-page-vat-tax-text",
+        "#bdbdc6"
       );
     };
   }, [isDarkMode, isHighContrast]);
