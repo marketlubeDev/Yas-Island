@@ -75,7 +75,7 @@
   --color-base-mobile-header-icon-btn-border: #bcbcc9;
   --color-base-mobile-header-icon-btn-bg: #fff;
   --color-base-mobile-bottom-nav-bg: #fff;
-  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-bottom-nav-border-top: none;
   --color-base-mobile-bottom-nav-item-text: #231942;
   --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
     90deg,
@@ -141,6 +141,7 @@
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
   --color-confirm-otp-bg: #f4f3f3;
@@ -3011,6 +3012,7 @@ body {
 
 .mobile-top {
   margin-top: 5rem;
+  height: 18.3%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -3044,14 +3046,14 @@ body {
   content: "";
   position: absolute;
   right: 0;
-  top: 20%;
-  height: 60%;
+  top: 8%;
+  height: 82%;
   width: 1px;
   background-color: var(--color-base-mobile-top-item-right-border);
 }
 .mobile-top__icon {
-  width: 28px;
-  height: 28px;
+  width: 23px;
+  height: 23px;
   object-fit: contain;
   margin-bottom: 2px;
   display: block;
@@ -3067,17 +3069,18 @@ body {
   display: block;
 }
 .mobile-top__underline {
-  width: 60%;
+  width: 95%;
   height: 3px;
   background: var(--color-base-mobile-top-item-text-active);
   border-radius: 2px;
-  margin: 6px auto 0 auto;
+  margin: 4px auto 0 auto;
   display: none;
 }
 
 .mobile-top-search-section {
   padding: 18px 0 0 0;
   text-align: center;
+  height: 58%;
 }
 .mobile-top-search-section__title {
   font-size: 23px;
@@ -3192,7 +3195,7 @@ body {
   justify-content: space-around;
   align-items: center;
   box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.06);
-  border-top: 1.5px solid var(--color-base-mobile-bottom-nav-border-top);
+  border-top: 1px solid var(--color-base-bottom-nav-border-top);
   z-index: 100;
 }
 .mobile-bottom-nav__item {
@@ -4893,7 +4896,7 @@ body {
 
 .promo-popup-card {
   background: var(--color-email-form-box);
-  border: 1px solid var(--color-email-form-input-border);
+  border: 1px solid var(--color-email-form-input-border-mb);
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
   padding: 32px 24px 24px 24px;
@@ -4978,7 +4981,7 @@ body {
 }
 
 .promo-popup-custom-close:hover {
-  background: #fff;
+  background: transparent;
 }
 
 .promo-popup-custom-close img {

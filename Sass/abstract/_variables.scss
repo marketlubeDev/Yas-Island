@@ -102,7 +102,7 @@ $color-yellow: #ffea00;
 
   //mobilebottomnav
   --color-base-mobile-bottom-nav-bg: #fff;
-  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-bottom-nav-border-top: none;
   --color-base-mobile-bottom-nav-item-text: #231942;
 
   --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
@@ -180,6 +180,7 @@ $color-yellow: #ffea00;
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
 

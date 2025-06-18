@@ -291,8 +291,8 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
-      "--color-base-mobile-bottom-nav-border-top",
-      isDarkMode ? " 4px solid rgba(255, 173, 51, 0.50);" : "#f2f2f2"
+      "--color-base-bottom-nav-border-top",
+      isDarkMode ? "#F7A525" : "none"
     );
 
     document.documentElement.style.setProperty(
@@ -566,6 +566,10 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-email-form-input-border",
       isDarkMode ? "#909883" : "#231942"
+    );
+    document.documentElement.style.setProperty(
+      "--color-email-form-input-border-mb",
+      isDarkMode ? "#909883" : "none"
     );
     document.documentElement.style.setProperty(
       "--color-email-form-confirm-btn",
@@ -943,8 +947,8 @@ export default function GlobalInvertColor() {
         "#fff"
       );
       document.documentElement.style.setProperty(
-        "--color-base-mobile-bottom-nav-border-top",
-        "#f2f2f2"
+        "--color-base-bottom-nav-border-top",
+        "none"
       );
       document.documentElement.style.setProperty(
         "--color-base-mobile-bottom-nav-item-text",
@@ -1171,6 +1175,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-email-form-input-border",
         "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-input-border-mb",
+        "none"
       );
       document.documentElement.style.setProperty(
         "--color-email-form-confirm-btn",
