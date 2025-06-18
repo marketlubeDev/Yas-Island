@@ -2,12 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import mobLogo from "../../../../assets/images/moblogo.svg";
 import invertedLogo from "../../../../assets/icons/invertedlogo.svg";
 import accessibilityIcon from "../../../../assets/icons/assess.svg";
-import dropdownIcon from "../../../../assets/icons/down.svg";
+import dropdownIcon from "../../../../assets/icons/DownOutlined.svg";
+import dropdownIconInverter from "../../../../assets/icons/invertdown.svg";
 import globeIcon from "../../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
 import Accessibility from "../Components/Accessibility";
 import { useLanguage } from "../../../../context/LanguageContext";
 import { useSelector } from "react-redux";
+import accessibilityIconInverter from "../../../../assets/icons/assessinverter.svg";
+import globeIconInverter from "../../../../assets/icons/invertGlob.svg";
 
 function MobileHeader() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -16,6 +19,11 @@ function MobileHeader() {
   const [showAccessibility, setShowAccessibility] = useState(false);
   const langBtnRef = useRef(null);
   const { language, toggleLanguage } = useLanguage();
+  const accessibilityIconSrc = isDarkMode
+    ? accessibilityIconInverter
+    : accessibilityIcon;
+  const globeIconSrc = isDarkMode ? globeIconInverter : globeIcon;
+  const dropdownIconSrc = isDarkMode ? dropdownIconInverter : dropdownIcon;
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -55,7 +63,7 @@ function MobileHeader() {
               window.scrollTo(0, 0);
             }}
           >
-            <img src={accessibilityIcon} alt="Accessibility" />
+            <img src={accessibilityIconSrc} alt="Accessibility" />
           </button>
 
           <div style={{ position: "relative" }} ref={langBtnRef}>
@@ -65,10 +73,10 @@ function MobileHeader() {
               onClick={() => setShowLangDropdown((v) => !v)}
               type="button"
             >
-              <img src={globeIcon} alt="Language" />
+              <img src={globeIconSrc} alt="Language" />
               <span>{language === "العربية" ? "العربية" : "English"}</span>
               <img
-                src={dropdownIcon}
+                src={dropdownIconSrc}
                 alt="down arrow"
                 className="chevron"
                 style={{ width: 12, height: 12, marginLeft: 4 }}

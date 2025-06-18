@@ -108,11 +108,9 @@
 
   &__right {
     width: 35%;
-    // padding: 2rem;
-    // background-color: #f8f8f8;
 
     .order-summary {
-      background: #f4f7f8;
+      background: var(--payment-right-bg);
 
       &__title {
         font-size: 1.25rem;

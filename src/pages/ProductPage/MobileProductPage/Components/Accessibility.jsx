@@ -10,6 +10,7 @@ import {
   setZoomLevel,
   toggleDarkMode,
 } from "../../../../global/accessibilitySlice";
+import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 
 function Accessibility({ onClose, visible }) {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ function Accessibility({ onClose, visible }) {
       className="accessibility-modal"
       closeIcon={
         <span className="custom-modal-close">
-          <img src={closeIcon} alt="close" />
+          <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
         </span>
       }
     >

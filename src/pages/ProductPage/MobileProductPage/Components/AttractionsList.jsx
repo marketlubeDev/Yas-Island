@@ -6,6 +6,8 @@ import BookingModal from "./BookingModal";
 import { Modal } from "antd";
 import Mycart from "./Mycart";
 import closeIcon from "../../../../assets/icons/close.svg";
+import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import { useSelector } from "react-redux";
 
 const AttractionsList = ({ productList }) => {
   const { t } = useTranslation();
@@ -13,6 +15,7 @@ const AttractionsList = ({ productList }) => {
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
@@ -83,7 +86,9 @@ const AttractionsList = ({ productList }) => {
                   <div className="attraction-card__title">
                     {item?.product_title}
                   </div>
-                  <div className="attraction-card__desc">{item?.productshortdesc}</div>
+                  <div className="attraction-card__desc">
+                    {item?.productshortdesc}
+                  </div>
                 </div>
                 <div className="attraction-card__action">
                   <button
@@ -95,7 +100,10 @@ const AttractionsList = ({ productList }) => {
                   <div className="attraction-card__price">
                     <span>AED {item?.product_variants[0]?.gross}</span>
                   </div>
-                  <span className="attraction-card__vat"> + {(item?.product_variants[0]?.gross * 0.05 ).toFixed(2)} Tax</span>
+                  <span className="attraction-card__vat">
+                    {" "}
+                    + {(item?.product_variants[0]?.gross * 0.05).toFixed(2)} Tax
+                  </span>
                 </div>
               </div>
             </div>
@@ -110,7 +118,7 @@ const AttractionsList = ({ productList }) => {
         closable={true}
         closeIcon={
           <span className="custom-modal-close">
-            <img src={closeIcon} alt="close" />
+            <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
           </span>
         }
         width="100%"

@@ -418,4 +418,16 @@
   display: none;
 }
 
-
+.booking-modal .ant-modal-content {
+  background-color: var(--color-base-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+}
+:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(245, 245, 245, 0.39) !important;
+}

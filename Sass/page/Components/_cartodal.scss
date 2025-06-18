@@ -10,25 +10,20 @@
   display: flex;
   flex-direction: column;
 }
-// .ant-drawer-body {
-//   padding: 0 !important;
-// }
 
 .cart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid transparent;
-  border-image: linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1;
+  border-image: var(--cart-border);
   padding: 10px 20px 10px 20px;
 
   h2 {
     flex: 1;
     text-align: center;
     margin: 0;
-    color: #18142b;
-    // text-align: right;
-    // font-family: Urbanist;
+    color: var(--color-base-text);
     font-size: 1.75rem;
     font-style: normal;
     font-weight: 700;
@@ -66,10 +61,14 @@
 }
 
 .expand-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   flex-shrink: 0;
   cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .cart-item {
@@ -93,7 +92,7 @@
   justify-content: space-between;
 
   p {
-    color: #075faf;
+    color: var(--cart-item-price);
     font-size: 0.85225rem;
     font-style: normal;
     font-weight: 700;
@@ -103,7 +102,7 @@
 }
 .item-details h4 {
   margin: 0;
-  color: #514760;
+  color: var(--cart-item-name);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 500;
@@ -135,7 +134,7 @@
   gap: 30px;
 
   span {
-    color: #4c4358;
+    color: var(--cart-item-var);
     font-size: 0.85225rem;
     font-style: normal;
     font-weight: 600;
@@ -153,15 +152,19 @@
 .cart-summary {
   margin-top: auto;
   padding: 20px;
-  // border-radius: 1.70444rem 0rem 0rem 1.70444rem;
-  background: #fff;
+  background: var(--color-base-bg);
   box-shadow: 0px -10.908px 36.816px 0px rgba(27, 36, 53, 0.17);
+  border-radius: 12px;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+
+  span {
+    color: var(--color-base-text);
+  }
 }
 
 .total {
@@ -170,6 +173,10 @@
   font-weight: bold;
   font-size: 18px;
   margin: 20px 0;
+
+  span {
+    color: var(--cart-total-price);
+  }
 }
 
 .cart-actions {
@@ -178,8 +185,8 @@
 }
 
 .save-cart-btn {
-  background-color: #ffa500;
-  color: black;
+  background-color: var(--btn-save);
+  color: var(--btn-clr);
   border: none;
   flex: 1;
   display: flex;
@@ -230,7 +237,7 @@
 }
 
 .validity-date {
-  color: #514760;
+  color: var(--cart-item-date);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -238,10 +245,16 @@
   text-transform: lowercase;
 
   span {
-    color: #594f67;
+    color: var(--cart-item-day);
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+  }
+}
+
+.cart-drawer {
+  .ant-drawer-body {
+    background-color: var(--color-base-bg) !important;
   }
 }

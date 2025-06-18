@@ -206,6 +206,9 @@ $color-yellow: #ffea00;
   --color-promo-input-border: #6f677c;
   --color-email-form-box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
 
+  --color-close-btn-border: #dcd6e5;
+  --color-base-mobile-top-item-text-active: #1976d2;
+
   // RTL specific variables
   --direction: ltr;
   --text-align: left;
@@ -221,6 +224,17 @@ $color-yellow: #ffea00;
   --ip-border: #ddd;
   --ip-label: #333;
   --cupon-bg: #ddd;
+  --cart-border: linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1;
+  --cart-item-name: #514760;
+  --cart-item-price: #075faf;
+  --cart-item-date: #514760;
+  --cart-item-day: #594f67;
+  --cart-item-var: #4c4358;
+  --cart-total-price: #4f475b;
+  --payment-right-bg: #f4f7f8;
+  --btn-clr: "#18142b";
+  --cnfm-btn-clr: "#ffea00";
+  --btn-save: #ffa500;
 }
 
 [dir="rtl"] {

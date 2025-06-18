@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 
 export default function GlobalInvertColor() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const isHighContrast = useSelector(
+    (state) => state.accessibility.isHighContrast
+  );
 
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--color-base-bg",
-      isDarkMode ? "#000" : "#fff"
+      isDarkMode ? "#000" : isHighContrast ? "#fff" : "#fff"
     );
     document.documentElement.style.setProperty(
       "--color-base-text",
@@ -23,12 +26,14 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-btn-border",
-      isDarkMode ? "#FFAD33" : "#dcd6e5"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#7E85B4" : "#dcd6e5"
     );
     document.documentElement.style.setProperty(
       "--color-base-chat-btn-bg",
       isDarkMode
         ? "#FFAD33"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(180deg, #0597e5 0%, #0758dd 100%)"
     );
     document.documentElement.style.setProperty(
@@ -37,7 +42,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-side-bar-border",
-      isDarkMode ? "#F7B141" : "#F7D148"
+      isDarkMode ? "#F7B141" : isHighContrast ? "#084EBE" : "#F7D148"
     );
     document.documentElement.style.setProperty(
       "--color-base-side-bar-invert-border",
@@ -59,6 +64,8 @@ export default function GlobalInvertColor() {
       "--color-base-side-bar-item-icon-bg",
       isDarkMode
         ? "#F8A622"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(135deg, #da3164 0%, #ae219f 50%, #547ee0 100%)"
     );
     document.documentElement.style.setProperty(
@@ -87,6 +94,8 @@ export default function GlobalInvertColor() {
       "--color-base-product-card-scroll-bar",
       isDarkMode
         ? "#FFAD33"
+        : isHighContrast
+        ? "#0052CC"
         : "linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%)"
     );
     document.documentElement.style.setProperty(
@@ -113,7 +122,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-product-card-add-cart-btn-bg",
-      isDarkMode ? "#1A1206" : "#fff8a5"
+      isDarkMode ? "#1A1206" : isHighContrast ? "#E5EDF9" : "#fff8a5"
     );
     // Accessibility Modal
     document.documentElement.style.setProperty(
@@ -134,7 +143,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-accessibility-modal-btn-bg",
-      isDarkMode ? "#FFAD33" : "#ffe600"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
     );
 
     //mobile product page
@@ -408,7 +417,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-dtl-content-border",
-      isDarkMode ? "rgba(255, 173, 51, 0.50)" : "#fff"
+      isDarkMode ? "#ffad337f" : "#fff"
     );
 
     //mobile booking modal
@@ -492,6 +501,12 @@ export default function GlobalInvertColor() {
       "--color-bkg-checkout-btn-border",
       isDarkMode ? "#FFAD33" : "#ffea00"
     );
+
+    document.documentElement.style.setProperty(
+      "--cnfm-btn-clr",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
+    );
+
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-clr-span",
       isDarkMode ? "#E7EBD4" : "#f83482"
@@ -519,7 +534,7 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#E7EBD4" : "#231942"
     );
     document.documentElement.style.setProperty(
-      "#f4f3f3",
+      "--color-pymnt-step-clr",
       isDarkMode ? "#A6B098" : "#594f67"
     );
     document.documentElement.style.setProperty(
@@ -644,9 +659,70 @@ export default function GlobalInvertColor() {
       "--ip-label",
       isDarkMode ? "#E7EBD4" : "#333"
     );
+    document.documentElement.style.setProperty(
+      "--color-close-btn-border",
+      isDarkMode ? " rgba(255, 173, 51, 0.50)" : "#dcd6e5"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-top-item-text-active",
+      isDarkMode ? "#FFAD33" : "#1976d2"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-border",
+      isDarkMode
+        ? "linear-gradient(90deg, #F9A251 0%, #CB5F26 100%) 1"
+        : "linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-item-name",
+      isDarkMode ? "#AEB89F" : "#514760"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-price",
+      isDarkMode ? "#F8A050" : "#075faf"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-date",
+      isDarkMode ? "#CBCBCB" : "#514760"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-day",
+      isDarkMode ? "#fff" : "#594f67"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-item-var",
+      isDarkMode ? "#A6B098" : "#4c4358"
+    );
+
+    document.documentElement.style.setProperty(
+      "--cart-total-price",
+      isDarkMode ? "#A6B098" : "#4f475b"
+    );
+
+    document.documentElement.style.setProperty(
+      "--payment-right-bg",
+      isDarkMode ? "#4c4358" : "#f4f7f8"
+    );
+
+    document.documentElement.style.setProperty(
+      "--btn-clr",
+      isDarkMode ? "#18142b" : isHighContrast ? "#fff" : "#18142b"
+    );
+
+    document.documentElement.style.setProperty(
+      "--btn-save",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffa500"
+    );
 
     return () => {
-      document.documentElement.style.setProperty("--color-base-bg", "#fff");
+      document.documentElement.style.setProperty(
+        "--color-base-bg",
+        isDarkMode ? "#000" : isHighContrast ? "#dcd6e5" : "#fff"
+      );
       document.documentElement.style.setProperty(
         "--color-base-text",
         "#18142B"
@@ -1176,12 +1252,48 @@ export default function GlobalInvertColor() {
         "--color-email-form-box-shadow",
         "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
       );
+      document.documentElement.style.setProperty(
+        "--color-close-btn-border",
+        "#dcd6e5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-top-item-text-active",
+        "#FFAD33"
+      );
 
       document.documentElement.style.setProperty("--ip-label", "#333");
 
       document.documentElement.style.setProperty("--ip-border", "#ddd");
+
+      document.documentElement.style.setProperty(
+        "--cart-border",
+        "linear-gradient(90deg, #065dae 0%, #34a0d9 100%) 1"
+      );
+
+      document.documentElement.style.setProperty("--cart-item-name", "#514760");
+
+      document.documentElement.style.setProperty(
+        "--cart-item-price",
+        "#075faf"
+      );
+
+      document.documentElement.style.setProperty("--cart-item-date", "#514760");
+
+      document.documentElement.style.setProperty("--cart-item-day", "#594f67");
+
+      document.documentElement.style.setProperty("--cart-item-var", "#4c4358");
+
+      document.documentElement.style.setProperty(
+        "--cart-total-price",
+        "#4f475b"
+      );
+
+      document.documentElement.style.setProperty(
+        "--payment-right-bg",
+        "#f4f7f8"
+      );
     };
-  }, [isDarkMode]);
+  }, [isDarkMode, isHighContrast]);
 
   return null;
 }

@@ -99,10 +99,9 @@ function MobileProductPage() {
   const [previousModal, setPreviousModal] = useState(null);
   const { t } = useTranslation();
 
-
   const { productList, isLoading, isError } = useGetProductList();
 
-  console.log(productList , "productList>> mobile");
+  console.log(productList, "productList>> mobile");
 
   const handleConfirmEmail = () => {
     setShowEmailVerification(false);
@@ -122,7 +121,7 @@ function MobileProductPage() {
       <div className="scroll-section">
         <AttractionsList productList={productList} />
       </div>
-{/* 
+      {/*
       {showEmailVerification && (
         <EmailVerification
           onBack={() => setShowEmailVerification(false)}

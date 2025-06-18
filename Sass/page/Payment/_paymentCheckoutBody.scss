@@ -20,7 +20,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #18142b;
+  color: var(--color-base-accessibility-modal-title);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
@@ -141,11 +141,12 @@
   width: 100%;
   padding: 16px;
   border-radius: 4.375rem;
-  background: #ffea00;
+  background: var(--cnfm-btn-clr);
   border: none;
   font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
+  color: var(--btn-clr);
 }
 .payment-checkout__header {
   display: flex;

@@ -1,9 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close.svg";
+import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import { useSelector } from "react-redux";
 
 function PromoCodePopup({ onClose }) {
   const { t, i18n } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const toArabicNumeral = (num) => {
     if (i18n.language === "ar") {
@@ -35,7 +38,7 @@ function PromoCodePopup({ onClose }) {
     <div className="promo-popup-overlay">
       <div className="promo-popup-card">
         <span className="promo-popup-custom-close" onClick={onClose}>
-          <img src={closeIcon} alt="close" />
+          <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
         </span>
         <div className="promo-popup-title">{t("promo.applied")}</div>
         <div className="promo-popup-amount">
