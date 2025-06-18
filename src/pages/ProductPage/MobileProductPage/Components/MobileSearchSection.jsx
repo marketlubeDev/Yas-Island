@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 import searchIcon from "../../../../assets/icons/lens.svg";
+import invertedSearchIcon from "../../../../assets/icons/invertedlens.svg";
 import downArrow from "../../../../assets/icons/down.svg";
+import invertedDownArrow from "../../../../assets/icons/invertdown.svg";
 
 function MobileSearchSection() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -10,6 +13,9 @@ function MobileSearchSection() {
   const sortBtnRef = useRef(null);
   const filterBtnRef = useRef(null);
   const { t } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
+  const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
 
   const sortOptions = [
     {
@@ -74,7 +80,7 @@ function MobileSearchSection() {
       <div className="mobile-top-search-section__searchbar">
         <input type="text" placeholder={t("common.searchPlaceholder")} />
         <button>
-          <img src={searchIcon} alt="Search" />
+          <img src={searchIconSrc} alt="Search" />
         </button>
       </div>
       <div className="mobile-top-search-section__filters">
@@ -86,7 +92,7 @@ function MobileSearchSection() {
             >
               {button.label}{" "}
               <img
-                src={downArrow}
+                src={downArrowSrc}
                 alt="down arrow"
                 className="chevron"
                 style={{
