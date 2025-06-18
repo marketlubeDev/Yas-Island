@@ -40,11 +40,11 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
 
   function getValidDateRange(product) {
     const today = new Date();
-    today.setHours(0, 0, 0, 0);  // Normalize today's date
-    
+    today.setHours(0, 0, 0, 0); // Normalize today's date
+
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);  // Normalize tomorrow's date
+    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
 
     let endDate;
     if (product?.calendar_end_date) {
@@ -52,7 +52,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
-    endDate.setHours(23, 59, 59, 999);  // Set end date to end of day
+    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
 
     return { startDate: tomorrow, endDate };
   }
@@ -106,24 +106,27 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
         currentDate.getFullYear(),
         currentDate.getMonth(),
         day,
-        0, 0, 0, 0  // Normalize the date for comparison
+        0,
+        0,
+        0,
+        0 // Normalize the date for comparison
       );
-      
-      const isSelected = 
+
+      const isSelected =
         (startDate && date.toDateString() === startDate.toDateString()) ||
         (endDate && date.toDateString() === endDate.toDateString());
       const isInRange = isDateInRange(date);
       const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled = date.getTime() < minDate.getTime() || date.getTime() > maxDate.getTime();
+      const isDisabled =
+        date.getTime() < minDate.getTime() ||
+        date.getTime() > maxDate.getTime();
 
       days.push(
         <button
           key={day}
           className={`booking-modal__calendar-date${
             isSelected ? " selected" : ""
-          }${isInRange ? " in-range" : ""}${
-            isDisabled ? " disabled" : ""
-          }`}
+          }${isInRange ? " in-range" : ""}${isDisabled ? " disabled" : ""}`}
           onClick={() => !isDisabled && handleDateClick(date)}
           disabled={isDisabled}
         >
@@ -148,10 +151,34 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
   };
 
   const formatMonthYear = (date) => {
-    return date.toLocaleDateString(i18n.language === "ar" ? "ar-SA" : "en-US", {
-      month: "long",
-      year: "numeric",
-    });
+    if (i18n.language === "ar") {
+      const arabicMonths = {
+        0: "يناير", // Yanāyir
+        1: "فبراير", // Fibrayir
+        2: "مارس", // Māris
+        3: "أبريل", // Abrīl
+        4: "مايو", // Māyū
+        5: "يونيو", // Yūniyū
+        6: "يوليو", // Yūlyū
+        7: "أغسطس", // Aghustus
+        8: "سبتمبر", // Septambir
+        9: "أكتوبر", // Oktūbar
+        10: "نوفمبر", // Nūfambir
+        11: "ديسمبر", // Dīsambir
+      };
+      const arabicMonth = arabicMonths[date.getMonth()];
+      const gregorianYear = date
+        .getFullYear()
+        .toString()
+        .split("")
+        .map(
+          (digit) =>
+            ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"][parseInt(digit)]
+        )
+        .join("");
+      return `${arabicMonth} ${gregorianYear}`;
+    }
+    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
   const toArabicNumeral = (num) => {
@@ -228,9 +255,14 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
                   <div className="guests-row">
                     <div className="guest-label-container">
                       <span className="guest-label">{variant}</span>
-                      <span className="guest-label-price">AED {product.product_variants.find(v => v.productvariantname === variant)?.gross * guests[variant] } </span>
+                      <span className="guest-label-price">
+                        AED{" "}
+                        {product.product_variants.find(
+                          (v) => v.productvariantname === variant
+                        )?.gross * guests[variant]}{" "}
+                      </span>
                     </div>
-         
+
                     <div className="guests-controls">
                       <button
                         className="guests-btn"
@@ -275,7 +307,8 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
           <button
             className="booking-modal__checkout"
             onClick={() =>
-              onCheckout && onCheckout({ startDate, endDate, guests, totalPrice })
+              onCheckout &&
+              onCheckout({ startDate, endDate, guests, totalPrice })
             }
           >
             {t("booking.checkOut")}{" "}
@@ -286,7 +319,8 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
           <button
             className="booking-modal__save"
             onClick={() =>
-              onSaveToCart && onSaveToCart({ startDate, endDate, guests, totalPrice })
+              onSaveToCart &&
+              onSaveToCart({ startDate, endDate, guests, totalPrice })
             }
           >
             {t("booking.saveToCart")}

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 import backIcon from "../../../../assets/icons/back.svg";
+import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import trashIcon from "../../../../assets/icons/trash.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
 import { ar } from "../../../../translations/ar";
 import { en } from "../../../../translations/en";
 import { useLanguage } from "../../../../context/LanguageContext";
+import { useSelector } from "react-redux";
 
 function Mycart({ onClose, visible }) {
   const { language } = useLanguage();
   const t = language === "العربية" || language === "ar" ? ar : en;
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   // Example cart data
   const [cartItems, setCartItems] = useState([
     {
@@ -81,7 +85,7 @@ function Mycart({ onClose, visible }) {
       <div className="mycart-modal__content">
         <div className="mycart-modal__header">
           <button className="mycart-modal__back" onClick={handleBack}>
-            <img src={backIcon} alt="Back" />
+            <img src={backIconSrc} alt="Back" />
           </button>
           <span className="mycart-modal__title">{t.cart.title}</span>
         </div>

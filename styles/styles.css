@@ -75,7 +75,7 @@
   --color-base-mobile-header-icon-btn-border: #bcbcc9;
   --color-base-mobile-header-icon-btn-bg: #fff;
   --color-base-mobile-bottom-nav-bg: #fff;
-  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-bottom-nav-border-top: none;
   --color-base-mobile-bottom-nav-item-text: #231942;
   --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
     90deg,
@@ -141,6 +141,7 @@
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
   --color-confirm-otp-bg: #f4f3f3;
@@ -184,6 +185,7 @@
   --btn-clr: "#18142b";
   --cnfm-btn-clr: "#ffea00";
   --btn-save: #ffa500;
+  --color-text-primary-chevron: #bdbdc6;
   --main-body: #f4f3f3;
   --cart-btn-var: "#FFEA00";
   --cart-btn-text: "#18142b";
@@ -2993,7 +2995,7 @@ body {
   gap: 8px;
 }
 .mobile-header__logo {
-  height: 50px;
+  height: 54px;
   width: auto;
   display: block;
 }
@@ -3005,8 +3007,8 @@ body {
 .mobile-header__icon-btn, .mobile-header__lang-btn {
   background: var(--color-base-mobile-header-icon-btn-bg);
   border: 2px solid var(--color-base-mobile-header-icon-btn-border);
-  border-radius: 2rem;
-  padding: 6px 12px;
+  border-radius: 12rem;
+  padding: 4px 4px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -3015,18 +3017,18 @@ body {
   transition: background 0.2s;
 }
 .mobile-header__icon-btn img, .mobile-header__lang-btn img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   display: block;
 }
 .mobile-header__lang-btn span {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
 }
 .mobile-header .chevron {
   font-size: 12px;
   margin-left: 2px;
-  color: #333;
+  color: var(--color-text-primary-chevron);
 }
 .mobile-header__lang-dropdown {
   position: absolute;
@@ -3062,6 +3064,7 @@ body {
 
 .mobile-top {
   margin-top: 5rem;
+  height: 18.3%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -3095,14 +3098,14 @@ body {
   content: "";
   position: absolute;
   right: 0;
-  top: 20%;
-  height: 60%;
+  top: 8%;
+  height: 82%;
   width: 1px;
   background-color: var(--color-base-mobile-top-item-right-border);
 }
 .mobile-top__icon {
-  width: 28px;
-  height: 28px;
+  width: 23px;
+  height: 23px;
   object-fit: contain;
   margin-bottom: 2px;
   display: block;
@@ -3118,17 +3121,18 @@ body {
   display: block;
 }
 .mobile-top__underline {
-  width: 60%;
+  width: 95%;
   height: 3px;
   background: var(--color-base-mobile-top-item-text-active);
   border-radius: 2px;
-  margin: 6px auto 0 auto;
+  margin: 4px auto 0 auto;
   display: none;
 }
 
 .mobile-top-search-section {
   padding: 18px 0 0 0;
   text-align: center;
+  height: 58%;
 }
 .mobile-top-search-section__title {
   font-size: 23px;
@@ -3198,7 +3202,7 @@ body {
 }
 .mobile-top-search-section__filter-btn .chevron {
   font-size: 14px;
-  color: #bdbdc6;
+  color: var(--color-text-primary-chevron);
   margin-left: 20px;
 }
 .mobile-top-search-section__dropdown {
@@ -3236,14 +3240,14 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 50px;
+  height: 55px;
   width: 100vw;
   background: var(--color-base-mobile-bottom-nav-bg);
   display: flex;
   justify-content: space-around;
   align-items: center;
   box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.06);
-  border-top: 1.5px solid var(--color-base-mobile-bottom-nav-border-top);
+  border-top: 1px solid var(--color-base-bottom-nav-border-top);
   z-index: 100;
 }
 .mobile-bottom-nav__item {
@@ -3309,8 +3313,6 @@ body {
   align-items: center;
   transition: border 0.2s, box-shadow 0.2s;
   cursor: pointer;
-}
-.accessibility-popup-option:hover {
   box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
 }
 
@@ -3669,7 +3671,7 @@ body {
   background: var(--color-email-form-box);
   border-radius: 0 0 24px 24px;
   width: 100%;
-  margin-top: 0;
+  margin-top: 106px;
   z-index: 10;
 }
 
@@ -4944,7 +4946,7 @@ body {
 
 .promo-popup-card {
   background: var(--color-email-form-box);
-  border: 1px solid var(--color-email-form-input-border);
+  border: 1px solid var(--color-email-form-input-border-mb);
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
   padding: 32px 24px 24px 24px;
@@ -5029,7 +5031,7 @@ body {
 }
 
 .promo-popup-custom-close:hover {
-  background: #fff;
+  background: transparent;
 }
 
 .promo-popup-custom-close img {
@@ -5177,7 +5179,8 @@ body {
 }
 
 .attraction-detail-modal .ant-modal-content {
-  margin-top: -2.5rem;
+  height: 100vh;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   padding: 20px 8px;
@@ -5307,7 +5310,7 @@ body {
 }
 .product-head__filter-btn .chevron {
   font-size: 14px;
-  color: #bdbdc6;
+  color: var(--color-text-primary-chevron);
   margin-left: 20px;
 }
 
@@ -5535,8 +5538,8 @@ body {
   border: 3px solid var(--color-bkg-checkout-btn-border);
   color: var(--color-bkg-checkout-btn-clr);
   border-radius: 2rem;
-  padding: 12px 0;
-  font-size: 18px;
+  padding: 4px 0;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   width: 75%;
@@ -5549,8 +5552,8 @@ body {
   color: var(--color-bkg-save-btn-clr);
   border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
-  padding: 12px 0;
-  font-size: 18px;
+  padding: 4px 0;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   width: 75%;
@@ -5785,8 +5788,7 @@ body {
   color: var(--color-pymnt-title-clr);
   text-align: center;
   margin-left: 10px;
-  margin-top: 30px;
-  margin-bottom: -13px;
+  margin-top: 105px;
 }
 .payment-header__back-button {
   background: none;
@@ -5795,7 +5797,7 @@ body {
   margin-bottom: 8px;
   align-self: flex-start;
   margin-left: 12px;
-  margin-top: -1rem;
+  margin-top: -1.5rem;
   cursor: pointer;
 }
 .payment-header__steps-container {
@@ -6002,8 +6004,8 @@ body {
 .mobile-header__lang-btn {
   background: var(--color-base-btn-bg) !important;
   border: 2px solid var(--color-base-btn-border) !important;
-  border-radius: 2rem;
-  padding: 6px 12px;
+  border-radius: 12rem;
+  padding: 3px 9px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -6013,13 +6015,13 @@ body {
 }
 
 .mobile-header__lang-btn img {
-  height: 20px;
-  width: 20px;
+  height: 17px;
+  width: 17px;
   display: block;
 }
 
 .mobile-header__lang-btn span {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-base-text);
 }
 
