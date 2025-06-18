@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductHead from "./ProductHead/ProductHead";
 import { useSelector } from "react-redux";
 import ProductSoloThumbnail from "./ProductSoloThumnail/ProductSoloThumbnail";
@@ -14,14 +14,22 @@ import useGetProductList from "../../apiHooks/product/product";
 
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);
+  const language = useSelector((state) => state.language.currentLanguage);
   
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-  const { productList, isLoading, isError } = useGetProductList();
+  const { productList, isLoading, isError, refetch } = useGetProductList();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await refetch();
+    };
+    fetchData();
+  }, [language, refetch]);
 
-
-  
+  if (isError) {
+    return <div>Error loading products...</div>;
+  }
 
   return (
     <div className="product">
