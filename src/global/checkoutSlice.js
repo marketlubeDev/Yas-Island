@@ -35,3 +35,4 @@ const checkoutSlice = createSlice({
 });
 
 export const { setCheckout, setEmail } = checkoutSlice.actions;
+export default checkoutSlice.reducer;
