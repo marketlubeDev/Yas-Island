@@ -3,12 +3,14 @@ import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import { useSelector } from "react-redux";
 
 function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   console.log(attraction, "attraction>>");
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
 
   if (!attraction) return null;
 
@@ -16,7 +18,7 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
     <>
       <div className="attraction-detail-modal__header">
         <button className="attraction-detail-modal__back" onClick={onClose}>
-          <img src={backIcon} alt={t("common.back")} />
+          <img src={backIconSrc} alt={t("common.back")} />
         </button>
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
