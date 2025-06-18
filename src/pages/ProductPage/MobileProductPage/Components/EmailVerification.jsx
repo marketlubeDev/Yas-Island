@@ -4,15 +4,18 @@ import MobileHeader from "./MobileHeader";
 import ConfirmEmail from "./ConfirmEmail";
 import PaymentHeader from "./PaymentHeader";
 import CheckOut from "./CheckOut";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../../../global/checkoutSlice";
 
 function EmailVerification({ onConfirmEmail, onBack }) {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("vivek@dev.panashi.ae");
+  const [emailValue, setEmailValue] = useState("vivek@dev.panashi.ae");
   const [showConfirmEmail, setShowConfirmEmail] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
-
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(setEmail(emailValue));
     setShowConfirmEmail(true);
   };
 
@@ -45,8 +48,8 @@ function EmailVerification({ onConfirmEmail, onBack }) {
                 id="email"
                 type="email"
                 className="email-verification-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={emailValue}
+                onChange={(e) => setEmailValue(e.target.value)}
                 placeholder={t("payment.emailConfirmation.emailPlaceholder")}
                 required
                 style={{ color: "var(--color-email-form-input-border)" }}

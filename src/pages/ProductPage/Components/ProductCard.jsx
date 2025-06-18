@@ -1,15 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import Product1 from "../../../assets/images/product1.png";
-import Product2 from "../../../assets/images/product2.png";
-import Product3 from "../../../assets/images/product3.png";
-import Product4 from "../../../assets/images/product4.png";
-import Product5 from "../../../assets/images/product5.png";
-import Product6 from "../../../assets/images/product6.png";
-import Product7 from "../../../assets/images/product7.png";
-import Product8 from "../../../assets/images/product8.png";
-import Product9 from "../../../assets/images/product9.png";
-import Product10 from "../../../assets/images/product10.png";
 import ProductCardContent from "./ProductCardContent";
 import ProductCardPricetag from "./ProductCardPricetag";
 import ProductModal from "./ProductModal";

@@ -7,7 +7,8 @@ import { Modal } from "antd";
 import Mycart from "./Mycart";
 import closeIcon from "../../../../assets/icons/close.svg";
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCheckout } from "../../../../global/checkoutSlice";
 
 const AttractionsList = ({ productList }) => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const AttractionsList = ({ productList }) => {
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const dispatch = useDispatch();
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
@@ -40,7 +42,19 @@ const AttractionsList = ({ productList }) => {
     setIsCartModalOpen(true);
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = (data) => {
+    const variants = {};
+    selectedAttraction?.product_variants.forEach((variant) => {
+      variants[variant?.productid] = data.guests[variant?.productvariantname];
+    });
+
+    dispatch(setCheckout({
+      startDate: data.startDate.toLocaleDateString(),
+      endDate: data.endDate.toLocaleDateString(),
+      guests: variants,
+      totalPrice: data.totalPrice,
+    }));
+
     navigate("/payment");
     handleCloseModal();
   };

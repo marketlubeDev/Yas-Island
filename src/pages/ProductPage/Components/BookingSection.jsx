@@ -4,22 +4,25 @@ import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useDispatch } from "react-redux";
+import { setCheckout } from "../../../global/checkoutSlice";
 
 export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const dispatch = useDispatch();
 
-  console.log(language, "uselang");
 
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = 1;
+      variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
     });
     return variants;
   }
@@ -56,12 +59,33 @@ export default function BookingSection({ product, onBack }) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
+  const handleDateClick = (date) => {
+    if (!startDate || (startDate && endDate)) {
+      // Start new selection
+      setStartDate(date);
+      setEndDate(null);
+    } else {
+      // Complete the selection
+      if (date < startDate) {
+        setStartDate(date);
+        setEndDate(startDate);
+      } else {
+        setEndDate(date);
+      }
+    }
+  };
+
+  const isDateInRange = (date) => {
+    if (!startDate || !endDate) return false;
+    return date >= startDate && date <= endDate;
+  };
+
   // Generate calendar days
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate, endDate } = getValidDateRange(product);
+    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -73,24 +97,31 @@ export default function BookingSection({ product, onBack }) {
       const date = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        day
+        day,
+        0,
+        0,
+        0,
+        0 // Normalize the date for comparison
       );
-      const isSelected =
-        selectedDate && date.toDateString() === selectedDate.toDateString();
-      const isToday = date.toDateString() === new Date().toDateString();
 
-      // Compare normalized dates
+      const isSelected = 
+        (startDate && date.toDateString() === startDate.toDateString()) ||
+        (endDate && date.toDateString() === endDate.toDateString());
+      const isInRange = isDateInRange(date);
+      const isToday = date.toDateString() === new Date().toDateString();
       const isDisabled =
-        date.getTime() < startDate.getTime() ||
-        date.getTime() > endDate.getTime();
+        date.getTime() < minDate.getTime() ||
+        date.getTime() > maxDate.getTime();
 
       days.push(
         <div
           key={day}
-          className={`day ${isSelected ? "selected" : ""} ${
-            isToday ? "today" : ""
-          } ${isDisabled ? "disabled" : ""}`}
-          onClick={() => !isDisabled && setSelectedDate(date)}
+          className={`day 
+            ${isSelected ? "selected" : ""} 
+            ${isInRange ? "in-range" : ""}
+            ${isToday ? "today" : ""} 
+            ${isDisabled ? "disabled" : ""}`}
+          onClick={() => !isDisabled && handleDateClick(date)}
         >
           {day}
         </div>
@@ -150,11 +181,40 @@ export default function BookingSection({ product, onBack }) {
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
+  const handleCheckout = () => {
+    const variants = {}
+
+    product?.product_variants.forEach((variant) => {
+      variants[variant?.productid] = guests[variant?.productvariantname];
+    });
+
+    console.log(variants, "varinats");
+    dispatch(setCheckout({
+      startDate,
+      endDate,
+      guests:variants,
+      totalPrice,
+    }));
+    navigate("/payment");
+  };
+
   return (
     <div className="booking-section">
       {/* Date Selection */}
       <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
+        {/* <div className="selected-dates">
+          {startDate && (
+            <div>
+              {t("booking.startDate")}: {startDate.toLocaleDateString()}
+            </div>
+          )}
+          {endDate && (
+            <div>
+              {t("booking.endDate")}: {endDate.toLocaleDateString()}
+            </div>
+          )}
+        </div> */}
         <div className="calendar-wrapper">
           <div className="calendar-header">
             <button onClick={handlePrevMonth}>
@@ -198,7 +258,15 @@ export default function BookingSection({ product, onBack }) {
               {Object.keys(guests)?.map((variant, idx) => (
                 <div key={idx}>
                   <div className="guest-row">
-                    <span className="guest-label">{variant}</span>
+                    <div className="guest-label-container">
+                      <span className="guest-label">{variant}</span>
+                      <span className="guest-label-price">
+                        AED{" "}
+                        {product.product_variants.find(
+                          (v) => v.productvariantname === variant
+                        )?.gross * guests[variant]}{" "}
+                      </span>
+                    </div>
                     <div className="counter-controls">
                       <button
                         className="counter-btn"
@@ -229,30 +297,6 @@ export default function BookingSection({ product, onBack }) {
                   <div className="guest-row-divider"></div>
                 </div>
               ))}
-
-              {/* <div className="guest-row">
-                <span className="guest-label">{t("booking.children")}</span>
-                <div className="counter-controls">
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                      setGuests({ ...guests, children: guests.children - 1 })
-                    }
-                  >
-                    -
-                  </button>
-                  <span className="counter-value">{guests.children}</span>
-                  <button
-                    className="counter-btn"
-                    onClick={() =>
-                      setGuests({ ...guests, children: guests.children + 1 })
-                    }
-                  >
-                    +
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="guest-row-divider"></div> */}
             </div>
 
             <p className="guest-note">{t("booking.kidsFree")}</p>
@@ -266,7 +310,7 @@ export default function BookingSection({ product, onBack }) {
         >
           <button
             className="checkout-btnn"
-            onClick={() => navigate("/payment")}
+            onClick={handleCheckout}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED {totalPrice}</span>
