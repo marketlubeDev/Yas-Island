@@ -81,7 +81,13 @@ function Accessibility({ onClose, visible }) {
           {t("accessibility.subtitle")}
         </div>
         <div className="accessibility-popup-options">
-          <div className="accessibility-popup-option">
+          <div
+            className={`accessibility-popup-option ${
+              isDarkMode ? "active" : ""
+            }`}
+            onClick={handleDarkModeClick}
+            style={{ cursor: "pointer" }}
+          >
             <div className="accessibility-popup-icon-circle">
               <img
                 src={colorblindIcon}
@@ -97,8 +103,7 @@ function Accessibility({ onClose, visible }) {
               <div className="color-blindness-options">
                 <span
                   className={`invert-colors ${isDarkMode ? "active" : ""}`}
-                  onClick={handleDarkModeClick}
-                  style={{ cursor: "pointer", marginRight: 8 }}
+                  style={{ marginRight: 8 }}
                 >
                   {t("accessibility.invertColors") || "Invert Colors"}
                 </span>
@@ -109,7 +114,6 @@ function Accessibility({ onClose, visible }) {
                 <span
                   className={`high-contrast ${isHighContrast ? "active" : ""}`}
                   // onClick={handleHighContrastClick}
-                  style={{ cursor: "pointer" }}
                 >
                   {t("accessibility.highContrast") || "High Contrast"}
                 </span>

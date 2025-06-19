@@ -6003,6 +6003,22 @@ body {
   transition: background 0.2s;
 }
 
+.web-header__lang-btn {
+  background: var(--color-base-btn-bg) !important;
+  border: 2px solid var(--color-base-btn-border) !important;
+  border-radius: 12rem;
+  padding: 6px 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.web-header__lang-btn img {
+  height: 17px;
+  width: 17px;
+  display: block;
+  margin-top: 4px;
+}
+
 .mobile-header__lang-btn img {
   height: 17px;
   width: 17px;
