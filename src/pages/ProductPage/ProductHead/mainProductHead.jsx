@@ -37,7 +37,6 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
     };
   }, [showLangDropdown]);
 
-
   const changeLanguage = (lng) => {
     console.log(lng, "lndfdfdfdfg");
 
@@ -75,7 +74,7 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
           style={{ position: "relative" }}
         >
           <button
-            className="mobile-header__lang-btn"
+            className="web-header__lang-btn"
             aria-label={t("common.language")}
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"
