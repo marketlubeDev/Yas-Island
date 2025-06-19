@@ -41,11 +41,12 @@
         border-bottom: 1px solid var(--ip-bodr-btm);
         font-size: 1rem;
         background: transparent;
+        color: var(--color-base-text-secondary);
 
-        &:focus {
-          outline: none;
-          border-bottom-color: var(--ip-bodr-btm);
-        }
+        // &:focus {
+        //   outline: none;
+        //   border-bottom-color: #000;
+        // }
       }
 
       &__select {
@@ -57,11 +58,12 @@
         background: transparent;
         cursor: pointer;
         appearance: none;
+        color: var(--color-base-text-secondary);
 
-        &:focus {
-          outline: none;
-          border-bottom-color: var(--ip-bodr-btm);
-        }
+        // &:focus {
+        //   outline: none;
+        //   border-bottom-color: #000;
+        // }
 
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
@@ -82,6 +84,7 @@
           background: transparent;
           cursor: pointer;
           appearance: none;
+          color: var(--color-base-text-secondary);
 
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
@@ -96,11 +99,12 @@
           border-bottom: 1px solid var(--ip-bodr-btm);
           font-size: 1rem;
           background: transparent;
+          color: var(--color-base-text-secondary);
 
-          &:focus {
-            outline: none;
-            border-bottom-color: var(--ip-bodr-btm);
-          }
+          // &:focus {
+          //   outline: none;
+          //   border-bottom-color: var(--ip-border);
+          // }
         }
       }
     }
@@ -116,7 +120,7 @@
         font-size: 1.25rem;
         margin-bottom: 0rem;
         padding: 1rem 2rem;
-        color: #18142b;
+        color: var(--color-base-text-secondary);
         font-style: normal;
         font-weight: 700;
         line-height: normal;
@@ -134,7 +138,6 @@
           .label {
             font-size: 0.75rem;
             color: #ada5b7;
-            // font-size: 0.86344rem;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
@@ -148,7 +151,7 @@
             display: flex;
             flex-direction: row;
             gap: 1rem;
-            color: #18142b;
+            color: var(--color-base-text-secondary);
             font-style: normal;
             font-weight: 500;
             line-height: normal;
@@ -194,7 +197,7 @@
       &__label {
         font-size: 0.75rem;
         margin-bottom: 0.5rem;
-        color: #18142b;
+        color: var(--color-base-text-secondary);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -215,6 +218,7 @@
           border: 0.797px solid #6f677c;
           background: var(--apply-btn-bg);
           letter-spacing: 5px;
+          color: var(--color-base-text-secondary);
         }
 
         .apply-btn {
@@ -224,6 +228,7 @@
           border-radius: 0.69744rem;
           border: 0.797px solid #6f677c;
           background: var(--apply-btn-bg);
+          color: var(--color-base-text-secondary);
 
           &:hover {
             background: #f5f5f5;
@@ -297,7 +302,7 @@
           line-height: normal;
 
           a {
-            color: #18142b;
+            color: var(--color-base-text-secondary);
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -330,7 +335,7 @@
 }
 
 .price-row__label {
-  color: #594f67;
+  color: var(--pay-check-price);
   // font-family: Urbanist;
   // font-size: 1.25rem;
   font-style: normal;
@@ -340,7 +345,7 @@
 }
 
 .price-row__values {
-  color: #594f67;
+  color: var(--pay-check-price);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -348,7 +353,7 @@
 }
 
 .price-row__label-total {
-  color: #594f67;
+  color: var(--pay-check-price);
   // font-size: 1.625rem;
   font-style: normal;
   font-weight: 700;
@@ -357,7 +362,7 @@
 }
 
 .price-row__values-total {
-  color: #594f67;
+  color: var(--pay-check-price);
   // font-size: 1.625rem;
   font-style: normal;
   font-weight: 700;

@@ -102,7 +102,7 @@ $color-yellow: #ffea00;
 
   //mobilebottomnav
   --color-base-mobile-bottom-nav-bg: #fff;
-  --color-base-mobile-bottom-nav-border-top: #f2f2f2;
+  --color-base-bottom-nav-border-top: none;
   --color-base-mobile-bottom-nav-item-text: #231942;
 
   --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
@@ -180,6 +180,7 @@ $color-yellow: #ffea00;
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
 
@@ -205,7 +206,6 @@ $color-yellow: #ffea00;
   --color-checkout-summary-row-bg: #fff;
   --color-promo-input-border: #6f677c;
   --color-email-form-box-shadow: 0 2px 16px rgba(44, 44, 84, 0.09);
-
   --color-close-btn-border: #dcd6e5;
   --color-base-mobile-top-item-text-active: #1976d2;
 
@@ -234,6 +234,9 @@ $color-yellow: #ffea00;
   --btn-clr: "#18142b";
   --cnfm-btn-clr: "#ffea00";
   --btn-save: #ffa500;
+
+  //producthead
+  --color-text-primary-chevron: #bdbdc6;
   --main-body: #f4f3f3;
   --cart-btn-var: "#FFEA00";
   --cart-btn-text: "#18142b";
@@ -244,6 +247,7 @@ $color-yellow: #ffea00;
   --verifi-cont: "#f4f7f8";
   --email-text: "#18142b";
   --spam-notice: "#ff63af";
+  --pay-check-price: #594f67;
   --ip-bodr-btm: "#fff";
   --order-smry-ttl: "#18142b";
 }

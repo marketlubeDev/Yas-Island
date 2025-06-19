@@ -73,7 +73,10 @@ function MobileSearchSection() {
   }, [showSortDropdown, showFilterDropdown]);
 
   return (
-    <div className="mobile-top-search-section">
+    <div
+      className="mobile-top-search-section"
+      style={{ backgroundColor: isDarkMode ? "black" : "#FFFFFF" }}
+    >
       <h2 className="mobile-top-search-section__title">
         {t("common.selectAttractions")}
       </h2>

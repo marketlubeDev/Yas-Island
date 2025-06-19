@@ -102,9 +102,10 @@ function Accessibility({ onClose, visible }) {
                 >
                   {t("accessibility.invertColors") || "Invert Colors"}
                 </span>
-                <span className="vertical-divider" style={{ margin: "0 4px" }}>
-                  |
-                </span>
+                <span
+                  className="vertical-divider"
+                  style={{ margin: "0 4px" }}
+                ></span>
                 <span
                   className={`high-contrast ${isHighContrast ? "active" : ""}`}
                   // onClick={handleHighContrastClick}

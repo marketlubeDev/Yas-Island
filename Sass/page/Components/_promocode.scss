@@ -16,7 +16,7 @@
 
 .promo-popup-card {
   background: var(--color-email-form-box);
-  border: 1px solid var(--color-email-form-input-border);
+  border: 1px solid var(--color-email-form-input-border-mb);
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(44, 44, 84, 0.18);
   padding: 32px 24px 24px 24px;
@@ -101,7 +101,7 @@
   transition: background 0.2s;
 }
 .promo-popup-custom-close:hover {
-  background: #fff;
+  background: transparent;
 }
 .promo-popup-custom-close img {
   width: 25px;
