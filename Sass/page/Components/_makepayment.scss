@@ -8,7 +8,8 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
-  padding-top: 56px;
+  // padding-top: 56px;
+  margin-top: 6rem;
 }
 
 .make-payment__content {
@@ -192,7 +193,7 @@
   display: flex;
   width: 15.25rem;
   height: 2.75rem;
-  padding: 1.67931rem 3.24519rem;
+  padding: 10px 0;
   justify-content: center;
   align-items: center;
   gap: 0.22694rem;
@@ -201,7 +202,7 @@
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   margin: 24px auto 8px auto;

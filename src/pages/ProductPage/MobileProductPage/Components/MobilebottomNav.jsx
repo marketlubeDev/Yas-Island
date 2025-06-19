@@ -43,17 +43,36 @@ function MobileBottomNav() {
           <img
             src={homeIconSrc}
             alt={t("common.home")}
-            style={{
-              filter:
-                location.pathname === "/product"
-                  ? "invert(32%) sepia(99%) saturate(7496%) hue-rotate(202deg) brightness(99%) contrast(101%)"
-                  : "brightness(0) saturate(100%)",
-            }}
+            style={
+              isDarkMode
+                ? {
+                    filter:
+                      location.pathname === "/product"
+                        ? "none"
+                        : "invert(85%) sepia(100%) saturate(1000%) hue-rotate(30deg) brightness(110%) contrast(100%)",
+                  }
+                : {
+                    filter:
+                      location.pathname === "/product"
+                        ? "invert(32%) sepia(99%) saturate(7496%) hue-rotate(202deg) brightness(99%) contrast(101%)"
+                        : "brightness(0) saturate(100%)",
+                  }
+            }
           />
           <span>{t("common.home")}</span>
         </div>
         <div className="mobile-bottom-nav__item">
-          <img src={chatIconSrc} alt={t("common.chatWithUs")} />
+          <img
+            src={chatIconSrc}
+            alt={t("common.chatWithUs")}
+            style={
+              isDarkMode
+                ? {
+                    opacity: 0.6,
+                  }
+                : { filter: "brightness(0) saturate(100%)" }
+            }
+          />
           <span>{t("common.chatWithUs")}</span>
         </div>
         <div
@@ -61,7 +80,17 @@ function MobileBottomNav() {
           onClick={handleCartClick}
           style={{ cursor: "pointer" }}
         >
-          <img src={cartIconSrc} alt={t("common.cart")} />
+          <img
+            src={cartIconSrc}
+            alt={t("common.cart")}
+            style={
+              isDarkMode
+                ? {
+                    opacity: 0.6,
+                  }
+                : { filter: "brightness(0) saturate(100%)" }
+            }
+          />
           <span>{t("common.cart")}</span>
         </div>
       </div>

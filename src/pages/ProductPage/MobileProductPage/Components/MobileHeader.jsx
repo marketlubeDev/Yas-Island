@@ -8,9 +8,11 @@ import globeIcon from "../../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
 import Accessibility from "../Components/Accessibility";
 import { useLanguage } from "../../../../context/LanguageContext";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import accessibilityIconInverter from "../../../../assets/icons/assessinverter.svg";
 import globeIconInverter from "../../../../assets/icons/invertGlob.svg";
+import { useTranslation } from "react-i18next";
+import { setLanguage } from "../../../../global/languageSlice";
 
 function MobileHeader() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -24,6 +26,12 @@ function MobileHeader() {
     : accessibilityIcon;
   const globeIconSrc = isDarkMode ? globeIconInverter : globeIcon;
   const dropdownIconSrc = isDarkMode ? dropdownIconInverter : dropdownIcon;
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
+  console.log("Current Language:", currentLanguage);
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -74,7 +82,7 @@ function MobileHeader() {
               type="button"
             >
               <img src={globeIconSrc} alt="Language" />
-              <span>{language === "العربية" ? "Ar" : "En"}</span>
+              <span>{currentLanguage === "ar" ? "Ar" : "En"}</span>
               <img
                 src={dropdownIconSrc}
                 alt="down arrow"
@@ -83,16 +91,25 @@ function MobileHeader() {
               />
             </button>
             {showLangDropdown && (
-              <div className="mobile-header__lang-dropdown">
+              <div
+                className={
+                  "mobile-header__lang-dropdown" +
+                  (currentLanguage === "ar"
+                    ? " mobile-header__lang-dropdown--ar"
+                    : " mobile-header__lang-dropdown--en")
+                }
+              >
                 <div
                   className="mobile-header__lang-option"
                   onClick={() => {
                     toggleLanguage("English");
+                    i18n.changeLanguage("en");
+                    dispatch(setLanguage("en"));
                     setShowLangDropdown(false);
                   }}
                 >
                   <span className="mobile-header__lang-text">English</span>
-                  {language === "English" && (
+                  {currentLanguage === "en" && (
                     <span className="mobile-header__lang-check">✓</span>
                   )}
                 </div>
@@ -100,11 +117,13 @@ function MobileHeader() {
                   className="mobile-header__lang-option"
                   onClick={() => {
                     toggleLanguage("العربية");
+                    i18n.changeLanguage("ar");
+                    dispatch(setLanguage("ar"));
                     setShowLangDropdown(false);
                   }}
                 >
                   <span className="mobile-header__lang-text">Arabic</span>
-                  {language === "العربية" && (
+                  {currentLanguage === "ar" && (
                     <span className="mobile-header__lang-check">✓</span>
                   )}
                 </div>

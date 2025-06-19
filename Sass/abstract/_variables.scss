@@ -238,6 +238,14 @@ $color-yellow: #ffea00;
 
   //producthead
   --color-text-primary-chevron: #bdbdc6;
+  --color-popup-box-border: none;
+  --color-popup-box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
+  --color-popup-box-bg: #fff;
+  --color-cart-check-btn-bg: #ffea00;
+  --color-cart-check-btn-text: #231942;
+  --color-cart-save-btn-bg: #ffae00;
+  --color-cart-save-btn-border: none;
+  --color-email-form-otp-warning: #ff63af;
 }
 
 [dir="rtl"] {

@@ -186,6 +186,14 @@
   --cnfm-btn-clr: "#ffea00";
   --btn-save: #ffa500;
   --color-text-primary-chevron: #bdbdc6;
+  --color-popup-box-border: none;
+  --color-popup-box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
+  --color-popup-box-bg: #fff;
+  --color-cart-check-btn-bg: #ffea00;
+  --color-cart-check-btn-text: #231942;
+  --color-cart-save-btn-bg: #ffae00;
+  --color-cart-save-btn-border: none;
+  --color-email-form-otp-warning: #ff63af;
 }
 
 [dir=rtl] {
@@ -3022,13 +3030,18 @@ body {
 .mobile-header__lang-dropdown {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   min-width: 160px;
   padding: 8px 0;
   z-index: 1000;
+}
+.mobile-header__lang-dropdown--ar {
+  right: -61px;
+}
+.mobile-header__lang-dropdown--en {
+  right: 0;
 }
 .mobile-header__lang-option {
   padding: 10px 16px;
@@ -3063,6 +3076,7 @@ body {
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
   padding: 0 0;
   position: relative;
+  height: 65px;
 }
 .mobile-top__item {
   flex: 1 1 0;
@@ -3114,20 +3128,20 @@ body {
   height: 3px;
   background: var(--color-base-mobile-top-item-text-active);
   border-radius: 2px;
-  margin: 4px auto 0 auto;
+  margin: 7px auto 0 auto;
   display: none;
 }
 
 .mobile-top-search-section {
-  padding: 18px 0 0 0;
+  padding: 5px 0 0 0;
   text-align: center;
-  height: 58%;
+  height: 55%;
 }
 .mobile-top-search-section__title {
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 500;
   color: var(--color-base-mobile-search-section-title);
-  margin-bottom: 18px;
+  margin-bottom: 8px;
   font-family: inherit;
 }
 .mobile-top-search-section__searchbar {
@@ -3137,8 +3151,8 @@ body {
   border: 1.5px solid var(--color-base-mobile-search-section-input-border);
   border-radius: 2rem;
   padding: 0 16px;
-  height: 48px;
-  margin: 0 auto 18px auto;
+  height: 40px;
+  margin: 0 auto 24px auto;
   max-width: 95%;
   box-sizing: border-box;
 }
@@ -3147,7 +3161,7 @@ body {
   border: none;
   outline: none;
   background: transparent;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-base-mobile-search-section-input-text);
   padding: 0 8px;
 }
@@ -3163,22 +3177,23 @@ body {
   align-items: center;
 }
 .mobile-top-search-section__searchbar button img {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
 }
 .mobile-top-search-section__filters {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: -4px;
+  margin-bottom: 7px;
   padding: 0 16px;
 }
 .mobile-top-search-section__filter-btn {
   background: var(--color-base-mobile-search-section-filter-btn-bg);
   border: 2px solid var(--color-base-mobile-search-section-filter-btn-border);
   border-radius: 2rem;
-  padding: 8px 24px;
-  font-size: 16px;
+  padding: 6px 20px;
+  font-size: 14px;
   color: var(--color-base-mobile-search-section-filter-btn-text);
   display: flex;
   align-items: left;
@@ -3229,7 +3244,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 55px;
+  height: 55.6px;
   width: 100vw;
   background: var(--color-base-mobile-bottom-nav-bg);
   display: flex;
@@ -3260,10 +3275,6 @@ body {
 }
 .mobile-bottom-nav__item--active {
   color: var(--color-base-mobile-bottom-nav-item-text);
-}
-
-.mobile-bottom-nav__item img {
-  filter: brightness(0) saturate(100%);
 }
 
 .accessibility-popup-card {
@@ -3302,7 +3313,11 @@ body {
   align-items: center;
   transition: border 0.2s, box-shadow 0.2s;
   cursor: pointer;
-  box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
+  box-shadow: var(--color-popup-box-shadow);
+  border: 1px solid var(--color-popup-box-border);
+}
+.accessibility-popup-option.active {
+  background: var(--color-popup-box-bg);
 }
 
 .accessibility-popup-icon {
@@ -3680,13 +3695,15 @@ body {
 }
 
 .mycart-modal__checkout {
-  background: #ffea00;
-  color: #231942;
+  background: var(--color-cart-check-btn-bg);
+  color: var(--color-cart-check-btn-text);
+  border: 1px solid var(--color-email-form-confirm-btn);
 }
 
 .mycart-modal__save {
-  background: #ffae00;
+  background: var(--color-cart-save-btn-bg);
   color: #231942;
+  border: 1px solid var(--color-cart-save-btn-border);
 }
 
 .body--modal-open {
@@ -3749,7 +3766,7 @@ body {
     gap: 0;
     padding: 3px;
     margin-top: 0;
-    height: 32.5vh;
+    height: 33.5vh;
   }
   .mycart-modal__summary-row--total {
     font-size: 13px;
@@ -3871,7 +3888,7 @@ body {
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
-  padding: 12px 0;
+  padding: 10px 0;
   font-size: 16px;
   font-weight: 500;
   text-align: center;
@@ -4006,7 +4023,7 @@ body {
 }
 
 .confirm-email__otp-warning {
-  color: #ff63af;
+  color: var(--color-email-form-otp-warning);
   font-size: 12px;
   display: block;
   margin-top: 2px;
@@ -4043,7 +4060,7 @@ body {
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
-  padding: 14px 0;
+  padding: 10px 0;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -4218,8 +4235,8 @@ body {
   color: var(--color-email-form-confirm-btn-clr);
   border: 1px solid var(--color-email-form-confirm-btn);
   border-radius: 2rem;
-  padding: 14px 0;
-  font-size: 18px;
+  padding: 10px 0;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   width: 100%;
@@ -4448,7 +4465,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
-  padding-top: 56px;
+  margin-top: 6rem;
 }
 
 .make-payment__content {
@@ -4621,7 +4638,7 @@ body {
   display: flex;
   width: 15.25rem;
   height: 2.75rem;
-  padding: 1.67931rem 3.24519rem;
+  padding: 10px 0;
   justify-content: center;
   align-items: center;
   gap: 0.22694rem;
@@ -4630,7 +4647,7 @@ body {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   margin: 24px auto 8px auto;
@@ -4786,6 +4803,7 @@ body {
   height: 140px;
   object-fit: contain;
   margin-bottom: 18px;
+  margin-top: -3rem;
 }
 
 .experience-message {
@@ -4808,7 +4826,6 @@ body {
   color: var(--color-email-form-label);
   text-align: center;
   margin-bottom: 18px;
-  margin-top: 3rem;
 }
 
 .experience-rate-options {
@@ -4911,7 +4928,8 @@ body {
   padding: 32px 24px;
   max-width: 420px;
   width: 100%;
-  height: 95vh;
+  height: 84vh;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5527,7 +5545,7 @@ body {
   border: 3px solid var(--color-bkg-checkout-btn-border);
   color: var(--color-bkg-checkout-btn-clr);
   border-radius: 2rem;
-  padding: 4px 0;
+  padding: 7px 0;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -5541,7 +5559,7 @@ body {
   color: var(--color-bkg-save-btn-clr);
   border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
-  padding: 4px 0;
+  padding: 7px 0;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;

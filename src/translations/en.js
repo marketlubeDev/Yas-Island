@@ -5,7 +5,7 @@ export const en = {
     selectAttractions: "Select attractions",
     accessibility: "Accessibility",
     language: "Language",
-    chatWithUs: "Chat With Us",
+    chatWithUs: "Chat with us",
     addToCart: "Add to Cart",
     add: "Add",
     searchPlaceholder: "What are you looking for?",

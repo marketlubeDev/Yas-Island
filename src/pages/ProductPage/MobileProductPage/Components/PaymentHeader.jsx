@@ -2,10 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import backIcon from "../../../../assets/icons/back.svg";
+import backIconInverter from "../../../../assets/icons/invertedback.svg";
+import { useSelector } from "react-redux";
 
 function PaymentHeader({ step, onBack }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
 
   const handleBack = () => {
     switch (step) {
@@ -33,7 +37,7 @@ function PaymentHeader({ step, onBack }) {
           type="button"
         >
           <img
-            src={backIcon}
+            src={backIconSrc}
             alt={t("payment.back")}
             style={{ width: 24, height: 24 }}
           />
