@@ -757,6 +757,14 @@ export default function GlobalInvertColor() {
       "--spam-notice",
       isDarkMode ? "#FFAD33" : "#ff63af"
     );
+    document.documentElement.style.setProperty(
+      "--ip-bodr-btm",
+      isDarkMode ? "#909883" : "#ddd"
+    );
+    document.documentElement.style.setProperty(
+      "--order-smry-ttl",
+      isDarkMode ? "#fff" : "#18142b"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--verifi-cont", "#f4f7f8");

@@ -194,6 +194,8 @@
   --verifi-cont: "#f4f7f8";
   --email-text: "#18142b";
   --spam-notice: "#ff63af";
+  --ip-bodr-btm: "#fff";
+  --order-smry-ttl: "#18142b";
 }
 
 [dir=rtl] {
@@ -2100,19 +2102,19 @@ body {
   width: 100%;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
 }
 .payment-form__left .form-group__input:focus {
   outline: none;
-  border-bottom-color: #000;
+  border-bottom-color: var(--ip-bodr-btm);
 }
 .payment-form__left .form-group__select {
   width: 100%;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
   cursor: pointer;
@@ -2124,7 +2126,7 @@ body {
 }
 .payment-form__left .form-group__select:focus {
   outline: none;
-  border-bottom-color: #000;
+  border-bottom-color: var(--ip-bodr-btm);
 }
 .payment-form__left .form-group__phone {
   display: flex;
@@ -2134,7 +2136,7 @@ body {
   width: 100px;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid var(--ip-border);
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
   cursor: pointer;
@@ -2148,13 +2150,13 @@ body {
   flex: 1;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid var(--ip-border);
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
 }
 .payment-form__left .form-group__phone-number:focus {
   outline: none;
-  border-bottom-color: var(--ip-border);
+  border-bottom-color: var(--ip-bodr-btm);
 }
 .payment-form__right {
   width: 35%;
