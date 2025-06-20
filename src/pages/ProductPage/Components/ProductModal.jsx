@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import BookingSection from "./BookingSection";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
-import 'swiper/css';
+import "swiper/css";
 import "swiper/css/pagination";
-import { useDispatch } from "react-redux";  
-import { setEndDate, setProductId, setStartDate } from "../../../global/perfomanceSlice";
-
-
-
-
+import { useDispatch } from "react-redux";
+import {
+  setEndDate,
+  setProductId,
+  setStartDate,
+} from "../../../global/perfomanceSlice";
 
 export default function ProductModal({
   selectedProduct,
@@ -37,7 +37,6 @@ export default function ProductModal({
       const startDate = new Date(today);
       startDate.setDate(today.getDate() + offset);
       setValidStartDate(startDate);
-
 
       console.log(startDate, "startDate>>>>");
 
@@ -77,7 +76,9 @@ export default function ProductModal({
   }, [selectedProduct]);
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    const defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
     return defaultVariant;
   };
 
@@ -88,32 +89,43 @@ export default function ProductModal({
           <>
             <div className="product-modal-image">
               <Swiper
-              modules={[Pagination, Autoplay]}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 2000, disableOnInteraction: false }}
-              loop={true}
-              spaceBetween={10}
-              slidesPerView={1}
+                modules={[Pagination, Autoplay]}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                loop={true}
+                spaceBetween={10}
+                slidesPerView={1}
               >
-                {selectedProduct?.product_images?.image_urls?.map((img, idx) => ( 
-                  <SwiperSlide key={idx}>
-                    <img src={img} alt={selectedProduct.name} />
-                  </SwiperSlide>
-                ))}
+                {selectedProduct?.product_images?.image_urls?.map(
+                  (img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <img src={img} alt={selectedProduct.name} />
+                    </SwiperSlide>
+                  )
+                )}
               </Swiper>
             </div>
             <div className="product-modal-details">
               <h2>{selectedProduct?.product_title}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"50vh" , overflowY:"auto"}}></div>
+              <div
+                className="product-modal-details-description"
+                dangerouslySetInnerHTML={{
+                  __html: selectedProduct?.productdesc,
+                }}
+                style={{ height: "50vh", overflowY: "auto" }}
+              ></div>
 
               <div className="price-section">
                 <div className="price-details">
                   <h3>
-                    {selectedProduct.currency || "AED"} {defaultVariant(selectedProduct)?.gross}
+                    {selectedProduct.currency || "AED"}{" "}
+                    {defaultVariant(selectedProduct)?.gross}
                   </h3>
                   <p className="tax">
-                    {defaultVariant(selectedProduct)?.net_amount} +{(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)} { "Net & Tax"}
+                    {defaultVariant(selectedProduct)?.net_amount} +
+                    {(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)}{" "}
+                    {"Net & Tax"}
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
@@ -124,7 +136,6 @@ export default function ProductModal({
             </div>
           </>
         </div>
-        
       ) : (
         <BookingSection
           product={selectedProduct}

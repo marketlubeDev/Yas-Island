@@ -948,6 +948,30 @@ body {
   font-size: 1rem;
   font-style: normal;
   line-height: normal;
+  height: 200px;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.product-modal-details-description::-webkit-scrollbar {
+  width: 10px;
+}
+
+.product-modal-details-escription::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.product-modal-details-description::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 4px;
+  border: 2px solid;
+  border-image-source: var(--color-base-product-card-scroll-bar);
+  border-image-slice: 1;
+}
+
+.product-modal-details-description {
+  height: 50vh;
+  overflow-y: auto;
 }
 
 .price-section {
@@ -1391,8 +1415,8 @@ body {
   background: transparent; /* Make the track transparent or a light color */
 }
 .guest-section-header-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%); /* Gradient for the scrollbar thumb */
-  border-radius: 4px; /* Rounded corners for the thumb */
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 4px;
 }
 
 .guest-row-divider {
@@ -1869,6 +1893,7 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-left: -4rem;
 }
 
 .payment-checkout__steps {
@@ -1947,7 +1972,7 @@ body {
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 30px;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-size: 1.05rem;
@@ -1963,11 +1988,15 @@ body {
   padding: 8px 0;
   font-size: 16px;
   outline: none;
+  background: transparent;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+.form-control::placeholder {
+  color: #000;
 }
 
 .input-underline {
@@ -1975,13 +2004,14 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1px;
-  background-color: #ddd;
+  height: 1.5px;
+  background-color: var(--color-email-form-label);
 }
 
 .confirm-button {
-  width: 100%;
+  width: 93%;
   padding: 16px;
+  margin-left: 1rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
@@ -2008,9 +2038,11 @@ body {
   color: var(--color-pymnt-title-clr);
   font-size: 2.125rem;
   font-style: normal;
+  margin-top: 1rem;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  margin-left: -57px;
 }
 
 .verification-text {

@@ -143,7 +143,7 @@ export const en = {
     },
   },
   payment: {
-    title: "Payment Checkout",
+    title: "Guest Details and Payment",
     back: "Back",
     arrow: "Back arrow",
     steps: {

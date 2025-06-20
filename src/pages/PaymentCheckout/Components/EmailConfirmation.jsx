@@ -4,7 +4,11 @@ import VerificationBox from "./VerificationBox";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../../global/checkoutSlice";
 
-export default function EmailConfirmation({ onVerificationComplete, showVerification, setShowVerification }) {
+export default function EmailConfirmation({
+  onVerificationComplete,
+  showVerification,
+  setShowVerification,
+}) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [emailValue, setEmailValue] = useState("");
@@ -34,16 +38,14 @@ export default function EmailConfirmation({ onVerificationComplete, showVerifica
         <div className="input-underline"></div>
       </div>
 
-      {showVerification && <VerificationBox email={emailValue || "vivek@dev.panashi.ae"} />}
+      {showVerification && (
+        <VerificationBox email={emailValue || "vivek@dev.panashi.ae"} />
+      )}
 
-      <button
-        className="confirm-button"
-        onClick={handleConfirmEmail}
-      >
-        {showVerification 
+      <button className="confirm-button" onClick={handleConfirmEmail}>
+        {showVerification
           ? t("payment.emailConfirmation.completeVerification")
-          : t("payment.emailConfirmation.confirmButton")
-        }
+          : t("payment.emailConfirmation.confirmButton")}
       </button>
     </div>
   );
