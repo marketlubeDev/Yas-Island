@@ -5,7 +5,7 @@ export const en = {
     selectAttractions: "Select attractions",
     accessibility: "Accessibility",
     language: "Language",
-    chatWithUs: "Chat With Us",
+    chatWithUs: "Chat with us",
     addToCart: "Add to Cart",
     add: "Add",
     searchPlaceholder: "What are you looking for?",
@@ -26,9 +26,9 @@ export const en = {
   },
   productHead: {
     sortBy: "Sort by",
-    filterBy: "Filter by",
-    priceHighToLow: "price (high to low)",
-    attractions: "attractions",
+    filterBy: "Filter By",
+    priceHighToLow: "Price (High to Low)",
+    attractions: "Attractions",
   },
   sidebar: {
     all: "All",

@@ -165,7 +165,7 @@ export default function BookingSection() {
               <div className="guest-row-divider"></div>
             </div>
 
-            <p className="guest-note">Kids below 3 go free</p>
+            <p className="guest-note"></p>
           </div>
         </div>
 

@@ -8,8 +8,8 @@ export default function MobSelectorGroup() {
         Select Attractions
       </h2>
       <div className="flex flex-row gap-2">
-        <Selector style={{ height: "fit-content" }} />
-        <Selector style={{ height: "fit-content" }} />
+        <Selector style={{ height: "fit-content" }} label="Sort By" />
+        <Selector style={{ height: "fit-content" }} label="Filter By" />
       </div>
     </div>
   );

@@ -125,7 +125,7 @@
 }
 
 .confirm-email__otp-warning {
-  color: #ff63af;
+  color: var(--color-email-form-otp-warning);
   font-size: 12px;
   display: block;
   margin-top: 2px;
@@ -162,7 +162,7 @@
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
   border-radius: 2rem;
-  padding: 14px 0;
+  padding: 10px 0;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
