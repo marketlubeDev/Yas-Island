@@ -21,6 +21,13 @@ export default function ProductCard({ productList }) {
     setShowBookingSection(false);
   };
 
+
+
+  const defaultVariant = (product) => {
+    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    return defaultVariant;
+  };
+
   return (
     <div className="ProductCard">
       <div className="ProductCard__grid">
@@ -34,11 +41,12 @@ export default function ProductCard({ productList }) {
               description={product?.productshortdesc}
             />
             <ProductCardPricetag
-              price={product?.product_variants?.[0]?.gross}
-              tax={(product?.product_variants?.[0]?.gross * 0.05).toFixed(2)}
+              price={defaultVariant(product)?.gross}
+              tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
               onAddToCart={() => showModal(product)}
+              netPrice={defaultVariant(product)?.net_amount}
             />
           </div>
         ))}
