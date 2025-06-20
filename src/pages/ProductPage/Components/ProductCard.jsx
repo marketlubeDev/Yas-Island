@@ -24,6 +24,7 @@ export default function ProductCard({ productList }) {
 
   const handleAddToCart = (product) => {
     console.log(product, "product");
+    dispatch(setSelectedProduct(product));
     
   };
 
