@@ -22,6 +22,12 @@ export default function ProductCard({ productList }) {
   };
 
 
+  const handleAddToCart = (product) => {
+    console.log(product, "product");
+    
+  };
+
+
 
   const defaultVariant = (product) => {
     const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
