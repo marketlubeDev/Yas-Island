@@ -847,7 +847,7 @@ body {
 
 .AddtoCartbtn__button {
   display: flex;
-  width: 157px;
+  width: 123px;
   height: 54px;
   justify-content: center;
   align-items: center;
@@ -1553,8 +1553,8 @@ body {
 .vertical-divider {
   display: inline-block;
   width: 1px;
-  height: 1em;
-  background: var(--color-base-accessibility-modal-subtitle);
+  height: 4rem;
+  border: 1px solid var(--separator-color);
   margin: 0 0.5rem;
   vertical-align: middle;
 }

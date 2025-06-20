@@ -290,11 +290,12 @@ export default function BookingSection({ product, onBack }) {
                     <div className="guest-row">
                       <div className="guest-label-container">
                         <span className="guest-label">
-                          {variant} {variantData?.productvariantdesc && `(${variantData.productvariantdesc})`}
+                          {variant}{" "}
+                          {variantData?.productvariantdesc &&
+                            `(${variantData.productvariantdesc})`}
                         </span>
                         <span className="guest-label-price">
-                          AED{" "}
-                          {variantData?.gross * guests[variant]}{" "}
+                          AED {variantData?.gross * guests[variant]}{" "}
                         </span>
                       </div>
                       <div className="counter-controls">
@@ -330,7 +331,7 @@ export default function BookingSection({ product, onBack }) {
               })}
             </div>
 
-            <p className="guest-note">{t("booking.kidsFree")}</p>
+            <p className="guest-note"></p>
           </div>
         </div>
 
