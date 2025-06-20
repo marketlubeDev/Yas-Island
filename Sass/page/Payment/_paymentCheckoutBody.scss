@@ -77,7 +77,9 @@
 }
 
 .step.active .step-line {
-  background-color: #007bff;
+  background-color: var(
+    --color-base-mobile-header-lang-dropdown-item-lang-check
+  );
 }
 
 .payment-checkout__content {
@@ -184,7 +186,7 @@
 }
 
 .email {
-  color: #18142b;
+  color: var(--email-text);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -193,7 +195,7 @@
 
 .spam-notice {
   text-align: center;
-  color: #ff63af;
+  color: var(--spam-notice);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -202,7 +204,7 @@
 }
 
 .verification-container {
-  background-color: #f4f7f8;
+  background-color: var(--color-email-form-box);
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
@@ -211,7 +213,7 @@
 .verification-label {
   text-align: center;
   font-size: 0.9em;
-  color: #18142b;
+  color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
 }
 
@@ -226,7 +228,8 @@
   width: 40px;
   height: 40px;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: var(--color-email-form-box);
+  color: var(--color-email-form-label);
   border-radius: 8px;
   text-align: center;
   font-size: 1.2em;
@@ -271,14 +274,6 @@
   border: 2.933px solid #dcd6e5;
   opacity: 0.6;
   background: #fff;
-
-  // display: flex;
-  // width: 136.37px;
-  // height: 61.587px;
-  // justify-content: center;
-  // align-items: center;
-  // gap: 7.332px;
-  // flex-shrink: 0;
 }
 
 .resend-btn:hover {

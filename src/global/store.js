@@ -3,6 +3,7 @@ import responsiveReducer from "./responsiveSlice";
 import accessibilityReducer from "./accessibilitySlice";
 import languageReducer from "./languageSlice";
 import checkoutReducer from "./checkoutSlice";
+import productReducer from "./productSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     accessibility: accessibilityReducer,
     language: languageReducer,
     checkout: checkoutReducer,
+    product: productReducer,
   },
 });
 

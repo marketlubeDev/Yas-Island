@@ -186,6 +186,19 @@
   --cnfm-btn-clr: "#ffea00";
   --btn-save: #ffa500;
   --color-text-primary-chevron: #bdbdc6;
+  --main-body: #f4f3f3;
+  --cart-btn-var: "#FFEA00";
+  --cart-btn-text: "#18142b";
+  --cart-btn-brd: "#ffea00";
+  --payment-right-bg: "#F4F7F8";
+  --payment-right-title: "#fff";
+  --apply-btn-bg: "#fff";
+  --verifi-cont: "#f4f7f8";
+  --email-text: "#18142b";
+  --spam-notice: "#ff63af";
+  --pay-check-price: #594f67;
+  --ip-bodr-btm: "#fff";
+  --order-smry-ttl: "#18142b";
   --color-popup-box-border: none;
   --color-popup-box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
   --color-popup-box-bg: #fff;
@@ -218,7 +231,7 @@
 body {
   font-family: "YAS Font", sans-serif !important;
   overflow-x: hidden;
-  background-color: #f4f3f3;
+  background-color: var(--main-body);
 }
 
 .normal-title-txt {
@@ -1318,9 +1331,9 @@ body {
 }
 
 .cart-btn {
-  background: white;
-  color: black;
-  border: 1px solid #ddd;
+  background: var(--cart-btn-var);
+  color: var(--cart-btn-text);
+  border: 2px solid var(--cart-btn-brd);
   border-radius: 25px;
   padding: 16px;
   font-weight: 500;
@@ -1360,7 +1373,7 @@ body {
 .guest-row-divider {
   width: 100%;
   height: 0.826px;
-  background: #d9d9d9;
+  background: var(--color-base-product-card-divider);
   margin-top: 1rem;
 }
 
@@ -1745,9 +1758,9 @@ body {
 }
 
 .checkout-btn {
-  background-color: #ffd700;
-  color: black;
-  border: none;
+  background-color: var(--cart-btn-var);
+  color: var(--cart-btn-text);
+  border: 2px solid var(--cart-btn-brd);
   flex: 1;
   display: flex;
   justify-content: center;
@@ -1881,7 +1894,7 @@ body {
 }
 
 .step.active .step-line {
-  background-color: #007bff;
+  background-color: var(--color-base-mobile-header-lang-dropdown-item-lang-check);
 }
 
 .payment-checkout__content {
@@ -1987,7 +2000,7 @@ body {
 }
 
 .email {
-  color: #18142b;
+  color: var(--email-text);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -1996,7 +2009,7 @@ body {
 
 .spam-notice {
   text-align: center;
-  color: #ff63af;
+  color: var(--spam-notice);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -2005,7 +2018,7 @@ body {
 }
 
 .verification-container {
-  background-color: #f4f7f8;
+  background-color: var(--color-email-form-box);
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
@@ -2014,7 +2027,7 @@ body {
 .verification-label {
   text-align: center;
   font-size: 0.9em;
-  color: #18142b;
+  color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
 }
 
@@ -2029,7 +2042,8 @@ body {
   width: 40px;
   height: 40px;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: var(--color-email-form-box);
+  color: var(--color-email-form-label);
   border-radius: 8px;
   text-align: center;
   font-size: 1.2em;
@@ -2121,31 +2135,25 @@ body {
   width: 100%;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
-}
-.payment-form__left .form-group__input:focus {
-  outline: none;
-  border-bottom-color: #000;
+  color: var(--color-base-text-secondary);
 }
 .payment-form__left .form-group__select {
   width: 100%;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
   cursor: pointer;
   appearance: none;
+  color: var(--color-base-text-secondary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: 1.5rem;
-}
-.payment-form__left .form-group__select:focus {
-  outline: none;
-  border-bottom-color: #000;
 }
 .payment-form__left .form-group__phone {
   display: flex;
@@ -2155,11 +2163,12 @@ body {
   width: 100px;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid var(--ip-border);
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
   cursor: pointer;
   appearance: none;
+  color: var(--color-base-text-secondary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
@@ -2169,13 +2178,10 @@ body {
   flex: 1;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 1px solid var(--ip-border);
+  border-bottom: 1px solid var(--ip-bodr-btm);
   font-size: 1rem;
   background: transparent;
-}
-.payment-form__left .form-group__phone-number:focus {
-  outline: none;
-  border-bottom-color: var(--ip-border);
+  color: var(--color-base-text-secondary);
 }
 .payment-form__right {
   width: 35%;
@@ -2187,7 +2193,7 @@ body {
   font-size: 1.25rem;
   margin-bottom: 0rem;
   padding: 1rem 2rem;
-  color: #18142b;
+  color: var(--color-base-text-secondary);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -2214,7 +2220,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  color: #18142b;
+  color: var(--color-base-text-secondary);
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -2225,7 +2231,7 @@ body {
 }
 .payment-form__right .order-summary__pricing {
   padding: 1.5rem 2rem;
-  background-color: #fff;
+  background-color: var(--payment-right-title);
   margin-bottom: 1.5rem;
 }
 .payment-form__right .order-summary__pricing .price-row {
@@ -2245,12 +2251,12 @@ body {
 .payment-form__right .promo-code {
   margin-bottom: 0rem;
   padding: 1rem 5rem;
-  background-color: #fff;
+  background-color: var(--payment-right-title);
 }
 .payment-form__right .promo-code__label {
   font-size: 0.75rem;
   margin-bottom: 0.5rem;
-  color: #18142b;
+  color: var(--color-base-text-secondary);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -2268,22 +2274,24 @@ body {
   font-size: 0.875rem;
   border-radius: 0.79706rem;
   border: 0.797px solid #6f677c;
-  background: #fff;
+  background: var(--apply-btn-bg);
   letter-spacing: 5px;
+  color: var(--color-base-text-secondary);
 }
 .payment-form__right .promo-code__input-group .apply-btn {
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   font-size: 0.875rem;
   border-radius: 0.69744rem;
-  border: 3.188px solid #dcd6e5;
-  background: #fff;
+  border: 0.797px solid #6f677c;
+  background: var(--apply-btn-bg);
+  color: var(--color-base-text-secondary);
 }
 .payment-form__right .promo-code__input-group .apply-btn:hover {
   background: #f5f5f5;
 }
 .payment-form__right .terms {
-  background-color: #fff;
+  background-color: var(--payment-right-title);
   padding: 1rem 2rem;
 }
 .payment-form__right .terms .checkbox-container {
@@ -2341,7 +2349,7 @@ body {
   line-height: normal;
 }
 .payment-form__right .terms .checkbox-container .checkbox-text a {
-  color: #18142b;
+  color: var(--color-base-text-secondary);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -2367,7 +2375,7 @@ body {
 }
 
 .price-row__label {
-  color: #594f67;
+  color: var(--pay-check-price);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -2375,7 +2383,7 @@ body {
 }
 
 .price-row__values {
-  color: #594f67;
+  color: var(--pay-check-price);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -2383,7 +2391,7 @@ body {
 }
 
 .price-row__label-total {
-  color: #594f67;
+  color: var(--pay-check-price);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -2391,7 +2399,7 @@ body {
 }
 
 .price-row__values-total {
-  color: #594f67;
+  color: var(--pay-check-price);
   font-style: normal;
   font-weight: 700;
   line-height: normal;

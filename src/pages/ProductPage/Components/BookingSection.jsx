@@ -281,48 +281,53 @@ export default function BookingSection({ product, onBack }) {
               ))}
             </h3>
             <div className="guest-controls">
-              {Object.keys(guests)?.map((variant, idx) => (
-                <div key={idx}>
-                  <div className="guest-row">
-                    <div className="guest-label-container">
-                      <span className="guest-label">{variant}</span>
-                      <span className="guest-label-price">
-                        AED{" "}
-                        {product.product_variants.find(
-                          (v) => v.productvariantname === variant
-                        )?.gross * guests[variant]}{" "}
-                      </span>
+              {Object.keys(guests)?.map((variant, idx) => {
+                const variantData = product.product_variants.find(
+                  (v) => v.productvariantname === variant
+                );
+                return (
+                  <div key={idx}>
+                    <div className="guest-row">
+                      <div className="guest-label-container">
+                        <span className="guest-label">
+                          {variant} {variantData?.productvariantdesc && `(${variantData.productvariantdesc})`}
+                        </span>
+                        <span className="guest-label-price">
+                          AED{" "}
+                          {variantData?.gross * guests[variant]}{" "}
+                        </span>
+                      </div>
+                      <div className="counter-controls">
+                        <button
+                          className="counter-btn"
+                          onClick={() =>
+                            setGuests((prev) => ({
+                              ...prev,
+                              [variant]: Math.max(0, prev[variant] - 1),
+                            }))
+                          }
+                        >
+                          -
+                        </button>
+                        <span className="counter-value">{guests[variant]}</span>
+                        <button
+                          className="counter-btn"
+                          onClick={() =>
+                            setGuests((prev) => ({
+                              ...prev,
+                              [variant]: prev[variant] + 1,
+                            }))
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
-                    <div className="counter-controls">
-                      <button
-                        className="counter-btn"
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: Math.max(0, prev[variant] - 1),
-                          }))
-                        }
-                      >
-                        -
-                      </button>
-                      <span className="counter-value">{guests[variant]}</span>
-                      <button
-                        className="counter-btn"
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: prev[variant] + 1,
-                          }))
-                        }
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
 
-                  <div className="guest-row-divider"></div>
-                </div>
-              ))}
+                    <div className="guest-row-divider"></div>
+                  </div>
+                );
+              })}
             </div>
 
             <p className="guest-note">{t("booking.kidsFree")}</p>

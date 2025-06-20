@@ -1,11 +1,13 @@
 import apiClient from "../../../config/axiosInstance";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { setProducts } from "../../global/productSlice";
 
 const useGetProductList = () => {
   const queryClient = useQueryClient();
   const language = useSelector((state) => state.language.currentLanguage);
+  const dispatch = useDispatch();
 
   // Clear cache when language changes
   useEffect(() => {
@@ -21,6 +23,10 @@ const useGetProductList = () => {
     refetchOnWindowFocus: false,
     refetchOnMount: true
   });
+
+  if(response.data){
+    dispatch(setProducts(response.data.data.results));
+  }
  
   return {
     data: response.data,

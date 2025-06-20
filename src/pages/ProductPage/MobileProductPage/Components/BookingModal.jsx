@@ -250,55 +250,60 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
                 ))}
               </div>
               <div className="guests-divider"></div>
-              {Object.keys(guests).map((variant, idx) => (
-                <React.Fragment key={idx}>
-                  <div className="guests-row">
-                    <div className="guest-label-container">
-                      <span className="guest-label">{variant}</span>
-                      <span className="guest-label-price">
-                        AED{" "}
-                        {product.product_variants.find(
-                          (v) => v.productvariantname === variant
-                        )?.gross * guests[variant]}{" "}
-                      </span>
-                    </div>
+              {Object.keys(guests).map((variant, idx) => {
+                const variantData = product.product_variants.find(
+                  (v) => v.productvariantname === variant
+                );
+                return (
+                  <React.Fragment key={idx}>
+                    <div className="guests-row">
+                      <div className="guest-label-container">
+                        <span className="guest-label">
+                          {variant} {variantData?.productvariantdesc && `(${variantData.productvariantdesc})`}
+                        </span>
+                        <span className="guest-label-price">
+                          AED{" "}
+                          {variantData?.gross * guests[variant]}{" "}
+                        </span>
+                      </div>
 
-                    <div className="guests-controls">
-                      <button
-                        className="guests-btn"
-                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: Math.max(0, prev[variant] - 1),
-                          }))
-                        }
-                      >
-                        −
-                      </button>
-                      <span
-                        className="guests-count"
-                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                      >
-                        {toArabicNumeral(guests[variant])}
-                      </span>
-                      <button
-                        className="guests-btn"
-                        style={{ color: "var(--color-bkg-guest-title-clr)" }}
-                        onClick={() =>
-                          setGuests((prev) => ({
-                            ...prev,
-                            [variant]: prev[variant] + 1,
-                          }))
-                        }
-                      >
-                        +
-                      </button>
+                      <div className="guests-controls">
+                        <button
+                          className="guests-btn"
+                          style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                          onClick={() =>
+                            setGuests((prev) => ({
+                              ...prev,
+                              [variant]: Math.max(0, prev[variant] - 1),
+                            }))
+                          }
+                        >
+                          −
+                        </button>
+                        <span
+                          className="guests-count"
+                          style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                        >
+                          {toArabicNumeral(guests[variant])}
+                        </span>
+                        <button
+                          className="guests-btn"
+                          style={{ color: "var(--color-bkg-guest-title-clr)" }}
+                          onClick={() =>
+                            setGuests((prev) => ({
+                              ...prev,
+                              [variant]: prev[variant] + 1,
+                            }))
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <div className="guests-divider"></div>
-                </React.Fragment>
-              ))}
+                    <div className="guests-divider"></div>
+                  </React.Fragment>
+                );
+              })}
               <div className="guests-note">{t("booking.kidsFree")}</div>
             </div>
           </div>
