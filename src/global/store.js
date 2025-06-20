@@ -4,7 +4,7 @@ import accessibilityReducer from "./accessibilitySlice";
 import languageReducer from "./languageSlice";
 import checkoutReducer from "./checkoutSlice";
 import productReducer from "./productSlice";
-import perfomanceReducer from "./perfomanceSlice";
+import performanceReducer from "./performanceSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ const store = configureStore({
     language: languageReducer,
     checkout: checkoutReducer,
     product: productReducer,
-    perfomance: perfomanceReducer,
+    performance: performanceReducer,
   },
 });
 

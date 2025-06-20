@@ -17,11 +17,6 @@ const useGetProductList = () => {
   const response = useQuery({
     queryKey: ["productList", language],
     queryFn: () => apiClient.get(`/products/GetProductList?lang=${language}`),
-    keepPreviousData: false,
-    staleTime: 0,
-    cacheTime: 0,
-    refetchOnWindowFocus: false,
-    refetchOnMount: true
   });
 
   if(response.data){

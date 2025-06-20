@@ -6,6 +6,7 @@ import ProductModal from "./ProductModal";
 import closeIcon from "../../../assets/icons/close.svg";
 import { useDispatch } from "react-redux";
 import { setSelectedProduct } from "../../../global/productSlice";
+import { clearPerformance } from "../../../global/performanceSlice";
 
 export default function ProductCard({ productList }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,10 +25,11 @@ export default function ProductCard({ productList }) {
   const handleCancel = () => {
     setIsModalOpen(false);
     dispatch(setSelectedProduct({}));
+    dispatch(clearPerformance());
     setShowBookingSection(false);
   };
 
-  const defaultVariant = (product) => { 
+  const defaultVariant = (product) => {
     const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
     return defaultVariant;
   };
@@ -48,8 +50,8 @@ export default function ProductCard({ productList }) {
               description={product?.productshortdesc}
             />
             <ProductCardPricetag
-              price={product?.product_variants?.[0]?.gross}
-              tax={(product?.product_variants?.[0]?.gross * 0.05).toFixed(2)}
+              price={defaultVariant(product)?.gross}
+              tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
               onAddToCart={() => showModal(product)}
