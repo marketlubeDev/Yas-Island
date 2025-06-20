@@ -21,6 +21,12 @@ export default function ProductModal({
     setShowBookingSection(true);
   };
 
+
+  const defaultVariant = (product) => {
+    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    return defaultVariant;
+  };
+
   return (
     <>
       {!showBookingSection ? (
@@ -50,10 +56,10 @@ export default function ProductModal({
               <div className="price-section">
                 <div className="price-details">
                   <h3>
-                    {selectedProduct.currency || "AED"} {selectedProduct?.product_variants?.[0]?.gross}
+                    {selectedProduct.currency || "AED"} {defaultVariant(selectedProduct)?.gross}
                   </h3>
                   <p className="tax">
-                    +{(selectedProduct?.product_variants?.[0]?.gross * 0.05).toFixed(2)} {selectedProduct?.taxDescription || "Tax"}
+                    {defaultVariant(selectedProduct)?.net_amount} +{(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)} { "Net & Tax"}
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
