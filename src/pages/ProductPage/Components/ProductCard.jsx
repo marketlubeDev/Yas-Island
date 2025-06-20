@@ -4,33 +4,30 @@ import ProductCardContent from "./ProductCardContent";
 import ProductCardPricetag from "./ProductCardPricetag";
 import ProductModal from "./ProductModal";
 import closeIcon from "../../../assets/icons/close.svg";
+import { useDispatch } from "react-redux";
+import { setSelectedProduct } from "../../../global/productSlice";
 
 export default function ProductCard({ productList }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProductState] = useState(null);
   const [showBookingSection, setShowBookingSection] = useState(false);
+  const dispatch = useDispatch();
 
   const showModal = (product) => {
-    setSelectedProduct(product);
+    // Create a plain object to avoid non-serializable payload issues
+    const plainProduct = { ...product };
+    setSelectedProductState(plainProduct);
+    dispatch(setSelectedProduct(plainProduct));
     setIsModalOpen(true);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setSelectedProduct(null);
+    dispatch(setSelectedProduct({}));
     setShowBookingSection(false);
   };
 
-
-  const handleAddToCart = (product) => {
-    console.log(product, "product");
-    dispatch(setSelectedProduct(product));
-    
-  };
-
-
-
-  const defaultVariant = (product) => {
+  const defaultVariant = (product) => { 
     const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
     return defaultVariant;
   };
@@ -39,15 +36,11 @@ export default function ProductCard({ productList }) {
     <div className="ProductCard">
       <div className="ProductCard__grid">
         {productList?.map((product) => (
-          <div
-            className="ProductCard__card"
-            key={product?.product_title}
-            onClick={() => showModal(product)}
-          >
+          <div className="ProductCard__card" key={product?.product_title}>
             <div className="ProductCard__card__image">
               <img
                 src={product?.product_images?.thumbnail_url}
-                alt={product?.product?.product_title}
+                alt={product?.product_title}
               />
             </div>
             <ProductCardContent
@@ -55,12 +48,11 @@ export default function ProductCard({ productList }) {
               description={product?.productshortdesc}
             />
             <ProductCardPricetag
-              price={defaultVariant(product)?.gross}
-              tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
+              price={product?.product_variants?.[0]?.gross}
+              tax={(product?.product_variants?.[0]?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
               onAddToCart={() => showModal(product)}
-              netPrice={defaultVariant(product)?.net_amount}
             />
           </div>
         ))}
@@ -68,7 +60,6 @@ export default function ProductCard({ productList }) {
 
       <Modal
         title={null}
-        header={null}
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}

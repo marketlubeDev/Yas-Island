@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allProducts: [],
-  selectedProduct: null,
+  selectedProduct: {},
 };
 
 const productSlice = createSlice({
@@ -10,7 +10,6 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         setProducts: (state, action) => {
-            console.log(action.payload);
             state.allProducts = action.payload;
         },
         setSelectedProduct: (state, action) => {
@@ -18,8 +17,9 @@ const productSlice = createSlice({
         },
         clearProducts: (state) => {
             state.allProducts = [];
-            state.selectedProduct = null;
-        },  
+            state.selectedProduct = {};
+        },
+        
             
     },
 });
