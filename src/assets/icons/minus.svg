@@ -1,0 +1,30 @@
+<svg width="24" height="4" viewBox="0 0 24 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="4" fill="#1E1E1E"/>
+<path d="M-5799 -2949C-5799 -2950.1 -5798.1 -2951 -5797 -2951H21735C21736.1 -2951 21737 -2950.1 21737 -2949V1141C21737 1142.1 21736.1 1143 21735 1143H-5797C-5798.1 1143 -5799 1142.1 -5799 1141V-2949Z" fill="#444444"/>
+<path d="M-5797 -2951V-2950H21735V-2951V-2952H-5797V-2951ZM21737 -2949H21736V1141H21737H21738V-2949H21737ZM21735 1143V1142H-5797V1143V1144H21735V1143ZM-5799 1141H-5798V-2949H-5799H-5800V1141H-5799ZM-5797 1143V1142C-5797.55 1142 -5798 1141.55 -5798 1141H-5799H-5800C-5800 1142.66 -5798.66 1144 -5797 1144V1143ZM21737 1141H21736C21736 1141.55 21735.6 1142 21735 1142V1143V1144C21736.7 1144 21738 1142.66 21738 1141H21737ZM21735 -2951V-2950C21735.6 -2950 21736 -2949.55 21736 -2949H21737H21738C21738 -2950.66 21736.7 -2952 21735 -2952V-2951ZM-5797 -2951V-2952C-5798.66 -2952 -5800 -2950.66 -5800 -2949H-5799H-5798C-5798 -2949.55 -5797.55 -2950 -5797 -2950V-2951Z" fill="white" fill-opacity="0.1"/>
+<g id="3" clip-path="url(#clip0_414_18341)">
+<rect width="1920" height="1080" transform="translate(-1418 -414)" fill="#F4F3F3"/>
+<foreignObject x="-1451" y="-447" width="1986" height="1159"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(16.5px);clip-path:url(#bgblur_1_414_18341_clip_path);height:100%;width:100%"></div></foreignObject><rect id="Rectangle 1757" data-figma-bg-blur-radius="33" x="-1418" y="-414" width="1920" height="1093" fill="#020713" fill-opacity="0.67"/>
+<g id="Frame 97">
+<rect x="-1341.82" y="-288.823" width="1767.65" height="848.647" rx="38.8235" fill="white"/>
+<rect x="-1341.82" y="-288.823" width="1767.65" height="848.647" rx="38.8235" stroke="#CCDAF7" stroke-width="2.3531"/>
+<g id="Group 481980">
+<path id="Background" d="M-225.08 -146.5L194.08 -146.5C217.508 -146.5 236.5 -127.508 236.5 -104.08V177.08C236.5 200.508 217.508 219.5 194.08 219.5L-225.08 219.5C-248.508 219.5 -267.5 200.508 -267.5 177.08V-104.08C-267.5 -127.142 -249.097 -145.906 -226.175 -146.486L-225.08 -146.5Z" fill="white" stroke="#6F677C"/>
+<g id="Frame 2094822427">
+<g id="Group 9">
+<g id="Frame 97_2">
+<rect x="-23.2381" y="-33.2381" width="70.4762" height="70.4762" rx="35.2381" stroke="#DCD6E6" stroke-width="3.52381"/>
+<path id="_" d="M0.988281 0.150391H23.0121V3.85039H0.988281V0.150391Z" fill="#18142B"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_1_414_18341_clip_path" transform="translate(1451 447)"><rect x="-1418" y="-414" width="1920" height="1093"/>
+</clipPath><clipPath id="clip0_414_18341">
+<rect width="1920" height="1080" fill="white" transform="translate(-1418 -414)"/>
+</clipPath>
+</defs>
+</svg>

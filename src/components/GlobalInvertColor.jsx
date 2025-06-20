@@ -764,6 +764,11 @@ export default function GlobalInvertColor() {
       "--cart-btn-brd",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
     );
+
+    document.documentElement.style.setProperty(
+      "--cart-btn-brd-save",
+      isDarkMode ? "#d9d9d9" : "#d9d9d9"
+    );
     document.documentElement.style.setProperty(
       "--payment-right-bg",
       isDarkMode ? "#0B0C0C" : "#f4f7f8"
@@ -788,6 +793,15 @@ export default function GlobalInvertColor() {
       "--spam-notice",
       isDarkMode ? "#FFAD33" : "#ff63af"
     );
+    document.documentElement.style.setProperty(
+      "--separator-color",
+      isDarkMode ? "#d9d9d9" : "#d9d9d9"
+    );
+    document.documentElement.style.setProperty(
+      "--cart-btn-var-save",
+      isDarkMode ? "#fff" : "#fff"
+    );
+
     document.documentElement.style.setProperty(
       "--pay-check-price",
       isDarkMode ? "#E7EBD4" : "#594f67"
@@ -832,6 +846,14 @@ export default function GlobalInvertColor() {
       "--color-email-form-otp-warning",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ff63af"
     );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-card-item-border-calendar",
+      isDarkMode ? "#6f677c" : "#6f677c"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-product-card-card-item-border-round",
+      isDarkMode ? "#dcd6e5" : "#dcd6e5"
+    );
 
     return () => {
       document.documentElement.style.setProperty(
@@ -868,6 +890,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-chat-btn-bg",
         "linear-gradient(180deg, #0597e5 0%, #0758dd 100%)"
+      );
+      document.documentElement.style.setProperty(
+        "--cart-btn-brd-save",
+        "#d9d9d9"
       );
       document.documentElement.style.setProperty(
         "--color-base-chat-btn-text",
@@ -948,6 +974,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-product-card-add-cart-btn-bg",
         "#fff8a5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-card-item-border-calendar",
+        "#6f677c"
       );
 
       // Accessibility Modal
@@ -1449,6 +1479,15 @@ export default function GlobalInvertColor() {
         "--color-email-form-otp-warning",
         "#ff63af"
       );
+      document.documentElement.style.setProperty(
+        "--color-base-product-card-card-item-border-round",
+        "#dcd6e5"
+      );
+      document.documentElement.style.setProperty(
+        "--separator-color",
+        "#d9d9d9"
+      );
+      document.documentElement.style.setProperty("--cart-btn-var-save", "#fff");
     };
   }, [isDarkMode, isHighContrast]);
 

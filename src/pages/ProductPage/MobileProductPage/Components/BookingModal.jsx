@@ -259,11 +259,12 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
                     <div className="guests-row">
                       <div className="guest-label-container">
                         <span className="guest-label">
-                          {variant} {variantData?.productvariantdesc && `(${variantData.productvariantdesc})`}
+                          {variant}{" "}
+                          {variantData?.productvariantdesc &&
+                            `(${variantData.productvariantdesc})`}
                         </span>
                         <span className="guest-label-price">
-                          AED{" "}
-                          {variantData?.gross * guests[variant]}{" "}
+                          AED {variantData?.gross * guests[variant]}{" "}
                         </span>
                       </div>
 
@@ -278,7 +279,7 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
                             }))
                           }
                         >
-                          −
+                          -
                         </button>
                         <span
                           className="guests-count"

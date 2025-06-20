@@ -156,7 +156,7 @@
 // Product Modal
 
 .product-modal .ant-modal-content {
-  padding: 3rem !important;
+  padding: 2rem !important;
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
@@ -504,7 +504,8 @@
     font-weight: 700;
     line-height: normal;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    margin-top: -1rem;
   }
 
   .selected-dates {
@@ -544,9 +545,12 @@
 .calendar-wrapper {
   border: 0.826px solid var(--color-base-product-card-card-item-border);
   border-radius: 2.6825rem;
-  border: 1px solid var(--color-base-product-card-card-item-border);
+  border: 1px solid var(--color-base-product-card-card-item-border-calendar);
   background: var(--color-base-product-card-card-item-bg);
   padding: 2rem;
+  width: 130%;
+  margin-left: -3rem;
+  margin-bottom: -1rem;
 }
 
 /* Header with month and navigation */
@@ -656,26 +660,30 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  margin-top: -0.8rem;
 }
 
 .guest-container {
   background: var(--color-base-product-card-card-item-bg);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 35px;
+  padding: 40px 20px 40px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border: 0.826px solid var(--color-base-product-card-card-item-border);
-  width: 25.5625rem;
+  border: 0.826px solid var(--color-base-product-card-card-item-border-calendar);
+  width: 30.5625rem;
   height: fit-content;
   flex-shrink: 0;
 }
 
 .guest-summary {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
+  margin-top: 0.2rem;
+
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-base-product-card-divider);
+  padding-top: -1rem;
+  border-bottom: 2px solid var(--color-base-product-card-divider);
   text-align: center;
   color: var(--color-base-text);
   font-style: normal;
@@ -694,6 +702,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 8px;
+  margin-bottom: 22px;
 }
 
 .guest-label-container {
@@ -701,6 +711,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  padding-left: 1rem;
 }
 
 .guest-label-price {
@@ -727,18 +738,26 @@
 }
 
 .counter-btn {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 3.524px solid var(--color-base-product-card-card-item-border);
+  border: 3.524px solid var(--color-base-product-card-card-item-border-round);
   background: var(--color-base-product-card-card-item-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 18px;
   color: var(--color-base-text);
-  font-weight: 700;
+}
+
+.minus-btn img {
+  width: 18.02px;
+  height: 3.7px;
+}
+
+.plus-btn img {
+  width: 18.02px;
+  height: 22.02px;
 }
 
 .counter-value {
@@ -756,6 +775,9 @@
 }
 
 .booking-actions {
+  width: 120%;
+  margin-left: -4.5rem;
+
   margin-top: 24px;
   display: flex;
   flex-direction: column;
@@ -788,7 +810,7 @@
   background: var(--color-base-accessibility-modal-btn-bg);
   color: var(--btn-clr);
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -800,10 +822,10 @@
 }
 
 .cart-btn {
-  background: var(--cart-btn-var);
+  background: var(--cart-btn-var-save);
   color: var(--cart-btn-text);
-  border: 2px solid var(--cart-btn-brd);
-  border-radius: 25px;
+  border: 4px solid var(--cart-btn-brd-save);
+  border-radius: 30px;
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -817,7 +839,7 @@
   width: 2px;
   height: 600px;
   background-color: var(--color-base-product-card-divider);
-  margin: 0 3rem;
+  margin: 0 3rem 0 7rem;
 }
 
 .guest-section-header-container {
@@ -847,8 +869,9 @@
 }
 
 .guest-row-divider {
-  width: 100%;
+  width: 104%;
   height: 0.826px;
   background: var(--color-base-product-card-divider);
   margin-top: 1rem;
+  margin-left: -0.3rem;
 }

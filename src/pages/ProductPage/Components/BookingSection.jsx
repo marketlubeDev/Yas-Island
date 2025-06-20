@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch } from "react-redux";
 import { setCheckout } from "../../../global/checkoutSlice";
+import PlusIcon from "../../../assets/icons/plus.svg";
+import MinusIcon from "../../../assets/icons/minus.svg";
 
 export default function BookingSection({ product, onBack }) {
   const { t, i18n } = useTranslation();
@@ -300,7 +302,7 @@ export default function BookingSection({ product, onBack }) {
                       </div>
                       <div className="counter-controls">
                         <button
-                          className="counter-btn"
+                          className="counter-btn minus-btn"
                           onClick={() =>
                             setGuests((prev) => ({
                               ...prev,
@@ -308,11 +310,11 @@ export default function BookingSection({ product, onBack }) {
                             }))
                           }
                         >
-                          -
+                          <img src={MinusIcon} alt="minus" />
                         </button>
                         <span className="counter-value">{guests[variant]}</span>
                         <button
-                          className="counter-btn"
+                          className="counter-btn plus-btn"
                           onClick={() =>
                             setGuests((prev) => ({
                               ...prev,
@@ -320,7 +322,7 @@ export default function BookingSection({ product, onBack }) {
                             }))
                           }
                         >
-                          +
+                          <img src={PlusIcon} alt="plus" />
                         </button>
                       </div>
                     </div>

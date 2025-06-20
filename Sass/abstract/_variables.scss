@@ -58,6 +58,7 @@ $color-yellow: #ffea00;
   --color-base-accessibility-modal-subtitle: #514760;
   --color-base-accessibility-modal-card-bg: ;
   --color-base-accessibility-modal-card-border: #e3daf2;
+  --color-base-product-card-card-item-border-calendar: #6f677c;
   --color-base-accessibility-modal-btn-bg: #ffe600;
 
   //mobile product page
@@ -72,7 +73,8 @@ $color-yellow: #ffea00;
   --color-base-mobile-product-page-vat-tax-text: #bdbdc6;
   --color-base-mobile-product-page-price: #231942;
   --color-base-mobile-product-page-vat-text: #bdbdc6;
-
+  --color-base-product-card-card-item-border-round: #dcd6e5;
+  --separator-color: #d9d9d9;
   //mobiletop
   --color-base-mobile-top-bg: #fff;
   --color-base-mobile-search-section-title: #231942;
@@ -140,6 +142,7 @@ $color-yellow: #ffea00;
   --color-dtl-body-bg: #fff;
   --color-dtl-content-bg: #fff;
   --color-dtl-content-border: #fff;
+  --cart-btn-var-save: #fff;
 
   //mobile booking modal
   --color-bkg-header-bg: #fff;
@@ -258,6 +261,7 @@ $color-yellow: #ffea00;
   --color-cart-save-btn-bg: #ffae00;
   --color-cart-save-btn-border: none;
   --color-email-form-otp-warning: #ff63af;
+  --cart-btn-brd-save: #d9d9d9;
 }
 
 [dir="rtl"] {

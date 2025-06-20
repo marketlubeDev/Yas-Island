@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
+import PlusIcon from "../../../assets/icons/plus.svg";
+import MinusIcon from "../../../assets/icons/minus.svg";
 
 export default function BookingSection() {
   const navigate = useNavigate();
@@ -119,21 +121,21 @@ export default function BookingSection() {
                 <span className="guest-label">Adult ( 12 Yrs+ )</span>
                 <div className="counter-controls">
                   <button
-                    className="counter-btn"
+                    className="counter-btn minus-btn"
                     onClick={() =>
                       setGuests({ ...guests, adults: guests.adults - 1 })
                     }
                   >
-                    -
+                    <img src={MinusIcon} alt="minus" />
                   </button>
                   <span className="counter-value">{guests.adults}</span>
                   <button
-                    className="counter-btn"
+                    className="counter-btn plus-btn"
                     onClick={() =>
                       setGuests({ ...guests, adults: guests.adults + 1 })
                     }
                   >
-                    +
+                    <img src={PlusIcon} alt="plus" />
                   </button>
                 </div>
               </div>
@@ -144,21 +146,21 @@ export default function BookingSection() {
                 <span className="guest-label">Children ( &lt;12 Yrs )</span>
                 <div className="counter-controls">
                   <button
-                    className="counter-btn"
+                    className="counter-btn minus-btn"
                     onClick={() =>
                       setGuests({ ...guests, children: guests.children - 1 })
                     }
                   >
-                    -
+                    <img src={MinusIcon} alt="minus" />
                   </button>
                   <span className="counter-value">{guests.children}</span>
                   <button
-                    className="counter-btn"
+                    className="counter-btn plus-btn"
                     onClick={() =>
                       setGuests({ ...guests, children: guests.children + 1 })
                     }
                   >
-                    +
+                    <img src={PlusIcon} alt="plus" />
                   </button>
                 </div>
               </div>
