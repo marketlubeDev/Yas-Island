@@ -62,13 +62,20 @@
   &__lang-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    right: 0;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     min-width: 160px;
     padding: 8px 0;
     z-index: 1000;
+
+    &--ar {
+      right: -61px;
+    }
+
+    &--en {
+      right: 0;
+    }
   }
 
   &__lang-option {

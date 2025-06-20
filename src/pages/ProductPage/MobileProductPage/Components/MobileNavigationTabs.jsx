@@ -24,40 +24,44 @@ function MobileNavigationTabs() {
   const attractionsIconSrc = isDarkMode
     ? attractionsIconInverter
     : attractionsIcon;
-  const attractionsIconSrcHighContrast = isHighContrast
-    ? attractionsIconHighContrast
-    : attractionsIcon;
+  const attractionsIconSrcActive =
+    isHighContrast || (!isDarkMode && !isHighContrast)
+      ? attractionsIconHighContrast
+      : attractionsIconInverter;
   const packagesIconSrc = isDarkMode ? packagesIconInverter : packagesIcon;
   const hotelsIconSrc = isDarkMode ? hotelsIconInverter : hotelsIcon;
   const diningIconSrc = isDarkMode ? diningIconInverter : diningIcon;
   const navigationItems = [
     {
+      key: "all",
       icon: allIconSrc,
       label: t("sidebar.all"),
       alt: t("sidebar.all"),
       isActive: false,
     },
     {
-      icon: isHighContrast
-        ? attractionsIconSrcHighContrast
-        : attractionsIconSrc,
+      key: "attractions",
+      icon: attractionsIconSrc,
       label: t("sidebar.attractions"),
       alt: t("sidebar.attractions"),
       isActive: true,
     },
     {
+      key: "packages",
       icon: packagesIconSrc,
       label: t("sidebar.packages"),
       alt: t("sidebar.packages"),
       isActive: false,
     },
     {
+      key: "hotels",
       icon: hotelsIconSrc,
       label: t("sidebar.hotels"),
       alt: t("sidebar.hotels"),
       isActive: false,
     },
     {
+      key: "dining",
       icon: diningIconSrc,
       label: t("sidebar.dining"),
       alt: t("sidebar.dining"),
@@ -71,13 +75,30 @@ function MobileNavigationTabs() {
     <div className="mobile-top">
       {navigationItems.map((item, index) => (
         <div
-          key={index}
+          key={item.key}
           className={`mobile-top__item ${
             item.isActive ? "mobile-top__item--active" : ""
           }`}
         >
-          <img src={item.icon} alt={item.alt} className="mobile-top__icon" />
-          <span style={{ color: "var(--color-base-mobile-top-item-text)" }}>
+          <img
+            src={
+              item.key === "attractions" && item.isActive
+                ? attractionsIconSrcActive
+                : item.icon
+            }
+            alt={item.alt}
+            className="mobile-top__icon"
+          />
+          <span
+            style={{
+              color: item.isActive
+                ? isDarkMode
+                  ? "#E7EBD4"
+                  : "#075ADD"
+                : "var(--color-base-mobile-top-item-text)",
+              fontWeight: item.isActive ? 700 : 400,
+            }}
+          >
             {item.label}
           </span>
           {item.isActive && (

@@ -301,7 +301,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-bottom-nav-item-text",
-      isDarkMode ? "#FFAD33" : "#231942"
+      isDarkMode ? "#E7EBD4" : "#231942"
     );
 
     document.documentElement.style.setProperty(
@@ -403,6 +403,17 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#000" : isHighContrast ? "#FFFFFF" : "#231942"
     );
     document.documentElement.style.setProperty(
+      "--color-popup-box-border",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "none"
+    );
+    document.documentElement.style.setProperty(
+      "--color-popup-box-shadow",
+      isDarkMode
+        ? "0px -16px 54px 0px rgba(228, 219, 202, 0.17)"
+        : "0 2px 12px rgba(44, 44, 84, 0.1)"
+    );
+
+    document.documentElement.style.setProperty(
       "--color-dtl-add-btn-shadow",
       isDarkMode ? "#000" : "#231942"
     );
@@ -443,7 +454,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-dayname-clr",
-      isDarkMode ? "#FFAD33" : "#ff69b4"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ff69b4"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-date-clr",
@@ -451,7 +462,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-date-slct-bg",
-      isDarkMode ? "#F8A622" : "#231942"
+      isDarkMode ? "#F8A622" : isHighContrast ? "#0052CC" : "#231942"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-clndr-date-slct-clr",
@@ -567,6 +578,12 @@ export default function GlobalInvertColor() {
       "--color-email-form-label",
       isDarkMode ? "#E7EBD4" : "#231942"
     );
+
+    document.documentElement.style.setProperty(
+      "--color-email-form-confirm-btn-text",
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#FFFFFF" : "#231942"
+    );
+
     document.documentElement.style.setProperty(
       "--color-email-form-input-border",
       isDarkMode ? "#909883" : "#231942"
@@ -782,6 +799,38 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--order-smry-ttl",
       isDarkMode ? "#fff" : "#18142b"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-popup-box-bg",
+      isDarkMode
+        ? "linear-gradient(0deg, #472f1b 0%, #472f1b 100%), #000"
+        : "#fff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-check-btn-bg",
+      isDarkMode ? "#000000" : isHighContrast ? "#0052CC" : "#ffea00"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-check-btn-text",
+      isDarkMode ? "#E7EBD4" : isHighContrast ? "#FFFFFF" : "#231942"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-save-btn-bg",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#fff" : "#ffae00"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-save-btn-border",
+      isDarkMode ? "none" : isHighContrast ? "#0052CC" : "none"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-email-form-otp-warning",
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ff63af"
     );
 
     return () => {
@@ -1379,6 +1428,26 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-mobile-product-page-vat-tax-text",
         "#bdbdc6"
+      );
+      document.documentElement.style.setProperty(
+        "--color-popup-box-shadow",
+        "0 2px 16px rgba(44, 44, 84, 0.09)"
+      );
+      document.documentElement.style.setProperty(
+        "--color-popup-box-border",
+        "none"
+      );
+      document.documentElement.style.setProperty(
+        "--color-popup-box-bg",
+        "#fff"
+      );
+      document.documentElement.style.setProperty(
+        "--color-cart-check-btn-text",
+        "#231942"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-form-otp-warning",
+        "#ff63af"
       );
     };
   }, [isDarkMode, isHighContrast]);
