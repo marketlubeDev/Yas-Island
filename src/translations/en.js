@@ -26,9 +26,9 @@ export const en = {
   },
   productHead: {
     sortBy: "Sort by",
-    filterBy: "Filter by",
-    priceHighToLow: "price (high to low)",
-    attractions: "attractions",
+    filterBy: "Filter By",
+    priceHighToLow: "Price (High to Low)",
+    attractions: "Attractions",
   },
   sidebar: {
     all: "All",

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import Product1 from "../../../assets/images/product1.png";
 import Product2 from "../../../assets/images/product2.png";
@@ -18,13 +19,20 @@ import closeIcon from "../../../assets/icons/close.svg";
 export default function ProductCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
-  const showModal = (product) => {
+  const handleCardClick = (product) => {
+    navigate(`/product`, { state: { product } });
+  };
+
+  const showModal = (product, e) => {
+    e.stopPropagation();
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.stopPropagation();
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
@@ -136,7 +144,11 @@ export default function ProductCard() {
     <div className="ProductCard">
       <div className="ProductCard__grid">
         {product.map((product) => (
-          <div className="ProductCard__card" key={product.name}>
+          <div
+            className="ProductCard__card"
+            key={product.name}
+            onClick={() => handleCardClick(product)}
+          >
             <div className="ProductCard__card__image">
               <img src={product.image} alt={product.name} />
             </div>
@@ -149,7 +161,7 @@ export default function ProductCard() {
               tax={product.tax}
               currency={product.currency}
               taxDescription={product.taxDescription}
-              onAddToCart={() => showModal(product)}
+              onAddToCart={(e) => showModal(product, e)}
             />
           </div>
         ))}

@@ -20,7 +20,11 @@ export default function Search() {
           marginRight: "10px",
         }}
       />
-      <input type="text" placeholder={t("common.searchPlaceholder")} />
+      <input
+        type="text"
+        placeholder={t("common.searchPlaceholder")}
+        style={{ fontSize: "18px", fontStyle: "normal", fontWeight: "400" }}
+      />
     </div>
   );
 }

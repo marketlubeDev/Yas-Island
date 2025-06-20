@@ -25,9 +25,16 @@ export default function ProductCard({ productList }) {
     <div className="ProductCard">
       <div className="ProductCard__grid">
         {productList?.map((product) => (
-          <div className="ProductCard__card" key={product?.product_title}>
+          <div
+            className="ProductCard__card"
+            key={product?.product_title}
+            onClick={() => showModal(product)}
+          >
             <div className="ProductCard__card__image">
-              <img src={product?.product_images?.thumbnail_url} alt={product?.product?.product_title} />
+              <img
+                src={product?.product_images?.thumbnail_url}
+                alt={product?.product?.product_title}
+              />
             </div>
             <ProductCardContent
               name={product?.product_title}

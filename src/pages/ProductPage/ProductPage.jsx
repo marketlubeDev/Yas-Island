@@ -15,8 +15,9 @@ import useGetProductList from "../../apiHooks/product/product";
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);
   const language = useSelector((state) => state.language.currentLanguage);
-  
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
+
+  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
+    useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const { productList, isLoading, isError, refetch } = useGetProductList();
 

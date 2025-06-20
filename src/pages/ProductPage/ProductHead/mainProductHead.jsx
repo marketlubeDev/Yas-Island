@@ -12,13 +12,18 @@ import cart from "../../../assets/icons/cart.svg";
 import invertCart from "../../../assets/icons/invertCart.svg";
 import { setLanguage } from "../../../global/languageSlice";
 
-export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
+export default function MainProductHead({
+  onAccessibilityOpen,
+  onCartOpen,
+  isHomePage,
+}) {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { toggleLanguage, language } = useLanguage();
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.checkout.cartItems) || [];
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -47,14 +52,16 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
 
   return (
     <div className="product-header">
-      <button
+      {/* <button
         className={language === "العربية" ? "ar-back-button" : "back-buttonn"}
         onClick={() => window.history.back()}
+        disabled={isHomePage}
       >
         <img src={isDarkMode ? invertLeft : arrow} alt={t("common.back")} />
         {t("common.back")}
-      </button>
-      <h1 className="product-header__title">{t("common.selectAttractions")}</h1>
+      </button> */}
+
+      <h1 className="product-header__title"></h1>
       <div className="header-actions">
         <button
           className="accessibility-button"
@@ -127,6 +134,9 @@ export default function MainProductHead({ onAccessibilityOpen, onCartOpen }) {
               src={isDarkMode ? invertCart : cart}
               alt={t("common.viewCart")}
             />
+            {cartItems && cartItems.length > 0 && (
+              <span className="cart-notification">{cartItems.length}</span>
+            )}
           </span>
           {t("common.viewCart")}
         </button>
