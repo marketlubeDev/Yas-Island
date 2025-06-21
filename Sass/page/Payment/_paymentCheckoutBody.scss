@@ -33,6 +33,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  margin-top: -1rem;
   position: relative;
   padding: 10px 0px;
 }
@@ -97,6 +98,7 @@
 
 .form-container {
   width: 500px !important;
+  margin-top: 1rem;
   // margin: 0 auto;
 }
 
@@ -145,13 +147,14 @@
 }
 
 .confirm-button {
-  width: 93%;
+  width: 90%;
   padding: 16px;
-  margin-left: 1rem;
+  margin-left: 2rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
@@ -212,10 +215,11 @@
 }
 
 .verification-container {
-  background-color: var(--color-email-form-box);
+  background-color: var(--color-email-code-input-bg);
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
+  width: 90%;
 }
 
 .verification-label {
@@ -233,9 +237,9 @@
 }
 
 .code-input {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ddd;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #6f677c;
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
@@ -276,7 +280,7 @@
   border: none;
   color: #666;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 14px 24px;
   // border-radius: 20px;
   border-radius: 51.322px;
   border: 2.933px solid #dcd6e5;
@@ -291,4 +295,8 @@
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
+}
+
+.payment-checkout-page .header-actions .cart-button {
+  margin-top: -7rem;
 }

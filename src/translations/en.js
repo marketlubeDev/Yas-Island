@@ -157,7 +157,7 @@ export const en = {
       emailLabel: "EMAIL ADDRESS *",
       emailPlaceholder: "vivek@dev.vanasthi.ae",
       confirmButton: "Confirm email",
-      completeVerification: "Complete Verification",
+      completeVerification: "Confirm email",
     },
     verification: {
       enterCode: "ENTER VERIFICATION CODE",

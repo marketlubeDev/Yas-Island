@@ -288,6 +288,11 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#0B0C0C" : "#fff"
     );
 
+    document.documentElement.style.setProperty(
+      " --color-email-code-input-bg",
+      isDarkMode ? "#0B0C0C" : "#F4F7F8"
+    );
+
     //mobilebottomnav
     document.documentElement.style.setProperty(
       "--color-base-mobile-bottom-nav-bg",
@@ -1487,6 +1492,12 @@ export default function GlobalInvertColor() {
         "--separator-color",
         "#d9d9d9"
       );
+
+      document.documentElement.style.setProperty(
+        "--color-email-code-input-bg",
+        isDarkMode ? "#0B0C0C" : "#F4F7F8"
+      );
+
       document.documentElement.style.setProperty("--cart-btn-var-save", "#fff");
     };
   }, [isDarkMode, isHighContrast]);
