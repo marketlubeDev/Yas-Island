@@ -115,7 +115,7 @@
   font-family: Inter;
   font-size: 1.05rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
 }
@@ -147,9 +147,9 @@
 }
 
 .confirm-button {
-  width: 90%;
+  width: 100%;
   padding: 16px;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
@@ -299,4 +299,40 @@
 
 .payment-checkout-page .header-actions .cart-button {
   margin-top: -7rem;
+}
+
+// More specific selectors to override existing styles
+.payment-checkout-page .header-logo-container .header-actions .cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  position: relative !important;
+}
+
+.payment-checkout-page .header-logo-container .header-actions .ar-cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  left: auto !important; // Override the left positioning from product page
+  position: relative !important;
+}
+
+// Even more specific selectors with body tag
+body
+  .payment-checkout-page
+  .header-logo-container
+  .header-actions
+  button.cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  position: relative !important;
+}
+
+body
+  .payment-checkout-page
+  .header-logo-container
+  .header-actions
+  button.ar-cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  left: auto !important;
+  position: relative !important;
 }

@@ -15,6 +15,7 @@
       display: flex;
       gap: 2rem;
       margin-bottom: 2rem;
+      margin-left: -2rem;
 
       .form-group {
         flex: 1;
@@ -28,7 +29,7 @@
       &__label {
         display: block;
         font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 800;
         margin-bottom: 0.25rem;
         color: var(--ip-label);
         text-transform: uppercase;
@@ -65,7 +66,7 @@
         //   border-bottom-color: #000;
         // }
 
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-image: url("../../../src/assets/icons/down.svg");
         background-repeat: no-repeat;
         background-position: right center;
         padding-right: 1.5rem;
@@ -74,9 +75,10 @@
       &__phone {
         display: flex;
         gap: 1.5rem;
+        margin-left: -2rem;
 
         &-code {
-          width: 100px;
+          width: 80px;
           padding: 0.5rem 0;
           border: none;
           border-bottom: 1px solid var(--ip-bodr-btm);
@@ -84,59 +86,63 @@
           background: transparent;
           cursor: pointer;
           appearance: none;
-          color: var(--color-base-text-secondary);
+          color: #ada5b7;
 
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+          background-image: url("../../../src/assets/icons/down.svg");
           background-repeat: no-repeat;
           background-position: right center;
           padding-right: 1.5rem;
         }
 
         &-number {
-          flex: 1;
+          width: 200px;
           padding: 0.5rem 0;
           border: none;
           border-bottom: 1px solid var(--ip-bodr-btm);
           font-size: 1rem;
           background: transparent;
           color: var(--color-base-text-secondary);
-
-          // &:focus {
-          //   outline: none;
-          //   border-bottom-color: var(--ip-border);
-          // }
         }
       }
+    }
+
+    // Specific styling for phone number label
+    .form-group:has(.form-group__phone) .form-group__label {
+      margin-left: -2rem;
     }
   }
 
   &__right {
     width: 35%;
+    background-color: #fff;
 
     .order-summary {
       background: var(--payment-right-bg);
+      margin-top: 2rem;
 
       &__title {
-        font-size: 1.25rem;
+        font-size: 1.05rem;
         margin-bottom: 0rem;
         padding: 1rem 2rem;
         color: var(--color-base-text-secondary);
         font-style: normal;
-        font-weight: 700;
+        font-weight: 600;
         line-height: normal;
+        background-color: #f4f7f8;
         // text-transform: uppercase;
       }
 
       &__details {
         margin-bottom: 1.5rem;
-        padding: 0rem 2rem;
+        padding: 1rem 2rem;
         display: flex;
         flex-direction: row;
         gap: 1rem;
+        background-color: #f4f7f8;
 
         .detail-row {
           .label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #ada5b7;
             font-style: normal;
             font-weight: 500;
@@ -147,13 +153,13 @@
           }
 
           .values {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             display: flex;
             flex-direction: row;
-            gap: 1rem;
+            gap: 3rem;
             color: var(--color-base-text-secondary);
             font-style: normal;
-            font-weight: 500;
+            font-weight: 600;
             line-height: normal;
             text-transform: uppercase;
 
@@ -165,7 +171,7 @@
       }
 
       &__pricing {
-        padding: 1.5rem 2rem;
+        padding: 0rem 2.5rem;
         background-color: var(--payment-right-title);
 
         // padding: 1.5rem 0;
@@ -319,7 +325,8 @@
 }
 
 .proceedbtn {
-  width: 100%;
+  width: 95%;
+  margin-left: 1rem;
   padding: 1rem;
   border-radius: 2.92381rem;
   background: #ffea00;

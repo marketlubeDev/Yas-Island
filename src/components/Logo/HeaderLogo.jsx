@@ -34,6 +34,7 @@ export default function HeaderLogo() {
   };
 
   const isProductRoute = location.pathname === "/product";
+  const isPaymentRoute = location.pathname === "/payment";
 
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
@@ -73,6 +74,11 @@ export default function HeaderLogo() {
         className="accessibility-button"
         aria-label={t("common.accessibility")}
         onClick={onAccessibilityOpen}
+        style={{
+          ...(isPaymentRoute && {
+            marginTop: "-1rem",
+          }),
+        }}
       >
         <span className="product-header__icon">
           <img
@@ -91,6 +97,11 @@ export default function HeaderLogo() {
           aria-label={t("common.language")}
           onClick={() => setShowLangDropdown((v) => !v)}
           type="button"
+          style={{
+            ...(isPaymentRoute && {
+              marginTop: "-1rem",
+            }),
+          }}
         >
           <img
             src={isDarkMode ? invertGlobe : globe}
@@ -136,6 +147,11 @@ export default function HeaderLogo() {
         className={language === "العربية" ? "ar-cart-button" : "cart-button"}
         style={{
           borderWidth: isDarkMode ? "2px" : "1px",
+          ...(isPaymentRoute && {
+            top: "-19px",
+            right: "-2rem",
+            left: language === "العربية" ? "auto" : undefined,
+          }),
         }}
         onClick={onCartOpen}
       >

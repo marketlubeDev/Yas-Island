@@ -1,7 +1,8 @@
 @use "../../abstract/variables" as *;
 
 .selector {
-  max-width: 12rem;
+  width: 12rem;
+  min-width: 12rem;
   display: flex;
   align-items: center;
 

@@ -813,7 +813,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--ip-bodr-btm",
-      isDarkMode ? "#909883" : "#ddd"
+      isDarkMode ? "#909883" : "#6F677C"
     );
     document.documentElement.style.setProperty(
       "--order-smry-ttl",
@@ -1497,6 +1497,8 @@ export default function GlobalInvertColor() {
         "--color-email-code-input-bg",
         isDarkMode ? "#0B0C0C" : "#F4F7F8"
       );
+
+      document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");
 
       document.documentElement.style.setProperty("--cart-btn-var-save", "#fff");
     };

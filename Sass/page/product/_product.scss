@@ -170,10 +170,12 @@
 
 .accessibility-button {
   background: var(--color-base-btn-bg);
+  // margin-top: -1rem;
   border: 2.6px solid var(--color-base-btn-border);
   border-radius: 50%;
-  width: 40.5px;
-  height: 40.5px;
+  width: 50px;
+  height: 52.5px;
+
   display: flex;
   align-items: center;
   justify-content: center;

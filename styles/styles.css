@@ -202,7 +202,7 @@
   --email-text: "#18142b";
   --spam-notice: "#ff63af";
   --pay-check-price: #594f67;
-  --ip-bodr-btm: "#fff";
+  --ip-bodr-btm: "#6F677C";
   --order-smry-ttl: "#18142b";
   --color-popup-box-border: none;
   --color-popup-box-shadow: 0 2px 12px rgba(44, 44, 84, 0.1);
@@ -476,6 +476,12 @@ body {
   display: flex;
   gap: 0.5rem;
   color: var(--color-base-chat-btn-text);
+  text-transform: capitalize !important;
+}
+.chat-with-us .chat-icon {
+  filter: brightness(0) invert(1);
+  width: 20px;
+  height: 20px;
 }
 
 .yellow-btn {
@@ -677,8 +683,8 @@ body {
   background: var(--color-base-btn-bg);
   border: 2.6px solid var(--color-base-btn-border);
   border-radius: 50%;
-  width: 40.5px;
-  height: 40.5px;
+  width: 50px;
+  height: 52.5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1992,7 +1998,7 @@ body {
   font-family: Inter;
   font-size: 1.05rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
 }
@@ -2024,9 +2030,9 @@ body {
 }
 
 .confirm-button {
-  width: 90%;
+  width: 100%;
   padding: 16px;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
@@ -2177,6 +2183,32 @@ body {
   margin-top: -7rem;
 }
 
+.payment-checkout-page .header-logo-container .header-actions .cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  position: relative !important;
+}
+
+.payment-checkout-page .header-logo-container .header-actions .ar-cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  left: auto !important;
+  position: relative !important;
+}
+
+body .payment-checkout-page .header-logo-container .header-actions button.cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  position: relative !important;
+}
+
+body .payment-checkout-page .header-logo-container .header-actions button.ar-cart-button {
+  top: -18px !important;
+  right: -2rem !important;
+  left: auto !important;
+  position: relative !important;
+}
+
 .payment-form {
   display: flex;
   gap: 2rem;
@@ -2194,6 +2226,7 @@ body {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
+  margin-left: -2rem;
 }
 .payment-form__left .form-group-row .form-group {
   flex: 1;
@@ -2205,7 +2238,7 @@ body {
 .payment-form__left .form-group__label {
   display: block;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 800;
   margin-bottom: 0.25rem;
   color: var(--ip-label);
   text-transform: uppercase;
@@ -2229,7 +2262,7 @@ body {
   cursor: pointer;
   appearance: none;
   color: var(--color-base-text-secondary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-image: url("../../../src/assets/icons/down.svg");
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: 1.5rem;
@@ -2237,9 +2270,10 @@ body {
 .payment-form__left .form-group__phone {
   display: flex;
   gap: 1.5rem;
+  margin-left: -2rem;
 }
 .payment-form__left .form-group__phone-code {
-  width: 100px;
+  width: 80px;
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
@@ -2247,14 +2281,14 @@ body {
   background: transparent;
   cursor: pointer;
   appearance: none;
-  color: var(--color-base-text-secondary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  color: #ada5b7;
+  background-image: url("../../../src/assets/icons/down.svg");
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: 1.5rem;
 }
 .payment-form__left .form-group__phone-number {
-  flex: 1;
+  width: 200px;
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
@@ -2262,30 +2296,37 @@ body {
   background: transparent;
   color: var(--color-base-text-secondary);
 }
+.payment-form__left .form-group:has(.form-group__phone) .form-group__label {
+  margin-left: -2rem;
+}
 .payment-form__right {
   width: 35%;
+  background-color: #fff;
 }
 .payment-form__right .order-summary {
   background: var(--payment-right-bg);
+  margin-top: 2rem;
 }
 .payment-form__right .order-summary__title {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   margin-bottom: 0rem;
   padding: 1rem 2rem;
   color: var(--color-base-text-secondary);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
+  background-color: #f4f7f8;
 }
 .payment-form__right .order-summary__details {
   margin-bottom: 1.5rem;
-  padding: 0rem 2rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  background-color: #f4f7f8;
 }
 .payment-form__right .order-summary__details .detail-row .label {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #ada5b7;
   font-style: normal;
   font-weight: 500;
@@ -2295,13 +2336,13 @@ body {
   display: block;
 }
 .payment-form__right .order-summary__details .detail-row .values {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 3rem;
   color: var(--color-base-text-secondary);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
 }
@@ -2309,7 +2350,7 @@ body {
   margin-bottom: 0.25rem;
 }
 .payment-form__right .order-summary__pricing {
-  padding: 1.5rem 2rem;
+  padding: 0rem 2.5rem;
   background-color: var(--payment-right-title);
   margin-bottom: 1.5rem;
 }
@@ -2439,7 +2480,8 @@ body {
 }
 
 .proceedbtn {
-  width: 100%;
+  width: 95%;
+  margin-left: 1rem;
   padding: 1rem;
   border-radius: 2.92381rem;
   background: #ffea00;
@@ -6011,7 +6053,8 @@ body {
 }
 
 .selector {
-  max-width: 12rem;
+  width: 12rem;
+  min-width: 12rem;
   display: flex;
   align-items: center;
 }
@@ -6135,7 +6178,7 @@ body {
   background: var(--color-base-btn-bg) !important;
   border: 2px solid var(--color-base-btn-border) !important;
   border-radius: 12rem;
-  padding: 6px 12px;
+  padding: 12px 12px;
   display: flex;
   gap: 6px;
 }

@@ -17,12 +17,16 @@ export default function OrderSummary({ formData, setFormData }) {
   };
 
   return (
-    <div className="order-summary">
-      <h3 className="order-summary__title">{t("payment.orderSummary.title")}</h3>
+    <div className="order-summary" style={{ backgroundColor: "#fff" }}>
+      <h3 className="order-summary__title">
+        {t("payment.orderSummary.title")}
+      </h3>
 
       <div className="order-summary__details">
         <div className="detail-row">
-          <span className="label">{t("payment.orderSummary.datesAndGuests")}</span>
+          <span className="label">
+            {t("payment.orderSummary.datesAndGuests")}
+          </span>
           <div className="values">
             <div>THU 08- FEB 2025</div>
             <div>{t("payment.orderSummary.adult")} - 2</div>
@@ -33,21 +37,37 @@ export default function OrderSummary({ formData, setFormData }) {
 
       <div className="order-summary__pricing">
         <div className="price-row">
-          <span className="price-row__label">{t("payment.orderSummary.subTotal")}</span>
+          <span className="price-row__label">
+            {t("payment.orderSummary.subTotal")}
+          </span>
           <span className="price-row__values">AED 935.71</span>
         </div>
         <div className="price-row">
-          <span className="price-row__label">{t("payment.orderSummary.vatAndTax")}</span>
+          <span className="price-row__label">
+            {t("payment.orderSummary.vatAndTax")}
+          </span>
           <span className="price-row__values">+ 49.29 VAT & Tax</span>
         </div>
         <div className="divider-line"></div>
         <div className="price-row total">
-          <span className="price-row__label-total">{t("payment.orderSummary.total")}</span>
+          <span className="price-row__label-total">
+            {t("payment.orderSummary.total")}
+          </span>
           <span className="price-row__values-total">AED 985.00</span>
         </div>
       </div>
 
-      <div className="promo-code">
+      <div
+        className="promo-code"
+        style={{
+          backgroundColor: "#F4F7F8",
+          borderRadius: "10px",
+          height: "110px",
+          width: "300px",
+          padding: "10px",
+          marginLeft: "4.5rem",
+        }}
+      >
         <p className="promo-code__label">
           {t("payment.orderSummary.promoCode.label")}
         </p>

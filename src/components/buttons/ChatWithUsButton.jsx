@@ -1,5 +1,5 @@
-import { MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import chatWithUsIcon from "../../assets/icons/message.svg";
 
 export default function ChatWithUsButton() {
   const { t } = useTranslation();
@@ -7,13 +7,13 @@ export default function ChatWithUsButton() {
   const handleChatClick = () => {
     console.log(window.sprChat, "sprChat");
     if (window.sprChat) {
-      window.sprChat('open');
+      window.sprChat("open");
     }
   };
 
   return (
     <button className="btn chat-with-us" onClick={handleChatClick}>
-      <MessageCircle />
+      <img src={chatWithUsIcon} alt="Chat" className="chat-icon" />
       <span>{t("common.chatWithUs")}</span>
     </button>
   );
