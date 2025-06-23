@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
+import { setEndDate, setProductId, setStartDate } from "../../../../global/performanceSlice";
 
 function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
-  console.log(attraction, "attraction>>");
+
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+  const dispatch = useDispatch();
+  const [validStartDate, setValidStartDate] = useState(null);
+  const [validEndDate, setValidEndDate] = useState(null);
 
   useEffect(() => {
     // When modal is open, prevent background scroll
@@ -22,6 +26,53 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   }, []);
 
   if (!attraction) return null;
+
+
+  useEffect(() => {
+    if (attraction && Object.keys(attraction).length > 0) {
+      // 1. Calculate startDate
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Normalize today's date
+
+      const offset =  attraction.sale_date_offset || 0;
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() + offset);
+      setValidStartDate(startDate);
+
+      // 2. Calculate endDate
+      let endDate;
+
+      const endDateFromCalendar = attraction.calendar_end_date
+        ? new Date(attraction.calendar_end_date)
+        : null;
+
+      const endDateFromRange = attraction.calendar_range_days
+        ? new Date(startDate)
+        : null;
+
+      if (endDateFromRange) {
+        endDateFromRange.setDate(
+          startDate.getDate() + attraction.calendar_range_days - 1
+        );
+      }
+
+      if (endDateFromCalendar && endDateFromRange) {
+        endDate = new Date(Math.min(endDateFromCalendar, endDateFromRange));
+      } else if (endDateFromCalendar) {
+        endDate = endDateFromCalendar;
+      } else if (endDateFromRange) {
+        endDate = endDateFromRange;
+      } else {
+        endDate = new Date(today.getFullYear(), 11, 31);
+      }
+
+      endDate.setHours(23, 59, 59, 999);
+      setValidEndDate(endDate.toISOString());
+      dispatch(setStartDate(startDate.toDateString()));
+      dispatch(setEndDate(endDate.toDateString()));
+      dispatch(setProductId(attraction?.default_variant_id));
+    }
+  }, [attraction]);
 
   return (
     <>

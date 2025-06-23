@@ -9,6 +9,8 @@ import closeIcon from "../../../../assets/icons/close.svg";
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { setCheckout } from "../../../../global/checkoutSlice";
+import { setSelectedProduct } from "../../../../global/productSlice";
+import { clearPerformance } from "../../../../global/performanceSlice";
 
 const AttractionsList = ({ productList }) => {
   const { t } = useTranslation();
@@ -21,12 +23,15 @@ const AttractionsList = ({ productList }) => {
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
+    dispatch(setSelectedProduct(item));
     setModalType("attraction");
   };
 
   const handleCloseModal = () => {
     setModalType(null);
     setSelectedAttraction(null);
+    dispatch(setSelectedProduct({}));
+    dispatch(clearPerformance());
   };
 
   const handleAddToCart = () => {
@@ -97,6 +102,11 @@ const AttractionsList = ({ productList }) => {
     }
   };
 
+  const defaultVariant = (product) => {
+    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    return defaultVariant;
+  };
+
   return (
     <>
       <div className="attractions-list">
@@ -125,11 +135,11 @@ const AttractionsList = ({ productList }) => {
                     {t("common.add")}
                   </button>
                   <div className="attraction-card__price">
-                    <span>AED {item?.product_variants[0]?.gross}</span>
+                    <span>AED {defaultVariant(item)?.gross}</span>
                   </div>
                   <span className="attraction-card__vat">
-                    {" "}
-                    + {(item?.product_variants[0]?.gross * 0.05).toFixed(2)} Tax
+                    {defaultVariant(item)?.net_amount }
+                    + {(defaultVariant(item)?.gross * 0.05).toFixed(2)}  Net & Tax
                   </span>
                 </div>
               </div>
@@ -158,10 +168,7 @@ const AttractionsList = ({ productList }) => {
         {renderModalContent()}
       </Modal>
 
-      <Mycart
-        onClose={() => setIsCartModalOpen(false)}
-        visible={isCartModalOpen}
-      />
+
     </>
   );
 };

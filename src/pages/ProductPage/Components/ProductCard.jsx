@@ -54,7 +54,8 @@ export default function ProductCard({ productList }) {
               tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
-              onAddToCart={() => showModal(product)}
+              onAddToCart={() => showModal(product)}  
+              netPrice={defaultVariant(product)?.net_amount}
             />
           </div>
         ))}

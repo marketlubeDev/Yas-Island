@@ -19,6 +19,7 @@ import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
 import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
+import queryClient from "../../../config/reactQuery";
 
 export default function HeaderLogo() {
   const navigate = useNavigate();
@@ -63,6 +64,8 @@ export default function HeaderLogo() {
     const newLanguage = lng === "en" ? "English" : "العربية";
     toggleLanguage(newLanguage);
     dispatch(setLanguage(lng));
+    dispatch(setProducts([]));
+    queryClient.invalidateQueries({ queryKey: ["productList"] });
   };
 
   const onAccessibilityOpen = () => setIsAccessibilityModalOpen(true);
@@ -76,7 +79,7 @@ export default function HeaderLogo() {
         onClick={onAccessibilityOpen}
         style={{
           ...(isPaymentRoute && {
-            marginTop: "-1rem",
+         
           }),
         }}
       >
@@ -99,7 +102,7 @@ export default function HeaderLogo() {
           type="button"
           style={{
             ...(isPaymentRoute && {
-              marginTop: "-1rem",
+         
             }),
           }}
         >

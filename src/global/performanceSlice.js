@@ -20,17 +20,18 @@ const performanceSlice = createSlice({
         setProductId: (state, action) => {
             state.productId = action.payload;
         },
+        setPerformanceData: (state, action) => {
+            state.performanceData = action.payload;
+        },
         clearPerformance: (state) => {
             state.startDate = "";
             state.endDate = "";
             state.productId = "";
-        },
-        setPerformanceData: (state, action) => {
-            state.performanceData = action.payload;
+            state.performanceData = [];
         },
     },
 });
 
 export const { 
-    setStartDate, setEndDate, setProductId, clearPerformance, setPerformanceData } = performanceSlice.actions;
+setStartDate, setEndDate, setProductId, clearPerformance, setPerformanceData } = performanceSlice.actions;
 export default performanceSlice.reducer; 
