@@ -14,7 +14,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-text",
-      isDarkMode ? "#FFFFFFCC" : "#18142B"
+      isDarkMode ? "#E7EBD4" : "#18142B"
     );
     document.documentElement.style.setProperty(
       "--color-base-text-secondary",
@@ -113,8 +113,22 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#332509" : "#ccdaf6"
     );
     document.documentElement.style.setProperty(
+      "--color-cart-item-bdr",
+      isDarkMode ? "#262626" : "#eee"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-item-minus-border",
+      isDarkMode ? "#F8A622" : "#dcd6e5"
+    );
+    document.documentElement.style.setProperty(
       "--color-base-product-card-divider",
       isDarkMode ? "#262626" : "#d9d9d9"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-cart-item-bg",
+      isDarkMode ? "#000" : "#fff"
     );
     document.documentElement.style.setProperty(
       "--color-base-product-card-price",
@@ -1496,6 +1510,14 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-email-code-input-bg",
         isDarkMode ? "#0B0C0C" : "#F4F7F8"
+      );
+      document.documentElement.style.setProperty(
+        "--color-email-code-input-border",
+        "#eee"
+      );
+      document.documentElement.style.setProperty(
+        "--color-cart-item-bg",
+        "#fff"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");

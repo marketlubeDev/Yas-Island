@@ -7,6 +7,7 @@ import ExpandDark from "../../../assets/icons/invertShrink.svg";
 
 import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
+import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useSelector } from "react-redux";
@@ -111,16 +112,21 @@ const CartModal = ({ isOpen, onClose }) => {
                 <span>{t("cart.adults")}</span>
                 <div className="controls">
                   <Button
+                    className="minus-btn-web"
                     icon={<MinusOutlined />}
                     onClick={() => handleQuantityChange(item.id, -1)}
                   />
                   <span>{item.quantity}</span>
                   <Button
+                    className="plus-btn-web"
                     icon={<PlusOutlined />}
                     onClick={() => handleQuantityChange(item.id, 1)}
                   />
                   <Button className="delete-btn">
-                    <img src={DeleteIcon} alt={t("cart.delete")} />
+                    <img
+                      src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
+                      alt={t("cart.delete")}
+                    />
                   </Button>
                 </div>
               </div>

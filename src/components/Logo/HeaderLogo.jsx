@@ -107,7 +107,13 @@ export default function HeaderLogo() {
             src={isDarkMode ? invertGlobe : globe}
             alt={t("common.language")}
           />
-          <span>{i18n.language === "en" ? "English" : "العربية"}</span>
+          <span
+            style={{
+              color: isDarkMode ? "#E7EBD4" : "#18142B",
+            }}
+          >
+            {i18n.language === "en" ? "English" : "العربية"}
+          </span>
           <img
             src={isDarkMode ? invertdown : down}
             alt="chevron"
