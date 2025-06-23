@@ -6,10 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch } from "react-redux";
 import { setCheckout } from "../../../global/checkoutSlice";
+import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
 
-export default function BookingSection({ product, onBack }) {
+export default function BookingSection({
+  product,
+  onBack,
+  startDate: propStartDate,
+  endDate: propEndDate,
+  availableDates,
+}) {
   const { t, i18n } = useTranslation();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -105,14 +112,21 @@ export default function BookingSection({ product, onBack }) {
         0 // Normalize the date for comparison
       );
 
+      const formattedDateString = formatDate(date);
       const isSelected =
         (startDate && date.toDateString() === startDate.toDateString()) ||
         (endDate && date.toDateString() === endDate.toDateString());
       const isInRange = isDateInRange(date);
       const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled =
-        date.getTime() < minDate.getTime() ||
-        date.getTime() > maxDate.getTime();
+
+      let isDisabled = false;
+      if (availableDates && availableDates.length > 0) {
+        isDisabled = !availableDates.includes(formattedDateString);
+      } else {
+        isDisabled =
+          date.getTime() < minDate.getTime() ||
+          date.getTime() > maxDate.getTime();
+      }
 
       days.push(
         <div

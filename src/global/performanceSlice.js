@@ -6,8 +6,8 @@ const initialState = {
   productId: "",
 };
 
-const perfomanceSlice = createSlice({
-    name: "perfomance",
+const performanceSlice = createSlice({
+    name: "performance",
     initialState,
     reducers: {
         setStartDate: (state, action) => {
@@ -19,15 +19,17 @@ const perfomanceSlice = createSlice({
         setProductId: (state, action) => {
             state.productId = action.payload;
         },
-        clearPerfomance: (state) => {
+        clearPerformance: (state) => {
             state.startDate = "";
             state.endDate = "";
             state.productId = "";
-        },  
-            
+        },
+        setPerformanceData: (state, action) => {
+            state.performanceData = action.payload;
+        },
     },
 });
 
 export const { 
-    setStartDate, setEndDate, setProductId, clearPerfomance } = perfomanceSlice.actions;
-export default perfomanceSlice.reducer; 
+    setStartDate, setEndDate, setProductId, clearPerformance, setPerformanceData } = performanceSlice.actions;
+export default performanceSlice.reducer; 

@@ -10,7 +10,10 @@ import {
   setEndDate,
   setProductId,
   setStartDate,
-} from "../../../global/perfomanceSlice";
+} from "../../../global/performanceSlice";
+import getPerformance from "../../../serivces/performance/performance";
+import formatDate from "../../../utils/dateFormatter";
+import Loading from "../../../components/loading/Loading";
 
 export default function ProductModal({
   selectedProduct,
@@ -21,13 +24,30 @@ export default function ProductModal({
   const { t } = useTranslation();
   const [validStartDate, setValidStartDate] = useState(null);
   const [validEndDate, setValidEndDate] = useState(null);
+  const [availableDates, setAvailableDates] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleAddToCart = async () => {
+    setIsLoading(true);
+    try {
+      const performanceData = await getPerformance(
+        formatDate(validStartDate),
+        formatDate(validEndDate),
+        selectedProduct?.default_variant_id
+      );
+      if (performanceData && performanceData.performance) {
+        const dates = performanceData.performance.map((p) => p.date);
+        setAvailableDates(dates);
+      }
 
-  const handleAddToCart = () => {
-    setShowBookingSection(true);
+      setShowBookingSection(true);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    console.log(selectedProduct, "selectedProduct>>>>");
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
       // 1. Calculate startDate
       const today = new Date();
@@ -68,9 +88,9 @@ export default function ProductModal({
       }
 
       endDate.setHours(23, 59, 59, 999);
-      setValidEndDate(endDate);
-      dispatch(setStartDate(startDate));
-      dispatch(setEndDate(endDate));
+      setValidEndDate(endDate.toISOString());
+      dispatch(setStartDate(startDate.toDateString()));
+      dispatch(setEndDate(endDate.toDateString()));
       dispatch(setProductId(selectedProduct?.default_variant_id));
     }
   }, [selectedProduct]);
@@ -129,8 +149,12 @@ export default function ProductModal({
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
-                <button className="add-to-cart-btn" onClick={handleAddToCart}>
-                  {t("product.addToCart")}
+                <button
+                  className="add-to-cart-btn"
+                  onClick={handleAddToCart}
+                  disabled={isLoading}
+                >
+                  {isLoading ? <Loading /> : t("product.addToCart")}
                 </button>
               </div>
             </div>
@@ -142,6 +166,7 @@ export default function ProductModal({
           onBack={() => setShowBookingSection(false)}
           startDate={validStartDate}
           endDate={validEndDate}
+          availableDates={availableDates}
         />
       )}
     </>
