@@ -1271,6 +1271,12 @@ body {
   font-weight: 700;
 }
 
+.counter-btn:disabled {
+  background: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 .counter-value {
   font-size: 16px;
   min-width: 20px;

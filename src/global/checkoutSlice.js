@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  startDate: "",
-  endDate: "",
+  selectedDate: "",
   guests: {},
   totalPrice: 0,
   product: null,
@@ -13,7 +12,7 @@ const initialState = {
   residence: "",
   nationality: "",
   phone: "",
-  cartItems: [{ id: 1, name: "Test Item" }],
+  cartItems: [],
 };
 
 const checkoutSlice = createSlice({
@@ -32,8 +31,11 @@ const checkoutSlice = createSlice({
     setCartItems: (state, action) => {
       state.cartItems = action.payload;
     },
+    setCheckoutDate: (state, action) => {
+      state.selectedDate = action.payload;
+    },
   },
 });
 
-export const { setCheckout, setEmail, setCartItems } = checkoutSlice.actions;
+export const { setCheckout, setEmail, setCartItems, setCheckoutDate } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

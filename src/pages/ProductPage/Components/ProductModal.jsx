@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import BookingSection from "./BookingSection";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
-import 'swiper/css';
+import "swiper/css";
 import "swiper/css/pagination";
-import { useDispatch } from "react-redux";  
-import { setEndDate, setProductId, setStartDate } from "../../../global/performanceSlice";
+import { useDispatch } from "react-redux";
+import {
+  setEndDate,
+  setPerformanceData,
+  setProductId,
+  setStartDate,
+} from "../../../global/performanceSlice";
 import getPerformance from "../../../serivces/performance/performance";
 import formatDate from "../../../utils/dateFormatter";
 import Loading from "../../../components/loading/Loading";
@@ -22,27 +27,6 @@ export default function ProductModal({
   const [validEndDate, setValidEndDate] = useState(null);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const handleAddToCart = async () => {
-    
-    setIsLoading(true);
-   try {
-    const performanceData = await getPerformance(
-      formatDate(validStartDate),
-      formatDate(validEndDate),
-      selectedProduct?.default_variant_id
-    );
-    if (performanceData && performanceData.performance) {
-      const dates = performanceData.performance.map((p) => p.date);
-      setAvailableDates(dates);
-    }
-
-    setShowBookingSection(true);
-   } catch (error) {
-    toast.error(error.message);
-   } finally {
-    setIsLoading(false);
-   }
-  };
 
   useEffect(() => {
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
@@ -71,8 +55,6 @@ export default function ProductModal({
         );
       }
 
-
-
       if (endDateFromCalendar && endDateFromRange) {
         endDate = new Date(Math.min(endDateFromCalendar, endDateFromRange));
       } else if (endDateFromCalendar) {
@@ -85,15 +67,48 @@ export default function ProductModal({
 
       endDate.setHours(23, 59, 59, 999);
       setValidEndDate(endDate.toISOString());
-      dispatch(setStartDate(startDate.toDateString  ()));
+      dispatch(setStartDate(startDate.toDateString()));
       dispatch(setEndDate(endDate.toDateString()));
       dispatch(setProductId(selectedProduct?.default_variant_id));
     }
   }, [selectedProduct]);
 
+  const handleAddToCart = async () => {
+    setIsLoading(true);
+    try {
+      const performanceData = await getPerformance(
+        formatDate(validStartDate),
+        formatDate(validEndDate),
+        selectedProduct?.default_variant_id
+      );
+
+      if (performanceData.error) {
+        if (performanceData.error.code == 7001) {
+          alert(performanceData.error.text);
+          return;
+        }
+      }
+
+      
+
+      if (performanceData && performanceData.performance) {
+        dispatch(setPerformanceData(performanceData.performance));
+        const dates = performanceData.performance.map((p) => p.date);
+        setAvailableDates(dates);
+      }
+      setShowBookingSection(true);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
-    return defaultVariant;
+    const defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
+    return defaultVariant;  
   };
 
   return (
@@ -103,43 +118,56 @@ export default function ProductModal({
           <>
             <div className="product-modal-image">
               <Swiper
-              modules={[Pagination, Autoplay]}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 2000, disableOnInteraction: false }}
-              loop={true}
-              spaceBetween={10}
-              slidesPerView={1}
+                modules={[Pagination, Autoplay]}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                loop={true}
+                spaceBetween={10}
+                slidesPerView={1}
               >
-                {selectedProduct?.product_images?.image_urls?.map((img, idx) => ( 
-                  <SwiperSlide key={idx}>
-                    <img src={img} alt={selectedProduct.name} />
-                  </SwiperSlide>
-                ))}
+                {selectedProduct?.product_images?.image_urls?.map(
+                  (img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <img src={img} alt={selectedProduct.name} />
+                    </SwiperSlide>
+                  )
+                )}
               </Swiper>
             </div>
             <div className="product-modal-details">
               <h2>{selectedProduct?.product_title}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: selectedProduct?.productdesc}} style={{height:"50vh" , overflowY:"auto"}}></div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: selectedProduct?.productdesc,
+                }}
+                style={{ height: "50vh", overflowY: "auto" }}
+              ></div>
 
               <div className="price-section">
                 <div className="price-details">
                   <h3>
-                    {selectedProduct.currency || "AED"} {defaultVariant(selectedProduct)?.gross}
+                    {selectedProduct.currency || "AED"}{" "}
+                    {defaultVariant(selectedProduct)?.gross}
                   </h3>
                   <p className="tax">
-                    {defaultVariant(selectedProduct)?.net_amount} +{(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)} { "Net & Tax"}
+                    {defaultVariant(selectedProduct)?.net_amount} +
+                    {(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)}{" "}
+                    {"Net & Tax"}
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
-                <button className="add-to-cart-btn" onClick={handleAddToCart} disabled={isLoading}>
-               {isLoading ? <Loading /> : t("product.addToCart")}
+                <button
+                  className="add-to-cart-btn"
+                  onClick={handleAddToCart}
+                  disabled={isLoading}
+                >
+                  {isLoading ? <Loading /> : t("product.addToCart")}
                 </button>
               </div>
             </div>
           </>
         </div>
-        
       ) : (
         <BookingSection
           product={selectedProduct}

@@ -4,6 +4,7 @@ const initialState = {
   startDate: "",
   endDate: "",
   productId: "",
+  performanceData: [],
 };
 
 const performanceSlice = createSlice({
