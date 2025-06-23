@@ -1,4 +1,5 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .selector {
   width: 12rem;
@@ -14,6 +15,10 @@
     background-color: transparent;
     color: var(--color-base-text);
     cursor: pointer;
+
+    @include respond(bigDesktop) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -32,4 +37,9 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 15px;
+    padding-left: 6px;
+  }
 }

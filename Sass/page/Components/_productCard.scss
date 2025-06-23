@@ -1,4 +1,5 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .ProductCard {
   width: 100%;
@@ -9,6 +10,10 @@
   overflow-y: scroll;
   height: calc(100vh - 250px);
   scroll-behavior: smooth;
+
+  @include respond(bigDesktop) {
+    padding: 0.5rem;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -29,6 +34,11 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 3rem;
     justify-items: center;
+
+    @include respond(bigDesktop) {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+    }
   }
 
   &__card {
@@ -44,12 +54,22 @@
     align-items: center;
     // justify-content: center;
 
+    @include respond(bigDesktop) {
+      width: 220px;
+      height: 340px;
+      padding: 0.3rem;
+    }
+
     &__image {
       width: 100%;
       height: 177.616px;
       flex-shrink: 0;
       background-color: #f0f0f0;
       border-radius: 0.8rem;
+
+      @include respond(bigDesktop) {
+        height: 140px;
+      }
 
       & img {
         width: 100%;
@@ -75,6 +95,11 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+
+        @include respond(bigDesktop) {
+          font-size: 16px;
+          font-weight: 500;
+        }
       }
 
       &__description {
@@ -85,6 +110,13 @@
         font-weight: 400;
         line-height: 28.8px;
         margin-top: 0.8rem;
+
+        @include respond(bigDesktop) {
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 18px;
+          margin-top: 0.4rem;
+        }
       }
 
       &__divider {
@@ -116,6 +148,11 @@
           font-weight: 600;
           line-height: normal;
           text-transform: capitalize;
+
+          @include respond(bigDesktop) {
+            font-size: 13px;
+            font-weight: 400;
+          }
         }
 
         &__tax {
@@ -125,6 +162,11 @@
           font-weight: 500;
           line-height: normal;
           text-transform: capitalize;
+
+          @include respond(bigDesktop) {
+            font-size: 10px;
+            font-weight: 300;
+          }
         }
       }
     }
@@ -150,6 +192,14 @@
     line-height: normal;
     text-transform: capitalize;
     cursor: pointer;
+
+    @include respond(bigDesktop) {
+      width: 95px;
+      height: 36px;
+      font-size: 12px;
+      font-weight: 500;
+      gap: 5px;
+    }
   }
 }
 
@@ -160,6 +210,14 @@
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
+
+  // @include respond(bigDesktop) {
+  //   width: 100% !important;
+  //   max-width: 900px !important;
+  //   height: 80vh !important;
+  //   max-height: 700px !important;
+  //   padding: 1.5rem !important;
+  // }
 }
 .product-modal .ant-modal-mask {
   background: rgba(2, 7, 19, 0.67) !important;
@@ -313,6 +371,14 @@
   gap: 0.625rem;
   flex-shrink: 0;
   color: var(--btn-clr);
+
+  @include respond(bigDesktop) {
+    width: 20rem;
+    height: 3.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    border-radius: 36px;
+  }
 }
 
 .vertical-divider {
@@ -344,167 +410,6 @@
   box-shadow: 0 0 4px #0002;
 }
 
-// .booking-section {
-//   padding: 2rem;
-//   width: 100%;
-//   // margin: 0 auto;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: space-between;
-
-//   &-header {
-//     margin-bottom: 2rem;
-
-//     h2 {
-//       font-size: 1.5rem;
-//       margin-bottom: 1rem;
-//       color: #333;
-//     }
-//   }
-
-//   // Date Picker Customization
-//   .ant-picker {
-//     width: 100%;
-//     padding: 12px;
-//     border-radius: 8px;
-//     border: 1px solid #e0e0e0;
-//   }
-
-//   // Guests Section
-//   .guests-section {
-//     margin-top: 2rem;
-//     padding: 1.5rem;
-//     background-color: #fff;
-//     border-radius: 12px;
-//     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
-//     h2 {
-//       font-size: 1.5rem;
-//       margin-bottom: 1rem;
-//       color: #333;
-//     }
-//   }
-
-//   .guest-counter {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1.5rem;
-//   }
-
-//   .guest-type {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     padding: 0.5rem 0;
-//   }
-
-//   .counter-controls {
-//     display: flex;
-//     align-items: center;
-//     gap: 1rem;
-
-//     button {
-//       width: 32px;
-//       height: 32px;
-//       border-radius: 50%;
-//       border: 1px solid #e0e0e0;
-//       background: white;
-//       cursor: pointer;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       font-size: 1.2rem;
-//       color: #333;
-
-//       &:hover {
-//         background-color: #f5f5f5;
-//       }
-
-//       &:disabled {
-//         opacity: 0.5;
-//         cursor: not-allowed;
-//       }
-//     }
-
-//     span {
-//       min-width: 24px;
-//       text-align: center;
-//       font-size: 1rem;
-//     }
-//   }
-
-//   .note {
-//     color: #666;
-//     font-size: 0.9rem;
-//     margin-top: 0.5rem;
-//   }
-
-//   // Booking Actions
-//   .booking-actions {
-//     margin-top: 2rem;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1rem;
-//   }
-
-//   .checkout-btn,
-//   .save-cart-btn {
-//     width: 100%;
-//     padding: 1rem;
-//     border-radius: 8px;
-//     border: none;
-//     font-size: 1rem;
-//     cursor: pointer;
-//     transition: all 0.2s ease;
-//   }
-
-//   .checkout-btn {
-//     background-color: #ffe600;
-//     color: #000;
-
-//     &:hover {
-//       background-color: #ffd700;
-//     }
-//   }
-
-//   .save-cart-btn {
-//     background-color: white;
-//     border: 1px solid #e0e0e0;
-//     color: #333;
-
-//     &:hover {
-//       background-color: #f5f5f5;
-//     }
-//   }
-
-//   // Back Button
-//   .back-button {
-//     background: none;
-//     border: none;
-//     color: #333;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     gap: 0.5rem;
-//     margin-bottom: 1rem;
-
-//     &:hover {
-//       color: #000;
-//     }
-//   }
-
-//   // Responsive Design
-//   @media (max-width: 768px) {
-//     padding: 1rem;
-
-//     .guest-type {
-//       flex-direction: column;
-//       align-items: flex-start;
-//       gap: 0.5rem;
-//     }
-//   }
-// }
-
 .booking-section {
   padding: 24px;
   width: 100%;
@@ -512,6 +417,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @include respond(bigDesktop) {
+    padding: 16px;
+    gap: 1rem;
+  }
 }
 
 /* Calendar container */
@@ -520,6 +430,11 @@
   border-radius: 16px;
   padding: 0 40px;
   width: 40%;
+
+  @include respond(bigDesktop) {
+    padding: 0 20px;
+    width: 45%;
+  }
 
   h2 {
     color: var(--color-base-text);
@@ -531,6 +446,12 @@
     text-align: center;
     margin-bottom: 2.5rem;
     margin-top: -1rem;
+
+    @include respond(bigDesktop) {
+      font-size: 1.5rem !important;
+      margin-bottom: 1.5rem;
+      margin-top: -0.5rem;
+    }
   }
 
   .selected-dates {
@@ -576,6 +497,13 @@
   width: 130%;
   margin-left: -3rem;
   margin-bottom: -1rem;
+
+  @include respond(bigDesktop) {
+    padding: 1.2rem;
+    width: 120%;
+    margin-left: -2rem;
+    margin-bottom: -0.5rem;
+  }
 }
 
 /* Header with month and navigation */
@@ -676,6 +604,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
+
+  @include respond(bigDesktop) {
+    padding: 0 16px;
+    width: 55%;
+  }
 }
 
 .section-title {
@@ -687,6 +620,12 @@
   text-transform: capitalize;
   margin-bottom: 2.5rem;
   margin-top: -0.8rem;
+
+  @include respond(bigDesktop) {
+    font-size: 1.5rem !important;
+    margin-bottom: 1.5rem;
+    margin-top: -0.5rem;
+  }
 }
 
 .guest-container {
@@ -698,6 +637,12 @@
   width: 30.5625rem;
   height: fit-content;
   flex-shrink: 0;
+
+  @include respond(bigDesktop) {
+    padding: 24px 16px;
+    width: 22rem;
+    border-radius: 24px;
+  }
 }
 
 .guest-summary {
@@ -865,6 +810,11 @@
   height: 600px;
   background-color: var(--color-base-product-card-divider);
   margin: 0 3rem 0 7rem;
+
+  @include respond(bigDesktop) {
+    height: 450px;
+    margin: 0 4.5rem 0 3rem;
+  }
 }
 
 .guest-section-header-container {

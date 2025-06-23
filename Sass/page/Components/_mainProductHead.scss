@@ -1,4 +1,5 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .language-selector {
   position: relative;
@@ -103,12 +104,32 @@
   padding: 12px 12px;
   display: flex;
   gap: 6px;
+
+  @include respond(bigDesktop) {
+    padding: 8px 10px;
+    height: 2.1rem;
+    width: auto;
+    font-size: 14px;
+  }
+
+  span {
+    @include respond(bigDesktop) {
+      font-size: 14px !important;
+      margin-top: -3px;
+    }
+  }
 }
 .web-header__lang-btn img {
   height: 17px;
   width: 17px;
   display: block;
   margin-top: 4px;
+
+  @include respond(bigDesktop) {
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+  }
 }
 
 .mobile-header__lang-btn img {

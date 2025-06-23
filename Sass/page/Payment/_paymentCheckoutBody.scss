@@ -1,3 +1,6 @@
+@use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
+
 .payment-checkout {
   max-width: 1400px;
   margin: 0 auto;
@@ -25,15 +28,18 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-left: -4rem;
   // text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    margin-left: 9rem;
+    font-size: 1.1rem;
+  }
 }
 
 .payment-checkout__steps {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-top: -1rem;
   position: relative;
   padding: 10px 0px;
 }
@@ -42,6 +48,10 @@
   text-align: center;
   position: relative;
   min-width: 500px;
+
+  @include respond(bigDesktop) {
+    min-width: 400px;
+  }
 }
 
 .step span {
@@ -53,6 +63,11 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
 }
 
 .step h2 {
@@ -63,6 +78,10 @@
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 1rem;
+  }
 }
 
 .step.active h2 {
@@ -94,30 +113,52 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include respond(bigDesktop) {
+    padding: 24px;
+    min-height: 450px;
+    border-radius: 1.8rem;
+    width: 80%;
+    max-width: 950px;
+    margin: 0 auto;
+  }
 }
 
 .form-container {
   width: 500px !important;
-  margin-top: 1rem;
   // margin: 0 auto;
+
+  @include respond(bigDesktop) {
+    width: 380px !important;
+  }
 }
 
 .form-group {
   margin: 0 2.5rem;
   margin-bottom: 24px;
   position: relative;
+
+  @include respond(bigDesktop) {
+    margin: 0 1.5rem;
+    margin-bottom: 18px;
+  }
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-size: 1.05rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+
+  @include respond(bigDesktop) {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
 }
 
 .form-control {
@@ -126,14 +167,16 @@
   padding: 8px 0;
   font-size: 16px;
   outline: none;
-  background: transparent;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  &::placeholder {
-    color: #000;
+
+  @include respond(bigDesktop) {
+    padding: 4px 0;
+    font-size: 12px;
+    // width: 60%;
   }
 }
 
@@ -142,22 +185,34 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1.5px;
-  background-color: var(--color-email-form-label);
+  height: 1px;
+  background-color: #ddd;
+}
+
+@include respond(bigDesktop) {
+  .form-control {
+    width: 60%;
+  }
 }
 
 .confirm-button {
   width: 100%;
   padding: 16px;
-  margin-left: 1.5rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
+
+  @include respond(bigDesktop) {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 3rem;
+    width: 80%;
+    margin: 8px 0px 0 40px;
+  }
 }
 .payment-checkout__header {
   display: flex;
@@ -176,11 +231,14 @@
   color: var(--color-pymnt-title-clr);
   font-size: 2.125rem;
   font-style: normal;
-  margin-top: 1rem;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
-  margin-left: -57px;
+
+  @include respond(bigDesktop) {
+    font-size: 1.5rem;
+    margin-left: -10rem;
+  }
 }
 
 .verification-text {
@@ -194,6 +252,11 @@
   font-weight: 500;
   // line-height: 34px;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
 }
 
 .email {
@@ -202,6 +265,10 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
+
+  @include respond(bigDesktop) {
+    font-size: 14px;
+  }
 }
 
 .spam-notice {
@@ -212,14 +279,24 @@
   font-style: normal;
   font-weight: 500;
   margin-bottom: 16px;
+
+  @include respond(bigDesktop) {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
 }
 
 .verification-container {
-  background-color: var(--color-email-code-input-bg);
+  background-color: var(--color-email-form-box);
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
-  width: 90%;
+  background-color: #f4f7f8;
+
+  @include respond(bigDesktop) {
+    padding: 16px;
+    margin: 0 1.5rem;
+  }
 }
 
 .verification-label {
@@ -227,6 +304,11 @@
   font-size: 0.9em;
   color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
+
+  @include respond(bigDesktop) {
+    font-size: 0.8em;
+    margin-bottom: 6px;
+  }
 }
 
 .code-inputs {
@@ -237,9 +319,9 @@
 }
 
 .code-input {
-  width: 55px;
-  height: 55px;
-  border: 1px solid #6f677c;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
@@ -263,6 +345,10 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 12px;
+  }
 }
 
 .timer {
@@ -273,6 +359,10 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigDesktop) {
+    font-size: 12px;
+  }
 }
 
 .resend-btn {
@@ -280,7 +370,7 @@
   border: none;
   color: #666;
   cursor: pointer;
-  padding: 14px 24px;
+  padding: 6px 12px;
   // border-radius: 20px;
   border-radius: 51.322px;
   border: 2.933px solid #dcd6e5;
@@ -295,44 +385,4 @@
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
-}
-
-.payment-checkout-page .header-actions .cart-button {
-  margin-top: -7rem;
-}
-
-// More specific selectors to override existing styles
-.payment-checkout-page .header-logo-container .header-actions .cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  position: relative !important;
-}
-
-.payment-checkout-page .header-logo-container .header-actions .ar-cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  left: auto !important; // Override the left positioning from product page
-  position: relative !important;
-}
-
-// Even more specific selectors with body tag
-body
-  .payment-checkout-page
-  .header-logo-container
-  .header-actions
-  button.cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  position: relative !important;
-}
-
-body
-  .payment-checkout-page
-  .header-logo-container
-  .header-actions
-  button.ar-cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  left: auto !important;
-  position: relative !important;
 }

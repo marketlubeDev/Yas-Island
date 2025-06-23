@@ -14,6 +14,17 @@
   @include respond(phone) {
     margin: 0 auto;
   }
+  @include respond(bigDesktop) {
+    width: 70%;
+    max-width: 25rem;
+  }
+
+  & img {
+    @include respond(bigDesktop) {
+      width: 18px !important;
+      height: 18px !important;
+    }
+  }
 
   & input {
     border: none;
@@ -21,9 +32,17 @@
     width: 100%;
     color: var(--color-base-text);
 
+    @include respond(bigDesktop) {
+      font-size: 16px !important;
+    }
+
     &::placeholder {
       color: var(--color-base-text);
       opacity: 0.6;
+
+      @include respond(bigDesktop) {
+        font-size: 16px;
+      }
     }
   }
 }

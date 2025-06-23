@@ -1,4 +1,5 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .product {
   // min-height: 100vh;
@@ -7,7 +8,7 @@
   padding: 2rem;
   display: grid;
   grid-template-columns: 12rem 1fr;
-  gap: 2rem;
+  gap: 0;
   background-color: var(--color-base-bg);
 
   &-head {
@@ -126,6 +127,29 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @include respond(desktop) {
+    right: -3rem;
+    width: 17rem;
+    height: 4.5rem;
+  }
+
+  @include respond(bigDesktop) {
+    right: -10rem;
+    width: 15rem;
+    height: 3.7rem;
+    top: -0.5rem;
+    font-size: 1.2rem;
+    font-size: 16px;
+  }
+
+  // @include respond(extraBigDesktop) {
+  //   right: -8rem;
+  //   width: 22rem;
+  //   height: 5.5rem;
+  //   font-size: 1.25rem;
+  //   gap: 2rem;
+  // }
 }
 .ar-cart-button {
   padding: 8px 16px;
@@ -148,6 +172,27 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @include respond(desktop) {
+    left: -2rem;
+    width: 17rem;
+    height: 4.5rem;
+  }
+
+  @include respond(bigDesktop) {
+    left: -5rem;
+    width: 20rem;
+    height: 5.2rem;
+    font-size: 1.2rem;
+  }
+
+  @include respond(extraBigDesktop) {
+    left: -7rem;
+    width: 22rem;
+    height: 5.5rem;
+    font-size: 1.25rem;
+    gap: 1rem;
+  }
 }
 
 .product-header__title {
@@ -181,6 +226,14 @@
   justify-content: center;
   cursor: pointer;
   padding: 5px;
+
+  @include respond(bigDesktop) {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--color-base-btn-border);
+    padding: 6px;
+    margin-top: -0.1rem;
+  }
 }
 
 .language-button {
@@ -210,6 +263,13 @@
   position: relative;
   display: flex;
   align-items: center;
+
+  img {
+    @include respond(bigDesktop) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
 }
 
 .cart-notification {
