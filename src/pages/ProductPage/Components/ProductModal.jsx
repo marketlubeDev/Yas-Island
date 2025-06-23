@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import { useDispatch } from "react-redux";
 import {
   setEndDate,
+  setPerformanceData,
   setProductId,
   setStartDate,
 } from "../../../global/performanceSlice";
@@ -26,26 +27,6 @@ export default function ProductModal({
   const [validEndDate, setValidEndDate] = useState(null);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const handleAddToCart = async () => {
-    setIsLoading(true);
-    try {
-      const performanceData = await getPerformance(
-        formatDate(validStartDate),
-        formatDate(validEndDate),
-        selectedProduct?.default_variant_id
-      );
-      if (performanceData && performanceData.performance) {
-        const dates = performanceData.performance.map((p) => p.date);
-        setAvailableDates(dates);
-      }
-
-      setShowBookingSection(true);
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
@@ -95,11 +76,42 @@ export default function ProductModal({
     }
   }, [selectedProduct]);
 
+  const handleAddToCart = async () => {
+    setIsLoading(true);
+    try {
+      const performanceData = await getPerformance(
+        formatDate(validStartDate),
+        formatDate(validEndDate),
+        selectedProduct?.default_variant_id
+      );
+
+      if (performanceData.error) {
+        if (performanceData.error.code == 7001) {
+          alert(performanceData.error.text);
+          return;
+        }
+      }
+
+      
+
+      if (performanceData && performanceData.performance) {
+        dispatch(setPerformanceData(performanceData.performance));
+        const dates = performanceData.performance.map((p) => p.date);
+        setAvailableDates(dates);
+      }
+      setShowBookingSection(true);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const defaultVariant = (product) => {
     const defaultVariant = product?.product_variants?.find(
       (variant) => variant.isdefault
     );
-    return defaultVariant;
+    return defaultVariant;  
   };
 
   return (
@@ -129,7 +141,6 @@ export default function ProductModal({
               <h2>{selectedProduct?.product_title}</h2>
               {/* <p className="description">{selectedProduct.description}</p> */}
               <div
-                className="product-modal-details-description"
                 dangerouslySetInnerHTML={{
                   __html: selectedProduct?.productdesc,
                 }}

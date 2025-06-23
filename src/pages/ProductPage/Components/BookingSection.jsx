@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch } from "react-redux";
-import { setCheckout } from "../../../global/checkoutSlice";
+import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
@@ -18,8 +18,7 @@ export default function BookingSection({
   availableDates,
 }) {
   const { t, i18n } = useTranslation();
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
@@ -27,10 +26,12 @@ export default function BookingSection({
   const { language } = useLanguage();
   const dispatch = useDispatch();
 
+  
+
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = 1; // or 0 if you want to start from 0
+      variants[variant?.productvariantname] = variant?.min_quantity || 1; 
     });
     return variants;
   }
@@ -67,25 +68,25 @@ export default function BookingSection({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const handleDateClick = (date) => {
-    if (!startDate || (startDate && endDate)) {
-      // Start new selection
-      setStartDate(date);
-      setEndDate(null);
-    } else {
-      // Complete the selection
-      if (date < startDate) {
-        setStartDate(date);
-        setEndDate(startDate);
-      } else {
-        setEndDate(date);
-      }
-    }
+  // Format date to YYYY-MM-DD
+  const formatDateToYYYYMMDD = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
-  const isDateInRange = (date) => {
-    if (!startDate || !endDate) return false;
-    return date >= startDate && date <= endDate;
+  const handleDateClick = (date) => {
+    // Select the clicked date
+    const formattedDate = formatDateToYYYYMMDD(date);
+    console.log(formattedDate, "formatted date");
+    dispatch(setCheckoutDate(formattedDate));
+    setSelectedDate(date);
+  };
+
+  const isDateSelected = (date) => {
+    if (!selectedDate) return false;
+    return date.toDateString() === selectedDate.toDateString();
   };
 
   // Generate calendar days
@@ -113,10 +114,7 @@ export default function BookingSection({
       );
 
       const formattedDateString = formatDate(date);
-      const isSelected =
-        (startDate && date.toDateString() === startDate.toDateString()) ||
-        (endDate && date.toDateString() === endDate.toDateString());
-      const isInRange = isDateInRange(date);
+      const isSelected = isDateSelected(date);
       const isToday = date.toDateString() === new Date().toDateString();
 
       let isDisabled = false;
@@ -133,7 +131,6 @@ export default function BookingSection({
           key={day}
           className={`day 
             ${isSelected ? "selected" : ""} 
-            ${isInRange ? "in-range" : ""}
             ${isToday ? "today" : ""} 
             ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleDateClick(date)}
@@ -231,8 +228,7 @@ export default function BookingSection({
     console.log(variants, "varinats");
     dispatch(
       setCheckout({
-        startDate,
-        endDate,
+        selectedDate,
         guests: variants,
         totalPrice,
       })
@@ -246,14 +242,9 @@ export default function BookingSection({
       <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
         {/* <div className="selected-dates">
-          {startDate && (
+          {selectedDate && (
             <div>
-              {t("booking.startDate")}: {formatMonthYear(startDate)}
-            </div>
-          )}
-          {endDate && (
-            <div>
-              {t("booking.endDate")}: {formatMonthYear(endDate)}
+              {t("booking.selectedDate")}: {formatMonthYear(selectedDate)}
             </div>
           )}
         </div> */}
@@ -318,11 +309,19 @@ export default function BookingSection({
                         <button
                           className="counter-btn minus-btn"
                           onClick={() =>
-                            setGuests((prev) => ({
-                              ...prev,
-                              [variant]: Math.max(0, prev[variant] - 1),
-                            }))
+                            setGuests((prev) => {
+                              const currentValue = prev[variant];
+                              const newValue = Math.max(
+                                variantData?.min_quantity || 0,
+                                currentValue - (variantData?.increment_number || 1)
+                              );
+                              return {
+                                ...prev,
+                                [variant]: newValue,
+                              };
+                            })
                           }
+                          disabled={guests[variant] <= (variantData?.min_quantity || 0)}
                         >
                           <img src={MinusIcon} alt="minus" />
                         </button>
@@ -330,11 +329,19 @@ export default function BookingSection({
                         <button
                           className="counter-btn plus-btn"
                           onClick={() =>
-                            setGuests((prev) => ({
-                              ...prev,
-                              [variant]: prev[variant] + 1,
-                            }))
+                            setGuests((prev) => {
+                              const currentValue = prev[variant];
+                              const newValue = Math.min(
+                                variantData?.max_quantity || 100,
+                                currentValue + (variantData?.increment_number || 1)
+                              );
+                              return {
+                                ...prev,
+                                [variant]: newValue,
+                              };
+                            })
                           }
+                          disabled={guests[variant] >= (variantData?.max_quantity || 100)}
                         >
                           <img src={PlusIcon} alt="plus" />
                         </button>

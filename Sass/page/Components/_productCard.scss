@@ -785,6 +785,12 @@
   height: 22.02px;
 }
 
+.counter-btn:disabled {
+  background: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 .counter-value {
   font-size: 16px;
   min-width: 20px;

@@ -19,9 +19,14 @@ const useGetProductList = () => {
     queryFn: () => apiClient.get(`/products/GetProductList?lang=${language}`),
   });
 
-  if(response.data){
-    dispatch(setProducts(response.data.data.results));
-  }
+  // Dispatch to Redux only when data changes
+  useEffect(() => {
+    if(response.data && response.data.data && response.data.data.results){
+      console.log(response?.data?.data?.results, "response");
+      let orderedProducts = [...response?.data?.data?.results]?.sort((a, b) => a.display_order - b.display_order);
+      dispatch(setProducts(orderedProducts));
+    }
+  }, [response.data, dispatch]);
  
   return {
     data: response.data,
