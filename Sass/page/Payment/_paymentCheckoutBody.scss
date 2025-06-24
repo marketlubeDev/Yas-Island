@@ -30,6 +30,11 @@
   line-height: normal;
   // text-transform: capitalize;
 
+  @include respond(desktop) {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+
   @include respond(bigDesktop) {
     margin-left: 9rem;
     font-size: 1.1rem;
@@ -42,12 +47,21 @@
   margin-bottom: 30px;
   position: relative;
   padding: 10px 0px;
+
+  @include respond(desktop) {
+    margin-bottom: 25px;
+    padding: 8px 0px;
+  }
 }
 
 .step {
   text-align: center;
   position: relative;
   min-width: 500px;
+
+  @include respond(desktop) {
+    min-width: 450px;
+  }
 
   @include respond(bigDesktop) {
     min-width: 400px;
@@ -64,6 +78,11 @@
   line-height: normal;
   text-transform: capitalize;
 
+  @include respond(desktop) {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+
   @include respond(bigDesktop) {
     font-size: 0.85rem;
     margin-bottom: 6px;
@@ -78,6 +97,10 @@
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 1.1rem;
+  }
 
   @include respond(bigDesktop) {
     font-size: 1rem;
@@ -95,6 +118,11 @@
   width: 100%;
   height: 3px;
   background-color: #ddd;
+
+  @include respond(desktop) {
+    bottom: -18px;
+    height: 2.5px;
+  }
 }
 
 .step.active .step-line {
@@ -109,17 +137,26 @@
   border-radius: 2.5rem;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
-  min-height: 500px;
+  height: auto;
+  width: 100%;
+  max-width: 1300px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  @include respond(desktop) {
+    padding: 20px;
+    border-radius: 1.5rem;
+    width: 93%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
   @include respond(bigDesktop) {
     padding: 24px;
-    min-height: 450px;
     border-radius: 1.8rem;
-    width: 80%;
-    max-width: 950px;
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
   }
 }
@@ -129,7 +166,7 @@
   // margin: 0 auto;
 
   @include respond(bigDesktop) {
-    width: 380px !important;
+    width: 390px !important;
   }
 }
 
@@ -138,9 +175,14 @@
   margin-bottom: 24px;
   position: relative;
 
+  @include respond(desktop) {
+    margin: 0 5rem;
+    margin-bottom: 20px;
+  }
+
   @include respond(bigDesktop) {
-    margin: 0 1.5rem;
-    margin-bottom: 18px;
+    margin: 0 3rem;
+    margin-bottom: 15px;
   }
 }
 
@@ -154,6 +196,12 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+
+  @include respond(desktop) {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-left: 1rem;
+  }
 
   @include respond(bigDesktop) {
     font-size: 0.9rem;
@@ -173,6 +221,11 @@
   font-weight: 500;
   line-height: normal;
 
+  @include respond(desktop) {
+    font-size: 12px;
+    padding: 6px 17px;
+  }
+
   @include respond(bigDesktop) {
     padding: 4px 0;
     font-size: 12px;
@@ -186,12 +239,19 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: #ddd;
+  background-color: #6f677c;
+}
+
+@include respond(desktop) {
+  .input-underline {
+    width: 80%;
+    margin-left: 1rem;
+  }
 }
 
 @include respond(bigDesktop) {
-  .form-control {
-    width: 60%;
+  .input-underline {
+    width: 90%;
   }
 }
 
@@ -205,6 +265,14 @@
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
+
+  @include respond(desktop) {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 3rem;
+    width: 65%;
+    margin: 8px 0px 0 83px;
+  }
 
   @include respond(bigDesktop) {
     padding: 12px;
@@ -235,6 +303,11 @@
   line-height: normal;
   text-transform: capitalize;
 
+  @include respond(desktop) {
+    font-size: 1.5rem;
+    margin-left: -9rem;
+  }
+
   @include respond(bigDesktop) {
     font-size: 1.5rem;
     margin-left: -10rem;
@@ -253,8 +326,13 @@
   // line-height: 34px;
   text-transform: capitalize;
 
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 6px;
   }
 }
@@ -266,8 +344,12 @@
   font-style: normal;
   font-weight: 500;
 
+  @include respond(desktop) {
+    font-size: 12px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
@@ -280,8 +362,13 @@
   font-weight: 500;
   margin-bottom: 16px;
 
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 12px;
   }
 }
@@ -292,6 +379,11 @@
   border-radius: 8px;
   margin: 0 2.5rem;
   background-color: #f4f7f8;
+
+  @include respond(desktop) {
+    padding: 16px;
+    margin: 0 5rem;
+  }
 
   @include respond(bigDesktop) {
     padding: 16px;
@@ -305,8 +397,13 @@
   color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
 
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 0.8em;
+    font-size: 0.75em;
     margin-bottom: 6px;
   }
 }
@@ -327,6 +424,12 @@
   border-radius: 8px;
   text-align: center;
   font-size: 1.2em;
+
+  @include respond(desktop) {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+  }
 }
 
 .timer-section {
@@ -346,8 +449,12 @@
   line-height: normal;
   text-transform: capitalize;
 
+  @include respond(desktop) {
+    font-size: 11.5px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 12px;
+    font-size: 11.5px;
   }
 }
 
@@ -360,8 +467,12 @@
   line-height: normal;
   text-transform: capitalize;
 
+  @include respond(desktop) {
+    font-size: 11.5px;
+  }
+
   @include respond(bigDesktop) {
-    font-size: 12px;
+    font-size: 11.5px;
   }
 }
 
@@ -376,6 +487,18 @@
   border: 2.933px solid #dcd6e5;
   opacity: 0.6;
   background: #fff;
+}
+
+@include respond(desktop) {
+  .resend-btn {
+    font-size: 11.5px;
+  }
+}
+
+@include respond(bigDesktop) {
+  .resend-btn {
+    font-size: 11.5px;
+  }
 }
 
 .resend-btn:hover {

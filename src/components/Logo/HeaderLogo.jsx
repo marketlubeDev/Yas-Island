@@ -154,7 +154,7 @@ export default function HeaderLogo() {
         style={{
           borderWidth: isDarkMode ? "2px" : "1px",
           ...(isPaymentRoute && {
-            top: "-19px",
+            top: "-12px",
             right: "-2rem",
             left: language === "العربية" ? "auto" : undefined,
           }),
@@ -178,7 +178,9 @@ export default function HeaderLogo() {
   return (
     <>
       <div
-        className="header-logo-container"
+        className={`header-logo-container ${
+          isPaymentRoute ? "payment-route" : ""
+        }`}
         style={{
           justifyContent: "space-between",
           alignItems: "center",

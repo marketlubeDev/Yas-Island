@@ -7,6 +7,12 @@
   display: flex;
   align-items: center;
 
+  @include respond(desktop) {
+    width: 10rem;
+    min-width: 11rem;
+    height: 2.4rem;
+  }
+
   & select {
     width: 100%;
     height: 100%;
@@ -15,6 +21,10 @@
     background-color: transparent;
     color: var(--color-base-text);
     cursor: pointer;
+
+    @include respond(desktop) {
+      font-size: 14px;
+    }
 
     @include respond(bigDesktop) {
       font-size: 14px;
@@ -37,6 +47,10 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 15px;
+  }
 
   @include respond(bigDesktop) {
     font-size: 15px;

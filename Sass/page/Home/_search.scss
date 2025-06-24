@@ -8,18 +8,30 @@
   align-items: center;
   justify-content: space-between;
 
-  @include respond(smallPhone) {
-    margin: 0 auto;
+  // @include respond(smallPhone) {
+  //   margin: 0 auto;
+  // }
+  // @include respond(phone) {
+  //   margin: 0 auto;
+  // }
+
+  @include respond(desktop) {
+    width: 70%;
+    max-width: 25rem;
+    height: 2.4rem;
   }
-  @include respond(phone) {
-    margin: 0 auto;
-  }
+
   @include respond(bigDesktop) {
     width: 70%;
     max-width: 25rem;
   }
 
   & img {
+    @include respond(desktop) {
+      width: 16px !important;
+      height: 16px !important;
+    }
+
     @include respond(bigDesktop) {
       width: 18px !important;
       height: 18px !important;
@@ -31,6 +43,10 @@
     outline: none;
     width: 100%;
     color: var(--color-base-text);
+
+    @include respond(desktop) {
+      font-size: 15px !important;
+    }
 
     @include respond(bigDesktop) {
       font-size: 16px !important;

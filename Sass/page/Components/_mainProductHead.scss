@@ -105,6 +105,13 @@
   display: flex;
   gap: 6px;
 
+  @include respond(desktop) {
+    padding: 8px 10px;
+    height: 2.1rem;
+    width: auto;
+    font-size: 14px;
+  }
+
   @include respond(bigDesktop) {
     padding: 8px 10px;
     height: 2.1rem;
@@ -125,6 +132,12 @@
   display: block;
   margin-top: 4px;
 
+  @include respond(desktop) {
+    height: 14px;
+    width: 14px;
+    margin-top: 1px;
+  }
+
   @include respond(bigDesktop) {
     height: 14px;
     width: 14px;
@@ -141,6 +154,13 @@
 .mobile-header__lang-btn span {
   font-size: 14px;
   color: var(--color-base-text);
+}
+
+@include respond(desktop) {
+  .web-header__lang-btn span {
+    font-size: 14px;
+    margin-top: -4px;
+  }
 }
 
 .mobile-header__lang-dropdown {

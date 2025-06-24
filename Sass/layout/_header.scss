@@ -16,6 +16,10 @@
   gap: 1rem;
   margin-left: auto;
 
+  @include respond(desktop) {
+    margin-left: 30rem;
+  }
+
   @include respond(bigDesktop) {
     margin-left: 37rem;
     // margin-right: 2rem;

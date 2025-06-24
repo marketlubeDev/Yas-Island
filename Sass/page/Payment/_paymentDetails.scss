@@ -1,3 +1,7 @@
+@use "../../base/responive" as *;
+
+@use "../../base/responive" as *;
+
 .payment-form {
   display: flex;
   gap: 2rem;
@@ -109,6 +113,155 @@
     // Specific styling for phone number label
     .form-group:has(.form-group__phone) .form-group__label {
       margin-left: -2rem;
+    }
+  }
+
+  @include respond(bigDesktop) {
+    gap: 1.5rem;
+
+    &__left {
+      padding: 1.5rem;
+
+      .form-group-row {
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        margin-left: -1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        &__label {
+          font-size: 0.7rem;
+          margin-bottom: 0.2rem;
+        }
+
+        &__input {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+        }
+
+        &__select {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+          padding-right: 1.2rem;
+        }
+
+        &__phone {
+          gap: 1.2rem;
+          margin-left: -1.5rem;
+
+          &-code {
+            width: 70px;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            padding-right: 1.2rem;
+          }
+
+          &-number {
+            width: 180px;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .form-group:has(.form-group__phone) .form-group__label {
+        margin-left: -1.5rem;
+      }
+    }
+
+    &__right {
+      .order-summary {
+        margin-top: 1.5rem;
+
+        &__title {
+          font-size: 0.95rem;
+          padding: 0.8rem 1.5rem;
+        }
+
+        &__details {
+          margin-bottom: 1.2rem;
+          padding: 0.8rem 1.5rem;
+          gap: 0.8rem;
+
+          .detail-row {
+            .label {
+              font-size: 0.6rem;
+              margin-bottom: 0.8rem;
+            }
+
+            .values {
+              font-size: 0.75rem;
+              gap: 2.5rem;
+            }
+          }
+        }
+
+        &__pricing {
+          padding: 0rem 2rem;
+          margin-bottom: 1.2rem;
+
+          .price-row {
+            margin-bottom: 0.6rem;
+            font-size: 0.8rem;
+
+            &.total {
+              font-size: 0.9rem;
+              margin-top: 0.8rem;
+            }
+          }
+        }
+      }
+
+      .promo-code {
+        padding: 0.8rem 4rem;
+
+        &__label {
+          font-size: 0.7rem;
+          margin-bottom: 0.4rem;
+        }
+
+        &__input-group {
+          gap: 0.4rem;
+
+          input {
+            padding: 0.6rem;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+          }
+
+          .apply-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .terms {
+        padding: 0.8rem 1.5rem;
+
+        .checkbox-container {
+          margin-bottom: 0.8rem;
+          padding-left: 30px;
+
+          .checkbox-custom {
+            height: 18px;
+            width: 18px;
+
+            &:after {
+              left: 5px;
+              top: 1px;
+              width: 4px;
+              height: 9px;
+            }
+          }
+
+          .checkbox-text {
+            font-size: 0.8rem;
+          }
+        }
+      }
     }
   }
 
@@ -322,6 +475,111 @@
       }
     }
   }
+
+  // Responsive styles for bigDesktop
+  @include respond(bigDesktop) {
+    &__right {
+      .order-summary {
+        margin-top: 1.5rem;
+
+        &__title {
+          font-size: 0.9rem;
+          padding: 0.8rem 1.5rem;
+        }
+
+        &__details {
+          margin-bottom: 1.2rem;
+          padding: 0.8rem 1.5rem;
+          gap: 0.8rem;
+
+          .detail-row {
+            .label {
+              font-size: 0.6rem;
+              margin-bottom: 0.8rem;
+            }
+
+            .values {
+              font-size: 0.75rem;
+              gap: 1rem;
+
+              > div {
+                margin-bottom: 0.2rem;
+              }
+            }
+          }
+        }
+
+        &__pricing {
+          padding: 0rem 2rem;
+          margin-bottom: 1.2rem;
+
+          .price-row {
+            margin-bottom: 0.6rem;
+            font-size: 0.8rem;
+
+            &.total {
+              font-size: 0.9rem;
+              margin-top: 0.8rem;
+            }
+          }
+        }
+      }
+
+      .promo-code {
+        padding: 0.8rem 4rem;
+
+        &__label {
+          font-size: 0.7rem;
+          margin-bottom: 0.4rem;
+          width: 65%;
+        }
+
+        &__input-group {
+          gap: 0.4rem;
+
+          input {
+            padding: 0.6rem;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+          }
+
+          .apply-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .terms {
+        padding: 0.8rem 1.5rem;
+
+        .checkbox-container {
+          margin-bottom: 0.8rem;
+          padding-left: 30px;
+
+          .checkbox-custom {
+            height: 18px;
+            width: 18px;
+
+            &:after {
+              left: 5px;
+              top: 1px;
+              width: 4px;
+              height: 9px;
+            }
+          }
+
+          .checkbox-text {
+            font-size: 0.7rem;
+
+            a {
+              font-size: 0.65rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .proceedbtn {
@@ -382,4 +640,27 @@
   height: 1px;
   background: #d9d9d9;
   margin: 1rem 0;
+}
+
+@include respond(bigDesktop) {
+  .proceedbtn {
+    width: 96%;
+    margin-left: 0.8rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .price-row__label,
+  .price-row__values {
+    font-size: 0.8rem;
+  }
+
+  .price-row__label-total,
+  .price-row__values-total {
+    font-size: 0.9rem;
+  }
+
+  .divider-line {
+    margin: 0.8rem 0;
+  }
 }
