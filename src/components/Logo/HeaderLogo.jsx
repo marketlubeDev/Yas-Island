@@ -154,8 +154,9 @@ export default function HeaderLogo() {
         style={{
           borderWidth: isDarkMode ? "2px" : "1px",
           ...(isPaymentRoute && {
-            top: "-12px",
-            right: "-2rem",
+            // top: "-12px",
+            // right: "-2rem",
+
             left: language === "العربية" ? "auto" : undefined,
           }),
         }}
@@ -205,7 +206,7 @@ export default function HeaderLogo() {
             alt="logo"
             className="header-logo-img"
             style={{
-              width: isProductRoute ? "7rem" : "7rem",
+              width: isProductRoute ? "7rem" : "5.5rem",
               position: isProductRoute ? "relative" : "static",
               top: isProductRoute ? "8px" : "0",
             }}
@@ -215,7 +216,7 @@ export default function HeaderLogo() {
             alt="desc"
             className="header-logo-desc"
             style={{
-              width: isProductRoute ? "8rem" : "8rem",
+              width: isProductRoute ? "8rem" : "6.5rem",
               position: isProductRoute ? "relative" : "static",
               bottom: isProductRoute ? "16px" : "0",
             }}

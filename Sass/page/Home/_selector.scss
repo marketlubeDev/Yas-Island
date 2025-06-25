@@ -10,7 +10,7 @@
   @include respond(desktop) {
     width: 10rem;
     min-width: 11rem;
-    height: 2.4rem;
+    height: 2.2rem;
   }
 
   & select {
@@ -23,7 +23,7 @@
     cursor: pointer;
 
     @include respond(desktop) {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     @include respond(bigDesktop) {
@@ -49,7 +49,7 @@
   text-transform: capitalize;
 
   @include respond(desktop) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   @include respond(bigDesktop) {

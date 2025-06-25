@@ -11,6 +11,11 @@
   gap: 0;
   background-color: var(--color-base-bg);
 
+  @include respond(bigDesktop) {
+    padding: 1rem;
+    width: 113%;
+  }
+
   &-head {
     display: flex;
     justify-content: left;
@@ -115,8 +120,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  top: -2px;
-  right: -5rem;
+
   width: 19.625rem;
   height: 5rem;
   border-radius: 0rem 0rem 0rem 1.25rem;
@@ -129,19 +133,26 @@
   line-height: normal;
 
   @include respond(desktop) {
-    right: -3rem;
     width: 15rem;
-    height: 4rem;
+
+    height: 3.3rem;
     font-size: 1rem;
+    top: -0.6rem;
+    right: -2rem;
   }
 
   @include respond(bigDesktop) {
-    right: -10rem;
     width: 15rem;
     height: 3.7rem;
-    top: -0.5rem;
     font-size: 1.2rem;
     font-size: 16px;
+    top: -1.4rem;
+  }
+
+  @include respond(extraBigDesktop) {
+    width: 15rem;
+    height: 4.3rem;
+    font-size: 1.2rem;
   }
 
   // @include respond(extraBigDesktop) {
@@ -242,6 +253,13 @@
     border: 2px solid var(--color-base-btn-border);
     padding: 6px;
     margin-top: -0.1rem;
+  }
+
+  @include respond(extraBigDesktop) {
+    width: 43px;
+    height: 43px;
+    border: 2px solid var(--color-base-btn-border);
+    padding: 6px;
   }
 }
 

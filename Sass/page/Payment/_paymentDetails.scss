@@ -1,7 +1,5 @@
 @use "../../base/responive" as *;
 
-@use "../../base/responive" as *;
-
 .payment-form {
   display: flex;
   gap: 2rem;
@@ -15,11 +13,21 @@
     padding: 2rem;
     width: 65%;
 
+    @include respond(desktop) {
+      padding: 1.5rem;
+      width: 68%;
+    }
+
     .form-group-row {
       display: flex;
       gap: 2rem;
       margin-bottom: 2rem;
       margin-left: -2rem;
+
+      @include respond(desktop) {
+        margin-bottom: 1.5rem;
+        margin-left: -1.5rem;
+      }
 
       .form-group {
         flex: 1;
@@ -30,6 +38,10 @@
       margin-bottom: 2rem;
       position: relative;
 
+      @include respond(desktop) {
+        margin-bottom: 1.5rem;
+      }
+
       &__label {
         display: block;
         font-size: 0.75rem;
@@ -37,6 +49,12 @@
         margin-bottom: 0.25rem;
         color: var(--ip-label);
         text-transform: uppercase;
+
+        @include respond(desktop) {
+          font-size: 0.67rem;
+          margin-bottom: 0.2rem;
+          margin-left: 0rem;
+        }
       }
 
       &__input {
@@ -47,6 +65,11 @@
         font-size: 1rem;
         background: transparent;
         color: var(--color-base-text-secondary);
+
+        @include respond(desktop) {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+        }
 
         // &:focus {
         //   outline: none;
@@ -65,12 +88,18 @@
         appearance: none;
         color: var(--color-base-text-secondary);
 
+        @include respond(desktop) {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+          padding-right: 1.3rem;
+        }
+
         // &:focus {
         //   outline: none;
         //   border-bottom-color: #000;
         // }
 
-        background-image: url("../../../src/assets/icons/down.svg");
+        background-image: url("../../assets/icons/down.svg");
         background-repeat: no-repeat;
         background-position: right center;
         padding-right: 1.5rem;
@@ -80,6 +109,11 @@
         display: flex;
         gap: 1.5rem;
         margin-left: -2rem;
+
+        @include respond(desktop) {
+          gap: 0.5rem;
+          margin-left: -1.5rem;
+        }
 
         &-code {
           width: 80px;
@@ -92,7 +126,14 @@
           appearance: none;
           color: #ada5b7;
 
-          background-image: url("../../../src/assets/icons/down.svg");
+          @include respond(desktop) {
+            width: 45px;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            padding-right: 1.3rem;
+          }
+
+          background-image: url("../../assets/icons/down.svg");
           background-repeat: no-repeat;
           background-position: right center;
           padding-right: 1.5rem;
@@ -106,6 +147,12 @@
           font-size: 1rem;
           background: transparent;
           color: var(--color-base-text-secondary);
+
+          @include respond(desktop) {
+            width: 100px;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+          }
         }
       }
     }
@@ -113,6 +160,10 @@
     // Specific styling for phone number label
     .form-group:has(.form-group__phone) .form-group__label {
       margin-left: -2rem;
+
+      @include respond(desktop) {
+        margin-left: -1.5rem;
+      }
     }
   }
 
@@ -120,7 +171,8 @@
     gap: 1.5rem;
 
     &__left {
-      padding: 1.5rem;
+      padding: 0rem;
+      margin-top: -1.5rem;
 
       .form-group-row {
         gap: 1.5rem;
@@ -282,6 +334,12 @@
         font-weight: 600;
         line-height: normal;
         background-color: #f4f7f8;
+
+        @include respond(desktop) {
+          font-size: 0.9rem;
+          padding: 0.5rem 1.5rem;
+        }
+
         // text-transform: uppercase;
       }
 
@@ -303,6 +361,11 @@
             text-transform: uppercase;
             margin-bottom: 1rem;
             display: block;
+
+            @include respond(desktop) {
+              font-size: 0.6rem;
+              margin-bottom: 0.8rem;
+            }
           }
 
           .values {
@@ -480,16 +543,16 @@
   @include respond(bigDesktop) {
     &__right {
       .order-summary {
-        margin-top: 1.5rem;
+        margin-top: -6.5rem;
 
         &__title {
           font-size: 0.9rem;
-          padding: 0.8rem 1.5rem;
+          padding: 0.5rem 1.5rem;
         }
 
         &__details {
           margin-bottom: 1.2rem;
-          padding: 0.8rem 1.5rem;
+          padding: 0.2rem 1.5rem;
           gap: 0.8rem;
 
           .detail-row {
@@ -511,14 +574,15 @@
 
         &__pricing {
           padding: 0rem 2rem;
-          margin-bottom: 1.2rem;
+          margin-bottom: 0.8rem;
+          margin-top: 0.3rem;
 
           .price-row {
             margin-bottom: 0.6rem;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
 
             &.total {
-              font-size: 0.9rem;
+              font-size: 0.5rem;
               margin-top: 0.8rem;
             }
           }
@@ -644,10 +708,11 @@
 
 @include respond(bigDesktop) {
   .proceedbtn {
-    width: 96%;
+    width: 90%;
     margin-left: 0.8rem;
     padding: 0.8rem;
     font-size: 0.9rem;
+    margin-top: -0.5rem;
   }
 
   .price-row__label,

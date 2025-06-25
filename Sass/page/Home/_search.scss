@@ -18,7 +18,7 @@
   @include respond(desktop) {
     width: 70%;
     max-width: 25rem;
-    height: 2.4rem;
+    height: 2.2rem;
   }
 
   @include respond(bigDesktop) {
@@ -28,8 +28,8 @@
 
   & img {
     @include respond(desktop) {
-      width: 16px !important;
-      height: 16px !important;
+      width: 15px !important;
+      height: 15px !important;
     }
 
     @include respond(bigDesktop) {
@@ -55,6 +55,10 @@
     &::placeholder {
       color: var(--color-base-text);
       opacity: 0.6;
+
+      @include respond(desktop) {
+        font-size: 14px;
+      }
 
       @include respond(bigDesktop) {
         font-size: 16px;

@@ -12,11 +12,17 @@
   scroll-behavior: smooth;
 
   @include respond(desktop) {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 170px);
     padding: 1rem;
   }
 
   @include respond(bigDesktop) {
+    padding: 1rem;
+    height: calc(100vh - 100px);
+  }
+
+  @include respond(extraBigDesktop) {
+    height: calc(100vh - 170px);
     padding: 0.5rem;
   }
 
@@ -49,6 +55,11 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 0.5rem;
     }
+
+    @include respond(extraBigDesktop) {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.8rem;
+    }
   }
 
   &__card {
@@ -71,9 +82,15 @@
     }
 
     @include respond(bigDesktop) {
-      width: 220px;
-      height: 340px;
-      padding: 0.3rem;
+      width: 260px;
+      height: 380px;
+      padding: 0.5rem;
+    }
+
+    @include respond(extraBigDesktop) {
+      width: 280px;
+      height: 400px;
+      padding: 0.6rem;
     }
 
     &__image {
@@ -88,7 +105,11 @@
       }
 
       @include respond(bigDesktop) {
-        height: 140px;
+        height: 160px;
+      }
+
+      @include respond(extraBigDesktop) {
+        height: 170px;
       }
 
       & img {
@@ -126,8 +147,13 @@
         }
 
         @include respond(bigDesktop) {
-          font-size: 16px;
-          font-weight: 500;
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        @include respond(extraBigDesktop) {
+          font-size: 20px;
+          font-weight: 600;
         }
       }
 
@@ -148,10 +174,17 @@
         }
 
         @include respond(bigDesktop) {
-          font-size: 12px;
-          font-weight: 300;
-          line-height: 18px;
-          margin-top: 0.4rem;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 22px;
+          margin-top: 0.6rem;
+        }
+
+        @include respond(extraBigDesktop) {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 26px;
+          margin-top: 0.7rem;
         }
       }
 
@@ -199,8 +232,13 @@
           }
 
           @include respond(bigDesktop) {
-            font-size: 13px;
-            font-weight: 400;
+            font-size: 15px;
+            font-weight: 500;
+          }
+
+          @include respond(extraBigDesktop) {
+            font-size: 16px;
+            font-weight: 500;
           }
         }
 
@@ -218,8 +256,13 @@
           }
 
           @include respond(bigDesktop) {
-            font-size: 10px;
-            font-weight: 300;
+            font-size: 12px;
+            font-weight: 400;
+          }
+
+          @include respond(extraBigDesktop) {
+            font-size: 13px;
+            font-weight: 400;
           }
         }
       }
@@ -258,11 +301,21 @@
     }
 
     @include respond(bigDesktop) {
-      width: 95px;
-      height: 50px;
-      font-size: 12px;
-      font-weight: 500;
-      gap: 5px;
+      width: 110px;
+      height: 52px;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 6px;
+    }
+
+    @include respond(extraBigDesktop) {
+      width: 115px;
+      height: 52px;
+      font-size: 16px;
+      font-weight: 600;
+      gap: 7px;
+      border-radius: 50px;
+      border: 3px solid var(--color-base-side-bar-border);
     }
   }
 }
@@ -288,7 +341,7 @@
   @include respond(bigDesktop) {
     width: 100% !important;
     max-width: 1200px !important;
-    height: 80vh !important;
+    height: 100vh !important;
     max-height: 700px !important;
     padding: 1.5rem !important;
   }
@@ -535,6 +588,13 @@
 }
 
 /* Make Swiper pagination bullets white and position them at the bottom */
+
+.swiper-horizontal {
+  @include respond(desktop) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
 .swiper-pagination-bullets {
   bottom: 10px !important; /* Adjust as needed */
   text-align: center;
@@ -1044,6 +1104,11 @@
   gap: 12px;
   padding-top: 20px;
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0);
+
+  @include respond(bigDesktop) {
+    width: 132%;
+    margin-left: -6.5rem;
+  }
 
   @include respond(desktop) {
     width: 140%;

@@ -91,10 +91,11 @@ export default function PaymentCheckoutBody() {
         </>
       )}
       <div
-        className="payment-checkout__content"
-        style={{
-          minHeight: showHeaderComponents ? "63vh" : "85vh",
-        }}
+        className={`payment-checkout__content ${
+          showHeaderComponents
+            ? "payment-checkout__content--with-header"
+            : "payment-checkout__content--no-header"
+        }`}
       >
         {renderContent()}
       </div>

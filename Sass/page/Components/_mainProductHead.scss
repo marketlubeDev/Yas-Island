@@ -119,10 +119,22 @@
     font-size: 14px;
   }
 
+  @include respond(extraBigDesktop) {
+    padding: 20px 20px;
+    height: 2.1rem;
+    width: auto;
+    font-size: 14px;
+  }
+
   span {
     @include respond(bigDesktop) {
       font-size: 14px !important;
       margin-top: -3px;
+    }
+
+    @include respond(extraBigDesktop) {
+      font-size: 16px !important;
+      margin-top: -10px;
     }
   }
 }
@@ -142,6 +154,12 @@
     height: 14px;
     width: 14px;
     margin-top: 1px;
+  }
+
+  @include respond(extraBigDesktop) {
+    height: 20px;
+    width: 20px;
+    margin-top: -10px;
   }
 }
 

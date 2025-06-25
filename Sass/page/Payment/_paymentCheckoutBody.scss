@@ -5,6 +5,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
+  // height: 82vh;
   // height: 100vh;
 }
 
@@ -36,7 +37,7 @@
   }
 
   @include respond(bigDesktop) {
-    margin-left: 9rem;
+    margin-left: 3rem;
     font-size: 1.1rem;
   }
 }
@@ -156,8 +157,75 @@
     padding: 24px;
     border-radius: 1.8rem;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1150px;
     margin: 0 auto;
+    height: auto;
+  }
+
+  // Responsive height classes
+  &--with-header {
+    min-height: 63vh;
+
+    @include respond(smallPhone) {
+      min-height: 50vh;
+    }
+
+    @include respond(phone) {
+      min-height: 55vh;
+    }
+
+    @include respond(tablets) {
+      min-height: 58vh;
+    }
+
+    @include respond(bigTablets) {
+      min-height: 60vh;
+    }
+
+    @include respond(desktop) {
+      min-height: 58vh;
+    }
+
+    @include respond(bigDesktop) {
+      min-height: 65vh;
+      height: 100%;
+    }
+
+    @include respond(extraBigDesktop) {
+      min-height: 60vh;
+    }
+  }
+
+  &--no-header {
+    min-height: 85vh;
+
+    @include respond(smallPhone) {
+      min-height: 75vh;
+    }
+
+    @include respond(phone) {
+      min-height: 78vh;
+    }
+
+    @include respond(tablets) {
+      min-height: 80vh;
+    }
+
+    @include respond(bigTablets) {
+      min-height: 82vh;
+    }
+
+    @include respond(desktop) {
+      min-height: 80vh;
+    }
+
+    @include respond(bigDesktop) {
+      min-height: 75vh;
+    }
+
+    @include respond(extraBigDesktop) {
+      min-height: 80vh;
+    }
   }
 }
 
