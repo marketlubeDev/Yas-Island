@@ -106,10 +106,11 @@ export default function ProductModal({
       }
       setShowBookingSection(true);
     } catch (error) {
-      console.log(error, "error");
-      toast.error(error?.response?.data?.message || "Something went wrong", {
-        position: "top-center",
-      });
+      // console.log(error, "error");
+      // toast.error(error?.response?.data?.message || "Something went wrong", {
+      //   position: "top-center",
+      // });
+      setShowBookingSection(true);
     } finally { 
       setIsLoading(false);
     }
