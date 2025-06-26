@@ -4985,6 +4985,9 @@ body {
   border: none;
   transition: color 0.2s;
 }
+.mobile-top__item span {
+  opacity: 0.4;
+}
 .mobile-top__item:hover {
   color: #1976d2;
 }
@@ -4992,8 +4995,8 @@ body {
   content: "";
   position: absolute;
   right: 0;
-  top: 8%;
-  height: 82%;
+  top: 16%;
+  height: 75%;
   width: 1px;
   background-color: var(--color-base-mobile-top-item-right-border);
 }
@@ -5003,10 +5006,18 @@ body {
   object-fit: contain;
   margin-bottom: 2px;
   display: block;
+  opacity: 0.4;
 }
 .mobile-top__item--active {
   color: var(--color-base-mobile-top-item-text-active);
   font-weight: 600;
+  opacity: 1;
+}
+.mobile-top__item--active img {
+  opacity: 1;
+}
+.mobile-top__item--active span {
+  opacity: 1;
 }
 .mobile-top__item--active .mobile-top__icon {
   filter: none;
