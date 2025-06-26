@@ -796,6 +796,7 @@ body {
   grid-template-columns: 12rem 1fr;
   gap: 0;
   background-color: var(--color-base-bg);
+  height: 88vh;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .product {
@@ -1205,7 +1206,6 @@ body {
 .ProductCard {
   width: 100%;
   height: 100%;
-  background-color: var(--color-base-product-card-bg);
   border-radius: 0.5rem;
   padding: 2rem;
   overflow-y: scroll;
@@ -1275,6 +1275,12 @@ body {
   .ProductCard__grid {
     grid-template-columns: repeat(5, 1fr);
     gap: 0.8rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+  .ProductCard .ProductCard__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 }
 .ProductCard__card {

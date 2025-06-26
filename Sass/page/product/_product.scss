@@ -10,6 +10,7 @@
   grid-template-columns: 12rem 1fr;
   gap: 0;
   background-color: var(--color-base-bg);
+  height: 88vh;
 
   @include respond(bigDesktop) {
     padding: 1rem;
