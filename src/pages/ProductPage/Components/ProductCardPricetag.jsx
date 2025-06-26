@@ -10,16 +10,20 @@ export default function ProductCardPricetag({
   netPrice,
 }) {
   return (
-    <div className="ProductCard__card__pricetag">
-      <div className="ProductCard__card__pricetag__price">
-        <p className="ProductCard__card__pricetag__price__text">
-          {currency} {price}
-        </p>
-        <p className="ProductCard__card__pricetag__price__tax">
-          {netPrice}+{tax} {taxDescription}
-        </p>
+    <>
+      <div className="ProductCard__card__content__divider"></div>
+      <div className="ProductCard__card__pricetag">
+        {/* <div className="ProductCard__card__content__divider"></div> */}
+        <div className="ProductCard__card__pricetag__price">
+          <p className="ProductCard__card__pricetag__price__text">
+            {currency} {price}
+          </p>
+          <p className="ProductCard__card__pricetag__price__tax">
+            {netPrice}+{tax} {taxDescription}
+          </p>
+        </div>
+        <AddtoCartbtn onClick={onAddToCart} />
       </div>
-      <AddtoCartbtn onClick={onAddToCart} />
-    </div>
+    </>
   );
 }

@@ -1,4 +1,6 @@
 @use "../abstract/variables" as *;
+@use "../base/responive" as *;
+
 .base-filter {
   border-radius: 2rem;
   padding: 0.5rem;
@@ -7,4 +9,11 @@
   padding-right: 1rem;
   border-radius: 5rem;
   border: 2px solid var(--color-base-btn-border);
+
+  @include respond(bigDesktop) {
+    height: 2.2rem;
+    padding: 0.4rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
 }

@@ -1,7 +1,11 @@
+@use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
+
 .payment-checkout {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
+  // height: 82vh;
   // height: 100vh;
 }
 
@@ -25,23 +29,44 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-left: -4rem;
   // text-transform: capitalize;
+
+  @include respond(desktop) {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+
+  @include respond(bigDesktop) {
+    margin-left: 3rem;
+    font-size: 1.1rem;
+  }
 }
 
 .payment-checkout__steps {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-top: -1rem;
   position: relative;
   padding: 10px 0px;
+
+  @include respond(desktop) {
+    margin-bottom: 25px;
+    padding: 8px 0px;
+  }
 }
 
 .step {
   text-align: center;
   position: relative;
   min-width: 500px;
+
+  @include respond(desktop) {
+    min-width: 450px;
+  }
+
+  @include respond(bigDesktop) {
+    min-width: 400px;
+  }
 }
 
 .step span {
@@ -53,6 +78,16 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
 }
 
 .step h2 {
@@ -63,6 +98,14 @@
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 1.1rem;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 1rem;
+  }
 }
 
 .step.active h2 {
@@ -76,6 +119,11 @@
   width: 100%;
   height: 3px;
   background-color: #ddd;
+
+  @include respond(desktop) {
+    bottom: -18px;
+    height: 2.5px;
+  }
 }
 
 .step.active .step-line {
@@ -90,34 +138,143 @@
   border-radius: 2.5rem;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
-  min-height: 500px;
+  height: auto;
+  width: 100%;
+  max-width: 1300px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include respond(desktop) {
+    padding: 20px;
+    border-radius: 1.5rem;
+    width: 93%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 24px;
+    border-radius: 1.8rem;
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  // Responsive height classes
+  &--with-header {
+    min-height: 63vh;
+
+    @include respond(smallPhone) {
+      min-height: 50vh;
+    }
+
+    @include respond(phone) {
+      min-height: 55vh;
+    }
+
+    @include respond(tablets) {
+      min-height: 58vh;
+    }
+
+    @include respond(bigTablets) {
+      min-height: 60vh;
+    }
+
+    @include respond(desktop) {
+      min-height: 58vh;
+    }
+
+    @include respond(bigDesktop) {
+      min-height: 65vh;
+      height: 100%;
+    }
+
+    @include respond(extraBigDesktop) {
+      min-height: 60vh;
+    }
+  }
+
+  &--no-header {
+    min-height: 85vh;
+
+    @include respond(smallPhone) {
+      min-height: 75vh;
+    }
+
+    @include respond(phone) {
+      min-height: 78vh;
+    }
+
+    @include respond(tablets) {
+      min-height: 80vh;
+    }
+
+    @include respond(bigTablets) {
+      min-height: 82vh;
+    }
+
+    @include respond(desktop) {
+      min-height: 80vh;
+    }
+
+    @include respond(bigDesktop) {
+      min-height: 75vh;
+    }
+
+    @include respond(extraBigDesktop) {
+      min-height: 80vh;
+    }
+  }
 }
 
 .form-container {
   width: 500px !important;
-  margin-top: 1rem;
   // margin: 0 auto;
+
+  @include respond(bigDesktop) {
+    width: 390px !important;
+  }
 }
 
 .form-group {
   margin: 0 2.5rem;
   margin-bottom: 24px;
   position: relative;
+
+  @include respond(desktop) {
+    margin: 0 5rem;
+    margin-bottom: 20px;
+  }
+
+  @include respond(bigDesktop) {
+    margin: 0 3rem;
+    margin-bottom: 15px;
+  }
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-size: 1.05rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+
+  @include respond(desktop) {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-left: 1rem;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
 }
 
 .form-control {
@@ -126,14 +283,21 @@
   padding: 8px 0;
   font-size: 16px;
   outline: none;
-  background: transparent;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  &::placeholder {
-    color: #000;
+
+  @include respond(desktop) {
+    font-size: 12px;
+    padding: 6px 17px;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 4px 0;
+    font-size: 12px;
+    // width: 60%;
   }
 }
 
@@ -142,22 +306,49 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1.5px;
-  background-color: var(--color-email-form-label);
+  height: 1px;
+  background-color: #6f677c;
+}
+
+@include respond(desktop) {
+  .input-underline {
+    width: 80%;
+    margin-left: 1rem;
+  }
+}
+
+@include respond(bigDesktop) {
+  .input-underline {
+    width: 90%;
+  }
 }
 
 .confirm-button {
   width: 100%;
   padding: 16px;
-  margin-left: 1.5rem;
   border-radius: 4.375rem;
   background: var(--cnfm-btn-clr);
   border: none;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
+
+  @include respond(desktop) {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 3rem;
+    width: 65%;
+    margin: 8px 0px 0 83px;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 3rem;
+    width: 80%;
+    margin: 8px 0px 0 40px;
+  }
 }
 .payment-checkout__header {
   display: flex;
@@ -176,11 +367,19 @@
   color: var(--color-pymnt-title-clr);
   font-size: 2.125rem;
   font-style: normal;
-  margin-top: 1rem;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
-  margin-left: -57px;
+
+  @include respond(desktop) {
+    font-size: 1.5rem;
+    margin-left: -9rem;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 1.5rem;
+    margin-left: -10rem;
+  }
 }
 
 .verification-text {
@@ -194,6 +393,16 @@
   font-weight: 500;
   // line-height: 34px;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
 }
 
 .email {
@@ -202,6 +411,14 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
+
+  @include respond(desktop) {
+    font-size: 12px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 12px;
+  }
 }
 
 .spam-notice {
@@ -212,14 +429,34 @@
   font-style: normal;
   font-weight: 500;
   margin-bottom: 16px;
+
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
 }
 
 .verification-container {
-  background-color: var(--color-email-code-input-bg);
+  background-color: var(--color-email-form-box);
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
-  width: 90%;
+  background-color: #f4f7f8;
+
+  @include respond(desktop) {
+    padding: 16px;
+    margin: 0 5rem;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 16px;
+    margin: 0 1.5rem;
+  }
 }
 
 .verification-label {
@@ -227,6 +464,16 @@
   font-size: 0.9em;
   color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
+
+  @include respond(desktop) {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 0.75em;
+    margin-bottom: 6px;
+  }
 }
 
 .code-inputs {
@@ -237,14 +484,20 @@
 }
 
 .code-input {
-  width: 55px;
-  height: 55px;
-  border: 1px solid #6f677c;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
   text-align: center;
   font-size: 1.2em;
+
+  @include respond(desktop) {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+  }
 }
 
 .timer-section {
@@ -263,6 +516,14 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 11.5px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 11.5px;
+  }
 }
 
 .timer {
@@ -273,6 +534,14 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 11.5px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 11.5px;
+  }
 }
 
 .resend-btn {
@@ -280,12 +549,24 @@
   border: none;
   color: #666;
   cursor: pointer;
-  padding: 14px 24px;
+  padding: 6px 12px;
   // border-radius: 20px;
   border-radius: 51.322px;
   border: 2.933px solid #dcd6e5;
   opacity: 0.6;
   background: #fff;
+}
+
+@include respond(desktop) {
+  .resend-btn {
+    font-size: 11.5px;
+  }
+}
+
+@include respond(bigDesktop) {
+  .resend-btn {
+    font-size: 11.5px;
+  }
 }
 
 .resend-btn:hover {
@@ -295,44 +576,4 @@
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
-}
-
-.payment-checkout-page .header-actions .cart-button {
-  margin-top: -7rem;
-}
-
-// More specific selectors to override existing styles
-.payment-checkout-page .header-logo-container .header-actions .cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  position: relative !important;
-}
-
-.payment-checkout-page .header-logo-container .header-actions .ar-cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  left: auto !important; // Override the left positioning from product page
-  position: relative !important;
-}
-
-// Even more specific selectors with body tag
-body
-  .payment-checkout-page
-  .header-logo-container
-  .header-actions
-  button.cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  position: relative !important;
-}
-
-body
-  .payment-checkout-page
-  .header-logo-container
-  .header-actions
-  button.ar-cart-button {
-  top: -18px !important;
-  right: -2rem !important;
-  left: auto !important;
-  position: relative !important;
 }

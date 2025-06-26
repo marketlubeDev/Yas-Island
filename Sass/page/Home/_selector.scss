@@ -1,10 +1,17 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .selector {
   width: 12rem;
   min-width: 12rem;
   display: flex;
   align-items: center;
+
+  @include respond(desktop) {
+    width: 10rem;
+    min-width: 11rem;
+    height: 2.2rem;
+  }
 
   & select {
     width: 100%;
@@ -14,6 +21,14 @@
     background-color: transparent;
     color: var(--color-base-text);
     cursor: pointer;
+
+    @include respond(desktop) {
+      font-size: 13px;
+    }
+
+    @include respond(bigDesktop) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -32,4 +47,13 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(desktop) {
+    font-size: 14px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 15px;
+    padding-left: 6px;
+  }
 }

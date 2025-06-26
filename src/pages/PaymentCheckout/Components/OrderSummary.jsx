@@ -7,6 +7,21 @@ import closeIcon from "../../../assets/icons/close.svg";
 export default function OrderSummary({ formData, setFormData }) {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Check if screen is bigDesktop (1400px - 1699px)
+  const isBigDesktop = windowWidth >= 1400 && windowWidth <= 1699;
+  // Check if screen is desktop (1200px - 1399px)
+  const isDesktop = windowWidth >= 1200 && windowWidth <= 1399;
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -65,7 +80,7 @@ export default function OrderSummary({ formData, setFormData }) {
           height: "110px",
           width: "300px",
           padding: "10px",
-          marginLeft: "4.5rem",
+          marginLeft: isBigDesktop ? "40px" : isDesktop ? "20px" : "4.5rem",
         }}
       >
         <p className="promo-code__label">
