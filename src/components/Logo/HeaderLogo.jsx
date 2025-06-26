@@ -80,9 +80,7 @@ export default function HeaderLogo() {
         aria-label={t("common.accessibility")}
         onClick={onAccessibilityOpen}
         style={{
-          ...(isPaymentRoute && {
-         
-          }),
+          ...(isPaymentRoute && {}),
         }}
       >
         <span className="product-header__icon">
@@ -103,9 +101,7 @@ export default function HeaderLogo() {
           onClick={() => setShowLangDropdown((v) => !v)}
           type="button"
           style={{
-            ...(isPaymentRoute && {
-         
-            }),
+            ...(isPaymentRoute && {}),
           }}
         >
           <img
@@ -192,7 +188,7 @@ export default function HeaderLogo() {
           alignItems: "center",
         }}
       >
-        <div
+        {/* <div
           className="header-logo"
           onClick={handleLogoClick}
           style={{
@@ -226,9 +222,9 @@ export default function HeaderLogo() {
               bottom: isProductRoute ? "16px" : "0",
             }}
           />
-        </div>
+        </div> */}
         {isProductRoute ? (
-          <div style={{ width: "87%" }}>
+          <div style={{ width: "100%" }}>
             {headerActions}
             <ProductHead />
           </div>

@@ -3,7 +3,7 @@
 
 .header {
   width: 100%;
-  background-color: var(--color-base-bg);
+  background-color: var(--color-base-product-card-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,18 +16,6 @@
   gap: 1rem;
   margin-left: auto;
   justify-content: flex-end;
-
-  @include respond(desktop) {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  @include respond(extraBigDesktop) {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
 }
 
 .product-header .header-actions {

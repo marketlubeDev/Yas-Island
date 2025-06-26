@@ -2,14 +2,12 @@
 @use "../../base/responive" as *;
 
 .product {
-  // min-height: 100vh;
-  // max-height: 100vh;
   width: 100%;
-  padding: 2rem;
+  // padding: 2rem;
   display: grid;
-  grid-template-columns: 12rem 1fr;
+  grid-template-columns: 13rem 1fr;
   gap: 0;
-  // background-color: var(--color-base-bg);
+  background-color: red;
 
   &-head {
     display: flex;

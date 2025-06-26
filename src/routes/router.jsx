@@ -1,20 +1,10 @@
-import { createBrowserRouter, Navigate, useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
-import LandingPage from "../pages/Home/LandingPage";
-import MobileLanding from "../pages/Home/MobileLandingPage";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
-import EmailVerification from "../pages/ProductPage/MobileProductPage/Components/EmailVerification";
 import MobilePaymentFlow from "../pages/ProductPage/MobileProductPage/Components/MobilePaymentFlow";
-
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
-import UnderConstruction from "../components/UnderConstruction";
-
-const ResponsiveLanding = () => {
-  return <Navigate to="/product" replace />;
-};
 
 const ResponsiveProduct = () => {
   const { isSmallPhone, isPhone } = useResponsive();
@@ -28,12 +18,6 @@ const ResponsiveEmailVerification = () => {
   return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
 };
 
-const ResponsiveCheckOut = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
-};
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +25,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ResponsiveLanding />,
+        element: <Navigate to="/product" replace />,
       },
       {
         path: "product",
@@ -50,11 +34,6 @@ export const router = createBrowserRouter([
       {
         path: "payment",
         element: <ResponsiveEmailVerification />,
-      },
-
-      {
-        path: "contact",
-        element: <div>Contact Page</div>,
       },
     ],
   },

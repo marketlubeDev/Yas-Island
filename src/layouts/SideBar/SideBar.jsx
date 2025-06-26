@@ -42,7 +42,7 @@ export default function SideBar() {
 
   return (
     <nav className="side-bar normal-title-txt">
-      {/* <Logo /> */}
+      <Logo />
       <ul className="side-bar-list">
         {sideBarItems.map((item) => (
           <div

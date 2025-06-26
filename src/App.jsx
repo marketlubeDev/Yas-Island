@@ -16,7 +16,7 @@ export default function App() {
     <div dir={isRTL ? "rtl" : "ltr"}>
       <GlobalZoomEffect />
       <GlobalInvertColor />
-      <Header />
+      {/* <Header /> */}
       <Home>
         <Outlet />
       </Home>
