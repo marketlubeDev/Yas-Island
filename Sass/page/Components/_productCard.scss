@@ -334,21 +334,64 @@
   background: var(--color-base-bg) !important;
 
   @include respond(desktop) {
-    width: 100% !important;
-    max-width: 1200px !important;
-    height: 80vh !important;
-    max-height: 700px !important;
+    // width: 100% !important;
+    // max-width: 1200px !important;
+    // height: 80vh !important;
+    // max-height: 700px !important;
     padding: 1.5rem !important;
     border-radius: 32px;
     border: 2px solid var(--color-base-product-card-card-item-border);
   }
 
   @include respond(bigDesktop) {
-    width: 100% !important;
-    max-width: 1200px !important;
-    height: 100vh !important;
-    max-height: 700px !important;
+    // width: 100% !important;
+    // max-width: 1200px !important;
+    // height: 100vh !important;
+    // max-height: 700px !important;
     padding: 1.5rem !important;
+  }
+}
+
+// Ensure proper centering for all screen sizes
+.product-modal {
+  .ant-modal {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    .ant-modal-content {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      margin: 0 auto !important;
+    }
+  }
+}
+
+// Additional centering for modal wrapper
+.product-modal .ant-modal-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+// Specific fixes for macOS Safari and other webkit browsers
+@supports (-webkit-appearance: none) {
+  .product-modal .ant-modal-wrap {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+
+  .product-modal .ant-modal {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
   }
 }
 .product-modal .ant-modal-mask {

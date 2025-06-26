@@ -1385,10 +1385,6 @@ body {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-content {
-    width: 100% !important;
-    max-width: 1200px !important;
-    height: 80vh !important;
-    max-height: 700px !important;
     padding: 1.5rem !important;
     border-radius: 32px;
     border: 2px solid var(--color-base-product-card-card-item-border);
@@ -1396,12 +1392,28 @@ body {
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .product-modal .ant-modal-content {
-    width: 100% !important;
-    max-width: 1200px !important;
-    height: 100vh !important;
-    max-height: 700px !important;
     padding: 1.5rem !important;
   }
+}
+
+.product-modal .ant-modal {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.product-modal .ant-modal .ant-modal-content {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+}
+
+.product-modal .ant-modal-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
 }
 
 .product-modal .ant-modal-mask {
