@@ -7,6 +7,12 @@
   display: flex;
   align-items: center;
 
+  @include respond(bigTablets) {
+    width: 10.8rem;
+    min-width: 10rem;
+    height: 2.2rem;
+  }
+
   @include respond(desktop) {
     width: 10rem;
     min-width: 11rem;
@@ -21,6 +27,10 @@
     background-color: transparent;
     color: var(--color-base-text);
     cursor: pointer;
+
+    @include respond(bigTablets) {
+      font-size: 14px;
+    }
 
     @include respond(desktop) {
       font-size: 13px;
@@ -47,6 +57,10 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+
+  @include respond(bigTablets) {
+    font-size: 14px;
+  }
 
   @include respond(desktop) {
     font-size: 14px;

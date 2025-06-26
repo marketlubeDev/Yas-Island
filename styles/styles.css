@@ -476,6 +476,68 @@ body {
   border-radius: 126.103px;
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .side-bar {
+    font-size: 0.85rem;
+    padding: 0.8rem 0;
+  }
+  .side-bar-bottom {
+    padding: 0.8rem 0;
+  }
+  .side-bar-bottom .chat-button {
+    border-radius: 1.7rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+  .side-bar-list-item {
+    border-radius: 1.7rem;
+  }
+  .side-bar-list-item .item-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.6rem;
+  }
+  .side-bar-list-item .item-icon img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .side-bar-list-item .item-text {
+    font-size: 0.85rem;
+  }
+  .ar-side-bar-list-item {
+    border-radius: 1.7rem;
+  }
+  .ar-side-bar-list-item .item-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.6rem;
+  }
+  .ar-side-bar-list-item .item-icon img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .ar-side-bar-list-item .item-text {
+    font-size: 0.85rem;
+  }
+  .side-bar-list-item-container {
+    padding: 0.4rem;
+    border-width: 3px;
+    border-radius: 105px;
+  }
+  .side-bar-list-item-container.active {
+    border-width: 3px;
+    border-radius: 105px;
+  }
+  .ar-side-bar-list-item-container {
+    padding: 0.4rem;
+    border-width: 3px;
+    border-radius: 105px;
+  }
+  .ar-side-bar-list-item-container.active {
+    border-width: 3px;
+    border-radius: 105px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .side-bar {
     font-size: 0.85rem;
@@ -749,6 +811,16 @@ body {
   position: relative;
   top: 1.6rem;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-head {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    gap: 1rem;
+    top: 1.2rem;
+  }
+}
 .product-head__right {
   display: flex;
   justify-content: left;
@@ -851,6 +923,15 @@ body {
   font-weight: 500;
   line-height: normal;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .cart-button {
+    width: 14.5rem;
+    height: 3.5rem;
+    font-size: 1rem;
+    top: -0.9rem;
+    right: -2rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-button {
     width: 15rem;
@@ -952,6 +1033,15 @@ body {
   cursor: pointer;
   padding: 5px;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .accessibility-button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-base-btn-border);
+    padding: 6px;
+    margin-top: -0.2rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .accessibility-button {
     width: 36px;
@@ -1006,6 +1096,12 @@ body {
   display: flex;
   align-items: center;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .cart-icon img {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-icon img {
     width: 1.3rem;
@@ -1033,6 +1129,14 @@ body {
   justify-content: center;
   font-size: 12px;
   font-weight: bold;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .cart-notification {
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -1063,6 +1167,13 @@ body {
   align-items: center;
   gap: 1rem;
   margin-left: auto;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .header-actions {
@@ -1101,6 +1212,12 @@ body {
   height: calc(100vh - 250px);
   scroll-behavior: smooth;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard {
+    height: calc(100vh - 170px);
+    padding: 1rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard {
     height: calc(100vh - 170px);
@@ -1136,6 +1253,12 @@ body {
   gap: 3rem;
   justify-items: center;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1166,6 +1289,13 @@ body {
   flex-direction: column;
   align-items: center;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card {
+    width: 220px;
+    height: 340px;
+    padding: 0.4rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card {
     width: 220px;
@@ -1193,6 +1323,11 @@ body {
   flex-shrink: 0;
   background-color: #f0f0f0;
   border-radius: 0.8rem;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__image {
+    height: 140px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__image {
@@ -1223,6 +1358,11 @@ body {
   align-items: start;
   margin-top: 1.2rem;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content {
+    margin-top: 0.8rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content {
     margin-top: 1rem;
@@ -1235,6 +1375,12 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content__title {
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content__title {
@@ -1261,6 +1407,14 @@ body {
   font-weight: 400;
   line-height: 28.8px;
   margin-top: 0.8rem;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content__description {
+    font-size: 13.5px;
+    font-weight: 350;
+    line-height: 24px;
+    margin-top: 0.6rem;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content__description {
@@ -1291,6 +1445,11 @@ body {
   height: 0.826px;
   background: var(--color-base-product-card-divider);
   margin-top: 1rem;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content__divider {
+    margin-top: 0.6rem;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content__divider {
@@ -1323,6 +1482,12 @@ body {
   line-height: normal;
   text-transform: capitalize;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__pricetag__price__text {
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__pricetag__price__text {
     font-size: 14px;
@@ -1348,6 +1513,12 @@ body {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__pricetag__price__tax {
+    font-size: 13px;
+    font-weight: 500;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__pricetag__price__tax {
@@ -1386,6 +1557,15 @@ body {
   line-height: normal;
   text-transform: capitalize;
   cursor: pointer;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .AddtoCartbtn__button {
+    width: 100px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 6px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .AddtoCartbtn__button {
@@ -2804,6 +2984,165 @@ body {
   background-color: var(--color-base-bg) !important;
 }
 
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .ant-drawer-content {
+    width: 450px !important;
+    max-width: 450px !important;
+  }
+  .cart-drawer .ant-drawer-body {
+    width: 470px !important;
+    max-width: 400px !important;
+  }
+  .cart-content {
+    height: 93vh;
+    max-height: 93vh;
+    overflow-y: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .cart-header {
+    padding: 6px 12px;
+  }
+  .cart-header h2 {
+    font-size: 1rem;
+    margin: 4px 0;
+    font-weight: 600;
+  }
+  .booking-date {
+    padding: 6px 12px;
+    border-radius: 0.4rem;
+    margin: 4px 0;
+  }
+  .booking-date p {
+    font-size: 0.7rem;
+    margin: 1px 0;
+  }
+  .booking-date p span {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .expand-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .cart-item {
+    padding: 8px 12px;
+    gap: 8px;
+    border-bottom: 1px solid var(--color-cart-item-bdr);
+  }
+  .cart-item img {
+    width: 60px;
+    height: 42px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  .item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-details h4 {
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 2px 0;
+    font-weight: 700;
+  }
+  .item-details p {
+    font-size: 0.65rem;
+    margin: 1px 0;
+    font-weight: 600;
+  }
+  .item-details small {
+    font-size: 0.55rem;
+    margin: 1px 0;
+    color: #594f67;
+  }
+  .quantity-controls {
+    gap: 10px;
+    align-items: center;
+  }
+  .quantity-controls span {
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+  .controls {
+    gap: 6px;
+    align-items: center;
+  }
+  .delete-btn img {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .cart-summary {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: auto;
+    margin-bottom: 0;
+    background: var(--color-base-bg);
+    box-shadow: 0px -8px 24px 0px rgba(27, 36, 53, 0.15);
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+  .summary-row {
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .summary-row span {
+    font-size: 0.7rem;
+  }
+  .total {
+    font-size: 0.8rem;
+    margin: 6px 0;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  .total span {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  .cart-actions {
+    gap: 10px;
+    margin-top: 6px;
+    display: flex;
+  }
+  .save-cart-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    border-radius: 30px;
+    white-space: nowrap;
+    flex: 1;
+    font-weight: 600;
+  }
+  .checkout-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    border-radius: 30px;
+    white-space: nowrap;
+    flex: 1;
+    font-weight: 600;
+  }
+  .validity-date {
+    font-size: 0.5rem;
+    margin-top: 2px;
+  }
+  .validity-date span {
+    font-size: 0.5rem;
+    font-weight: 600;
+  }
+  .custom-divider {
+    height: 0.8px;
+    margin: 6px 0;
+    background-color: var(--color-base-product-card-divider);
+  }
+}
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ant-drawer-content {
     border-top-left-radius: 1.5rem !important;
@@ -2906,6 +3245,167 @@ body {
   }
   .validity-date span {
     font-size: 11px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ant-drawer-content {
+    width: 850px !important;
+    max-width: 850px !important;
+    border-top-left-radius: 1.5rem !important;
+    border-bottom-left-radius: 1.5rem !important;
+  }
+  .cart-drawer .ant-drawer-body {
+    width: 500px !important;
+    max-width: 500px !important;
+  }
+  .cart-content {
+    height: 95vh;
+    max-height: 95vh;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .cart-header {
+    padding: 12px 20px;
+  }
+  .cart-header h2 {
+    font-size: 1.4rem;
+    margin: 6px 0;
+    font-weight: 600;
+  }
+  .booking-date {
+    padding: 12px 20px;
+    border-radius: 0.6rem;
+    margin: 8px 0;
+  }
+  .booking-date p {
+    font-size: 0.9rem;
+    margin: 2px 0;
+  }
+  .booking-date p span {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .expand-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .cart-item {
+    padding: 15px 20px;
+    gap: 12px;
+    border-bottom: 1px solid var(--color-cart-item-bdr);
+  }
+  .cart-item img {
+    width: 80px;
+    height: 56px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-details h4 {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+  }
+  .item-details p {
+    font-size: 0.8rem;
+    margin: 2px 0;
+    font-weight: 600;
+  }
+  .item-details small {
+    font-size: 0.7rem;
+    margin: 2px 0;
+    color: #594f67;
+  }
+  .quantity-controls {
+    gap: 20px;
+    align-items: center;
+  }
+  .quantity-controls span {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .controls {
+    gap: 8px;
+    align-items: center;
+  }
+  .delete-btn img {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .cart-summary {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: 0;
+    background: var(--color-base-bg);
+    box-shadow: 0px -8px 24px 0px rgba(27, 36, 53, 0.15);
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+  .summary-row {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .summary-row span {
+    font-size: 0.85rem;
+  }
+  .total {
+    font-size: 1rem;
+    margin: 12px 0;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  .total span {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .cart-actions {
+    gap: 12px;
+    margin-top: 8px;
+    display: flex;
+  }
+  .save-cart-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    border-radius: 40px;
+    white-space: nowrap;
+    flex: 1;
+    font-weight: 600;
+  }
+  .checkout-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    border-radius: 40px;
+    white-space: nowrap;
+    flex: 1;
+    font-weight: 600;
+  }
+  .validity-date {
+    font-size: 0.6rem;
+    margin-top: 4px;
+  }
+  .validity-date span {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+  .custom-divider {
+    height: 1px;
+    margin: 10px 0;
+    background-color: var(--color-base-product-card-divider);
   }
 }
 .payment-header {
@@ -3558,7 +4058,7 @@ body {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group-row {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     margin-left: -1.5rem;
   }
 }
@@ -3835,6 +4335,11 @@ body {
   gap: 1rem;
   background-color: #f4f7f8;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .order-summary__details {
+    padding: 0rem 1.5rem;
+  }
+}
 .payment-form__right .order-summary__details .detail-row .label {
   font-size: 0.65rem;
   color: #ada5b7;
@@ -3861,6 +4366,12 @@ body {
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .order-summary__details .detail-row .values {
+    font-size: 0.7rem;
+    gap: 1rem;
+  }
 }
 .payment-form__right .order-summary__details .detail-row .values > div {
   margin-bottom: 0.25rem;
@@ -3900,6 +4411,11 @@ body {
   display: block;
   width: 60%;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .promo-code__label {
+    font-size: 0.7rem;
+  }
+}
 .payment-form__right .promo-code__input-group {
   display: flex;
   gap: 0.5rem;
@@ -3914,6 +4430,11 @@ body {
   letter-spacing: 5px;
   color: var(--color-base-text-secondary);
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .promo-code__input-group input {
+    font-size: 0.8rem;
+  }
+}
 .payment-form__right .promo-code__input-group .apply-btn {
   padding: 0.75rem 1.5rem;
   cursor: pointer;
@@ -3922,6 +4443,12 @@ body {
   border: 0.797px solid #6f677c;
   background: var(--apply-btn-bg);
   color: var(--color-base-text-secondary);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .promo-code__input-group .apply-btn {
+    font-size: 0.8rem;
+    padding: 0.65rem 1.2rem;
+  }
 }
 .payment-form__right .promo-code__input-group .apply-btn:hover {
   background: #f5f5f5;
@@ -3955,6 +4482,12 @@ body {
   border-radius: 4px;
   background-color: white;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .terms .checkbox-container .checkbox-custom {
+    height: 18px;
+    width: 18px;
+  }
+}
 .payment-form__right .terms .checkbox-container .checkbox-custom:after {
   content: "";
   position: absolute;
@@ -3966,6 +4499,14 @@ body {
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .terms .checkbox-container .checkbox-custom:after {
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+  }
 }
 .payment-form__right .terms .checkbox-container:hover .checkbox-input ~ .checkbox-custom {
   border-color: #594f67;
@@ -3984,11 +4525,21 @@ body {
   font-weight: 200;
   line-height: normal;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .terms .checkbox-container .checkbox-text {
+    font-size: 0.7rem;
+  }
+}
 .payment-form__right .terms .checkbox-container .checkbox-text a {
   color: var(--color-base-text-secondary);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__right .terms .checkbox-container .checkbox-text a {
+    font-size: 0.7rem;
+  }
 }
 .payment-form__right .terms .checkbox-container .terms-link {
   color: #333;
@@ -4088,6 +4639,15 @@ body {
   cursor: pointer;
   transition: background-color 0.2s;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .proceedbtn {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    width: 90%;
+    margin-left: 0.8rem;
+    margin-top: -0.5rem;
+  }
+}
 .proceedbtn:hover {
   background: #ffea00;
 }
@@ -4099,6 +4659,11 @@ body {
   line-height: normal;
   text-transform: capitalize;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .price-row__label {
+    font-size: 0.8rem;
+  }
+}
 
 .price-row__values {
   color: var(--pay-check-price);
@@ -4106,6 +4671,11 @@ body {
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .price-row__values {
+    font-size: 0.8rem;
+  }
 }
 
 .price-row__label-total {
@@ -4115,13 +4685,18 @@ body {
   line-height: normal;
   text-transform: capitalize;
 }
-
-.price-row__values-total {
-  color: var(--pay-check-price);
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: capitalize;
+.price-row__label-total span {
+  font-size: 1rem;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .price-row__label-total span {
+    font-size: 0.5rem;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .price-row__label-total {
+    font-size: 0.9rem;
+  }
 }
 
 .divider-line {
@@ -4165,6 +4740,11 @@ body {
   font-weight: 500;
   line-height: normal;
   margin-bottom: 2rem;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-container .payment-title {
+    font-size: 1.3rem;
+  }
 }
 .payment-container .payment-methods {
   display: flex;
@@ -4257,11 +4837,23 @@ body {
   gap: 0.41769rem;
   flex-shrink: 0;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-button-container .payment-button {
+    font-size: 0.9rem;
+    width: 260px;
+    padding: 1rem 1.5rem;
+  }
+}
 .payment-button-container .card-logos {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   width: 310px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-button-container .card-logos {
+    width: 260px;
+  }
 }
 
 .payment-input-label {
@@ -4271,6 +4863,11 @@ body {
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-input-label {
+    font-size: 0.85rem;
+  }
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -7742,6 +8339,13 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .search {
+    width: 70%;
+    max-width: 25rem;
+    height: 2.2rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .search {
     width: 70%;
@@ -7753,6 +8357,12 @@ body {
   .search {
     width: 70%;
     max-width: 25rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .search img {
+    width: 15px !important;
+    height: 15px !important;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -7773,6 +8383,11 @@ body {
   width: 100%;
   color: var(--color-base-text);
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .search input {
+    font-size: 14px !important;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .search input {
     font-size: 15px !important;
@@ -7786,6 +8401,11 @@ body {
 .search input::placeholder {
   color: var(--color-base-text);
   opacity: 0.6;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .search input::placeholder {
+    font-size: 14px !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .search input::placeholder {
@@ -7804,6 +8424,13 @@ body {
   display: flex;
   align-items: center;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .selector {
+    width: 10.8rem;
+    min-width: 10rem;
+    height: 2.2rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .selector {
     width: 10rem;
@@ -7819,6 +8446,11 @@ body {
   background-color: transparent;
   color: var(--color-base-text);
   cursor: pointer;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .selector select {
+    font-size: 14px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .selector select {
@@ -7846,6 +8478,11 @@ body {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .Selector-label {
+    font-size: 14px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .Selector-label {
@@ -7956,6 +8593,14 @@ body {
   display: flex;
   gap: 6px;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .web-header__lang-btn {
+    padding: 10px 12px;
+    height: 2.5rem;
+    width: auto;
+    font-size: 14px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .web-header__lang-btn {
     padding: 8px 10px;
@@ -7999,6 +8644,13 @@ body {
   display: block;
   margin-top: 4px;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .web-header__lang-btn img {
+    height: 15px;
+    width: 15px;
+    margin-top: 1px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .web-header__lang-btn img {
     height: 14px;
@@ -8032,8 +8684,14 @@ body {
   color: var(--color-base-text);
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .web-header__lang-text {
+    font-size: 14px;
+    margin-top: -4px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .web-header__lang-btn span {
+  .web-header__lang-text {
     font-size: 14px;
     margin-top: -4px;
   }

@@ -225,6 +225,84 @@
   }
 }
 
+// Responsive styles for bigTablets
+@include respond(bigTablets) {
+  .side-bar {
+    font-size: 0.85rem;
+    padding: 0.8rem 0;
+
+    &-bottom {
+      padding: 0.8rem 0;
+
+      .chat-button {
+        border-radius: 1.7rem;
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .side-bar-list-item {
+    border-radius: 1.7rem;
+
+    .item-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 0.6rem;
+
+      img {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+
+    .item-text {
+      font-size: 0.85rem;
+    }
+  }
+
+  .ar-side-bar-list-item {
+    border-radius: 1.7rem;
+
+    .item-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 0.6rem;
+
+      img {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+
+    .item-text {
+      font-size: 0.85rem;
+    }
+  }
+
+  .side-bar-list-item-container {
+    padding: 0.4rem;
+    border-width: 3px;
+    border-radius: 105px;
+
+    &.active {
+      border-width: 3px;
+      border-radius: 105px;
+    }
+  }
+
+  .ar-side-bar-list-item-container {
+    padding: 0.4rem;
+    border-width: 3px;
+    border-radius: 105px;
+
+    &.active {
+      border-width: 3px;
+      border-radius: 105px;
+    }
+  }
+}
+
 // Responsive styles for desktop
 @include respond(desktop) {
   .side-bar {

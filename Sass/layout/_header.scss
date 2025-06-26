@@ -21,6 +21,12 @@
   gap: 1rem;
   margin-left: auto;
 
+  @include respond(bigTablets) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   @include respond(desktop) {
     width: 100%;
     display: flex;

@@ -68,7 +68,12 @@ export default function OrderSummary({ formData, setFormData }) {
           <span className="price-row__label-total">
             {t("payment.orderSummary.total")}
           </span>
-          <span className="price-row__values-total">AED 985.00</span>
+          <span
+            className="price-row__values-total"
+            style={{ fontSize: "0.9rem" }}
+          >
+            AED 985.00
+          </span>
         </div>
       </div>
 

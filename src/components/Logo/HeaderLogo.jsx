@@ -108,6 +108,7 @@ export default function HeaderLogo() {
             alt={t("common.language")}
           />
           <span
+            className="web-header__lang-text"
             style={{
               color: isDarkMode ? "#E7EBD4" : "#18142B",
             }}

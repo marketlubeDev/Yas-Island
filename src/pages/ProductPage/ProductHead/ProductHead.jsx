@@ -8,9 +8,8 @@ import { useLanguage } from "../../../context/LanguageContext";
 export default function ProductHead() {
   const { language } = useLanguage();
   const { t } = useTranslation();
-  const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
-    (state) => state.responsive
-  );
+  const { isBigTablets, isDesktop, isBigDesktop, isExtraBigDesktop } =
+    useSelector((state) => state.responsive);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Price (High to Low)");
@@ -45,7 +44,7 @@ export default function ProductHead() {
       className={language === "العربية" ? "ar-product-head" : "product-head"}
     >
       <Search />
-      {(isDesktop || isBigDesktop || isExtraBigDesktop) && (
+      {(isBigTablets || isDesktop || isBigDesktop || isExtraBigDesktop) && (
         <div className="product-head__right">
           <Selector
             label={t("productHead.sortBy")}

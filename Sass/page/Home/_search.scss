@@ -15,6 +15,12 @@
   //   margin: 0 auto;
   // }
 
+  @include respond(bigTablets) {
+    width: 70%;
+    max-width: 25rem;
+    height: 2.2rem;
+  }
+
   @include respond(desktop) {
     width: 70%;
     max-width: 25rem;
@@ -27,6 +33,11 @@
   }
 
   & img {
+    @include respond(bigTablets) {
+      width: 15px !important;
+      height: 15px !important;
+    }
+
     @include respond(desktop) {
       width: 15px !important;
       height: 15px !important;
@@ -44,6 +55,10 @@
     width: 100%;
     color: var(--color-base-text);
 
+    @include respond(bigTablets) {
+      font-size: 14px !important;
+    }
+
     @include respond(desktop) {
       font-size: 15px !important;
     }
@@ -55,6 +70,10 @@
     &::placeholder {
       color: var(--color-base-text);
       opacity: 0.6;
+
+      @include respond(bigTablets) {
+        font-size: 14px !important;
+      }
 
       @include respond(desktop) {
         font-size: 14px;

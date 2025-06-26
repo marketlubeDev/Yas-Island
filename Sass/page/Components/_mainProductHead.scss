@@ -105,6 +105,13 @@
   display: flex;
   gap: 6px;
 
+  @include respond(bigTablets) {
+    padding: 10px 12px;
+    height: 2.5rem;
+    width: auto;
+    font-size: 14px;
+  }
+
   @include respond(desktop) {
     padding: 8px 10px;
     height: 2.1rem;
@@ -144,6 +151,12 @@
   display: block;
   margin-top: 4px;
 
+  @include respond(bigTablets) {
+    height: 15px;
+    width: 15px;
+    margin-top: 1px;
+  }
+
   @include respond(desktop) {
     height: 14px;
     width: 14px;
@@ -174,8 +187,15 @@
   color: var(--color-base-text);
 }
 
+@include respond(bigTablets) {
+  .web-header__lang-text {
+    font-size: 14px;
+    margin-top: -4px;
+  }
+}
+
 @include respond(desktop) {
-  .web-header__lang-btn span {
+  .web-header__lang-text {
     font-size: 14px;
     margin-top: -4px;
   }
