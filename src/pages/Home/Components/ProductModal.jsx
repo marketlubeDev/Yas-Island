@@ -8,7 +8,6 @@ export default function ProductModal({ selectedProduct }) {
   const handleAddToCart = () => {
     setShowBookingSection(true);
   };
-
   return (
     <>
       {!showBookingSection ? (
