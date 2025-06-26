@@ -85,11 +85,16 @@ export default function ProductModal({
         selectedProduct?.default_variant_id
       );
 
+      console.log(performanceData, "performanceData");
+
       if (performanceData.error) {
         if (performanceData.error.code == 7001) {
           alert(performanceData.error.text);
           return;
         }
+        alert(performanceData.error.text);  
+        return;
+        
       }
 
       
@@ -101,7 +106,8 @@ export default function ProductModal({
       }
       setShowBookingSection(true);
     } catch (error) {
-      toast.error(error.message);
+      console.log(error, "error");
+      alert(error.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
