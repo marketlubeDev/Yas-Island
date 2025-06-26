@@ -14,7 +14,7 @@ import {
 } from "../../../global/performanceSlice";
 import getPerformance from "../../../serivces/performance/performance";
 import formatDate from "../../../utils/dateFormatter";
-import Loading from "../../../components/loading/Loading";
+import Loading from "../../../components/Loading/Loading";
 
 export default function ProductModal({
   selectedProduct,

@@ -6,11 +6,13 @@ export default function ProductCardContent({ name, description }) {
 
   return (
     <div className="ProductCard__card__content">
-      <div className="ProductCard__card__content__title" dangerouslySetInnerHTML={{ __html: name }}></div>
+      <div
+        className="ProductCard__card__content__title"
+        dangerouslySetInnerHTML={{ __html: name }}
+      ></div>
       <p className="ProductCard__card__content__description">
         {truncatedDescription}
       </p>
-      <div className="ProductCard__card__content__divider"></div>
     </div>
   );
 }

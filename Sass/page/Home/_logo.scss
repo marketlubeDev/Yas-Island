@@ -1,3 +1,5 @@
+@use "../../base/responive" as *;
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -36,6 +38,11 @@
     width: 7rem;
   }
 
+  @include respond(desktop) {
+    width: 6rem;
+    margin-left: 1rem;
+  }
+
   &-desc {
     width: 8rem;
   }
@@ -44,5 +51,27 @@
 .header-logo-container {
   @media screen and (max-width: 768px) {
     display: none;
+  }
+}
+
+// Responsive styles for desktop
+@include respond(desktop) {
+  .header-logo-container {
+    // Reduce height specifically for payment route
+    &.payment-route {
+      height: 70px;
+      min-height: 75px;
+    }
+  }
+}
+
+// Responsive styles for bigDesktop
+@include respond(bigDesktop) {
+  .header-logo-container {
+    // Reduce height specifically for payment route
+    &.payment-route {
+      height: 80px;
+      min-height: 80px;
+    }
   }
 }

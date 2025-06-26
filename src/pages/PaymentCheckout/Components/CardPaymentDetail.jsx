@@ -32,7 +32,9 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
             <span className="card-icon">
               <img src={cardIcon} alt="card" />
             </span>
-            <span className="method-title">{t("payment.cardPayment.paymentMethods.creditDebitCard")}</span>
+            <span className="method-title">
+              {t("payment.cardPayment.paymentMethods.creditDebitCard")}
+            </span>
           </div>
         </label>
 
@@ -48,7 +50,9 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
             <span className="paypal-icon">
               <img src={paypalIcon} alt="paypal" />
             </span>
-            <span className="method-title">{t("payment.cardPayment.paymentMethods.paypal")}</span>
+            <span className="method-title">
+              {t("payment.cardPayment.paymentMethods.paypal")}
+            </span>
           </div>
         </label>
       </div>
@@ -67,19 +71,6 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
           </div>
           <div className="payment-input-group">
             <label className="payment-input-label">
-              {t("payment.cardPayment.form.expiryDate.label")}
-            </label>
-            <input 
-              type="text" 
-              placeholder={t("payment.cardPayment.form.expiryDate.placeholder")} 
-              className="date-input" 
-            />
-          </div>
-        </div>
-
-        <div className="payment-input-row">
-          <div className="payment-input-group">
-            <label className="payment-input-label">
               {t("payment.cardPayment.form.cvv.label")}
             </label>
             <input
@@ -87,6 +78,19 @@ export default function CardPaymentDetail({ onPaymentComplete }) {
               placeholder={t("payment.cardPayment.form.cvv.placeholder")}
               maxLength="3"
               className="cvv-input"
+            />
+          </div>
+        </div>
+
+        <div className="payment-input-row">
+          <div className="payment-input-group">
+            <label className="payment-input-label">
+              {t("payment.cardPayment.form.expiryDate.label")}
+            </label>
+            <input
+              type="text"
+              placeholder={t("payment.cardPayment.form.expiryDate.placeholder")}
+              className="date-input"
             />
           </div>
         </div>

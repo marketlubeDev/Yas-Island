@@ -20,6 +20,7 @@ import invertCart from "../../assets/icons/invertCart.svg";
 import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
 import queryClient from "../../../config/reactQuery";
+import { setProducts } from "../../global/productSlice";
 
 export default function HeaderLogo() {
   const navigate = useNavigate();
@@ -65,7 +66,6 @@ export default function HeaderLogo() {
     toggleLanguage(newLanguage);
     dispatch(setLanguage(lng));
     dispatch(setProducts([]));
-    queryClient.invalidateQueries({ queryKey: ["productList"] });
   };
 
   const onAccessibilityOpen = () => setIsAccessibilityModalOpen(true);
@@ -157,8 +157,9 @@ export default function HeaderLogo() {
         style={{
           borderWidth: isDarkMode ? "2px" : "1px",
           ...(isPaymentRoute && {
-            top: "-19px",
-            right: "-2rem",
+            // top: "-12px",
+            // right: "-2rem",
+
             left: language === "العربية" ? "auto" : undefined,
           }),
         }}
@@ -181,7 +182,9 @@ export default function HeaderLogo() {
   return (
     <>
       <div
-        className="header-logo-container"
+        className={`header-logo-container ${
+          isPaymentRoute ? "payment-route" : ""
+        }`}
         style={{
           justifyContent: "space-between",
           alignItems: "center",
@@ -206,7 +209,7 @@ export default function HeaderLogo() {
             alt="logo"
             className="header-logo-img"
             style={{
-              width: isProductRoute ? "7rem" : "7rem",
+              width: isProductRoute ? "7rem" : "5.5rem",
               position: isProductRoute ? "relative" : "static",
               top: isProductRoute ? "8px" : "0",
             }}
@@ -216,7 +219,7 @@ export default function HeaderLogo() {
             alt="desc"
             className="header-logo-desc"
             style={{
-              width: isProductRoute ? "8rem" : "8rem",
+              width: isProductRoute ? "8rem" : "6.5rem",
               position: isProductRoute ? "relative" : "static",
               bottom: isProductRoute ? "16px" : "0",
             }}

@@ -1,4 +1,5 @@
 @use "../abstract/variables" as *;
+@use "../base/responive" as *;
 
 .header {
   width: 100%;
@@ -6,15 +7,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0rem;
+
+  @include respond(bigDesktop) {
+    padding: 1rem 1rem;
+    width: 113%;
+  }
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-left: 61rem;
+  margin-left: auto;
+
+  @include respond(desktop) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @include respond(bigDesktop) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    // margin-right: 2rem;
+  }
+
+  @include respond(extraBigDesktop) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
+
 .product-header .header-actions {
   justify-content: flex-end;
   width: 100%;

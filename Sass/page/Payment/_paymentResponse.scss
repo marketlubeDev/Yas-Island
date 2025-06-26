@@ -1,3 +1,5 @@
+@use "../../base/responive" as *;
+
 .payment-response {
   display: flex;
   flex-direction: column;
@@ -31,6 +33,10 @@
       font-size: 1.2rem;
       font-weight: 400;
       // text-transform: lowercase;
+
+      @include respond(bigDesktop) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -56,6 +62,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: normal;
+
+      @include respond(bigDesktop) {
+        font-size: 1.1rem;
+      }
     }
     .feedback-options {
       display: flex;
@@ -109,6 +119,10 @@
       // font-family: Urbanist;
       font-size: 1.125rem;
       font-style: normal;
+
+      @include respond(bigDesktop) {
+        font-size: 1rem;
+      }
     }
   }
 }

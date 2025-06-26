@@ -10,6 +10,7 @@ export default function ProductCardPricetag({
 }) {
   return (
     <div className="ProductCard__card__pricetag">
+      {/* <div className="ProductCard__card__content__divider"></div> */}
       <div className="ProductCard__card__pricetag__price">
         <p className="ProductCard__card__pricetag__price__text">
           {currency} {price}
