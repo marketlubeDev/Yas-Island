@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0rem;
 
   @include respond(bigDesktop) {
     padding: 1rem 1rem;
