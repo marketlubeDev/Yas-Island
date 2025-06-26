@@ -8,11 +8,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0rem;
-
-  @include respond(bigDesktop) {
-    padding: 1rem 1rem;
-    width: 113%;
-  }
 }
 
 .header-actions {
@@ -20,18 +15,12 @@
   align-items: center;
   gap: 1rem;
   margin-left: auto;
+  justify-content: flex-end;
 
   @include respond(desktop) {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-  }
-
-  @include respond(bigDesktop) {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    // margin-right: 2rem;
   }
 
   @include respond(extraBigDesktop) {
