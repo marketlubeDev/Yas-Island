@@ -240,7 +240,7 @@
 body {
   font-family: "YAS Font", sans-serif !important;
   overflow-x: hidden;
-  background-color: var(--main-body);
+  background-color: var(--color-base-bg);
 }
 
 .normal-title-txt {
@@ -733,7 +733,6 @@ body {
   display: grid;
   grid-template-columns: 12rem 1fr;
   gap: 0;
-  background-color: var(--color-base-bg);
 }
 .product-head {
   display: flex;
@@ -752,14 +751,12 @@ body {
 .product-solo-thumbnail {
   width: 100%;
   height: fit-content;
-  background-color: #f0f0f0;
   border-radius: 2rem;
   padding: 1rem;
 }
 .product-solo-thumbnail__image {
   width: 100%;
   height: 100%;
-  background-color: rgb(237, 187, 187);
   border-radius: 1rem;
 }
 .product-solo-thumbnail__image img {
@@ -1036,17 +1033,13 @@ body {
   align-items: center;
   padding: 0rem;
 }
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .header {
-    padding: 1rem 0rem;
-  }
-}
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-left: auto;
+  justify-content: flex-end;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .header-actions {
@@ -1071,30 +1064,12 @@ body {
 .ProductCard {
   width: 100%;
   height: 100%;
-  background-color: var(--color-base-product-card-bg);
+  background-color: var(--color-base-bg);
   border-radius: 0.5rem;
   padding: 2rem;
   overflow-y: scroll;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 230px);
   scroll-behavior: smooth;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .ProductCard {
-    height: calc(100vh - 170px);
-    padding: 1rem;
-  }
-}
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .ProductCard {
-    padding: 1rem;
-    height: calc(100vh - 100px);
-  }
-}
-@media only screen and (min-width: 1700px) {
-  .ProductCard {
-    height: calc(100vh - 170px);
-    padding: 0.5rem;
-  }
 }
 .ProductCard::-webkit-scrollbar {
   width: 10px;
@@ -1123,6 +1098,12 @@ body {
   .ProductCard__grid {
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 }
 @media only screen and (min-width: 1700px) {
