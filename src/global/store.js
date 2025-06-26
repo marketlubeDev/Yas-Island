@@ -5,6 +5,7 @@ import languageReducer from "./languageSlice";
 import checkoutReducer from "./checkoutSlice";
 import productReducer from "./productSlice";
 import performanceReducer from "./performanceSlice";
+import cartReducer from "./cartSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     checkout: checkoutReducer,
     product: productReducer,
     performance: performanceReducer,
+    cart: cartReducer,
   },
 });
 

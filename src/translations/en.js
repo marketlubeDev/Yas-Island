@@ -98,6 +98,8 @@ export const en = {
   },
   cart: {
     title: "My Cart",
+    empty: "Cart is empty",
+    emptyMessage: "Add some items to your cart to get started",
     bookingFor: "Booking for",
     currency: "AED",
     validFrom: "Valid from",

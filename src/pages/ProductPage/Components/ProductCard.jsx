@@ -65,6 +65,7 @@ export default function ProductCard({ productList }) {
         title={null}
         open={isModalOpen}
         onCancel={handleCancel}
+        
         footer={null}
         width="85%"
         className="product-modal"

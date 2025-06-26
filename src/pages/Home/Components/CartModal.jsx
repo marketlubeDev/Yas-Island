@@ -18,33 +18,34 @@ const CartModal = ({ isOpen, onClose }) => {
   const { language } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  console.log(isDarkMode, "isDargfgfkMode");
+  const {cartItems} = useSelector((state) => state.cart);
+
 
   // Cart items data
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image: Ferrari,
-      title: "1 day Ferrari World",
-      price: 328.57,
-      vat: 16.43,
-      quantity: 2,
-      type: "adults",
-      validFrom: "08 feb 2025",
-      validTo: "08 feb 2025",
-    },
-    {
-      id: 2,
-      image: Ferrari,
-      title: "1 day Ferrari World",
-      price: 328.57,
-      vat: 16.43,
-      quantity: 2,
-      type: "adults",
-      validFrom: "08 feb 2025",
-      validTo: "08 feb 2025",
-    },
-  ]);
+  // const [cartItems, setCartItems] = useState([
+  //   {
+  //     id: 1,
+  //     image: Ferrari,
+  //     title: "1 day Ferrari World",
+  //     price: 328.57,
+  //     vat: 16.43,
+  //     quantity: 2,
+  //     type: "adults",
+  //     validFrom: "08 feb 2025",
+  //     validTo: "08 feb 2025",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: Ferrari,
+  //     title: "1 day Ferrari World",
+  //     price: 328.57,
+  //     vat: 16.43,
+  //     quantity: 2,
+  //     type: "adults",
+  //     validFrom: "08 feb 2025",
+  //     validTo: "08 feb 2025",
+  //   },
+  // ]);
 
   const handleCheckout = () => {
     navigate("/payment");
@@ -96,70 +97,79 @@ const CartModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="cart-items">
-          {cartItems.map((item) => (
-            <div key={item.id} className="cart-item">
-              <img src={item.image} alt={item.title} />
-              <div className="item-details">
-                <h4>{item.title}</h4>
-                <p>{item.price}</p>
-                <div className="validity-date" style={{}}>
-                  Valid from <span>{item.validFrom}</span> to{" "}
-                  <span>{item.validTo}</span>
+        {cartItems.length === 0 ? (
+          <div className="empty-cart">
+            <h3>{t("cart.empty")}</h3>
+            <p>{t("cart.emptyMessage")}</p>
+          </div>
+        ) : (
+          <>
+            <div className="cart-items">
+              {cartItems.map((item, index) => (
+                <div key={index} className="cart-item">
+                  <img src={item.image} alt={item.title} />
+                  <div className="item-details">
+                    <h4>{item.title}</h4>
+                    <p>{item.price}</p>
+                    <div className="validity-date" style={{}}>
+                      Valid from <span>{item.validFrom}</span> to{" "}
+                      <span>{item.validTo}</span>
+                    </div>
+                  </div>
+                  <div className="quantity-controls">
+                    <span>{t("cart.adults")}</span>
+                    <div className="controls">
+                      <Button
+                        className="minus-btn-web"
+                        icon={<MinusOutlined />}
+                        onClick={() => handleQuantityChange(item.id, -1)}
+                      />
+                      <span>{item.quantity}</span>
+                      <Button
+                        className="plus-btn-web"
+                        icon={<PlusOutlined />}
+                        onClick={() => handleQuantityChange(item.id, 1)}
+                      />
+                      <Button className="delete-btn">
+                        <img
+                          src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
+                          alt={t("cart.delete")}
+                        />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="cart-summary">
+              <div className="subtotal">
+                <div className="summary-row">
+                  <span>{t("cart.subTotal")}</span>
+                  <span>AED 935.71</span>
+                </div>
+                <div className="summary-row">
+                  <span>{t("cart.vatAndTax")}</span>
+                  <span>+ 49.29 VAT & Tax</span>
                 </div>
               </div>
-              <div className="quantity-controls">
-                <span>{t("cart.adults")}</span>
-                <div className="controls">
-                  <Button
-                    className="minus-btn-web"
-                    icon={<MinusOutlined />}
-                    onClick={() => handleQuantityChange(item.id, -1)}
-                  />
-                  <span>{item.quantity}</span>
-                  <Button
-                    className="plus-btn-web"
-                    icon={<PlusOutlined />}
-                    onClick={() => handleQuantityChange(item.id, 1)}
-                  />
-                  <Button className="delete-btn">
-                    <img
-                      src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
-                      alt={t("cart.delete")}
-                    />
-                  </Button>
-                </div>
+              <div className="custom-divider"></div>
+              <div className="total">
+                <span>{t("cart.total")}</span>
+                <span>AED 985.00</span>
+              </div>
+
+              <div className="cart-actions">
+                <button className="save-cart-btn" onClick={handleSaveCart}>
+                  {t("cart.saveCartAndPayLater")}
+                </button>
+                <button className="checkout-btn" onClick={handleCheckout}>
+                  {t("cart.checkOut")}
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="cart-summary">
-          <div className="subtotal">
-            <div className="summary-row">
-              <span>{t("cart.subTotal")}</span>
-              <span>AED 935.71</span>
-            </div>
-            <div className="summary-row">
-              <span>{t("cart.vatAndTax")}</span>
-              <span>+ 49.29 VAT & Tax</span>
-            </div>
-          </div>
-          <div className="custom-divider"></div>
-          <div className="total">
-            <span>{t("cart.total")}</span>
-            <span>AED 985.00</span>
-          </div>
-
-          <div className="cart-actions">
-            <button className="save-cart-btn" onClick={handleSaveCart}>
-              {t("cart.saveCartAndPayLater")}
-            </button>
-            <button className="checkout-btn" onClick={handleCheckout}>
-              {t("cart.checkOut")}
-            </button>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </Drawer>
   );

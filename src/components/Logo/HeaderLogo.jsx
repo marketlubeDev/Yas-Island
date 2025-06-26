@@ -21,8 +21,10 @@ import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
 import queryClient from "../../../config/reactQuery";
 import { setProducts } from "../../global/productSlice";
+import { setIsCartOpen } from "../../global/cartSlice";
 
 export default function HeaderLogo() {
+  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const navigate = useNavigate();
   const location = useLocation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -69,7 +71,7 @@ export default function HeaderLogo() {
   };
 
   const onAccessibilityOpen = () => setIsAccessibilityModalOpen(true);
-  const onCartOpen = () => setIsCartModalOpen(true);
+  const onCartOpen = () => dispatch(setIsCartOpen(true));
 
   const headerActions = (
     <div className="header-actions">
@@ -240,8 +242,8 @@ export default function HeaderLogo() {
         onClose={() => setIsAccessibilityModalOpen(false)}
       />
       <CartModal
-        isOpen={isCartModalOpen}
-        onClose={() => setIsCartModalOpen(false)}
+        isOpen={isCartOpen}
+        onClose={() => dispatch(setIsCartOpen(false))}
       />
     </>
   );

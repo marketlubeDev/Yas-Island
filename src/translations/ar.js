@@ -98,6 +98,8 @@ export const ar = {
   },
   cart: {
     title: "سلة المشتريات",
+    empty: "سلة المشتريات فارغة",
+    emptyMessage: "أضف بعض المنتجات إلى سلة المشتريات للبدء",
     bookingFor: "الحجز لـ",
     adults: "البالغين",
     subTotal: "المجموع الفرعي :",

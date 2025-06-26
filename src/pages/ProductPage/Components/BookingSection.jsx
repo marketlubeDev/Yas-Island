@@ -4,17 +4,19 @@ import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
+import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
+import { toast } from "sonner";
 
 export default function BookingSection({
   product,
   onBack,
-  startDate: propStartDate,
-  endDate: propEndDate,
+  startDate,
+  endDate,
   availableDates,
 }) {
   const { t, i18n } = useTranslation();
@@ -25,6 +27,8 @@ export default function BookingSection({
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
+
+  const selectedProduct = useSelector((state) => state.product.selectedProduct);
 
   
 
@@ -233,8 +237,42 @@ export default function BookingSection({
         totalPrice,
       })
     );
+
+    dispatch(addToCart({
+      id: selectedProduct?.productid,
+      image: selectedProduct?.product_images?.thumbnail_url,
+      title: selectedProduct?.product_title,
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: formatDate(selectedDate),
+      validTo: formatDate(endDate),
+    }));
     navigate("/payment");
   };
+
+  const handleSaveToCart = () => {
+    dispatch(addToCart({
+      id: selectedProduct?.productid,
+      image: selectedProduct?.product_images?.thumbnail_url,
+      title: selectedProduct?.product_title,
+      price: 328.57,
+      vat: 16.43,
+      quantity: 2,
+      type: "adults",
+      validFrom: formatDate(selectedDate),
+      validTo: formatDate(endDate),
+    }));
+    toast.success(t("booking.productAddedToCart"), {
+      position: "top-center",
+    });
+    onBack();
+    dispatch(setIsCartOpen(true));
+  };
+
+
+
 
   return (
     <div className="booking-section">
@@ -367,7 +405,7 @@ export default function BookingSection({
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED {totalPrice}</span>
           </button>
-          <button className="cart-btn">{t("booking.saveToCart")}</button>
+          <button className="cart-btn" onClick={handleSaveToCart}>{t("booking.saveToCart")}</button>
         </div>
       </div>
     </div>

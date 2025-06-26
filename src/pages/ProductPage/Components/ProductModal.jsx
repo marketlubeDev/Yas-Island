@@ -15,11 +15,13 @@ import {
 import getPerformance from "../../../serivces/performance/performance";
 import formatDate from "../../../utils/dateFormatter";
 import Loading from "../../../components/Loading/Loading";
+import { toast } from "sonner";
 
 export default function ProductModal({
   selectedProduct,
   showBookingSection,
   setShowBookingSection,
+  onClose,
 }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -85,17 +87,15 @@ export default function ProductModal({
         selectedProduct?.default_variant_id
       );
 
-      console.log(performanceData, "performanceData");
-
-      if (performanceData.error) {
-        if (performanceData.error.code == 7001) {
-          alert(performanceData.error.text);
-          return;
-        }
-        alert(performanceData.error.text);  
-        return;
+      // if (performanceData.error) {
+      //   if (performanceData.error.code == 7001) {
+      //     alert(performanceData.error.text);
+      //     return;
+      //   }
+      //   alert(performanceData.error.text);  
+      //   return;
         
-      }
+      // }
 
       
 
@@ -107,8 +107,10 @@ export default function ProductModal({
       setShowBookingSection(true);
     } catch (error) {
       console.log(error, "error");
-      alert(error.message || "Something went wrong");
-    } finally {
+      toast.error(error?.response?.data?.message || "Something went wrong", {
+        position: "top-center",
+      });
+    } finally { 
       setIsLoading(false);
     }
   };
@@ -180,7 +182,10 @@ export default function ProductModal({
       ) : (
         <BookingSection
           product={selectedProduct}
-          onBack={() => setShowBookingSection(false)}
+          onBack={() => {
+            setShowBookingSection(false);
+            onClose();
+          }}
           startDate={validStartDate}
           endDate={validEndDate}
           availableDates={availableDates}

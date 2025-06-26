@@ -13,6 +13,44 @@
   flex-direction: column;
 }
 
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  flex: 1;
+
+  h3 {
+    color: var(--color-base-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--color-base-text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 3rem 1.5rem;
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}
+
 .cart-header {
   display: flex;
   justify-content: space-between;
