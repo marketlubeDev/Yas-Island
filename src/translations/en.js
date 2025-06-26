@@ -143,6 +143,7 @@ export const en = {
       fri: "Fri",
       sat: "Sat",
     },
+    productAddedToCart: "Product added to cart",
   },
   payment: {
     title: "Guest Details and Payment",

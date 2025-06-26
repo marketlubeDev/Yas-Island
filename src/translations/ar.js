@@ -142,6 +142,7 @@ export const ar = {
       fri: "الجمعة",
       sat: "السبت",
     },
+    productAddedToCart: "تم إضافة المنتج إلى السلة",
   },
   payment: {
     title: "إتمام الدفع",
