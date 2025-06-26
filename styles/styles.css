@@ -1414,8 +1414,23 @@ body {
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 
+@supports (-webkit-appearance: none) {
+  .product-modal .ant-modal-wrap {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  .product-modal .ant-modal {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+}
 .product-modal .ant-modal-mask {
   background: rgba(2, 7, 19, 0.67) !important;
   backdrop-filter: blur(16.5px) !important;
