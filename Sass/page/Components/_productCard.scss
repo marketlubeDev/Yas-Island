@@ -3,11 +3,11 @@
 
 .ProductCard {
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   background-color: var(--color-base-product-card-bg);
   padding: 2rem;
   overflow-y: scroll;
-  // height: calc(100vh - 4vh);
+  height: calc(100vh - 20vh);
   scroll-behavior: smooth;
 
   // @include respond(desktop) {

@@ -3,19 +3,17 @@
 
 .product {
   width: 100%;
-  // padding: 2rem;
   display: grid;
   grid-template-columns: 13rem 1fr;
   gap: 0;
-  background-color: red;
+  background-color: var(--color-base-product-card-bg);
 
   &-head {
     display: flex;
     justify-content: left;
     align-items: flex-end;
     gap: 2rem;
-    position: relative;
-    top: 1.6rem;
+    padding-left: 3rem;
 
     &__right {
       display: flex;
@@ -28,14 +26,12 @@
   &-solo-thumbnail {
     width: 100%;
     height: fit-content;
-    // background-color: #f0f0f0;
     border-radius: 2rem;
     padding: 1rem;
 
     &__image {
       width: 100%;
       height: 100%;
-      // background-color: rgb(237, 187, 187);
       border-radius: 1rem;
 
       & img {
@@ -321,4 +317,12 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.product-top-sec {
+  height: 20vh;
+}
+.product-top-pay {
+  height: 10vh;
+  background-color: var(--color-base-product-card-card-item-bg);
 }
