@@ -54,8 +54,10 @@ function PaymentHeader({ step, onBack }) {
               step === 1 ? " payment-header__step--active" : ""
             }`}
           >
-            {t("payment.steps.step1")}
-            <br />
+            <span style={{ fontWeight: "500" }}>
+              {t("payment.steps.step1")}
+            </span>
+
             <span>{t("payment.steps.emailVerification")}</span>
           </div>
           <div
@@ -69,9 +71,13 @@ function PaymentHeader({ step, onBack }) {
               step === 2 ? " payment-header__step--active" : ""
             }`}
           >
-            {t("payment.steps.step2")}
-            <br />
-            <span>{t("payment.steps.checkout")}</span>
+            <span style={{ fontWeight: "500" }}>
+              {t("payment.steps.step2")}
+            </span>
+
+            <span style={{ fontWeight: "600" }}>
+              {t("payment.steps.checkout")}
+            </span>
           </div>
         </div>
         <div

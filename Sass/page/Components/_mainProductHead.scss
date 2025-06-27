@@ -183,7 +183,7 @@
 
 .mobile-header__lang-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  // top: calc(100% + 8px);
   right: 0;
   background: var(--color-base-mobile-header-lang-dropdown-bg);
   border-radius: 8px;
@@ -191,6 +191,17 @@
   min-width: 160px;
   padding: 8px 0;
   z-index: 1000;
+
+  &--ar {
+    left: 0;
+    right: auto;
+    top: calc(100% + 8px);
+  }
+
+  &--en {
+    right: 0;
+    top: calc(100% + 8px);
+  }
 }
 
 .mobile-header__lang-option {

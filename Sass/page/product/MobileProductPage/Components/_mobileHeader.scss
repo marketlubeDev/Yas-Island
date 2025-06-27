@@ -32,7 +32,7 @@
     background: var(--color-base-mobile-header-icon-btn-bg);
     border: 2px solid var(--color-base-mobile-header-icon-btn-border);
     border-radius: 12rem;
-    padding: 4px 4px;
+    padding: 4.5px 4px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -61,21 +61,23 @@
 
   &__lang-dropdown {
     position: absolute;
-    top: calc(100% + 8px);
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     min-width: 160px;
     padding: 8px 0;
     z-index: 1000;
+  }
 
-    &--ar {
-      right: -61px;
-    }
+  &__lang-dropdown--ar {
+    left: 0;
+    right: auto;
+    top: calc(100% + 8px);
+  }
 
-    &--en {
-      right: 0;
-    }
+  &__lang-dropdown--en {
+    right: 0;
+    top: calc(100% + 8px);
   }
 
   &__lang-option {

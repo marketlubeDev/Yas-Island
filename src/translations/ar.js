@@ -11,6 +11,7 @@ export const ar = {
     searchPlaceholder: "ماذا تبحث عن؟",
     home: "الرئيسية",
     cart: "السلة",
+    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",
   },
   accessibility: {
     title: "إمكانية الوصول",

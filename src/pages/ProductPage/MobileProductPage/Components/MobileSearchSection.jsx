@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useLanguage } from "../../../../context/LanguageContext";
 
 import searchIcon from "../../../../assets/icons/lens.svg";
 import invertedSearchIcon from "../../../../assets/icons/invertedlens.svg";
@@ -16,6 +17,7 @@ function MobileSearchSection() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
   const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
+  const { language } = useLanguage();
 
   const sortOptions = [
     {
@@ -78,35 +80,71 @@ function MobileSearchSection() {
       style={{ backgroundColor: isDarkMode ? "black" : "#FFFFFF" }}
     >
       <h2 className="mobile-top-search-section__title">
-        {t("common.selectAttractions")}
+        {/* {t("common.selectAttractions")} */}
       </h2>
       <div className="mobile-top-search-section__searchbar">
-        <input type="text" placeholder={t("common.searchPlaceholder")} />
+        <input type="text" placeholder={t("common.searchPlaceholderMobile")} />
         <button>
           <img src={searchIconSrc} alt="Search" />
         </button>
       </div>
       <div className="mobile-top-search-section__filters">
         {filterButtons.map((button, index) => (
-          <div key={index} style={{ position: "relative" }} ref={button.ref}>
+          <div
+            className="mobile-top-search-section__filter-btn-container"
+            key={index}
+            style={{ position: "relative" }}
+            ref={button.ref}
+          >
             <button
-              className="mobile-top-search-section__filter-btn"
+              className={`mobile-top-search-section__filter-btn${
+                language === "العربية"
+                  ? " mobile-top-search-section__filter-btn--ar"
+                  : ""
+              }`}
               onClick={button.onClick}
+              style={
+                language === "العربية"
+                  ? {
+                      display: "flex",
+                      flexDirection: "row-reverse",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                    }
+                  : {}
+              }
             >
-              {button.label}{" "}
-              <img
-                src={downArrowSrc}
-                alt="down arrow"
-                className="chevron"
-                style={{
-                  width: 12,
-                  height: 12,
-                  marginTop: 5,
-                }}
-              />
+              {language === "العربية" ? (
+                <>
+                  <span>{button.label}</span>
+                  <img
+                    src={downArrowSrc}
+                    alt="down arrow"
+                    className="chevron"
+                    style={{ width: 12, height: 12, marginTop: 5 }}
+                  />
+                </>
+              ) : (
+                <>
+                  <span>{button.label}</span>
+                  <img
+                    src={downArrowSrc}
+                    alt="down arrow"
+                    className="chevron"
+                    style={{ width: 12, height: 12, marginTop: 5 }}
+                  />
+                </>
+              )}
             </button>
             {button.isOpen && (
-              <div className="mobile-top-search-section__dropdown">
+              <div
+                className={`mobile-top-search-section__dropdown${
+                  language === "العربية"
+                    ? " mobile-top-search-section__dropdown--ar"
+                    : ""
+                }`}
+              >
                 {button.options.map((option, optionIndex) => (
                   <div
                     key={optionIndex}

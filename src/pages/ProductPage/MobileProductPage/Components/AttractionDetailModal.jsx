@@ -4,11 +4,14 @@ import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
-import { useSelector , useDispatch} from "react-redux";
-import { setEndDate, setProductId, setStartDate } from "../../../../global/performanceSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setEndDate,
+  setProductId,
+  setStartDate,
+} from "../../../../global/performanceSlice";
 
 function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
-
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
@@ -27,14 +30,13 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
 
   if (!attraction) return null;
 
-
   useEffect(() => {
     if (attraction && Object.keys(attraction).length > 0) {
       // 1. Calculate startDate
       const today = new Date();
       today.setHours(0, 0, 0, 0); // Normalize today's date
 
-      const offset =  attraction.sale_date_offset || 0;
+      const offset = attraction.sale_date_offset || 0;
       const startDate = new Date(today);
       startDate.setDate(today.getDate() + offset);
       setValidStartDate(startDate);
@@ -77,9 +79,6 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   return (
     <>
       <div className="attraction-detail-modal__header">
-        <button className="attraction-detail-modal__back" onClick={onClose}>
-          <img src={backIconSrc} alt={t("common.back")} />
-        </button>
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
         </span>

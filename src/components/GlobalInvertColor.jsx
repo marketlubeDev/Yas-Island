@@ -324,6 +324,11 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
+      "--color-base-mobile-bottom-nav-item-active-bg",
+      isDarkMode ? "#0000" : "linear-gradient(90deg, #fff8a5 0%, #fff 100%)"
+    );
+
+    document.documentElement.style.setProperty(
       "--color-base-mobile-bottom-nav-item-icon-active-color",
       isDarkMode ? "#000" : "#231942"
     );
@@ -337,7 +342,7 @@ export default function GlobalInvertColor() {
       "--color-base-mobile-header-lang-dropdown-boxshadow",
       isDarkMode
         ? " 4px solid rgba(255, 173, 51, 0.50);"
-        : "0 4px 12px rgba(0, 0, 0, 0.1)"
+        : "0 4px 12px rgba(0, 0, 0, 0.6)"
     );
     document.documentElement.style.setProperty(
       "--color-base-mobile-header-lang-dropdown-item-lang-bg",
@@ -637,7 +642,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-confirm-otp-input-border",
-      isDarkMode ? "#DCE1D4" : "#e3e3e3"
+      isDarkMode ? "#DCE1D4" : "#6f677c"
     );
     document.documentElement.style.setProperty(
       "--color-otp-btn-border",
@@ -1374,7 +1379,7 @@ export default function GlobalInvertColor() {
       );
       document.documentElement.style.setProperty(
         "--color-confirm-otp-input-border",
-        "#e3e3e3"
+        "#6f677c"
       );
       document.documentElement.style.setProperty(
         "--color-otp-btn-border",
@@ -1518,6 +1523,11 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-cart-item-bg",
         "#fff"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-base-mobile-bottom-nav-item-active-bg",
+        "linear-gradient(90deg, #fff8a5 0%, #fff 100%)"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");

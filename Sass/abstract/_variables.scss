@@ -109,18 +109,18 @@ $color-yellow: #ffea00;
   --color-base-mobile-bottom-nav-bg: #fff;
   --color-base-bottom-nav-border-top: none;
   --color-base-mobile-bottom-nav-item-text: #231942;
-
-  --color-base-mobile-bottom-nav-item-icon-active: linear-gradient(
+  --color-base-mobile-bottom-nav-item-active-bg: linear-gradient(
     90deg,
     #fff8a5 0%,
     #fff 100%
   );
+
   --color-base-mobile-bottom-nav-item-icon-active-color: #231942;
 
   //mobileheaderlangdropdown
   --color-base-mobile-header-lang-dropdown-bg: #fff;
   --color-base-mobile-header-lang-dropdown-boxshadow: 0 4px 12px
-    rgba(0, 0, 0, 0.1);
+    rgba(0, 0, 0, 0.6);
   --color-base-mobile-header-lang-dropdown-item-lang-bg: #f5f5f5;
   --color-base-mobile-header-lang-dropdown-item-lang-text: #222;
   --color-base-mobile-header-lang-dropdown-item-lang-check: #007bff;
@@ -193,7 +193,7 @@ $color-yellow: #ffea00;
   //confirm email
   --color-confirm-otp-bg: #f4f3f3;
   --color-confirm-otp-label: #231942;
-  --color-confirm-otp-input-border: #e3e3e3;
+  --color-confirm-otp-input-border: #6f677c;
   --color-otp-btn-border: #dcd6e5;
   --color-otp-action-btn-border: #dcd6e5;
   --color-checkout-summary-border: none;

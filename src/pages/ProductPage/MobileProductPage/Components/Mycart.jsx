@@ -89,9 +89,7 @@ function Mycart({ onClose, visible }) {
           </button>
           <span className="mycart-modal__title">{t.cart.title}</span>
         </div>
-        {/* <div className="mycart-modal__booking-date">
-          {t.cart.bookingFor} <b>Thu 08- Feb 2025</b>
-        </div> */}
+
         <div className="mycart-modal__items">
           {cartItems.map((item) => (
             <div className="mycart-modal__item" key={item.id}>

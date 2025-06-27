@@ -11,6 +11,7 @@ export const en = {
     searchPlaceholder: "What are you looking for?",
     home: "Home",
     cart: "Cart",
+    searchPlaceholderMobile: "Search Attractions 'Ferrari World' ",
   },
   accessibility: {
     title: "Accessibility",
@@ -26,7 +27,7 @@ export const en = {
   },
   productHead: {
     sortBy: "Sort by",
-    filterBy: "Filter By",
+    filterBy: "Filter by",
     priceHighToLow: "Price (High to Low)",
     attractions: "Attractions",
   },

@@ -27,7 +27,7 @@
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 32px 18px;
+  padding: 32px 36px;
   height: 60vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -38,9 +38,9 @@
 }
 
 .confirm-email__label {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--color-email-form-label);
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 8px;
   // margin-left: -200px;
   display: flex;
@@ -50,14 +50,14 @@
 }
 
 .confirm-email__input-underline {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-email-form-label);
   padding-bottom: 4px;
   border-bottom: 2px solid var(--color-email-form-input-border);
   margin-bottom: 16px;
   background: none;
   text-align: left;
-  margin-top: 50px;
+  margin-top: 27px;
   width: 100%;
   display: block;
 }
@@ -67,6 +67,7 @@
   border-radius: 12px;
   padding: 18px 8px 12px 8px;
   margin-bottom: 18px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,8 +84,9 @@
 }
 
 .confirm-email__otp-label {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 14px;
+
+  font-weight: bold;
   color: var(--color-confirm-otp-label);
   margin-bottom: 10px;
   text-align: center;
@@ -92,15 +94,15 @@
 
 .confirm-email__otp-inputs {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   margin-bottom: 10px;
   justify-content: center;
 }
 
 .confirm-email__otp-input {
-  width: 38px;
-  height: 48px;
-  border: 1.5px solid var(--color-confirm-otp-input-border);
+  width: 37px;
+  height: 41px;
+  border: 0.5px solid var(--color-confirm-otp-input-border);
   border-radius: 8px;
   font-size: 22px;
   text-align: center;
