@@ -12,10 +12,18 @@
 
 .header-actions {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 1rem;
   margin-left: auto;
   justify-content: flex-end;
+
+  &-right {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
 }
 
 .product-header .header-actions {
