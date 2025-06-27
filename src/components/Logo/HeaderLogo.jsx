@@ -19,7 +19,6 @@ import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
 import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
-import queryClient from "../../../config/reactQuery";
 import { setProducts } from "../../global/productSlice";
 import { setIsCartOpen } from "../../global/cartSlice";
 
@@ -31,7 +30,6 @@ export default function HeaderLogo() {
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -44,6 +42,8 @@ export default function HeaderLogo() {
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
+
+  console.log(language, "asdfasfasfa");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.checkout.cartItems) || [];
 
@@ -78,17 +78,16 @@ export default function HeaderLogo() {
       <div>
         {isPaymentRoute && (
           <div
-            className="header-logo"
+            className={`header-logo ${
+              language === "العربية" ? "header-logo-ar" : ""
+            }`}
             onClick={handleLogoClick}
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              height: "fit-content",
-              width: "100%",
-              paddingLeft: "2rem",
-            }}
+            style={
+              {
+                // paddingLeft: "2rem",
+                // paddingRight: "2rem",
+              }
+            }
           >
             <img
               src={logo}

@@ -28,6 +28,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  flex-direction: row;
+  height: fit-content;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 2rem;
+
+  &-ar {
+    padding-right: 2rem;
+    padding-left: 0;
+  }
+
   &-img {
     width: 7rem;
   }

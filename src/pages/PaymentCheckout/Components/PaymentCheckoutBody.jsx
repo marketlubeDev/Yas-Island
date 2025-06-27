@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import arrow from "../../../assets/icons/left.svg";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import PaymentCheckHeading from "../Components/PaymentCheckHeading";
 import EmailConfirmation from "./EmailConfirmation";

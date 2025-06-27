@@ -19,8 +19,6 @@ export default function SideBar() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { language } = useLanguage();
 
-  console.log(language, "langDFDFDuage");
-
   const handleClick = (item) => {
     setActiveItem(item);
   };
@@ -41,7 +39,11 @@ export default function SideBar() {
   ];
 
   return (
-    <nav className="side-bar normal-title-txt">
+    <nav
+      className={`side-bar  normal-title-txt ${
+        language === "العربية" ? "side-bar-ar" : ""
+      }`}
+    >
       <Logo />
       <ul className="side-bar-list">
         {sideBarItems.map((item) => (
