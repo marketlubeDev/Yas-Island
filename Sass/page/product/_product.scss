@@ -110,8 +110,8 @@
   justify-content: center;
   gap: 1.5rem;
 
-  width: 19.625rem;
-  height: 5rem;
+  width: 15rem;
+  height: 4.3rem;
   border-radius: 0rem 0rem 0rem 1.25rem;
   border: 0.83px solid var(--color-base-btn-border);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
@@ -121,14 +121,14 @@
   font-weight: 500;
   line-height: normal;
 
-  @include respond(desktop) {
-    width: 15rem;
+  // @include respond(desktop) {
+  //   width: 15rem;
 
-    height: 3.3rem;
-    font-size: 1rem;
-    top: -0.6rem;
-    right: -2rem;
-  }
+  //   height: 3.3rem;
+  //   font-size: 1rem;
+  //   top: -0.6rem;
+  //   right: -2rem;
+  // }
 
   // @include respond(bigDesktop) {
   //   width: 15rem;
@@ -138,11 +138,11 @@
   //   top: -1.4rem;
   // }
 
-  @include respond(extraBigDesktop) {
-    width: 15rem;
-    height: 4.3rem;
-    font-size: 1.2rem;
-  }
+  // @include respond(extraBigDesktop) {
+  //   width: 15rem;
+  //   height: 4.3rem;
+  //   font-size: 1.2rem;
+  // }
 
   // @include respond(extraBigDesktop) {
   //   right: -8rem;
