@@ -67,7 +67,7 @@
   }
 
   &__card {
-    width: 306.491px;
+    min-width: 306.491px;
     height: 446.105px;
     flex-shrink: 0;
     background-color: var(--color-base-product-card-card-item-bg);
