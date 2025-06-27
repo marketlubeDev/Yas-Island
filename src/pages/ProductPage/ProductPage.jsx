@@ -10,14 +10,13 @@ import AccessibilityModal from "./Components/AccessibilityModal";
 import CartModal from "./Components/CartModal";
 import MainProductHead from "./ProductHead/mainProductHead";
 import useGetProductList from "../../apiHooks/product/product";
-// import PaymentCheckoutBody from "../../PaymentCheckout/Components/PaymentCheckoutBody";
 
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);
-  const language = useSelector((state) => state.language.currentLanguage);
   const productList = useSelector((state) => state.product.allProducts);
 
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
+  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
+    useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const { isLoading, isError } = useGetProductList();
 
@@ -29,11 +28,11 @@ export default function ProductPage() {
     <div className="product">
       <SideBar />
       <div className="product-content">
-        {/* <MainProductHead
+        <MainProductHead
           onAccessibilityOpen={() => setIsAccessibilityModalOpen(true)}
           onCartOpen={() => setIsCartModalOpen(true)}
         />
-        <ProductHead label="Sort by" /> */}
+        {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
           <div>Loading...</div>
         ) : (
