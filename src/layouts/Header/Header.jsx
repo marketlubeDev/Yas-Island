@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../../components/Logo/Logo";
 import HeaderLogo from "../../components/Logo/HeaderLogo";
 import { useMediaQuery } from "react-responsive";
 

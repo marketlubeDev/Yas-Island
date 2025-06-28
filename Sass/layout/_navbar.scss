@@ -7,7 +7,12 @@
   justify-content: space-between;
   text-wrap: nowrap;
   font-size: 1rem;
-  padding: 1rem 0;
+  background-color: var(--color-base-product-card-card-item-bg);
+  padding: 2rem 0 3rem 1rem;
+
+  &-ar {
+    padding: 2rem 1rem 3rem 0;
+  }
 
   &-list {
     flex: 1;
@@ -16,6 +21,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 0rem;
+    padding-top: 1rem;
 
     & a {
       padding: 0;
@@ -122,7 +128,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: flex-end;
   padding: 0rem;
   color: var(--color-base-side-bar-item-right-text);
@@ -144,7 +150,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 1rem;
+    // margin-right: 1rem;
     background-color: var(--color-base-side-bar-item-bg);
     transition: all 0.3s ease;
 
@@ -172,8 +178,9 @@
   .item-text {
     flex-grow: 1;
     font-size: 1rem;
-    text-align: left;
+    text-align: right;
     transition: all 0.3s ease;
+    padding-right: 1rem;
 
     &.active {
       color: var(--color-base-side-bar-item-right-text-active);
@@ -188,6 +195,7 @@
 }
 
 .side-bar-list-item-container {
+  // position: relative;
   padding: 0.5rem;
   border-top: 4px solid var(--color-base-side-bar-invert-border);
   border-bottom: 4px solid var(--color-base-side-bar-invert-border);
@@ -203,10 +211,39 @@
     border-left: 4px solid var(--color-base-side-bar-border);
     border-right: none;
     border-radius: 126.103px;
+    background-color: var(--color-base-product-card-bg);
+
+    // // Curved notch at top left (inward curve)
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: -24px;
+    //   right: 0px;
+    //   width: 20px;
+    //   height: 20px;
+    //   background-color: var(--color-base-product-card-card-item-bg);
+    //   border-bottom-right-radius: 20px;
+    //   box-shadow: 0.5px 4px 0 0 var(--color-base-side-bar-border);
+    // }
+
+    // // Curved notch at bottom left (inward curve)
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: -24px;
+    //   right: 0px;
+    //   width: 20px;
+    //   height: 20px;
+    //   background-color: var(--color-base-product-card-card-item-bg);
+    //   border-top-right-radius: 20px;
+    //   box-shadow: 0.5px -4px 0 0 var(--color-base-side-bar-border);
+    //   z-index: 100;
+    // }
   }
 }
 
 .ar-side-bar-list-item-container {
+  position: relative;
   padding: 0.5rem;
   border-top: 4px solid var(--color-base-side-bar-invert-border);
   border-bottom: 4px solid var(--color-base-side-bar-invert-border);
@@ -222,247 +259,273 @@
     border-right: 4px solid var(--color-base-side-bar-border);
     border-left: none;
     border-radius: 126.103px;
+    background-color: var(--color-base-product-card-bg);
+
+    // Curved notch at top left (inward curve for Arabic layout)
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: -24px;
+    //   left: 0px;
+    //   width: 20px;
+    //   height: 20px;
+    //   background-color: var(--color-base-product-card-bg);
+    //   border-bottom-left-radius: 20px;
+    // }
+
+    // // Curved notch at bottom left (inward curve for Arabic layout)
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: -24px;
+    //   left: 0px;
+    //   width: 20px;
+    //   height: 20px;
+    //   background-color: var(--color-base-product-card-bg);
+    //   border-top-left-radius: 20px;
+    //   z-index: 100;
+    // }
   }
 }
 
 // Responsive styles for desktop
-@include respond(desktop) {
-  .side-bar {
-    font-size: 0.85rem;
-    padding: 0.8rem 0;
+// @include respond(desktop) {
+//   .side-bar {
+//     font-size: 0.85rem;
+//     padding: 0.8rem 0;
 
-    &-bottom {
-      padding: 0.8rem 0;
+//     &-bottom {
+//       padding: 0.8rem 0;
 
-      .chat-button {
-        border-radius: 1.7rem;
-        padding: 0.7rem 1rem;
-        font-size: 0.85rem;
-      }
-    }
-  }
+//       .chat-button {
+//         border-radius: 1.7rem;
+//         padding: 0.7rem 1rem;
+//         font-size: 0.85rem;
+//       }
+//     }
+//   }
 
-  .side-bar-list-item {
-    border-radius: 1.7rem;
+//   .side-bar-list-item {
+//     border-radius: 1.7rem;
 
-    .item-icon {
-      width: 3rem;
-      height: 3rem;
-      margin-right: 0.6rem;
+//     .item-icon {
+//       width: 3rem;
+//       height: 3rem;
+//       margin-right: 0.6rem;
 
-      img {
-        width: 1.2rem;
-        height: 1.2rem;
-      }
-    }
+//       img {
+//         width: 1.2rem;
+//         height: 1.2rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 0.85rem;
-    }
-  }
+//     .item-text {
+//       font-size: 0.85rem;
+//     }
+//   }
 
-  .ar-side-bar-list-item {
-    border-radius: 1.7rem;
+//   .ar-side-bar-list-item {
+//     border-radius: 1.7rem;
 
-    .item-icon {
-      width: 3rem;
-      height: 3rem;
-      margin-right: 0.6rem;
+//     .item-icon {
+//       width: 3rem;
+//       height: 3rem;
+//       margin-right: 0.6rem;
 
-      img {
-        width: 1.2rem;
-        height: 1.2rem;
-      }
-    }
+//       img {
+//         width: 1.2rem;
+//         height: 1.2rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 0.85rem;
-    }
-  }
+//     .item-text {
+//       font-size: 0.85rem;
+//     }
+//   }
 
-  .side-bar-list-item-container {
-    padding: 0.4rem;
-    border-width: 3px;
-    border-radius: 105px;
+//   .side-bar-list-item-container {
+//     padding: 0.4rem;
+//     border-width: 3px;
+//     border-radius: 105px;
 
-    &.active {
-      border-width: 3px;
-      border-radius: 105px;
-    }
-  }
+//     &.active {
+//       border-width: 3px;
+//       border-radius: 105px;
+//     }
+//   }
 
-  .ar-side-bar-list-item-container {
-    padding: 0.4rem;
-    border-width: 3px;
-    border-radius: 105px;
+//   .ar-side-bar-list-item-container {
+//     padding: 0.4rem;
+//     border-width: 3px;
+//     border-radius: 105px;
 
-    &.active {
-      border-width: 3px;
-      border-radius: 105px;
-    }
-  }
-}
+//     &.active {
+//       border-width: 3px;
+//       border-radius: 105px;
+//     }
+//   }
+// }
 
 // Responsive styles for bigDesktop
-@include respond(bigDesktop) {
-  .side-bar {
-    font-size: 1rem;
-    padding: 1rem 0;
+// @include respond(bigDesktop) {
+//   .side-bar {
+//     font-size: 1rem;
+//     padding: 1rem 0;
 
-    &-bottom {
-      padding: 1rem 0;
+//     &-bottom {
+//       padding: 1rem 0;
 
-      .chat-button {
-        border-radius: 2rem;
-        padding: 0.85rem 1.5rem;
-        font-size: 1rem;
-      }
-    }
-  }
+//       .chat-button {
+//         border-radius: 2rem;
+//         padding: 0.85rem 1.5rem;
+//         font-size: 1rem;
+//       }
+//     }
+//   }
 
-  .side-bar-list-item {
-    border-radius: 2rem;
+//   .side-bar-list-item {
+//     border-radius: 2rem;
 
-    .item-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      margin-right: 1rem;
+//     .item-icon {
+//       width: 3.5rem;
+//       height: 3.5rem;
+//       margin-right: 1rem;
 
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
+//       img {
+//         width: 1.5rem;
+//         height: 1.5rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 1rem;
-    }
-  }
+//     .item-text {
+//       font-size: 1rem;
+//     }
+//   }
 
-  .ar-side-bar-list-item {
-    border-radius: 2rem;
+//   .ar-side-bar-list-item {
+//     border-radius: 2rem;
 
-    .item-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      margin-right: 1rem;
+//     .item-icon {
+//       width: 3.5rem;
+//       height: 3.5rem;
+//       margin-right: 1rem;
 
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
+//       img {
+//         width: 1.5rem;
+//         height: 1.5rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 1rem;
-    }
-  }
+//     .item-text {
+//       font-size: 1rem;
+//     }
+//   }
 
-  .side-bar-list-item-container {
-    padding: 0.5rem;
-    border-width: 3.5px;
-    border-radius: 125px;
+//   .side-bar-list-item-container {
+//     padding: 0.5rem;
+//     border-width: 3.5px;
+//     border-radius: 125px;
 
-    &.active {
-      border-width: 3.5px;
-      border-radius: 125px;
-    }
-  }
+//     &.active {
+//       border-width: 3.5px;
+//       border-radius: 125px;
+//     }
+//   }
 
-  .ar-side-bar-list-item-container {
-    padding: 0.5rem;
-    border-width: 3.5px;
-    border-radius: 125px;
+//   .ar-side-bar-list-item-container {
+//     padding: 0.5rem;
+//     border-width: 3.5px;
+//     border-radius: 125px;
 
-    &.active {
-      border-width: 3.5px;
-      border-radius: 125px;
-    }
-  }
-}
+//     &.active {
+//       border-width: 3.5px;
+//       border-radius: 125px;
+//     }
+//   }
+// }
 
 // Responsive styles for extraBigDesktop
-@include respond(extraBigDesktop) {
-  .side-bar {
-    font-size: 1.1rem;
-    padding: 1.1rem 0;
+// @include respond(extraBigDesktop) {
+//   .side-bar {
+//     font-size: 1.1rem;
+//     padding: 1.1rem 0;
 
-    &-bottom {
-      padding: 1.1rem 0;
+//     &-bottom {
+//       padding: 1.1rem 0;
 
-      .chat-button {
-        border-radius: 2.2rem;
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-        height: auto;
-        min-height: 3.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  }
+//       .chat-button {
+//         border-radius: 2.2rem;
+//         padding: 1rem 2rem;
+//         font-size: 1.1rem;
+//         height: auto;
+//         min-height: 3.2rem;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//       }
+//     }
+//   }
 
-  .side-bar-list-item {
-    border-radius: 2.2rem;
-    padding-left: 0px;
-    padding-right: 5px;
+//   .side-bar-list-item {
+//     border-radius: 2.2rem;
+//     padding-left: 0px;
+//     padding-right: 5px;
 
-    .item-icon {
-      width: 3.8rem;
-      height: 3.8rem;
-      margin-right: 1.1rem;
+//     .item-icon {
+//       width: 3.8rem;
+//       height: 3.8rem;
+//       margin-right: 1.1rem;
 
-      img {
-        width: 1.6rem;
-        height: 1.6rem;
-      }
-    }
+//       img {
+//         width: 1.6rem;
+//         height: 1.6rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 1.1rem;
-    }
-  }
+//     .item-text {
+//       font-size: 1.1rem;
+//     }
+//   }
 
-  .ar-side-bar-list-item {
-    border-radius: 2.2rem;
+//   .ar-side-bar-list-item {
+//     border-radius: 2.2rem;
 
-    .item-icon {
-      width: 3.8rem;
-      height: 3.8rem;
-      margin-right: 1.1rem;
+//     .item-icon {
+//       width: 3.8rem;
+//       height: 3.8rem;
+//       margin-right: 1.1rem;
 
-      img {
-        width: 1.6rem;
-        height: 1.6rem;
-      }
-    }
+//       img {
+//         width: 1.6rem;
+//         height: 1.6rem;
+//       }
+//     }
 
-    .item-text {
-      font-size: 1.1rem;
-    }
-  }
+//     .item-text {
+//       font-size: 1.1rem;
+//     }
+//   }
 
-  .side-bar-list-item-container {
-    padding: 0.55rem;
+//   .side-bar-list-item-container {
+//     padding: 0.55rem;
 
-    border-width: 4px;
-    border-radius: 130px;
+//     border-width: 4px;
+//     border-radius: 130px;
 
-    &.active {
-      border-width: 4px;
-      border-radius: 130px;
-    }
-  }
+//     &.active {
+//       border-width: 4px;
+//       border-radius: 130px;
+//     }
+//   }
 
-  .ar-side-bar-list-item-container {
-    padding: 0.55rem;
-    border-width: 4px;
-    border-radius: 130px;
+//   .ar-side-bar-list-item-container {
+//     padding: 0.55rem;
+//     border-width: 4px;
+//     border-radius: 130px;
 
-    &.active {
-      border-width: 4px;
-      border-radius: 130px;
-    }
-  }
-}
+//     &.active {
+//       border-width: 4px;
+//       border-radius: 130px;
+//     }
+//   }
+// }

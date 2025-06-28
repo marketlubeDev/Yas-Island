@@ -1,14 +1,14 @@
 import React from "react";
 import logo from "../../assets/logo/logo.png";
 import desc from "../../assets/logo/desc.svg";
+import LogoVertical from "../../assets/logo/LogoVertical.svg";
 import "./_logo.scss";
 
 export default function Logo({ type = "default" }) {
   if (type === "default") {
     return (
       <div className="logo">
-        <img src={logo} alt="logo" className="logo-img" />
-        <img src={desc} alt="desc" className="logo-desc" />
+        <img src={LogoVertical} alt="logo" className="logo-img" />
       </div>
     );
   } else if (type === "horizontal")
@@ -23,7 +23,7 @@ export default function Logo({ type = "default" }) {
         }}
       >
         <img src={logo} alt="logo" className="logo-img" />
-        <img src={desc} alt="desc" className="logo-desc" />
+        {/* <img src={desc} alt="desc" className="logo-desc" /> */}
       </div>
     );
 }

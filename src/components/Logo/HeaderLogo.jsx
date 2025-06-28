@@ -19,7 +19,6 @@ import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
 import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
-import queryClient from "../../../config/reactQuery";
 import { setProducts } from "../../global/productSlice";
 import { setIsCartOpen } from "../../global/cartSlice";
 
@@ -31,7 +30,6 @@ export default function HeaderLogo() {
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -44,6 +42,8 @@ export default function HeaderLogo() {
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
+
+  console.log(language, "asdfasfasfa");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.checkout.cartItems) || [];
 
@@ -75,109 +75,140 @@ export default function HeaderLogo() {
 
   const headerActions = (
     <div className="header-actions">
-      <button
-        className="accessibility-button"
-        aria-label={t("common.accessibility")}
-        onClick={onAccessibilityOpen}
-        style={{
-          ...(isPaymentRoute && {
-         
-          }),
-        }}
-      >
-        <span className="product-header__icon">
-          <img
-            src={isDarkMode ? invertAccessibility : accessibility}
-            alt={t("common.accessibility")}
-          />
-        </span>
-      </button>
-      <div
-        className="language-selector"
-        ref={langBtnRef}
-        style={{ position: "relative" }}
-      >
+      <div>
+        {isPaymentRoute && (
+          <div
+            className={`header-logo ${
+              language === "العربية" ? "header-logo-ar" : ""
+            }`}
+            onClick={handleLogoClick}
+            style={
+              {
+                // paddingLeft: "2rem",
+                // paddingRight: "2rem",
+              }
+            }
+          >
+            <img
+              src={logo}
+              alt="logo"
+              className="header-logo-img"
+              style={{
+                width: "5.5rem",
+              }}
+            />
+            <img
+              src={isDarkMode ? invertDesc : desc}
+              alt="desc"
+              className="header-logo-desc"
+              style={{
+                width: "6.5rem",
+              }}
+            />
+          </div>
+        )}{" "}
+      </div>
+      <div className="header-actions-right">
         <button
-          className="web-header__lang-btn"
-          aria-label={t("common.language")}
-          onClick={() => setShowLangDropdown((v) => !v)}
-          type="button"
+          className="accessibility-button"
+          aria-label={t("common.accessibility")}
+          onClick={onAccessibilityOpen}
           style={{
-            ...(isPaymentRoute && {
-         
-            }),
+            ...(isPaymentRoute && {}),
           }}
         >
-          <img
-            src={isDarkMode ? invertGlobe : globe}
-            alt={t("common.language")}
-          />
-          <span
+          <span className="product-header__icon">
+            <img
+              src={isDarkMode ? invertAccessibility : accessibility}
+              alt={t("common.accessibility")}
+            />
+          </span>
+        </button>
+        <div
+          className="language-selector"
+          ref={langBtnRef}
+          style={{ position: "relative" }}
+        >
+          <button
+            className="web-header__lang-btn"
+            aria-label={t("common.language")}
+            onClick={() => setShowLangDropdown((v) => !v)}
+            type="button"
             style={{
-              color: isDarkMode ? "#E7EBD4" : "#18142B",
+              ...(isPaymentRoute && {}),
             }}
           >
-            {i18n.language === "en" ? "English" : "العربية"}
-          </span>
-          <img
-            src={isDarkMode ? invertdown : down}
-            alt="chevron"
-            className="chevron"
-          />
-        </button>
-        {showLangDropdown && (
-          <div className="mobile-header__lang-dropdown">
-            <div
-              className="mobile-header__lang-option"
-              onClick={() => {
-                changeLanguage("en");
-                setShowLangDropdown(false);
+            <img
+              src={isDarkMode ? invertGlobe : globe}
+              alt={t("common.language")}
+            />
+            <span
+              style={{
+                color: isDarkMode ? "#E7EBD4" : "#18142B",
               }}
             >
-              <span className="mobile-header__lang-text">English</span>
-              {i18n.language === "en" && (
-                <span className="mobile-header__lang-check">✓</span>
-              )}
+              {i18n.language === "en" ? "English" : "العربية"}
+            </span>
+            <img
+              src={isDarkMode ? invertdown : down}
+              alt="chevron"
+              className="chevron"
+            />
+          </button>
+          {showLangDropdown && (
+            <div className="mobile-header__lang-dropdown">
+              <div
+                className="mobile-header__lang-option"
+                onClick={() => {
+                  changeLanguage("en");
+                  setShowLangDropdown(false);
+                }}
+              >
+                <span className="mobile-header__lang-text">English</span>
+                {i18n.language === "en" && (
+                  <span className="mobile-header__lang-check">✓</span>
+                )}
+              </div>
+              <div
+                className="mobile-header__lang-option"
+                onClick={() => {
+                  changeLanguage("ar");
+                  setShowLangDropdown(false);
+                }}
+              >
+                <span className="mobile-header__lang-text">العربية</span>
+                {i18n.language === "ar" && (
+                  <span className="mobile-header__lang-check">✓</span>
+                )}
+              </div>
             </div>
-            <div
-              className="mobile-header__lang-option"
-              onClick={() => {
-                changeLanguage("ar");
-                setShowLangDropdown(false);
-              }}
-            >
-              <span className="mobile-header__lang-text">العربية</span>
-              {i18n.language === "ar" && (
-                <span className="mobile-header__lang-check">✓</span>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-      <button
-        className={language === "العربية" ? "ar-cart-button" : "cart-button"}
-        style={{
-          borderWidth: isDarkMode ? "2px" : "1px",
-          ...(isPaymentRoute && {
-            // top: "-12px",
-            // right: "-2rem",
-
-            left: language === "العربية" ? "auto" : undefined,
-          }),
-        }}
-        onClick={onCartOpen}
-      >
-        <span className="cart-icon">
-          <img
-            src={isDarkMode ? invertCart : cart}
-            alt={t("common.viewCart")}
-          />
-          {cartItems && cartItems.length > 0 && (
-            <span className="cart-notification">{cartItems.length}</span>
           )}
-        </span>
-        {t("common.viewCart")}
-      </button>
+        </div>
+        <button
+          className={language === "العربية" ? "ar-cart-button" : "cart-button"}
+          style={{
+            borderWidth: isDarkMode ? "2px" : "1px",
+            ...(isPaymentRoute && {
+              // top: "-12px",
+              // right: "-2rem",
+
+              left: language === "العربية" ? "auto" : undefined,
+            }),
+          }}
+          onClick={onCartOpen}
+        >
+          <span className="cart-icon">
+            <img
+              src={isDarkMode ? invertCart : cart}
+              alt={t("common.viewCart")}
+            />
+            {cartItems && cartItems.length > 0 && (
+              <span className="cart-notification">{cartItems.length}</span>
+            )}
+          </span>
+          {t("common.viewCart")}
+        </button>
+      </div>
     </div>
   );
 
@@ -193,48 +224,14 @@ export default function HeaderLogo() {
         }}
       >
         <div
-          className="header-logo"
-          onClick={handleLogoClick}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: isProductRoute ? "column" : "row",
-            alignItems: "center",
-            height: isProductRoute ? "130px" : "118px",
-            width: isProductRoute ? "12rem" : "",
-            position: isProductRoute ? "relative" : "static",
-            top: isProductRoute ? "1rem" : "0",
-          }}
+          className={`${
+            isPaymentRoute ? "product-top-pay" : "product-top-sec"
+          }`}
+          style={{ width: "100%" }}
         >
-          <img
-            src={logo}
-            alt="logo"
-            className="header-logo-img"
-            style={{
-              width: isProductRoute ? "7rem" : "5.5rem",
-              position: isProductRoute ? "relative" : "static",
-              top: isProductRoute ? "8px" : "0",
-            }}
-          />
-          <img
-            src={isDarkMode ? invertDesc : desc}
-            alt="desc"
-            className="header-logo-desc"
-            style={{
-              width: isProductRoute ? "8rem" : "6.5rem",
-              position: isProductRoute ? "relative" : "static",
-              bottom: isProductRoute ? "16px" : "0",
-            }}
-          />
+          {headerActions}
+          {!isPaymentRoute && <ProductHead />}
         </div>
-        {isProductRoute ? (
-          <div style={{ width: "87%" }}>
-            {headerActions}
-            <ProductHead />
-          </div>
-        ) : (
-          headerActions
-        )}
       </div>
 
       <AccessibilityModal

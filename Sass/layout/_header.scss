@@ -3,7 +3,7 @@
 
 .header {
   width: 100%;
-  background-color: var(--color-base-bg);
+  background-color: var(--color-base-product-card-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,21 +12,19 @@
 
 .header-actions {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 1rem;
   margin-left: auto;
-  justify-content: flex-end;
+  // justify-content: flex-end;
 
-  @include respond(desktop) {
-    width: 100%;
+  &-right {
     display: flex;
-    justify-content: flex-end;
-  }
-
-  @include respond(extraBigDesktop) {
+    align-items: end;
+    gap: 1rem;
+    margin-left: auto;
     width: 100%;
-    display: flex;
     justify-content: flex-end;
+    // background-color: red;
   }
 }
 

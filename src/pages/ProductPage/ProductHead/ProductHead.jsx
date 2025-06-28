@@ -13,8 +13,6 @@ export default function ProductHead() {
   );
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
-  const [selectedSort, setSelectedSort] = useState("Price (High to Low)");
-  const [selectedFilter, setSelectedFilter] = useState("Attractions");
   const sortBtnRef = useRef(null);
   const filterBtnRef = useRef(null);
 
