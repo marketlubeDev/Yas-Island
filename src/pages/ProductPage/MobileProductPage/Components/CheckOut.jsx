@@ -148,14 +148,14 @@ function CheckOut({ onClose, onProceedToPayment, onApplyPromo, onBack }) {
             >
               <div
                 className="email-checkout__summary-title"
-                style={{ color: "var(--color-email-form-label)" }}
+                style={{ color: "var(--order-smry-ttl)" }}
               >
                 {t("payment.orderSummary.title")}
               </div>
               <div className="email-checkout__summary-row email-checkout__summary-row--column">
                 <span
                   className="email-checkout__summary-label"
-                  style={{ color: "var(--color-email-form-label)" }}
+                  style={{ color: "var(--color-email-form-otp-info)" }}
                 >
                   {t("payment.orderSummary.datesAndGuests")}
                 </span>

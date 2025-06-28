@@ -76,11 +76,11 @@ function ConfirmEmail({
               </div>
             </div>
             <div className="confirm-email__otp-info">
-              {t("payment.verification.codeSent")} <b>{email}</b>
+              {t("payment.verification.codeSent")} <span>{email}</span>
               <br />
-              <span className="confirm-email__otp-warning">
+              <div className="confirm-email__otp-warning">
                 {t("payment.verification.checkSpam")}
-              </span>
+              </div>
             </div>
             <div className="confirm-email__otp-actions">
               <span>

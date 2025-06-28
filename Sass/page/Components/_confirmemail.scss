@@ -23,23 +23,39 @@
 .confirm-email__form-container {
   width: 90%;
   max-width: 400px;
-  margin: 20px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
+  align-items: center;
   padding: 32px 36px;
-  height: 60vh;
+  height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 6px;
   }
+
+  @media (min-width: 340px) and (max-width: 374px) {
+    padding: 88px 27px;
+  }
+
+  @media (min-width: 390px) and (max-width: 411px) {
+    padding: 70px 36px;
+  }
+
+  @media (min-width: 412px) and (max-width: 413px) {
+    padding: 108px 36px;
+  }
+
+  @media (min-width: 414px) and (max-width: 430px) {
+    padding: 97px 36px;
+  }
 }
 
 .confirm-email__label {
   font-size: 14px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info-b);
   font-weight: 600;
   margin-bottom: 8px;
   // margin-left: -200px;
@@ -51,7 +67,7 @@
 
 .confirm-email__input-underline {
   font-size: 14px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info-b);
   padding-bottom: 4px;
   border-bottom: 2px solid var(--color-email-form-input-border);
   margin-bottom: 16px;
@@ -87,7 +103,7 @@
   font-size: 14px;
 
   font-weight: bold;
-  color: var(--color-confirm-otp-label);
+  color: var(--color-email-form-otp-info-b);
   margin-bottom: 10px;
   text-align: center;
 }
@@ -104,7 +120,7 @@
   height: 41px;
   border: 0.5px solid var(--color-confirm-otp-input-border);
   border-radius: 8px;
-  font-size: 22px;
+  font-size: 18px;
   text-align: center;
   background: var(--color-email-form-box);
   font-weight: 700;
@@ -112,17 +128,17 @@
   outline: none;
   transition: border 0.2s;
   &:focus {
-    border-color: #1976d2;
+    border-color: var(--color-email-form-input-border);
   }
 }
 
 .confirm-email__otp-info {
   font-size: 13px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info);
   text-align: center;
   margin-bottom: 4px;
-  b {
-    color: var(--color-email-form-label);
+  span {
+    color: var(--color-email-form-otp-info-b);
   }
 }
 
@@ -139,15 +155,15 @@
   gap: 12px;
   justify-content: center;
   margin-top: 18px;
-  font-size: 13px;
-  color: var(--color-email-form-label);
+  font-size: 12px;
+  color: var(--color-otp-action);
   button {
     background: var(--color-email-form-box);
     border: 3px solid var(--color-otp-action-btn-border);
     border-radius: 2rem;
-    padding: 4px 18px;
+    padding: 10px 20px;
     font-size: 14px;
-    color: var(--color-otp-btn-clr);
+    color: var(--color-otp-action);
     font-weight: 500;
     cursor: pointer;
     margin-left: 8px;
@@ -165,8 +181,8 @@
   border: none;
   border-radius: 2rem;
   padding: 10px 0;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   width: 75%;
   // margin-top: 12px;

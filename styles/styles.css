@@ -138,6 +138,9 @@
   --color-bkg-save-btn-bg: #fff;
   --color-bkg-save-btn-clr: #18142b;
   --color-bkg-save-btn-border: #dcd6e5;
+  --color-otp-btn-clr: #18142b;
+  --color-email-form-otp-info: #908999;
+  --color-email-form-otp-info-b: #18142b;
   --color-pymnt-container-bg: #f4f3f3;
   --color-pymnt-title-clr: #231942;
   --color-pymnt-step-clr: #594f67;
@@ -151,9 +154,10 @@
   --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
+  --color-otp-action: #787082;
   --color-confirm-otp-bg: #f4f3f3;
   --color-confirm-otp-label: #231942;
-  --color-confirm-otp-input-border: #6f677c;
+  --color-confirm-otp-input-border: #c0bac9;
   --color-otp-btn-border: #dcd6e5;
   --color-otp-action-btn-border: #dcd6e5;
   --color-checkout-summary-border: none;
@@ -5964,12 +5968,12 @@ body {
 .confirm-email__form-container {
   width: 90%;
   max-width: 400px;
-  margin: 20px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
+  align-items: center;
   padding: 32px 36px;
-  height: 60vh;
+  height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -5977,10 +5981,30 @@ body {
 .confirm-email__form-container::-webkit-scrollbar {
   width: 6px;
 }
+@media (min-width: 340px) and (max-width: 374px) {
+  .confirm-email__form-container {
+    padding: 88px 27px;
+  }
+}
+@media (min-width: 390px) and (max-width: 411px) {
+  .confirm-email__form-container {
+    padding: 70px 36px;
+  }
+}
+@media (min-width: 412px) and (max-width: 413px) {
+  .confirm-email__form-container {
+    padding: 108px 36px;
+  }
+}
+@media (min-width: 414px) and (max-width: 430px) {
+  .confirm-email__form-container {
+    padding: 97px 36px;
+  }
+}
 
 .confirm-email__label {
   font-size: 14px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info-b);
   font-weight: 600;
   margin-bottom: 8px;
   display: flex;
@@ -5991,7 +6015,7 @@ body {
 
 .confirm-email__input-underline {
   font-size: 14px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info-b);
   padding-bottom: 4px;
   border-bottom: 2px solid var(--color-email-form-input-border);
   margin-bottom: 16px;
@@ -6026,7 +6050,7 @@ body {
 .confirm-email__otp-label {
   font-size: 14px;
   font-weight: bold;
-  color: var(--color-confirm-otp-label);
+  color: var(--color-email-form-otp-info-b);
   margin-bottom: 10px;
   text-align: center;
 }
@@ -6043,7 +6067,7 @@ body {
   height: 41px;
   border: 0.5px solid var(--color-confirm-otp-input-border);
   border-radius: 8px;
-  font-size: 22px;
+  font-size: 18px;
   text-align: center;
   background: var(--color-email-form-box);
   font-weight: 700;
@@ -6052,17 +6076,17 @@ body {
   transition: border 0.2s;
 }
 .confirm-email__otp-input:focus {
-  border-color: #1976d2;
+  border-color: var(--color-email-form-input-border);
 }
 
 .confirm-email__otp-info {
   font-size: 13px;
-  color: var(--color-email-form-label);
+  color: var(--color-email-form-otp-info);
   text-align: center;
   margin-bottom: 4px;
 }
-.confirm-email__otp-info b {
-  color: var(--color-email-form-label);
+.confirm-email__otp-info span {
+  color: var(--color-email-form-otp-info-b);
 }
 
 .confirm-email__otp-warning {
@@ -6078,16 +6102,16 @@ body {
   gap: 12px;
   justify-content: center;
   margin-top: 18px;
-  font-size: 13px;
-  color: var(--color-email-form-label);
+  font-size: 12px;
+  color: var(--color-otp-action);
 }
 .confirm-email__otp-actions button {
   background: var(--color-email-form-box);
   border: 3px solid var(--color-otp-action-btn-border);
   border-radius: 2rem;
-  padding: 4px 18px;
+  padding: 10px 20px;
   font-size: 14px;
-  color: var(--color-otp-btn-clr);
+  color: var(--color-otp-action);
   font-weight: 500;
   cursor: pointer;
   margin-left: 8px;
@@ -6104,8 +6128,8 @@ body {
   border: none;
   border-radius: 2rem;
   padding: 10px 0;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   width: 75%;
   transform: translateX(16.5%);
@@ -6218,7 +6242,7 @@ body {
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 32px 40px;
+  padding: 0px 40px 32px 40px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -6239,7 +6263,7 @@ body {
   flex-direction: column;
   gap: 18px;
   background: var(--color-email-form-box);
-  padding: 24px;
+  padding: 4px 18px;
   border-radius: 12px;
 }
 
@@ -6424,9 +6448,9 @@ body {
   font-weight: 500;
   color: var(--color-country-code-clr);
   border: none;
-  border-bottom: 2px solid var(--color-country-code-clr);
+  border-bottom: 2px solid var(--color-email-form-input-border);
   background: transparent;
-  padding: 2px 0 12px 2px;
+  padding: 9px 0 8px 2px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -6449,7 +6473,7 @@ body {
 .email-checkout__summary-label {
   font-weight: 500;
   color: #231942;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 2px;
 }
 
@@ -6561,7 +6585,7 @@ body {
 }
 .make-payment__summary-top .make-payment__summary-title {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14.5px;
   margin-bottom: 18px;
 }
 .make-payment__summary-top .make-payment__summary-dates-row {
