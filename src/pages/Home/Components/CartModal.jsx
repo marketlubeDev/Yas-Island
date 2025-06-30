@@ -11,7 +11,7 @@ import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteItemFromCart, updateQuantity } from "../../../global/cartSlice";
+import {  removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 
 const CartModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -59,6 +59,7 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleQuantityChange = (id, change) => {
+
     console.log(id, change, "id and change");
     const item = cartItems.find((item) => item.id === id);
     console.log(item, "item");
@@ -66,8 +67,8 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleDeleteItem = (id) => {
-    console.log(id, "id");
-    dispatch(deleteItemFromCart(id));
+   
+    dispatch(removeItemFromCart(id));
   };
 
   if (!isOpen) return null;
@@ -114,14 +115,14 @@ const CartModal = ({ isOpen, onClose }) => {
                   <img src={item.image} alt={item.title} />
                   <div className="item-details">
                     <h4>{item.title}</h4>
-                    <p>{item.price}</p>
+                    <p>AED {item.price} <span className="text-xs text-gray-500"> {item.net_amount.toFixed(2)}+{(item.net_amount * 0.05).toFixed(2)} Net&Tax</span></p>
                     <div className="validity-date" style={{}}>
                       Valid from <span>{item.validFrom}</span> to{" "}
                       <span>{item.validTo}</span>
                     </div>
                   </div>
                   <div className="quantity-controls">
-                    <span>{t("cart.adults")}</span>
+                    <span>{item.variantName}</span>
                     <div className="controls">
                       <Button
                         className="minus-btn-web"
@@ -132,9 +133,9 @@ const CartModal = ({ isOpen, onClose }) => {
                       <Button
                         className="plus-btn-web"
                         icon={<PlusOutlined />}
-                        onClick={() => handleQuantityChange(item.id, 1)}
+                        onClick={() => handleQuantityChange(item?.id, 1)}
                       />
-                      <Button className="delete-btn" onClick={() => handleDeleteItem(item.id)}>
+                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.id)}>
                         <img
                           src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
                           alt={t("cart.delete")}

@@ -89,12 +89,12 @@ export default function BookingSection({
     const formattedDate = formatDateToYYYYMMDD(date);
     console.log(formattedDate, "formatted date");
     dispatch(setCheckoutDate(formattedDate));
-    setSelectedDate(date);
+    setSelectedDate(formattedDate);
   };
 
   const isDateSelected = (date) => {
     if (!selectedDate) return false;
-    return date.toDateString() === selectedDate.toDateString();
+    return date.toDateString() === new Date(selectedDate).toDateString();
   };
 
   // Generate calendar days
@@ -227,6 +227,13 @@ export default function BookingSection({
   }, [guests, product]);
 
   const handleCheckout = () => {
+
+    if(!selectedDate) {
+      toast.error(t("Please SelectDate"), {
+        position: "top-center",
+      });
+      return;
+    }
     const variants = {};
 
     product?.product_variants.forEach((variant) => {
@@ -240,32 +247,69 @@ export default function BookingSection({
       })
     );
 
-    dispatch(addToCart({
-      id: selectedProduct?.default_variant_id,
-      image: selectedProduct?.product_images?.thumbnail_url,
-      title: selectedProduct?.product_title,
-      price: 328.57,
-      vat: 16.43,
-      quantity: selectedProduct?.product_variants.find(variant => variant.id === selectedProduct?.default_variant_id)?.min_quantity || 1,
-      type: "adults",
-      validFrom: formatDate(selectedDate),
-      validTo: formatDate(endDate),
-    }));
+    Object.keys(guests).forEach(guest => { 
+      const guestData = product?.product_variants?.find(variant => variant?.productvariantname === guest);
+      
+      // Calculate validTo date
+      const startDate = new Date(selectedDate);
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
+      
+      // Format dates directly to YYYY-MM-DD
+      const validToDate = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
+
+      dispatch(addToCart({
+        id: guestData?.id,
+        variantName:guestData?.productvariantname,
+        net_amount: guestData?.net_amount,
+        image: selectedProduct?.product_images?.thumbnail_url,
+        title: selectedProduct?.product_title,
+        price: guestData?.gross,
+        vat: guestData?.vat,
+        quantity: guests[guest],
+        type: guestData?.productvariantname,
+        validFrom: selectedDate, // Already in YYYY-MM-DD format
+        validTo: validToDate,
+      }));
+    });
     navigate("/payment");
   };
 
   const handleSaveToCart = () => {
-    dispatch(addToCart({
-      id: selectedProduct?.default_variant_id,
-      image: selectedProduct?.product_images?.thumbnail_url,
-      title: selectedProduct?.product_title,
-      price: 328.57,
-      vat: 16.43,
-      quantity: 2,
-      type: "adults",
-      validFrom: formatDate(selectedDate),
-      validTo: formatDate(endDate),
-    }));
+    if(!selectedDate) {
+      toast.error(t("Please SelectDate"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+
+    Object.keys(guests).forEach(guest => { 
+      const guestData = product?.product_variants?.find(variant => variant?.productvariantname === guest);
+      
+      // Calculate validTo date
+      const startDate = new Date(selectedDate);
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
+      
+      // Format dates directly to YYYY-MM-DD
+      const validToDate = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
+
+      dispatch(addToCart({
+        id: guestData?.productid,
+        variantName:guestData?.productvariantname,
+        net_amount: guestData?.net_amount,
+        image: selectedProduct?.product_images?.thumbnail_url,
+        title: selectedProduct?.product_title,
+        price: guestData?.gross,
+        vat: guestData?.vat,
+        quantity: guests[guest],
+        type: guestData?.productvariantname,
+        validFrom: selectedDate, // Already in YYYY-MM-DD format
+        validTo: validToDate,
+      }));
+    });
+
     toast.success(t("booking.productAddedToCart"), {
       position: "top-center",
     });

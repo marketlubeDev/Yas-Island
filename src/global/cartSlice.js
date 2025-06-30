@@ -11,8 +11,8 @@ const initialState = {
 const TAX_RATE = 0.05; // 5% VAT & tax rate
 
 const calculateCartTotals = (items) => {
-  const subtotal = items.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
-  const vatAndTax = subtotal * TAX_RATE;
+  const subtotal = items.reduce((total, item) => total + (item.net_amount * (item.quantity || 1)), 0);
+  const vatAndTax = items.reduce((taxTotal, item) => taxTotal + (item.net_amount * (item.quantity || 1) * 0.05), 0);
   const total = subtotal + vatAndTax;
   
   return {
@@ -52,6 +52,7 @@ const cartSlice = createSlice({
       state.isCartOpen = action.payload;
     },
     removeItemFromCart: (state, action) => {
+      
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload
       );
@@ -69,17 +70,17 @@ const cartSlice = createSlice({
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
     },
-    deleteItemFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload
-      );
-      const totals = calculateCartTotals(state.cartItems);
-      state.subtotal = totals.subtotal;
-      state.vatAndTax = totals.vatAndTax;
-      state.total = totals.total;
-    },
+    // deleteItemFromCart: (state, action) => {
+    //   state.cartItems = state.cartItems.filter(
+    //     (item) => item.id !== action.payload
+    //   );
+    //   const totals = calculateCartTotals(state.cartItems);
+    //   state.subtotal = totals.subtotal;
+    //   state.vatAndTax = totals.vatAndTax;
+    //   state.total = totals.total;
+    // },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, setIsCartOpen, removeItemFromCart, updateQuantity, deleteItemFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, setIsCartOpen, removeItemFromCart, updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

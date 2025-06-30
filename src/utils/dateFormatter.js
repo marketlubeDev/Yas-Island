@@ -1,4 +1,5 @@
 const formatDate = (date) => {
+    console.log(date, "date in formatDate");
     if (!date) return null;
 
     // Ensure we are working with a Date object
