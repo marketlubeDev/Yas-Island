@@ -92,12 +92,10 @@ export default function ProductModal({
       //     alert(performanceData.error.text);
       //     return;
       //   }
-      //   alert(performanceData.error.text);  
+      //   alert(performanceData.error.text);
       //   return;
-        
-      // }
 
-      
+      // }
 
       if (performanceData && performanceData.performance) {
         dispatch(setPerformanceData(performanceData.performance));
@@ -111,7 +109,7 @@ export default function ProductModal({
       //   position: "top-center",
       // });
       setShowBookingSection(true);
-    } finally { 
+    } finally {
       setIsLoading(false);
     }
   };
@@ -120,7 +118,7 @@ export default function ProductModal({
     const defaultVariant = product?.product_variants?.find(
       (variant) => variant.isdefault
     );
-    return defaultVariant;  
+    return defaultVariant;
   };
 
   return (
@@ -153,7 +151,7 @@ export default function ProductModal({
                 dangerouslySetInnerHTML={{
                   __html: selectedProduct?.productdesc,
                 }}
-                style={{ height: "50vh", overflowY: "auto" }}
+                style={{ height: "35vh", overflowY: "auto" }}
               ></div>
 
               <div className="price-section">

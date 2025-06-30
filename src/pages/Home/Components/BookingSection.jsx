@@ -81,7 +81,6 @@ export default function BookingSection() {
 
   return (
     <div className="booking-section">
-      {/* Date Selection */}
       <div className="calendar-container">
         <h2>Choose your date</h2>
         <div className="calendar-wrapper">
@@ -110,8 +109,8 @@ export default function BookingSection() {
         </div>
       </div>
       <div className="booking-section-divider"></div>
-      {/* Guest Selection */}
-      <div className="guest-section h-full flex flex-col justify-between">
+
+      <div className="guest-section">
         <div className="guest-section-header-container">
           <h2 className="section-title">Choose guests</h2>
           <div className="guest-container">

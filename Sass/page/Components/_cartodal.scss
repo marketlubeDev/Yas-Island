@@ -5,6 +5,14 @@
   border-bottom-left-radius: 1.70444rem !important;
 }
 
+// RTL support for drawer content
+[dir="rtl"] .ant-drawer-content {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 1.70444rem !important;
+  border-bottom-right-radius: 1.70444rem !important;
+}
+
 .cart-content {
   height: 100vh;
   overflow-y: auto;
@@ -118,6 +126,11 @@
   gap: 15px;
 }
 
+// RTL support for cart items
+[dir="rtl"] .cart-item {
+  flex-direction: row-reverse;
+}
+
 .cart-item img {
   width: 100px;
   height: 70px;
@@ -181,6 +194,10 @@
     line-height: normal;
     text-transform: capitalize;
   }
+}
+
+[dir="rtl"] .quantity-controls {
+  flex-direction: row-reverse;
 }
 
 .minus-btn-web {

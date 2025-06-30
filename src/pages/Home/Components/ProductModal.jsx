@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import BookingSection from "./BookingSection";
 import Product1 from "../../../assets/images/product1.png";
 
-export default function ProductModal({ selectedProduct }) {
-  const [showBookingSection, setShowBookingSection] = useState(false);
-
+export default function ProductModal({
+  selectedProduct,
+  showBookingSection,
+  setShowBookingSection,
+}) {
   const handleAddToCart = () => {
     setShowBookingSection(true);
   };

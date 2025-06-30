@@ -30,7 +30,9 @@ export default function ProductCard({ productList }) {
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    const defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
     return defaultVariant;
   };
 
@@ -54,7 +56,7 @@ export default function ProductCard({ productList }) {
               tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
-              onAddToCart={() => showModal(product)}  
+              onAddToCart={() => showModal(product)}
               netPrice={defaultVariant(product)?.net_amount}
             />
           </div>
@@ -65,10 +67,11 @@ export default function ProductCard({ productList }) {
         title={null}
         open={isModalOpen}
         onCancel={handleCancel}
-        
         footer={null}
         width="85%"
-        className="product-modal"
+        className={`product-modal ${
+          showBookingSection ? "booking-active" : ""
+        }`}
         centered={true}
         closeIcon={
           <span className="custom-modal-close">

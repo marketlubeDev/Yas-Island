@@ -45,7 +45,10 @@ export default function HeaderLogo() {
 
   console.log(language, "asdfasfasfa");
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.checkout.cartItems) || [];
+  // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
+  const { cartItems } = useSelector((state) => state.cart);
+
+  console.log(cartItems, "cartItemssdfdf");
 
   useEffect(() => {
     function handleClickOutside(event) {

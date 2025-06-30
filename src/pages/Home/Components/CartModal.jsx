@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Drawer, Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -15,11 +15,10 @@ import { useSelector } from "react-redux";
 const CartModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { language } = useLanguage();
+  const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const {cartItems} = useSelector((state) => state.cart);
-
+  const { cartItems } = useSelector((state) => state.cart);
 
   // Cart items data
   // const [cartItems, setCartItems] = useState([
@@ -57,13 +56,9 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleQuantityChange = (id, change) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
+    // This would dispatch a Redux action to update cart items
+    // Example: dispatch(updateCartItemQuantity({ id, change }));
+    console.log("Update quantity for item:", id, "change:", change);
   };
 
   if (!isOpen) return null;
@@ -71,7 +66,7 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <Drawer
       title={null}
-      placement={language === "العربية" ? "left" : "right"}
+      placement={isRTL ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
       width="34%"
