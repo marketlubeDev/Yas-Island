@@ -201,7 +201,8 @@ export const en = {
       vatAndTax: "vat & tax :",
       total: "Total :",
       promoCode: {
-        label: "ENTER YOUR PROMO CODE TO GET DISCOUNT",
+        label: "ENTER YOUR PROMO CODE ",
+        label2: "TO GET DISCOUNT",
         placeholder: "Enter promo code",
         apply: "Apply",
       },

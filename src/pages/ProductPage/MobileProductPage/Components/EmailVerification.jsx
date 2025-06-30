@@ -1,23 +1,12 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import MobileHeader from "./MobileHeader";
 import ConfirmEmail from "./ConfirmEmail";
 import PaymentHeader from "./PaymentHeader";
 import CheckOut from "./CheckOut";
-import { useDispatch } from "react-redux";
-import { setEmail } from "../../../../global/checkoutSlice";
+import Email from "./Email";
 
 function EmailVerification({ onConfirmEmail, onBack }) {
-  const { t } = useTranslation();
-  const [emailValue, setEmailValue] = useState("vivek@dev.panashi.ae");
   const [showConfirmEmail, setShowConfirmEmail] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
-  const dispatch = useDispatch();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(setEmail(emailValue));
-    setShowConfirmEmail(true);
-  };
 
   const handleConfirmOTP = () => {
     if (onConfirmEmail) {
@@ -33,32 +22,12 @@ function EmailVerification({ onConfirmEmail, onBack }) {
             setShowCheckOut(false);
             setShowConfirmEmail(true);
           }}
-          onConfirmEmail={handleConfirmEmail}
         />
       )}
       {!showConfirmEmail ? (
         <div className="outer-modal-bg">
           <PaymentHeader step={1} onBack={onBack} />
-          <form className="email-verification__form" onSubmit={handleSubmit}>
-            <div className="email-verification-form-box">
-              <label className="email-verification-label" id="email">
-                {t("payment.emailConfirmation.emailLabel")}
-              </label>
-              <input
-                id="email"
-                type="email"
-                className="email-verification-input"
-                value={emailValue}
-                onChange={(e) => setEmailValue(e.target.value)}
-                placeholder={t("payment.emailConfirmation.emailPlaceholder")}
-                required
-                style={{ color: "var(--color-email-form-input-border)" }}
-              />
-              <button className="email-verification-confirm-btn" type="submit">
-                {t("payment.emailConfirmation.confirmButton")}
-              </button>
-            </div>
-          </form>
+          <Email onEmailSubmit={() => setShowConfirmEmail(true)} />
         </div>
       ) : (
         <ConfirmEmail

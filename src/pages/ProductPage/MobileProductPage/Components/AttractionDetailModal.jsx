@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import closeIcon from "../../../../assets/icons/close copy.svg"; // Replace with your close icon
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
-import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -16,8 +14,8 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const dispatch = useDispatch();
-  const [validStartDate, setValidStartDate] = useState(null);
-  const [validEndDate, setValidEndDate] = useState(null);
+  const [, setValidStartDate] = useState(null);
+  const [, setValidEndDate] = useState(null);
 
   useEffect(() => {
     // When modal is open, prevent background scroll
@@ -89,12 +87,6 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
           alt={attraction?.product_title}
           className="attraction-detail-modal__image"
         />
-        {/* <div className="attraction-detail-modal__main-title">
-          {t(attraction.titleKey)}
-        </div> */}
-        {/* <div className="attraction-detail-modal__desc">
-          {t(attraction.detailDesc || attraction.descKey)}
-        </div> */}
 
         <div
           dangerouslySetInnerHTML={{ __html: attraction?.productdesc }}
