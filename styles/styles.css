@@ -1670,6 +1670,7 @@ body {
   .guest-section {
     padding: 0 16px;
     width: 55%;
+    height: 400px;
   }
 }
 
@@ -1975,6 +1976,18 @@ body {
   width: 2px;
   height: 600px;
   background-color: var(--color-base-product-card-divider);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .booking-section-divider {
+    height: 450px;
+    margin: 0 4.5rem 0 3rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .booking-section-divider {
+    height: 450px;
+    margin: 0 4.5rem 0 3rem;
+  }
 }
 
 .guest-section-header-container {

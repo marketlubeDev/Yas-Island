@@ -891,6 +891,7 @@
   @include respond(bigDesktop) {
     padding: 0 16px;
     width: 55%;
+    height: 400px;
   }
 }
 
@@ -1202,15 +1203,15 @@
   background-color: var(--color-base-product-card-divider);
   // margin: 0 3rem 0 7rem;
 
-  // @include respond(desktop) {
-  //   height: 450px;
-  //   margin: 0 4.5rem 0 3rem;
-  // }
+  @include respond(desktop) {
+    height: 450px;
+    margin: 0 4.5rem 0 3rem;
+  }
 
-  // @include respond(bigDesktop) {
-  //   height: 450px;
-  //   margin: 0 4.5rem 0 3rem;
-  // }
+  @include respond(bigDesktop) {
+    height: 450px;
+    margin: 0 4.5rem 0 3rem;
+  }
 }
 
 .guest-section-header-container {
