@@ -185,16 +185,17 @@
   font-weight: 600;
   cursor: pointer;
   width: 75%;
+
   // margin-top: 12px;
-  transform: translateX(16.5%);
+  // transform: translateX(16.5%);
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
   &:hover {
     background: var(--color-email-form-confirm-btn);
-    transform: translateX(16.5%) translateY(-1px);
+    // transform: translateX(16.5%) translateY(-1px);
   }
   &:active {
-    transform: translateX(16.5%) translateY(0);
+    // transform: translateX(16.5%) translateY(0);
   }
 }
 

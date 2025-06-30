@@ -32,6 +32,7 @@ function ConfirmEmail({ email = "vivek@dev.panashi.ae", onConfirm, onBack }) {
             <Timer />
 
             <form
+              style={{ textAlign: "center" }}
               onSubmit={(e) => {
                 e.preventDefault();
                 onConfirm();

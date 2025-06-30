@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import CheckOutSummary from "./CheckOutSummary";
 import PaymentMethod from "./PaymentMethod";
 
-function MakePayment({ onClose, onPaymentSuccess }) {
+function MakePayment({ onClose, onPaymentSuccess, promoApplied }) {
   const { t, i18n } = useTranslation();
 
   return (
@@ -15,7 +15,7 @@ function MakePayment({ onClose, onPaymentSuccess }) {
           <div className="make-payment-modal">
             <div className="make-payment__content">
               {/* Order Summary */}
-              <CheckOutSummary />
+              <CheckOutSummary promoApplied={promoApplied} />
               <br />
               <br />
 

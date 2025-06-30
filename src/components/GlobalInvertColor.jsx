@@ -792,6 +792,10 @@ export default function GlobalInvertColor() {
       "--cart-btn-brd",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
     );
+    document.documentElement.style.setProperty(
+      "--color-cart-oprn-bg",
+      isDarkMode ? "#ffffff26" : "#f9f5ff"
+    );
 
     //confirm email
     document.documentElement.style.setProperty(
@@ -801,7 +805,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--cart-btn-brd-save",
-      isDarkMode ? "#d9d9d9" : "#d9d9d9"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#d9d9d9"
     );
     document.documentElement.style.setProperty(
       "--payment-right-bg",
@@ -833,7 +837,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--cart-btn-var-save",
-      isDarkMode ? "#fff" : "#fff"
+      isDarkMode ? "#000000" : "#fff"
     );
 
     document.documentElement.style.setProperty(
@@ -1564,6 +1568,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-otp-action",
         "#18142b"
+      );
+      document.documentElement.style.setProperty(
+        "--color-cart-oprn-bg",
+        "#f9f5ff"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");

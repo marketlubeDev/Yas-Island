@@ -7,9 +7,10 @@ import { useSelector } from "react-redux";
 
 function PaymentHeader({ step, onBack }) {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+  const isRTL = i18n.language === "ar" || i18n.language === "العربية";
 
   const handleBack = () => {
     switch (step) {
@@ -32,14 +33,20 @@ function PaymentHeader({ step, onBack }) {
           {t("payment.steps.guestDetails")}
         </div>
         <button
-          className="payment-header__back-button"
+          className={`payment-header__back-button ${
+            isRTL ? "payment-header__back-button--rtl" : ""
+          }`}
           onClick={handleBack}
           type="button"
         >
           <img
             src={backIconSrc}
             alt={t("payment.back")}
-            style={{ width: 24, height: 24 }}
+            style={{
+              width: 24,
+              height: 24,
+              transform: isRTL ? "scaleX(-1)" : "none",
+            }}
           />
         </button>
         <div className="payment-header__steps-container">

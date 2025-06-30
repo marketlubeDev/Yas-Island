@@ -166,7 +166,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  background-color: #f9f5ff;
+  background-color: var(--color-cart-oprn-bg);
+  border-radius: 4px;
   padding: 4px;
   button {
     background: var(--color-email-form-box);
@@ -512,5 +513,24 @@
   &.fade-exit-active {
     opacity: 0;
     transition: opacity 300ms;
+  }
+}
+
+.mycart-modal__back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  position: absolute;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  &--rtl {
+    left: auto;
+    right: 12px;
   }
 }

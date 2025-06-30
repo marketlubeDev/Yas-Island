@@ -7,17 +7,16 @@ import PromoBox from "./PromoBox";
 import CheckBox from "./CheckBox";
 import PromoCodePopup from "./PromoCode";
 
-function CheckOut({ onProceedToPayment, onBack }) {
+function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
   const { t } = useTranslation();
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receiveComms, setReceiveComms] = useState(false);
   const [promo, setPromo] = useState("");
   const [showPromoPopup, setShowPromoPopup] = useState(false);
-  const [promoApplied, setPromoApplied] = useState(false);
 
   const handleApplyPromo = () => {
     setShowPromoPopup(true);
-    setPromoApplied(true);
+    onApplyPromo();
     console.log("Applying promo code:", promo);
   };
 

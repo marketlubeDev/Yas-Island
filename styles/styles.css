@@ -142,6 +142,7 @@
   --color-otp-btn-clr: #18142b;
   --color-email-form-otp-info: #908999;
   --color-email-form-otp-info-b: #18142b;
+  --color-cart-oprn-bg: #f9f5ff;
   --color-pymnt-container-bg: #f4f3f3;
   --color-pymnt-title-clr: #231942;
   --color-pymnt-step-clr: #594f67;
@@ -1658,7 +1659,6 @@ body {
 .guest-section {
   padding: 0 24px;
   width: 60%;
-  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1667,14 +1667,7 @@ body {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-section {
     padding: 0 18px;
-    width: 58%;
-  }
-}
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .guest-section {
-    padding: 0 16px;
-    width: 55%;
-    height: 400px;
+    width: 100%;
   }
 }
 
@@ -1685,21 +1678,15 @@ body {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
-  margin-bottom: 2.5rem;
-  margin-top: -0.8rem;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .section-title {
     font-size: 1.8rem !important;
-    margin-bottom: 2rem;
-    margin-top: -0.6rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .section-title {
     font-size: 1.5rem !important;
-    margin-bottom: 1.5rem;
-    margin-top: -0.5rem;
   }
 }
 
@@ -1715,14 +1702,14 @@ body {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-container {
-    padding: 24px 16px;
+    padding: 10px 16px;
     width: 24rem;
     border-radius: 24px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .guest-container {
-    padding: 24px 16px;
+    padding: 10px 16px;
     width: 22rem;
     border-radius: 24px;
   }
@@ -1844,29 +1831,15 @@ body {
     border: 2.8px solid var(--color-base-product-card-card-item-border-round);
   }
 }
-
-.minus-btn img {
-  width: 18.02px;
-  height: 3.7px;
+.counter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.counter-btn .counter-btn-icon {
+  color: var(--color-base-text);
+  opacity: 0.8;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .minus-btn img {
-    width: 12px;
-    height: 2.5px;
-  }
-}
-.plus-btn img {
-  width: 18.02px;
-  height: 22.02px;
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .plus-btn img {
-    width: 12px;
-    height: 22.5px;
-  }
-}
 .counter-btn:disabled {
   background: #f0f0f0;
   color: #ccc;
@@ -1901,12 +1874,11 @@ body {
 
 .booking-actions {
   width: 100%;
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-top: 20px;
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .ar-booking-actions {
@@ -2000,13 +1972,13 @@ body {
   align-items: center;
   justify-content: space-between;
   overflow-y: scroll;
-  min-height: 40vh;
+  gap: 12px;
 }
 .guest-section-header-container::-webkit-scrollbar {
-  width: 8px; /* Width of the vertical scrollbar */
+  width: 8px;
 }
 .guest-section-header-container::-webkit-scrollbar-track {
-  background: transparent; /* Make the track transparent or a light color */
+  background: transparent;
 }
 .guest-section-header-container::-webkit-scrollbar-thumb {
   background: var(--color-base-product-card-scroll-bar);
@@ -5228,7 +5200,8 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  background-color: #f9f5ff;
+  background-color: var(--color-cart-oprn-bg);
+  border-radius: 4px;
   padding: 4px;
 }
 .mycart-modal__item-qty-controls button {
@@ -5567,6 +5540,24 @@ body {
   transition: opacity 300ms;
 }
 
+.mycart-modal__back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  position: absolute;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.mycart-modal__back--rtl {
+  left: auto;
+  right: 12px;
+}
+
 .email-verification-header-fixed {
   left: 0;
   width: 100vw;
@@ -5605,7 +5596,7 @@ body {
 }
 @media (min-width: 375px) and (max-width: 389px) {
   .email-verification__form {
-    height: 67vh;
+    height: 68vh;
   }
 }
 @media (min-width: 390px) and (max-width: 413px) {
@@ -5885,18 +5876,12 @@ body {
   font-weight: 600;
   cursor: pointer;
   width: 75%;
-  transform: translateX(16.5%);
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
 }
 .confirm-email__confirm-btn:hover {
   background: var(--color-email-form-confirm-btn);
-  transform: translateX(16.5%) translateY(-1px);
 }
-.confirm-email__confirm-btn:active {
-  transform: translateX(16.5%) translateY(0);
-}
-
 .confirm-email__steps-underline {
   width: 100%;
   height: 2.5px;
@@ -6087,10 +6072,9 @@ body {
 }
 .email-checkout__summary-row--total {
   font-weight: 600;
-  font-size: 16px;
-  margin-top: 8px;
+  font-size: 15px;
   border-top: 1.5px solid #e3e3e3;
-  padding-top: 10px;
+  padding: 15px 10px 18px 10px;
 }
 
 .email-checkout__promo {
@@ -6229,7 +6213,7 @@ body {
 
 .email-checkout__summary-totals {
   background: #fff;
-  padding: 10px 20px;
+  padding: 0px 20px;
 }
 
 .email-checkout__promo-box {
@@ -6269,7 +6253,7 @@ body {
 }
 
 .email-checkout__summary-row-container {
-  padding: 10px 10px;
+  padding: 15px 10px;
 }
 
 .make-payment-modal {
@@ -6286,7 +6270,7 @@ body {
 }
 
 .make-payment__content {
-  padding: 50px 18px 18px 18px;
+  padding: 27px 8px 18px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7614,6 +7598,7 @@ body {
   justify-content: center;
   background-color: var(--color-pymnt-container-bg);
   width: 100%;
+  position: relative;
 }
 .payment-header__title {
   font-size: 20px;
@@ -7628,10 +7613,15 @@ body {
   border: none;
   font-size: 15px;
   margin-bottom: 8px;
-  align-self: flex-start;
-  margin-left: 12px;
-  margin-top: -1.5rem;
+  position: absolute;
+  top: 110px;
+  left: 12px;
   cursor: pointer;
+  z-index: 1;
+}
+.payment-header__back-button--rtl {
+  left: auto;
+  right: 12px;
 }
 .payment-header__steps-container {
   display: flex;

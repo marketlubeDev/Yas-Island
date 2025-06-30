@@ -9,6 +9,8 @@ import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
+import InvertedPlusIcon from "../../../assets/icons/invertedplus.svg";
+import InvertedMinusIcon from "../../../assets/icons/invertedminus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 import Loading from "../../../components/Loading/Loading";
@@ -19,7 +21,7 @@ export default function BookingSection({
   startDate,
   endDate,
   availableDates,
-  isLoadingDates
+  isLoadingDates,
 }) {
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -29,15 +31,14 @@ export default function BookingSection({
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
-
-  
 
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = variant?.min_quantity || 1; 
+      variants[variant?.productvariantname] = variant?.min_quantity || 1;
     });
     return variants;
   }
@@ -57,8 +58,12 @@ export default function BookingSection({
     let endDate;
     if (product.calendar_end_date) {
       endDate = new Date(product.calendar_end_date);
-    } else if(product.calendar_range_days){
-      endDate = new Date(today.getFullYear(), today.getMonth() + product.calendar_range_days, today.getDate());
+    } else if (product.calendar_range_days) {
+      endDate = new Date(
+        today.getFullYear(),
+        today.getMonth() + product.calendar_range_days,
+        today.getDate()
+      );
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
@@ -79,8 +84,8 @@ export default function BookingSection({
   // Format date to YYYY-MM-DD
   const formatDateToYYYYMMDD = (date) => {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -118,7 +123,7 @@ export default function BookingSection({
         0,
         0,
         0,
-        0 
+        0
       );
 
       const formattedDateString = formatDate(date);
@@ -137,9 +142,9 @@ export default function BookingSection({
       days.push(
         <div
           key={day}
-          className={`day 
-            ${isSelected ? "selected" : ""} 
-            ${isToday ? "today" : ""} 
+          className={`day
+            ${isSelected ? "selected" : ""}
+            ${isToday ? "today" : ""}
             ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleDateClick(date)}
         >
@@ -227,8 +232,7 @@ export default function BookingSection({
   }, [guests, product]);
 
   const handleCheckout = () => {
-
-    if(!selectedDate) {
+    if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
         position: "top-center",
       });
@@ -247,67 +251,78 @@ export default function BookingSection({
       })
     );
 
-    Object.keys(guests).forEach(guest => { 
-      const guestData = product?.product_variants?.find(variant => variant?.productvariantname === guest);
-      
+    Object.keys(guests).forEach((guest) => {
+      const guestData = product?.product_variants?.find(
+        (variant) => variant?.productvariantname === guest
+      );
+
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
       endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
-      
-      // Format dates directly to YYYY-MM-DD
-      const validToDate = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
 
-      dispatch(addToCart({
-        id: guestData?.productid,
-        variantName:guestData?.productvariantname,
-        net_amount: guestData?.net_amount,
-        image: selectedProduct?.product_images?.thumbnail_url,
-        title: selectedProduct?.product_title,
-        price: guestData?.gross,
-        vat: guestData?.vat,
-        quantity: guests[guest],
-        type: guestData?.productvariantname,
-        validFrom: selectedDate, // Already in YYYY-MM-DD format
-        validTo: validToDate,
-      }));
+      // Format dates directly to YYYY-MM-DD
+      const validToDate = `${endDate.getFullYear()}-${String(
+        endDate.getMonth() + 1
+      ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
+
+      dispatch(
+        addToCart({
+          id: guestData?.productid,
+          variantName: guestData?.productvariantname,
+          net_amount: guestData?.net_amount,
+          image: selectedProduct?.product_images?.thumbnail_url,
+          title: selectedProduct?.product_title,
+          price: guestData?.gross,
+          vat: guestData?.vat,
+          quantity: guests[guest],
+          type: guestData?.productvariantname,
+          validFrom: selectedDate, // Already in YYYY-MM-DD format
+          validTo: validToDate,
+        })
+      );
     });
     navigate("/payment");
   };
 
   const handleSaveToCart = () => {
-    if(!selectedDate) {
+    if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
         position: "top-center",
       });
       return;
     }
 
+    Object.keys(guests).forEach((guest) => {
+      const guestData = product?.product_variants?.find(
+        (variant) => variant?.productvariantname === guest
+      );
 
-    Object.keys(guests).forEach(guest => { 
-      const guestData = product?.product_variants?.find(variant => variant?.productvariantname === guest);
-      
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
       endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
-      
-      // Format dates directly to YYYY-MM-DD
-      const validToDate = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
 
-      dispatch(addToCart({
-        id: guestData?.productid,
-        variantName:guestData?.productvariantname,
-        net_amount: guestData?.net_amount,
-        image: selectedProduct?.product_images?.thumbnail_url,
-        title: selectedProduct?.product_title,
-        price: guestData?.gross,
-        vat: guestData?.vat,
-        quantity: guests[guest],
-        type: guestData?.productvariantname,
-        validFrom: selectedDate, // Already in YYYY-MM-DD format
-        validTo: validToDate,
-      }));
+      // Format dates directly to YYYY-MM-DD
+      const validToDate = `${endDate.getFullYear()}-${String(
+        endDate.getMonth() + 1
+      ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
+
+      dispatch(
+        addToCart({
+          id: guestData?.productid,
+          variantName: guestData?.productvariantname,
+          net_amount: guestData?.net_amount,
+          image: selectedProduct?.product_images?.thumbnail_url,
+          title: selectedProduct?.product_title,
+          price: guestData?.gross,
+          vat: guestData?.vat,
+          quantity: guests[guest],
+          type: guestData?.productvariantname,
+          validFrom: selectedDate, // Already in YYYY-MM-DD format
+          validTo: validToDate,
+        })
+      );
     });
 
     toast.success(t("booking.productAddedToCart"), {
@@ -321,30 +336,50 @@ export default function BookingSection({
     <div className="calendar-skeleton">
       <div className="calendar-header-skeleton skeleton"></div>
       <div className="calendar-days-skeleton">
-        {Array(7).fill(0).map((_, i) => (
-          <div key={`weekday-${i}`} className="skeleton" style={{ height: '20px' }}></div>
-        ))}
-        {Array(35).fill(0).map((_, i) => (
-          <div key={`day-${i}`} className="day-skeleton skeleton"></div>
-        ))}
+        {Array(7)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              key={`weekday-${i}`}
+              className="skeleton"
+              style={{ height: "20px" }}
+            ></div>
+          ))}
+        {Array(35)
+          .fill(0)
+          .map((_, i) => (
+            <div key={`day-${i}`} className="day-skeleton skeleton"></div>
+          ))}
       </div>
     </div>
   );
 
   const renderGuestSectionSkeleton = () => (
     <div className="guest-section-skeleton">
-      <div className="guest-summary-skeleton skeleton" style={{ height: '30px', marginBottom: '20px', width: '50%' }}></div>
-      {Array(2).fill(0).map((_, i) => (
-        <div key={`guest-${i}`} style={{ marginBottom: '20px' }}>
-          <div className="guest-row-skeleton skeleton" style={{ marginBottom: '15px' }}></div>
-          <div className="guest-controls-skeleton">
-            <div className="control-btn-skeleton skeleton"></div>
-            <div className="control-value-skeleton skeleton"></div>
-            <div className="control-btn-skeleton skeleton"></div>
+      <div
+        className="guest-summary-skeleton skeleton"
+        style={{ height: "30px", marginBottom: "20px", width: "50%" }}
+      ></div>
+      {Array(2)
+        .fill(0)
+        .map((_, i) => (
+          <div key={`guest-${i}`} style={{ marginBottom: "20px" }}>
+            <div
+              className="guest-row-skeleton skeleton"
+              style={{ marginBottom: "15px" }}
+            ></div>
+            <div className="guest-controls-skeleton">
+              <div className="control-btn-skeleton skeleton"></div>
+              <div className="control-value-skeleton skeleton"></div>
+              <div className="control-btn-skeleton skeleton"></div>
+            </div>
+            {i < 1 && (
+              <div
+                style={{ height: "1px", background: "#eee", margin: "20px 0" }}
+              ></div>
+            )}
           </div>
-          {i < 1 && <div style={{ height: '1px', background: '#eee', margin: '20px 0' }}></div>}
-        </div>
-      ))}
+        ))}
     </div>
   );
 
@@ -354,7 +389,9 @@ export default function BookingSection({
       <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
         <div className="calendar-wrapper">
-          {isLoadingDates ? renderCalendarSkeleton() : (
+          {isLoadingDates ? (
+            renderCalendarSkeleton()
+          ) : (
             <>
               <div className="calendar-header">
                 <button onClick={handlePrevMonth}>
@@ -388,7 +425,9 @@ export default function BookingSection({
         <div className="guest-section-header-container">
           <h2 className="section-title">{t("booking.chooseGuests")}</h2>
           <div className="guest-container">
-            {isLoadingDates ? renderGuestSectionSkeleton() : (
+            {isLoadingDates ? (
+              renderGuestSectionSkeleton()
+            ) : (
               <>
                 <h3 className="guest-summary">
                   {Object.keys(guests).map((variant, idx, arr) => (
@@ -424,7 +463,8 @@ export default function BookingSection({
                                   const currentValue = prev[variant];
                                   const newValue = Math.max(
                                     variantData?.min_quantity || 0,
-                                    currentValue - (variantData?.increment_number || 1)
+                                    currentValue -
+                                      (variantData?.increment_number || 1)
                                   );
                                   return {
                                     ...prev,
@@ -432,11 +472,16 @@ export default function BookingSection({
                                   };
                                 })
                               }
-                              disabled={guests[variant] <= (variantData?.min_quantity || 0)}
+                              disabled={
+                                guests[variant] <=
+                                (variantData?.min_quantity || 0)
+                              }
                             >
                               <img src={MinusIcon} alt="minus" />
                             </button>
-                            <span className="counter-value">{guests[variant]}</span>
+                            <span className="counter-value">
+                              {guests[variant]}
+                            </span>
                             <button
                               className="counter-btn plus-btn"
                               onClick={() =>
@@ -444,7 +489,8 @@ export default function BookingSection({
                                   const currentValue = prev[variant];
                                   const newValue = Math.min(
                                     variantData?.max_quantity || 100,
-                                    currentValue + (variantData?.increment_number || 1)
+                                    currentValue +
+                                      (variantData?.increment_number || 1)
                                   );
                                   return {
                                     ...prev,
@@ -452,7 +498,10 @@ export default function BookingSection({
                                   };
                                 })
                               }
-                              disabled={guests[variant] >= (variantData?.max_quantity || 100)}
+                              disabled={
+                                guests[variant] >=
+                                (variantData?.max_quantity || 100)
+                              }
                             >
                               <img src={PlusIcon} alt="plus" />
                             </button>
@@ -471,21 +520,31 @@ export default function BookingSection({
           </div>
         </div>
 
-        <div className={language === "العربية" ? "ar-booking-actions" : "booking-actions"}>
-          <button 
-            className="checkout-btnn" 
+        <div
+          className={
+            language === "العربية" ? "ar-booking-actions" : "booking-actions"
+          }
+        >
+          <button
+            className="checkout-btnn"
             onClick={handleCheckout}
             disabled={isLoadingDates}
-            style={isLoadingDates ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+            style={
+              isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
+            }
           >
             {t("booking.checkOut")}{" "}
-            <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>AED {totalPrice}</span>
+            <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>
+              AED {totalPrice}
+            </span>
           </button>
-          <button 
-            className="cart-btn" 
+          <button
+            className="cart-btn"
             onClick={handleSaveToCart}
             disabled={isLoadingDates}
-            style={isLoadingDates ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+            style={
+              isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
+            }
           >
             {t("booking.saveToCart")}
           </button>

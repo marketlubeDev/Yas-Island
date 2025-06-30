@@ -317,14 +317,6 @@
 
 .product-modal.booking-active .ant-modal-content {
   padding: 2rem !important;
-  // @include respond(desktop) {
-  //   padding: 1.5rem !important;
-  //   border-radius: 32px;
-  //   border: 2px solid var(--color-base-product-card-card-item-border);
-  // }
-  // @include respond(bigDesktop) {
-  //   padding: 1.5rem !important;
-  // }
 }
 
 // Ensure proper centering for all screen sizes
@@ -636,16 +628,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  // @include respond(desktop) {
-  //   padding: 20px;
-  //   gap: 0.8rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   padding: 16px;
-  //   gap: 1rem;
-  // }
 }
 
 /* Calendar container */
@@ -732,23 +714,6 @@
   background: var(--color-base-product-card-card-item-bg);
   padding: 2rem;
   width: 100%;
-  // margin-left: -3rem;
-  // margin-bottom: -1rem;
-
-  // @include respond(desktop) {
-  //   padding: 1.6rem;
-  //   width: 135%;
-  //   margin-left: -2.5rem;
-  //   margin-bottom: -0.8rem;
-  //   border-radius: 2.2rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   padding: 1.2rem;
-  //   width: 120%;
-  //   margin-left: -2rem;
-  //   margin-bottom: -0.5rem;
-  // }
 }
 
 /* Header with month and navigation */
@@ -876,22 +841,14 @@
 .guest-section {
   padding: 0 24px;
   width: 60%;
-  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
-  // background-color: #ffe600;
 
   @include respond(desktop) {
     padding: 0 18px;
-    width: 58%;
-  }
-
-  @include respond(bigDesktop) {
-    padding: 0 16px;
-    width: 55%;
-    height: 400px;
+    width: 100%;
   }
 }
 
@@ -902,19 +859,13 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
-  margin-bottom: 2.5rem;
-  margin-top: -0.8rem;
 
   @include respond(desktop) {
     font-size: 1.8rem !important;
-    margin-bottom: 2rem;
-    margin-top: -0.6rem;
   }
 
   @include respond(bigDesktop) {
     font-size: 1.5rem !important;
-    margin-bottom: 1.5rem;
-    margin-top: -0.5rem;
   }
 }
 
@@ -929,13 +880,13 @@
   flex-shrink: 0;
 
   @include respond(desktop) {
-    padding: 24px 16px;
+    padding: 10px 16px;
     width: 24rem;
     border-radius: 24px;
   }
 
   @include respond(bigDesktop) {
-    padding: 24px 16px;
+    padding: 10px 16px;
     width: 22rem;
     border-radius: 24px;
   }
@@ -1053,29 +1004,15 @@
     height: 40px;
     border: 2.8px solid var(--color-base-product-card-card-item-border-round);
   }
-}
 
-.minus-btn img {
-  width: 18.02px;
-  height: 3.7px;
-}
-
-@include respond(desktop) {
-  .minus-btn img {
-    width: 12px;
-    height: 2.5px;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
-}
 
-.plus-btn img {
-  width: 18.02px;
-  height: 22.02px;
-}
-
-@include respond(desktop) {
-  .plus-btn img {
-    width: 12px;
-    height: 22.5px;
+  .counter-btn-icon {
+    color: var(--color-base-text);
+    opacity: 0.8;
   }
 }
 
@@ -1111,26 +1048,12 @@
 
 .booking-actions {
   width: 100%;
-  margin-top: 24px;
+  // margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-top: 20px;
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0);
-  // background-color: #ffe600;
-
-  // @include respond(bigDesktop) {
-  //   width: 132%;
-  //   margin-left: -6.5rem;
-  // }
-
-  // @include respond(desktop) {
-  //   width: 140%;
-  //   margin-left: -6.5rem;
-  //   margin-top: 18px;
-  //   gap: 10px;
-  //   padding-top: 16px;
-  // }
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .ar-booking-actions {
@@ -1220,14 +1143,14 @@
   align-items: center;
   justify-content: space-between;
   overflow-y: scroll;
-  min-height: 40vh;
+  gap: 12px;
 
   &::-webkit-scrollbar {
-    width: 8px; /* Width of the vertical scrollbar */
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent; /* Make the track transparent or a light color */
+    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -1235,11 +1158,3 @@
     border-radius: 4px;
   }
 }
-
-// .guest-row-divider {
-//   width: 104%;
-//   height: 0.826px;
-//   background: var(--color-base-product-card-divider);
-//   margin-top: 1rem;
-//   margin-left: -0.3rem;
-// }
