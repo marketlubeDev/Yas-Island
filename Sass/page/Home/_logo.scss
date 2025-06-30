@@ -8,7 +8,14 @@
   width: 12rem;
   overflow: hidden;
 
+  @include respond(desktop) {
+    width: 100%;
+  }
+
   &-img {
+    @include respond(desktop) {
+      width: 50%;
+    }
   }
 
   &-desc {
