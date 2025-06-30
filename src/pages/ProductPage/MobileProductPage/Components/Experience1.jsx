@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
-import ticketImg from "../../../../assets/images/ticket.svg"; // Replace with your actual ticket image path
-import smileGreen from "../../../../assets/images/green.png";
-import smileYellow from "../../../../assets/images/yellow.jpg";
-import smileRed from "../../../../assets/images/red.jpg";
+import ticketImg from "../../../../assets/images/ticket.svg";
+import SmileSection from "./SmileSection";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -35,41 +32,9 @@ function Experience1() {
           <div className="experience-rate-title">
             {t("payment.response.rateExperience")}
           </div>
-          <div className="experience-rate-options">
-            <div
-              className={`experience-rate-option${
-                selected === "excellent" ? " selected-green" : ""
-              }`}
-              onClick={() => setSelected("excellent")}
-            >
-              <div className="smile-circle">
-                <img src={smileGreen} alt="Excellent" />
-              </div>
-              <div>{t("payment.response.excellent")}</div>
-            </div>
-            <div
-              className={`experience-rate-option${
-                selected === "average" ? " selected-yellow" : ""
-              }`}
-              onClick={() => setSelected("average")}
-            >
-              <div className="smile-circle">
-                <img src={smileYellow} alt="Average" />
-              </div>
-              <div>{t("payment.response.average")}</div>
-            </div>
-            <div
-              className={`experience-rate-option${
-                selected === "poor" ? " selected-red" : ""
-              }`}
-              onClick={() => setSelected("poor")}
-            >
-              <div className="smile-circle">
-                <img src={smileRed} alt="Poor" />
-              </div>
-              <div>{t("payment.response.poor")}</div>
-            </div>
-          </div>
+
+          <SmileSection selected={selected} setSelected={setSelected} />
+
           {selected && (
             <div style={{ marginTop: 24, color: "#bdbdc6", fontSize: 15 }}>
               {t("payment.response.thankYou")}

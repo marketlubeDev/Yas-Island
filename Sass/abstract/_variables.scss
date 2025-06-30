@@ -172,6 +172,9 @@ $color-yellow: #ffea00;
   --color-bkg-save-btn-bg: #fff;
   --color-bkg-save-btn-clr: #18142b;
   --color-bkg-save-btn-border: #dcd6e5;
+  --color-otp-btn-clr: #18142b;
+  --color-email-form-otp-info: #908999;
+  --color-email-form-otp-info-b: #18142b;
 
   //PAYMENT HEADER
   --color-pymnt-container-bg: #f4f3f3;
@@ -189,11 +192,12 @@ $color-yellow: #ffea00;
   --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
+  --color-otp-action: #787082;
 
   //confirm email
   --color-confirm-otp-bg: #f4f3f3;
   --color-confirm-otp-label: #231942;
-  --color-confirm-otp-input-border: #6f677c;
+  --color-confirm-otp-input-border: #c0bac9;
   --color-otp-btn-border: #dcd6e5;
   --color-otp-action-btn-border: #dcd6e5;
   --color-checkout-summary-border: none;

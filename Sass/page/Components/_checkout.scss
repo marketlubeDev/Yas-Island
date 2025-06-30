@@ -1,6 +1,6 @@
 .email-checkout__container {
-  max-width: 500px;
-  width: 100%;
+  // max-width: 500px;
+  // width: 100%;
   height: 100vh;
 
   display: flex;
@@ -76,13 +76,11 @@
 
 // === Form Container ===
 .email-checkout__form-container {
-  width: 90%;
-  max-width: 400px;
   margin: 30px auto 24px auto;
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 32px 40px;
+
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -104,8 +102,13 @@
   flex-direction: column;
   gap: 18px;
   background: var(--color-email-form-box);
-  padding: 24px;
+  padding: 4px 18px 64px 18px;
   border-radius: 12px;
+}
+
+.email-checkout__form-container-inner {
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .email-checkout__label {
@@ -126,16 +129,21 @@
   outline: none;
   background: transparent;
   color: var(--color-email-form-label);
-  width: 200px;
-  max-width: 100%;
+  // width: 200px;
+  // max-width: 100%;
   box-sizing: border-box;
+  width: 170px;
 }
 
-.email-checkout__input[type="text"],
+.email-checkout__input[type="text"] {
+  // width: 170px;
+  // max-width: 100%;
+}
+
 .email-checkout__input[type="tel"],
 .email-checkout__input[type="number"] {
-  width: 200px;
-  max-width: 100%;
+  // width: 200px;
+  // max-width: 100%;
 }
 
 .email-checkout__btn {
@@ -144,13 +152,14 @@
   border: 1px solid var(--color-email-form-confirm-btn);
   border-radius: 2rem;
   padding: 10px 0;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  width: 100%;
+  width: 75%;
   margin-top: 12px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
+  align-self: center;
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -161,18 +170,15 @@
 .email-checkout__summary {
   background: var(--color-checkout-summary-bg);
   border-radius: 12px;
-  width: 145%;
-  max-width: 100vw;
-  padding: 18px 12px 12px 12px;
-  margin: 8px 0 18px -2.5rem;
+  width: 100%;
+  padding: 18px 0px 12px 0px;
   font-size: 15px;
   color: var(--color-email-form-label);
-  margin-left: -3rem;
 
   &-title {
     font-weight: 600;
     font-size: 15px;
-    margin-bottom: 30px;
+    padding: 0 0 20px 20px;
     color: var(--color-email-form-label);
   }
 
@@ -181,9 +187,10 @@
     justify-content: space-between;
     margin-bottom: 4px;
     font-size: 14px;
+    color: var(--color-pymnt-step-clr);
 
     &--total {
-      font-weight: 500;
+      font-weight: 600;
       font-size: 16px;
       margin-top: 8px;
       border-top: 1.5px solid #e3e3e3;
@@ -201,7 +208,7 @@
     color: var(--color-email-form-label);
     border: 0.554px solid var(--color-promo-input-border);
     border-radius: 0.55381rem;
-    padding: 9px 10px;
+    padding: 9px 15px;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
@@ -215,11 +222,14 @@
 
 // === Checkboxes ===
 .email-checkout__checkboxes {
-  margin-bottom: 12px;
+  padding: 15px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   label {
     font-size: 12px;
     color: #231942;
-    margin-bottom: 6px;
+
     a {
       color: #18142b;
       text-decoration: underline;
@@ -229,8 +239,8 @@
 }
 
 .email-checkout__select {
-  width: 200px;
-  max-width: 100%;
+  // width: 200px;
+  // max-width: 100%;
   font-size: 14px;
   padding: 8px 0 6px 0;
   border: none;
@@ -294,67 +304,65 @@
 }
 
 .email-checkout__country-code-select {
-  width: 55px;
-  min-width: 0;
+  // width: 55px;
+  // min-width: 0;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-country-code-clr);
   border: none;
-  border-bottom: 2px solid var(--color-country-code-clr);
+  border-bottom: 2px solid var(--color-email-form-input-border);
+  width: 40px;
   background: transparent;
-  padding: 2px 0 12px 2px;
+  padding: 9px 0 8px 2px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
   cursor: pointer;
-  margin-right: 6px;
-  background-image: url("../../../src/assets/icons/down.svg");
-  background-repeat: no-repeat;
-  background-position: right 2px center;
-  background-size: 0.5545rem 0.5545rem;
 }
 
 .email-checkout__summary-row--column {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 8px;
+  padding: 0 10px 8px 20px;
 }
 
 .email-checkout__summary-label {
   font-weight: 500;
   color: #231942;
-  font-size: 14px;
-  margin-bottom: 2px;
+  font-size: 13px;
 }
 
 .email-checkout__summary-value {
   color: #594f67;
   font-size: 14px;
   font-weight: 400;
+  gap: 2px;
 }
 
 .email-checkout__summary-totals {
   background: #fff;
-  // border-radius: 10px;
-  padding: 14px 40px 10px 35px;
-  width: 108%;
-  margin-left: -12px;
-  margin-top: 25px;
-  // box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+  padding: 10px 20px;
+  // padding: 14px 40px 10px 35px;
+  // width: 108%;
 }
 
 .email-checkout__promo-box {
   background: var(--color-checkout-summary-bg);
   border-radius: 10px;
-  padding: 16px 14px 14px 14px;
-  margin-top: 18px;
-  margin-bottom: 18px;
-  width: 140%;
-  max-width: 700px;
+  padding: 10px 12px;
+
+  width: 100%;
+  // max-width: 700px;
   box-sizing: border-box;
-  margin-left: -2.5rem;
+  width: fit-content;
+}
+
+.email-checkout__promo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .email-checkout__promo-input {
@@ -364,14 +372,14 @@
   border-radius: 0.55381rem;
   border: 0.554px solid var(--color-promo-input-border);
   padding: 8px 10px;
-  width: 70px;
+  width: 150px;
   box-sizing: border-box;
 }
 
 .email-checkout__checkboxes input[type="checkbox"] {
-  accent-color: #ffea00;
-  background-color: #fff;
+  accent-color: #fff;
+  // background-color: #fff;
   border: 2px solid var(--color-email-form-input-border);
-  width: 15px;
+  // width: 15px;
   height: 13px;
 }

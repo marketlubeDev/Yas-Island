@@ -642,7 +642,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-confirm-otp-input-border",
-      isDarkMode ? "#DCE1D4" : "#6f677c"
+      isDarkMode ? "#DCE1D4" : "#c0bac9"
     );
     document.documentElement.style.setProperty(
       "--color-otp-btn-border",
@@ -650,7 +650,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-otp-btn-clr",
-      isDarkMode ? "#E7EBD4" : "#231942"
+      isDarkMode ? "#E7EBD4" : "#18142b"
     );
 
     //checkout
@@ -789,6 +789,12 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffea00"
     );
 
+    //confirm email
+    document.documentElement.style.setProperty(
+      "--color-otp-action",
+      isDarkMode ? "#E7EBD4" : "#18142b"
+    );
+
     document.documentElement.style.setProperty(
       "--cart-btn-brd-save",
       isDarkMode ? "#d9d9d9" : "#d9d9d9"
@@ -827,6 +833,11 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
+      "--color-email-form-otp-info-b",
+      isDarkMode ? "#E7EBD4" : "#18142b"
+    );
+
+    document.documentElement.style.setProperty(
       "--pay-check-price",
       isDarkMode ? "#E7EBD4" : "#594f67"
     );
@@ -837,6 +848,11 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--order-smry-ttl",
       isDarkMode ? "#fff" : "#18142b"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-email-form-otp-info",
+      isDarkMode ? "#E7EBD4" : "#908999"
     );
 
     document.documentElement.style.setProperty(
@@ -1379,7 +1395,7 @@ export default function GlobalInvertColor() {
       );
       document.documentElement.style.setProperty(
         "--color-confirm-otp-input-border",
-        "#6f677c"
+        "#c0bac9"
       );
       document.documentElement.style.setProperty(
         "--color-otp-btn-border",
@@ -1387,7 +1403,7 @@ export default function GlobalInvertColor() {
       );
       document.documentElement.style.setProperty(
         "--color-otp-btn-clr",
-        "#231942"
+        "#18142b"
       );
       document.documentElement.style.setProperty(
         "--color-otp-action-btn-border",
@@ -1526,8 +1542,23 @@ export default function GlobalInvertColor() {
       );
 
       document.documentElement.style.setProperty(
+        "--color-email-form-otp-info",
+        "#908999"
+      );
+
+      document.documentElement.style.setProperty(
         "--color-base-mobile-bottom-nav-item-active-bg",
         "linear-gradient(90deg, #fff8a5 0%, #fff 100%)"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-email-form-otp-info-b",
+        "#18142b"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-otp-action",
+        "#18142b"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");
