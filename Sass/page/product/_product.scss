@@ -8,6 +8,10 @@
   gap: 0;
   background-color: var(--color-base-product-card-bg);
 
+  &-description {
+    color: var(--text-colort);
+  }
+
   &-head {
     display: flex;
     justify-content: left;
