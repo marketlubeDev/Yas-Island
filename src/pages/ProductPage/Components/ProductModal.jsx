@@ -28,7 +28,7 @@ export default function ProductModal({
   const [validStartDate, setValidStartDate] = useState(null);
   const [validEndDate, setValidEndDate] = useState(null);
   const [availableDates, setAvailableDates] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingDates, setIsLoadingDates] = useState(false);
 
   useEffect(() => {
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
@@ -40,8 +40,6 @@ export default function ProductModal({
       const startDate = new Date(today);
       startDate.setDate(today.getDate() + offset);
       setValidStartDate(startDate);
-
-      console.log(startDate, "startDate>>>>");
 
       // 2. Calculate endDate
       let endDate;
@@ -78,8 +76,8 @@ export default function ProductModal({
     }
   }, [selectedProduct]);
 
-  const handleAddToCart = async () => {
-    setIsLoading(true);
+  const fetchAvailableDates = async () => {
+    setIsLoadingDates(true);
     try {
       const performanceData = await getPerformance(
         formatDate(validStartDate),
@@ -92,13 +90,12 @@ export default function ProductModal({
         const dates = performanceData.performance.map((p) => p.date);
         setAvailableDates(dates);
       }
-      setShowBookingSection(true);
     } catch (error) {
       console.log(error, "error");
       if(error.status === 404){
         setAvailableDates([]); //if no availability set all dates of this year as available
         const today = new Date();
-        const startDate = selectedProduct.sale_date_offset || 0; // default to 0 if undefined
+        const startDate = selectedProduct.sale_date_offset || 0;
         today.setDate(today.getDate() + startDate);
         let endDate;
 
@@ -113,7 +110,7 @@ export default function ProductModal({
         } else if(selectedProduct.calendar_end_date){
           endDate = new Date(selectedProduct.calendar_end_date);
         } else {
-          endDate = new Date(today.getFullYear(), 11, 31); // Last day of current year
+          endDate = new Date(today.getFullYear(), 11, 31);
         }
 
         const dates = [];
@@ -127,45 +124,49 @@ export default function ProductModal({
         
         setAvailableDates(dates);
       }
-      setShowBookingSection(true);
     } finally {
-      setIsLoading(false);
+      setIsLoadingDates(false);
     }
   };
 
+  const handleAddToCart = () => {
+    setShowBookingSection(true);
+    fetchAvailableDates();
+  };
+
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find(
-      (variant) => variant.isdefault
-    );
+    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
     return defaultVariant;
   };
 
   return (
-    <>
+    <div className="product-modal">
       {!showBookingSection ? (
         <div className="product-modal-content">
           <>
             <div className="product-modal-image">
               <Swiper
-                modules={[Pagination, Autoplay]}
-                pagination={{ clickable: true }}
-                autoplay={{ delay: 2000, disableOnInteraction: false }}
-                loop={true}
-                spaceBetween={10}
-                slidesPerView={1}
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Autoplay, Pagination]}
+                className="mySwiper"
               >
-                {selectedProduct?.product_images?.image_urls?.map(
-                  (img, idx) => (
-                    <SwiperSlide key={idx}>
-                      <img src={img} alt={selectedProduct.name} />
-                    </SwiperSlide>
-                  )
-                )}
+                {selectedProduct?.product_images?.image_urls?.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={image} alt={`Product ${index + 1}`} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
             <div className="product-modal-details">
               <h2>{selectedProduct?.product_title}</h2>
-              {/* <p className="description">{selectedProduct.description}</p> */}
               <div
                 dangerouslySetInnerHTML={{
                   __html: selectedProduct?.productdesc,
@@ -189,9 +190,8 @@ export default function ProductModal({
                 <button
                   className="add-to-cart-btn"
                   onClick={handleAddToCart}
-                  disabled={isLoading}
                 >
-                  {isLoading ? <Loading /> : t("product.addToCart")}
+                  {t("product.addToCart")}
                 </button>
               </div>
             </div>
@@ -200,15 +200,11 @@ export default function ProductModal({
       ) : (
         <BookingSection
           product={selectedProduct}
-          onBack={() => {
-            setShowBookingSection(false);
-            onClose();
-          }}
-          startDate={validStartDate}
-          endDate={validEndDate}
+          onBack={() => setShowBookingSection(false)}
           availableDates={availableDates}
+          isLoadingDates={isLoadingDates}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -11,6 +11,7 @@ import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
+import Loading from "../../../components/Loading/Loading";
 
 export default function BookingSection({
   product,
@@ -18,6 +19,7 @@ export default function BookingSection({
   startDate,
   endDate,
   availableDates,
+  isLoadingDates
 }) {
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -271,44 +273,69 @@ export default function BookingSection({
     dispatch(setIsCartOpen(true));
   };
 
+  const renderCalendarSkeleton = () => (
+    <div className="calendar-skeleton">
+      <div className="calendar-header-skeleton skeleton"></div>
+      <div className="calendar-days-skeleton">
+        {Array(7).fill(0).map((_, i) => (
+          <div key={`weekday-${i}`} className="skeleton" style={{ height: '20px' }}></div>
+        ))}
+        {Array(35).fill(0).map((_, i) => (
+          <div key={`day-${i}`} className="day-skeleton skeleton"></div>
+        ))}
+      </div>
+    </div>
+  );
 
-
+  const renderGuestSectionSkeleton = () => (
+    <div className="guest-section-skeleton">
+      <div className="guest-summary-skeleton skeleton" style={{ height: '30px', marginBottom: '20px', width: '50%' }}></div>
+      {Array(2).fill(0).map((_, i) => (
+        <div key={`guest-${i}`} style={{ marginBottom: '20px' }}>
+          <div className="guest-row-skeleton skeleton" style={{ marginBottom: '15px' }}></div>
+          <div className="guest-controls-skeleton">
+            <div className="control-btn-skeleton skeleton"></div>
+            <div className="control-value-skeleton skeleton"></div>
+            <div className="control-btn-skeleton skeleton"></div>
+          </div>
+          {i < 1 && <div style={{ height: '1px', background: '#eee', margin: '20px 0' }}></div>}
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="booking-section">
       {/* Date Selection */}
       <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
-        {/* <div className="selected-dates">
-          {selectedDate && (
-            <div>
-              {t("booking.selectedDate")}: {formatMonthYear(selectedDate)}
-            </div>
-          )}
-        </div> */}
         <div className="calendar-wrapper">
-          <div className="calendar-header">
-            <button onClick={handlePrevMonth}>
-              <img src={LeftArrow} alt="Left Arrow" />
-            </button>
-            <h3>{formatMonthYear(currentDate)}</h3>
-            <button onClick={handleNextMonth}>
-              <img src={RightArrow} alt="Right Arrow" />
-            </button>
-          </div>
+          {isLoadingDates ? renderCalendarSkeleton() : (
+            <>
+              <div className="calendar-header">
+                <button onClick={handlePrevMonth}>
+                  <img src={LeftArrow} alt="Left Arrow" />
+                </button>
+                <h3>{formatMonthYear(currentDate)}</h3>
+                <button onClick={handleNextMonth}>
+                  <img src={RightArrow} alt="Right Arrow" />
+                </button>
+              </div>
 
-          <div className="calendar-body">
-            <div className="calendar-weekdays">
-              <span>{t("booking.weekDays.sun")}</span>
-              <span>{t("booking.weekDays.mon")}</span>
-              <span>{t("booking.weekDays.tue")}</span>
-              <span>{t("booking.weekDays.wed")}</span>
-              <span>{t("booking.weekDays.thu")}</span>
-              <span>{t("booking.weekDays.fri")}</span>
-              <span>{t("booking.weekDays.sat")}</span>
-            </div>
-            <div className="calendar-days">{generateCalendarDays()}</div>
-          </div>
+              <div className="calendar-body">
+                <div className="calendar-weekdays">
+                  <span>{t("booking.weekDays.sun")}</span>
+                  <span>{t("booking.weekDays.mon")}</span>
+                  <span>{t("booking.weekDays.tue")}</span>
+                  <span>{t("booking.weekDays.wed")}</span>
+                  <span>{t("booking.weekDays.thu")}</span>
+                  <span>{t("booking.weekDays.fri")}</span>
+                  <span>{t("booking.weekDays.sat")}</span>
+                </div>
+                <div className="calendar-days">{generateCalendarDays()}</div>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div className="booking-section-divider"></div>
@@ -317,95 +344,107 @@ export default function BookingSection({
         <div className="guest-section-header-container">
           <h2 className="section-title">{t("booking.chooseGuests")}</h2>
           <div className="guest-container">
-            <h3 className="guest-summary">
-              {Object.keys(guests).map((variant, idx, arr) => (
-                <span className="" key={variant}>
-                  {variant}: {guests[variant]}
-                  {idx < arr.length - 1 ? " / " : ""}
-                </span>
-              ))}
-            </h3>
-            <div className="guest-controls">
-              {Object.keys(guests)?.map((variant, idx) => {
-                const variantData = product.product_variants.find(
-                  (v) => v.productvariantname === variant
-                );
-                return (
-                  <div key={idx}>
-                    <div className="guest-row">
-                      <div className="guest-label-container">
-                        <span className="guest-label">
-                          {variant}{" "}
-                          {variantData?.productvariantdesc &&
-                            `(${variantData.productvariantdesc})`}
-                        </span>
-                        <span className="guest-label-price">
-                          AED {variantData?.gross * guests[variant]}{" "}
-                        </span>
-                      </div>
-                      <div className="counter-controls">
-                        <button
-                          className="counter-btn minus-btn"
-                          onClick={() =>
-                            setGuests((prev) => {
-                              const currentValue = prev[variant];
-                              const newValue = Math.max(
-                                variantData?.min_quantity || 0,
-                                currentValue - (variantData?.increment_number || 1)
-                              );
-                              return {
-                                ...prev,
-                                [variant]: newValue,
-                              };
-                            })
-                          }
-                          disabled={guests[variant] <= (variantData?.min_quantity || 0)}
-                        >
-                          <img src={MinusIcon} alt="minus" />
-                        </button>
-                        <span className="counter-value">{guests[variant]}</span>
-                        <button
-                          className="counter-btn plus-btn"
-                          onClick={() =>
-                            setGuests((prev) => {
-                              const currentValue = prev[variant];
-                              const newValue = Math.min(
-                                variantData?.max_quantity || 100,
-                                currentValue + (variantData?.increment_number || 1)
-                              );
-                              return {
-                                ...prev,
-                                [variant]: newValue,
-                              };
-                            })
-                          }
-                          disabled={guests[variant] >= (variantData?.max_quantity || 100)}
-                        >
-                          <img src={PlusIcon} alt="plus" />
-                        </button>
-                      </div>
-                    </div>
+            {isLoadingDates ? renderGuestSectionSkeleton() : (
+              <>
+                <h3 className="guest-summary">
+                  {Object.keys(guests).map((variant, idx, arr) => (
+                    <span className="" key={variant}>
+                      {variant}: {guests[variant]}
+                      {idx < arr.length - 1 ? " / " : ""}
+                    </span>
+                  ))}
+                </h3>
+                <div className="guest-controls">
+                  {Object.keys(guests)?.map((variant, idx) => {
+                    const variantData = product.product_variants.find(
+                      (v) => v.productvariantname === variant
+                    );
+                    return (
+                      <div key={idx}>
+                        <div className="guest-row">
+                          <div className="guest-label-container">
+                            <span className="guest-label">
+                              {variant}{" "}
+                              {variantData?.productvariantdesc &&
+                                `(${variantData.productvariantdesc})`}
+                            </span>
+                            <span className="guest-label-price">
+                              AED {variantData?.gross * guests[variant]}{" "}
+                            </span>
+                          </div>
+                          <div className="counter-controls">
+                            <button
+                              className="counter-btn minus-btn"
+                              onClick={() =>
+                                setGuests((prev) => {
+                                  const currentValue = prev[variant];
+                                  const newValue = Math.max(
+                                    variantData?.min_quantity || 0,
+                                    currentValue - (variantData?.increment_number || 1)
+                                  );
+                                  return {
+                                    ...prev,
+                                    [variant]: newValue,
+                                  };
+                                })
+                              }
+                              disabled={guests[variant] <= (variantData?.min_quantity || 0)}
+                            >
+                              <img src={MinusIcon} alt="minus" />
+                            </button>
+                            <span className="counter-value">{guests[variant]}</span>
+                            <button
+                              className="counter-btn plus-btn"
+                              onClick={() =>
+                                setGuests((prev) => {
+                                  const currentValue = prev[variant];
+                                  const newValue = Math.min(
+                                    variantData?.max_quantity || 100,
+                                    currentValue + (variantData?.increment_number || 1)
+                                  );
+                                  return {
+                                    ...prev,
+                                    [variant]: newValue,
+                                  };
+                                })
+                              }
+                              disabled={guests[variant] >= (variantData?.max_quantity || 100)}
+                            >
+                              <img src={PlusIcon} alt="plus" />
+                            </button>
+                          </div>
+                        </div>
 
-                    <div className="guest-row-divider"></div>
-                  </div>
-                );
-              })}
-            </div>
+                        <div className="guest-row-divider"></div>
+                      </div>
+                    );
+                  })}
+                </div>
 
-            <p className="guest-note"></p>
+                <p className="guest-note"></p>
+              </>
+            )}
           </div>
         </div>
 
-        <div
-          className={
-            language === "العربية" ? "ar-booking-actions" : "booking-actions"
-          }
-        >
-          <button className="checkout-btnn" onClick={handleCheckout}>
+        <div className={language === "العربية" ? "ar-booking-actions" : "booking-actions"}>
+          <button 
+            className="checkout-btnn" 
+            onClick={handleCheckout}
+            disabled={isLoadingDates}
+            style={isLoadingDates ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+          >
             {t("booking.checkOut")}{" "}
-            <span style={{ color: "red" }}>AED {totalPrice}</span>
+            <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>AED {totalPrice}</span>
           </button>
-          <button className="cart-btn" onClick={handleSaveToCart}>{t("booking.saveToCart")}</button>
+          <button 
+            className="cart-btn" 
+            onClick={handleSaveToCart}
+            disabled={isLoadingDates}
+            style={isLoadingDates ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+          >
+            {t("booking.saveToCart")}
+          </button>
         </div>
       </div>
     </div>
