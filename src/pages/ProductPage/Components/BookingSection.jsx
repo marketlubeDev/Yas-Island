@@ -259,7 +259,7 @@ export default function BookingSection({
       const validToDate = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
 
       dispatch(addToCart({
-        id: guestData?.id,
+        id: guestData?.productid,
         variantName:guestData?.productvariantname,
         net_amount: guestData?.net_amount,
         image: selectedProduct?.product_images?.thumbnail_url,
