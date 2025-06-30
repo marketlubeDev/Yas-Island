@@ -4337,13 +4337,17 @@ body {
   overflow: hidden;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .logo {
-    width: 100%;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .logo-img {
     width: 50%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .logo-img {
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 .header-logo-container {
