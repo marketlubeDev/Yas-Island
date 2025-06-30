@@ -874,7 +874,7 @@ body {
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ProductCard__grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
   }
 }
