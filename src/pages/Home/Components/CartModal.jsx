@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Drawer, Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -10,15 +10,17 @@ import DeleteIcon from "../../../assets/icons/delete.svg";
 import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItemFromCart, updateQuantity } from "../../../global/cartSlice";
 
 const CartModal = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { language } = useLanguage();
+  const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const {cartItems} = useSelector((state) => state.cart);
+  const {cartItems, subtotal, vatAndTax, total} = useSelector((state) => state.cart);
 
 
   // Cart items data
@@ -57,13 +59,15 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleQuantityChange = (id, change) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
+    console.log(id, change, "id and change");
+    const item = cartItems.find((item) => item.id === id);
+    console.log(item, "item");
+    dispatch(updateQuantity({ id, quantity: Math.max(1, item.quantity + change) }));
+  };
+
+  const handleDeleteItem = (id) => {
+    console.log(id, "id");
+    dispatch(deleteItemFromCart(id));
   };
 
   if (!isOpen) return null;
@@ -71,7 +75,7 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <Drawer
       title={null}
-      placement={language === "العربية" ? "left" : "right"}
+      placement={isRTL ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
       width="34%"
@@ -130,7 +134,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         icon={<PlusOutlined />}
                         onClick={() => handleQuantityChange(item.id, 1)}
                       />
-                      <Button className="delete-btn">
+                      <Button className="delete-btn" onClick={() => handleDeleteItem(item.id)}>
                         <img
                           src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
                           alt={t("cart.delete")}
@@ -146,17 +150,17 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>AED 935.71</span>
+                  <span>AED {subtotal}</span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vatAndTax")}</span>
-                  <span>+ 49.29 VAT & Tax</span>
+                  <span>+ AED {vatAndTax.toFixed(2)} VAT & Tax</span>
                 </div>
               </div>
               <div className="custom-divider"></div>
               <div className="total">
                 <span>{t("cart.total")}</span>
-                <span>AED 985.00</span>
+                <span>AED {total.toFixed(2)}</span>
               </div>
 
               <div className="cart-actions">

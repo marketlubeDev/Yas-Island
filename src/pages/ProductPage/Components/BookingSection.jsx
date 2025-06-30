@@ -55,6 +55,8 @@ export default function BookingSection({
     let endDate;
     if (product.calendar_end_date) {
       endDate = new Date(product.calendar_end_date);
+    } else if(product.calendar_range_days){
+      endDate = new Date(today.getFullYear(), today.getMonth() + product.calendar_range_days, today.getDate());
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
@@ -114,7 +116,7 @@ export default function BookingSection({
         0,
         0,
         0,
-        0 // Normalize the date for comparison
+        0 
       );
 
       const formattedDateString = formatDate(date);
@@ -228,8 +230,6 @@ export default function BookingSection({
     product?.product_variants.forEach((variant) => {
       variants[variant?.productid] = guests[variant?.productvariantname];
     });
-
-    console.log(variants, "varinats");
     dispatch(
       setCheckout({
         selectedDate,
@@ -239,12 +239,12 @@ export default function BookingSection({
     );
 
     dispatch(addToCart({
-      id: selectedProduct?.productid,
+      id: selectedProduct?.default_variant_id,
       image: selectedProduct?.product_images?.thumbnail_url,
       title: selectedProduct?.product_title,
       price: 328.57,
       vat: 16.43,
-      quantity: 2,
+      quantity: selectedProduct?.product_variants.find(variant => variant.id === selectedProduct?.default_variant_id)?.min_quantity || 1,
       type: "adults",
       validFrom: formatDate(selectedDate),
       validTo: formatDate(endDate),
@@ -254,7 +254,7 @@ export default function BookingSection({
 
   const handleSaveToCart = () => {
     dispatch(addToCart({
-      id: selectedProduct?.productid,
+      id: selectedProduct?.default_variant_id,
       image: selectedProduct?.product_images?.thumbnail_url,
       title: selectedProduct?.product_title,
       price: 328.57,

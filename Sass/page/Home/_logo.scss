@@ -9,6 +9,17 @@
   overflow: hidden;
 
   &-img {
+    @include respond(desktop) {
+      width: 50%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @include respond(bigDesktop) {
+      width: 50%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 
   &-desc {

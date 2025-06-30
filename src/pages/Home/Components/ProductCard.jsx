@@ -19,6 +19,7 @@ import closeIcon from "../../../assets/icons/close.svg";
 export default function ProductCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showBookingSection, setShowBookingSection] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = (product) => {
@@ -35,6 +36,7 @@ export default function ProductCard() {
     e.stopPropagation();
     setIsModalOpen(false);
     setSelectedProduct(null);
+    setShowBookingSection(false);
   };
 
   const product = [
@@ -173,7 +175,9 @@ export default function ProductCard() {
         onCancel={handleCancel}
         footer={null}
         width="85%"
-        className="product-modal"
+        className={`product-modal ${
+          showBookingSection ? "booking-active" : ""
+        }`}
         centered={true}
         closeIcon={
           <span className="custom-modal-close">
@@ -185,6 +189,8 @@ export default function ProductCard() {
           <ProductModal
             selectedProduct={selectedProduct}
             onClose={handleCancel}
+            showBookingSection={showBookingSection}
+            setShowBookingSection={setShowBookingSection}
           />
         )}
       </Modal>

@@ -6,10 +6,12 @@ import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
 
   // Example cart data - in a real app, this would come from a cart context or state management
   const [cartItems, setCartItems] = useState([
@@ -76,10 +78,10 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <Drawer
       title={null}
-      placement="right"
+      placement={isRTL ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
-      width="34%"
+      width="35%"
       className="cart-drawer"
       closeIcon={null}
       headerStyle={{ display: "none" }}
