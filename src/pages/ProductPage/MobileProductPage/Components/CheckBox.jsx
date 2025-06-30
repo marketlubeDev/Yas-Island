@@ -29,7 +29,6 @@ function CheckBox({
         />
         {t("payment.orderSummary.terms.acceptTerms")}{" "}
         <a
-          href="#"
           style={{
             textDecoration: "underline",
           }}

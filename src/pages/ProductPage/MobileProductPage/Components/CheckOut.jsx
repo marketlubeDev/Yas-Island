@@ -13,9 +13,11 @@ function CheckOut({ onProceedToPayment, onBack }) {
   const [receiveComms, setReceiveComms] = useState(false);
   const [promo, setPromo] = useState("");
   const [showPromoPopup, setShowPromoPopup] = useState(false);
+  const [promoApplied, setPromoApplied] = useState(false);
 
   const handleApplyPromo = () => {
     setShowPromoPopup(true);
+    setPromoApplied(true);
     console.log("Applying promo code:", promo);
   };
 
@@ -37,7 +39,8 @@ function CheckOut({ onProceedToPayment, onBack }) {
 
             <InputFields />
 
-            <CheckOutSummary />
+            <CheckOutSummary promoApplied={promoApplied} />
+
             <PromoBox
               promo={promo}
               setPromo={setPromo}

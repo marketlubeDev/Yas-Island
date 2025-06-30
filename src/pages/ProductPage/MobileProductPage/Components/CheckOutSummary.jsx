@@ -1,8 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function CheckOutSummary() {
+function CheckOutSummary({ promoApplied }) {
   const { t } = useTranslation();
+
+  // Calculate totals
+  const subtotal = 935.71;
+  const vatAndTax = 49.29;
+  const promoSavings = promoApplied ? 100.0 : 0;
+  const total = subtotal + vatAndTax - promoSavings;
+
   return (
     <div
       className="email-checkout__summary"
@@ -43,17 +50,32 @@ function CheckOutSummary() {
           border: "1px solid var(--color-checkout-summary-border)",
         }}
       >
+
+        <div className="email-checkout__summary-row-container">
         <div className="email-checkout__summary-row">
           <span>{t("payment.orderSummary.subTotal")}</span>
-          <span>AED 935.71</span>
+          <span>AED {subtotal.toFixed(2)}</span>
         </div>
         <div className="email-checkout__summary-row">
           <span>{t("payment.orderSummary.vatAndTax")}</span>
-          <span>+ 49.29 VAT & Tax</span>
+          <span>+ {vatAndTax.toFixed(2)} VAT & Tax</span>
         </div>
+        {promoApplied && (
+          <div
+            className="email-checkout__summary-row"
+            style={{ color: "var(--color-pymnt-step-clr)" }}
+          >
+            <span>{t("payment.orderSummary.promoCodeSavings")}</span>
+            <span>-{promoSavings.toFixed(2)}</span>
+          </div>
+        )}
+        </div>
+
+
+        
         <div className="email-checkout__summary-row email-checkout__summary-row--total">
           <span>{t("payment.orderSummary.total")}</span>
-          <span>AED 985.00</span>
+          <span>AED {total.toFixed(2)}</span>
         </div>
       </div>
     </div>

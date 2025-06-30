@@ -100,15 +100,17 @@
 .email-checkout__form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 30px;
   background: var(--color-email-form-box);
   padding: 4px 18px 64px 18px;
   border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .email-checkout__form-container-inner {
   max-width: 250px;
   margin: 0 auto;
+  padding: 0px 10px 10px 25px;
 }
 
 .email-checkout__label {
@@ -133,17 +135,6 @@
   // max-width: 100%;
   box-sizing: border-box;
   width: 170px;
-}
-
-.email-checkout__input[type="text"] {
-  // width: 170px;
-  // max-width: 100%;
-}
-
-.email-checkout__input[type="tel"],
-.email-checkout__input[type="number"] {
-  // width: 200px;
-  // max-width: 100%;
 }
 
 .email-checkout__btn {
@@ -209,7 +200,7 @@
     border: 0.554px solid var(--color-promo-input-border);
     border-radius: 0.55381rem;
     padding: 9px 15px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
@@ -313,12 +304,16 @@
   border-bottom: 2px solid var(--color-email-form-input-border);
   width: 40px;
   background: transparent;
-  padding: 9px 0 8px 2px;
+  padding: 9px 15px 8px 2px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
   cursor: pointer;
+  background-image: url("../../../src/assets/icons/down.svg");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 0.5545rem 0.5545rem;
 }
 
 .email-checkout__summary-row--column {
@@ -374,6 +369,11 @@
   padding: 8px 10px;
   width: 150px;
   box-sizing: border-box;
+
+  &::placeholder {
+    color: #231942;
+    font-size: 13px;
+  }
 }
 
 .email-checkout__checkboxes input[type="checkbox"] {
@@ -382,4 +382,8 @@
   border: 2px solid var(--color-email-form-input-border);
   // width: 15px;
   height: 13px;
+}
+
+.email-checkout__summary-row-container {
+  padding: 10px 10px;
 }

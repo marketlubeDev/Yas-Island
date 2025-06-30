@@ -175,7 +175,8 @@ export const ar = {
       lastName: "اسم العائلة *",
       countryOfResidence: "بلد الإقامة *",
       nationality: "الجنسية *",
-      phoneNumber: "رقم الهاتف (الرقم المفضل) *",
+      phoneNumber: "رقم الهاتف ",
+      preferredNumber: "(الرقم المفضل) *",
       countries: {
         UAE: "الإمارات العربية المتحدة",
       },
@@ -198,6 +199,7 @@ export const ar = {
       subTotal: "المجموع الفرعي :",
       vatAndTax: "ضريبة القيمة المضافة :",
       total: "المجموع :",
+      promoCodeSavings: "توفير رمز الخصم :",
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",
         placeholder: "أدخل رمز الخصم",

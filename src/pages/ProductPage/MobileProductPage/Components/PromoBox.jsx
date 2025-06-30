@@ -25,6 +25,7 @@ function PromoBox({ promo, setPromo, onApplyPromo }) {
             className="email-checkout__input email-checkout__promo-input"
             value={promo}
             onChange={(e) => setPromo(e.target.value)}
+            placeholder="f0981902"
           />
           <button
             type="button"
