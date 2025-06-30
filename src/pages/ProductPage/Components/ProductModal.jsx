@@ -87,16 +87,6 @@ export default function ProductModal({
         selectedProduct?.default_variant_id
       );
 
-      // if (performanceData.error) {
-      //   if (performanceData.error.code == 7001) {
-      //     alert(performanceData.error.text);
-      //     return;
-      //   }
-      //   alert(performanceData.error.text);
-      //   return;
-
-      // }
-
       if (performanceData && performanceData.performance) {
         dispatch(setPerformanceData(performanceData.performance));
         const dates = performanceData.performance.map((p) => p.date);
@@ -104,10 +94,39 @@ export default function ProductModal({
       }
       setShowBookingSection(true);
     } catch (error) {
-      // console.log(error, "error");
-      // toast.error(error?.response?.data?.message || "Something went wrong", {
-      //   position: "top-center",
-      // });
+      console.log(error, "error");
+      if(error.status === 404){
+        setAvailableDates([]); //if no availability set all dates of this year as available
+        const today = new Date();
+        const startDate = selectedProduct.sale_date_offset || 0; // default to 0 if undefined
+        today.setDate(today.getDate() + startDate);
+        let endDate;
+
+        if(selectedProduct.calendar_range_days && selectedProduct.calendar_end_date){
+          const rangeEndDate = new Date(today);
+          rangeEndDate.setDate(today.getDate() + selectedProduct.calendar_range_days);
+          const calendarEndDate = new Date(selectedProduct.calendar_end_date);
+          endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
+        } else if(selectedProduct.calendar_range_days){
+          endDate = new Date(today);
+          endDate.setDate(today.getDate() + selectedProduct.calendar_range_days);
+        } else if(selectedProduct.calendar_end_date){
+          endDate = new Date(selectedProduct.calendar_end_date);
+        } else {
+          endDate = new Date(today.getFullYear(), 11, 31); // Last day of current year
+        }
+
+        const dates = [];
+        let currentDate = new Date(today);
+        
+        while(currentDate <= endDate) {
+          dates.push(currentDate.toISOString().split('T')[0]);
+          currentDate = new Date(currentDate);
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        setAvailableDates(dates);
+      }
       setShowBookingSection(true);
     } finally {
       setIsLoading(false);
