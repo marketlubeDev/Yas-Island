@@ -85,6 +85,9 @@ function InputFields() {
       >
         <span style={{ whiteSpace: "nowrap" }}>
           {t("payment.personalDetails.phoneNumber")}
+          <span style={{ opacity: 0.75 }}>
+            {t("payment.personalDetails.preferredNumber")}
+          </span>
           <span
             id="phoneNumber"
             style={{
@@ -115,6 +118,7 @@ function InputFields() {
             id="phoneNumber"
             type="tel"
             className="email-checkout__input"
+            placeholder="527263748"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required

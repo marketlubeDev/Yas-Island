@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import homeIcon from "../../../../assets/icons/home.svg";
 import homeIconInverter from "../../../../assets/icons/homecolor.svg";
@@ -20,10 +20,14 @@ function MobileBottomNav() {
   const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
   const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
   const cartIconSrc = isDarkMode ? cartIconInverter : cartIcon;
-  const handleCartClick = () => {
+
+  const handleCartClick = useCallback(() => {
     setIsCartModalOpen(true);
-    window.scrollTo(0, 0);
-  };
+  }, []);
+
+  const handleCloseCart = useCallback(() => {
+    setIsCartModalOpen(false);
+  }, []);
 
   return (
     <>
@@ -36,7 +40,10 @@ function MobileBottomNav() {
           }`}
           onClick={() => {
             navigate("/product");
-            window.scrollTo(0, 0);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
           style={{ cursor: "pointer" }}
         >
@@ -47,13 +54,7 @@ function MobileBottomNav() {
           <img
             src={chatIconSrc}
             alt={t("common.chatWithUs")}
-            style={
-              isDarkMode
-                ? {
-                    opacity: 0.6,
-                  }
-                : {}
-            }
+            style={isDarkMode ? { opacity: 0.6 } : {}}
           />
           <span>{t("common.chatWithUs")}</span>
         </div>
@@ -65,21 +66,14 @@ function MobileBottomNav() {
           <img
             src={cartIconSrc}
             alt={t("common.cart")}
-            style={
-              isDarkMode
-                ? {
-                    opacity: 0.6,
-                  }
-                : {}
-            }
+            style={isDarkMode ? { opacity: 0.6 } : {}}
           />
           <span>{t("common.cart")}</span>
         </div>
       </div>
-      <Mycart
-        onClose={() => setIsCartModalOpen(false)}
-        visible={isCartModalOpen}
-      />
+      {isCartModalOpen && (
+        <Mycart onClose={handleCloseCart} visible={isCartModalOpen} />
+      )}
     </>
   );
 }

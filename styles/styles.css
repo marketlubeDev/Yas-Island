@@ -5208,6 +5208,26 @@ body {
   border-top: 1px solid var(--color-pymnt-step-divider-before);
 }
 
+.mycart-modal__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-email-form-label);
+}
+.mycart-modal__empty h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.mycart-modal__empty p {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
 .mycart-modal__item {
   display: flex;
   background: var(--color-email-form-box);
@@ -5568,6 +5588,50 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.ant-modal.zoom-enter, .ant-modal.zoom-appear {
+  opacity: 0;
+}
+.ant-modal.zoom-enter .mycart-modal-mobile, .ant-modal.zoom-appear .mycart-modal-mobile {
+  transform: translate(-50%, 100%);
+}
+.ant-modal.zoom-enter-active, .ant-modal.zoom-appear-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.ant-modal.zoom-enter-active .mycart-modal-mobile, .ant-modal.zoom-appear-active .mycart-modal-mobile {
+  transform: translate(-50%, -50%);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.ant-modal.zoom-exit {
+  opacity: 1;
+}
+.ant-modal.zoom-exit .mycart-modal-mobile {
+  transform: translate(-50%, -50%);
+}
+.ant-modal.zoom-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.ant-modal.zoom-exit-active .mycart-modal-mobile {
+  transform: translate(-50%, 100%);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ant-modal-mask.fade-enter, .ant-modal-mask.fade-appear {
+  opacity: 0;
+}
+.ant-modal-mask.fade-enter-active, .ant-modal-mask.fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.ant-modal-mask.fade-exit {
+  opacity: 1;
+}
+.ant-modal-mask.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
 .email-verification-header-fixed {
@@ -6012,15 +6076,17 @@ body {
 .email-checkout__form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 30px;
   background: var(--color-email-form-box);
   padding: 4px 18px 64px 18px;
   border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .email-checkout__form-container-inner {
   max-width: 250px;
   margin: 0 auto;
+  padding: 0px 10px 10px 25px;
 }
 
 .email-checkout__label {
@@ -6103,7 +6169,7 @@ body {
   border: 0.554px solid var(--color-promo-input-border);
   border-radius: 0.55381rem;
   padding: 9px 15px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
@@ -6196,12 +6262,16 @@ body {
   border-bottom: 2px solid var(--color-email-form-input-border);
   width: 40px;
   background: transparent;
-  padding: 9px 0 8px 2px;
+  padding: 9px 15px 8px 2px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
   cursor: pointer;
+  background-image: url("../../../src/assets/icons/down.svg");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 0.5545rem 0.5545rem;
 }
 
 .email-checkout__summary-row--column {
@@ -6254,11 +6324,19 @@ body {
   width: 150px;
   box-sizing: border-box;
 }
+.email-checkout__promo-input::placeholder {
+  color: #231942;
+  font-size: 13px;
+}
 
 .email-checkout__checkboxes input[type=checkbox] {
   accent-color: #fff;
   border: 2px solid var(--color-email-form-input-border);
   height: 13px;
+}
+
+.email-checkout__summary-row-container {
+  padding: 10px 10px;
 }
 
 .make-payment-modal {
@@ -7579,6 +7657,7 @@ body {
   height: 80vh;
   overflow-y: scroll;
   scrollbar-width: thin;
+  border-radius: 20px;
 }
 
 :where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {

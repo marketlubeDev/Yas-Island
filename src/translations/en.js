@@ -176,7 +176,8 @@ export const en = {
       lastName: "LAST NAME *",
       countryOfResidence: "COUNTRY OF RESIDENCE *",
       nationality: "NATIONALITY *",
-      phoneNumber: "PHONE NUMBER (PREFERRED NUMBER) *",
+      phoneNumber: "PHONE NUMBER ",
+      preferredNumber: "(PREFERRED NUMBER) *",
       countries: {
         UAE: "UAE",
         India: "India",
@@ -200,6 +201,7 @@ export const en = {
       subTotal: "Sub total :",
       vatAndTax: "vat & tax :",
       total: "Total :",
+      promoCodeSavings: "promo code savings :",
       promoCode: {
         label: "ENTER YOUR PROMO CODE ",
         label2: "TO GET DISCOUNT",
