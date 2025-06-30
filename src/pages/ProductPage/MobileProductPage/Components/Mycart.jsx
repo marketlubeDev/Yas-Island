@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import backIcon from "../../../../assets/icons/back.svg";
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import trashIcon from "../../../../assets/icons/trash.svg";
+import trashIconInverter from "../../../../assets/icons/invertdelete.svg";
 import frame1 from "../../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
 import { ar } from "../../../../translations/ar";
@@ -15,7 +16,9 @@ function Mycart({ onClose, visible }) {
   const t = language === "العربية" || language === "ar" ? ar : en;
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+  const deleteIconSrc = isDarkMode ? trashIconInverter : trashIcon;
   const navigate = useNavigate();
+  const isRTL = language === "ar" || language === "العربية";
 
   const handleBack = useCallback(
     (e) => {
@@ -93,7 +96,7 @@ function Mycart({ onClose, visible }) {
       closable={false}
       keyboard={true}
       maskClosable={true}
-      className="mycart-modal-mobile"
+      className={`mycart-modal-mobile ${isRTL ? "rtl" : ""}`}
       transitionName="zoom"
       maskTransitionName="fade"
       maskStyle={{ background: "rgba(0, 0, 0, 0.45)" }}
@@ -102,13 +105,19 @@ function Mycart({ onClose, visible }) {
       <div className="mycart-modal__content">
         <div className="mycart-modal__header">
           <button
-            className="mycart-modal__back"
+            className={`mycart-modal__back ${
+              isRTL ? "mycart-modal__back--rtl" : ""
+            }`}
             onClick={handleBack}
             type="button"
             style={{ cursor: "pointer" }}
             aria-label="Close modal"
           >
-            <img src={backIconSrc} alt="Back" />
+            <img
+              src={backIconSrc}
+              alt="Back"
+              style={{ transform: isRTL ? "scaleX(-1)" : "none" }}
+            />
           </button>
           <span className="mycart-modal__title">{t.cart.title}</span>
         </div>
@@ -140,7 +149,7 @@ function Mycart({ onClose, visible }) {
                       className="mycart-modal__item-delete"
                       onClick={() => deleteItem(item.id)}
                     >
-                      <img src={trashIcon} alt="Delete" />
+                      <img src={deleteIconSrc} alt="Delete" />
                     </button>
                   </div>
                   <div className="mycart-modal__item-price">

@@ -9,6 +9,8 @@ import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
+import InvertedPlusIcon from "../../../assets/icons/invertedplus.svg";
+import InvertedMinusIcon from "../../../assets/icons/invertedminus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 
@@ -27,15 +29,14 @@ export default function BookingSection({
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
-
-  
 
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = variant?.min_quantity || 1; 
+      variants[variant?.productvariantname] = variant?.min_quantity || 1;
     });
     return variants;
   }
@@ -55,8 +56,12 @@ export default function BookingSection({
     let endDate;
     if (product.calendar_end_date) {
       endDate = new Date(product.calendar_end_date);
-    } else if(product.calendar_range_days){
-      endDate = new Date(today.getFullYear(), today.getMonth() + product.calendar_range_days, today.getDate());
+    } else if (product.calendar_range_days) {
+      endDate = new Date(
+        today.getFullYear(),
+        today.getMonth() + product.calendar_range_days,
+        today.getDate()
+      );
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
@@ -77,8 +82,8 @@ export default function BookingSection({
   // Format date to YYYY-MM-DD
   const formatDateToYYYYMMDD = (date) => {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -116,7 +121,7 @@ export default function BookingSection({
         0,
         0,
         0,
-        0 
+        0
       );
 
       const formattedDateString = formatDate(date);
@@ -238,41 +243,45 @@ export default function BookingSection({
       })
     );
 
-    dispatch(addToCart({
-      id: selectedProduct?.default_variant_id,
-      image: selectedProduct?.product_images?.thumbnail_url,
-      title: selectedProduct?.product_title,
-      price: 328.57,
-      vat: 16.43,
-      quantity: selectedProduct?.product_variants.find(variant => variant.id === selectedProduct?.default_variant_id)?.min_quantity || 1,
-      type: "adults",
-      validFrom: formatDate(selectedDate),
-      validTo: formatDate(endDate),
-    }));
+    dispatch(
+      addToCart({
+        id: selectedProduct?.default_variant_id,
+        image: selectedProduct?.product_images?.thumbnail_url,
+        title: selectedProduct?.product_title,
+        price: 328.57,
+        vat: 16.43,
+        quantity:
+          selectedProduct?.product_variants.find(
+            (variant) => variant.id === selectedProduct?.default_variant_id
+          )?.min_quantity || 1,
+        type: "adults",
+        validFrom: formatDate(selectedDate),
+        validTo: formatDate(endDate),
+      })
+    );
     navigate("/payment");
   };
 
   const handleSaveToCart = () => {
-    dispatch(addToCart({
-      id: selectedProduct?.default_variant_id,
-      image: selectedProduct?.product_images?.thumbnail_url,
-      title: selectedProduct?.product_title,
-      price: 328.57,
-      vat: 16.43,
-      quantity: 2,
-      type: "adults",
-      validFrom: formatDate(selectedDate),
-      validTo: formatDate(endDate),
-    }));
+    dispatch(
+      addToCart({
+        id: selectedProduct?.default_variant_id,
+        image: selectedProduct?.product_images?.thumbnail_url,
+        title: selectedProduct?.product_title,
+        price: 328.57,
+        vat: 16.43,
+        quantity: 2,
+        type: "adults",
+        validFrom: formatDate(selectedDate),
+        validTo: formatDate(endDate),
+      })
+    );
     toast.success(t("booking.productAddedToCart"), {
       position: "top-center",
     });
     onBack();
     dispatch(setIsCartOpen(true));
   };
-
-
-
 
   return (
     <div className="booking-section">
@@ -351,7 +360,8 @@ export default function BookingSection({
                               const currentValue = prev[variant];
                               const newValue = Math.max(
                                 variantData?.min_quantity || 0,
-                                currentValue - (variantData?.increment_number || 1)
+                                currentValue -
+                                  (variantData?.increment_number || 1)
                               );
                               return {
                                 ...prev,
@@ -359,9 +369,14 @@ export default function BookingSection({
                               };
                             })
                           }
-                          disabled={guests[variant] <= (variantData?.min_quantity || 0)}
+                          disabled={
+                            guests[variant] <= (variantData?.min_quantity || 0)
+                          }
                         >
-                          <img src={MinusIcon} alt="minus" />
+                          <img
+                            src={isDarkMode ? InvertedMinusIcon : MinusIcon}
+                            alt="minus"
+                          />
                         </button>
                         <span className="counter-value">{guests[variant]}</span>
                         <button
@@ -371,7 +386,8 @@ export default function BookingSection({
                               const currentValue = prev[variant];
                               const newValue = Math.min(
                                 variantData?.max_quantity || 100,
-                                currentValue + (variantData?.increment_number || 1)
+                                currentValue +
+                                  (variantData?.increment_number || 1)
                               );
                               return {
                                 ...prev,
@@ -379,9 +395,15 @@ export default function BookingSection({
                               };
                             })
                           }
-                          disabled={guests[variant] >= (variantData?.max_quantity || 100)}
+                          disabled={
+                            guests[variant] >=
+                            (variantData?.max_quantity || 100)
+                          }
                         >
-                          <img src={PlusIcon} alt="plus" />
+                          <img
+                            src={isDarkMode ? InvertedPlusIcon : PlusIcon}
+                            alt="plus"
+                          />
                         </button>
                       </div>
                     </div>
@@ -405,7 +427,9 @@ export default function BookingSection({
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red" }}>AED {totalPrice}</span>
           </button>
-          <button className="cart-btn" onClick={handleSaveToCart}>{t("booking.saveToCart")}</button>
+          <button className="cart-btn" onClick={handleSaveToCart}>
+            {t("booking.saveToCart")}
+          </button>
         </div>
       </div>
     </div>

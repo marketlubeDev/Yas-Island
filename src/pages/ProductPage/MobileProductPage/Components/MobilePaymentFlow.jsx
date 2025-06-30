@@ -10,6 +10,12 @@ import MobileHeader from "./MobileHeader";
 
 const MobilePaymentFlow = () => {
   const [step, setStep] = useState(1);
+  const [promoApplied, setPromoApplied] = useState(false);
+
+  const handleApplyPromo = () => {
+    setPromoApplied(true);
+    setStep(2);
+  };
 
   const renderStep = () => {
     switch (step) {
@@ -25,8 +31,9 @@ const MobilePaymentFlow = () => {
           <CheckOut
             onBack={() => setStep(1)}
             onClose={() => window.history.back()}
-            onApplyPromo={() => setStep(3)}
+            onApplyPromo={handleApplyPromo}
             onProceedToPayment={() => setStep(4)}
+            promoApplied={promoApplied}
           />
         );
       case 3:
@@ -36,6 +43,7 @@ const MobilePaymentFlow = () => {
           <MakePayment
             onClose={() => window.history.back()}
             onPaymentSuccess={() => setStep(5)}
+            promoApplied={promoApplied}
           />
         );
       case 5:

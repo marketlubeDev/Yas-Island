@@ -6,6 +6,7 @@
     justify-content: center;
     background-color: var(--color-pymnt-container-bg);
     width: 100%;
+    position: relative;
   }
   &__title {
     font-size: 20px;
@@ -22,10 +23,16 @@
     border: none;
     font-size: 15px;
     margin-bottom: 8px;
-    align-self: flex-start;
-    margin-left: 12px;
-    margin-top: -1.5rem;
+    position: absolute;
+    top: 110px;
+    left: 12px;
     cursor: pointer;
+    z-index: 1;
+
+    &--rtl {
+      left: auto;
+      right: 12px;
+    }
   }
 
   &__steps-container {
