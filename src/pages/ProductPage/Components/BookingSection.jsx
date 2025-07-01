@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import LeftArrow from "../../../assets/icons/left.svg";
+import invertedLeftArrow from "../../../assets/icons/invertleft.svg";
+import invertedRightArrow from "../../../assets/icons/invertedright.svg";
 import RightArrow from "../../../assets/icons/right.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +11,8 @@ import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
-import InvertedPlusIcon from "../../../assets/icons/invertedplus.svg";
-import InvertedMinusIcon from "../../../assets/icons/invertedminus.svg";
+import invertedPlusIcon from "../../../assets/icons/invertedplus.svg";
+import invertedMinusIcon from "../../../assets/icons/invertedminus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 import Loading from "../../../components/Loading/Loading";
@@ -33,7 +35,7 @@ export default function BookingSection({
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
 
@@ -43,7 +45,7 @@ export default function BookingSection({
       variants[variant?.productid] = {
         quantity: variant?.min_quantity || 1,
         name: variant?.productvariantname,
-        variant: variant
+        variant: variant,
       };
     });
     return variants;
@@ -60,6 +62,32 @@ export default function BookingSection({
     });
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
+
+  useEffect(() => {
+    // Check if dark mode is enabled by looking at the CSS variable
+    const checkDarkMode = () => {
+      const bodyStyles = getComputedStyle(document.documentElement);
+      const backgroundColor = bodyStyles
+        .getPropertyValue("--color-base-bg")
+        .trim();
+      setIsDarkMode(backgroundColor === "#0B0C0C"); // Check exact match for dark mode background
+    };
+
+    checkDarkMode();
+    // Create a MutationObserver to watch for changes in dark mode
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Add console log to debug
+  useEffect(() => {
+    console.log("Dark mode status:", isDarkMode);
+  }, [isDarkMode]);
 
   function getValidDateRange(product) {
     const today = new Date();
@@ -258,7 +286,9 @@ export default function BookingSection({
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
+      endDate.setDate(
+        startDate.getDate() + (guestData.variant?.validitydays || 0)
+      );
 
       // Format dates directly to YYYY-MM-DD
       const validToDate = `${endDate.getFullYear()}-${String(
@@ -292,7 +322,7 @@ export default function BookingSection({
       return;
     }
 
-   // here we need to check if the basket is full
+    // here we need to check if the basket is full
 
     if (isLoading) {
       toast.error(t("Please Wait"), {
@@ -305,7 +335,9 @@ export default function BookingSection({
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
+      endDate.setDate(
+        startDate.getDate() + (guestData.variant?.validitydays || 0)
+      );
 
       // Format dates directly to YYYY-MM-DD
       const validToDate = `${endDate.getFullYear()}-${String(
@@ -399,11 +431,19 @@ export default function BookingSection({
             <>
               <div className="calendar-header">
                 <button onClick={handlePrevMonth}>
-                  <img src={LeftArrow} alt="Left Arrow" />
+                  <img
+                    src={isDarkMode ? invertedLeftArrow : LeftArrow}
+                    alt="Previous Month"
+                    className="calendar-arrow"
+                  />
                 </button>
                 <h3>{formatMonthYear(currentDate)}</h3>
                 <button onClick={handleNextMonth}>
-                  <img src={RightArrow} alt="Right Arrow" />
+                  <img
+                    src={isDarkMode ? invertedRightArrow : RightArrow}
+                    alt="Next Month"
+                    className="calendar-arrow"
+                  />
                 </button>
               </div>
 
@@ -434,92 +474,106 @@ export default function BookingSection({
             ) : (
               <>
                 <h3 className="guest-summary">
-                  {Object.entries(guests).map(([productId, guestData], idx, arr) => (
-                    <span className="" key={productId}>
-                      {guestData.name}: {guestData.quantity}
-                      {idx < arr.length - 1 ? " / " : ""}
-                    </span>
-                  ))}
+                  {Object.entries(guests).map(
+                    ([productId, guestData], idx, arr) => (
+                      <span className="" key={productId}>
+                        {guestData.name}: {guestData.quantity}
+                        {idx < arr.length - 1 ? " / " : ""}
+                      </span>
+                    )
+                  )}
                 </h3>
                 <div className="guest-controls">
-                  {Object.entries(guests)?.map(([productId, guestData], idx) => {
-                    const variantData = guestData.variant;
-                    return (
-                      <div key={productId}>
-                        <div className="guest-row">
-                          <div className="guest-label-container">
-                            <span className="guest-label">
-                              {guestData.name}{" "}
-                              {variantData?.productvariantdesc &&
-                                `(${variantData.productvariantdesc})`}
-                            </span>
-                            <span className="guest-label-price">
-                              AED {variantData?.gross * guestData.quantity}{" "}
-                            </span>
+                  {Object.entries(guests)?.map(
+                    ([productId, guestData], idx) => {
+                      const variantData = guestData.variant;
+                      return (
+                        <div key={productId}>
+                          <div className="guest-row">
+                            <div className="guest-label-container">
+                              <span className="guest-label">
+                                {guestData.name}{" "}
+                                {variantData?.productvariantdesc &&
+                                  `(${variantData.productvariantdesc})`}
+                              </span>
+                              <span className="guest-label-price">
+                                AED {variantData?.gross * guestData.quantity}{" "}
+                              </span>
+                            </div>
+                            <div className="counter-controls">
+                              <button
+                                className="counter-btn minus-btn"
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue =
+                                      prev[productId].quantity;
+                                    const newValue = Math.max(
+                                      variantData?.min_quantity || 0,
+                                      currentValue -
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity <=
+                                  (variantData?.min_quantity || 0)
+                                }
+                              >
+                                <img
+                                  src={
+                                    isDarkMode ? invertedMinusIcon : MinusIcon
+                                  }
+                                  alt="minus"
+                                />
+                              </button>
+                              <span className="counter-value">
+                                {guestData.quantity}
+                              </span>
+                              <button
+                                className="counter-btn plus-btn"
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue =
+                                      prev[productId].quantity;
+                                    const newValue = Math.min(
+                                      variantData?.max_quantity || 100,
+                                      currentValue +
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity >=
+                                  (variantData?.max_quantity || 100)
+                                }
+                              >
+                                <img
+                                  src={isDarkMode ? invertedPlusIcon : PlusIcon}
+                                  alt="plus"
+                                />
+                              </button>
+                            </div>
                           </div>
-                          <div className="counter-controls">
-                            <button
-                              className="counter-btn minus-btn"
-                              onClick={() =>
-                                setGuests((prev) => {
-                                  const currentValue = prev[productId].quantity;
-                                  const newValue = Math.max(
-                                    variantData?.min_quantity || 0,
-                                    currentValue -
-                                      (variantData?.increment_number || 1)
-                                  );
-                                  return {
-                                    ...prev,
-                                    [productId]: {
-                                      ...prev[productId],
-                                      quantity: newValue
-                                    }
-                                  };
-                                })
-                              }
-                              disabled={
-                                guestData.quantity <=
-                                (variantData?.min_quantity || 0)
-                              }
-                            >
-                              <img src={MinusIcon} alt="minus" />
-                            </button>
-                            <span className="counter-value">
-                              {guestData.quantity}
-                            </span>
-                            <button
-                              className="counter-btn plus-btn"
-                              onClick={() =>
-                                setGuests((prev) => {
-                                  const currentValue = prev[productId].quantity;
-                                  const newValue = Math.min(
-                                    variantData?.max_quantity || 100,
-                                    currentValue +
-                                      (variantData?.increment_number || 1)
-                                  );
-                                  return {
-                                    ...prev,
-                                    [productId]: {
-                                      ...prev[productId],
-                                      quantity: newValue
-                                    }
-                                  };
-                                })
-                              }
-                              disabled={
-                                guestData.quantity >=
-                                (variantData?.max_quantity || 100)
-                              }
-                            >
-                              <img src={PlusIcon} alt="plus" />
-                            </button>
-                          </div>
-                        </div>
 
-                        <div className="guest-row-divider"></div>
-                      </div>
-                    );
-                  })}
+                          <div className="guest-row-divider"></div>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
 
                 <p className="guest-note"></p>

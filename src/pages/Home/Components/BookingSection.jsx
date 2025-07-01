@@ -1,18 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
+import invertedLeftArrow from "../../../assets/icons/invertleft.svg";
+import invertedRightArrow from "../../../assets/icons/invertedright.svg";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
+import invertedMinusIcon from "../../../assets/icons/invertedminus.svg";
+import invertedPlusIcon from "../../../assets/icons/invertedplus.svg";
 
 export default function BookingSection() {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [guests, setGuests] = useState({
     adults: 2,
     children: 1,
   });
+
+  useEffect(() => {
+    // Check if dark mode is enabled by looking at the CSS variable
+    const checkDarkMode = () => {
+      const bodyStyles = getComputedStyle(document.documentElement);
+      const backgroundColor = bodyStyles
+        .getPropertyValue("--color-base-bg")
+        .trim();
+      setIsDarkMode(backgroundColor === "#0B0C0C"); // Check exact match for dark mode background
+    };
+
+    checkDarkMode();
+    // Create a MutationObserver to watch for changes in dark mode
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Add console log to debug
+  useEffect(() => {
+    console.log("Dark mode status:", isDarkMode);
+  }, [isDarkMode]);
 
   // Calendar helper functions
   const getDaysInMonth = (date) => {
@@ -86,11 +117,19 @@ export default function BookingSection() {
         <div className="calendar-wrapper">
           <div className="calendar-header">
             <button onClick={handlePrevMonth}>
-              <img src={LeftArrow} alt="Left Arrow" />
+              <img
+                src={isDarkMode ? invertedLeftArrow : LeftArrow}
+                alt="Previous Month"
+                className="calendar-arrow"
+              />
             </button>
             <h3>{formatMonthYear(currentDate)}</h3>
             <button onClick={handleNextMonth}>
-              <img src={RightArrow} alt="Right Arrow" />
+              <img
+                src={isDarkMode ? invertedRightArrow : RightArrow}
+                alt="Next Month"
+                className="calendar-arrow"
+              />
             </button>
           </div>
 
@@ -122,10 +161,16 @@ export default function BookingSection() {
                   <button
                     className="counter-btn minus-btn"
                     onClick={() =>
-                      setGuests({ ...guests, adults: guests.adults - 1 })
+                      setGuests({
+                        ...guests,
+                        adults: Math.max(1, guests.adults - 1),
+                      })
                     }
                   >
-                    <img src={MinusIcon} alt="minus" />
+                    <img
+                      src={isDarkMode ? invertedMinusIcon : MinusIcon}
+                      alt="minus"
+                    />
                   </button>
                   <span className="counter-value">{guests.adults}</span>
                   <button
@@ -134,7 +179,10 @@ export default function BookingSection() {
                       setGuests({ ...guests, adults: guests.adults + 1 })
                     }
                   >
-                    <img src={PlusIcon} alt="plus" />
+                    <img
+                      src={isDarkMode ? invertedPlusIcon : PlusIcon}
+                      alt="plus"
+                    />
                   </button>
                 </div>
               </div>
@@ -147,10 +195,16 @@ export default function BookingSection() {
                   <button
                     className="counter-btn minus-btn"
                     onClick={() =>
-                      setGuests({ ...guests, children: guests.children - 1 })
+                      setGuests({
+                        ...guests,
+                        children: Math.max(0, guests.children - 1),
+                      })
                     }
                   >
-                    <img src={MinusIcon} alt="minus" />
+                    <img
+                      src={isDarkMode ? invertedMinusIcon : MinusIcon}
+                      alt="minus"
+                    />
                   </button>
                   <span className="counter-value">{guests.children}</span>
                   <button
@@ -159,7 +213,10 @@ export default function BookingSection() {
                       setGuests({ ...guests, children: guests.children + 1 })
                     }
                   >
-                    <img src={PlusIcon} alt="plus" />
+                    <img
+                      src={isDarkMode ? invertedPlusIcon : PlusIcon}
+                      alt="plus"
+                    />
                   </button>
                 </div>
               </div>

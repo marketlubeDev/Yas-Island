@@ -14,8 +14,8 @@ $color-yellow: #ffea00;
 :root {
   --text-color: #18142b;
   --color-base-bg: #fff;
-  --color-base-text: #18142b;
-  --color-base-text-secondary: #514760;
+  --color-base-text: #231942;
+  --color-base-text-secondary: #6c6c8a;
   --color-base-btn-bg: #fff;
   --color-base-btn-border: #dcd6e5;
   --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
@@ -79,6 +79,11 @@ $color-yellow: #ffea00;
   --color-base-mobile-product-page-vat-text: #bdbdc6;
   --color-base-product-card-card-item-border-round: #dcd6e5;
   --separator-color: #d9d9d9;
+  --color-base-date-clr: #1e1e1e;
+  --color-today-bg: #e8f0fe;
+  --color-today-border: none;
+  --color-date-selected-bg: #22215b;
+  --color-date-selected-text: #b4b3e5;
   //mobiletop
   --color-base-mobile-top-bg: #fff;
   --color-base-mobile-search-section-title: #231942;
@@ -95,6 +100,14 @@ $color-yellow: #ffea00;
   --color-base-mobile-top-item-borderbottom: #b9b3d3;
   --color-base-mobile-top-item-bordertop: #b9b3d3;
   --color-base-mobile-top-item-rightborder: #e0e0e0;
+  --color-verification-container-bg: #f4f7f8;
+  --color-otp-input-border: #6f677c;
+  --color-resend-btn-border: #dcd6e5;
+  --color-resend-btn-bg: #fff;
+  --color-resend-btn-text: #18142b;
+  --color-order-summary-bg: #f4f7f8;
+  --color-checkbox-bdr: #ada5b7;
+  --color-checkbox-text: #a49dad;
 
   //searchdropdown
   --color-search-dropdown-bg: #fff;
@@ -272,6 +285,18 @@ $color-yellow: #ffea00;
   --color-cart-save-btn-border: none;
   --color-email-form-otp-warning: #ff63af;
   --cart-btn-brd-save: #d9d9d9;
+
+  // Base colors and theme
+  --color-base-border: #e3dff1;
+
+  // Dark mode overrides
+  [data-theme="dark"] {
+    --color-base-bg: #0b0c0c;
+    --color-base-text: #ffffff;
+    --color-base-text-secondary: #a8a8b3;
+    --color-base-border: #2d2d2d;
+    --color-base-icon-filter: invert(1); // Invert icons in dark mode
+  }
 }
 
 [dir="rtl"] {

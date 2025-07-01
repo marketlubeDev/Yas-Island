@@ -8,12 +8,16 @@ export default function VerificationBox({ email }) {
     <div className="verification-containerBox">
       <p className="verification-text">
         {t("payment.verification.codeSent")}{" "}
-        <span className="email">{email}</span>
+        <span className="email" style={{ textDecoration: "underline" }}>
+          {email}
+        </span>
       </p>
       <p className="spam-notice">{t("payment.verification.checkSpam")}</p>
 
       <div className="verification-container">
-        <p className="verification-label">{t("payment.verification.enterCode")}</p>
+        <p className="verification-label">
+          {t("payment.verification.enterCode")}
+        </p>
         <div className="code-inputs">
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <input
@@ -26,9 +30,13 @@ export default function VerificationBox({ email }) {
         </div>
       </div>
       <div className="timer-section">
-        <span className="expire-text">{t("payment.verification.willExpire")}</span>
+        <span className="expire-text">
+          {t("payment.verification.willExpire")}
+        </span>
         <span className="timer">03:00</span>
-        <button className="resend-btn">{t("payment.verification.resend")}</button>
+        <button className="resend-btn">
+          {t("payment.verification.resend")}
+        </button>
       </div>
     </div>
   );

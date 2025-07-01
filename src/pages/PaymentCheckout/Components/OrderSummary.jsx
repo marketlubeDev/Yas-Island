@@ -32,7 +32,10 @@ export default function OrderSummary({ formData, setFormData }) {
   };
 
   return (
-    <div className="order-summary" style={{ backgroundColor: "#fff" }}>
+    <div
+      className="order-summary"
+      style={{ backgroundColor: "--color-order-summary-bg" }}
+    >
       <h3 className="order-summary__title">
         {t("payment.orderSummary.title")}
       </h3>
@@ -75,7 +78,7 @@ export default function OrderSummary({ formData, setFormData }) {
       <div
         className="promo-code"
         style={{
-          backgroundColor: "#F4F7F8",
+          backgroundColor: "var(--color-order-summary-bg)",
           borderRadius: "10px",
           height: "110px",
           width: "300px",

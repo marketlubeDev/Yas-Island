@@ -446,7 +446,7 @@
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
-  background-color: #f4f7f8;
+  background-color: var(--color-verification-container-bg);
 
   @include respond(desktop) {
     padding: 16px;
@@ -486,7 +486,7 @@
 .code-input {
   width: 40px;
   height: 40px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-otp-input-border);
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
@@ -509,7 +509,7 @@
 }
 
 .expire-text {
-  color: #787082;
+  color: var(--color-resend-btn-text);
   font-family: Inter;
   font-size: 14.663px;
   font-style: normal;
@@ -527,7 +527,7 @@
 }
 
 .timer {
-  color: #787082;
+  color: var(--color-resend-btn-text);
   font-family: Inter;
   font-size: 14.663px;
   font-style: normal;
@@ -547,14 +547,14 @@
 .resend-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--color-resend-btn-text);
   cursor: pointer;
   padding: 6px 12px;
   // border-radius: 20px;
   border-radius: 51.322px;
-  border: 2.933px solid #dcd6e5;
+  border: 2.933px solid var(--color-resend-btn-border);
   opacity: 0.6;
-  background: #fff;
+  background: var(--color-resend-btn-bg);
 }
 
 @include respond(desktop) {
@@ -567,10 +567,6 @@
   .resend-btn {
     font-size: 11.5px;
   }
-}
-
-.resend-btn:hover {
-  background-color: #eee;
 }
 
 .verification-containerBox {

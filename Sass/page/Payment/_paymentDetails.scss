@@ -333,7 +333,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: normal;
-        background-color: #f4f7f8;
+        background-color: var(--color-order-summary-bg);
 
         @include respond(desktop) {
           font-size: 0.9rem;
@@ -349,7 +349,7 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        background-color: #f4f7f8;
+        background-color: var(--color-order-summary-bg);
 
         .detail-row {
           .label {
@@ -437,7 +437,7 @@
           padding: 0.75rem;
           font-size: 0.875rem;
           border-radius: 0.79706rem;
-          border: 0.797px solid #6f677c;
+          border: 0.797px solid var(--ip-bodr-btm);
           background: var(--apply-btn-bg);
           letter-spacing: 5px;
           color: var(--color-base-text-secondary);
@@ -448,7 +448,7 @@
           cursor: pointer;
           font-size: 0.875rem;
           border-radius: 0.69744rem;
-          border: 0.797px solid #6f677c;
+          border: 0.797px solid var(--ip-bodr-btm);
           background: var(--apply-btn-bg);
           color: var(--color-base-text-secondary);
 
@@ -485,7 +485,7 @@
           top: 2px;
           height: 20px;
           width: 20px;
-          border: 2px solid #ada5b7;
+          border: 2px solid var(--color-checkbox-bdr);
           border-radius: 4px;
           background-color: white;
 
@@ -504,12 +504,12 @@
         }
 
         &:hover .checkbox-input ~ .checkbox-custom {
-          border-color: #594f67;
+          border-color: var(--color-checkbox-bdr);
         }
 
         .checkbox-input:checked ~ .checkbox-custom {
-          background-color: #594f67;
-          border-color: #594f67;
+          background-color: var(--color-checkbox-bdr);
+          border-color: var(--color-checkbox-bdr);
 
           &:after {
             display: block;
@@ -518,7 +518,7 @@
 
         .checkbox-text {
           font-size: 0.875rem;
-          color: #a49dad;
+          color: var(--color-checkbox-text);
           font-style: normal;
           font-weight: 200;
           line-height: normal;
@@ -651,16 +651,12 @@
   margin-left: 1rem;
   padding: 1rem;
   border-radius: 2.92381rem;
-  background: #ffea00;
+  background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
-
-  &:hover {
-    background: #ffea00;
-  }
 }
 
 .price-row__label {

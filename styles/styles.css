@@ -1,8 +1,8 @@
 :root {
   --text-color: #18142b;
   --color-base-bg: #fff;
-  --color-base-text: #18142b;
-  --color-base-text-secondary: #514760;
+  --color-base-text: #231942;
+  --color-base-text-secondary: #6c6c8a;
   --color-base-btn-bg: #fff;
   --color-base-btn-border: #dcd6e5;
   --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
@@ -60,6 +60,11 @@
   --color-base-mobile-product-page-vat-text: #bdbdc6;
   --color-base-product-card-card-item-border-round: #dcd6e5;
   --separator-color: #d9d9d9;
+  --color-base-date-clr: #1e1e1e;
+  --color-today-bg: #e8f0fe;
+  --color-today-border: none;
+  --color-date-selected-bg: #22215b;
+  --color-date-selected-text: #b4b3e5;
   --color-base-mobile-top-bg: #fff;
   --color-base-mobile-search-section-title: #231942;
   --color-base-mobile-search-section-input-bg: #fff;
@@ -75,6 +80,14 @@
   --color-base-mobile-top-item-borderbottom: #b9b3d3;
   --color-base-mobile-top-item-bordertop: #b9b3d3;
   --color-base-mobile-top-item-rightborder: #e0e0e0;
+  --color-verification-container-bg: #f4f7f8;
+  --color-otp-input-border: #6f677c;
+  --color-resend-btn-border: #dcd6e5;
+  --color-resend-btn-bg: #fff;
+  --color-resend-btn-text: #18142b;
+  --color-order-summary-bg: #f4f7f8;
+  --color-checkbox-bdr: #ada5b7;
+  --color-checkbox-text: #a49dad;
   --color-search-dropdown-bg: #fff;
   --color-search-dropdown-option: #f5f5f5;
   --color-search-dropdown-option-text: #222;
@@ -222,6 +235,14 @@
   --color-cart-save-btn-border: none;
   --color-email-form-otp-warning: #ff63af;
   --cart-btn-brd-save: #d9d9d9;
+  --color-base-border: #e3dff1;
+}
+:root [data-theme=dark] {
+  --color-base-bg: #0b0c0c;
+  --color-base-text: #ffffff;
+  --color-base-text-secondary: #a8a8b3;
+  --color-base-border: #2d2d2d;
+  --color-base-icon-filter: invert(1);
 }
 
 [dir=rtl] {
@@ -1505,8 +1526,8 @@ body {
   border-radius: 0;
 }
 .calendar-container .day.selected {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-date-selected-bg);
+  color: var(--color-date-selected-text);
   border-radius: 50%;
 }
 .calendar-container .day.selected:first-child {
@@ -1629,11 +1650,7 @@ body {
   font-size: 14px;
   cursor: pointer;
   border-radius: 50%;
-  color: #1e1e1e;
-}
-
-.day:hover {
-  background-color: #f0f0f0;
+  color: var(--color-base-date-clr);
 }
 
 .day.empty {
@@ -1646,8 +1663,9 @@ body {
 }
 
 .day.today {
-  background-color: #e8f0fe;
-  color: #1e1e1e;
+  background-color: var(--color-today-bg);
+  color: var(--color-base-date-clr);
+  border: 1px solid var(--color-today-border);
 }
 
 /* Disabled dates (previous month) */
@@ -3069,7 +3087,7 @@ body {
   padding: 20px;
   border-radius: 8px;
   margin: 0 2.5rem;
-  background-color: #f4f7f8;
+  background-color: var(--color-verification-container-bg);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .verification-container {
@@ -3113,7 +3131,7 @@ body {
 .code-input {
   width: 40px;
   height: 40px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-otp-input-border);
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
@@ -3137,7 +3155,7 @@ body {
 }
 
 .expire-text {
-  color: #787082;
+  color: var(--color-resend-btn-text);
   font-family: Inter;
   font-size: 14.663px;
   font-style: normal;
@@ -3157,7 +3175,7 @@ body {
 }
 
 .timer {
-  color: #787082;
+  color: var(--color-resend-btn-text);
   font-family: Inter;
   font-size: 14.663px;
   font-style: normal;
@@ -3179,13 +3197,13 @@ body {
 .resend-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--color-resend-btn-text);
   cursor: pointer;
   padding: 6px 12px;
   border-radius: 51.322px;
-  border: 2.933px solid #dcd6e5;
+  border: 2.933px solid var(--color-resend-btn-border);
   opacity: 0.6;
-  background: #fff;
+  background: var(--color-resend-btn-bg);
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -3198,10 +3216,6 @@ body {
     font-size: 11.5px;
   }
 }
-.resend-btn:hover {
-  background-color: #eee;
-}
-
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
@@ -3495,7 +3509,7 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  background-color: #f4f7f8;
+  background-color: var(--color-order-summary-bg);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__right .order-summary__title {
@@ -3509,7 +3523,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  background-color: #f4f7f8;
+  background-color: var(--color-order-summary-bg);
 }
 .payment-form__right .order-summary__details .detail-row .label {
   font-size: 0.65rem;
@@ -3585,7 +3599,7 @@ body {
   padding: 0.75rem;
   font-size: 0.875rem;
   border-radius: 0.79706rem;
-  border: 0.797px solid #6f677c;
+  border: 0.797px solid var(--ip-bodr-btm);
   background: var(--apply-btn-bg);
   letter-spacing: 5px;
   color: var(--color-base-text-secondary);
@@ -3595,7 +3609,7 @@ body {
   cursor: pointer;
   font-size: 0.875rem;
   border-radius: 0.69744rem;
-  border: 0.797px solid #6f677c;
+  border: 0.797px solid var(--ip-bodr-btm);
   background: var(--apply-btn-bg);
   color: var(--color-base-text-secondary);
 }
@@ -3627,7 +3641,7 @@ body {
   top: 2px;
   height: 20px;
   width: 20px;
-  border: 2px solid #ada5b7;
+  border: 2px solid var(--color-checkbox-bdr);
   border-radius: 4px;
   background-color: white;
 }
@@ -3644,18 +3658,18 @@ body {
   transform: rotate(45deg);
 }
 .payment-form__right .terms .checkbox-container:hover .checkbox-input ~ .checkbox-custom {
-  border-color: #594f67;
+  border-color: var(--color-checkbox-bdr);
 }
 .payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom {
-  background-color: #594f67;
-  border-color: #594f67;
+  background-color: var(--color-checkbox-bdr);
+  border-color: var(--color-checkbox-bdr);
 }
 .payment-form__right .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom:after {
   display: block;
 }
 .payment-form__right .terms .checkbox-container .checkbox-text {
   font-size: 0.875rem;
-  color: #a49dad;
+  color: var(--color-checkbox-text);
   font-style: normal;
   font-weight: 200;
   line-height: normal;
@@ -3757,15 +3771,12 @@ body {
   margin-left: 1rem;
   padding: 1rem;
   border-radius: 2.92381rem;
-  background: #ffea00;
+  background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
-}
-.proceedbtn:hover {
-  background: #ffea00;
 }
 
 .price-row__label {
@@ -3831,11 +3842,11 @@ body {
   width: 100%;
   height: 100%;
   max-width: 800px;
-  background-color: #fff;
+  background-color: var(--color-resend-btn-bg);
   padding: 2rem;
 }
 .payment-container .payment-title {
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
@@ -3909,7 +3920,7 @@ body {
   width: 100%;
   padding: 12px;
   border: none;
-  border-bottom: 1px solid #6f677c;
+  border-bottom: 1px solid var(--color-otp-input-border);
   font-size: 16px;
   outline: none;
 }
@@ -3924,7 +3935,7 @@ body {
 }
 .payment-button-container .payment-button {
   border-radius: 2.92381rem;
-  background: #ffea00;
+  background: var(--color-base-accessibility-modal-btn-bg);
   display: flex;
   width: 300px;
   padding: 1rem 2rem;
@@ -3941,7 +3952,7 @@ body {
 }
 
 .payment-input-label {
-  color: #18142b;
+  color: var(--color-base-text);
   font-size: 0.99631rem;
   font-style: normal;
   font-weight: 400;
@@ -4010,7 +4021,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: #fff;
+  background: var(--color-resend-btn-bg);
 }
 .payment-response .ticket-section {
   display: flex;
@@ -4032,7 +4043,7 @@ body {
   text-align: center;
   border-radius: 6px;
   padding: 6px 12px;
-  color: #594f67;
+  color: var(--color-base-text);
   font-size: 1.2rem;
   font-weight: 400;
 }
@@ -4045,7 +4056,7 @@ body {
   width: 98%;
   margin: 20px 0 20px 0;
   border: none;
-  border-top: 2px solid #d9d9d9;
+  border-top: 2px solid var(--color-base-text);
 }
 .payment-response .feedback-section {
   display: flex;
@@ -4057,7 +4068,7 @@ body {
   font-weight: 500;
   margin-bottom: 18px;
   text-align: center;
-  color: #18142b;
+  color: var(--color-base-text);
   text-align: center;
   font-style: normal;
   font-weight: 500;
@@ -4108,7 +4119,7 @@ body {
   font-size: 16px;
   text-align: center;
   font-weight: 500;
-  color: #594f67;
+  color: var(--color-base-text);
   text-align: center;
   font-size: 1.125rem;
   font-style: normal;
@@ -7589,6 +7600,30 @@ body {
   align-items: center;
   justify-content: center;
   transform: translateY(0%);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.calendar-header button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.calendar-header button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: var(--color-base-icon-filter);
 }
 
 .payment-header__container {
