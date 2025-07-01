@@ -14,6 +14,7 @@ import InvertedMinusIcon from "../../../assets/icons/invertedminus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 import Loading from "../../../components/Loading/Loading";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 
 export default function BookingSection({
   product,
@@ -23,6 +24,7 @@ export default function BookingSection({
   availableDates,
   isLoadingDates,
 }) {
+  const { checkBasket, isLoading } = useCheckBasket();
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -38,7 +40,11 @@ export default function BookingSection({
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = variant?.min_quantity || 1;
+      variants[variant?.productid] = {
+        quantity: variant?.min_quantity || 1,
+        name: variant?.productvariantname,
+        variant: variant
+      };
     });
     return variants;
   }
@@ -46,6 +52,14 @@ export default function BookingSection({
   useEffect(() => {
     setGuests(getVariants());
   }, [product]);
+
+  useEffect(() => {
+    let newTotalPrice = 0;
+    Object.values(guests).forEach((guestData) => {
+      newTotalPrice += guestData.variant.gross * guestData.quantity;
+    });
+    setTotalPrice(newTotalPrice);
+  }, [guests, product]);
 
   function getValidDateRange(product) {
     const today = new Date();
@@ -219,18 +233,6 @@ export default function BookingSection({
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
-  useEffect(() => {
-    let newTotalPrice = 0;
-    product.product_variants.forEach((variant) => {
-      const variantName = variant.productvariantname;
-
-      if (guests[variantName]) {
-        newTotalPrice += variant.gross * guests[variantName];
-      }
-    });
-    setTotalPrice(newTotalPrice);
-  }, [guests, product]);
-
   const handleCheckout = () => {
     if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
@@ -240,9 +242,10 @@ export default function BookingSection({
     }
     const variants = {};
 
-    product?.product_variants.forEach((variant) => {
-      variants[variant?.productid] = guests[variant?.productvariantname];
+    Object.entries(guests).forEach(([productId, guestData]) => {
+      variants[productId] = guestData.quantity;
     });
+
     dispatch(
       setCheckout({
         selectedDate,
@@ -251,15 +254,11 @@ export default function BookingSection({
       })
     );
 
-    Object.keys(guests).forEach((guest) => {
-      const guestData = product?.product_variants?.find(
-        (variant) => variant?.productvariantname === guest
-      );
-
+    Object.entries(guests).forEach(([productId, guestData]) => {
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
+      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
 
       // Format dates directly to YYYY-MM-DD
       const validToDate = `${endDate.getFullYear()}-${String(
@@ -268,16 +267,16 @@ export default function BookingSection({
 
       dispatch(
         addToCart({
-          id: guestData?.productid,
-          variantName: guestData?.productvariantname,
-          net_amount: guestData?.net_amount,
+          id: productId,
+          variantName: guestData.name,
+          net_amount: guestData.variant?.net_amount,
           image: selectedProduct?.product_images?.thumbnail_url,
           title: selectedProduct?.product_title,
-          price: guestData?.gross,
-          vat: guestData?.vat,
-          quantity: guests[guest],
-          type: guestData?.productvariantname,
-          validFrom: selectedDate, // Already in YYYY-MM-DD format
+          price: guestData.variant?.gross,
+          vat: guestData.variant?.vat,
+          quantity: guestData.quantity,
+          type: guestData.name,
+          validFrom: selectedDate,
           validTo: validToDate,
         })
       );
@@ -293,15 +292,20 @@ export default function BookingSection({
       return;
     }
 
-    Object.keys(guests).forEach((guest) => {
-      const guestData = product?.product_variants?.find(
-        (variant) => variant?.productvariantname === guest
-      );
+   // here we need to check if the basket is full
 
+    if (isLoading) {
+      toast.error(t("Please Wait"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    Object.entries(guests).forEach(([productId, guestData]) => {
       // Calculate validTo date
       const startDate = new Date(selectedDate);
       const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData?.validitydays || 0));
+      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
 
       // Format dates directly to YYYY-MM-DD
       const validToDate = `${endDate.getFullYear()}-${String(
@@ -310,16 +314,16 @@ export default function BookingSection({
 
       dispatch(
         addToCart({
-          id: guestData?.productid,
-          variantName: guestData?.productvariantname,
-          net_amount: guestData?.net_amount,
+          id: productId,
+          variantName: guestData.name,
+          net_amount: guestData.variant?.net_amount,
           image: selectedProduct?.product_images?.thumbnail_url,
           title: selectedProduct?.product_title,
-          price: guestData?.gross,
-          vat: guestData?.vat,
-          quantity: guests[guest],
-          type: guestData?.productvariantname,
-          validFrom: selectedDate, // Already in YYYY-MM-DD format
+          price: guestData.variant?.gross,
+          vat: guestData.variant?.vat,
+          quantity: guestData.quantity,
+          type: guestData.name,
+          validFrom: selectedDate,
           validTo: validToDate,
         })
       );
@@ -430,29 +434,27 @@ export default function BookingSection({
             ) : (
               <>
                 <h3 className="guest-summary">
-                  {Object.keys(guests).map((variant, idx, arr) => (
-                    <span className="" key={variant}>
-                      {variant}: {guests[variant]}
+                  {Object.entries(guests).map(([productId, guestData], idx, arr) => (
+                    <span className="" key={productId}>
+                      {guestData.name}: {guestData.quantity}
                       {idx < arr.length - 1 ? " / " : ""}
                     </span>
                   ))}
                 </h3>
                 <div className="guest-controls">
-                  {Object.keys(guests)?.map((variant, idx) => {
-                    const variantData = product.product_variants.find(
-                      (v) => v.productvariantname === variant
-                    );
+                  {Object.entries(guests)?.map(([productId, guestData], idx) => {
+                    const variantData = guestData.variant;
                     return (
-                      <div key={idx}>
+                      <div key={productId}>
                         <div className="guest-row">
                           <div className="guest-label-container">
                             <span className="guest-label">
-                              {variant}{" "}
+                              {guestData.name}{" "}
                               {variantData?.productvariantdesc &&
                                 `(${variantData.productvariantdesc})`}
                             </span>
                             <span className="guest-label-price">
-                              AED {variantData?.gross * guests[variant]}{" "}
+                              AED {variantData?.gross * guestData.quantity}{" "}
                             </span>
                           </div>
                           <div className="counter-controls">
@@ -460,7 +462,7 @@ export default function BookingSection({
                               className="counter-btn minus-btn"
                               onClick={() =>
                                 setGuests((prev) => {
-                                  const currentValue = prev[variant];
+                                  const currentValue = prev[productId].quantity;
                                   const newValue = Math.max(
                                     variantData?.min_quantity || 0,
                                     currentValue -
@@ -468,25 +470,28 @@ export default function BookingSection({
                                   );
                                   return {
                                     ...prev,
-                                    [variant]: newValue,
+                                    [productId]: {
+                                      ...prev[productId],
+                                      quantity: newValue
+                                    }
                                   };
                                 })
                               }
                               disabled={
-                                guests[variant] <=
+                                guestData.quantity <=
                                 (variantData?.min_quantity || 0)
                               }
                             >
                               <img src={MinusIcon} alt="minus" />
                             </button>
                             <span className="counter-value">
-                              {guests[variant]}
+                              {guestData.quantity}
                             </span>
                             <button
                               className="counter-btn plus-btn"
                               onClick={() =>
                                 setGuests((prev) => {
-                                  const currentValue = prev[variant];
+                                  const currentValue = prev[productId].quantity;
                                   const newValue = Math.min(
                                     variantData?.max_quantity || 100,
                                     currentValue +
@@ -494,12 +499,15 @@ export default function BookingSection({
                                   );
                                   return {
                                     ...prev,
-                                    [variant]: newValue,
+                                    [productId]: {
+                                      ...prev[productId],
+                                      quantity: newValue
+                                    }
                                   };
                                 })
                               }
                               disabled={
-                                guests[variant] >=
+                                guestData.quantity >=
                                 (variantData?.max_quantity || 100)
                               }
                             >

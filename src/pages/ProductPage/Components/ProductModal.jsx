@@ -200,7 +200,10 @@ export default function ProductModal({
       ) : (
         <BookingSection
           product={selectedProduct}
-          onBack={() => setShowBookingSection(false)}
+          onBack={() => {
+            setShowBookingSection(false)
+            onClose()
+          }}
           availableDates={availableDates}
           isLoadingDates={isLoadingDates}
         />
