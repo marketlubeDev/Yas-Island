@@ -6,7 +6,7 @@ import dropdownIcon from "../../../../assets/icons/DownOutlined.svg";
 import dropdownIconInverter from "../../../../assets/icons/invertdown.svg";
 import globeIcon from "../../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
-import Accessibility from "../Components/Accessibility";
+import AccessibilityMbl from "../Components/AccessibilityMbl";
 import { useLanguage } from "../../../../context/LanguageContext";
 import { useSelector, useDispatch } from "react-redux";
 import accessibilityIconInverter from "../../../../assets/icons/assessinverter.svg";
@@ -133,7 +133,7 @@ function MobileHeader() {
         </div>
       </div>
 
-      <Accessibility
+      <AccessibilityMbl
         onClose={() => setShowAccessibility(false)}
         visible={showAccessibility}
       />

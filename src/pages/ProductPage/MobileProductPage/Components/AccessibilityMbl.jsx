@@ -8,7 +8,7 @@ import AccessibilityPopUp from "./AccessibilityPopUp";
 
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 
-function Accessibility({ onClose, visible }) {
+function AccessibilityMbl({ onClose, visible }) {
   const { t } = useTranslation();
 
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -57,4 +57,4 @@ function Accessibility({ onClose, visible }) {
   );
 }
 
-export default Accessibility;
+export default AccessibilityMbl;

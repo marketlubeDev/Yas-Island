@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import AttractionDetailModal from "./AttractionDetailModal";
-import BookingModal from "./BookingModal";
+import AttractionDetailModalMbl from "./AttractionDetailModalMbl";
+import BookingModalMbl from "./BookingModalMbl";
 import { Modal } from "antd";
 import Mycart from "./Mycart";
 import closeIcon from "../../../../assets/icons/close.svg";
@@ -12,7 +12,7 @@ import { setCheckout } from "../../../../global/checkoutSlice";
 import { setSelectedProduct } from "../../../../global/productSlice";
 import { clearPerformance } from "../../../../global/performanceSlice";
 
-const AttractionsList = ({ productList }) => {
+const AttractionsListMbl = ({ productList }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
@@ -81,7 +81,7 @@ const AttractionsList = ({ productList }) => {
     switch (modalType) {
       case "attraction":
         return (
-          <AttractionDetailModal
+          <AttractionDetailModalMbl
             attraction={selectedAttraction}
             onClose={handleCloseModal}
             onAddToCart={handleAddToCart}
@@ -89,7 +89,7 @@ const AttractionsList = ({ productList }) => {
         );
       case "booking":
         return (
-          <BookingModal
+          <BookingModalMbl
             onClose={handleCloseModal}
             onBack={handleBookingModalBack}
             onSaveToCart={handleSaveToCart}
@@ -103,7 +103,9 @@ const AttractionsList = ({ productList }) => {
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    const defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
     return defaultVariant;
   };
 
@@ -138,8 +140,8 @@ const AttractionsList = ({ productList }) => {
                     <span>AED {defaultVariant(item)?.gross}</span>
                   </div>
                   <span className="attraction-card__vat">
-                    {defaultVariant(item)?.net_amount }
-                    + {(defaultVariant(item)?.gross * 0.05).toFixed(2)}  Net & Tax
+                    {defaultVariant(item)?.net_amount}+{" "}
+                    {(defaultVariant(item)?.gross * 0.05).toFixed(2)} Net & Tax
                   </span>
                 </div>
               </div>
@@ -167,10 +169,8 @@ const AttractionsList = ({ productList }) => {
       >
         {renderModalContent()}
       </Modal>
-
-
     </>
   );
 };
 
-export default AttractionsList;
+export default AttractionsListMbl;

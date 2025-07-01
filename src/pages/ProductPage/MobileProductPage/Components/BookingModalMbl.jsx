@@ -4,7 +4,13 @@ import closeIcon from "../../../../assets/icons/close.svg"; // Use your close ic
 import leftIcon from "../../../../assets/icons/left.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
 
-function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
+function BookingModalMbl({
+  onClose,
+  onBack,
+  onSaveToCart,
+  onCheckout,
+  product,
+}) {
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
   const [startDate, setStartDate] = useState(null);
@@ -333,11 +339,8 @@ function BookingModal({ onClose, onBack, onSaveToCart, onCheckout, product }) {
           </button>
         </div>
       </div>
-      {/* <span className="booking-modal__close" onClick={onClose}>
-        <img src={closeIcon} alt="Close" />
-      </span> */}
     </div>
   );
 }
 
-export default BookingModal;
+export default BookingModalMbl;

@@ -9,7 +9,7 @@ import {
   setStartDate,
 } from "../../../../global/performanceSlice";
 
-function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
+function AttractionDetailModalMbl({ attraction, onClose, onAddToCart }) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
@@ -117,4 +117,4 @@ function AttractionDetailModal({ attraction, onClose, onAddToCart }) {
   );
 }
 
-export default AttractionDetailModal;
+export default AttractionDetailModalMbl;
