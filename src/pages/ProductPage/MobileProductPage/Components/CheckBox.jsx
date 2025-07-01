@@ -17,7 +17,6 @@ function CheckBox({
           alignItems: "center",
           gap: 8,
           whiteSpace: "nowrap",
-          color: "#908999",
         }}
       >
         <input
@@ -42,7 +41,6 @@ function CheckBox({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          color: "#908999",
         }}
       >
         <input

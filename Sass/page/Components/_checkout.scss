@@ -218,10 +218,10 @@
   gap: 20px;
   label {
     font-size: 12px;
-    color: #231942;
+    color: var(--color-checkbox-clr);
 
     a {
-      color: #18142b;
+      color: var(--color-checkbox-a-clr);
       text-decoration: underline;
       font-weight: 600;
     }
@@ -370,7 +370,7 @@
   box-sizing: border-box;
 
   &::placeholder {
-    color: #231942;
+    color: var(--color-email-otp-input-clr);
     font-size: 13px;
   }
 }

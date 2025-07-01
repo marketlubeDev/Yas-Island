@@ -19,7 +19,7 @@ function CheckOutSummary({ promoApplied }) {
     >
       <div
         className="email-checkout__summary-title"
-        style={{ color: "var(--order-smry-ttl)" }}
+        // style={{ color: "var(--color-email-form-label)" }}
       >
         {t("payment.orderSummary.title")}
       </div>
@@ -50,29 +50,26 @@ function CheckOutSummary({ promoApplied }) {
           border: "1px solid var(--color-checkout-summary-border)",
         }}
       >
-
         <div className="email-checkout__summary-row-container">
-        <div className="email-checkout__summary-row">
-          <span>{t("payment.orderSummary.subTotal")}</span>
-          <span>AED {subtotal.toFixed(2)}</span>
-        </div>
-        <div className="email-checkout__summary-row">
-          <span>{t("payment.orderSummary.vatAndTax")}</span>
-          <span>+ {vatAndTax.toFixed(2)} VAT & Tax</span>
-        </div>
-        {promoApplied && (
-          <div
-            className="email-checkout__summary-row"
-            style={{ color: "var(--color-pymnt-step-clr)" }}
-          >
-            <span>{t("payment.orderSummary.promoCodeSavings")}</span>
-            <span>-{promoSavings.toFixed(2)}</span>
+          <div className="email-checkout__summary-row">
+            <span>{t("payment.orderSummary.subTotal")}</span>
+            <span>AED {subtotal.toFixed(2)}</span>
           </div>
-        )}
+          <div className="email-checkout__summary-row">
+            <span>{t("payment.orderSummary.vatAndTax")}</span>
+            <span>+ {vatAndTax.toFixed(2)} VAT & Tax</span>
+          </div>
+          {promoApplied && (
+            <div
+              className="email-checkout__summary-row"
+              style={{ color: "var(--color-pymnt-step-clr)" }}
+            >
+              <span>{t("payment.orderSummary.promoCodeSavings")}</span>
+              <span>-{promoSavings.toFixed(2)}</span>
+            </div>
+          )}
         </div>
 
-
-        
         <div className="email-checkout__summary-row email-checkout__summary-row--total">
           <span>{t("payment.orderSummary.total")}</span>
           <span>AED {total.toFixed(2)}</span>

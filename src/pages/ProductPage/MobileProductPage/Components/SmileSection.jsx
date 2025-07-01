@@ -1,8 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import smileGreen from "../../../../assets/images/green.png";
+import smileDark from "../../../../assets/images/happy.png";
 import smileYellow from "../../../../assets/images/yellow.jpg";
+import smileYellowDark from "../../../../assets/images/normal.png";
 import smileRed from "../../../../assets/images/red.jpg";
+import smileRedDark from "../../../../assets/images/sad.png";
 
 function SmileSection({ selected, setSelected }) {
   const { t } = useTranslation();
@@ -16,7 +19,12 @@ function SmileSection({ selected, setSelected }) {
         onClick={() => setSelected("excellent")}
       >
         <div className="smile-circle">
-          <img src={smileGreen} alt="Excellent" />
+          <img src={smileGreen} alt="Excellent" className="excellent-emoji" />
+          <img
+            src={smileDark}
+            alt="Excellent Dark"
+            className="excellent-emoji-dark"
+          />
         </div>
         <div>{t("payment.response.excellent")}</div>
       </div>
@@ -27,7 +35,12 @@ function SmileSection({ selected, setSelected }) {
         onClick={() => setSelected("average")}
       >
         <div className="smile-circle">
-          <img src={smileYellow} alt="Average" />
+          <img src={smileYellow} alt="Average" className="average-emoji" />
+          <img
+            src={smileYellowDark}
+            alt="Average Dark"
+            className="average-emoji-dark"
+          />
         </div>
         <div>{t("payment.response.average")}</div>
       </div>
@@ -38,7 +51,8 @@ function SmileSection({ selected, setSelected }) {
         onClick={() => setSelected("poor")}
       >
         <div className="smile-circle">
-          <img src={smileRed} alt="Poor" />
+          <img src={smileRed} alt="Poor" className="poor-emoji" />
+          <img src={smileRedDark} alt="Poor Dark" className="poor-emoji-dark" />
         </div>
         <div>{t("payment.response.poor")}</div>
       </div>

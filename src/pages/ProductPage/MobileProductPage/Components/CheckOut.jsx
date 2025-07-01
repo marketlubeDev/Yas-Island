@@ -58,7 +58,6 @@ function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
               style={{
                 backgroundColor: "var(--color-email-form-confirm-btn)",
                 color: "var(--color-email-form-confirm-btn-clr)",
-                border: "1px solid var(--color-checkout-summary-border)",
               }}
               disabled={!acceptTerms}
               onClick={() => {

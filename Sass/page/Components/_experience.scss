@@ -89,8 +89,7 @@
     box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
     margin-bottom: 4px;
     transition: box-shadow 0.2s, background 0.2s, border 0.2s;
-    background-image: linear-gradient(#e1f1ff, #e1f1ff),
-      linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    background-image: var(--color-smile-border);
     background-origin: border-box;
     background-clip: content-box, border-box;
   }
@@ -103,17 +102,17 @@
 }
 
 .selected-green img {
-  background: #2ecc71 !important;
+  background: var(--color-fb-happy-bg) !important;
   box-shadow: 0 2px 12px rgba(46, 204, 113, 0.18);
   // border: 2.5px solid #2ecc71;
 }
 .selected-yellow img {
-  background: #ffe600 !important;
+  background: var(--color-fb-smile-bg) !important;
   box-shadow: 0 2px 12px rgba(255, 230, 0, 0.18);
   // border: 2.5px solid #ffe600;
 }
 .selected-red img {
-  background: #ff4d4f !important;
+  background: var(--color-fb-sad-bg) !important;
   box-shadow: 0 2px 12px rgba(255, 77, 79, 0.18);
   // border: 2.5px solid #ff4d4f;
 }
@@ -122,44 +121,104 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #e1f1ff;
-  border: 2.5px solid #a1c4fd;
+  background: var(--color-feedback-circle-bg);
+  border: 2.5px solid var(--color-feedback-circle-border);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 4px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
   transition: background 0.2s, border 0.2s;
-}
+  position: relative;
 
-.smile-circle img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: white;
-  transition: border 0.2s;
-  // border: 2px solid #231942; // default border color (dark)
+  .excellent-emoji {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--excellent-emoji-display, block);
+  }
+
+  .excellent-emoji-dark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--excellent-emoji-dark-display, none);
+  }
+
+  .average-emoji {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--average-emoji-display, block);
+  }
+
+  .average-emoji-dark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--average-emoji-dark-display, none);
+  }
+
+  .poor-emoji {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--poor-emoji-display, block);
+  }
+
+  .poor-emoji-dark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: border 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2px;
+    display: var(--poor-emoji-dark-display, none);
+  }
 }
 
 /* Selected states for the smile-circle */
 .selected-green .smile-circle {
-  background: #2ecc71 !important;
-  // border: 2.5px solid #fff !important;
+  background: var(--color-fb-happy-bg) !important;
 }
 .selected-yellow .smile-circle {
-  background: #ffe600 !important;
-  // border: 2.5px solid #fff !important;
+  background: var(--color-fb-smile-bg) !important;
 }
 .selected-red .smile-circle {
-  background: #ff4d4f !important;
-  // border: 2.5px solid #fff !important;
-}
-
-/* Change the emoji border to white when selected */
-.selected-green .smile-circle img,
-.selected-yellow .smile-circle img,
-.selected-red .smile-circle img {
-  // border: 2px solid #fff !important;
+  background: var(--color-fb-sad-bg) !important;
 }
 
 .experience-outer-bg {
