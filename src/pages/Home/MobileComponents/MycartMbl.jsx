@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Modal } from "antd";
-import backIcon from "../../../../assets/icons/back.svg";
-import backIconInverter from "../../../../assets/icons/invertedback.svg";
-import trashIcon from "../../../../assets/icons/trash.svg";
-import trashIconInverter from "../../../../assets/icons/invertdelete.svg";
-import frame1 from "../../../../assets/images/frame1.png";
+import backIcon from "../../../assets/icons/back.svg";
+import backIconInverter from "../../../assets/icons/invertedback.svg";
+import trashIcon from "../../../assets/icons/trash.svg";
+import trashIconInverter from "../../../assets/icons/invertdelete.svg";
+import frame1 from "../../../assets/images/frame1.png";
 import { useNavigate } from "react-router-dom";
-import { ar } from "../../../../translations/ar";
-import { en } from "../../../../translations/en";
-import { useLanguage } from "../../../../context/LanguageContext";
+import { ar } from "../../../translations/ar";
+import { en } from "../../../translations/en";
+import { useLanguage } from "../../../context/LanguageContext";
 import { useSelector } from "react-redux";
 
-function Mycart({ onClose, visible }) {
+function MycartMbl({ onClose, visible }) {
   const { language } = useLanguage();
   const t = language === "العربية" || language === "ar" ? ar : en;
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -222,4 +222,4 @@ function Mycart({ onClose, visible }) {
   );
 }
 
-export default Mycart;
+export default MycartMbl;

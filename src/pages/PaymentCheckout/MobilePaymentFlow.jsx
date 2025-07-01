@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import EmailVerification from "./EmailVerification";
-import ConfirmEmail from "./ConfirmEmail";
-import CheckOut from "./CheckOut";
-import PromoCodePopup from "./PromoCode";
-import MakePayment from "./MakePayment";
-import PaymentSuccessful from "./PaymentSuccessful";
-import Experience1 from "./Experience1";
-import MobileHeader from "./MobileHeader";
+import EmailVerificationMbl from "./MobileComponents/EmailVerificationMbl";
+import ConfirmEmail from "./MobileComponents/ConfirmEmailMbl";
+import CheckOutMbl from "./MobileComponents/CheckOutMbl";
+import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
+import MakePaymentMbl from "./MobileComponents/MakePaymentMbl";
+import PaymentSuccessfulMbl from "./MobileComponents/PaymentSuccessfulMbl";
+import ExperienceMbl from "./MobileComponents/ExperienceMbl";
+import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
 const MobilePaymentFlow = () => {
   const [step, setStep] = useState(1);
@@ -21,14 +21,14 @@ const MobilePaymentFlow = () => {
     switch (step) {
       case 1:
         return (
-          <EmailVerification
+          <EmailVerificationMbl
             onBack={() => window.history.back()}
             onConfirmEmail={() => setStep(2)}
           />
         );
       case 2:
         return (
-          <CheckOut
+          <CheckOutMbl
             onBack={() => setStep(1)}
             onClose={() => window.history.back()}
             onApplyPromo={handleApplyPromo}
@@ -37,19 +37,19 @@ const MobilePaymentFlow = () => {
           />
         );
       case 3:
-        return <PromoCodePopup onClose={() => setStep(2)} />;
+        return <PromoCodeMbl onClose={() => setStep(2)} />;
       case 4:
         return (
-          <MakePayment
+          <MakePaymentMbl
             onClose={() => window.history.back()}
             onPaymentSuccess={() => setStep(5)}
             promoApplied={promoApplied}
           />
         );
       case 5:
-        return <PaymentSuccessful onShowExperience={() => setStep(6)} />;
+        return <PaymentSuccessfulMbl onShowExperience={() => setStep(6)} />;
       case 6:
-        return <Experience1 />;
+        return <ExperienceMbl />;
       default:
         return null;
     }

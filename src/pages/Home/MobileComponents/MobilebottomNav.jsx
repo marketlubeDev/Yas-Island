@@ -1,13 +1,13 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import homeIcon from "../../../../assets/icons/home.svg";
-import homeIconInverter from "../../../../assets/icons/homecolor.svg";
-import chatIcon from "../../../../assets/icons/message.svg";
-import chatIconInverter from "../../../../assets/icons/chatcolor.svg";
-import cartIcon from "../../../../assets/icons/shopping.svg";
-import cartIconInverter from "../../../../assets/icons/cartcolor.svg";
+import homeIcon from "../../../assets/icons/home.svg";
+import homeIconInverter from "../../../assets/icons/homecolor.svg";
+import chatIcon from "../../../assets/icons/message.svg";
+import chatIconInverter from "../../../assets/icons/chatcolor.svg";
+import cartIcon from "../../../assets/icons/shopping.svg";
+import cartIconInverter from "../../../assets/icons/cartcolor.svg";
 import { useNavigate, useLocation } from "react-router-dom";
-import Mycart from "../Components/Mycart";
+import MycartMbl from "./MycartMbl";
 import { useSelector } from "react-redux";
 // import MobileLanding from "./MobileLanding";
 
@@ -72,7 +72,7 @@ function MobileBottomNav() {
         </div>
       </div>
       {isCartModalOpen && (
-        <Mycart onClose={handleCloseCart} visible={isCartModalOpen} />
+        <MycartMbl onClose={handleCloseCart} visible={isCartModalOpen} />
       )}
     </>
   );

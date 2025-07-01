@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MobileHeader from "./MobileHeader"; // Adjust the import path as needed
-import backIcon from "../../../../assets/icons/back.svg";
-import PaymentHeader from "./PaymentHeader";
-import OtpSection from "./OtpSection";
-import Timer from "./Timer";
+import MobileHeader from "../../Home/MobileComponents/MobileHeader"; // Adjust the import path as needed
+import backIcon from "../../../assets/icons/back.svg";
+import PaymentHeaderMbl from "./PaymentHeaderMbl";
+import OtpSectionMbl from "./OtpSectionMbl";
+import TimerMbl from "./TimerMbl";
 
-function ConfirmEmail({ email = "vivek@dev.panashi.ae", onConfirm, onBack }) {
+function ConfirmEmailMbl({
+  email = "vivek@dev.panashi.ae",
+  onConfirm,
+  onBack,
+}) {
   const { t } = useTranslation();
 
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <PaymentHeader step={1} onBack={onBack} />
+        <PaymentHeaderMbl step={1} onBack={onBack} />
         <div className="confirm-email__content">
           <div className="confirm-email__form-container">
             <div className="confirm-email__label">
               {t("payment.emailConfirmation.emailLabel")}
             </div>
             <div className="confirm-email__input-underline">{email}</div>
-            <OtpSection />
+            <OtpSectionMbl />
 
             <div className="confirm-email__otp-info">
               {t("payment.verification.codeSent")} <span>{email}</span>
@@ -29,7 +33,7 @@ function ConfirmEmail({ email = "vivek@dev.panashi.ae", onConfirm, onBack }) {
               </div>
             </div>
 
-            <Timer />
+            <TimerMbl />
 
             <form
               style={{ textAlign: "center" }}
@@ -53,4 +57,4 @@ function ConfirmEmail({ email = "vivek@dev.panashi.ae", onConfirm, onBack }) {
   );
 }
 
-export default ConfirmEmail;
+export default ConfirmEmailMbl;

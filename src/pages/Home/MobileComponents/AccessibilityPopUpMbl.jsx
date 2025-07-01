@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import colorblindIcon from "../../../../assets/icons/colorblindness.svg";
-import zoomIcon from "../../../../assets/icons/zoom.svg";
+import colorblindIcon from "../../../assets/icons/colorblindness.svg";
+import zoomIcon from "../../../assets/icons/zoom.svg";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setZoomLevel,
   toggleDarkMode,
-} from "../../../../global/accessibilitySlice";
+} from "../../../global/accessibilitySlice";
 
-function AccessibilityPopUp() {
+function AccessibilityPopUpMbl() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -98,4 +98,4 @@ function AccessibilityPopUp() {
   );
 }
 
-export default AccessibilityPopUp;
+export default AccessibilityPopUpMbl;

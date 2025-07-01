@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import ConfirmEmail from "./ConfirmEmail";
-import PaymentHeader from "./PaymentHeader";
-import CheckOut from "./CheckOut";
-import Email from "./Email";
+import ConfirmEmailMbl from "./ConfirmEmailMbl";
+import PaymentHeaderMbl from "./PaymentHeaderMbl";
+import EmailMbl from "./EmailMbl";
+import CheckOutMbl from "./CheckOutMbl";
 
-function EmailVerification({ onConfirmEmail, onBack }) {
+function EmailVerificationMbl({ onConfirmEmail, onBack }) {
   const [showConfirmEmail, setShowConfirmEmail] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
 
@@ -17,7 +17,7 @@ function EmailVerification({ onConfirmEmail, onBack }) {
   return (
     <>
       {showCheckOut && (
-        <CheckOut
+        <CheckOutMbl
           onBack={() => {
             setShowCheckOut(false);
             setShowConfirmEmail(true);
@@ -26,11 +26,11 @@ function EmailVerification({ onConfirmEmail, onBack }) {
       )}
       {!showConfirmEmail ? (
         <div className="outer-modal-bg">
-          <PaymentHeader step={1} onBack={onBack} />
-          <Email onEmailSubmit={() => setShowConfirmEmail(true)} />
+          <PaymentHeaderMbl step={1} onBack={onBack} />
+          <EmailMbl onEmailSubmit={() => setShowConfirmEmail(true)} />
         </div>
       ) : (
-        <ConfirmEmail
+        <ConfirmEmailMbl
           onBack={() => setShowConfirmEmail(false)}
           onConfirm={handleConfirmOTP}
         />
@@ -39,4 +39,4 @@ function EmailVerification({ onConfirmEmail, onBack }) {
   );
 }
 
-export default EmailVerification;
+export default EmailVerificationMbl;

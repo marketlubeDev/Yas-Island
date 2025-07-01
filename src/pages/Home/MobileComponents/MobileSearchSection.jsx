@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useLanguage } from "../../../../context/LanguageContext";
+import { useLanguage } from "../../../context/LanguageContext";
 
-import searchIcon from "../../../../assets/icons/lens.svg";
-import invertedSearchIcon from "../../../../assets/icons/invertedlens.svg";
-import downArrow from "../../../../assets/icons/down.svg";
-import invertedDownArrow from "../../../../assets/icons/invertdown.svg";
+import searchIcon from "../../../assets/icons/lens.svg";
+import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
+import downArrow from "../../../assets/icons/down.svg";
+import invertedDownArrow from "../../../assets/icons/invertdown.svg";
 
 function MobileSearchSection() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);

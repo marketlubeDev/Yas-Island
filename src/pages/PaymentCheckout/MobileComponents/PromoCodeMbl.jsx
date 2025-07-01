@@ -1,10 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import closeIcon from "../../../../assets/icons/close.svg";
-import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import closeIcon from "../../../assets/icons/close.svg";
+import closeIconInverter from "../../../assets/icons/closeinverter.svg";
 import { useSelector } from "react-redux";
 
-function PromoCodePopup({ onClose }) {
+function PromoCodeMbl({ onClose }) {
   const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
@@ -72,4 +72,4 @@ function PromoCodePopup({ onClose }) {
   );
 }
 
-export default PromoCodePopup;
+export default PromoCodeMbl;

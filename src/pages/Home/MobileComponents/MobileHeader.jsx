@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
-import mobLogo from "../../../../assets/images/moblogo.svg";
-import invertedLogo from "../../../../assets/icons/invertedlogo.svg";
-import accessibilityIcon from "../../../../assets/icons/assess.svg";
-import dropdownIcon from "../../../../assets/icons/DownOutlined.svg";
-import dropdownIconInverter from "../../../../assets/icons/invertdown.svg";
-import globeIcon from "../../../../assets/icons/globe.svg";
+import mobLogo from "../../../assets/images/moblogo.svg";
+import invertedLogo from "../../../assets/icons/invertedlogo.svg";
+import accessibilityIcon from "../../../assets/icons/assess.svg";
+import dropdownIcon from "../../../assets/icons/DownOutlined.svg";
+import dropdownIconInverter from "../../../assets/icons/invertdown.svg";
+import globeIcon from "../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
-import AccessibilityMbl from "../Components/AccessibilityMbl";
-import { useLanguage } from "../../../../context/LanguageContext";
+import AccessibilityMbl from "./AccessibilityMbl";
+import { useLanguage } from "../../../context/LanguageContext";
 import { useSelector, useDispatch } from "react-redux";
-import accessibilityIconInverter from "../../../../assets/icons/assessinverter.svg";
-import globeIconInverter from "../../../../assets/icons/invertGlob.svg";
+import accessibilityIconInverter from "../../../assets/icons/assessinverter.svg";
+import globeIconInverter from "../../../assets/icons/invertGlob.svg";
 import { useTranslation } from "react-i18next";
-import { setLanguage } from "../../../../global/languageSlice";
+import { setLanguage } from "../../../global/languageSlice";
 
 function MobileHeader() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);

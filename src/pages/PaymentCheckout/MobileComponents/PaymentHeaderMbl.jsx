@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import backIcon from "../../../../assets/icons/back.svg";
-import backIconInverter from "../../../../assets/icons/invertedback.svg";
+import backIcon from "../../../assets/icons/back.svg";
+import backIconInverter from "../../../assets/icons/invertedback.svg";
 import { useSelector } from "react-redux";
 
-function PaymentHeader({ step, onBack }) {
+function PaymentHeaderMbl({ step, onBack }) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -95,4 +95,4 @@ function PaymentHeader({ step, onBack }) {
   );
 }
 
-export default PaymentHeader;
+export default PaymentHeaderMbl;

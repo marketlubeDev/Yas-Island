@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function CheckBox({
+function CheckBoxMbl({
   acceptTerms,
   setAcceptTerms,
   receiveComms,
@@ -55,4 +55,4 @@ function CheckBox({
   );
 }
 
-export default CheckBox;
+export default CheckBoxMbl;

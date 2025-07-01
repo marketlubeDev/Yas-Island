@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import ticketImg from "../../../../assets/images/ticket.svg";
-import SmileSection from "./SmileSection";
+import ticketImg from "../../../assets/images/ticket.svg";
+import SmileSection from "./SmileSectionMbl";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-function Experience1() {
+function ExperienceMbl() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -46,4 +46,4 @@ function Experience1() {
   );
 }
 
-export default Experience1;
+export default ExperienceMbl;

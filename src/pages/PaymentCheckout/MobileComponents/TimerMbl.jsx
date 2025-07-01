@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function Timer({ onResend }) {
+function TimerMbl({ onResend }) {
   const { t } = useTranslation();
   const [timer, setTimer] = useState(180); // 3 minutes in seconds
 
@@ -39,4 +39,4 @@ function Timer({ onResend }) {
   );
 }
 
-export default Timer;
+export default TimerMbl;

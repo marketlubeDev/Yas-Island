@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import closeIcon from "../../../../assets/icons/close.svg";
+import closeIcon from "../../../assets/icons/close.svg";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import AccessibilityPopUp from "./AccessibilityPopUp";
+import AccessibilityPopUpMbl from "./AccessibilityPopUpMbl";
 
-import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
+import closeIconInverter from "../../../assets/icons/closeinverter.svg";
 
 function AccessibilityMbl({ onClose, visible }) {
   const { t } = useTranslation();
@@ -45,7 +45,7 @@ function AccessibilityMbl({ onClose, visible }) {
         <div className="accessibility-popup-subtitle">
           {t("accessibility.subtitle")}
         </div>
-        <AccessibilityPopUp />
+        <AccessibilityPopUpMbl />
         <button
           className="accessibility-popup-continue"
           onClick={handleContinue}

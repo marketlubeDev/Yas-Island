@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-function InputFields() {
+function InputFieldsMbl() {
   const [firstName, setFirstName] = useState("vivek");
   const [lastName, setLastName] = useState("panashi");
   const [country, setCountry] = useState("UAE");
@@ -130,4 +130,4 @@ function InputFields() {
   );
 }
 
-export default InputFields;
+export default InputFieldsMbl;

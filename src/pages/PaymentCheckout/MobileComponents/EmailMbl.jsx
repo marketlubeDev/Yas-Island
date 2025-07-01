@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { setEmail } from "../../../../global/checkoutSlice";
+import { setEmail } from "../../../global/checkoutSlice";
 import { useState } from "react";
 
-function Email({ onEmailSubmit }) {
+function EmailMbl({ onEmailSubmit }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [emailValue, setEmailValue] = useState("vivek@dev.panashi.ae");
@@ -42,4 +42,4 @@ function Email({ onEmailSubmit }) {
   );
 }
 
-export default Email;
+export default EmailMbl;

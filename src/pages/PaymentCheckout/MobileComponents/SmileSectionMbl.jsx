@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import smileGreen from "../../../../assets/images/green.png";
-import smileDark from "../../../../assets/images/happy.png";
-import smileYellow from "../../../../assets/images/yellow.jpg";
-import smileYellowDark from "../../../../assets/images/normal.png";
-import smileRed from "../../../../assets/images/red.jpg";
-import smileRedDark from "../../../../assets/images/sad.png";
+import smileGreen from "../../../assets/images/green.png";
+import smileDark from "../../../assets/images/happy.png";
+import smileYellow from "../../../assets/images/yellow.jpg";
+import smileYellowDark from "../../../assets/images/normal.png";
+import smileRed from "../../../assets/images/red.jpg";
+import smileRedDark from "../../../assets/images/sad.png";
 
-function SmileSection({ selected, setSelected }) {
+function SmileSectionMbl({ selected, setSelected }) {
   const { t } = useTranslation();
 
   return (
@@ -60,4 +60,4 @@ function SmileSection({ selected, setSelected }) {
   );
 }
 
-export default SmileSection;
+export default SmileSectionMbl;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function OtpSection({ onOtpComplete }) {
+function OtpSectionMbl({ onOtpComplete }) {
   const { t } = useTranslation();
   const [otp, setOtp] = useState(Array(6).fill("")); // Assuming 6-digit OTP
 
@@ -77,4 +77,4 @@ function OtpSection({ onOtpComplete }) {
   );
 }
 
-export default OtpSection;
+export default OtpSectionMbl;

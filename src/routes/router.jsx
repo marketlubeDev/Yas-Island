@@ -3,7 +3,7 @@ import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
-import MobilePaymentFlow from "../pages/ProductPage/MobileProductPage/Components/MobilePaymentFlow";
+import MobilePaymentFlow from "../pages/PaymentCheckout/MobilePaymentFlow";
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 
 const ResponsiveProduct = () => {

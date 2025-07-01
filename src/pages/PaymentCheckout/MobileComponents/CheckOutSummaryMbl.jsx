@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function CheckOutSummary({ promoApplied }) {
+function CheckOutSummaryMbl({ promoApplied }) {
   const { t } = useTranslation();
 
   // Calculate totals
@@ -79,4 +79,4 @@ function CheckOutSummary({ promoApplied }) {
   );
 }
 
-export default CheckOutSummary;
+export default CheckOutSummaryMbl;

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import PaymentHeader from "./PaymentHeader";
 import { useTranslation } from "react-i18next";
-import InputFields from "./InputFields";
-import CheckOutSummary from "./CheckOutSummary";
-import PromoBox from "./PromoBox";
-import CheckBox from "./CheckBox";
-import PromoCodePopup from "./PromoCode";
+import InputFieldsMbl from "./InputFieldsMbl";
+import CheckOutSummaryMbl from "./CheckOutSummaryMbl";
+import PromoBoxMbl from "./PromoBoxMbl";
+import CheckBoxMbl from "./CheckBoxMbl";
+import PromoCodeMbl from "./PromoCodeMbl";
+import PaymentHeaderMbl from "./PaymentHeaderMbl";
 
-function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
+function CheckOutMbl({
+  onProceedToPayment,
+  onBack,
+  onApplyPromo,
+  promoApplied,
+}) {
   const { t } = useTranslation();
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receiveComms, setReceiveComms] = useState(false);
@@ -29,23 +34,23 @@ function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
 
   return (
     <div className="email-checkout__overlay">
-      <PaymentHeader step={2} onBack={onBack} />
+      <PaymentHeaderMbl step={2} onBack={onBack} />
 
       <div className="email-checkout__container">
         <div className="email-checkout__form-container">
           <form className="email-checkout__form" onSubmit={handleSubmit}>
             <div className="email-checkout__steps-underline"></div>
 
-            <InputFields />
+            <InputFieldsMbl />
 
-            <CheckOutSummary promoApplied={promoApplied} />
+            <CheckOutSummaryMbl promoApplied={promoApplied} />
 
-            <PromoBox
+            <PromoBoxMbl
               promo={promo}
               setPromo={setPromo}
               onApplyPromo={handleApplyPromo}
             />
-            <CheckBox
+            <CheckBoxMbl
               acceptTerms={acceptTerms}
               setAcceptTerms={setAcceptTerms}
               receiveComms={receiveComms}
@@ -73,10 +78,10 @@ function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
       </div>
 
       {showPromoPopup && (
-        <PromoCodePopup onClose={() => setShowPromoPopup(false)} />
+        <PromoCodeMbl onClose={() => setShowPromoPopup(false)} />
       )}
     </div>
   );
 }
 
-export default CheckOut;
+export default CheckOutMbl;

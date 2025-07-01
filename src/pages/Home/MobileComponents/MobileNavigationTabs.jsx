@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import allIcon from "../../../../assets/icons/dash.svg";
-import allIconInverter from "../../../../assets/icons/inverteddash.svg";
-import attractionsIcon from "../../../../assets/icons/beach.svg";
-import attractionsIconInverter from "../../../../assets/icons/invertedbeach.svg";
-import attractionsIconHighContrast from "../../../../assets/icons/highbeach.svg";
-import packagesIcon from "../../../../assets/icons/dropbox.svg";
-import packagesIconInverter from "../../../../assets/icons/inverteddropbox.svg";
-import hotelsIcon from "../../../../assets/icons/house.svg";
-import hotelsIconInverter from "../../../../assets/icons/invertedhouse.svg";
-import diningIcon from "../../../../assets/icons/chef.svg";
-import diningIconInverter from "../../../../assets/icons/invertedchef.svg";
+import allIcon from "../../../assets/icons/dash.svg";
+import allIconInverter from "../../../assets/icons/inverteddash.svg";
+import attractionsIcon from "../../../assets/icons/beach.svg";
+import attractionsIconInverter from "../../../assets/icons/invertedbeach.svg";
+import attractionsIconHighContrast from "../../../assets/icons/highbeach.svg";
+import packagesIcon from "../../../assets/icons/dropbox.svg";
+import packagesIconInverter from "../../../assets/icons/inverteddropbox.svg";
+import hotelsIcon from "../../../assets/icons/house.svg";
+import hotelsIconInverter from "../../../assets/icons/invertedhouse.svg";
+import diningIcon from "../../../assets/icons/chef.svg";
+import diningIconInverter from "../../../assets/icons/invertedchef.svg";
 
 function MobileNavigationTabs() {
   const { t } = useTranslation();

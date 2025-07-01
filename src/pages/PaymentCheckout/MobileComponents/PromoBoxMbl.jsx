@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function PromoBox({ promo, setPromo, onApplyPromo }) {
+function PromoBoxMbl({ promo, setPromo, onApplyPromo }) {
   const { t } = useTranslation();
 
   return (
@@ -44,4 +44,4 @@ function PromoBox({ promo, setPromo, onApplyPromo }) {
   );
 }
 
-export default PromoBox;
+export default PromoBoxMbl;

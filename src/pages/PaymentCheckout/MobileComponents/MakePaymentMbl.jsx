@@ -1,10 +1,10 @@
 import React from "react";
-import visaIcon from "../../../../assets/images/visa3.png";
+import visaIcon from "../../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
-import CheckOutSummary from "./CheckOutSummary";
-import PaymentMethod from "./PaymentMethod";
+import CheckOutSummaryMbl from "./CheckOutSummaryMbl";
+import PaymentMethodMbl from "./PaymentMethodMbl";
 
-function MakePayment({ onClose, onPaymentSuccess, promoApplied }) {
+function MakePaymentMbl({ onClose, onPaymentSuccess, promoApplied }) {
   const { t, i18n } = useTranslation();
 
   return (
@@ -15,12 +15,12 @@ function MakePayment({ onClose, onPaymentSuccess, promoApplied }) {
           <div className="make-payment-modal">
             <div className="make-payment__content">
               {/* Order Summary */}
-              <CheckOutSummary promoApplied={promoApplied} />
+              <CheckOutSummaryMbl promoApplied={promoApplied} />
               <br />
               <br />
 
               {/* Payment Method */}
-              <PaymentMethod />
+              <PaymentMethodMbl />
 
               {/* Pay Button */}
               <button
@@ -46,4 +46,4 @@ function MakePayment({ onClose, onPaymentSuccess, promoApplied }) {
   );
 }
 
-export default MakePayment;
+export default MakePaymentMbl;
