@@ -24,7 +24,7 @@ export default function ProductCard({ productList }) {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    dispatch(setSelectedProduct({}));
+    // dispatch(setSelectedProduct({}));
     dispatch(clearPerformance());
     setShowBookingSection(false);
   };

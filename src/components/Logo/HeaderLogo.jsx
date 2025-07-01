@@ -42,13 +42,10 @@ export default function HeaderLogo() {
   const langBtnRef = useRef(null);
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
-
-  console.log(language, "asdfasfasfa");
   const dispatch = useDispatch();
   // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log(cartItems, "cartItemssdfdf");
 
   useEffect(() => {
     function handleClickOutside(event) {

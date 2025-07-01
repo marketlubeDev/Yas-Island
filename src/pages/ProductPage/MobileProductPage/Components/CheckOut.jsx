@@ -17,7 +17,6 @@ function CheckOut({ onProceedToPayment, onBack, onApplyPromo, promoApplied }) {
   const handleApplyPromo = () => {
     setShowPromoPopup(true);
     onApplyPromo();
-    console.log("Applying promo code:", promo);
   };
 
   const handleSubmit = (e) => {

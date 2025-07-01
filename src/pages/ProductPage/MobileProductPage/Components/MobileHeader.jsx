@@ -31,7 +31,6 @@ function MobileHeader() {
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
-  console.log("Current Language:", currentLanguage);
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {

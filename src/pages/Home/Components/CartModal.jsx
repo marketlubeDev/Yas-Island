@@ -59,10 +59,7 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleQuantityChange = (id, change) => {
-
-    console.log(id, change, "id and change");
-    const item = cartItems.find((item) => item.id === id);
-    console.log(item, "item");
+    const item = cartItems.find((item) => item.productId === id);
     dispatch(updateQuantity({ id, quantity: Math.max(1, item.quantity + change) }));
   };
 
@@ -112,30 +109,30 @@ const CartModal = ({ isOpen, onClose }) => {
             <div className="cart-items">
               {cartItems.map((item, index) => (
                 <div key={index} className="cart-item">
-                  <img src={item.image} alt={item.title} />
+                  <img src={item?.image} alt={item?.title} />
                   <div className="item-details">
-                    <h4>{item.title}</h4>
-                    <p>AED {item.price} <span className="text-xs text-gray-500"> {item.net_amount.toFixed(2)}+{(item.net_amount * 0.05).toFixed(2)} Net&Tax</span></p>
+                    <h4>{item?.title}</h4>
+                    <p>AED {item?.price?.net} <span className="text-xs text-gray-500"> {item?.price?.tax} Net&Tax</span></p>
                     <div className="validity-date" style={{}}>
-                      Valid from <span>{item.validFrom}</span> to{" "}
-                      <span>{item.validTo}</span>
+                      Valid from <span>{item?.validFrom}</span> to{" "}
+                      <span>{item?.validTo}</span>
                     </div>
                   </div>
                   <div className="quantity-controls">
-                    <span>{item.variantName}</span>
+                    <span>{item?.variantName}</span>
                     <div className="controls">
                       <Button
                         className="minus-btn-web"
                         icon={<MinusOutlined />}
-                        onClick={() => handleQuantityChange(item.id, -1)}
+                        onClick={() => handleQuantityChange(item?.productId, -1)}
                       />
-                      <span>{item.quantity}</span>
+                      <span>{item?.quantity}</span>
                       <Button
                         className="plus-btn-web"
                         icon={<PlusOutlined />}
-                        onClick={() => handleQuantityChange(item?.id, 1)}
+                        onClick={() => handleQuantityChange(item?.productId, 1)}
                       />
-                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.id)}>
+                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.productId)}>
                         <img
                           src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
                           alt={t("cart.delete")}
@@ -151,7 +148,7 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>AED {subtotal}</span>
+                  <span>AED {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vatAndTax")}</span>

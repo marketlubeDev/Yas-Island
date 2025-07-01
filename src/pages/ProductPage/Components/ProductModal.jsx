@@ -14,7 +14,6 @@ import {
 } from "../../../global/performanceSlice";
 import getPerformance from "../../../serivces/performance/performance";
 import formatDate from "../../../utils/dateFormatter";
-import Loading from "../../../components/Loading/Loading";
 import { toast } from "sonner";
 
 export default function ProductModal({
@@ -76,54 +75,74 @@ export default function ProductModal({
     }
   }, [selectedProduct]);
 
+
+function getAvailableDates(product){
+  const today = new Date();
+  const startDate = product?.sale_date_offset || 0;
+  today.setDate(today.getDate() + startDate);
+  let endDate;
+
+  if(product?.calendar_range_days && product?.calendar_end_date){
+    const rangeEndDate = new Date(today);
+    rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
+    const calendarEndDate = new Date(product?.calendar_end_date);
+    endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
+  } else if(product?.calendar_range_days){
+    endDate = new Date(today);
+    endDate.setDate(today.getDate() + product?.calendar_range_days);
+  } else if(product?.calendar_end_date){
+    endDate = new Date(product?.calendar_end_date);
+  } else {
+    endDate = new Date(today.getFullYear(), 11, 31);
+  }
+
+  const dates = [];
+  let currentDate = new Date(today);
+  
+  while(currentDate <= endDate) {
+    dates.push(currentDate.toISOString().split('T')[0]);
+    currentDate = new Date(currentDate);
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  return dates;
+}
+
   const fetchAvailableDates = async () => {
-    setIsLoadingDates(true);
+    setIsLoadingDates(true);    
     try {
-      const performanceData = await getPerformance(
-        formatDate(validStartDate),
-        formatDate(validEndDate),
-        selectedProduct?.default_variant_id
-      );
+    
+      let hasPerformance = false;
 
-      if (performanceData && performanceData.performance) {
-        dispatch(setPerformanceData(performanceData.performance));
-        const dates = performanceData.performance.map((p) => p.date);
-        setAvailableDates(dates);
+      if(selectedProduct?.product_variants?.length > 0){
+        selectedProduct?.product_variants?.forEach((variant) => {
+          if(variant?.hasperformance){
+            hasPerformance = true;
+          }
+        });
       }
+
+      if(hasPerformance){
+        const performanceData = await getPerformance(
+          formatDate(validStartDate),
+          formatDate(validEndDate),
+          selectedProduct?.default_variant_id
+        );
+  
+        if (performanceData && performanceData.performance) {
+          dispatch(setPerformanceData(performanceData.performance));
+          const dates = performanceData.performance.map((p) => p.date);
+          setAvailableDates(dates);
+        }
+      } else {
+        setAvailableDates(getAvailableDates(selectedProduct));
+      }
+
+
     } catch (error) {
-      console.log(error, "error");
-      if(error.status === 404){
-        setAvailableDates([]); //if no availability set all dates of this year as available
-        const today = new Date();
-        const startDate = selectedProduct.sale_date_offset || 0;
-        today.setDate(today.getDate() + startDate);
-        let endDate;
-
-        if(selectedProduct.calendar_range_days && selectedProduct.calendar_end_date){
-          const rangeEndDate = new Date(today);
-          rangeEndDate.setDate(today.getDate() + selectedProduct.calendar_range_days);
-          const calendarEndDate = new Date(selectedProduct.calendar_end_date);
-          endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
-        } else if(selectedProduct.calendar_range_days){
-          endDate = new Date(today);
-          endDate.setDate(today.getDate() + selectedProduct.calendar_range_days);
-        } else if(selectedProduct.calendar_end_date){
-          endDate = new Date(selectedProduct.calendar_end_date);
-        } else {
-          endDate = new Date(today.getFullYear(), 11, 31);
-        }
-
-        const dates = [];
-        let currentDate = new Date(today);
-        
-        while(currentDate <= endDate) {
-          dates.push(currentDate.toISOString().split('T')[0]);
-          currentDate = new Date(currentDate);
-          currentDate.setDate(currentDate.getDate() + 1);
-        }
-        
-        setAvailableDates(dates);
-      }
+      toast.error(error?.response?.data?.message || "Something went wrong")
+      // if it is error then close all modals
+      onClose();
+      setShowBookingSection(false);
     } finally {
       setIsLoadingDates(false);
     }

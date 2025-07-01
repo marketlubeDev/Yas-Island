@@ -5,7 +5,6 @@ export default function ChatWithUsButton() {
   const { t } = useTranslation();
 
   const handleChatClick = () => {
-    console.log(window.sprChat, "sprChat");
     if (window.sprChat) {
       window.sprChat("open");
     }

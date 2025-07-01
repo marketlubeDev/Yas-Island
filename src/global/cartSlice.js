@@ -1,18 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  cartItems: [],
-  subtotal: 0,
-  vatAndTax: 0,
-  total: 0,
-  isCartOpen: false,
+
+const loadCartFromStorage = () => {
+  try {
+    const savedCart = localStorage.getItem('yasIslandCart');
+    if (savedCart) {
+      return JSON.parse(savedCart);
+    }
+  } catch (error) {
+    console.error('Error loading cart from localStorage:', error);
+  }
+  return {
+    cartItems: [],
+    subtotal: 0,
+    vatAndTax: 0,
+    total: 0,
+    isCartOpen: false,
+  };
 };
 
-const TAX_RATE = 0.05; // 5% VAT & tax rate
-
+const initialState = loadCartFromStorage();
 const calculateCartTotals = (items) => {
-  const subtotal = items.reduce((total, item) => total + (item.net_amount * (item.quantity || 1)), 0);
-  const vatAndTax = items.reduce((taxTotal, item) => taxTotal + (item.net_amount * (item.quantity || 1) * 0.05), 0);
+  const subtotal = items.reduce((total, item) => total + (item?.price?.net * (item.quantity || 1)), 0);
+  const vatAndTax = items.reduce((taxTotal, item) => taxTotal + (item?.price?.tax * (item.quantity || 1)), 0);
   const total = subtotal + vatAndTax;
   
   return {
@@ -20,6 +30,15 @@ const calculateCartTotals = (items) => {
     vatAndTax,
     total
   };
+};
+
+// Helper function to save cart to localStorage
+const saveCartToStorage = (cartState) => {
+  try {
+    localStorage.setItem('yasIslandCart', JSON.stringify(cartState));
+  } catch (error) {
+    console.error('Error saving cart to localStorage:', error);
+  }
 };
 
 const cartSlice = createSlice({
@@ -32,6 +51,7 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
+      saveCartToStorage(state);
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
@@ -41,44 +61,39 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
+      saveCartToStorage(state);
     },
     clearCart: (state) => {
       state.cartItems = [];
       state.subtotal = 0;
       state.vatAndTax = 0;
       state.total = 0;
+      localStorage.removeItem('yasIslandCart');
     },
     setIsCartOpen: (state, action) => {
       state.isCartOpen = action.payload;
+      saveCartToStorage(state);
     },
     removeItemFromCart: (state, action) => {
-      
       state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload
+        (item) => item.productId !== action.payload
       );
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
+      saveCartToStorage(state);
     },
     updateQuantity: (state, action) => {
       state.cartItems = state.cartItems.map((item) =>
-        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+        item.productId === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
       );
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
+      saveCartToStorage(state);
     },
-    // deleteItemFromCart: (state, action) => {
-    //   state.cartItems = state.cartItems.filter(
-    //     (item) => item.id !== action.payload
-    //   );
-    //   const totals = calculateCartTotals(state.cartItems);
-    //   state.subtotal = totals.subtotal;
-    //   state.vatAndTax = totals.vatAndTax;
-    //   state.total = totals.total;
-    // },
   },
 });
 

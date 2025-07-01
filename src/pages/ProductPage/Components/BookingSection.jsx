@@ -6,15 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
-import formatDate from "../../../utils/dateFormatter";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
-import InvertedPlusIcon from "../../../assets/icons/invertedplus.svg";
-import InvertedMinusIcon from "../../../assets/icons/invertedminus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
-import Loading from "../../../components/Loading/Loading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import Loading from "../../../components/Loading/Loading";
 
 export default function BookingSection({
   product,
@@ -24,7 +21,7 @@ export default function BookingSection({
   availableDates,
   isLoadingDates,
 }) {
-  const { checkBasket, isLoading } = useCheckBasket();
+  const { mutate: checkBasket, isPending } = useCheckBasket();
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -33,8 +30,8 @@ export default function BookingSection({
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
+const performanceData = useSelector((state) => state.performance.performanceData);
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
 
   function getVariants() {
@@ -61,32 +58,9 @@ export default function BookingSection({
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
-  function getValidDateRange(product) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
 
-    let tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
 
-    let endDate;
-    if (product.calendar_end_date) {
-      endDate = new Date(product.calendar_end_date);
-    } else if (product.calendar_range_days) {
-      endDate = new Date(
-        today.getFullYear(),
-        today.getMonth() + product.calendar_range_days,
-        today.getDate()
-      );
-    } else {
-      endDate = new Date(today.getFullYear(), 11, 31);
-    }
-    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
-
-    return { startDate: tomorrow, endDate };
-  }
-
-  // Calendar helper functions
+ 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -95,63 +69,46 @@ export default function BookingSection({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  // Format date to YYYY-MM-DD
   const formatDateToYYYYMMDD = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
   const handleDateClick = (date) => {
-    // Select the clicked date
     const formattedDate = formatDateToYYYYMMDD(date);
-    console.log(formattedDate, "formatted date");
     dispatch(setCheckoutDate(formattedDate));
     setSelectedDate(formattedDate);
   };
 
   const isDateSelected = (date) => {
     if (!selectedDate) return false;
-    return date.toDateString() === new Date(selectedDate).toDateString();
+    return formatDateToYYYYMMDD(date) === selectedDate;
   };
 
-  // Generate calendar days
+
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(<div key={`empty-${i}`} className="day empty"></div>);
     }
 
-    // Add the actual days
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        day,
-        0,
-        0,
-        0,
-        0
+        day
       );
-
-      const formattedDateString = formatDate(date);
+      
+      const formattedDateString = formatDateToYYYYMMDD(date);
       const isSelected = isDateSelected(date);
-      const isToday = date.toDateString() === new Date().toDateString();
-
-      let isDisabled = false;
-      if (availableDates && availableDates.length > 0) {
-        isDisabled = !availableDates.includes(formattedDateString);
-      } else {
-        isDisabled =
-          date.getTime() < minDate.getTime() ||
-          date.getTime() > maxDate.getTime();
-      }
+      const isToday = formatDateToYYYYMMDD(date) === formatDateToYYYYMMDD(new Date());
+      const isDisabled = !availableDates?.includes(formattedDateString);
 
       days.push(
         <div
@@ -170,53 +127,31 @@ export default function BookingSection({
     return days;
   };
 
-  // Handle month navigation
   const handlePrevMonth = () => {
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() - 1
-    );
-    const today = new Date();
-
-    // Only allow going back to current month
-    if (
-      newDate.getMonth() >= today.getMonth() ||
-      newDate.getFullYear() > today.getFullYear()
-    ) {
-      setCurrentDate(newDate);
-    }
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
   };
 
   const handleNextMonth = () => {
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1
-    );
-    const { endDate } = getValidDateRange(product);
-
-    // Only allow going forward if within the valid range
-    if (newDate <= endDate) {
-      setCurrentDate(newDate);
-    }
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
-  // Format month and year
+
   const formatMonthYear = (date) => {
     if (!date) return "";
     if (i18n.language === "ar") {
       const arabicMonths = {
-        0: "يناير", // Yanāyir
-        1: "فبراير", // Fibrayir
-        2: "مارس", // Māris
-        3: "أبريل", // Abrīl
-        4: "مايو", // Māyū
-        5: "يونيو", // Yūniyū
-        6: "يوليو", // Yūlyū
-        7: "أغسطس", // Aghustus
-        8: "سبتمبر", // Septambir
-        9: "أكتوبر", // Oktūbar
-        10: "نوفمبر", // Nūfambir
-        11: "ديسمبر", // Dīsambir
+        0: "يناير",
+        1: "فبراير",
+        2: "مارس",
+        3: "أبريل",
+        4: "مايو",
+        5: "يونيو",
+        6: "يوليو",
+        7: "أغسطس",
+        8: "سبتمبر",
+        9: "أكتوبر",
+        10: "نوفمبر",
+        11: "ديسمبر",
       };
       const arabicMonth = arabicMonths[date.getMonth()];
       const gregorianYear = date
@@ -233,108 +168,140 @@ export default function BookingSection({
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
-  const handleCheckout = () => {
+  // Common function to handle basket check and cart operations
+  const handleBasketCheck = (onSuccess) => {
     if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
         position: "top-center",
       });
       return;
     }
-    const variants = {};
 
-    Object.entries(guests).forEach(([productId, guestData]) => {
-      variants[productId] = guestData.quantity;
+    let hasPerformance = false;
+    let performanceId = null;
+
+    selectedProduct?.product_variants?.forEach((variant) => {
+      if(variant?.hasperformance){
+        hasPerformance = true;
+      }
     });
 
-    dispatch(
-      setCheckout({
-        selectedDate,
-        guests: variants,
-        totalPrice,
-      })
-    );
+    if(hasPerformance){
+      performanceId = getPerformanceId(selectedDate);
+      if(!performanceId){
+        toast.error(t("NoPerformance"), {
+          position: "top-center",
+        });
+        return;
+      }
+    }
 
+    const items = [];
     Object.entries(guests).forEach(([productId, guestData]) => {
-      // Calculate validTo date
-      const startDate = new Date(selectedDate);
-      const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
+      let hasperformance = false;
+      if(guestData.variant?.hasperformance){
+        hasperformance = true;
+      }
 
-      // Format dates directly to YYYY-MM-DD
-      const validToDate = `${endDate.getFullYear()}-${String(
-        endDate.getMonth() + 1
-      ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
+      // Calculate validTo date as YYYY-MM-DD
+      const validFromDate = new Date(selectedDate);
+      let validToDate = selectedDate; // default to same as validFrom
+      
+      if (guestData.variant?.validitydays) {
+        const endDate = new Date(validFromDate);
+        endDate.setDate(validFromDate.getDate() + guestData.variant.validitydays);
+        validToDate = formatDateToYYYYMMDD(endDate);
+      }
 
-      dispatch(
-        addToCart({
-          id: productId,
-          variantName: guestData.name,
-          net_amount: guestData.variant?.net_amount,
-          image: selectedProduct?.product_images?.thumbnail_url,
-          title: selectedProduct?.product_title,
-          price: guestData.variant?.gross,
-          vat: guestData.variant?.vat,
-          quantity: guestData.quantity,
-          type: guestData.name,
-          validFrom: selectedDate,
-          validTo: validToDate,
-        })
-      );
+      items.push({
+        productId: productId,
+        quantity: guestData.quantity,
+        performance: hasperformance ? [{performanceId: getPerformanceId(selectedDate)}] : [],
+        validFrom: selectedDate,
+        validTo: validToDate
+      });
     });
-    navigate("/payment");
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true
+    }
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if(res?.orderDetails?.error?.code){
+          toast.error(res?.orderDetails?.error?.text || t("Something went wrong"), {
+            position: "top-center",
+          });
+        } else {
+          const orderDetails = res?.orderdetails;
+          orderDetails?.order?.items?.forEach((item) => {
+            let obj = {
+              capacityGuid: item?.capacityGuid,
+              discount: item?.discount,
+              groupingCode: item?.groupingCode,
+              itemPromotionList: item?.itemPromotionList,
+              original: item?.original,
+              packageCode: item?.packageCode,
+              performances: item?.performances,
+              price: item?.price,
+              productId: item?.productId,
+              quantity: item?.quantity,
+              rechargeAmount: item?.rechargeAmount,
+              validFrom: item?.validFrom,
+              validTo: formatDateToYYYYMMDD(item?.validTo),
+              image: selectedProduct?.product_images?.thumbnail_url,
+              title: selectedProduct?.product_title,
+              variantName: selectedProduct?.product_variants?.find((variant) => variant?.productid == item?.productId)?.productvariantname,
+            }
+            dispatch(addToCart(obj));
+          });
+          
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      }
+    });
   };
 
   const handleSaveToCart = () => {
-    if (!selectedDate) {
-      toast.error(t("Please SelectDate"), {
+    handleBasketCheck(() => {
+      toast.success(t("booking.productAddedToCart"), {
         position: "top-center",
       });
-      return;
-    }
+      onBack();
+      dispatch(setIsCartOpen(true));
+    });
+  };
 
-   // here we need to check if the basket is full
-
-    if (isLoading) {
-      toast.error(t("Please Wait"), {
-        position: "top-center",
+  const handleCheckout = () => {
+    handleBasketCheck(() => {
+      const variants = {};
+      Object.entries(guests).forEach(([productId, guestData]) => {
+        variants[productId] = guestData.quantity;
       });
-      return;
-    }
-
-    Object.entries(guests).forEach(([productId, guestData]) => {
-      // Calculate validTo date
-      const startDate = new Date(selectedDate);
-      const endDate = new Date(startDate);
-      endDate.setDate(startDate.getDate() + (guestData.variant?.validitydays || 0));
-
-      // Format dates directly to YYYY-MM-DD
-      const validToDate = `${endDate.getFullYear()}-${String(
-        endDate.getMonth() + 1
-      ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
 
       dispatch(
-        addToCart({
-          id: productId,
-          variantName: guestData.name,
-          net_amount: guestData.variant?.net_amount,
-          image: selectedProduct?.product_images?.thumbnail_url,
-          title: selectedProduct?.product_title,
-          price: guestData.variant?.gross,
-          vat: guestData.variant?.vat,
-          quantity: guestData.quantity,
-          type: guestData.name,
-          validFrom: selectedDate,
-          validTo: validToDate,
+        setCheckout({
+          selectedDate,
+          guests: variants,
+          totalPrice,
         })
       );
+      
+      navigate("/payment");
     });
-
-    toast.success(t("booking.productAddedToCart"), {
-      position: "top-center",
-    });
-    onBack();
-    dispatch(setIsCartOpen(true));
   };
+
+  const getPerformanceId = (date) => {
+    const performance = performanceData.find((p) => p.date == date);
+    return performance ? performance.performanceId : false;
+  }
 
   const renderCalendarSkeleton = () => (
     <div className="calendar-skeleton">
@@ -427,7 +394,7 @@ export default function BookingSection({
       {/* Guest Selection */}
       <div className="guest-section h-full flex flex-col justify-between">
         <div className="guest-section-header-container">
-          <h2 className="section-title">{t("booking.chooseGuests")}</h2>
+          <h2 className="section-title">{selectedProduct?.quantitydesc || t("booking.chooseGuests")}</h2>
           <div className="guest-container">
             {isLoadingDates ? (
               renderGuestSectionSkeleton()
@@ -538,7 +505,7 @@ export default function BookingSection({
             onClick={handleCheckout}
             disabled={isLoadingDates}
             style={
-              isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
+              isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}
             }
           >
             {t("booking.checkOut")}{" "}
@@ -554,7 +521,7 @@ export default function BookingSection({
               isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
             }
           >
-            {t("booking.saveToCart")}
+            {isPending ? <Loading/> : t("booking.saveToCart")}
           </button>
         </div>
       </div>

@@ -12,7 +12,6 @@ function Accessibility({ onClose, visible }) {
   const { t } = useTranslation();
 
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  console.log("hello", isDarkMode);
 
   const handleClose = () => {
     onClose();
