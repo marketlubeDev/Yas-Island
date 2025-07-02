@@ -29,6 +29,7 @@ export default function EmailConfirmation() {
           },
           onError: (error) => {
             console.log(error , "error>>");
+            toast.error(error?.response?.data?.message || "Something went wrong");
           }
         }
       );

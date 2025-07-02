@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
-import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
@@ -78,7 +77,6 @@ export default function BookingSection({
 
   const handleDateClick = (date) => {
     const formattedDate = formatDateToYYYYMMDD(date);
-    dispatch(setCheckoutDate(formattedDate));
     setSelectedDate(formattedDate);
   };
 
@@ -312,14 +310,6 @@ export default function BookingSection({
       Object.entries(guests).forEach(([productId, guestData]) => {
         variants[productId] = guestData.quantity;
       });
-
-      dispatch(
-        setCheckout({
-          selectedDate,
-          guests: variants,
-          totalPrice,
-        })
-      );
 
       navigate("/email-verification");
     });

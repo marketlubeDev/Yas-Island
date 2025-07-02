@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { setEmail } from "../../../global/checkoutSlice";
 import { useState } from "react";
 
 function EmailMbl({ onEmailSubmit }) {
@@ -11,7 +10,6 @@ function EmailMbl({ onEmailSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setEmail(emailValue));
     if (onEmailSubmit) {
       onEmailSubmit();
     }
