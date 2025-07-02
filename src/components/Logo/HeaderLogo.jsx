@@ -36,7 +36,7 @@ export default function HeaderLogo() {
   };
 
   const isProductRoute = location.pathname === "/product";
-  const isPaymentRoute = location.pathname === "/payment";
+  const isPaymentRoute = location.pathname === "/product";
 
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
@@ -45,7 +45,6 @@ export default function HeaderLogo() {
   const dispatch = useDispatch();
   // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
   const { cartItems } = useSelector((state) => state.cart);
-
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -76,7 +75,7 @@ export default function HeaderLogo() {
   const headerActions = (
     <div className="header-actions">
       <div>
-        {isPaymentRoute && (
+        {!isPaymentRoute && (
           <div
             className={`header-logo ${
               language === "العربية" ? "header-logo-ar" : ""
@@ -114,7 +113,7 @@ export default function HeaderLogo() {
           aria-label={t("common.accessibility")}
           onClick={onAccessibilityOpen}
           style={{
-            ...(isPaymentRoute && {}),
+            ...(!isPaymentRoute && {}),
           }}
         >
           <span className="product-header__icon">
@@ -135,7 +134,7 @@ export default function HeaderLogo() {
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"
             style={{
-              ...(isPaymentRoute && {}),
+              ...(!isPaymentRoute && {}),
             }}
           >
             <img
@@ -188,7 +187,7 @@ export default function HeaderLogo() {
           className={language === "العربية" ? "ar-cart-button" : "cart-button"}
           style={{
             borderWidth: isDarkMode ? "2px" : "1px",
-            ...(isPaymentRoute && {
+            ...(!isPaymentRoute && {
               // top: "-12px",
               // right: "-2rem",
 
@@ -216,7 +215,7 @@ export default function HeaderLogo() {
     <>
       <div
         className={`header-logo-container ${
-          isPaymentRoute ? "payment-route" : ""
+          !isPaymentRoute ? "payment-route" : ""
         }`}
         style={{
           justifyContent: "space-between",
@@ -225,12 +224,12 @@ export default function HeaderLogo() {
       >
         <div
           className={`${
-            isPaymentRoute ? "product-top-pay" : "product-top-sec"
+            !isPaymentRoute ? "product-top-pay" : "product-top-sec"
           }`}
           style={{ width: "100%" }}
         >
           {headerActions}
-          {!isPaymentRoute && <ProductHead />}
+          {isPaymentRoute && <ProductHead />}
         </div>
       </div>
 

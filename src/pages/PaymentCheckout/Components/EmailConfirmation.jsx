@@ -60,6 +60,7 @@ export default function EmailConfirmation({
     //   // Second click - complete verification and show payment details
     //   onVerificationComplete();
     // }
+    
   };
 
   return (
@@ -75,10 +76,6 @@ export default function EmailConfirmation({
         />
         <div className="input-underline"></div>
       </div>
-
-      {showVerification && (
-        <VerificationBox email={emailValue || "vivek@dev.panashi.ae"} />
-      )}
 
       <button className="confirm-button" onClick={handleConfirmEmail}>  
         {isPending ? <Loading /> : showVerification               
