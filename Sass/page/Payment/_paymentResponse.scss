@@ -6,7 +6,7 @@
   align-items: center;
   // min-height: 100vh;
   width: 100%;
-  background: #fff;
+  background: var(--color-resend-btn-bg);
 
   .ticket-section {
     display: flex;
@@ -29,7 +29,7 @@
       text-align: center;
       border-radius: 6px;
       padding: 6px 12px;
-      color: #594f67;
+      color: var(--color-base-text);
       font-size: 1.2rem;
       font-weight: 400;
       // text-transform: lowercase;
@@ -44,7 +44,7 @@
     width: 98%;
     margin: 20px 0 20px 0;
     border: none;
-    border-top: 2px solid #d9d9d9;
+    border-top: 2px solid var(--color-base-text);
   }
 
   .feedback-section {
@@ -57,7 +57,7 @@
       font-weight: 500;
       margin-bottom: 18px;
       text-align: center;
-      color: #18142b;
+      color: var(--color-base-text);
       text-align: center;
       font-style: normal;
       font-weight: 500;
@@ -114,7 +114,7 @@
       font-size: 16px;
       text-align: center;
       font-weight: 500;
-      color: #594f67;
+      color: var(--color-base-text);
       text-align: center;
       // font-family: Urbanist;
       font-size: 1.125rem;

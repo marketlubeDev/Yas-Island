@@ -31,7 +31,9 @@ export default function BookingSection({
   const { language } = useLanguage();
   const dispatch = useDispatch();
 
-const performanceData = useSelector((state) => state.performance.performanceData);
+  const performanceData = useSelector(
+    (state) => state.performance.performanceData
+  );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
 
   function getVariants() {
@@ -40,7 +42,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
       variants[variant?.productid] = {
         quantity: variant?.min_quantity || 0,
         name: variant?.productvariantname,
-        variant: variant
+        variant: variant,
       };
     });
     return variants;
@@ -58,9 +60,6 @@ const performanceData = useSelector((state) => state.performance.performanceData
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
-
-
- 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -88,7 +87,6 @@ const performanceData = useSelector((state) => state.performance.performanceData
     return formatDateToYYYYMMDD(date) === selectedDate;
   };
 
-
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
@@ -104,10 +102,11 @@ const performanceData = useSelector((state) => state.performance.performanceData
         currentDate.getMonth(),
         day
       );
-      
+
       const formattedDateString = formatDateToYYYYMMDD(date);
       const isSelected = isDateSelected(date);
-      const isToday = formatDateToYYYYMMDD(date) === formatDateToYYYYMMDD(new Date());
+      const isToday =
+        formatDateToYYYYMMDD(date) === formatDateToYYYYMMDD(new Date());
       const isDisabled = !availableDates?.includes(formattedDateString);
 
       days.push(
@@ -128,11 +127,15 @@ const performanceData = useSelector((state) => state.performance.performanceData
   };
 
   const handlePrevMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
   };
 
   const getValidToDate = (id , selectedDate) => {
@@ -191,14 +194,14 @@ const performanceData = useSelector((state) => state.performance.performanceData
     let performanceId = null;
 
     selectedProduct?.product_variants?.forEach((variant) => {
-      if(variant?.hasperformance){
+      if (variant?.hasperformance) {
         hasPerformance = true;
       }
     });
 
-    if(hasPerformance){
+    if (hasPerformance) {
       performanceId = getPerformanceId(selectedDate);
-      if(!performanceId){
+      if (!performanceId) {
         toast.error(t("NoPerformance"), {
           position: "top-center",
         });
@@ -209,13 +212,15 @@ const performanceData = useSelector((state) => state.performance.performanceData
     const items = [];
     Object.entries(guests).forEach(([productId, guestData]) => {
       let hasperformance = false;
-      if(guestData.variant?.hasperformance){
+      if (guestData.variant?.hasperformance) {
         hasperformance = true;
       }
       items.push({
         productId: productId,
         quantity: guestData.quantity,
-        performance: hasperformance ? [{performanceId: getPerformanceId(selectedDate)}] : [],
+        performance: hasperformance
+          ? [{ performanceId: getPerformanceId(selectedDate) }]
+          : [],
         validFrom: selectedDate,
         validTo: getValidToDate(productId , selectedDate)
       });
@@ -224,15 +229,18 @@ const performanceData = useSelector((state) => state.performance.performanceData
     const data = {
       coupons: [],
       items: items,
-      capacityManagement: true
-    }
+      capacityManagement: true,
+    };
 
     checkBasket(data, {
       onSuccess: (res) => {
-        if(res?.orderDetails?.error?.code){
-          toast.error(res?.orderDetails?.error?.text || t("Something went wrong"), {
-            position: "top-center",
-          });
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
         } else {
           const orderDetails = res?.orderdetails;
 
@@ -256,11 +264,13 @@ const performanceData = useSelector((state) => state.performance.performanceData
 
               image: selectedProduct?.product_images?.thumbnail_url,
               title: selectedProduct?.product_title,
-              variantName: selectedProduct?.product_variants?.find((variant) => variant?.productid == item?.productId)?.productvariantname,
-            }
+              variantName: selectedProduct?.product_variants?.find(
+                (variant) => variant?.productid == item?.productId
+              )?.productvariantname,
+            };
             dispatch(addToCart(obj));
           });
-          
+
           onSuccess();
         }
       },
@@ -269,7 +279,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
-      }
+      },
     });
   };
 
@@ -297,7 +307,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
           totalPrice,
         })
       );
-      
+
       navigate("/payment");
     });
   };
@@ -305,7 +315,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
   const getPerformanceId = (date) => {
     const performance = performanceData.find((p) => p.date == date);
     return performance ? performance.performanceId : false;
-  }
+  };
 
   const renderCalendarSkeleton = () => (
     <div className="calendar-skeleton">
@@ -398,99 +408,107 @@ const performanceData = useSelector((state) => state.performance.performanceData
       {/* Guest Selection */}
       <div className="guest-section h-full flex flex-col justify-between">
         <div className="guest-section-header-container">
-          <h2 className="section-title">{selectedProduct?.quantitydesc || t("booking.chooseGuests")}</h2>
+          <h2 className="section-title">
+            {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
+          </h2>
           <div className="guest-container">
             {isLoadingDates ? (
               renderGuestSectionSkeleton()
             ) : (
               <>
                 <h3 className="guest-summary">
-                  {Object.entries(guests).map(([productId, guestData], idx, arr) => (
-                    <span className="" key={productId}>
-                      {guestData.name}: {guestData.quantity}
-                      {idx < arr.length - 1 ? " / " : ""}
-                    </span>
-                  ))}
+                  {Object.entries(guests).map(
+                    ([productId, guestData], idx, arr) => (
+                      <span className="" key={productId}>
+                        {guestData.name}: {guestData.quantity}
+                        {idx < arr.length - 1 ? " / " : ""}
+                      </span>
+                    )
+                  )}
                 </h3>
                 <div className="guest-controls">
-                  {Object.entries(guests)?.map(([productId, guestData], idx) => {
-                    const variantData = guestData.variant;
-                    return (
-                      <div key={productId}>
-                        <div className="guest-row">
-                          <div className="guest-label-container">
-                            <span className="guest-label">
-                              {guestData.name}{" "}
-                              {variantData?.productvariantdesc &&
-                                `(${variantData.productvariantdesc})`}
-                            </span>
-                            <span className="guest-label-price">
-                              AED {variantData?.gross * guestData.quantity}{" "}
-                            </span>
+                  {Object.entries(guests)?.map(
+                    ([productId, guestData], idx) => {
+                      const variantData = guestData.variant;
+                      return (
+                        <div key={productId}>
+                          <div className="guest-row">
+                            <div className="guest-label-container">
+                              <span className="guest-label">
+                                {guestData.name}{" "}
+                                {variantData?.productvariantdesc &&
+                                  `(${variantData.productvariantdesc})`}
+                              </span>
+                              <span className="guest-label-price">
+                                AED {variantData?.gross * guestData.quantity}{" "}
+                              </span>
+                            </div>
+                            <div className="counter-controls">
+                              <button
+                                className="counter-btn minus-btn"
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue =
+                                      prev[productId].quantity;
+                                    const newValue = Math.max(
+                                      variantData?.min_quantity || 0,
+                                      currentValue -
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity <=
+                                  (variantData?.min_quantity || 0)
+                                }
+                              >
+                                <img src={MinusIcon} alt="minus" />
+                              </button>
+                              <span className="counter-value">
+                                {guestData.quantity}
+                              </span>
+                              <button
+                                className="counter-btn plus-btn"
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue =
+                                      prev[productId].quantity;
+                                    const newValue = Math.min(
+                                      variantData?.max_quantity || 100,
+                                      currentValue +
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity >=
+                                  (variantData?.max_quantity || 100)
+                                }
+                              >
+                                <img src={PlusIcon} alt="plus" />
+                              </button>
+                            </div>
                           </div>
-                          <div className="counter-controls">
-                            <button
-                              className="counter-btn minus-btn"
-                              onClick={() =>
-                                setGuests((prev) => {
-                                  const currentValue = prev[productId].quantity;
-                                  const newValue = Math.max(
-                                    variantData?.min_quantity || 0,
-                                    currentValue -
-                                      (variantData?.increment_number || 1)
-                                  );
-                                  return {
-                                    ...prev,
-                                    [productId]: {
-                                      ...prev[productId],
-                                      quantity: newValue
-                                    }
-                                  };
-                                })
-                              }
-                              disabled={
-                                guestData.quantity <=
-                                (variantData?.min_quantity || 0)
-                              }
-                            >
-                              <img src={MinusIcon} alt="minus" />
-                            </button>
-                            <span className="counter-value">
-                              {guestData.quantity}
-                            </span>
-                            <button
-                              className="counter-btn plus-btn"
-                              onClick={() =>
-                                setGuests((prev) => {
-                                  const currentValue = prev[productId].quantity;
-                                  const newValue = Math.min(
-                                    variantData?.max_quantity || 100,
-                                    currentValue +
-                                      (variantData?.increment_number || 1)
-                                  );
-                                  return {
-                                    ...prev,
-                                    [productId]: {
-                                      ...prev[productId],
-                                      quantity: newValue
-                                    }
-                                  };
-                                })
-                              }
-                              disabled={
-                                guestData.quantity >=
-                                (variantData?.max_quantity || 100)
-                              }
-                            >
-                              <img src={PlusIcon} alt="plus" />
-                            </button>
-                          </div>
-                        </div>
 
-                        <div className="guest-row-divider"></div>
-                      </div>
-                    );
-                  })}
+                          <div className="guest-row-divider"></div>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
 
                 <p className="guest-note"></p>
@@ -509,7 +527,9 @@ const performanceData = useSelector((state) => state.performance.performanceData
             onClick={handleCheckout}
             disabled={isLoadingDates}
             style={
-              isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}
+              isLoadingDates || isPending
+                ? { opacity: 0.5, pointerEvents: "none" }
+                : {}
             }
           >
             {t("booking.checkOut")}{" "}
@@ -525,7 +545,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
               isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
             }
           >
-            {isPending ? <Loading/> : t("booking.saveToCart")}
+            {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
         </div>
       </div>
