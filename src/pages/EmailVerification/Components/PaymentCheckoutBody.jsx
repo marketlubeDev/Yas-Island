@@ -1,14 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
 import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
 import EmailConfirmation from "../../PaymentCheckout/Components/EmailConfirmation";
-import PaymentDetails from "../../PaymentDetails/Components/PaymentDetails";
-import CardPaymentDetail from "../../CardPayment/Components/CardPaymentDetail";
-import PaymentSuccess from "../../PaymentSuccess/Components/PaymentSuccess";
-import PaymentResponse from "../../PaymentResponse/Components/PaymentResponse";
-import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 
 export default function PaymentCheckoutBody() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState("email");
   const [showVerification, setShowVerification] = useState(false);
 
@@ -16,38 +13,8 @@ export default function PaymentCheckoutBody() {
     setCurrentStep("details");
   };
 
-  const handleProceedToPayment = () => {
-    setCurrentStep("card");
-  };
-
-  const handlePaymentComplete = () => {
-    setCurrentStep("success");
-  };
-
-  const handleLottieClick = () => {
-    setCurrentStep("response");
-  };
-
   const handleBackClick = () => {
-    if (currentStep === "email") {
-      if (showVerification) {
-        setShowVerification(false);
-      } else {
-        window.location.href = "/product";
-      }
-    }
-    if (currentStep === "details") {
-      setCurrentStep("email");
-    }
-    if (currentStep === "card") {
-      setCurrentStep("details");
-    }
-    if (currentStep === "success") {
-      setCurrentStep("card");
-    }
-    if (currentStep === "response") {
-      setCurrentStep("success");
-    }
+    navigate("/product");
   };
 
   // const renderContent = () => {

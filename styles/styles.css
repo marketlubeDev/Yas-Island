@@ -682,6 +682,8 @@ body {
   background: var(--color-base-btn-bg);
   cursor: pointer;
   position: relative;
+  top: -2px;
+  right: -2px;
   display: flex;
   align-items: center;
   justify-content: center;
