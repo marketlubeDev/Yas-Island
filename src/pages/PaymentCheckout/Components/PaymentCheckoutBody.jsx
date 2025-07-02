@@ -6,6 +6,7 @@ import PaymentDetails from "./PaymentDetails";
 import CardPaymentDetail from "./CardPaymentDetail";
 import PaymentSuccess from "./PaymentSuccess";
 import PaymentResponse from "./PaymentResponse";
+import VerificationBox from "./VerificationBox";
 
 export default function PaymentCheckoutBody() {
   const [currentStep, setCurrentStep] = useState("email");
@@ -49,34 +50,34 @@ export default function PaymentCheckoutBody() {
     }
   };
 
-  const renderContent = () => {
-    switch (currentStep) {
-      case "email":
-        return (
-          <EmailConfirmation
-            onVerificationComplete={handleVerificationComplete}
-            showVerification={showVerification}
-            setShowVerification={setShowVerification}
-          />
-        );
-      case "details":
-        return <PaymentDetails onProceed={handleProceedToPayment} />;
-      case "card":
-        return <CardPaymentDetail onPaymentComplete={handlePaymentComplete} />;
-      case "success":
-        return <PaymentSuccess onLottieClick={handleLottieClick} />;
-      case "response":
-        return <PaymentResponse />;
-      default:
-        return (
-          <EmailConfirmation
-            onVerificationComplete={handleVerificationComplete}
-            showVerification={showVerification}
-            setShowVerification={setShowVerification}
-          />
-        );
-    }
-  };
+  // const renderContent = () => {
+  //   switch (currentStep) {
+  //     case "email":
+  //       return (
+  //         <EmailConfirmation
+  //           onVerificationComplete={handleVerificationComplete}
+  //           showVerification={showVerification}
+  //           setShowVerification={setShowVerification}
+  //         />
+  //       );
+  //     case "details":
+  //       return <PaymentDetails onProceed={handleProceedToPayment} />;
+  //     case "card":
+  //       return <CardPaymentDetail onPaymentComplete={handlePaymentComplete} />;
+  //     case "success":
+  //       return <PaymentSuccess onLottieClick={handleLottieClick} />;
+  //     case "response":
+  //       return <PaymentResponse />;
+  //     default:
+  //       return (
+  //         <EmailConfirmation
+  //           onVerificationComplete={handleVerificationComplete}
+  //           showVerification={showVerification}
+  //           setShowVerification={setShowVerification}
+  //         />
+  //       );
+  //   }
+  // };
 
   const showHeaderComponents =
     currentStep === "email" || currentStep === "details";
@@ -96,7 +97,11 @@ export default function PaymentCheckoutBody() {
             : "payment-checkout__content--no-header"
         }`}
       >
-        {renderContent()}
+        <EmailConfirmation
+          onVerificationComplete={handleVerificationComplete}
+          showVerification={showVerification}
+          setShowVerification={setShowVerification}
+        />
       </div>
     </div>
   );

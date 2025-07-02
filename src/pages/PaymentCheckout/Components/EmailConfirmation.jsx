@@ -38,10 +38,6 @@ export default function EmailConfirmation({
         <div className="input-underline"></div>
       </div>
 
-      {showVerification && (
-        <VerificationBox email={emailValue || "vivek@dev.panashi.ae"} />
-      )}
-
       <button className="confirm-button" onClick={handleConfirmEmail}>
         {showVerification
           ? t("payment.emailConfirmation.completeVerification")
