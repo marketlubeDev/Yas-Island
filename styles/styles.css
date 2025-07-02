@@ -5718,6 +5718,19 @@ body {
   pointer-events: none;
 }
 
+.code-input.expired {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+
+.confirm-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .confirm-email__modal {
   max-width: 500px;
   width: 100vw;

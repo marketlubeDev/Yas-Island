@@ -169,6 +169,7 @@ export const ar = {
       willExpire: "سينتهي خلال",
       resend: "إعادة الإرسال",
       confirmOtp: "تأكيد رمز التحقق",
+      expired: "رمز التحقق لقد انتهى",
     },
     personalDetails: {
       firstName: "الاسم الأول *",

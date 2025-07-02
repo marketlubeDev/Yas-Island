@@ -170,6 +170,7 @@ export const en = {
       willExpire: "Will Expire In",
       resend: "Resend",
       confirmOtp: "Confirm OTP",
+      expired: "OTP has expired",
     },
     personalDetails: {
       firstName: "FIRST NAME *",
