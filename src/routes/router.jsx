@@ -1,16 +1,16 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
-import PaymentCheckout from "../pages/PaymentCheckout/PaymentCheckout";
+import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 import MobilePaymentFlow from "../pages/PaymentCheckout/MobilePaymentFlow";
 import { useResponsive } from "../hooks/responsiveHook/useResponsive";
 import EmailVerification from "../pages/PaymentCheckout/EmailVerification";
-import OtpConfirmation from "../pages/PaymentCheckout/OtpConfirmation";
-import PaymentDetailsPage from "../pages/PaymentCheckout/PaymentDetailsPage";
-import CardPaymentPage from "../pages/PaymentCheckout/CardPaymentPage";
-import PaymentSuccessPage from "../pages/PaymentCheckout/PaymentSuccessPage";
-import PaymentResponsePage from "../pages/PaymentCheckout/PaymentResponsePage";
+import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
+import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";
+import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
+import PaymentSuccessPage from "../pages/PaymentSuccess/PaymentSuccessPage";
+import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
 
 const ResponsiveProduct = () => {
   const { isSmallPhone, isPhone } = useResponsive();

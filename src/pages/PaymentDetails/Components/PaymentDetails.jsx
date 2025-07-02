@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PersonalDetailsForm from "./PersonalDetailsForm";
-import OrderSummary from "./OrderSummary";
+import PersonalDetailsForm from "../../PaymentCheckout/Components/PersonalDetailsForm";
+import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
 import AmazonPayDemoButton from "../../../components/payment/amazonpay";
 

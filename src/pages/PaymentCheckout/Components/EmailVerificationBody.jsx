@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import PaymentCheckHeading from "../Components/PaymentCheckHeading";
-import VerificationBox from "./VerificationBox";
+import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 
 export default function EmailVerificationBody() {
   const [email] = useState("user@example.com"); // You can get this from props, context, or state
