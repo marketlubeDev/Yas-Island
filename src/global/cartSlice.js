@@ -46,7 +46,18 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.cartItems.push(action.payload);
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item.productId === action.payload.productId && item.validFrom === action.payload.validFrom 
+      );
+
+      if (existingItemIndex !== -1) {
+        // Item exists, increment quantity
+        state.cartItems[existingItemIndex].quantity = (state.cartItems[existingItemIndex].quantity || 1) + (action.payload.quantity || 1);
+      } else {
+        // New item, add to cart with quantity 1
+        state.cartItems.push({ ...action.payload });
+      }
+
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
@@ -76,7 +87,7 @@ const cartSlice = createSlice({
     },
     removeItemFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
-        (item) => item.productId !== action.payload
+        (item) => !(item.productId === action.payload.id && item.validFrom === action.payload.validFrom)
       );
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
@@ -86,7 +97,7 @@ const cartSlice = createSlice({
     },
     updateQuantity: (state, action) => {
       state.cartItems = state.cartItems.map((item) =>
-        item.productId === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+        (item.productId === action.payload.id && item.validFrom === action.payload.validFrom) ? { ...item, quantity: action.payload.quantity } : item
       );
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;

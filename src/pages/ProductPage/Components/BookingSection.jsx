@@ -38,7 +38,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
     const variants = {};
     product?.product_variants?.forEach((variant) => {
       variants[variant?.productid] = {
-        quantity: variant?.min_quantity || 1,
+        quantity: variant?.min_quantity || 0,
         name: variant?.productvariantname,
         variant: variant
       };
@@ -135,6 +135,16 @@ const performanceData = useSelector((state) => state.performance.performanceData
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
+  const getValidToDate = (id , selectedDate) => {
+    const item = selectedProduct?.product_variants?.find((variant) => variant?.productid == id);
+    const validFromDate = new Date(selectedDate);
+    let validToDate = selectedDate; 
+    const endDate = new Date(validFromDate);
+    endDate.setDate(validFromDate.getDate() + (item?.validitydays || 1));
+    validToDate = formatDateToYYYYMMDD(endDate);
+    return validToDate;
+  }
+
 
   const formatMonthYear = (date) => {
     if (!date) return "";
@@ -202,23 +212,12 @@ const performanceData = useSelector((state) => state.performance.performanceData
       if(guestData.variant?.hasperformance){
         hasperformance = true;
       }
-
-      // Calculate validTo date as YYYY-MM-DD
-      const validFromDate = new Date(selectedDate);
-      let validToDate = selectedDate; // default to same as validFrom
-      
-      if (guestData.variant?.validitydays) {
-        const endDate = new Date(validFromDate);
-        endDate.setDate(validFromDate.getDate() + guestData.variant.validitydays);
-        validToDate = formatDateToYYYYMMDD(endDate);
-      }
-
       items.push({
         productId: productId,
         quantity: guestData.quantity,
         performance: hasperformance ? [{performanceId: getPerformanceId(selectedDate)}] : [],
         validFrom: selectedDate,
-        validTo: validToDate
+        validTo: getValidToDate(productId , selectedDate)
       });
     });
 
@@ -236,6 +235,9 @@ const performanceData = useSelector((state) => state.performance.performanceData
           });
         } else {
           const orderDetails = res?.orderdetails;
+
+
+          
           orderDetails?.order?.items?.forEach((item) => {
             let obj = {
               capacityGuid: item?.capacityGuid,
@@ -250,7 +252,8 @@ const performanceData = useSelector((state) => state.performance.performanceData
               quantity: item?.quantity,
               rechargeAmount: item?.rechargeAmount,
               validFrom: item?.validFrom,
-              validTo: formatDateToYYYYMMDD(item?.validTo),
+              validTo: item?.validTo ? formatDateToYYYYMMDD(item?.validTo) : getValidToDate(item?.productId , selectedDate),
+
               image: selectedProduct?.product_images?.thumbnail_url,
               title: selectedProduct?.product_title,
               variantName: selectedProduct?.product_variants?.find((variant) => variant?.productid == item?.productId)?.productvariantname,
@@ -262,6 +265,7 @@ const performanceData = useSelector((state) => state.performance.performanceData
         }
       },
       onError: (err) => {
+        console.log(err);
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });

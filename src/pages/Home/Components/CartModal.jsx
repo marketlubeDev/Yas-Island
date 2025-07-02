@@ -58,14 +58,14 @@ const CartModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const handleQuantityChange = (id, change) => {
-    const item = cartItems.find((item) => item.productId === id);
-    dispatch(updateQuantity({ id, quantity: Math.max(1, item.quantity + change) }));
+  const handleQuantityChange = (id, change , validFrom) => {
+    const item = cartItems.find((item) => item.productId === id && item.validFrom === validFrom);
+    dispatch(updateQuantity({ id, quantity: Math.max(1, item.quantity + change) ,   validFrom}));
   };
 
-  const handleDeleteItem = (id) => {
+  const handleDeleteItem = (id , validFrom) => {
    
-    dispatch(removeItemFromCart(id));
+    dispatch(removeItemFromCart({id , validFrom}));
   };
 
   if (!isOpen) return null;
@@ -124,15 +124,15 @@ const CartModal = ({ isOpen, onClose }) => {
                       <Button
                         className="minus-btn-web"
                         icon={<MinusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, -1)}
+                        onClick={() => handleQuantityChange(item?.productId, -1 , item?.validFrom)}
                       />
                       <span>{item?.quantity}</span>
                       <Button
                         className="plus-btn-web"
                         icon={<PlusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, 1)}
+                        onClick={() => handleQuantityChange(item?.productId, 1 , item?.validFrom)}
                       />
-                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.productId)}>
+                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.productId , item?.validFrom )}>
                         <img
                           src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
                           alt={t("cart.delete")}
