@@ -44,6 +44,12 @@ export default function GlobalInvertColor() {
       "--color-base-chat-btn-text",
       isDarkMode ? "#000" : "#fff"
     );
+
+    document.documentElement.style.setProperty(
+      "--color-checkbox-clr",
+      isDarkMode ? "#A2A999" : isHighContrast ? "#231942" : "#908999"
+    );
+
     document.documentElement.style.setProperty(
       "--color-base-side-bar-border",
       isDarkMode ? "#F7B141" : isHighContrast ? "#084EBE" : "#F7D148"
@@ -87,6 +93,11 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-side-bar-item-inactive-border",
       isDarkMode ? "#F7B141" : "#e3daf2"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-checkbox-a-clr",
+      isDarkMode ? "#D0D0D0" : isHighContrast ? "#231942" : "#18142B"
     );
 
     // product_Card
@@ -162,6 +173,11 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-accessibility-modal-btn-bg",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-feedback-circle-bg",
+      isDarkMode ? "#1E0E00" : "#e1f1ff"
     );
 
     //mobile product page
@@ -335,6 +351,23 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-mobile-bottom-nav-item-icon-active-color",
       isDarkMode ? "#000" : "#231942"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-feedback-circle-border",
+      isDarkMode ? "#995518" : "#a1c4fd"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-smile-border",
+      isDarkMode
+        ? "none"
+        : "linear-gradient(#e1f1ff, #e1f1ff), linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-fb-happy-bg",
+      isDarkMode ? "#EA40CA" : "#2ecc71"
     );
 
     //mobileheaderlangdropdown
@@ -738,6 +771,11 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
+      "--color-makepymnt-card-bg",
+      isDarkMode ? "#e7ebd4" : "#fff"
+    );
+
+    document.documentElement.style.setProperty(
       "--cart-item-price",
       isDarkMode ? "#F8A050" : "#075faf"
     );
@@ -755,6 +793,16 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--cart-item-var",
       isDarkMode ? "#A6B098" : "#4c4358"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-fb-smile-bg",
+      isDarkMode ? "#0041F4" : "#ffe600"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-fb-sad-bg",
+      isDarkMode ? "#0BD1B7" : "#ff4d4f"
     );
 
     document.documentElement.style.setProperty(
@@ -797,6 +845,11 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#ffffff26" : "#f9f5ff"
     );
 
+    document.documentElement.style.setProperty(
+      "--color-email-otp-input-clr",
+      isDarkMode ? "#E7EBD4" : "#231942"
+    );
+
     //confirm email
     document.documentElement.style.setProperty(
       "--color-otp-action",
@@ -835,11 +888,6 @@ export default function GlobalInvertColor() {
       "--separator-color",
       isDarkMode ? "#d9d9d9" : "#d9d9d9"
     );
-    document.documentElement.style.setProperty(
-      "--cart-btn-var-save",
-      isDarkMode ? "#000000" : "#fff"
-    );
-
     document.documentElement.style.setProperty(
       "--color-email-form-otp-info-b",
       isDarkMode ? "#E7EBD4" : "#18142b"
@@ -901,6 +949,44 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-product-card-card-item-border-round",
       isDarkMode ? "#dcd6e5" : "#dcd6e5"
+    );
+
+    // Add emoji display controls
+    document.documentElement.style.setProperty(
+      "--excellent-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--excellent-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    // Add average emoji display controls
+    document.documentElement.style.setProperty(
+      "--average-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--average-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    // Add poor emoji display controls
+    document.documentElement.style.setProperty(
+      "--poor-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--poor-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-fb-happy-bg",
+      isDarkMode ? "#EA40CA" : "#2ecc71"
     );
 
     return () => {
@@ -1572,6 +1658,46 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-cart-oprn-bg",
         "#f9f5ff"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-email-otp-input-clr",
+        "#231942"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-checkbox-clr",
+        "#908999"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-makepymnt-card-bg",
+        "#fff"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-feedback-circle-bg",
+        "#1E0E00"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-feedback-circle-border",
+        "#a1c4fd"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-fb-happy-bg",
+        "#2ecc71"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-fb-smile-bg",
+        "#ffe600"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-fb-sad-bg",
+        "#ff4d4f"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");

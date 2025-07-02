@@ -124,7 +124,7 @@
   text-align: center;
   background: var(--color-email-form-box);
   font-weight: 700;
-  color: #231942;
+  color: var(--color-email-otp-input-clr);
   outline: none;
   transition: border 0.2s;
   &:focus {

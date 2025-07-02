@@ -131,9 +131,8 @@
       object-fit: contain;
       display: block;
       border: 1.5px solid #e3e3e3;
-      // border-radius: 8px;
+      border-radius: 3px;
       background: #fff;
-      box-shadow: 0 1px 4px rgba(44, 44, 84, 0.04);
     }
 
     .payment-method-card__label1 {
@@ -220,13 +219,9 @@
   margin-top: 8px;
 
   img {
-    width: 40px;
-    height: 24px;
     object-fit: contain;
-    background: #fff;
+    background-color: var(--color-makepymnt-card-bg);
     border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(44, 44, 84, 0.06);
-    padding: 2px 4px;
   }
 }
 

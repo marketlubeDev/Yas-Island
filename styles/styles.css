@@ -222,6 +222,17 @@
   --color-cart-save-btn-border: none;
   --color-email-form-otp-warning: #ff63af;
   --cart-btn-brd-save: #d9d9d9;
+  --color-email-otp-input-clr: #231942;
+  --color-checkbox-clr: #908999;
+  --color-checkbox-a-clr: #18142b;
+  --color-makepymnt-card-bg: #fff;
+  --color-feedback-circle-bg: #e1f1ff;
+  --color-feedback-circle-border: #a1c4fd;
+  --color-smile-border: linear-gradient(#e1f1ff, #e1f1ff),
+    linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  --color-fb-happy-bg: #2ecc71;
+  --color-fb-smile-bg: #ffe600;
+  --color-fb-sad-bg: #ff4d4f;
 }
 
 [dir=rtl] {
@@ -5815,7 +5826,7 @@ body {
   text-align: center;
   background: var(--color-email-form-box);
   font-weight: 700;
-  color: #231942;
+  color: var(--color-email-otp-input-clr);
   outline: none;
   transition: border 0.2s;
 }
@@ -6104,10 +6115,10 @@ body {
 }
 .email-checkout__checkboxes label {
   font-size: 12px;
-  color: #231942;
+  color: var(--color-checkbox-clr);
 }
 .email-checkout__checkboxes label a {
-  color: #18142b;
+  color: var(--color-checkbox-a-clr);
   text-decoration: underline;
   font-weight: 600;
 }
@@ -6242,7 +6253,7 @@ body {
   box-sizing: border-box;
 }
 .email-checkout__promo-input::placeholder {
-  color: #231942;
+  color: var(--color-email-otp-input-clr);
   font-size: 13px;
 }
 
@@ -6384,8 +6395,8 @@ body {
   object-fit: contain;
   display: block;
   border: 1.5px solid #e3e3e3;
+  border-radius: 3px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(44, 44, 84, 0.04);
 }
 .make-payment__payment-options label .payment-method-card__label1 {
   font-size: 12px;
@@ -6467,13 +6478,9 @@ body {
   margin-top: 8px;
 }
 .make-payment__card-logos img {
-  width: 40px;
-  height: 24px;
   object-fit: contain;
-  background: #fff;
+  background-color: var(--color-makepymnt-card-bg);
   border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(44, 44, 84, 0.06);
-  padding: 2px 4px;
 }
 
 .make-payment__summary-totals {
@@ -6650,7 +6657,7 @@ body {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
   margin-bottom: 4px;
   transition: box-shadow 0.2s, background 0.2s, border 0.2s;
-  background-image: linear-gradient(#e1f1ff, #e1f1ff), linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: var(--color-smile-border);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -6662,17 +6669,17 @@ body {
 }
 
 .selected-green img {
-  background: #2ecc71 !important;
+  background: var(--color-fb-happy-bg) !important;
   box-shadow: 0 2px 12px rgba(46, 204, 113, 0.18);
 }
 
 .selected-yellow img {
-  background: #ffe600 !important;
+  background: var(--color-fb-smile-bg) !important;
   box-shadow: 0 2px 12px rgba(255, 230, 0, 0.18);
 }
 
 .selected-red img {
-  background: #ff4d4f !important;
+  background: var(--color-fb-sad-bg) !important;
   box-shadow: 0 2px 12px rgba(255, 77, 79, 0.18);
 }
 
@@ -6680,38 +6687,102 @@ body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #e1f1ff;
-  border: 2.5px solid #a1c4fd;
+  background: var(--color-feedback-circle-bg);
+  border: 2.5px solid var(--color-feedback-circle-border);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 4px;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
   transition: background 0.2s, border 0.2s;
+  position: relative;
 }
-
-.smile-circle img {
-  width: 40px;
-  height: 40px;
+.smile-circle .excellent-emoji {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: white;
   transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--excellent-emoji-display, block);
+}
+.smile-circle .excellent-emoji-dark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--excellent-emoji-dark-display, none);
+}
+.smile-circle .average-emoji {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--average-emoji-display, block);
+}
+.smile-circle .average-emoji-dark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--average-emoji-dark-display, none);
+}
+.smile-circle .poor-emoji {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--poor-emoji-display, block);
+}
+.smile-circle .poor-emoji-dark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  display: var(--poor-emoji-dark-display, none);
 }
 
 /* Selected states for the smile-circle */
 .selected-green .smile-circle {
-  background: #2ecc71 !important;
+  background: var(--color-fb-happy-bg) !important;
 }
 
 .selected-yellow .smile-circle {
-  background: #ffe600 !important;
+  background: var(--color-fb-smile-bg) !important;
 }
 
 .selected-red .smile-circle {
-  background: #ff4d4f !important;
+  background: var(--color-fb-sad-bg) !important;
 }
 
-/* Change the emoji border to white when selected */
 .experience-outer-bg {
   background: var(--color-checkout-summary-bg);
   min-height: 100vh;
