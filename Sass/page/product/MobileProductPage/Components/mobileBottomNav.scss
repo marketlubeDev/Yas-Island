@@ -49,3 +49,11 @@
     }
   }
 }
+
+html[lang="ar"] {
+  .mobile-bottom-nav {
+    &__item--active {
+      background: var(--color-base-mobile-bottom-nav-item-active-bg--ar);
+    }
+  }
+}

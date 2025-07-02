@@ -182,6 +182,11 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
+      "--color-base-mobile-bottom-nav-item-active-bg--ar",
+      isDarkMode ? "none" : "linear-gradient(90deg, #fff8a5 0%, #fff 100%)"
+    );
+
+    document.documentElement.style.setProperty(
       "--color-feedback-circle-bg",
       isDarkMode ? "#1E0E00" : "#e1f1ff"
     );

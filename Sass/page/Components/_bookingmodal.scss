@@ -253,31 +253,60 @@
   border-radius: 1px;
 }
 
-.booking-modal__close {
+.booking-modal .ant-modal-close {
   position: absolute;
-  top: 1%;
-  right: 10%;
+  top: -2%;
+  right: 1%;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
-  border: 2px solid var(--color-bkg-footer-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: background 0.2s, border-color 0.2s;
-  &:hover {
-    background: var(--color-bkg-footer-bg);
-    border-color: var(--color-bkg-footer-clr);
-  }
+  transition: background 0.2s;
+
   img {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
   }
+}
+
+.booking-modal .ant-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  top: 0 !important;
+}
+
+.booking-modal .ant-modal-content {
+  background-color: var(--color-base-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  height: 80vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  border-radius: 20px;
+}
+
+:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  outline: 0;
+  background: rgba(245, 245, 245, 0.39) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0%);
 }
 
 .guests-box {
@@ -417,26 +446,4 @@
 /* Remove the line from the last row if you don't want it there: */
 .guests-row:last-child::after {
   display: none;
-}
-
-.booking-modal .ant-modal-content {
-  background-color: var(--color-base-bg);
-  border: 2.353px solid var(--color-base-product-card-card-item-border);
-  height: 80vh;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  border-radius: 20px;
-}
-:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  overflow: hidden;
-  outline: 0;
-  // -webkit-overflow-scrolling: touch;
-  background: rgba(245, 245, 245, 0.39) !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(0%);
 }

@@ -199,7 +199,7 @@
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -7%;
+  top: -8%;
   right: 1%;
   border-radius: 50%;
   height: 38px;
@@ -222,7 +222,7 @@
 }
 .booking-modal .ant-modal-close {
   position: absolute;
-  top: -7%;
+  top: -5%;
   right: 0;
   border-radius: 50%;
   height: 38px;
@@ -272,4 +272,8 @@
 
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
+}
+
+.attraction-detail-modal .ant-modal {
+  top: 0 !important;
 }
