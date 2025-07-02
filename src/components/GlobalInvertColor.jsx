@@ -1094,6 +1094,10 @@ export default function GlobalInvertColor() {
       "--color-fb-happy-bg",
       isDarkMode ? "#EA40CA" : "#2ecc71"
     );
+    document.documentElement.style.setProperty(
+      "--cart-btn-var-save",
+      isDarkMode ? "#000000" : "#fff"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--text-color", "#18142B");
