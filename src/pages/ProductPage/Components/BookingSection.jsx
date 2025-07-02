@@ -145,6 +145,7 @@ export default function BookingSection({
     const endDate = new Date(validFromDate);
     endDate.setDate(validFromDate.getDate() + (item?.validitydays || 1));
     validToDate = formatDateToYYYYMMDD(endDate);
+
     return validToDate;
   }
 
@@ -211,6 +212,9 @@ export default function BookingSection({
 
     const items = [];
     Object.entries(guests).forEach(([productId, guestData]) => {
+      if(guestData.quantity < 1){
+        return;
+      }
       let hasperformance = false;
       if (guestData.variant?.hasperformance) {
         hasperformance = true;
@@ -247,7 +251,6 @@ export default function BookingSection({
 
           
           orderDetails?.order?.items?.forEach((item) => {
-
             const variantData = selectedProduct?.product_variants?.find(
               (variant) => variant?.productid == item?.productId
             );
@@ -265,20 +268,19 @@ export default function BookingSection({
               itemPromotionList: item?.itemPromotionList,
               original: item?.original,
               packageCode: item?.packageCode,
-              performances: item?.performances,
+              performances: item?.performances?.[0]?.performanceId || getPerformanceId(item?.validFrom) || null,
               price: price,
               productId: item?.productId,
               quantity: item?.quantity,
               rechargeAmount: item?.rechargeAmount,
               validFrom: item?.validFrom,
               validTo: item?.validTo ? formatDateToYYYYMMDD(item?.validTo) : getValidToDate(item?.productId , selectedDate),
-
               image: selectedProduct?.product_images?.thumbnail_url,
               title: selectedProduct?.product_title,
               variantName: selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
               )?.productvariantname,
-            };
+            };  
             dispatch(addToCart(obj));
           });
 

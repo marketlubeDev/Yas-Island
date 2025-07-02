@@ -32,7 +32,7 @@ const calculateCartTotals = (items) => {
   };
 };
 
-// Helper function to save cart to localStorage
+
 const saveCartToStorage = (cartState) => {
   try {
     localStorage.setItem('yasIslandCart', JSON.stringify(cartState));
@@ -49,15 +49,11 @@ const cartSlice = createSlice({
       const existingItemIndex = state.cartItems.findIndex(
         (item) => item.productId === action.payload.productId && item.validFrom === action.payload.validFrom 
       );
-
       if (existingItemIndex !== -1) {
-        // Item exists, increment quantity
         state.cartItems[existingItemIndex].quantity = (state.cartItems[existingItemIndex].quantity || 1) + (action.payload.quantity || 1);
       } else {
-        // New item, add to cart with quantity 1
         state.cartItems.push({ ...action.payload });
       }
-
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;

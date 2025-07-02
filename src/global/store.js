@@ -6,6 +6,7 @@ import checkoutReducer from "./checkoutSlice";
 import productReducer from "./productSlice";
 import performanceReducer from "./performanceSlice";
 import cartReducer from "./cartSlice";
+import otpReducer from "./otpSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     product: productReducer,
     performance: performanceReducer,
     cart: cartReducer,
+    otp: otpReducer,
   },
 });
 

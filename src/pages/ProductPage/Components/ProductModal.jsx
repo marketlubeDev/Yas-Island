@@ -139,6 +139,7 @@ function getAvailableDates(product){
 
 
     } catch (error) {
+      console.log(error);
       toast.error(error?.response?.data?.message || "Something went wrong")
       // if it is error then close all modals
       onClose();

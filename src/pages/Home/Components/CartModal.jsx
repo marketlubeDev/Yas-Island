@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import {  removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import Loading from "../../../components/Loading/Loading";
 
 const CartModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -21,33 +23,7 @@ const CartModal = ({ isOpen, onClose }) => {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const {cartItems, subtotal, vatAndTax, total} = useSelector((state) => state.cart);
-
-
-  // Cart items data
-  // const [cartItems, setCartItems] = useState([
-  //   {
-  //     id: 1,
-  //     image: Ferrari,
-  //     title: "1 day Ferrari World",
-  //     price: 328.57,
-  //     vat: 16.43,
-  //     quantity: 2,
-  //     type: "adults",
-  //     validFrom: "08 feb 2025",
-  //     validTo: "08 feb 2025",
-  //   },
-  //   {
-  //     id: 2,
-  //     image: Ferrari,
-  //     title: "1 day Ferrari World",
-  //     price: 328.57,
-  //     vat: 16.43,
-  //     quantity: 2,
-  //     type: "adults",
-  //     validFrom: "08 feb 2025",
-  //     validTo: "08 feb 2025",
-  //   },
-  // ]);
+  const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const handleCheckout = () => {
     navigate("/payment");
@@ -66,6 +42,48 @@ const CartModal = ({ isOpen, onClose }) => {
   const handleDeleteItem = (id , validFrom) => {
    
     dispatch(removeItemFromCart({id , validFrom}));
+  };
+
+
+  const handleBasketCheck = (onSuccess) => {
+    let items = [];
+    cartItems?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances ? [{performanceId: item?.performances}] : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo
+      });
+    });
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true,
+    };
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          const orderDetails = res?.orderdetails;
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      },
+    });
   };
 
   if (!isOpen) return null;
@@ -112,7 +130,7 @@ const CartModal = ({ isOpen, onClose }) => {
                   <img src={item?.image} alt={item?.title} />
                   <div className="item-details">
                     <h4>{item?.title}</h4>
-                    <p>AED {item?.price?.net} <span className="text-xs text-gray-500"> {item?.price?.tax} Net&Tax</span></p>
+                    <p>AED {item?.price?.net} +<span className="text-xs text-gray-500"> {item?.price?.tax} Net&Tax</span></p>
                     <div className="validity-date" style={{}}>
                       Valid from <span>{item?.validFrom}</span> to{" "}
                       <span>{item?.validTo}</span>
@@ -165,8 +183,8 @@ const CartModal = ({ isOpen, onClose }) => {
                 <button className="save-cart-btn" onClick={handleSaveCart}>
                   {t("cart.saveCartAndPayLater")}
                 </button>
-                <button className="checkout-btn" onClick={handleCheckout}>
-                  {t("cart.checkOut")}
+                <button className="checkout-btn" onClick={() => handleBasketCheck(handleCheckout)}>
+                  {isPending ? <Loading /> : t("cart.checkOut")}
                 </button>
               </div>
             </div>
