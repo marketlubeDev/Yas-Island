@@ -4,61 +4,12 @@ import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 import MobilePaymentFlow from "../pages/PaymentCheckout/MobilePaymentFlow";
-import { useResponsive } from "../hooks/responsiveHook/useResponsive";
-import EmailVerification from "../pages/PaymentCheckout/EmailVerification";
 import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
 import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";
 import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
 import PaymentSuccessPage from "../pages/PaymentSuccess/PaymentSuccessPage";
 import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
-
-const ResponsiveProduct = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobileProductPage /> : <ProductPage />;
-};
-
-const ResponsivePayment = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
-};
-
-const ResponsiveEmailVerification = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentCheckout />;
-};
-
-const ResponsiveOtpConfirmation = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <OtpConfirmation />;
-};
-
-const ResponsivePaymentDetails = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentDetailsPage />;
-};
-
-const ResponsiveCardPayment = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <CardPaymentPage />;
-};
-
-const ResponsivePaymentSuccess = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentSuccessPage />;
-};
-
-const ResponsivePaymentResponse = () => {
-  const { isSmallPhone, isPhone } = useResponsive();
-  const isMobile = isSmallPhone || isPhone;
-  return isMobile ? <MobilePaymentFlow /> : <PaymentResponsePage />;
-};
+import ResponsiveWrapper from "../components/ResponsiveWrapper";
 
 export const router = createBrowserRouter([
   {
@@ -71,35 +22,75 @@ export const router = createBrowserRouter([
       },
       {
         path: "product",
-        element: <ResponsiveProduct />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobileProductPage}
+            DesktopComponent={ProductPage}
+          />
+        ),
       },
       {
         path: "payment",
-        element: <ResponsivePayment />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={PaymentCheckout}
+          />
+        ),
       },
       {
         path: "email-verification",
-        element: <ResponsiveEmailVerification />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={PaymentCheckout}
+          />
+        ),
       },
       {
         path: "otp-confirmation",
-        element: <ResponsiveOtpConfirmation />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={OtpConfirmation}
+          />
+        ),
       },
       {
         path: "payment-details",
-        element: <ResponsivePaymentDetails />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={PaymentDetailsPage}
+          />
+        ),
       },
       {
         path: "card-payment",
-        element: <ResponsiveCardPayment />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={CardPaymentPage}
+          />
+        ),
       },
       {
         path: "payment-success",
-        element: <ResponsivePaymentSuccess />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={PaymentSuccessPage}
+          />
+        ),
       },
       {
         path: "payment-response",
-        element: <ResponsivePaymentResponse />,
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobilePaymentFlow}
+            DesktopComponent={PaymentResponsePage}
+          />
+        ),
       },
     ],
   },
