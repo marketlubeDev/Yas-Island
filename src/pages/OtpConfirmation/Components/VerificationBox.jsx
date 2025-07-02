@@ -1,18 +1,23 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { validateOTP } from "../../../utils/OTPvalidate";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import useVerification from "../../../apiHooks/email/verification";
+import { setOtp } from "../../../global/OtpSlice";
 
-export default function VerificationBox({ email, onResendOTP }) {
+export default function VerificationBox({ email }) {
+  const dispatch = useDispatch();
+  const { mutate: verification, isPending } = useVerification();
   const { t } = useTranslation();
-  const [otp, setOtp] = useState(new Array(6).fill(""));
+  const [otp, setOtpInput] = useState(new Array(6).fill(""));
   const inputRefs = useRef([]);
   const { OTP } = useSelector((state) => state.otp);
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(120); // 2 minutes in seconds
+  const [timer, setTimer] = useState(20); // 2 minutes in seconds
   const [canResend, setCanResend] = useState(false);
+  const [isExpired, setIsExpired] = useState(false);
 
   useEffect(() => {
     let interval;
@@ -21,6 +26,7 @@ export default function VerificationBox({ email, onResendOTP }) {
         setTimer((prev) => {
           if (prev <= 1) {
             setCanResend(true);
+            setIsExpired(true);
             return 0;
           }
           return prev - 1;
@@ -38,35 +44,52 @@ export default function VerificationBox({ email, onResendOTP }) {
 
   const handleResendOTP = () => {
     if (!canResend) return;
-    // onResendOTP?.();
-    setTimer(120);
-    setCanResend(false);
+
+    verification(
+      email,
+      {
+        onSuccess: (res) => {
+          dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
+          setTimer(120);
+          setCanResend(false);
+          setIsExpired(false);
+          setOtpInput(new Array(6).fill(""));
+        },
+        onError: (error) => {
+          console.log(error , "error>>");
+        }
+      }
+    );
+   
   };
 
   const handleChange = (element, index) => {
+    if (isExpired) return;
     const value = element.value;  
-    // Allow only numbers
     if (!/^\d*$/.test(value)) return;
     const newOtp = [...otp];
     newOtp[index] = value;
-    setOtp(newOtp);
+    setOtpInput(newOtp);
 
-    // Move to next input if value is entered
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
     }
   };
 
   const handleKeyDown = (e, index) => {
+    if (isExpired) return;
     if (e.key === "Backspace") {
       if (!otp[index] && index > 0) {
-        // If current input is empty and backspace is pressed, move to previous input
         inputRefs.current[index - 1].focus();
       }
     }
   };
 
   const handlePaste = (e) => {
+    if (isExpired) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     const pastedData = e.clipboardData.getData("text").slice(0, 6);
     
@@ -79,9 +102,8 @@ export default function VerificationBox({ email, onResendOTP }) {
         inputRefs.current[index].value = value;
       }
     });
-    setOtp(newOtp);
+    setOtpInput(newOtp);
 
-    // Focus on the next empty input or the last input
     const nextEmptyIndex = newOtp.findIndex(val => !val);
     if (nextEmptyIndex !== -1 && nextEmptyIndex < 6) {
       inputRefs.current[nextEmptyIndex].focus();
@@ -91,6 +113,10 @@ export default function VerificationBox({ email, onResendOTP }) {
   };
 
   const handleConfirmEmail = async () => {
+    if (isExpired) {
+      toast.error("OTP has expired. Please request a new one.");
+      return;
+    }
     const otpString = otp.join("");
     if(otpString.length !== 6){
       toast.error("Please enter a valid OTP");
@@ -124,7 +150,7 @@ export default function VerificationBox({ email, onResendOTP }) {
               key={index}
               type="text"
               maxLength="1"
-              className="code-input"
+              className={`code-input ${isExpired ? 'expired' : ''}`}
               value={otp[index]}
               onChange={(e) => handleChange(e.target, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
@@ -133,19 +159,17 @@ export default function VerificationBox({ email, onResendOTP }) {
               inputMode="numeric"
               pattern="\d*"
               autoComplete="off"
+              disabled={isExpired}
             />
           ))}
         </div>
       </div>
 
-      <button className="confirm-button" onClick={handleConfirmEmail}>
-        {t("payment.emailConfirmation.confirmButton")}
-      </button>
       <div className="timer-section">
         <span className="expire-text">
-          {t("payment.verification.willExpire")}
+          {isExpired ? t("payment.verification.expired") : t("payment.verification.willExpire")}
         </span>
-        <span className="timer">{formatTime(timer)}</span>
+        <span className="timer">{!isExpired && formatTime(timer)}</span>
         <button 
           className={`resend-btn ${!canResend ? 'disabled' : ''}`} 
           onClick={handleResendOTP}
@@ -154,6 +178,14 @@ export default function VerificationBox({ email, onResendOTP }) {
           {t("payment.verification.resend")}
         </button>
       </div>
+
+      <button 
+        className={`confirm-button ${isExpired ? 'disabled' : ''}`} 
+        onClick={handleConfirmEmail}
+        disabled={isExpired}
+      >
+        {t("payment.emailConfirmation.confirmButton")}
+      </button>
     </div>
   );
 }

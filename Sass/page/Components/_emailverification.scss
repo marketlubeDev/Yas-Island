@@ -125,3 +125,24 @@
     pointer-events: none;
   }
 }
+
+.code-input {
+  // ... existing styles ...
+
+  &.expired {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+  }
+}
+
+.confirm-button {
+  // ... existing styles ...
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
