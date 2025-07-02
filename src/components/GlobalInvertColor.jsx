@@ -20,6 +20,27 @@ export default function GlobalInvertColor() {
       "--color-base-text",
       isDarkMode ? "#E7EBD4" : "#18142B"
     );
+
+    document.documentElement.style.setProperty(
+      "--color-base-date-clr",
+      isDarkMode ? "#FFFFFF" : "#1e1e1e"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-today-bg",
+      isDarkMode ? "#000000" : "#EEF7FE"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-today-border",
+      isDarkMode ? "#F8A622" : "none"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-date-selected-bg",
+      isDarkMode ? "#F8A622" : "#22215B"
+    );
+
     document.documentElement.style.setProperty(
       "--color-base-text-secondary",
       isDarkMode ? "#E7EBD4" : "#514760"
@@ -153,6 +174,22 @@ export default function GlobalInvertColor() {
       "--color-base-product-card-add-cart-btn-bg",
       isDarkMode ? "#1A1206" : isHighContrast ? "#E5EDF9" : "#fff8a5"
     );
+
+    document.documentElement.style.setProperty(
+      "--color-otp-input-border",
+      isDarkMode ? "#DCE1D4" : "#6F677C"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-resend-btn-border",
+      isDarkMode ? "#FFAD33" : "#DCD6E5"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-resend-btn-bg",
+      isDarkMode ? "#000000" : "#fff"
+    );
+
     // Accessibility Modal
     document.documentElement.style.setProperty(
       "--color-base-accessibility-modal-title",
@@ -265,6 +302,16 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-filter-btn-bg",
       isDarkMode ? "#0B0C0C" : "#fff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-date-selected-text",
+      isDarkMode ? "#000000" : "#B4B3E5"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-verification-container-bg",
+      isDarkMode ? "#000000" : "#f4f7f8"
     );
 
     document.documentElement.style.setProperty(
@@ -549,6 +596,17 @@ export default function GlobalInvertColor() {
       "--color-bkg-guest-btn-border",
       isDarkMode ? "#909883" : "#d3b8ff"
     );
+
+    document.documentElement.style.setProperty(
+      "--color-checkbox-bdr",
+      isDarkMode ? "none" : "#ADA5B7"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-checkbox-text",
+      isDarkMode ? "#A2A999" : "#A49DAD"
+    );
+
     document.documentElement.style.setProperty(
       "--color-bkg-guest-note",
       isDarkMode ? "#CED0AB" : "#bdbdc6"
@@ -939,6 +997,16 @@ export default function GlobalInvertColor() {
     );
 
     document.documentElement.style.setProperty(
+      "--color-resend-btn-text",
+      isDarkMode ? "#E7EBD4" : "#18142B"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-order-summary-bg",
+      isDarkMode ? "#0B0C0C" : "#f4f7f8"
+    );
+
+    document.documentElement.style.setProperty(
       "--color-email-form-otp-warning",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ff63af"
     );
@@ -948,7 +1016,45 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-product-card-card-item-border-round",
-      isDarkMode ? "#dcd6e5" : "#dcd6e5"
+      isDarkMode ? "#909883" : "#dcd6e5"
+    );
+
+    // Add emoji display controls
+    document.documentElement.style.setProperty(
+      "--excellent-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--excellent-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    // Add average emoji display controls
+    document.documentElement.style.setProperty(
+      "--average-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--average-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    // Add poor emoji display controls
+    document.documentElement.style.setProperty(
+      "--poor-emoji-display",
+      isDarkMode ? "none" : "block"
+    );
+
+    document.documentElement.style.setProperty(
+      "--poor-emoji-dark-display",
+      isDarkMode ? "block" : "none"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-fb-happy-bg",
+      isDarkMode ? "#EA40CA" : "#2ecc71"
     );
 
     // Add emoji display controls
@@ -1658,6 +1764,56 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-cart-oprn-bg",
         "#f9f5ff"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-base-date-clr",
+        isDarkMode ? "#FFFFFF" : "#1e1e1e"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-date-selected-bg",
+        "#22215B"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-date-selected-text",
+        "#B4B3E5"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-verification-container-bg",
+        "#f4f7f8"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-otp-input-border",
+        "#6f677c"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-resend-btn-border",
+        "#DCD6E5"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-resend-btn-bg",
+        "#fff"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-resend-btn-text",
+        "#18142B"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-order-summary-bg",
+        "#f4f7f8"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-checkbox-text",
+        "#A49DAD"
       );
 
       document.documentElement.style.setProperty(

@@ -33,7 +33,15 @@ export default function PaymentSuccess({ onLottieClick }) {
         />
       </div>
       {/* Success Text */}
-      <div style={{ color: "#594F67", fontSize: 24, fontWeight: 700, cursor: "pointer" }} onClick={onLottieClick}>
+      <div
+        style={{
+          color: "var(--color-base-text)",
+          fontSize: 24,
+          fontWeight: 700,
+          cursor: "pointer",
+        }}
+        onClick={onLottieClick}
+      >
         {t("payment.success.title")}
       </div>
     </div>

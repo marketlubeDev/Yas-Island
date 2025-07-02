@@ -690,8 +690,8 @@
     }
 
     &.selected {
-      background-color: #007bff;
-      color: white;
+      background-color: var(--color-date-selected-bg);
+      color: var(--color-date-selected-text);
       border-radius: 50%;
 
       &:first-child {
@@ -811,11 +811,7 @@
   font-size: 14px;
   cursor: pointer;
   border-radius: 50%;
-  color: #1e1e1e;
-}
-
-.day:hover {
-  background-color: #f0f0f0;
+  color: var(--color-base-date-clr);
 }
 
 .day.empty {
@@ -828,8 +824,9 @@
 }
 
 .day.today {
-  background-color: #e8f0fe;
-  color: #1e1e1e;
+  background-color: var(--color-today-bg);
+  color: var(--color-base-date-clr);
+  border: 1px solid var(--color-today-border);
 }
 
 /* Disabled dates (previous month) */
