@@ -100,7 +100,8 @@ function AttractionDetailModalMbl({ attraction, onClose, onAddToCart }) {
             AED {attraction?.product_variants[0]?.gross}
           </div>
           <div className="attraction-detail-modal__vat">
-            +{(attraction?.product_variants[0]?.gross * 0.05).toFixed(2)} Tax
+            +{(attraction?.product_variants[0]?.gross * 0.05).toFixed(2)} Net &
+            Tax
           </div>
         </div>
         <div className="attraction-detail-modal__footer-vertical-divider"></div>

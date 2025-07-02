@@ -98,6 +98,7 @@ function BookingModalMbl({
     const days = [];
     const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
+    // Add empty cells at the start
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(
         <div
@@ -107,6 +108,7 @@ function BookingModalMbl({
       );
     }
 
+    // Add the days
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(
         currentDate.getFullYear(),
@@ -115,7 +117,7 @@ function BookingModalMbl({
         0,
         0,
         0,
-        0 // Normalize the date for comparison
+        0
       );
 
       const isSelected =
@@ -136,7 +138,7 @@ function BookingModalMbl({
           onClick={() => !isDisabled && handleDateClick(date)}
           disabled={isDisabled}
         >
-          {toArabicNumeral(day)}
+          {day}
         </button>
       );
     }

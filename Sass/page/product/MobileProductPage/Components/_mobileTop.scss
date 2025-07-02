@@ -45,6 +45,14 @@
       height: 75%;
       width: 1px;
       background-color: var(--color-base-mobile-top-item-right-border);
+      opacity: 1;
+    }
+  }
+
+  html[lang="ar"] & {
+    &__item:not(:last-child)::after {
+      right: auto;
+      left: 0;
     }
   }
 
@@ -154,7 +162,6 @@
   &__filter-btn {
     background: var(--color-base-mobile-search-section-filter-btn-bg);
     border: 2px solid var(--color-base-mobile-search-section-filter-btn-border);
-
     border-radius: 2rem;
     padding: 6px 10px 6px 16px;
     font-size: 14px;
@@ -172,6 +179,23 @@
       font-size: 14px;
       color: var(--color-text-primary-chevron);
       margin-left: 53px;
+    }
+  }
+
+  @media (max-width: 360px) and (max-height: 740px) {
+    html[lang="ar"] & {
+      &__filter-btn {
+        gap: 4px;
+      }
+    }
+  }
+
+  @media (max-width: 344px) and (max-height: 882px) {
+    html[lang="ar"] & {
+      &__filter-btn {
+        gap: 0px;
+        font-size: 13px;
+      }
     }
   }
 

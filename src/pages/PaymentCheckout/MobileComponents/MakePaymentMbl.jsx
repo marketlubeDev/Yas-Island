@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import visaIcon from "../../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
 import CheckOutSummaryMbl from "./CheckOutSummaryMbl";
@@ -6,6 +6,10 @@ import PaymentMethodMbl from "./PaymentMethodMbl";
 
 function MakePaymentMbl({ onClose, onPaymentSuccess, promoApplied }) {
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

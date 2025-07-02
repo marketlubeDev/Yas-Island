@@ -2,16 +2,6 @@
   max-width: 420px;
   width: 98vw;
   max-height: 99vh;
-  // height: 97vh;
-
-  // background: white;
-  // border-radius: 20px;
-  // // box-shadow: 0 2px 16px rgba(44, 44, 84, 0.1);
-  // padding: 0 0 18px 0;
-  // margin: 2rem auto -1rem auto;
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
 
   &__header {
     display: flex;
@@ -134,7 +124,8 @@
 
   &__vat {
     font-size: 13px;
-    color: var(--color-dtl-footer-vat);
+    color: var(--color-base-mobile-product-page-vat-text);
+    font-weight: 400;
   }
 
   &__add-btn {
@@ -277,4 +268,8 @@
 }
 .attraction-detail-modal.ant-modal-wrap {
   background-color: red !important;
+}
+
+.attraction-detail-modal .ant-modal-body {
+  width: 100%;
 }

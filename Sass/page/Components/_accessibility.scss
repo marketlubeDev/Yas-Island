@@ -146,6 +146,10 @@
   backdrop-filter: blur(8px) !important;
 }
 
+.accessibility-popup-option {
+  padding: 16px 4px;
+}
+
 @media (max-width: 375px) and (max-height: 667px) {
   .accessibility-popup-card {
     // max-width: 98vw;
@@ -155,6 +159,7 @@
     font-size: 16px;
     margin-left: 3rem;
   }
+
   .accessibility-popup-subtitle {
     font-size: 11px;
     margin-bottom: 10px;
@@ -182,5 +187,50 @@
   .accessibility-modal .ant-modal-content {
     padding: 8px 2px;
     border-radius: 12px;
+  }
+
+  html[lang="ar"] {
+    .accessibility-popup-option {
+      width: 285px;
+    }
+    .accessibility-popup-title {
+      margin-left: 0rem;
+    }
+    .accessibility-popup-subtitle {
+      margin-left: 0rem;
+    }
+    .accessibility-popup-options {
+      margin-left: -2.5rem;
+    }
+    .accessibility-popup-continue {
+      margin-left: 0.4rem;
+    }
+    .accessibility-modal .ant-modal-content {
+      padding: 20px 33px;
+    }
+  }
+}
+
+@media (max-width: 430px) and (max-height: 932px) {
+  html[lang="ar"] {
+    .accessibility-modal .ant-modal-content {
+      padding: 20px 33px;
+    }
+  }
+}
+
+@media (max-width: 360px) and (max-height: 740px) {
+  html[lang="ar"] {
+    .accessibility-modal .ant-modal-content {
+      padding: 20px 25px;
+    }
+  }
+}
+
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang="ar"] {
+    .accessibility-modal .ant-modal-content {
+      padding: 20px 24px;
+    }
   }
 }

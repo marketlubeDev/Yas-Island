@@ -103,7 +103,11 @@ function InputFieldsMbl() {
         <div className="email-checkout__phone-row">
           <select
             id="countryCode"
-            className="email-checkout__country-code-select"
+            className={`email-checkout__country-code-select ${
+              i18n.language === "ar"
+                ? "email-checkout__country-code-select--ar"
+                : ""
+            }`}
             value={countryCode}
             onChange={(e) => setCountryCode(e.target.value)}
           >

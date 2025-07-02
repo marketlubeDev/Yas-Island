@@ -13,6 +13,12 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#fff" : "#18142B"
     );
     document.documentElement.style.setProperty(
+      "--down-arrow-icon",
+      isDarkMode
+        ? 'url("../../../src/assets/icons/inverteddown.svg")'
+        : 'url("../../../src/assets/icons/down.svg")'
+    );
+    document.documentElement.style.setProperty(
       "--color-base-bg",
       isDarkMode ? "#000" : isHighContrast ? "#fff" : "#fff"
     );
@@ -991,6 +997,10 @@ export default function GlobalInvertColor() {
 
     return () => {
       document.documentElement.style.setProperty("--text-color", "#18142B");
+      document.documentElement.style.setProperty(
+        "--down-arrow-icon",
+        'url("../../../src/assets/icons/down.svg")'
+      );
       document.documentElement.style.setProperty(
         "--pay-check-price",
         "#594f67"

@@ -294,8 +294,6 @@
 }
 
 .email-checkout__country-code-select {
-  // width: 55px;
-  // min-width: 0;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-country-code-clr);
@@ -309,10 +307,17 @@
   -moz-appearance: none;
   outline: none;
   cursor: pointer;
-  background-image: url("../../../src/assets/icons/down.svg");
+  background-image: var(
+    --down-arrow-icon,
+    url("../../../src/assets/icons/down.svg")
+  );
   background-repeat: no-repeat;
   background-position: right 2px center;
   background-size: 0.5545rem 0.5545rem;
+
+  &--ar {
+    padding: 9px 10px 8px 0px;
+  }
 }
 
 .email-checkout__summary-row--column {
@@ -372,6 +377,7 @@
   &::placeholder {
     color: var(--color-email-otp-input-clr);
     font-size: 13px;
+    opacity: 0.5;
   }
 }
 
@@ -385,4 +391,12 @@
 
 .email-checkout__summary-row-container {
   padding: 15px 10px;
+}
+
+:root {
+  --down-arrow-icon: url("../../../src/assets/icons/down.svg");
+}
+
+[data-theme="dark"] {
+  --down-arrow-icon: url("../../../src/assets/icons/inverteddown.svg");
 }

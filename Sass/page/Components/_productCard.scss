@@ -943,8 +943,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  padding-left: 1rem;
-
+  padding: 10px 0px;
   @include respond(desktop) {
     padding-left: 0.8rem;
   }
@@ -964,11 +963,18 @@
 
 .guest-label {
   color: var(--color-base-text);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  text-align: left;
+}
+
+html[lang="ar"] {
+  .guest-label {
+    text-align: right;
+  }
 }
 
 @include respond(desktop) {
