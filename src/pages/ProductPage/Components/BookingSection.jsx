@@ -321,7 +321,7 @@ export default function BookingSection({
         })
       );
 
-      navigate("/payment");
+      navigate("/email-verification");
     });
   };
 

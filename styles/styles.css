@@ -3038,7 +3038,7 @@ body {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  text-transform: capitalize;
+  text-transform: none;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .verification-text {
@@ -5708,6 +5708,12 @@ body {
   width: 75%;
   margin: 80px auto 0 auto;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+}
+
+.resend-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .confirm-email__modal {

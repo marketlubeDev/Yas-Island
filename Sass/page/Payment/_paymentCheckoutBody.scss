@@ -392,7 +392,7 @@
   font-style: normal;
   font-weight: 500;
   // line-height: 34px;
-  text-transform: capitalize;
+  text-transform: none;
 
   @include respond(desktop) {
     font-size: 12px;

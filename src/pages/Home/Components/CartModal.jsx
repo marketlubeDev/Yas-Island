@@ -26,7 +26,7 @@ const CartModal = ({ isOpen, onClose }) => {
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const handleCheckout = () => {
-    navigate("/payment");
+    navigate("/email-verification");
     onClose();
   };
 

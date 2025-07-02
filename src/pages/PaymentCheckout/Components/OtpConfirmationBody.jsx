@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import PaymentCheckHeading from "../Components/PaymentCheckHeading";
 import VerificationBox from "./VerificationBox";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+    
 export default function OtpConfirmationBody() {
-  const [email] = useState("user@example.com"); // You can get this from props, context, or state
+  const { email } = useSelector((state) => state.otp);
+  const navigate = useNavigate();
 
   const handleBackClick = () => {
-    // Navigate back to payment page
-    window.location.href = "/payment";
+    console.log("back click");
+    navigate("/email-verification");
   };
 
-  const handleVerificationComplete = () => {
-    // Navigate to payment details after OTP verification
-    window.location.href = "/payment-details";
-  };
 
   return (
     <div className="payment-checkout">
@@ -26,6 +25,7 @@ export default function OtpConfirmationBody() {
           <div className="form-group">
             <label>Enter OTP</label>
             <input
+              disabled
               type="email"
               // placeholder={t("payment.emailConfirmation.emailPlaceholder")}
               className="form-control"
@@ -34,10 +34,9 @@ export default function OtpConfirmationBody() {
             />
             <div className="input-underline"></div>
           </div>
-          <VerificationBox
-            email={email}
-            onVerificationComplete={handleVerificationComplete}
-          />
+          <VerificationBox email={email} />
+
+          
         </div>
       </div>
     </div>
