@@ -247,6 +247,17 @@ export default function BookingSection({
 
           
           orderDetails?.order?.items?.forEach((item) => {
+
+            const variantData = selectedProduct?.product_variants?.find(
+              (variant) => variant?.productid == item?.productId
+            );
+
+            let price = {
+              currency: "AED",
+              net: variantData?.net_amount,
+              tax: variantData?.vat,
+              gross: variantData?.gross
+            }
             let obj = {
               capacityGuid: item?.capacityGuid,
               discount: item?.discount,
@@ -255,7 +266,7 @@ export default function BookingSection({
               original: item?.original,
               packageCode: item?.packageCode,
               performances: item?.performances,
-              price: item?.price,
+              price: price,
               productId: item?.productId,
               quantity: item?.quantity,
               rechargeAmount: item?.rechargeAmount,
