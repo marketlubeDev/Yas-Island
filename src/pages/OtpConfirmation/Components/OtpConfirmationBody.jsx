@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CheckoutSteps from "../Components/CheckoutSteps";
-import PaymentCheckHeading from "../Components/PaymentCheckHeading";
+import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
+import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
 import VerificationBox from "./VerificationBox";
 
 export default function OtpConfirmationBody() {
@@ -30,7 +30,6 @@ export default function OtpConfirmationBody() {
               // placeholder={t("payment.emailConfirmation.emailPlaceholder")}
               className="form-control"
               value={email}
-              // onChange={(e) => setEmailValue(e.target.value)}
             />
             <div className="input-underline"></div>
           </div>

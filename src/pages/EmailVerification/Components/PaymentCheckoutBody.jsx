@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import CheckoutSteps from "../Components/CheckoutSteps";
-import PaymentCheckHeading from "../Components/PaymentCheckHeading";
-import EmailConfirmation from "./EmailConfirmation";
-import PaymentDetails from "./PaymentDetails";
-import CardPaymentDetail from "./CardPaymentDetail";
-import PaymentSuccess from "./PaymentSuccess";
-import PaymentResponse from "./PaymentResponse";
-import VerificationBox from "./VerificationBox";
+import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
+import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
+import EmailConfirmation from "../../PaymentCheckout/Components/EmailConfirmation";
+import PaymentDetails from "../../PaymentDetails/Components/PaymentDetails";
+import CardPaymentDetail from "../../CardPayment/Components/CardPaymentDetail";
+import PaymentSuccess from "../../PaymentSuccess/Components/PaymentSuccess";
+import PaymentResponse from "../../PaymentResponse/Components/PaymentResponse";
+import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 
 export default function PaymentCheckoutBody() {
   const [currentStep, setCurrentStep] = useState("email");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import VerificationBox from "./VerificationBox";
+import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../../global/checkoutSlice";
 

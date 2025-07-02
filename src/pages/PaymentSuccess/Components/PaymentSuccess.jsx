@@ -2,7 +2,7 @@ import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useTranslation } from "react-i18next";
 
-export default function PaymentSuccess({ onLottieClick }) {
+export default function PaymentSuccess() {
   const { t } = useTranslation();
   return (
     <div
@@ -38,9 +38,7 @@ export default function PaymentSuccess({ onLottieClick }) {
           color: "var(--color-base-text)",
           fontSize: 24,
           fontWeight: 700,
-          cursor: "pointer",
         }}
-        onClick={onLottieClick}
       >
         {t("payment.success.title")}
       </div>

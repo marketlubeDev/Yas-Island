@@ -1,6 +1,6 @@
 import React from "react";
-import CheckoutSteps from "../Components/CheckoutSteps";
-import PaymentCheckHeading from "../Components/PaymentCheckHeading";
+import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
+import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
 import PaymentDetails from "./PaymentDetails";
 
 export default function PaymentDetailsBody() {
