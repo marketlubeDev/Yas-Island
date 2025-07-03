@@ -27,9 +27,10 @@ export const ar = {
   },
   productHead: {
     sortBy: "ترتيب حسب",
-    filterBy: "تصفية حسب",
+    filterBy: "تصفية حسب المتنزهات",
     priceHighToLow: "السعر (من الأعلى إلى الأقل)",
     attractions: "المعالم",
+    selectPark: "اختر المتنزه",
   },
   sidebar: {
     all: "الكل",

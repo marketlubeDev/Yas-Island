@@ -1,15 +1,12 @@
 import apiClient from "../../../config/axiosInstance";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";  
-import { setProducts } from "../../global/productSlice";
-import queryClient from "../../../config/reactQuery"; 
-const useGetProductList = () => {
+import { useEffect } from "react";
+import { setParks, setProducts } from "../../global/productSlice";
 
+const useGetProductList = () => {
   const language = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
-
-
 
   const response = useQuery({
     queryKey: ["productList", language],
@@ -18,12 +15,24 @@ const useGetProductList = () => {
 
   // Dispatch to Redux only when data changes
   useEffect(() => {
-    if(response.data && response.data.data && response.data.data.results){
-      let orderedProducts = [...response?.data?.data?.results]?.sort((a, b) => a.display_order - b.display_order);
+    const arr = response?.data?.data?.results;
+    if (response.data && response.data.data && arr) {
+      let orderedProducts = [...arr]?.sort(
+        (a, b) => a.display_order - b.display_order
+      );
       dispatch(setProducts(orderedProducts));
+
+      const allParks = arr
+        ?.map((item) => item?.parks)
+        ?.flat()
+        ?.map((item) => item?.parkname_localized);
+
+      const uniqueParks = [...new Set(allParks)];
+
+      dispatch(setParks(uniqueParks));
     }
   }, [response.data, dispatch]);
- 
+
   return {
     data: response.data,
     productList: response?.data?.data?.results,

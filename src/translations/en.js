@@ -27,9 +27,10 @@ export const en = {
   },
   productHead: {
     sortBy: "Sort by",
-    filterBy: "Filter by",
+    filterBy: "Filter by Parks",
     priceHighToLow: "Price (High to Low)",
     attractions: "Attractions",
+    selectPark: "Select Park",
   },
   sidebar: {
     all: "All",

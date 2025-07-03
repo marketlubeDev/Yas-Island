@@ -35,7 +35,6 @@ export default function HeaderLogo() {
     navigate("/");
   };
 
-  const isProductRoute = location.pathname === "/product";
   const isPaymentRoute = location.pathname === "/product";
 
   const [showLangDropdown, setShowLangDropdown] = useState(false);
