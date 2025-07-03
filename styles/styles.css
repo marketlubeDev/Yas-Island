@@ -5133,9 +5133,9 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   outline: none;
   padding-bottom: 12px;
   overflow: hidden;
-  top: 50%;
-  left: 47.8%;
-  transform: translate(-50%, -50%);
+  top: 45% !important;
+  left: 47.8% !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 .mycart-modal__header {
@@ -5154,6 +5154,7 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   color: var(--color-email-form-label);
   flex: 1;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .mycart-modal__expand {
@@ -5388,45 +5389,34 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 @media (min-width: 340px) and (max-width: 369px) {
   .mycart-modal__footer {
     gap: 0;
-    margin-top: 174px;
   }
 }
 @media (min-width: 360px) and (max-width: 369px) {
   .mycart-modal__footer {
     gap: 0;
-    margin-top: 80px;
   }
 }
 @media (min-width: 375px) and (max-width: 411px) {
   .mycart-modal__footer {
-    margin-top: 126px;
     gap: 0;
   }
 }
 @media (min-width: 412px) and (max-width: 413px) {
   .mycart-modal__footer {
-    margin-top: 179px;
     gap: 0;
   }
 }
 @media (min-width: 414px) and (max-width: 429px) {
   .mycart-modal__footer {
-    margin-top: 162px;
     gap: 0;
   }
 }
 @media (min-width: 430px) and (max-width: 480px) {
   .mycart-modal__footer {
-    margin-top: 196px;
     gap: 0;
   }
 }
 
-@media (max-width: 344px) and (max-height: 882px) {
-  html[lang=ar] .mycart-modal__footer {
-    margin-top: 132px;
-  }
-}
 .mycart-modal__checkout,
 .mycart-modal__save {
   display: block;
@@ -5446,8 +5436,6 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   .mycart-modal__checkout,
   .mycart-modal__save {
     font-size: 15px;
-    width: 90%;
-    margin-top: -0.2rem;
     padding: 10px 0;
   }
 }
@@ -5455,8 +5443,6 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   .mycart-modal__checkout,
   .mycart-modal__save {
     font-size: 14px;
-    width: 65%;
-    margin-top: -0.2rem;
     padding: 8px 0;
   }
 }
@@ -5482,10 +5468,6 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   overflow: hidden !important;
 }
 
-.mycart-modal .ant-modal {
-  top: 40px !important;
-}
-
 .mycart-modal .ant-modal-body {
   display: flex;
   flex-direction: column;
@@ -5507,12 +5489,8 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 }
 
 @media (max-width: 375px) and (max-height: 667px) {
-  .mycart-modal__content {
-    height: 78vh;
-  }
   .mycart-modal__title {
     font-size: 18px;
-    margin-bottom: 0.5rem;
   }
   .mycart-modal__item {
     padding: 6px;
@@ -5520,26 +5498,20 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   .mycart-modal__summary {
     width: 100%;
     font-size: 13px;
-    height: 25vh;
     padding: 10px 40px 10px 40px;
   }
   .mycart-modal__checkout {
-    width: 65%;
     font-size: 15px;
-    margin-top: -2.3rem;
     padding: 8px 0;
   }
   .mycart-modal__save {
     font-size: 15px;
-    width: 65%;
-    margin-top: -0.2rem;
     padding: 8px 0;
   }
   .mycart-modal__footer {
     gap: 0;
     padding: 3px;
     margin-top: 0;
-    height: 33.5vh;
   }
   .mycart-modal__summary-row--total {
     font-size: 13px;
@@ -5562,20 +5534,12 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   .mycart-modal__item-qty-row {
     font-size: 10px;
   }
-  .mycart-modal-mobile {
-    height: 86vh;
-  }
-  .mycart-modal-mobile .ant-modal-content {
-    height: 86vh;
-  }
-  .mycart-modal-mobile .ant-modal-body {
-    height: 86vh;
-  }
 }
 .mycart-modal-mobile .ant-modal-content {
   background: var(--color-email-form-box) !important;
   box-shadow: 0 2px 16px rgba(44, 44, 84, 0.14) !important;
   padding: 8px 8px 8px 8px !important;
+  height: 88vh !important;
 }
 
 .mycart-modal-mobile .ant-modal-body {
@@ -7060,36 +7024,28 @@ html[lang=ar] .make-payment__summary-top {
   max-height: 99vh;
 }
 .attraction-detail-modal__header {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 18px 18px 0 18px;
-  border-radius: 24px 24px 0 0;
-  background: var(--color-dtl-header-bg);
+  padding: 1rem;
 }
-.attraction-detail-modal__back {
-  background: none;
-  border: none;
-  padding: 0;
+.attraction-detail-modal__back-icon {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  margin-left: -20px;
-  margin-right: 14px;
-}
-.attraction-detail-modal__back img {
-  width: 25px;
-  height: 25px;
 }
 .attraction-detail-modal__title {
+  flex: 1;
+  text-align: center;
+  margin-right: 24px;
   font-size: 20px;
   font-weight: 700;
   color: var(--color-dtl-header-color);
-  flex: 1;
-  text-align: center;
 }
 .attraction-detail-modal__body {
-  padding: 24px 6px 24px 6px;
+  padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
-  height: 59vh;
+  height: 60vh;
   overflow-y: auto;
 }
 .attraction-detail-modal__image {
@@ -7120,7 +7076,7 @@ html[lang=ar] .make-payment__summary-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px 18px 18px;
+  padding: 10px 18px 18px 18px;
   gap: 18px;
   background: var(--color-dtl-footer-bg);
   border-radius: 0 0 24px 24px;
@@ -7130,7 +7086,7 @@ html[lang=ar] .make-payment__summary-top {
 }
 .attraction-detail-modal__footer .attraction-detail-modal__footer-divider {
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 2.5%;
   width: 95%;
   height: 2px;
@@ -7195,11 +7151,10 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .attraction-detail-modal .ant-modal-content {
-  height: 80vh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  padding: 20px 8px;
+  padding: 0px 8px;
   align-items: center;
   border-radius: 20px;
   justify-content: space-between;
@@ -7657,6 +7612,7 @@ html[lang=ar] .make-payment__summary-top {
   overflow-y: scroll;
   scrollbar-width: thin;
   border-radius: 20px;
+  padding: 10px 3px;
 }
 
 :where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
