@@ -9,21 +9,6 @@
   height: calc(100vh - 12rem);
   scroll-behavior: smooth;
 
-  // @include respond(desktop) {
-  //   height: calc(100vh - 170px);
-  //   padding: 1rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   padding: 1rem;
-  //   height: calc(100vh - 100px);
-  // }
-
-  // @include respond(extraBigDesktop) {
-  //   height: calc(100vh - 170px);
-  //   padding: 0.5rem;
-  // }
-
   @include respond(desktop) {
     height: calc(100vh - 11.3rem);
   }
@@ -48,35 +33,15 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 1.5rem;
     justify-items: left;
-
-    // @include respond(desktop) {
-    //   grid-template-columns: repeat(4, 1fr);
-    //   gap: 1rem;
-    // }
-
-    // @include respond(bigDesktop) {
-    //   grid-template-columns: repeat(4, 1fr);
-    //   gap: 1.2rem;
-    // }
-
-    // @include respond(extraBigDesktop) {
-    //   grid-template-columns: repeat(5, 1fr);
-    //   gap: 1.5rem;
-    // }
-
-    // For smaller screens, fall back to fewer columns
-    @media only screen and (max-width: 1199px) {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
   }
 
   &__card {
     width: auto;
     min-width: 306.491px;
+    max-width: 306.491px;
     height: 446.105px;
     flex-shrink: 0;
     background-color: var(--color-base-product-card-card-item-bg);
@@ -87,28 +52,36 @@
     flex-direction: column;
     align-items: center;
 
+    @include respond(desktop) {
+      height: 425px;
+    }
+
+    @include respond(bigDesktop) {
+      height: 425px;
+    }
+
     &__image {
       width: 100%;
-      height: 177.616px;
+      height: 201.573px;
       flex-shrink: 0;
       background-color: #f0f0f0;
       border-radius: 0.8rem;
 
-      @include respond(desktop) {
-        height: 140px;
-      }
+      // @include respond(desktop) {
+      //   height: 140px;
+      // }
 
-      @include respond(bigDesktop) {
-        height: 160px;
-      }
+      // @include respond(bigDesktop) {
+      //   height: 160px;
+      // }
 
-      @include respond(extraBigDesktop) {
-        height: 170px;
-      }
+      // @include respond(extraBigDesktop) {
+      //   height: 170px;
+      // }
 
       & img {
         width: 100%;
-        height: 100%;
+        height: 201.573px;
         object-fit: cover;
         border-radius: 0.8rem;
       }
@@ -129,11 +102,14 @@
       &__title {
         color: var(--color-base-text);
         text-align: left;
-        // font-family: Urbanist;
         font-size: 23px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 280px;
 
         @include respond(desktop) {
           font-size: 17px;
@@ -186,11 +162,7 @@
         width: 100%;
         height: 0.826px;
         background: var(--color-base-product-card-divider);
-        margin-top: 1rem;
-
-        @include respond(desktop) {
-          margin-top: 0.8rem;
-        }
+        margin-top: 0.3rem;
       }
     }
 
