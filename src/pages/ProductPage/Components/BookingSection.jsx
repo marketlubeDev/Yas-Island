@@ -278,6 +278,9 @@ export default function BookingSection({
               variantName: selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
               )?.productvariantname,
+              minQuantity: variantData?.min_quantity,
+              maxQuantity: variantData?.max_quantity,
+              incrementNumber: variantData?.increment_number,
             };  
             dispatch(addToCart(obj));
           });

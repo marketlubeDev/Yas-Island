@@ -37,9 +37,18 @@ const CartModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const handleQuantityChange = (id, change , validFrom) => {
+  const handleQuantityChange = (id, change, validFrom, minQuantity , maxQuantity , incrementNumber = 1) => {
     const item = cartItems.find((item) => item.productId === id && item.validFrom === validFrom);
-    dispatch(updateQuantity({ id, quantity: Math.max(1, item.quantity + change) ,   validFrom}));
+    if (!item) return;
+
+    // Calculate the actual change amount based on increment number
+    const actualChange = change > 0 ? incrementNumber : -incrementNumber;
+    
+    // Calculate new quantity respecting min and max bounds
+    const newQuantity = Math.max(minQuantity, Math.min(maxQuantity, item.quantity + actualChange));
+    
+
+    dispatch(updateQuantity({ id, quantity: newQuantity, validFrom }));
   };
 
   const handleDeleteItem = (id , validFrom) => {
@@ -77,7 +86,6 @@ const CartModal = ({ isOpen, onClose }) => {
           );
         } else {
           const orderDetails = res?.orderdetails?.order;
-          console.log(orderDetails , "orderDetails>>");
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
@@ -85,7 +93,6 @@ const CartModal = ({ isOpen, onClose }) => {
             validFrom: item?.validFrom,
             validTo: item?.validTo 
           }));
-          console.log(items , "items>>");
           dispatch(setCheckout({
             coupons: [],
             items: items,
@@ -167,13 +174,13 @@ const CartModal = ({ isOpen, onClose }) => {
                       <Button
                         className="minus-btn-web"
                         icon={<MinusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, -1 , item?.validFrom)}
+                        onClick={() => handleQuantityChange(item?.productId, -1 , item?.validFrom , item?.minQuantity , item?.maxQuantity , item?.incrementNumber)}
                       />
                       <span>{item?.quantity}</span>
                       <Button
                         className="plus-btn-web"
                         icon={<PlusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, 1 , item?.validFrom)}
+                        onClick={() => handleQuantityChange(item?.productId, 1 , item?.validFrom , item?.minQuantity , item?.maxQuantity , item?.incrementNumber)}
                       />
                       <Button className="delete-btn" onClick={() => handleDeleteItem(item?.productId , item?.validFrom )}>
                         <img
