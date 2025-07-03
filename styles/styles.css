@@ -7036,7 +7036,7 @@ html[lang=ar] .make-payment__summary-top {
 .attraction-detail-modal__body {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
-  height: 60vh;
+  height: calc(99dvh - 11rem);
   overflow-y: auto;
 }
 .attraction-detail-modal__image {
@@ -7142,6 +7142,7 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .attraction-detail-modal .ant-modal-content {
+  height: 99dvh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -7750,7 +7751,7 @@ html[lang=ar] .make-payment__summary-top {
 .booking-modal .ant-modal-content {
   background-color: var(--color-base-bg);
   border: 2.353px solid var(--color-base-product-card-card-item-border);
-  height: 80vh;
+  height: 95vh;
   overflow-y: scroll;
   scrollbar-width: thin;
   border-radius: 20px;

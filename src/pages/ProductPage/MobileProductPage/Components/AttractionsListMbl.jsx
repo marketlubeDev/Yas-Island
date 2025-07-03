@@ -34,9 +34,7 @@ const AttractionsListMbl = ({ productList }) => {
     dispatch(clearPerformance());
   };
 
-  const handleAddToCart = () => {
-    setModalType("booking");
-  };
+
 
   const handleBookingModalBack = () => {
     setModalType("attraction");
@@ -84,7 +82,7 @@ const AttractionsListMbl = ({ productList }) => {
           <AttractionDetailModalMbl
             attraction={selectedAttraction}
             onClose={handleCloseModal}
-            onAddToCart={handleAddToCart}
+            setShowBookingSection={setModalType}
           />
         );
       case "booking":
@@ -112,8 +110,8 @@ const AttractionsListMbl = ({ productList }) => {
   return (
     <>
       <div className="attractions-list">
-        {productList?.map((item) => (
-          <div className="attraction-card" key={item.id}>
+        {productList?.map((item, i) => (
+          <div className="attraction-card" key={i}>
             <img
               src={item?.product_images?.thumbnail_url}
               alt={item?.product_title}
@@ -154,12 +152,12 @@ const AttractionsListMbl = ({ productList }) => {
         open={modalType !== null}
         onCancel={handleCloseModal}
         footer={null}
-        closable={true}
-        closeIcon={
-          <span className="custom-modal-close">
-            <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
-          </span>
-        }
+        closable={false}
+        // closeIcon={
+        //   <span className="custom-modal-close">
+        //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
+        //   </span>
+        // }
         width="100%"
         className={
           modalType === "attraction"
