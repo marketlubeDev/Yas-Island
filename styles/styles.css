@@ -810,11 +810,16 @@ body {
   }
 }
 .product-top-sec {
-  height: 22.3vh;
+  height: 12rem;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-top-sec {
-    height: 24vh;
+    height: 11.3rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-top-sec {
+    height: 11.3rem;
   }
 }
 
@@ -857,7 +862,7 @@ body {
   background-color: var(--color-base-product-card-bg);
   padding: 0 2rem 2rem 2rem;
   overflow-y: scroll;
-  height: 80vh;
+  height: 78vh;
   scroll-behavior: smooth;
 }
 .ProductCard::-webkit-scrollbar {

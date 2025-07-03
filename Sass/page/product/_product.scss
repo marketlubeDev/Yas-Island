@@ -294,15 +294,15 @@
 }
 
 .product-top-sec {
-  height: 22.3vh;
+  height: 12rem;
 
   @include respond(desktop) {
-    height: 24vh;
+    height: 11.3rem;
   }
 
-  // @include respond(bigDesktop) {
-  //   height: 21vh;
-  // }
+  @include respond(bigDesktop) {
+    height: 11.3rem;
+  }
 }
 .product-top-pay {
   height: 10vh;
