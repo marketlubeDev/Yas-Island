@@ -128,7 +128,7 @@ export default function HeaderLogo() {
           style={{ position: "relative" }}
         >
           <button
-            className="web-header__lang-btn"
+            className="lang-btn-head"
             aria-label={t("common.language")}
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"

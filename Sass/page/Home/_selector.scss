@@ -15,15 +15,16 @@
     background-color: transparent;
     color: var(--color-base-text);
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 17px;
 
-    @include respond(desktop) {
-      font-size: 13px;
-    }
+    // @include respond(desktop) {
+    //   font-size: 13px;
+    // }
 
-    @include respond(bigDesktop) {
-      font-size: 14px;
-    }
+    // @include respond(bigDesktop) {
+    //   font-size: 14px;
+    // }
   }
 }
 
@@ -37,18 +38,18 @@
 .Selector-label {
   padding-left: 8px;
   color: var(--color-base-text);
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
 
-  @include respond(desktop) {
-    font-size: 14px;
-  }
+  // @include respond(desktop) {
+  //   font-size: 14px;
+  // }
 
-  @include respond(bigDesktop) {
-    font-size: 15px;
-    padding-left: 6px;
-  }
+  // @include respond(bigDesktop) {
+  //   font-size: 15px;
+  //   padding-left: 6px;
+  // }
 }

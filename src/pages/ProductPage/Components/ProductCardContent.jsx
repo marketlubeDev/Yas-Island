@@ -13,6 +13,7 @@ export default function ProductCardContent({ name, description }) {
       <p className="ProductCard__card__content__description">
         {truncatedDescription}
       </p>
+      <div className="ProductCard__card__content__divider"></div>
     </div>
   );
 }

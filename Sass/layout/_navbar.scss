@@ -9,6 +9,7 @@
   font-size: 1rem;
   background-color: var(--color-base-product-card-card-item-bg);
   padding: 2rem 0 3rem 1rem;
+  // max-height: 100vh;
 
   &-ar {
     padding: 2rem 1rem 3rem 0;
@@ -72,8 +73,8 @@
   }
 
   .item-icon {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.3rem;
+    height: 3.3rem;
     border-radius: 50%;
     display: flex;
     align-items: center;

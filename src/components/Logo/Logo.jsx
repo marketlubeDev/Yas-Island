@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/logo/logo.png";
 import desc from "../../assets/logo/desc.svg";
 import LogoVertical from "../../assets/logo/LogoVertical.svg";
-import invertLogoVertical from "../../assets/logo/blacklogo.svg";
+import invertLogoVertical from "../../assets/logo/invertlogo.svg";
 import "./_logo.scss";
 import { useSelector } from "react-redux";
 
@@ -15,9 +15,6 @@ export default function Logo({ type = "default" }) {
           src={isDarkMode ? invertLogoVertical : LogoVertical}
           alt="logo"
           className="logo-img"
-          style={{
-            padding: isDarkMode ? "1rem 2rem" : "0rem",
-          }}
         />
       </div>
     );
