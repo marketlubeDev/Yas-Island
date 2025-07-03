@@ -862,8 +862,18 @@ body {
   background-color: var(--color-base-product-card-bg);
   padding: 0 2rem 2rem 2rem;
   overflow-y: scroll;
-  height: 78vh;
+  height: calc(100vh - 12rem);
   scroll-behavior: smooth;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .ProductCard {
+    height: calc(100vh - 11.3rem);
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .ProductCard {
+    height: calc(100vh - 11.3rem);
+  }
 }
 .ProductCard::-webkit-scrollbar {
   width: 10px;
