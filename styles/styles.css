@@ -1989,7 +1989,7 @@ html[lang=ar] .guest-label {
   align-items: center;
   justify-content: space-between;
   overflow-y: scroll;
-  gap: 12px;
+  gap: 20px;
 }
 .guest-section-header-container::-webkit-scrollbar {
   width: 8px;
