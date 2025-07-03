@@ -4455,7 +4455,7 @@ html[lang=ar] .guest-label {
 .attraction-card__action {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
   gap: 4px;
   width: 120px;
 }

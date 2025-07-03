@@ -145,13 +145,13 @@ const AttractionsListMbl = ({ productList }) => {
                   >
                     {t("common.add")}
                   </button>
-                  <div className="attraction-card__price">
+                  <div className="attraction-card__price" style={{marginRight: "0.5rem"}}>
                     <span>AED {defaultVariant(item)?.gross}</span>
                   </div>
-                  <span className="attraction-card__vat">
+                  {/* <span className="attraction-card__vat">
                     {defaultVariant(item)?.net_amount}+{" "}
                     {(defaultVariant(item)?.gross * 0.05).toFixed(2)} Net & Tax
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
