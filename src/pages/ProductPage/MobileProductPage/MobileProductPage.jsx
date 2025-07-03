@@ -10,15 +10,30 @@ function MobileProductPage() {
   const productList = useSelector((state) => state.product.allProducts);
   const currentPark = useSelector((state) => state.product.currentPark);
   const currentSort = useSelector((state) => state.product.currentSort);
+  const searchQuery = useSelector((state) => state.product.searchQuery);
   useGetProductList();
 
-  // Filter and sort products based on selected park and sort option
+  // Filter and sort products based on search, selected park and sort option
   const filteredProducts = useMemo(() => {
     let filtered = productList;
 
+    // Filter by search query if provided
+    if (searchQuery) {
+      filtered = filtered?.filter((product) => {
+        const searchLower = searchQuery.toLowerCase();
+        return (
+          product?.product_title?.toLowerCase().includes(searchLower) ||
+          product?.productshortdesc?.toLowerCase().includes(searchLower) ||
+          product?.parks?.some((park) =>
+            park.parkname_localized?.toLowerCase().includes(searchLower)
+          )
+        );
+      });
+    }
+
     // Filter by park if selected
     if (currentPark) {
-      filtered = productList?.filter((product) => {
+      filtered = filtered?.filter((product) => {
         // Check if the product belongs to the selected park
         return product?.parks?.some(
           (park) => park.parkname_localized === currentPark
@@ -55,7 +70,7 @@ function MobileProductPage() {
     }
 
     return filtered || [];
-  }, [productList, currentPark, currentSort]);
+  }, [productList, currentPark, currentSort, searchQuery]);
 
   return (
     <div className="mobile-product-page">

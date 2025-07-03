@@ -6,6 +6,7 @@ const initialState = {
   parks: [],
   currentPark: "",
   currentSort: "",
+  searchQuery: "",
 };
 
 const productSlice = createSlice({
@@ -31,6 +32,9 @@ const productSlice = createSlice({
     setCurrentSort: (state, action) => {
       state.currentSort = action.payload;
     },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
   },
 });
 
@@ -41,5 +45,6 @@ export const {
   setParks,
   setCurrentPark,
   setCurrentSort,
+  setSearchQuery,
 } = productSlice.actions;
 export default productSlice.reducer;
