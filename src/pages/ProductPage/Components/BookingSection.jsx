@@ -136,17 +136,18 @@ export default function BookingSection({
     );
   };
 
-  const getValidToDate = (id , selectedDate) => {
-    const item = selectedProduct?.product_variants?.find((variant) => variant?.productid == id);
+  const getValidToDate = (id, selectedDate) => {
+    const item = selectedProduct?.product_variants?.find(
+      (variant) => variant?.productid == id
+    );
     const validFromDate = new Date(selectedDate);
-    let validToDate = selectedDate; 
+    let validToDate = selectedDate;
     const endDate = new Date(validFromDate);
     endDate.setDate(validFromDate.getDate() + (item?.validitydays || 1));
     validToDate = formatDateToYYYYMMDD(endDate);
 
     return validToDate;
-  }
-
+  };
 
   const formatMonthYear = (date) => {
     if (!date) return "";
@@ -210,7 +211,7 @@ export default function BookingSection({
 
     const items = [];
     Object.entries(guests).forEach(([productId, guestData]) => {
-      if(guestData.quantity < 1){
+      if (guestData.quantity < 1) {
         return;
       }
       let hasperformance = false;
@@ -224,7 +225,7 @@ export default function BookingSection({
           ? [{ performanceId: getPerformanceId(selectedDate) }]
           : [],
         validFrom: selectedDate,
-        validTo: getValidToDate(productId , selectedDate)
+        validTo: getValidToDate(productId, selectedDate),
       });
     });
 
@@ -246,8 +247,6 @@ export default function BookingSection({
         } else {
           const orderDetails = res?.orderdetails;
 
-
-          
           orderDetails?.order?.items?.forEach((item) => {
             const variantData = selectedProduct?.product_variants?.find(
               (variant) => variant?.productid == item?.productId
@@ -257,8 +256,8 @@ export default function BookingSection({
               currency: "AED",
               net: variantData?.net_amount,
               tax: variantData?.vat,
-              gross: variantData?.gross
-            }
+              gross: variantData?.gross,
+            };
             let obj = {
               capacityGuid: item?.capacityGuid,
               discount: item?.discount,
@@ -266,19 +265,24 @@ export default function BookingSection({
               itemPromotionList: item?.itemPromotionList,
               original: item?.original,
               packageCode: item?.packageCode,
-              performances: item?.performances?.[0]?.performanceId || getPerformanceId(item?.validFrom) || null,
+              performances:
+                item?.performances?.[0]?.performanceId ||
+                getPerformanceId(item?.validFrom) ||
+                null,
               price: price,
               productId: item?.productId,
               quantity: item?.quantity,
               rechargeAmount: item?.rechargeAmount,
               validFrom: item?.validFrom,
-              validTo: item?.validTo ? formatDateToYYYYMMDD(item?.validTo) : getValidToDate(item?.productId , selectedDate),
+              validTo: item?.validTo
+                ? formatDateToYYYYMMDD(item?.validTo)
+                : getValidToDate(item?.productId, selectedDate),
               image: selectedProduct?.product_images?.thumbnail_url,
               title: selectedProduct?.product_title,
               variantName: selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
               )?.productvariantname,
-            };  
+            };
             dispatch(addToCart(obj));
           });
 
@@ -374,7 +378,7 @@ export default function BookingSection({
   return (
     <div className="booking-section">
       {/* Date Selection */}
-      <div className="calendar-container">
+      {/* <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
         <div className="calendar-wrapper">
           {isLoadingDates ? (
@@ -407,9 +411,9 @@ export default function BookingSection({
           )}
         </div>
       </div>
-      <div className="booking-section-divider"></div>
+      <div className="booking-section-divider"></div> */}
       {/* Guest Selection */}
-      <div className="guest-section h-full flex flex-col justify-between">
+      {/* <div className="guest-section h-full flex flex-col justify-between">
         <div className="guest-section-header-container">
           <h2 className="section-title">
             {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
@@ -550,6 +554,78 @@ export default function BookingSection({
           >
             {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
+        </div>
+      </div> */}
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+          width: "100%",
+          minHeight: "60vh",
+        }}
+      >
+        <div className="calendar-container">
+          <h2>{t("booking.chooseDate")}</h2>
+          <div className="calendar-wrapper">
+            {isLoadingDates ? (
+              renderCalendarSkeleton()
+            ) : (
+              <>
+                <div className="calendar-header">
+                  <button onClick={handlePrevMonth}>
+                    <img src={LeftArrow} alt="Left Arrow" />
+                  </button>
+                  <h3>{formatMonthYear(currentDate)}</h3>
+                  <button onClick={handleNextMonth}>
+                    <img src={RightArrow} alt="Right Arrow" />
+                  </button>
+                </div>
+
+                <div className="calendar-body">
+                  <div className="calendar-weekdays">
+                    <span>{t("booking.weekDays.sun")}</span>
+                    <span>{t("booking.weekDays.mon")}</span>
+                    <span>{t("booking.weekDays.tue")}</span>
+                    <span>{t("booking.weekDays.wed")}</span>
+                    <span>{t("booking.weekDays.thu")}</span>
+                    <span>{t("booking.weekDays.fri")}</span>
+                    <span>{t("booking.weekDays.sat")}</span>
+                  </div>
+                  <div className="calendar-days">{generateCalendarDays()}</div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "40vh",
+              background: "blue",
+              overflowY: "scroll",
+            }}
+          >
+            <div
+              style={{ width: "100%", height: "100rem", background: "yellow" }}
+            ></div>
+            <div
+              style={{ width: "100%", height: "100rem", background: "black" }}
+            ></div>
+          </div>
+          <div style={{ width: "100%", height: "10rem", background: "green" }}>
+            3
+          </div>
         </div>
       </div>
     </div>
