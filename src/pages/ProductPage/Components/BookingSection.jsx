@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
-import { setCheckout, setCheckoutDate } from "../../../global/checkoutSlice";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
@@ -78,7 +77,6 @@ export default function BookingSection({
 
   const handleDateClick = (date) => {
     const formattedDate = formatDateToYYYYMMDD(date);
-    dispatch(setCheckoutDate(formattedDate));
     setSelectedDate(formattedDate);
   };
 
@@ -284,7 +282,10 @@ export default function BookingSection({
               variantName: selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
               )?.productvariantname,
-            };
+              minQuantity: variantData?.min_quantity,
+              maxQuantity: variantData?.max_quantity,
+              incrementNumber: variantData?.increment_number,
+            };  
             dispatch(addToCart(obj));
           });
 
@@ -316,14 +317,6 @@ export default function BookingSection({
       Object.entries(guests).forEach(([productId, guestData]) => {
         variants[productId] = guestData.quantity;
       });
-
-      dispatch(
-        setCheckout({
-          selectedDate,
-          guests: variants,
-          totalPrice,
-        })
-      );
 
       navigate("/email-verification");
     });
@@ -388,7 +381,7 @@ export default function BookingSection({
   return (
     <div className="booking-section">
       {/* Date Selection */}
-      {/* <div className="calendar-container">
+      <div className="calendar-container">
         <h2>{t("booking.chooseDate")}</h2>
         <div className="calendar-wrapper">
           {isLoadingDates ? (
@@ -421,9 +414,9 @@ export default function BookingSection({
           )}
         </div>
       </div>
-      <div className="booking-section-divider"></div> */}
+      <div className="booking-section-divider"></div>
       {/* Guest Selection */}
-      {/* <div className="guest-section h-full flex flex-col justify-between">
+      <div className="guest-section h-full flex flex-col justify-between">
         <div className="guest-section-header-container">
           <h2 className="section-title">
             {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
@@ -565,79 +558,9 @@ export default function BookingSection({
             {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
         </div>
-      </div> */}
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "10px",
-          width: "100%",
-          minHeight: "60vh",
-        }}
-      >
-        <div className="calendar-container">
-          <h2>{t("booking.chooseDate")}</h2>
-          <div className="calendar-wrapper">
-            {isLoadingDates ? (
-              renderCalendarSkeleton()
-            ) : (
-              <>
-                <div className="calendar-header">
-                  <button onClick={handlePrevMonth}>
-                    <img src={LeftArrow} alt="Left Arrow" />
-                  </button>
-                  <h3>{formatMonthYear(currentDate)}</h3>
-                  <button onClick={handleNextMonth}>
-                    <img src={RightArrow} alt="Right Arrow" />
-                  </button>
-                </div>
-
-                <div className="calendar-body">
-                  <div className="calendar-weekdays">
-                    <span>{t("booking.weekDays.sun")}</span>
-                    <span>{t("booking.weekDays.mon")}</span>
-                    <span>{t("booking.weekDays.tue")}</span>
-                    <span>{t("booking.weekDays.wed")}</span>
-                    <span>{t("booking.weekDays.thu")}</span>
-                    <span>{t("booking.weekDays.fri")}</span>
-                    <span>{t("booking.weekDays.sat")}</span>
-                  </div>
-                  <div className="calendar-days">{generateCalendarDays()}</div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "40vh",
-              background: "blue",
-              overflowY: "scroll",
-            }}
-          >
-            <div
-              style={{ width: "100%", height: "100rem", background: "yellow" }}
-            ></div>
-            <div
-              style={{ width: "100%", height: "100rem", background: "black" }}
-            ></div>
-          </div>
-          <div style={{ width: "100%", height: "10rem", background: "green" }}>
-            3
-          </div>
-        </div>
       </div>
+
+     
     </div>
   );
 }

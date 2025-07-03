@@ -14,6 +14,8 @@ export default function ProductCard({ productList }) {
   const [showBookingSection, setShowBookingSection] = useState(false);
   const dispatch = useDispatch();
 
+  console.log(productList, "productList");
+
   const showModal = (product) => {
     // Create a plain object to avoid non-serializable payload issues
     const plainProduct = { ...product };
@@ -30,9 +32,12 @@ export default function ProductCard({ productList }) {
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find(
+    let defaultVariant = product?.product_variants?.find(
       (variant) => variant.isdefault
     );
+    if (!defaultVariant) {
+      defaultVariant = product?.product_variants[0];
+    }
     return defaultVariant;
   };
 

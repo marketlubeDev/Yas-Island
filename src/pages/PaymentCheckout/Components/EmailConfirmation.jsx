@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 import { useDispatch } from "react-redux";
 import useVerification from "../../../apiHooks/email/verification";
-import { setOtp } from "../../../global/OtpSlice";
+import { setOtp } from "../../../global/otpSlice";
 import Loading from "../../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -29,6 +29,7 @@ export default function EmailConfirmation() {
           },
           onError: (error) => {
             console.log(error , "error>>");
+            toast.error(error?.response?.data?.message || "Something went wrong");
           }
         }
       );

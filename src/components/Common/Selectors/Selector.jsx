@@ -16,12 +16,11 @@ export default function Selector({
       </label>
       <div className="selector base-filter" style={style}>
         <select value={value} onChange={onChange} name={name} id={id}>
-          <option value="" disabled>
-            {placeHolder}
-          </option>
-          {options.map((option, index) => (
-            <option key={index} value={option.value || option}>
-              {option.value || option}
+          <option value="">{placeHolder}</option>
+
+          {options?.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
             </option>
           ))}
         </select>

@@ -26,10 +26,13 @@ export const ar = {
     highContrast: "تباين عالي",
   },
   productHead: {
-    sortBy: "ترتيب حسب",
-    filterBy: "تصفية حسب",
+    sortBy: "ترتيب حسب السعر",
+    filterBy: "تصفية حسب المتنزهات",
     priceHighToLow: "السعر (من الأعلى إلى الأقل)",
+    priceLowToHigh: "السعر (من الأقل إلى الأعلى)",
     attractions: "المعالم",
+    selectPark: "اختر المتنزه",
+    selectSort: "اختر الترتيب",
   },
   sidebar: {
     all: "الكل",
