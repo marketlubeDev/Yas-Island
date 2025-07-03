@@ -172,13 +172,11 @@
     cursor: pointer;
     font-weight: 500;
     transition: background 0.2s, border 0.2s;
-    min-width: 140px;
     justify-content: left;
 
     .chevron {
       font-size: 14px;
       color: var(--color-text-primary-chevron);
-      margin-left: 53px;
     }
   }
 
