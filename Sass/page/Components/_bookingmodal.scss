@@ -33,7 +33,7 @@
   background: var(--color-bkg-clndr-bg);
   border-radius: 16px 16px 16px 16px;
   border: 1px solid var(--color-bkg-modal-border);
-  margin-bottom: 24px;
+
   padding: 12px 0;
 }
 
@@ -111,7 +111,7 @@
 
 .booking-modal__guests-section {
   width: 100%;
-  margin-bottom: 18px;
+  // margin-bottom: 18px;
 }
 
 .booking-modal__guests-title {
@@ -204,7 +204,7 @@
   // border-radius: 0 0 24px 24px;
   width: 100%;
   margin-left: 0;
-  box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.08);
+  box-shadow: 1px -2px 3px rgba(44, 44, 84, 0.08);
 }
 
 .booking-modal__checkout {
@@ -297,7 +297,7 @@
   padding: 10px 3px;
 }
 
-:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
+:where(.css-dev-only-do-not-override-5uvb3z)-wrap {
   position: fixed;
   inset: 0;
   z-index: 1000;
@@ -310,13 +310,17 @@
   transform: translateY(0%);
 }
 
+.guests-box-container {
+  padding: 20px;
+}
+
 .guests-box {
   background: var(--color-bkg-body-bg);
   border: 1px solid var(--color-bkg-modal-border);
   border-radius: 16px;
   padding: 18px 0 10px 0;
-  max-width: 320px;
-  margin: 0 auto 16px auto;
+  // max-width: 320px;
+  // margin: 0 auto 16px auto;
   text-align: center;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
 
