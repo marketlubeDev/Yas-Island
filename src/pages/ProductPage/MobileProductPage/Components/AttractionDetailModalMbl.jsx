@@ -77,6 +77,12 @@ function AttractionDetailModalMbl({ attraction, onClose, onAddToCart }) {
   return (
     <>
       <div className="attraction-detail-modal__header">
+        <img
+          src={backIconSrc}
+          alt="Back"
+          className="attraction-detail-modal__back-icon"
+          onClick={onClose}
+        />
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
         </span>

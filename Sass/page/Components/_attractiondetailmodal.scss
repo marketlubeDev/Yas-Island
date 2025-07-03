@@ -4,39 +4,31 @@
   max-height: 99vh;
 
   &__header {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 18px 18px 0 18px;
-    border-radius: 24px 24px 0 0;
-    background: var(--color-dtl-header-bg);
+    padding: 1rem;
   }
 
-  &__back {
-    background: none;
-    border: none;
-    padding: 0;
+  &__back-icon {
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-    margin-left: -20px;
-    margin-right: 14px;
-    img {
-      width: 25px;
-      height: 25px;
-    }
   }
 
   &__title {
+    flex: 1;
+    text-align: center;
+    margin-right: 24px;
     font-size: 20px;
     font-weight: 700;
     color: var(--color-dtl-header-color);
-    flex: 1;
-    text-align: center;
   }
 
   &__body {
-    padding: 24px 6px 24px 6px;
+    padding: 0px 6px 24px 6px;
     background-color: var(--color-dtl-body-bg);
-    height: 59vh;
+    height: 60vh;
     overflow-y: auto;
   }
 
@@ -74,7 +66,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px 18px 18px;
+    padding: 10px 18px 18px 18px;
     gap: 18px;
     background: var(--color-dtl-footer-bg);
     border-radius: 0 0 24px 24px;
@@ -84,7 +76,7 @@
 
     .attraction-detail-modal__footer-divider {
       position: absolute;
-      top: -15px;
+      top: 0;
       left: 2.5%;
       width: 95%;
       height: 2px;
@@ -160,11 +152,11 @@
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
-  height: 80vh;
+  // height: 81vh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  padding: 20px 8px;
+  padding: 0px 8px;
   align-items: center;
   // background-color: #231942;
   border-radius: 20px;
