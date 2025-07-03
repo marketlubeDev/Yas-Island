@@ -4793,7 +4793,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   background: var(--color-search-dropdown-bg);
   border-radius: 8px;
   box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
-  min-width: 180px;
+  min-width: 165px;
   padding: 8px 0;
   z-index: 1000;
 }
@@ -4804,6 +4804,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
 }
 .mobile-top-search-section__dropdown-option {
   padding: 10px 10px;
+  gap: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7938,8 +7939,7 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .selector {
-  width: 12rem;
-  min-width: 12rem;
+  width: 13rem;
   display: flex;
   align-items: center;
 }
