@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close.svg"; // Use your close icon
 import leftIcon from "../../../../assets/icons/left.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
-
+import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
+import backIconInverter from "../../../../assets/icons/invertedback.svg";
+import { useSelector } from "react-redux";
 function BookingModalMbl({
   onClose,
   onBack,
@@ -11,6 +13,8 @@ function BookingModalMbl({
   onCheckout,
   product,
 }) {
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
   const [startDate, setStartDate] = useState(null);
@@ -206,8 +210,17 @@ function BookingModalMbl({
       className="booking-modal-overlay"
       style={{ background: "var(--color-bkg-body-bg)" }}
     >
+  
+
+    
       <div className="booking-modal">
         <div className="booking-modal__header">
+          <img
+            src={backIconSrc}
+            alt="Back"
+            className="attraction-detail-modal__back-icon"
+            onClick={onClose}
+          />
           <span className="booking-modal__title">
             {t("booking.chooseDate")}
           </span>
