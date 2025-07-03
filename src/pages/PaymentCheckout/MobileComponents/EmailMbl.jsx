@@ -25,7 +25,7 @@ function EmailMbl({ onEmailSubmit }) {
             id="email"
             type="email"
             className="email-verification-input"
-            value={emailValue}
+            // value={emailValue}
             onChange={(e) => setEmailValue(e.target.value)}
             placeholder={t("payment.emailConfirmation.emailPlaceholder")}
             required

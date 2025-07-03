@@ -102,7 +102,13 @@
     #fff8a5 0%,
     #fff 100%
   );
+  --down-arrow-icon: url("../../../src/assets/icons/down.svg");
   --color-base-mobile-bottom-nav-item-icon-active-color: #231942;
+  --color-base-mobile-bottom-nav-item-active-bg--ar: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff8a5 100%
+  );
   --color-base-mobile-header-lang-dropdown-bg: #fff;
   --color-base-mobile-header-lang-dropdown-boxshadow: 0 4px 12px
     rgba(0, 0, 0, 0.6);
@@ -1784,7 +1790,7 @@ body {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  padding-left: 1rem;
+  padding: 10px 0px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-label-container {
@@ -1807,11 +1813,16 @@ body {
 
 .guest-label {
   color: var(--color-base-text);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  text-align: left;
+}
+
+html[lang=ar] .guest-label {
+  text-align: right;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -4498,7 +4509,7 @@ body {
 .attraction-card__vat {
   font-size: 10px;
   color: var(--color-base-mobile-product-page-vat-text);
-  font-weight: 300;
+  font-weight: 400;
   text-align: left;
 }
 
@@ -4676,6 +4687,11 @@ body {
   height: 75%;
   width: 1px;
   background-color: var(--color-base-mobile-top-item-right-border);
+  opacity: 1;
+}
+html[lang=ar] .mobile-top__item:not(:last-child)::after {
+  right: auto;
+  left: 0;
 }
 .mobile-top__icon {
   width: 20px;
@@ -4787,6 +4803,17 @@ body {
   color: var(--color-text-primary-chevron);
   margin-left: 53px;
 }
+@media (max-width: 360px) and (max-height: 740px) {
+  html[lang=ar] .mobile-top-search-section__filter-btn {
+    gap: 4px;
+  }
+}
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang=ar] .mobile-top-search-section__filter-btn {
+    gap: 0px;
+    font-size: 13px;
+  }
+}
 .mobile-top-search-section__dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -4868,6 +4895,10 @@ body {
 }
 .mobile-bottom-nav__item--active span {
   opacity: 1;
+}
+
+html[lang=ar] .mobile-bottom-nav__item--active {
+  background: var(--color-base-mobile-bottom-nav-item-active-bg--ar);
 }
 
 .accessibility-popup-card {
@@ -5011,6 +5042,10 @@ body {
   backdrop-filter: blur(8px) !important;
 }
 
+.accessibility-popup-option {
+  padding: 16px 4px;
+}
+
 @media (max-width: 375px) and (max-height: 667px) {
   .accessibility-popup-card {
     padding: 0 4px;
@@ -5046,7 +5081,44 @@ body {
     padding: 8px 2px;
     border-radius: 12px;
   }
+  html[lang=ar] .accessibility-popup-option {
+    width: 285px;
+  }
+  html[lang=ar] .accessibility-popup-title {
+    margin-left: 0rem;
+  }
+  html[lang=ar] .accessibility-popup-subtitle {
+    margin-left: 0rem;
+  }
+  html[lang=ar] .accessibility-popup-options {
+    margin-left: -2.5rem;
+  }
+  html[lang=ar] .accessibility-popup-continue {
+    margin-left: 0.4rem;
+  }
+  html[lang=ar] .accessibility-modal .ant-modal-content {
+    padding: 20px 33px;
+  }
 }
+@media (max-width: 430px) and (max-height: 932px) {
+  html[lang=ar] .accessibility-modal .ant-modal-content {
+    padding: 20px 33px;
+  }
+}
+@media (max-width: 360px) and (max-height: 740px) {
+  html[lang=ar] .accessibility-modal .ant-modal-content {
+    padding: 20px 25px;
+  }
+}
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang=ar] .accessibility-modal .ant-modal-content {
+    padding: 20px 24px;
+  }
+}
+.ant-modal {
+  top: 0 !important;
+}
+
 .mycart-modal-mobile {
   position: relative;
   background: var(--color-email-form-box);
@@ -5350,6 +5422,11 @@ body {
   }
 }
 
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang=ar] .mycart-modal__footer {
+    margin-top: 132px;
+  }
+}
 .mycart-modal__checkout,
 .mycart-modal__save {
   display: block;
@@ -5444,6 +5521,7 @@ body {
     width: 100%;
     font-size: 13px;
     height: 25vh;
+    padding: 10px 40px 10px 40px;
   }
   .mycart-modal__checkout {
     width: 65%;
@@ -5569,6 +5647,31 @@ body {
   right: 12px;
 }
 
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang=ar] .mycart-modal__summary {
+    padding: 8px 0px;
+  }
+}
+@media (max-width: 414px) and (max-height: 896px) {
+  html[lang=ar] .mycart-modal__summary {
+    padding: 10px 35px 10px 35px;
+  }
+}
+@media (max-width: 390px) and (max-height: 896px) {
+  html[lang=ar] .mycart-modal__summary {
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 430px) and (max-height: 932px) {
+  html[lang=ar] .mycart-modal__summary {
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 344px) and (max-height: 882px) {
+  html[lang=ar] .mycart-modal__summary {
+    padding: 10px 0px;
+  }
+}
 .email-verification-header-fixed {
   left: 0;
   width: 100vw;
@@ -5798,6 +5901,10 @@ body {
   margin-top: 27px;
   width: 100%;
   display: block;
+}
+
+html[lang=ar] .confirm-email__input-underline {
+  text-align: right;
 }
 
 .confirm-email__otp-section-bg {
@@ -6215,10 +6322,13 @@ body {
   -moz-appearance: none;
   outline: none;
   cursor: pointer;
-  background-image: url("../../../src/assets/icons/down.svg");
+  background-image: var(--down-arrow-icon, url("../../../src/assets/icons/down.svg"));
   background-repeat: no-repeat;
   background-position: right 2px center;
   background-size: 0.5545rem 0.5545rem;
+}
+.email-checkout__country-code-select--ar {
+  padding: 9px 10px 8px 0px;
 }
 
 .email-checkout__summary-row--column {
@@ -6274,6 +6384,7 @@ body {
 .email-checkout__promo-input::placeholder {
   color: var(--color-email-otp-input-clr);
   font-size: 13px;
+  opacity: 0.5;
 }
 
 .email-checkout__checkboxes input[type=checkbox] {
@@ -6284,6 +6395,14 @@ body {
 
 .email-checkout__summary-row-container {
   padding: 15px 10px;
+}
+
+:root {
+  --down-arrow-icon: url("../../../src/assets/icons/down.svg");
+}
+
+[data-theme=dark] {
+  --down-arrow-icon: url("../../../src/assets/icons/inverteddown.svg");
 }
 
 .make-payment-modal {
@@ -6297,6 +6416,23 @@ body {
   flex-direction: column;
   padding-bottom: 24px;
   margin-top: 6rem;
+}
+
+html[lang=ar] .make-payment-modal {
+  width: 98%;
+}
+html[lang=ar] .make-payment-modal-container {
+  padding: 5px 10px 5px 10px;
+}
+html[lang=ar] .make-payment__payment-method {
+  margin-bottom: 0px;
+  padding: 0px 20px 20px 10px;
+}
+html[lang=ar] .make-payment__payment-options {
+  margin-bottom: 0px;
+}
+html[lang=ar] .make-payment__summary-top {
+  padding: 18px 16px 12px 16px;
 }
 
 .make-payment__content {
@@ -7047,7 +7183,8 @@ body {
 }
 .attraction-detail-modal__vat {
   font-size: 13px;
-  color: var(--color-dtl-footer-vat);
+  color: var(--color-base-mobile-product-page-vat-text);
+  font-weight: 400;
 }
 .attraction-detail-modal__add-btn {
   background: var(--color-dtl-add-btn-bg);
@@ -7114,7 +7251,7 @@ body {
 
 .attraction-detail-modal .ant-modal-close {
   position: absolute;
-  top: -7%;
+  top: -8%;
   right: 1%;
   border-radius: 50%;
   height: 38px;
@@ -7137,7 +7274,7 @@ body {
 
 .booking-modal .ant-modal-close {
   position: absolute;
-  top: -7%;
+  top: -5%;
   right: 0;
   border-radius: 50%;
   height: 38px;
@@ -7183,6 +7320,14 @@ body {
 
 .attraction-detail-modal.ant-modal-wrap {
   background-color: red !important;
+}
+
+.attraction-detail-modal .ant-modal-body {
+  width: 100%;
+}
+
+.attraction-detail-modal .ant-modal {
+  top: 0 !important;
 }
 
 .product-head__filters {
@@ -7265,7 +7410,6 @@ body {
 
 .booking-modal__body {
   flex: 1 1 auto;
-  overflow-y: auto;
   padding: 0 18px;
   display: flex;
   flex-direction: column;
@@ -7274,7 +7418,7 @@ body {
 }
 
 .booking-modal__calendar {
-  width: 111.5%;
+  width: fit-content;
   background: var(--color-bkg-clndr-bg);
   border-radius: 16px 16px 16px 16px;
   border: 1px solid var(--color-bkg-modal-border);
@@ -7286,11 +7430,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 16px;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
   padding: 0 12px;
   border-bottom: 1px solid var(--color-bkg-modal-border);
+}
+.booking-modal__calendar-header button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.booking-modal__calendar-header button img {
+  width: 20px;
+  height: 20px;
 }
 
 .booking-modal__calendar-grid {
@@ -7298,9 +7456,11 @@ body {
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   padding: 0 12px;
+  text-align: center;
 }
 
 .booking-modal__calendar-dayname {
+  font-size: 12px;
   color: var(--color-bkg-clndr-dayname-clr);
   font-size: 13px;
   text-align: center;
@@ -7427,6 +7587,7 @@ body {
   gap: 10px;
   padding: 18px 18px 18px 18px;
   background: var(--color-bkg-footer-bg);
+  align-items: center;
   width: 100%;
   margin-left: 0;
   box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.08);
@@ -7443,7 +7604,6 @@ body {
   cursor: pointer;
   width: 75%;
   margin-bottom: 4px;
-  margin-left: 12.5%;
 }
 
 .booking-modal__save {
@@ -7456,34 +7616,12 @@ body {
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-left: 12.5%;
-}
-
-.booking-modal__calendar-header button {
-  background: none;
-  border: none;
-  color: var(--color-bkg-footer-clr) !important;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 50%;
-  transition: background 0.2s;
-}
-
-.booking-modal__calendar-header button:active,
-.booking-modal__calendar-header button:focus {
-  background: var(--color-bkg-footer-bg);
 }
 
 .booking-modal__calendar-month {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--color-bkg-title-clr);
-  letter-spacing: 0.5px;
-}
-
-.booking-modal__calendar-header button img {
-  filter: brightness(0) saturate(100%);
+  color: var(--color-bkg-clndr-date-clr);
 }
 
 .booking-modal__calendar-arrow--rotated {
@@ -7498,31 +7636,59 @@ body {
   border-radius: 1px;
 }
 
-.booking-modal__close {
+.booking-modal .ant-modal-close {
   position: absolute;
-  top: 1%;
-  right: 10%;
+  top: -2%;
+  right: 1%;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
-  border: 2px solid var(--color-bkg-footer-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s;
 }
-.booking-modal__close:hover {
-  background: var(--color-bkg-footer-bg);
-  border-color: var(--color-bkg-footer-clr);
+.booking-modal .ant-modal-close img {
+  width: 15px;
+  height: 15px;
 }
-.booking-modal__close img {
-  width: 18px;
-  height: 18px;
+
+.booking-modal .ant-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  top: 0 !important;
+}
+
+.booking-modal .ant-modal-content {
+  background-color: var(--color-base-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  height: 80vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  border-radius: 20px;
+}
+
+:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  outline: 0;
+  background: rgba(245, 245, 245, 0.39) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0%);
 }
 
 .guests-box {
@@ -7562,6 +7728,7 @@ body {
   color: var(--color-bkg-body-text);
   font-weight: 500;
   min-height: 44px;
+  gap: 10px;
 }
 .guests-box .guests-row::after {
   content: "";
@@ -7596,17 +7763,11 @@ body {
   border: 1.5px solid var(--color-bkg-guest-btn-border);
   background: var(--color-bkg-guest-btn-bg);
   color: var(--color-bkg-guest-btn-clr);
-  font-size: 20px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
-}
-.guests-box .guests-btn:hover {
-  background: var(--color-bkg-guest-btn-bg);
-  border-color: var(--color-bkg-guest-btn-border);
 }
 .guests-box .guests-count {
   min-width: 18px;

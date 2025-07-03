@@ -27,6 +27,7 @@ function CheckOutMbl({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (acceptTerms) {
+      window.scrollTo(0, 0);
       onProceedToPayment();
     }
   };
@@ -66,6 +67,7 @@ function CheckOutMbl({
               disabled={!acceptTerms}
               onClick={() => {
                 if (acceptTerms) {
+                  window.scrollTo(0, 0);
                   onProceedToPayment();
                 }
               }}

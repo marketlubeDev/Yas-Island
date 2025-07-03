@@ -6,7 +6,7 @@ export const en = {
     accessibility: "Accessibility",
     language: "Language",
     chatWithUs: "Chat with us",
-    addToCart: "Add to Cart",
+    addToCart: "Add to cart",
     add: "Add",
     searchPlaceholder: "What are you looking for?",
     home: "Home",
@@ -128,7 +128,7 @@ export const en = {
     add: "Add",
   },
   booking: {
-    chooseDate: "Choose your date",
+    chooseDate: "Choose date",
     chooseGuests: "Choose guests",
     adults: "Adult ( 12 Yrs+ )",
     children: "Children ( <12 Yrs )",

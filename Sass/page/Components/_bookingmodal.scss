@@ -19,7 +19,7 @@
 
 .booking-modal__body {
   flex: 1 1 auto;
-  overflow-y: auto;
+  // overflow-y: auto;
   padding: 0 18px;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
 }
 
 .booking-modal__calendar {
-  width: 111.5%;
+  width: fit-content;
   background: var(--color-bkg-clndr-bg);
   border-radius: 16px 16px 16px 16px;
   border: 1px solid var(--color-bkg-modal-border);
@@ -41,11 +41,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 16px;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
   padding: 0 12px;
   border-bottom: 1px solid var(--color-bkg-modal-border);
+
+  button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 .booking-modal__calendar-grid {
@@ -53,9 +69,11 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   padding: 0 12px;
+  text-align: center;
 }
 
 .booking-modal__calendar-dayname {
+  font-size: 12px;
   color: var(--color-bkg-clndr-dayname-clr);
   font-size: 13px;
   text-align: center;
@@ -182,7 +200,7 @@
   gap: 10px;
   padding: 18px 18px 18px 18px;
   background: var(--color-bkg-footer-bg);
-
+  align-items: center;
   // border-radius: 0 0 24px 24px;
   width: 100%;
   margin-left: 0;
@@ -201,7 +219,7 @@
   cursor: pointer;
   width: 75%;
   margin-bottom: 4px;
-  margin-left: 12.5%;
+  // margin-left: 12.5%;
 }
 
 .booking-modal__save {
@@ -214,33 +232,13 @@
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-left: 12.5%;
-}
-
-.booking-modal__calendar-header button {
-  background: none;
-  border: none;
-  color: var(--color-bkg-footer-clr) !important;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 50%;
-  transition: background 0.2s;
-}
-.booking-modal__calendar-header button:active,
-.booking-modal__calendar-header button:focus {
-  background: var(--color-bkg-footer-bg);
+  // margin-left: 12.5%;
 }
 
 .booking-modal__calendar-month {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--color-bkg-title-clr);
-  letter-spacing: 0.5px;
-}
-
-.booking-modal__calendar-header button img {
-  filter: brightness(0) saturate(100%);
+  color: var(--color-bkg-clndr-date-clr);
 }
 
 .booking-modal__calendar-arrow--rotated {
@@ -255,31 +253,60 @@
   border-radius: 1px;
 }
 
-.booking-modal__close {
+.booking-modal .ant-modal-close {
   position: absolute;
-  top: 1%;
-  right: 10%;
+  top: -2%;
+  right: 1%;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
+  height: 38px;
+  width: 38px;
   font-size: 32px;
   line-height: 1;
+  border: 2px solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
-  border: 2px solid var(--color-bkg-footer-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: background 0.2s, border-color 0.2s;
-  &:hover {
-    background: var(--color-bkg-footer-bg);
-    border-color: var(--color-bkg-footer-clr);
-  }
+  transition: background 0.2s;
+
   img {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
   }
+}
+
+.booking-modal .ant-modal {
+  max-width: 420px;
+  width: 98vw;
+  max-height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  top: 0 !important;
+}
+
+.booking-modal .ant-modal-content {
+  background-color: var(--color-base-bg);
+  border: 2.353px solid var(--color-base-product-card-card-item-border);
+  height: 80vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  border-radius: 20px;
+}
+
+:where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  outline: 0;
+  background: rgba(245, 245, 245, 0.39) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0%);
 }
 
 .guests-box {
@@ -321,6 +348,7 @@
     color: var(--color-bkg-body-text);
     font-weight: 500;
     min-height: 44px;
+    gap: 10px;
 
     &::after {
       content: "";
@@ -359,17 +387,13 @@
     border: 1.5px solid var(--color-bkg-guest-btn-border);
     background: var(--color-bkg-guest-btn-bg);
     color: var(--color-bkg-guest-btn-clr);
-    font-size: 20px;
-    font-weight: 700;
+    // font-size: 20px;
+    // font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s;
-    &:hover {
-      background: var(--color-bkg-guest-btn-bg);
-      border-color: var(--color-bkg-guest-btn-border);
-    }
   }
 
   .guests-count {

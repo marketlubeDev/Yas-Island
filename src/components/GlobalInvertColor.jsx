@@ -13,6 +13,12 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#fff" : "#18142B"
     );
     document.documentElement.style.setProperty(
+      "--down-arrow-icon",
+      isDarkMode
+        ? 'url("../../../src/assets/icons/inverteddown.svg")'
+        : 'url("../../../src/assets/icons/down.svg")'
+    );
+    document.documentElement.style.setProperty(
       "--color-base-bg",
       isDarkMode ? "#000" : isHighContrast ? "#fff" : "#fff"
     );
@@ -210,6 +216,11 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-base-accessibility-modal-btn-bg",
       isDarkMode ? "#FFAD33" : isHighContrast ? "#0052CC" : "#ffe600"
+    );
+
+    document.documentElement.style.setProperty(
+      "--color-base-mobile-bottom-nav-item-active-bg--ar",
+      isDarkMode ? "none" : "linear-gradient(90deg, #fff8a5 0%, #fff 100%)"
     );
 
     document.documentElement.style.setProperty(
@@ -1101,6 +1112,10 @@ export default function GlobalInvertColor() {
 
     return () => {
       document.documentElement.style.setProperty("--text-color", "#18142B");
+      document.documentElement.style.setProperty(
+        "--down-arrow-icon",
+        'url("../../../src/assets/icons/down.svg")'
+      );
       document.documentElement.style.setProperty(
         "--pay-check-price",
         "#594f67"

@@ -78,6 +78,12 @@
   display: block;
 }
 
+html[lang="ar"] {
+  .confirm-email__input-underline {
+    text-align: right;
+  }
+}
+
 .confirm-email__otp-section-bg {
   background: var(--color-confirm-otp-bg);
   border-radius: 12px;

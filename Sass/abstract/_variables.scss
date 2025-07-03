@@ -129,7 +129,14 @@ $color-yellow: #ffea00;
     #fff 100%
   );
 
+  --down-arrow-icon: url("../../../src/assets/icons/down.svg");
+
   --color-base-mobile-bottom-nav-item-icon-active-color: #231942;
+  --color-base-mobile-bottom-nav-item-active-bg--ar: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff8a5 100%
+  );
 
   //mobileheaderlangdropdown
   --color-base-mobile-header-lang-dropdown-bg: #fff;
