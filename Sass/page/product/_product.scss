@@ -109,11 +109,12 @@
   background: var(--color-base-btn-bg);
   cursor: pointer;
   position: relative;
+  top: -2px;
+  right: -2px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-
   width: 15rem;
   height: 4.3rem;
   border-radius: 0rem 0rem 0rem 1.25rem;
@@ -124,37 +125,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
-  // @include respond(desktop) {
-  //   width: 15rem;
-
-  //   height: 3.3rem;
-  //   font-size: 1rem;
-  //   top: -0.6rem;
-  //   right: -2rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   width: 15rem;
-  //   height: 3.7rem;
-  //   font-size: 1.2rem;
-  //   font-size: 16px;
-  //   top: -1.4rem;
-  // }
-
-  // @include respond(extraBigDesktop) {
-  //   width: 15rem;
-  //   height: 4.3rem;
-  //   font-size: 1.2rem;
-  // }
-
-  // @include respond(extraBigDesktop) {
-  //   right: -8rem;
-  //   width: 22rem;
-  //   height: 5.5rem;
-  //   font-size: 1.25rem;
-  //   gap: 2rem;
-  // }
 }
 .ar-cart-button {
   padding: 8px 16px;

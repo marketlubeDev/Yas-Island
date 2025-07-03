@@ -2,13 +2,23 @@ import React from "react";
 import logo from "../../assets/logo/logo.png";
 import desc from "../../assets/logo/desc.svg";
 import LogoVertical from "../../assets/logo/LogoVertical.svg";
+import invertLogoVertical from "../../assets/logo/blacklogo.svg";
 import "./_logo.scss";
+import { useSelector } from "react-redux";
 
 export default function Logo({ type = "default" }) {
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   if (type === "default") {
     return (
       <div className="logo">
-        <img src={LogoVertical} alt="logo" className="logo-img" />
+        <img
+          src={isDarkMode ? invertLogoVertical : LogoVertical}
+          alt="logo"
+          className="logo-img"
+          style={{
+            padding: isDarkMode ? "1rem 2rem" : "0rem",
+          }}
+        />
       </div>
     );
   } else if (type === "horizontal")
