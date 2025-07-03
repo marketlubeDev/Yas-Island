@@ -10,7 +10,6 @@ export default function OtpConfirmationBody() {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    console.log("back click");
     navigate("/email-verification");
   };
 

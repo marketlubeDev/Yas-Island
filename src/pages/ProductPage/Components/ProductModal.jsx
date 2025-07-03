@@ -122,10 +122,11 @@ function getAvailableDates(product){
       }
 
       if(hasPerformance){
+        const productId = selectedProduct?.default_variant_id || selectedProduct?.product_variants[0]?.productid
         const performanceData = await getPerformance(
           formatDate(validStartDate),
           formatDate(validEndDate),
-          selectedProduct?.default_variant_id
+          productId
         );
   
         if (performanceData && performanceData.performance) {
@@ -155,7 +156,10 @@ function getAvailableDates(product){
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    let defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    if (!defaultVariant) {
+      defaultVariant = product?.product_variants[0];
+    }
     return defaultVariant;
   };
 

@@ -32,9 +32,12 @@ export default function ProductCard({ productList }) {
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find(
+    let defaultVariant = product?.product_variants?.find(
       (variant) => variant.isdefault
     );
+    if (!defaultVariant) {
+      defaultVariant = product?.product_variants[0];
+    }
     return defaultVariant;
   };
 
