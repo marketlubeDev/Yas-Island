@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import Search from "../../../components/Common/Search/Search";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ export default function ProductHead() {
   const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
     (state) => state.responsive
   );
-  const { parks, currentPark } = useSelector((state) => state.product);
+  const { currentPark, allProducts } = useSelector((state) => state.product);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const sortBtnRef = useRef(null);
@@ -22,6 +22,17 @@ export default function ProductHead() {
   const handleParkChange = (e) => {
     dispatch(setCurrentPark(e.target.value));
   };
+
+  // Extract unique park names from all products
+  const parkOptions = useMemo(() => {
+    const uniqueParks = new Set();
+    allProducts?.forEach((product) => {
+      product?.parks?.forEach((park) => {
+        uniqueParks.add(park.parkname_localized);
+      });
+    });
+    return Array.from(uniqueParks);
+  }, [allProducts]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -60,7 +71,7 @@ export default function ProductHead() {
           <Selector
             label={t("productHead.filterBy")}
             value={currentPark}
-            options={parks}
+            options={parkOptions}
             placeHolder={t("productHead.selectPark")}
             onChange={handleParkChange}
           />
