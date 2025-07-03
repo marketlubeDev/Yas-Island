@@ -99,37 +99,39 @@
 
 .web-header__lang-btn {
   background: var(--color-base-product-card-bg) !important;
-  border: 2px solid var(--color-base-btn-border) !important;
+  border: 3px solid var(--color-base-btn-border) !important;
   border-radius: 12rem;
-  padding: 12px 12px;
+  padding: 23px 23px;
+  width: fit-content;
+  height: 3rem;
   display: flex;
   gap: 6px;
 
   @include respond(desktop) {
-    padding: 8px 10px;
-    height: 2.1rem;
-    width: auto;
-    font-size: 14px;
+    padding: 15px 23px;
+    // height: 2.1rem;
+    // width: auto;
+    // font-size: 14px;
   }
 
   @include respond(bigDesktop) {
-    padding: 8px 10px;
-    height: 2.1rem;
-    width: auto;
-    font-size: 14px;
+    padding: 15px 23px;
+    // height: 2.1rem;
+    // width: auto;
+    // font-size: 14px;
   }
 
-  @include respond(extraBigDesktop) {
-    padding: 20px 20px;
-    height: 2.1rem;
-    width: auto;
-    font-size: 14px;
-  }
+  // @include respond(extraBigDesktop) {
+  //   padding: 20px 20px;
+  //   height: 2.1rem;
+  //   width: auto;
+  //   font-size: 14px;
+  // }
 
   span {
     @include respond(bigDesktop) {
-      font-size: 14px !important;
-      margin-top: -3px;
+      // font-size: 14px !important;
+      margin-top: -4px;
     }
 
     @include respond(extraBigDesktop) {
@@ -170,13 +172,13 @@
 }
 
 .mobile-header__lang-btn span {
-  font-size: 14px;
+  // font-size: 14px;
   color: var(--color-base-text);
 }
 
 @include respond(desktop) {
   .web-header__lang-btn span {
-    font-size: 14px;
+    // font-size: 14px;
     margin-top: -4px;
   }
 }
