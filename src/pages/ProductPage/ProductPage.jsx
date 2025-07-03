@@ -7,7 +7,6 @@ import ProductCard from "./Components/ProductCard";
 import SideBar from "../../layouts/SideBar/SideBar";
 import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
 import AccessibilityModal from "./Components/AccessibilityModal";
-import CartModal from "./Components/CartModal";
 import MainProductHead from "./ProductHead/mainProductHead";
 import useGetProductList from "../../apiHooks/product/product";
 
@@ -20,7 +19,6 @@ export default function ProductPage() {
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const { isLoading, isError } = useGetProductList();
 
   // Filter and sort products based on search, selected park and sort option
@@ -90,10 +88,7 @@ export default function ProductPage() {
     <div className="product">
       <SideBar />
       <div className="product-content">
-        <MainProductHead
-          onAccessibilityOpen={() => setIsAccessibilityModalOpen(true)}
-          onCartOpen={() => setIsCartModalOpen(true)}
-        />
+        <MainProductHead />
         {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
           <div>Loading...</div>
@@ -105,10 +100,6 @@ export default function ProductPage() {
         <AccessibilityModal
           isOpen={isAccessibilityModalOpen}
           onClose={() => setIsAccessibilityModalOpen(false)}
-        />
-        <CartModal
-          isOpen={isCartModalOpen}
-          onClose={() => setIsCartModalOpen(false)}
         />
       </div>
     </div>
