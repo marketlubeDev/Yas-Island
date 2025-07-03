@@ -13,13 +13,17 @@ import { setSelectedProduct } from "../../../../global/productSlice";
 import { clearPerformance } from "../../../../global/performanceSlice";
 
 const AttractionsListMbl = ({ productList }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const dispatch = useDispatch();
+  const [availableDates, setAvailableDates] = useState([]);
+  const [isLoadingDates, setIsLoadingDates] = useState(false);
+
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
@@ -83,6 +87,8 @@ const AttractionsListMbl = ({ productList }) => {
             attraction={selectedAttraction}
             onClose={handleCloseModal}
             setShowBookingSection={setModalType}
+            setAvailableDates={setAvailableDates}
+            setIsLoadingDates={setIsLoadingDates}
           />
         );
       case "booking":
@@ -93,6 +99,8 @@ const AttractionsListMbl = ({ productList }) => {
             onSaveToCart={handleSaveToCart}
             onCheckout={handleCheckout}
             product={selectedAttraction}
+            availableDates={availableDates}
+            isLoadingDates={isLoadingDates}   
           />
         );
       default:

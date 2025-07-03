@@ -13,15 +13,13 @@ import getPerformance from "../../../../serivces/performance/performance";
 import formatDate from "../../../../utils/dateFormatter";
 import { toast } from "sonner";
 
-function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection }) {
+function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, setAvailableDates, setIsLoadingDates }) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const dispatch = useDispatch();
   const [validStartDate, setValidStartDate] = useState(null);
   const [validEndDate, setValidEndDate] = useState(null);
-  const [availableDates, setAvailableDates] = useState([]);
-  const [isLoadingDates, setIsLoadingDates] = useState(false);
 
   useEffect(() => {
     // When modal is open, prevent background scroll

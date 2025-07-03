@@ -4,8 +4,6 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import Expand from "../../../assets/icons/shrink.svg";
 import ExpandDark from "../../../assets/icons/invertShrink.svg";
-
-import Ferrari from "../../../assets/images/product1.png";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +51,6 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   const handleDeleteItem = (id , validFrom) => {
-   
     dispatch(removeItemFromCart({id , validFrom}));
   };
 

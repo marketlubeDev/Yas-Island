@@ -92,9 +92,13 @@ const cartSlice = createSlice({
       saveCartToStorage(state);
     },
     updateQuantity: (state, action) => {
-      state.cartItems = state.cartItems.map((item) =>
-        (item.productId === action.payload.id && item.validFrom === action.payload.validFrom) ? { ...item, quantity: action.payload.quantity } : item
-      );
+      state.cartItems = state.cartItems
+        .map((item) =>
+          (item.productId === action.payload.id && item.validFrom === action.payload.validFrom) 
+            ? { ...item, quantity: action.payload.quantity } 
+            : item
+        )
+        .filter(item => item.quantity > 0);
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;

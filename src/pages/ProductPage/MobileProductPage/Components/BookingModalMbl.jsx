@@ -6,12 +6,16 @@ import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import { useSelector } from "react-redux";
+import Loading from "../../../../components/Loading/Loading";
+
 function BookingModalMbl({
   onClose,
   onBack,
   onSaveToCart,
   onCheckout,
   product,
+  availableDates,
+  isLoadingDates,
 }) {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
@@ -205,14 +209,129 @@ function BookingModalMbl({
     return num;
   };
 
+  const renderCalendarSkeleton = () => (
+    <div className="calendar-skeleton">
+      <div className="calendar-header-skeleton skeleton"></div>
+      <div className="calendar-days-skeleton">
+        {Array(7)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              key={`weekday-${i}`}
+              className="skeleton"
+              style={{ height: "20px" }}
+            ></div>
+          ))}
+        {Array(28)
+          .fill(0)
+          .map((_, i) => (
+            <div key={`day-${i}`} className="day-skeleton skeleton"></div>
+          ))}
+      </div>
+    </div>
+  );
+
+  const renderGuestSectionSkeleton = () => (
+    <div className="guest-section-skeleton">
+      <div
+        className="guest-summary-skeleton skeleton"
+        style={{ height: "24px", marginBottom: "16px", width: "50%" }}
+      ></div>
+      {Array(2)
+        .fill(0)
+        .map((_, i) => (
+          <div key={`guest-${i}`} style={{ marginBottom: "16px" }}>
+            <div
+              className="guest-row-skeleton skeleton"
+              style={{ height: "32px", marginBottom: "12px" }}
+            ></div>
+            <div className="guest-controls-skeleton">
+              <div 
+                className="control-btn-skeleton skeleton" 
+                style={{ width: "24px", height: "24px" }}
+              ></div>
+              <div 
+                className="control-value-skeleton skeleton" 
+                style={{ width: "32px", height: "24px" }}
+              ></div>
+              <div 
+                className="control-btn-skeleton skeleton" 
+                style={{ width: "24px", height: "24px" }}
+              ></div>
+            </div>
+            {i < 1 && (
+              <div
+                style={{ height: "1px", background: "#eee", margin: "16px 0" }}
+              ></div>
+            )}
+          </div>
+        ))}
+    </div>
+  );
+
+  const skeletonStyles = `
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .calendar-skeleton {
+    width: 100%;
+    padding: 16px;
+    height: fit-content;
+  }
+
+  .calendar-header-skeleton {
+    height: 32px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+
+  .calendar-days-skeleton {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .day-skeleton {
+    aspect-ratio: 1;
+    border-radius: 4px;
+  }
+
+  .guest-section-skeleton {
+    padding: 16px;
+    height: fit-content;
+  }
+
+  .guest-controls-skeleton {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+  }
+  `;
+
+  useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = skeletonStyles;
+    document.head.appendChild(styleSheet);
+
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
   return (
     <div
       className="booking-modal-overlay"
       style={{ background: "var(--color-bkg-body-bg)" }}
     >
-  
-
-    
       <div className="booking-modal">
         <div className="booking-modal__header">
           <img
@@ -227,34 +346,39 @@ function BookingModalMbl({
         </div>
         <div className="booking-modal__body">
           {/* Calendar */}
-
           <div className="booking-modal__calendar">
-            <div className="booking-modal__calendar-header">
-              <button onClick={handlePrevMonth}>
-                <img src={leftIcon} alt="Previous" />
-              </button>
-              <span className="booking-modal__calendar-month">
-                {formatMonthYear(currentDate)}
-              </span>
-              <button onClick={handleNextMonth}>
-                <img
-                  src={leftIcon}
-                  alt="Next"
-                  className="booking-modal__calendar-arrow--rotated"
-                />
-              </button>
-            </div>
-            <div className="booking-modal__calendar-divider"></div>
-            <div className="booking-modal__calendar-grid">
-              {Object.values(
-                t("booking.weekDays", { returnObjects: true })
-              ).map((d) => (
-                <span key={d} className="booking-modal__calendar-dayname">
-                  {d}
-                </span>
-              ))}
-              {generateCalendarDays()}
-            </div>
+            {isLoadingDates ? (
+              renderCalendarSkeleton()
+            ) : (
+              <>
+                <div className="booking-modal__calendar-header">
+                  <button onClick={handlePrevMonth}>
+                    <img src={leftIcon} alt="Previous" />
+                  </button>
+                  <span className="booking-modal__calendar-month">
+                    {formatMonthYear(currentDate)}
+                  </span>
+                  <button onClick={handleNextMonth}>
+                    <img
+                      src={leftIcon}
+                      alt="Next"
+                      className="booking-modal__calendar-arrow--rotated"
+                    />
+                  </button>
+                </div>
+                <div className="booking-modal__calendar-divider"></div>
+                <div className="booking-modal__calendar-grid">
+                  {Object.values(
+                    t("booking.weekDays", { returnObjects: true })
+                  ).map((d) => (
+                    <span key={d} className="booking-modal__calendar-dayname">
+                      {d}
+                    </span>
+                  ))}
+                  {generateCalendarDays()}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Guests */}
@@ -265,77 +389,83 @@ function BookingModalMbl({
 
             <div className="guests-box-container">
               <div className="guests-box">
-                <div className="guests-summary">
-                  {Object.keys(guests).map((variant, idx, arr) => (
-                    <span key={variant}>
-                      {variant}: {toArabicNumeral(guests[variant])}
-                      {idx < arr.length - 1 ? " / " : ""}
-                    </span>
-                  ))}
-                </div>
-                <div className="guests-divider"></div>
-                {Object.keys(guests).map((variant, idx) => {
-                  const variantData = product.product_variants.find(
-                    (v) => v.productvariantname === variant
-                  );
-                  return (
-                    <React.Fragment key={idx}>
-                      <div className="guests-row">
-                        <div className="guest-label-container">
-                          <span className="guest-label">
-                            {variant}{" "}
-                            {variantData?.productvariantdesc &&
-                              `(${variantData.productvariantdesc})`}
-                          </span>
-                          <span className="guest-label-price">
-                            AED {variantData?.gross * guests[variant]}{" "}
-                          </span>
-                        </div>
+                {isLoadingDates ? (
+                  renderGuestSectionSkeleton()
+                ) : (
+                  <>
+                    <div className="guests-summary">
+                      {Object.keys(guests).map((variant, idx, arr) => (
+                        <span key={variant}>
+                          {variant}: {toArabicNumeral(guests[variant])}
+                          {idx < arr.length - 1 ? " / " : ""}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="guests-divider"></div>
+                    {Object.keys(guests).map((variant, idx) => {
+                      const variantData = product.product_variants.find(
+                        (v) => v.productvariantname === variant
+                      );
+                      return (
+                        <React.Fragment key={idx}>
+                          <div className="guests-row">
+                            <div className="guest-label-container">
+                              <span className="guest-label">
+                                {variant}{" "}
+                                {variantData?.productvariantdesc &&
+                                  `(${variantData.productvariantdesc})`}
+                              </span>
+                              <span className="guest-label-price">
+                                AED {variantData?.gross * guests[variant]}{" "}
+                              </span>
+                            </div>
 
-                        <div className="guests-controls">
-                          <button
-                            className="guests-btn"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                            onClick={() =>
-                              setGuests((prev) => ({
-                                ...prev,
-                                [variant]: Math.max(0, prev[variant] - 1),
-                              }))
-                            }
-                          >
-                            -
-                          </button>
-                          <span
-                            className="guests-count"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                          >
-                            {toArabicNumeral(guests[variant])}
-                          </span>
-                          <button
-                            className="guests-btn"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                            onClick={() =>
-                              setGuests((prev) => ({
-                                ...prev,
-                                [variant]: prev[variant] + 1,
-                              }))
-                            }
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                      <div className="guests-divider"></div>
-                    </React.Fragment>
-                  );
-                })}
-                <div className="guests-note">{t("booking.kidsFree")}</div>
+                            <div className="guests-controls">
+                              <button
+                                className="guests-btn"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                                onClick={() =>
+                                  setGuests((prev) => ({
+                                    ...prev,
+                                    [variant]: Math.max(0, prev[variant] - 1),
+                                  }))
+                                }
+                              >
+                                -
+                              </button>
+                              <span
+                                className="guests-count"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                              >
+                                {toArabicNumeral(guests[variant])}
+                              </span>
+                              <button
+                                className="guests-btn"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                                onClick={() =>
+                                  setGuests((prev) => ({
+                                    ...prev,
+                                    [variant]: prev[variant] + 1,
+                                  }))
+                                }
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <div className="guests-divider"></div>
+                        </React.Fragment>
+                      );
+                    })}
+                  </>
+                )}
+                  
               </div>
             </div>
           </div>
@@ -347,6 +477,8 @@ function BookingModalMbl({
               onCheckout &&
               onCheckout({ startDate, endDate, guests, totalPrice })
             }
+            disabled={isLoadingDates}
+            style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
@@ -359,8 +491,10 @@ function BookingModalMbl({
               onSaveToCart &&
               onSaveToCart({ startDate, endDate, guests, totalPrice })
             }
+            disabled={isLoadingDates}
+            style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
-            {t("booking.saveToCart")}
+            {isLoadingDates ? <Loading /> : t("booking.saveToCart")}
           </button>
         </div>
       </div>

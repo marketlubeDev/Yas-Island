@@ -235,6 +235,13 @@ export default function BookingSection({
       capacityManagement: true,
     };
 
+    if(items.length === 0){
+      toast.error(t("Please enter a valid quantity"), {
+        position: "top-center",
+      });
+      return;
+    }
+
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
