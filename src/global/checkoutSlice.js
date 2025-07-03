@@ -1,41 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedDate: "",
-  guests: {},
-  totalPrice: 0,
-  product: null,
-  productVariant: null,
-  email: "",
+  coupons: [],
+  items: [],
+  emailId: "",
+  language: "",
+  amount: 0,
   firstName: "",
-  lastName: "",
-  residence: "",
-  nationality: "",
-  phone: "",
-  cartItems: [],
+  lastName: "", 
+  phoneNumber: "",
+  countryCode: "",
+  isTnCAgrred: false,
+  isConsentAgreed: false,
+  
 };
+
 
 const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
   reducers: {
     setCheckout: (state, action) => {
-      return { ...state, ...action.payload };
+      state.checkout = action.payload;
     },
     clearCheckout: (state) => {
-      return initialState;
+      state.checkout = initialState;
     },
-    setEmail: (state, action) => {
-      state.email = action.payload;
+    setCheckoutEmail: (state, action) => {
+      state.checkout.emailId = action.payload;
     },
-    setCartItems: (state, action) => {
-      state.cartItems = action.payload;
-    },
-    setCheckoutDate: (state, action) => {
-      state.selectedDate = action.payload;
-    },
-  },
+  },  
 });
 
-export const { setCheckout, setEmail, setCartItems, setCheckoutDate } = checkoutSlice.actions;
+export const { setCheckout, setCheckoutEmail, clearCheckout } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

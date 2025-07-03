@@ -14,8 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {  removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import Loading from "../../../components/Loading/Loading";
+import { setCheckout } from "../../../global/checkoutSlice";
+
 
 const CartModal = ({ isOpen, onClose }) => {
+  const language = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -73,7 +76,29 @@ const CartModal = ({ isOpen, onClose }) => {
             }
           );
         } else {
-          const orderDetails = res?.orderdetails;
+          const orderDetails = res?.orderdetails?.order;
+          console.log(orderDetails , "orderDetails>>");
+          const items = orderDetails?.items?.map((item) => ({
+            productId: item?.productId,
+            quantity: item?.quantity,
+            performances: item?.performances ? [{performanceId: item?.performances}] : [],
+            validFrom: item?.validFrom,
+            validTo: item?.validTo 
+          }));
+          console.log(items , "items>>");
+          dispatch(setCheckout({
+            coupons: [],
+            items: items,
+            emailId: "",
+            language: language,
+            amount: orderDetails?.total?.gross,
+            firstName: "",
+            lastName: "", 
+            phoneNumber: "",
+            countryCode: "",
+            isTnCAgrred: false,
+            isConsentAgreed: false,
+          }));
           onSuccess();
         }
       },

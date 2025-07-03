@@ -15,7 +15,7 @@ export default function VerificationBox({ email }) {
   const inputRefs = useRef([]);
   const { OTP } = useSelector((state) => state.otp);
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(20); // 2 minutes in seconds
+  const [timer, setTimer] = useState(180); // 3 minutes in seconds
   const [canResend, setCanResend] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
