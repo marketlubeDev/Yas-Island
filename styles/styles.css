@@ -1671,16 +1671,11 @@ body {
 .guest-section {
   padding: 0 24px;
   width: 60%;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .guest-section {
-    padding: 0 18px;
-    width: 100%;
-  }
 }
 
 .section-title {
@@ -1891,11 +1886,16 @@ html[lang=ar] .guest-label {
 
 .booking-actions {
   width: 100%;
+  height: 10rem;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-top: 20px;
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -4px 6px -6px rgba(0, 0, 0, 0.5);
 }
 
 .ar-booking-actions {
@@ -4413,7 +4413,7 @@ html[lang=ar] .guest-label {
   margin-bottom: -0.5rem;
 }
 .attraction-card__img {
-  width: 80px;
+  width: 120px;
   height: 80px;
   border-radius: 4px;
   object-fit: cover;
@@ -7324,7 +7324,7 @@ html[lang=ar] .make-payment__summary-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 18px 0 18px;
+  padding: 18px 18px;
   background: var(--color-bkg-header-bg);
 }
 
@@ -7332,7 +7332,6 @@ html[lang=ar] .make-payment__summary-top {
   font-size: 21px;
   font-weight: 500;
   color: var(--color-bkg-title-clr);
-  margin-bottom: 1rem;
   flex: 1;
   text-align: center;
 }
@@ -7343,26 +7342,28 @@ html[lang=ar] .make-payment__summary-top {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
   background: var(--color-bkg-body-bg);
+  overflow-y: auto;
+  height: 60vh;
 }
 
 .booking-modal__calendar {
-  width: fit-content;
+  width: 100%;
   background: var(--color-bkg-clndr-bg);
   border-radius: 16px 16px 16px 16px;
   border: 1px solid var(--color-bkg-modal-border);
-  padding: 12px 0;
+  padding: 3px 0 24px 0;
 }
 
 .booking-modal__calendar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
-  padding: 0 12px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--color-bkg-modal-border);
 }
 .booking-modal__calendar-header button {
@@ -7516,8 +7517,12 @@ html[lang=ar] .make-payment__summary-top {
   background: var(--color-bkg-footer-bg);
   align-items: center;
   width: 100%;
-  margin-left: 0;
-  box-shadow: 1px -2px 3px rgba(44, 44, 84, 0.08);
+  box-shadow: 1px -2px 3px rgba(0, 0, 255, 0.08);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .booking-modal__checkout {
@@ -7603,7 +7608,7 @@ html[lang=ar] .make-payment__summary-top {
   overflow-y: scroll;
   scrollbar-width: thin;
   border-radius: 20px;
-  padding: 10px 3px;
+  padding: 0;
 }
 
 :where(.css-dev-only-do-not-override-5uvb3z) -wrap {
@@ -7620,7 +7625,7 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .guests-box-container {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 }
 
 .guests-box {
