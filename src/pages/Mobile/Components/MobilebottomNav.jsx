@@ -7,7 +7,7 @@ import chatIconInverter from "../../../assets/icons/chatcolor.svg";
 import cartIcon from "../../../assets/icons/shopping.svg";
 import cartIconInverter from "../../../assets/icons/cartcolor.svg";
 import { useNavigate, useLocation } from "react-router-dom";
-import MycartMbl from "./MycartMbl";
+import MycartMbl from "../../Home/MobileComponents/MycartMbl";
 import { useSelector } from "react-redux";
 // import MobileLanding from "./MobileLanding";
 

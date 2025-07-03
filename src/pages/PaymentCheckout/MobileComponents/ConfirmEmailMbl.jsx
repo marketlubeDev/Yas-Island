@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MobileHeader from "../../Home/MobileComponents/MobileHeader"; // Adjust the import path as needed
+import MobileHeader from "../../Mobile/Components/MobileHeader"; // Adjust the import path as needed
 import backIcon from "../../../assets/icons/back.svg";
 import PaymentHeaderMbl from "./PaymentHeaderMbl";
 import OtpSectionMbl from "./OtpSectionMbl";

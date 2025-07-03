@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
-import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
+import MobileProductPage from "../pages/Mobile/ProductPage/MobileProductPage";
 import MobilePaymentFlow from "../pages/PaymentCheckout/MobilePaymentFlow";
 import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
 import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";

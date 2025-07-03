@@ -1,6 +1,6 @@
 import React from "react";
-import MobileNavigationTabs from "./MobileNavigationTabs";
-import MobileSearchSection from "./MobileSearchSection";
+import MobileNavigationTabs from "../../Home/MobileComponents/MobileNavigationTabs";
+import MobileSearchSection from "../../Home/MobileComponents/MobileSearchSection";
 
 function MobileTop() {
   return (

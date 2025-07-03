@@ -13,7 +13,11 @@ import getPerformance from "../../../../serivces/performance/performance";
 import formatDate from "../../../../utils/dateFormatter";
 import { toast } from "sonner";
 
-function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection }) {
+function AttractionDetailModalMbl({
+  attraction,
+  onClose,
+  setShowBookingSection,
+}) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
@@ -80,59 +84,62 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection }
     }
   }, [attraction]);
 
-  function getAvailableDates(product){
+  function getAvailableDates(product) {
     const today = new Date();
     const startDate = product?.sale_date_offset || 0;
     today.setDate(today.getDate() + startDate);
     let endDate;
-  
-    if(product?.calendar_range_days && product?.calendar_end_date){
+
+    if (product?.calendar_range_days && product?.calendar_end_date) {
       const rangeEndDate = new Date(today);
       rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
       const calendarEndDate = new Date(product?.calendar_end_date);
-      endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
-    } else if(product?.calendar_range_days){
+      endDate = new Date(
+        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
+      );
+    } else if (product?.calendar_range_days) {
       endDate = new Date(today);
       endDate.setDate(today.getDate() + product?.calendar_range_days);
-    } else if(product?.calendar_end_date){
+    } else if (product?.calendar_end_date) {
       endDate = new Date(product?.calendar_end_date);
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
-  
+
     const dates = [];
     let currentDate = new Date(today);
-    
-    while(currentDate <= endDate) {
-      dates.push(currentDate.toISOString().split('T')[0]);
+
+    while (currentDate <= endDate) {
+      dates.push(currentDate.toISOString().split("T")[0]);
       currentDate = new Date(currentDate);
       currentDate.setDate(currentDate.getDate() + 1);
     }
     return dates;
   }
 
-
   const fetchAvailableDates = async () => {
-    setIsLoadingDates(true);    
+    setIsLoadingDates(true);
     try {
       let hasPerformance = false;
 
-      if(attraction?.product_variants?.length > 0){
+      if (attraction?.product_variants?.length > 0) {
         attraction?.product_variants?.forEach((variant) => {
-          if(variant?.hasperformance){
+          if (variant?.hasperformance) {
             hasPerformance = true;
           }
         });
       }
 
-      if(hasPerformance){
-        const productId = attraction?.default_variant_id || attraction?.product_variants[0]?.productid
+      if (hasPerformance) {
+        const productId =
+          attraction?.default_variant_id ||
+          attraction?.product_variants[0]?.productid;
         const performanceData = await getPerformance(
           formatDate(validStartDate),
           formatDate(validEndDate),
           productId
         );
-  
+
         if (performanceData && performanceData.performance) {
           dispatch(setPerformanceData(performanceData.performance));
           const dates = performanceData.performance.map((p) => p.date);
@@ -141,14 +148,11 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection }
       } else {
         setAvailableDates(getAvailableDates(attraction));
       }
-
-
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong")
+      toast.error(error?.response?.data?.message || "Something went wrong");
       // if it is error then close all modals
       onClose();
-     
     } finally {
       setIsLoadingDates(false);
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import MobileHeader from "../../Home/MobileComponents/MobileHeader";
+import MobileHeader from "../../Mobile/Components/MobileHeader";
 
 function PaymentSuccessfulMbl({ onShowExperience }) {
   const { t } = useTranslation();

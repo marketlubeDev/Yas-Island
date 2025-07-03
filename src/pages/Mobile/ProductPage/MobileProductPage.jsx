@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
-import MobileHeader from "../../Home/MobileComponents/MobileHeader";
-import MobileTop from "../../Home/MobileComponents/MobileTop";
+import MobileBottomNav from "../Components/MobilebottomNav";
+import MobileHeader from "../Components/MobileHeader";
+import MobileTop from "../Components/MobileTop";
 import AttractionsListMbl from "./Components/AttractionsListMbl";
 import { useSelector } from "react-redux";
 import useGetProductList from "../../../apiHooks/product/product";

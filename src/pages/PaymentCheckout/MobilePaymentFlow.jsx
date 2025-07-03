@@ -6,7 +6,7 @@ import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import MakePaymentMbl from "./MobileComponents/MakePaymentMbl";
 import PaymentSuccessfulMbl from "./MobileComponents/PaymentSuccessfulMbl";
 import ExperienceMbl from "./MobileComponents/ExperienceMbl";
-import MobileHeader from "../Home/MobileComponents/MobileHeader";
+import MobileHeader from "../Mobile/Components/MobileHeader";
 
 const MobilePaymentFlow = () => {
   const [step, setStep] = useState(1);

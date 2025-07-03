@@ -34,8 +34,6 @@ const AttractionsListMbl = ({ productList }) => {
     dispatch(clearPerformance());
   };
 
-
-
   const handleBookingModalBack = () => {
     setModalType("attraction");
   };
