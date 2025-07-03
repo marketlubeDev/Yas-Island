@@ -21,8 +21,7 @@ function BookingModalMbl({
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
@@ -30,7 +29,11 @@ function BookingModalMbl({
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = 1;
+      variants[variant?.productid] = {
+        quantity: variant?.min_quantity || 0,
+        name: variant?.productvariantname,
+        variant: variant,
+      };
     });
     return variants;
   }
@@ -41,35 +44,11 @@ function BookingModalMbl({
 
   useEffect(() => {
     let newTotalPrice = 0;
-
-    product?.product_variants?.forEach((variant) => {
-      const variantName = variant.productvariantname;
-      if (guests[variantName]) {
-        newTotalPrice += variant.gross * guests[variantName];
-      }
+    Object.values(guests).forEach((guestData) => {
+      newTotalPrice += guestData.variant.gross * guestData.quantity;
     });
-
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
-
-  function getValidDateRange(product) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
-
-    let tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
-
-    let endDate;
-    if (product?.calendar_end_date) {
-      endDate = new Date(product.calendar_end_date);
-    } else {
-      endDate = new Date(today.getFullYear(), 11, 31);
-    }
-    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
-
-    return { startDate: tomorrow, endDate };
-  }
 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -79,34 +58,29 @@ function BookingModalMbl({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const handleDateClick = (date) => {
-    if (!startDate || (startDate && endDate)) {
-      // Start new selection
-      setStartDate(date);
-      setEndDate(null);
-    } else {
-      // Complete the selection
-      if (date < startDate) {
-        setStartDate(date);
-        setEndDate(startDate);
-      } else {
-        setEndDate(date);
-      }
-    }
+  const formatDateToYYYYMMDD = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
-  const isDateInRange = (date) => {
-    if (!startDate || !endDate) return false;
-    return date >= startDate && date <= endDate;
+  const handleDateClick = (date) => {
+    const formattedDate = formatDateToYYYYMMDD(date);
+    setSelectedDate(formattedDate);
+  };
+
+  const isDateSelected = (date) => {
+    if (!selectedDate) return false;
+    return formatDateToYYYYMMDD(date) === selectedDate;
   };
 
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
-    // Add empty cells at the start
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(
         <div
@@ -116,33 +90,25 @@ function BookingModalMbl({
       );
     }
 
-    // Add the days
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        day,
-        0,
-        0,
-        0,
-        0
+        day
       );
 
-      const isSelected =
-        (startDate && date.toDateString() === startDate.toDateString()) ||
-        (endDate && date.toDateString() === endDate.toDateString());
-      const isInRange = isDateInRange(date);
-      const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled =
-        date.getTime() < minDate.getTime() ||
-        date.getTime() > maxDate.getTime();
+      const formattedDateString = formatDateToYYYYMMDD(date);
+      const isSelected = isDateSelected(date);
+      const isToday =
+        formatDateToYYYYMMDD(date) === formatDateToYYYYMMDD(new Date());
+      const isDisabled = !availableDates?.includes(formattedDateString);
 
       days.push(
         <button
           key={day}
           className={`booking-modal__calendar-date${
             isSelected ? " selected" : ""
-          }${isInRange ? " in-range" : ""}${isDisabled ? " disabled" : ""}`}
+          }${isToday ? " today" : ""}${isDisabled ? " disabled" : ""}`}
           onClick={() => !isDisabled && handleDateClick(date)}
           disabled={isDisabled}
         >
@@ -169,18 +135,18 @@ function BookingModalMbl({
   const formatMonthYear = (date) => {
     if (i18n.language === "ar") {
       const arabicMonths = {
-        0: "يناير", // Yanāyir
-        1: "فبراير", // Fibrayir
-        2: "مارس", // Māris
-        3: "أبريل", // Abrīl
-        4: "مايو", // Māyū
-        5: "يونيو", // Yūniyū
-        6: "يوليو", // Yūlyū
-        7: "أغسطس", // Aghustus
-        8: "سبتمبر", // Septambir
-        9: "أكتوبر", // Oktūbar
-        10: "نوفمبر", // Nūfambir
-        11: "ديسمبر", // Dīsambir
+        0: "يناير",
+        1: "فبراير",
+        2: "مارس",
+        3: "أبريل",
+        4: "مايو",
+        5: "يونيو",
+        6: "يوليو",
+        7: "أغسطس",
+        8: "سبتمبر",
+        9: "أكتوبر",
+        10: "نوفمبر",
+        11: "ديسمبر",
       };
       const arabicMonth = arabicMonths[date.getMonth()];
       const gregorianYear = date
@@ -384,7 +350,7 @@ function BookingModalMbl({
           {/* Guests */}
           <div className="booking-modal__guests-section">
             <div className="booking-modal__guests-title">
-              {t("booking.chooseGuests")}
+              {product?.quantitydesc || t("booking.chooseGuests")}
             </div>
 
             <div className="guests-box-container">
@@ -394,29 +360,27 @@ function BookingModalMbl({
                 ) : (
                   <>
                     <div className="guests-summary">
-                      {Object.keys(guests).map((variant, idx, arr) => (
-                        <span key={variant}>
-                          {variant}: {toArabicNumeral(guests[variant])}
+                      {Object.entries(guests).map(([productId, guestData], idx, arr) => (
+                        <span key={productId}>
+                          {guestData.name}: {guestData.quantity}
                           {idx < arr.length - 1 ? " / " : ""}
                         </span>
                       ))}
                     </div>
                     <div className="guests-divider"></div>
-                    {Object.keys(guests).map((variant, idx) => {
-                      const variantData = product.product_variants.find(
-                        (v) => v.productvariantname === variant
-                      );
+                    {Object.entries(guests).map(([productId, guestData], idx) => {
+                      const variantData = guestData.variant;
                       return (
-                        <React.Fragment key={idx}>
+                        <React.Fragment key={productId}>
                           <div className="guests-row">
                             <div className="guest-label-container">
                               <span className="guest-label">
-                                {variant}{" "}
+                                {guestData.name}{" "}
                                 {variantData?.productvariantdesc &&
                                   `(${variantData.productvariantdesc})`}
                               </span>
                               <span className="guest-label-price">
-                                AED {variantData?.gross * guests[variant]}{" "}
+                                AED {variantData?.gross * guestData.quantity}{" "}
                               </span>
                             </div>
 
@@ -427,10 +391,25 @@ function BookingModalMbl({
                                   color: "var(--color-bkg-guest-title-clr)",
                                 }}
                                 onClick={() =>
-                                  setGuests((prev) => ({
-                                    ...prev,
-                                    [variant]: Math.max(0, prev[variant] - 1),
-                                  }))
+                                  setGuests((prev) => {
+                                    const currentValue = prev[productId].quantity;
+                                    const newValue = Math.max(
+                                      variantData?.min_quantity || 0,
+                                      currentValue -
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity <=
+                                  (variantData?.min_quantity || 0)
                                 }
                               >
                                 -
@@ -441,7 +420,7 @@ function BookingModalMbl({
                                   color: "var(--color-bkg-guest-title-clr)",
                                 }}
                               >
-                                {toArabicNumeral(guests[variant])}
+                                {toArabicNumeral(guestData.quantity)}
                               </span>
                               <button
                                 className="guests-btn"
@@ -449,10 +428,25 @@ function BookingModalMbl({
                                   color: "var(--color-bkg-guest-title-clr)",
                                 }}
                                 onClick={() =>
-                                  setGuests((prev) => ({
-                                    ...prev,
-                                    [variant]: prev[variant] + 1,
-                                  }))
+                                  setGuests((prev) => {
+                                    const currentValue = prev[productId].quantity;
+                                    const newValue = Math.min(
+                                      variantData?.max_quantity || 100,
+                                      currentValue +
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity >=
+                                  (variantData?.max_quantity || 100)
                                 }
                               >
                                 +
@@ -465,7 +459,6 @@ function BookingModalMbl({
                     })}
                   </>
                 )}
-                  
               </div>
             </div>
           </div>
@@ -475,7 +468,7 @@ function BookingModalMbl({
             className="booking-modal__checkout"
             onClick={() =>
               onCheckout &&
-              onCheckout({ startDate, endDate, guests, totalPrice })
+              onCheckout({ selectedDate, guests, totalPrice })
             }
             disabled={isLoadingDates}
             style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
@@ -489,7 +482,7 @@ function BookingModalMbl({
             className="booking-modal__save"
             onClick={() =>
               onSaveToCart &&
-              onSaveToCart({ startDate, endDate, guests, totalPrice })
+              onSaveToCart({ selectedDate, guests, totalPrice })
             }
             disabled={isLoadingDates}
             style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
