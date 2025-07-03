@@ -58,7 +58,10 @@ const MobilePaymentFlow = () => {
   return (
     <>
       <MobileHeader />
-      {renderStep()}
+      <EmailVerificationMbl
+        onBack={() => window.history.back()}
+        onConfirmEmail={() => setStep(2)}
+      />
     </>
   );
 };

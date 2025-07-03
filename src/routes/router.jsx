@@ -10,6 +10,7 @@ import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
 import PaymentSuccessPage from "../pages/PaymentSuccess/PaymentSuccessPage";
 import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
 import ResponsiveWrapper from "../components/ResponsiveWrapper";
+import EmailverificationMobile from "../pages/Mobile/EmailVerification/EmailverificationMobile";
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
         path: "email-verification",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={EmailverificationMobile}
             DesktopComponent={PaymentCheckout}
           />
         ),
