@@ -43,26 +43,12 @@
     outline: none;
     width: 100%;
     color: var(--color-base-text);
-
-    @include respond(desktop) {
-      font-size: 15px !important;
-    }
-
-    @include respond(bigDesktop) {
-      font-size: 16px !important;
-    }
+    font-size: 17px;
 
     &::placeholder {
       color: var(--color-base-text);
       opacity: 0.6;
-
-      @include respond(desktop) {
-        font-size: 14px;
-      }
-
-      @include respond(bigDesktop) {
-        font-size: 16px;
-      }
+      font-size: 17px;
     }
   }
 }
