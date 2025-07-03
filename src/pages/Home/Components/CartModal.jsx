@@ -87,7 +87,6 @@ const CartModal = ({ isOpen, onClose }) => {
           );
         } else {
           const orderDetails = res?.orderdetails?.order;
-          console.log(orderDetails , "orderDetails>>");
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
@@ -95,7 +94,6 @@ const CartModal = ({ isOpen, onClose }) => {
             validFrom: item?.validFrom,
             validTo: item?.validTo 
           }));
-          console.log(items , "items>>");
           dispatch(setCheckout({
             coupons: [],
             items: items,
