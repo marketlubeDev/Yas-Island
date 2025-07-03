@@ -5,6 +5,7 @@ const initialState = {
   selectedProduct: {},
   parks: [],
   currentPark: "",
+  currentSort: "",
 };
 
 const productSlice = createSlice({
@@ -27,6 +28,9 @@ const productSlice = createSlice({
     setCurrentPark: (state, action) => {
       state.currentPark = action.payload;
     },
+    setCurrentSort: (state, action) => {
+      state.currentSort = action.payload;
+    },
   },
 });
 
@@ -36,5 +40,6 @@ export const {
   setSelectedProduct,
   setParks,
   setCurrentPark,
+  setCurrentSort,
 } = productSlice.actions;
 export default productSlice.reducer;

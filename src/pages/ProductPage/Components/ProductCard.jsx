@@ -14,6 +14,8 @@ export default function ProductCard({ productList }) {
   const [showBookingSection, setShowBookingSection] = useState(false);
   const dispatch = useDispatch();
 
+  console.log(productList, "productList");
+
   const showModal = (product) => {
     // Create a plain object to avoid non-serializable payload issues
     const plainProduct = { ...product };

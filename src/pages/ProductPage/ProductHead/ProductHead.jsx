@@ -4,7 +4,7 @@ import Search from "../../../components/Common/Search/Search";
 import { useSelector, useDispatch } from "react-redux";
 import Selector from "../../../components/Common/Selectors/Selector";
 import { useLanguage } from "../../../context/LanguageContext";
-import { setCurrentPark } from "../../../global/productSlice";
+import { setCurrentPark, setCurrentSort } from "../../../global/productSlice";
 
 export default function ProductHead() {
   const { language } = useLanguage();
@@ -13,7 +13,9 @@ export default function ProductHead() {
   const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
     (state) => state.responsive
   );
-  const { currentPark, allProducts } = useSelector((state) => state.product);
+  const { currentPark, allProducts, currentSort } = useSelector(
+    (state) => state.product
+  );
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const sortBtnRef = useRef(null);
@@ -21,6 +23,10 @@ export default function ProductHead() {
 
   const handleParkChange = (e) => {
     dispatch(setCurrentPark(e.target.value));
+  };
+
+  const handleSortChange = (e) => {
+    dispatch(setCurrentSort(e.target.value));
   };
 
   // Extract unique park names from all products
@@ -65,8 +71,13 @@ export default function ProductHead() {
         <div className="product-head__right">
           <Selector
             label={t("productHead.sortBy")}
-            value={t("productHead.priceHighToLow")}
-            options={[t("productHead.priceHighToLow")]}
+            value={currentSort}
+            options={[
+              t("productHead.priceHighToLow"),
+              t("productHead.priceLowToHigh"),
+            ]}
+            placeHolder={t("productHead.selectSort")}
+            onChange={handleSortChange}
           />
           <Selector
             label={t("productHead.filterBy")}

@@ -26,11 +26,13 @@ export const en = {
     highContrast: "High Contrast",
   },
   productHead: {
-    sortBy: "Sort by",
+    sortBy: "Sort by Price",
     filterBy: "Filter by Parks",
     priceHighToLow: "Price (High to Low)",
+    priceLowToHigh: "Price (Low to High)",
     attractions: "Attractions",
     selectPark: "Select Park",
+    selectSort: "Select Sort",
   },
   sidebar: {
     all: "All",
