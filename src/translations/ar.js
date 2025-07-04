@@ -194,6 +194,7 @@ export const ar = {
         India: "+٩١",
         USA: "+١",
       },
+      email: "البريد الإلكتروني *",
     },
     orderSummary: {
       title: "فيراري وورلد ياس آيلاند ليوم واحد",
