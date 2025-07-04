@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLanguage } from "../../../context/LanguageContext";
+import { setCurrentPark, setCurrentSort, setSearchQuery } from "../../../global/productSlice";
 
 import searchIcon from "../../../assets/icons/lens.svg";
 import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
@@ -14,7 +15,9 @@ function MobileSearchSection() {
   const sortBtnRef = useRef(null);
   const filterBtnRef = useRef(null);
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const { parks, currentPark, currentSort, searchQuery } = useSelector((state) => state.product);
   const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
   const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
   const { language } = useLanguage();
@@ -22,17 +25,27 @@ function MobileSearchSection() {
   const sortOptions = [
     {
       label: t("productHead.priceHighToLow"),
-      isSelected: true,
+      value: t("productHead.priceHighToLow"),
+      isSelected: currentSort === t("productHead.priceHighToLow"),
     },
-    // Uncomment to add more options:
-    // { label: t("productHead.priceLowToHigh"), isSelected: false }
+    {
+      label: t("productHead.priceLowToHigh"),
+      value: t("productHead.priceLowToHigh"),
+      isSelected: currentSort === t("productHead.priceLowToHigh"),
+    }
   ];
 
   const filterOptions = [
     {
-      label: t("productHead.attractions"),
-      isSelected: true,
+      label: t("productHead.selectPark"),
+      value: "",
+      isSelected: !currentPark,
     },
+    ...parks.map(park => ({
+      label: park,
+      value: park,
+      isSelected: currentPark === park,
+    }))
   ];
 
   const filterButtons = [
@@ -42,25 +55,34 @@ function MobileSearchSection() {
       onClick: () => setShowSortDropdown(!showSortDropdown),
       ref: sortBtnRef,
       options: sortOptions,
+      onOptionClick: (value) => {
+        dispatch(setCurrentSort(value));
+        setShowSortDropdown(false);
+      }
     },
     {
-      label: t("productHead.filterBy"),
+      label: currentPark || t("productHead.filterBy"),
       isOpen: showFilterDropdown,
       onClick: () => setShowFilterDropdown(!showFilterDropdown),
       ref: filterBtnRef,
       options: filterOptions,
+      onOptionClick: (value) => {
+        dispatch(setCurrentPark(value));
+        setShowFilterDropdown(false);
+      }
     },
   ];
+
+  const handleSearch = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (sortBtnRef.current && !sortBtnRef.current.contains(event.target)) {
         setShowSortDropdown(false);
       }
-      if (
-        filterBtnRef.current &&
-        !filterBtnRef.current.contains(event.target)
-      ) {
+      if (filterBtnRef.current && !filterBtnRef.current.contains(event.target)) {
         setShowFilterDropdown(false);
       }
     }
@@ -83,7 +105,12 @@ function MobileSearchSection() {
         {/* {t("common.selectAttractions")} */}
       </h2>
       <div className="mobile-top-search-section__searchbar">
-        <input type="text" placeholder={t("common.searchPlaceholderMobile")} />
+        <input 
+          type="text" 
+          placeholder={t("common.searchPlaceholderMobile")} 
+          value={searchQuery}
+          onChange={handleSearch}
+        />
         <button>
           <img src={searchIconSrc} alt="Search" />
         </button>
@@ -149,6 +176,7 @@ function MobileSearchSection() {
                   <div
                     key={optionIndex}
                     className="mobile-top-search-section__dropdown-option"
+                    onClick={() => button.onOptionClick(option.value)}
                   >
                     <span>{option.label}</span>
                     {option.isSelected && (

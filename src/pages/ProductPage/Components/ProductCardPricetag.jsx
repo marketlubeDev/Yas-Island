@@ -17,9 +17,9 @@ export default function ProductCardPricetag({
           <p className="ProductCard__card__pricetag__price__text">
             {currency} {price}
           </p>
-          <p className="ProductCard__card__pricetag__price__tax">
+          {/* <p className="ProductCard__card__pricetag__price__tax">
             {netPrice}+{tax} {taxDescription}
-          </p>
+          </p> */}
         </div>
         <AddtoCartbtn onClick={onAddToCart} />
       </div>
