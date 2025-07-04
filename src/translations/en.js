@@ -180,7 +180,7 @@ export const en = {
       lastName: "LAST NAME *",
       countryOfResidence: "COUNTRY OF RESIDENCE *",
       nationality: "NATIONALITY *",
-      phoneNumber: "PHONE NUMBER ",
+      phoneNumber: "PHONE NUMBER  *",
       preferredNumber: "(PREFERRED NUMBER) *",
       countries: {
         UAE: "UAE",
@@ -196,6 +196,7 @@ export const en = {
         India: "+91",
         USA: "+1",
       },
+      email: "EMAIL ADDRESS *",
     },
     orderSummary: {
       title: "1 day FERRARI WORLD YAS ISLAND",

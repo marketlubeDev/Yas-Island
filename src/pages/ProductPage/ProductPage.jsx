@@ -9,6 +9,7 @@ import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
 import AccessibilityModal from "./Components/AccessibilityModal";
 import MainProductHead from "./ProductHead/mainProductHead";
 import useGetProductList from "../../apiHooks/product/product";
+import Loader from "../../components/Loading/Loader";
 
 export default function ProductPage() {
   const { isMobile, isTablet } = useSelector((state) => state.responsive);
@@ -92,6 +93,7 @@ export default function ProductPage() {
         {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
           <div>Loading...</div>
+          // <div><Loader /></div>
         ) : (
           <ProductCard productList={filteredProducts} />
         )}
