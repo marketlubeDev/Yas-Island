@@ -17,34 +17,7 @@ export default function PaymentCheckoutBody() {
     navigate("/product");
   };
 
-  // const renderContent = () => {
-  //   switch (currentStep) {
-  //     case "email":
-  //       return (
-  //         <EmailConfirmation
-  //           onVerificationComplete={handleVerificationComplete}
-  //           showVerification={showVerification}
-  //           setShowVerification={setShowVerification}
-  //         />
-  //       );
-  //     case "details":
-  //       return <PaymentDetails onProceed={handleProceedToPayment} />;
-  //     case "card":
-  //       return <CardPaymentDetail onPaymentComplete={handlePaymentComplete} />;
-  //     case "success":
-  //       return <PaymentSuccess onLottieClick={handleLottieClick} />;
-  //     case "response":
-  //       return <PaymentResponse />;
-  //     default:
-  //       return (
-  //         <EmailConfirmation
-  //           onVerificationComplete={handleVerificationComplete}
-  //           showVerification={showVerification}
-  //           setShowVerification={setShowVerification}
-  //         />
-  //       );
-  //   }
-  // };
+ 
 
   const showHeaderComponents =
     currentStep === "email" || currentStep === "details";

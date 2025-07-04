@@ -6,7 +6,7 @@ import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import { useSelector } from "react-redux";
-import Loading from "../../../../components/Loading/Loading";
+import Loading from "../../../../components/Loading/ButtonLoading";
 
 function BookingModalMbl({
   onClose,
@@ -380,7 +380,8 @@ function BookingModalMbl({
                                   `(${variantData.productvariantdesc})`}
                               </span>
                               <span className="guest-label-price">
-                                AED {variantData?.gross * guestData.quantity}{" "}
+                                {variantData.quantity > 0 &&
+                                  `AED ${variantData?.gross * guestData.quantity}`}
                               </span>
                             </div>
 

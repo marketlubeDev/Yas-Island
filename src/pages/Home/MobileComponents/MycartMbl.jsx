@@ -206,7 +206,7 @@ function MycartMbl({ onClose, visible }) {
             >
               {t.cart.checkOut}
             </button>
-            <button
+            {/* <button
               className="mycart-modal__save"
               onClick={() => {
                 handleBack();
@@ -214,7 +214,7 @@ function MycartMbl({ onClose, visible }) {
               }}
             >
               {t.cart.saveCartAndPayLater}
-            </button>
+            </button> */}
           </div>
         )}
       </div>

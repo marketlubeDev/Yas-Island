@@ -162,7 +162,7 @@ export const en = {
     },
     emailConfirmation: {
       emailLabel: "EMAIL ADDRESS *",
-      emailPlaceholder: "vivek@dev.vanasthi.ae",
+      emailPlaceholder: "example@email.com",
       confirmButton: "Confirm email",
       completeVerification: "Confirm email",
     },
