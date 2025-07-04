@@ -12,7 +12,7 @@ import InvertPlusIcon from "../../../assets/icons/invertplus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
-import Loading from "../../../components/Loading/Loading";
+import Loading from "../../../components/Loading/ButtonLoading";
 
 export default function BookingSection({
   product,
@@ -460,7 +460,8 @@ export default function BookingSection({
                                   `(${variantData.productvariantdesc})`}
                               </span>
                               <span className="guest-label-price">
-                                AED {variantData?.gross * guestData.quantity}{" "}
+                                {guestData.quantity > 0 &&
+                                  `AED ${variantData?.gross * guestData.quantity}`}
                               </span>
                             </div>
                             <div className="counter-controls">

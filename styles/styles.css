@@ -5411,7 +5411,7 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 .mycart-modal__checkout,
 .mycart-modal__save {
   display: block;
-  width: 75%;
+  width: 100%;
   margin: 0 auto 10px auto;
   border-radius: 2rem;
   padding: 12px 0;
@@ -5423,26 +5423,6 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   border: none;
 }
 
-@media (min-width: 340px) and (max-width: 369px) {
-  .mycart-modal__checkout,
-  .mycart-modal__save {
-    font-size: 15px;
-    padding: 10px 0;
-  }
-}
-@media (min-width: 360px) and (max-width: 369px) {
-  .mycart-modal__checkout,
-  .mycart-modal__save {
-    font-size: 14px;
-    padding: 8px 0;
-  }
-}
-@media (min-width: 390px) and (max-width: 411px) {
-  .mycart-modal__checkout,
-  .mycart-modal__save {
-    font-size: 16px;
-  }
-}
 .mycart-modal__checkout {
   background: var(--color-cart-check-btn-bg);
   color: var(--color-cart-check-btn-text);

@@ -11,8 +11,9 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import {  removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
-import Loading from "../../../components/Loading/Loading";
+import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
+import { toast } from "sonner";
 
 
 
@@ -75,6 +76,7 @@ const CartModal = ({ isOpen, onClose }) => {
 
     checkBasket(data, {
       onSuccess: (res) => {
+        console.log(res);
         if (res?.orderDetails?.error?.code) {
           toast.error(
             res?.orderDetails?.error?.text || t("Something went wrong"),
@@ -108,7 +110,6 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
-        console.log(err);
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
@@ -210,9 +211,9 @@ const CartModal = ({ isOpen, onClose }) => {
               </div>
 
               <div className="cart-actions">
-                <button className="save-cart-btn" onClick={handleSaveCart}>
+                {/* <button className="save-cart-btn" onClick={handleSaveCart}>
                   {t("cart.saveCartAndPayLater")}
-                </button>
+                </button> */}
                 <button className="checkout-btn" onClick={() => handleBasketCheck(handleCheckout)}>
                   {isPending ? <Loading /> : t("cart.checkOut")}
                 </button>
