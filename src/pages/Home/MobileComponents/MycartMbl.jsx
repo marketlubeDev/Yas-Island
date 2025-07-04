@@ -1,96 +1,121 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Modal } from "antd";
+import React from "react";
+import { Modal, Button } from "antd";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import backIcon from "../../../assets/icons/back.svg";
 import backIconInverter from "../../../assets/icons/invertedback.svg";
-import trashIcon from "../../../assets/icons/trash.svg";
-import trashIconInverter from "../../../assets/icons/invertdelete.svg";
-import frame1 from "../../../assets/images/frame1.png";
+import DeleteIcon from "../../../assets/icons/delete.svg";
+import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
-import { ar } from "../../../translations/ar";
-import { en } from "../../../translations/en";
 import { useLanguage } from "../../../context/LanguageContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import Loading from "../../../components/Loading/ButtonLoading";
+import { setCheckout } from "../../../global/checkoutSlice";
+import { toast } from "sonner";
 
 function MycartMbl({ onClose, visible }) {
-  const { language } = useLanguage();
-  const t = language === "العربية" || language === "ar" ? ar : en;
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
-  const deleteIconSrc = isDarkMode ? trashIconInverter : trashIcon;
+  const language = useSelector((state) => state.language.currentLanguage);
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const isRTL = language === "ar" || language === "العربية";
+  const { isRTL } = useLanguage();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const handleBack = useCallback(
-    (e) => {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      onClose();
-    },
-    [onClose]
-  );
+  const { cartItems, subtotal, vatAndTax, total } = useSelector((state) => state.cart);
+  const { mutate: checkBasket, isPending } = useCheckBasket();
 
-  // Example cart data
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image: frame1,
-      titleKey: "ferrariWorld",
-      price: 328.57,
-      vat: t.cart.item.vatAndTax,
-      date: "08 Feb 2025",
-      typeKey: "adults",
-      quantity: 2,
-    },
-    {
-      id: 2,
-      image: frame1,
-      titleKey: "ferrariWorld",
-      price: 278.57,
-      vat: t.cart.item.vatAndTax,
-      date: "08 Feb 2025",
-      typeKey: "children",
-      quantity: 1,
-    },
-  ]);
+  const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+  const deleteIconSrc = isDarkMode ? InvertDeleteIcon : DeleteIcon;
 
-  // Example summary
-  const subtotal = 935.71;
-  const vatTotal = 49.29;
-  const total = 985.0;
-
-  // Quantity handlers
-  const updateQuantity = (id, delta) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    );
+  const handleCheckout = () => {
+    navigate("/email-verification");
+    onClose();
   };
 
-  // Delete handler
-  const deleteItem = (id) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
+  const handleQuantityChange = (id, change, validFrom, minQuantity, maxQuantity, incrementNumber = 1) => {
+    const item = cartItems.find((item) => item.productId === id && item.validFrom === validFrom);
+    if (!item) return;
+
+    // Calculate the actual change amount based on increment number
+    const actualChange = change > 0 ? incrementNumber : -incrementNumber;
+    
+    // Calculate new quantity respecting min and max bounds
+    const newQuantity = Math.max(minQuantity, Math.min(maxQuantity, item.quantity + actualChange));
+
+    dispatch(updateQuantity({ id, quantity: newQuantity, validFrom }));
   };
 
-  useEffect(() => {
-    if (visible) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
+  const handleDeleteItem = (id, validFrom) => {
+    dispatch(removeItemFromCart({ id, validFrom }));
+  };
+
+  const handleBasketCheck = (onSuccess) => {
+    let items = [];
+    cartItems?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances ? [{ performanceId: item?.performances }] : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo
+      });
+    });
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true,
     };
-  }, [visible]);
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        console.log(res);
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          const orderDetails = res?.orderdetails?.order;
+          const items = orderDetails?.items?.map((item) => ({
+            productId: item?.productId,
+            quantity: item?.quantity,
+            performances: item?.performances ? [{ performanceId: item?.performances }] : [],
+            validFrom: item?.validFrom,
+            validTo: item?.validTo
+          }));
+          dispatch(setCheckout({
+            coupons: [],
+            items: items,
+            emailId: "",
+            language: language,
+            amount: orderDetails?.total?.gross,
+            firstName: "",
+            lastName: "",
+            phoneNumber: "",
+            countryCode: "",
+            isTnCAgrred: false,
+            isConsentAgreed: false,
+          }));
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      },
+    });
+  };
 
   return (
     <Modal
       open={visible}
-      onCancel={handleBack}
+      onCancel={onClose}
       footer={null}
       width="100%"
       closable={false}
@@ -99,16 +124,16 @@ function MycartMbl({ onClose, visible }) {
       className={`mycart-modal-mobile ${isRTL ? "rtl" : ""}`}
       transitionName="zoom"
       maskTransitionName="fade"
-      maskStyle={{ background: "rgba(0, 0, 0, 0.45)" }}
-      destroyOnClose
+      styles={{
+        mask: { background: "rgba(0, 0, 0, 0.45)" }
+      }}
+      destroyOnHidden
     >
       <div className="mycart-modal__content">
         <div className="mycart-modal__header">
           <button
-            className={`mycart-modal__back ${
-              isRTL ? "mycart-modal__back--rtl" : ""
-            }`}
-            onClick={handleBack}
+            className={`mycart-modal__back ${isRTL ? "mycart-modal__back--rtl" : ""}`}
+            onClick={onClose}
             type="button"
             style={{ cursor: "pointer" }}
             aria-label="Close modal"
@@ -119,103 +144,109 @@ function MycartMbl({ onClose, visible }) {
               style={{ transform: isRTL ? "scaleX(-1)" : "none" }}
             />
           </button>
-          <span className="mycart-modal__title">{t.cart.title}</span>
+          <span className="mycart-modal__title">{t("cart.title")}</span>
         </div>
 
-        <div className="mycart-modal__items">
-          {cartItems.length === 0 ? (
-            <div className="mycart-modal__empty">
-              <h3>Cart is empty</h3>
-              <p>Add some items to your cart to get started</p>
-            </div>
-          ) : (
-            cartItems.map((item) => (
-              <div className="mycart-modal__item" key={item.id}>
-                <img
-                  src={item.image}
-                  alt={item.titleKey}
-                  className="mycart-modal__item-img"
-                  onError={(e) => {
-                    console.error("Image failed to load:", e);
-                    e.target.src = frame1;
-                  }}
-                />
-                <div className="mycart-modal__item-content">
-                  <div className="mycart-modal__item-title-row">
-                    <div className="mycart-modal__item-title">
-                      {t.cart.item[item.titleKey]}
+        {cartItems.length === 0 ? (
+          <div className="mycart-modal__empty">
+            <h3>{t("cart.empty")}</h3>
+            <p>{t("cart.emptyMessage")}</p>
+          </div>
+        ) : (
+          <>
+            <div className="mycart-modal__items">
+              {cartItems.map((item, index) => (
+                <div className="mycart-modal__item" key={index}>
+                  <img
+                    src={item?.image}
+                    alt={item?.title}
+                    className="mycart-modal__item-img"
+                  />
+                  <div className="mycart-modal__item-content">
+                    <div className="mycart-modal__item-title-row">
+                      <div className="mycart-modal__item-title">
+                        {item?.title}
+                      </div>
+                      <button
+                        className="mycart-modal__item-delete"
+                        onClick={() => handleDeleteItem(item?.productId, item?.validFrom)}
+                      >
+                        <img src={deleteIconSrc} alt="Delete" />
+                      </button>
                     </div>
-                    <button
-                      className="mycart-modal__item-delete"
-                      onClick={() => deleteItem(item.id)}
-                    >
-                      <img src={deleteIconSrc} alt="Delete" />
-                    </button>
-                  </div>
-                  <div className="mycart-modal__item-price">
-                    <span className="mycart-modal__item-price-main">
-                      {t.cart.currency} {item.price}
-                    </span>
-                    <span className="mycart-modal__item-vat">{item.vat}</span>
-                  </div>
-                  <div className="mycart-modal__item-date">
-                    {t.cart.validFrom} {item.date} {t.cart.to} {item.date}
-                  </div>
-                  <div className="mycart-modal__item-qty-row">
-                    <span style={{ color: "var(--color-email-form-label)" }}>
-                      {t.cart[item.typeKey]}
-                    </span>
-                    <div className="mycart-modal__item-qty-controls">
-                      <button onClick={() => updateQuantity(item.id, -1)}>
-                        -
-                      </button>
-                      <span style={{ color: "var(--color-email-form-label)" }}>
-                        {item.quantity}
+                    <div className="mycart-modal__item-price">
+                      <span className="mycart-modal__item-price-main">
+                        AED {item?.price?.net}
                       </span>
-                      <button onClick={() => updateQuantity(item.id, 1)}>
-                        +
-                      </button>
+                      <span className="mycart-modal__item-vat">
+                        +<span className="text-xs text-gray-500"> {item?.price?.tax} Net&Tax</span>
+                      </span>
+                    </div>
+                    <div className="mycart-modal__item-date">
+                      Valid from <span>{item?.validFrom}</span> to <span>{item?.validTo}</span>
+                    </div>
+                    <div className="mycart-modal__item-qty-row">
+                      <span style={{ color: "var(--color-email-form-label)" }}>
+                        {item?.variantName}
+                      </span>
+                      <div className="mycart-modal__item-qty-controls">
+                        <button  className="minus-btn-mobile" 
+                          onClick={() => handleQuantityChange(
+                            item?.productId, 
+                            -1, 
+                            item?.validFrom, 
+                            item?.minQuantity, 
+                            item?.maxQuantity, 
+                            item?.incrementNumber
+                          )}
+                        >
+                          <MinusOutlined />
+                        </button>
+                        <span style={{ color: "var(--color-email-form-label)" }}>
+                          {item?.quantity}
+                        </span>
+                        <button  className="plus-btn-mobile"
+                          onClick={() => handleQuantityChange(
+                            item?.productId, 
+                            1, 
+                            item?.validFrom, 
+                            item?.minQuantity, 
+                            item?.maxQuantity, 
+                            item?.incrementNumber
+                          )}
+                        >
+                          <PlusOutlined />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
-        </div>
-        {cartItems.length > 0 && (
-          <div className="mycart-modal__footer">
-            <div className="mycart-modal__summary">
-              <div className="mycart-modal__summary-row">
-                <span>{t.cart.subTotal}</span>
-                <span>
-                  {t.cart.currency} {subtotal.toFixed(2)}
-                </span>
-              </div>
-              <div className="mycart-modal__summary-row">
-                <span>{t.cart.vatAndTax}</span>
-                <span>+ {vatTotal.toFixed(2)} VAT & Tax</span>
-              </div>
-              <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
-                <span>{t.cart.total}</span>
-                <span>AED {total.toFixed(2)}</span>
-              </div>
+              ))}
             </div>
-            <button
-              className="mycart-modal__checkout"
-              onClick={() => navigate("/payment")}
-            >
-              {t.cart.checkOut}
-            </button>
-            {/* <button
-              className="mycart-modal__save"
-              onClick={() => {
-                handleBack();
-                navigate("/product");
-              }}
-            >
-              {t.cart.saveCartAndPayLater}
-            </button> */}
-          </div>
+
+            <div className="mycart-modal__footer">
+              <div className="mycart-modal__summary">
+                <div className="mycart-modal__summary-row">
+                  <span>{t("cart.subTotal")}</span>
+                  <span>AED {subtotal.toFixed(2)}</span>
+                </div>
+                <div className="mycart-modal__summary-row">
+                  <span>{t("cart.vatAndTax")}</span>
+                  <span>+  {vatAndTax.toFixed(2)} VAT & Tax</span>
+                </div>
+                <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
+                  <span>{t("cart.total")}</span>
+                  <span>AED {total.toFixed(2)}</span>
+                </div>
+              </div>
+              <button
+                className="mycart-modal__checkout"
+                onClick={() => handleBasketCheck(handleCheckout)}
+              >
+                {isPending ? <Loading /> : t("cart.checkOut")}
+              </button>
+            </div>
+          </>
         )}
       </div>
     </Modal>

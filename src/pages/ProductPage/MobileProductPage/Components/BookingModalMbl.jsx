@@ -5,8 +5,12 @@ import leftIcon from "../../../../assets/icons/left.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../../../components/Loading/ButtonLoading";
+import { addToCart, setIsCartOpen } from "../../../../global/cartSlice";
+import { toast } from "sonner";
+import useCheckBasket from "../../../../apiHooks/Basket/checkbasket";
+import { useNavigate } from "react-router-dom";
 
 function BookingModalMbl({
   onClose,
@@ -17,7 +21,15 @@ function BookingModalMbl({
   availableDates,
   isLoadingDates,
 }) {
+  const { mutate: checkBasket, isPending } = useCheckBasket();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const performanceData = useSelector(
+    (state) => state.performance.performanceData
+  );
+  const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
@@ -74,6 +86,172 @@ function BookingModalMbl({
   const isDateSelected = (date) => {
     if (!selectedDate) return false;
     return formatDateToYYYYMMDD(date) === selectedDate;
+  };
+
+  const getValidToDate = (id, selectedDate) => {
+    const item = selectedProduct?.product_variants?.find(
+      (variant) => variant?.productid == id
+    );
+    const validFromDate = new Date(selectedDate);
+    let validToDate = selectedDate;
+    const endDate = new Date(validFromDate);
+    endDate.setDate(validFromDate.getDate() + (item?.validitydays || 1));
+    validToDate = formatDateToYYYYMMDD(endDate);
+
+    return validToDate;
+  };
+
+  const getPerformanceId = (date) => {
+    const performance = performanceData.find((p) => p.date == date);
+    return performance ? performance.performanceId : false;
+  };
+
+  // Common function to handle basket check and cart operations
+  const handleBasketCheck = (onSuccess) => {
+    if (!selectedDate) {
+      toast.error(t("Please SelectDate"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    let hasPerformance = false;
+    let performanceId = null;
+
+    selectedProduct?.product_variants?.forEach((variant) => {
+      if (variant?.hasperformance) {
+        hasPerformance = true;
+      }
+    });
+
+    if (hasPerformance) {
+      performanceId = getPerformanceId(selectedDate);
+      if (!performanceId) {
+        toast.error(t("NoPerformance"), {
+          position: "top-center",
+        });
+        return;
+      }
+    }
+
+    const items = [];
+    Object.entries(guests).forEach(([productId, guestData]) => {
+      if (guestData.quantity < 1) {
+        return;
+      }
+      let hasperformance = false;
+      if (guestData.variant?.hasperformance) {
+        hasperformance = true;
+      }
+      items.push({
+        productId: productId,
+        quantity: guestData.quantity,
+        performance: hasperformance
+          ? [{ performanceId: getPerformanceId(selectedDate) }]
+          : [],
+        validFrom: selectedDate,
+        validTo: getValidToDate(productId, selectedDate),
+      });
+    });
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true,
+    };
+
+    if (items.length === 0) {
+      toast.error(t("Please enter a valid quantity"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          const orderDetails = res?.orderdetails;
+
+          orderDetails?.order?.items?.forEach((item) => {
+            const variantData = selectedProduct?.product_variants?.find(
+              (variant) => variant?.productid == item?.productId
+            );
+
+            let price = {
+              currency: "AED",
+              net: variantData?.net_amount,
+              tax: variantData?.vat,
+              gross: variantData?.gross,
+            };
+            let obj = {
+              capacityGuid: item?.capacityGuid,
+              discount: item?.discount,
+              groupingCode: item?.groupingCode,
+              itemPromotionList: item?.itemPromotionList,
+              original: item?.original,
+              packageCode: item?.packageCode,
+              performances:
+                item?.performances?.[0]?.performanceId ||
+                getPerformanceId(item?.validFrom) ||
+                null,
+              price: price,
+              productId: item?.productId,
+              quantity: item?.quantity,
+              rechargeAmount: item?.rechargeAmount,
+              validFrom: item?.validFrom,
+              validTo: item?.validTo
+                ? formatDateToYYYYMMDD(item?.validTo)
+                : getValidToDate(item?.productId, selectedDate),
+              image: selectedProduct?.product_images?.thumbnail_url,
+              title: selectedProduct?.product_title,
+              variantName: selectedProduct?.product_variants?.find(
+                (variant) => variant?.productid == item?.productId
+              )?.productvariantname,
+              minQuantity: variantData?.min_quantity,
+              maxQuantity: variantData?.max_quantity,
+              incrementNumber: variantData?.increment_number,
+            };
+            dispatch(addToCart(obj));
+          });
+
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      },
+    });
+  };
+
+  const handleSaveToCart = () => {
+    handleBasketCheck(() => {
+      toast.success(t("booking.productAddedToCart"), {
+        position: "top-center",
+      });
+      onClose();
+      dispatch(setIsCartOpen(true));
+    });
+  };
+
+  const handleCheckout = () => {
+    handleBasketCheck(() => {
+      const variants = {};
+      Object.entries(guests).forEach(([productId, guestData]) => {
+        variants[productId] = guestData.quantity;
+      });
+
+      navigate("/email-verification");
+    });
   };
 
   const generateCalendarDays = () => {
@@ -467,12 +645,9 @@ function BookingModalMbl({
         <div className="booking-modal__footer">
           <button
             className="booking-modal__checkout"
-            onClick={() =>
-              onCheckout &&
-              onCheckout({ selectedDate, guests, totalPrice })
-            }
-            disabled={isLoadingDates}
-            style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
+            onClick={handleCheckout}
+            disabled={isLoadingDates || isPending}
+            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
@@ -481,19 +656,17 @@ function BookingModalMbl({
           </button>
           <button
             className="booking-modal__save"
-            onClick={() =>
-              onSaveToCart &&
-              onSaveToCart({ selectedDate, guests, totalPrice })
-            }
-            disabled={isLoadingDates}
-            style={isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}}
+            onClick={handleSaveToCart}
+            disabled={isLoadingDates || isPending}
+            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
-            {isLoadingDates ? <Loading /> : t("booking.saveToCart")}
+            {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default BookingModalMbl;
