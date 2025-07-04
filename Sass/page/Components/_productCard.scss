@@ -42,7 +42,7 @@
     width: auto;
     min-width: 19.156rem;
     max-width: 19.156rem;
-    height: 26.882rem;
+    height: 25.882rem;
     flex-shrink: 0;
     background-color: var(--color-base-product-card-card-item-bg);
     padding: 0.5rem;
@@ -52,32 +52,12 @@
     flex-direction: column;
     align-items: center;
 
-    @include respond(desktop) {
-      height: 425px;
-    }
-
-    @include respond(bigDesktop) {
-      height: 425px;
-    }
-
     &__image {
       width: 100%;
       height: 201.573px;
       flex-shrink: 0;
       background-color: #f0f0f0;
       border-radius: 0.8rem;
-
-      // @include respond(desktop) {
-      //   height: 140px;
-      // }
-
-      // @include respond(bigDesktop) {
-      //   height: 160px;
-      // }
-
-      // @include respond(extraBigDesktop) {
-      //   height: 170px;
-      // }
 
       & img {
         width: 100%;
@@ -129,7 +109,6 @@
 
       &__description {
         color: var(--color-base-text-secondary);
-        // font-family: Urbanist;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
@@ -137,25 +116,19 @@
         margin-top: 0.8rem;
 
         @include respond(desktop) {
-          font-size: 14px;
-          font-weight: 350;
-          line-height: 24px;
-          margin-top: 0.6rem;
+          font-size: 16px;
         }
 
         @include respond(bigDesktop) {
-          font-size: 14px;
-          font-weight: 400;
-          line-height: 22px;
-          margin-top: 0.6rem;
+          font-size: 16px;
         }
 
-        @include respond(extraBigDesktop) {
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 26px;
-          margin-top: 0.7rem;
-        }
+        // @include respond(extraBigDesktop) {
+        //   font-size: 16px;
+        //   font-weight: 400;
+        //   line-height: 26px;
+        //   margin-top: 0.7rem;
+        // }
       }
 
       &__divider {
@@ -1133,7 +1106,7 @@ html[lang="ar"] {
   align-items: center;
   justify-content: space-between;
   overflow-y: scroll;
-  gap: 12px;
+  gap: 20px;
 
   &::-webkit-scrollbar {
     width: 8px;
