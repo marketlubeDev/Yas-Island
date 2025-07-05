@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import cardIcon from "../../../assets/icons/card.png";
-import paypalIcon from "../../../assets/icons/paypal.png";
-import visaIcon from "../../../assets/icons/payment.png";
+import cardIcon from "../../../../assets/icons/card.png";
+import paypalIcon from "../../../../assets/icons/paypal.png";
+import visaIcon from "../../../../assets/icons/payment.png";
 
 export default function CardPaymentDetail({ onPaymentComplete }) {
   const { t } = useTranslation();

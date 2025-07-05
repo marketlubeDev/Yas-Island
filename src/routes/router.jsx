@@ -5,14 +5,14 @@ import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
 import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
 import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";
-import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
+import CardPaymentPage from "../pages/CardPayment/Desktop/CardPaymentPage";
 import PaymentSuccessPage from "../pages/PaymentSuccess/PaymentSuccessPage";
 import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
 import ResponsiveWrapper from "../components/ResponsiveWrapper";
 import EmailVerificationMobile from "../pages/EmailVerification/EmilVarificationMobile";
 import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobile";
 import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
-import CardPaymentMobile from "../pages/CardPayment/CardPaymentMobile";
+import CardPaymentMobile from "../pages/CardPayment/Mobile/CardPaymentMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
 

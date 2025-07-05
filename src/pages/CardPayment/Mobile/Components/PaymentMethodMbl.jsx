@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import cardIcon from "../../../assets/images/creditcard.png";
-import paypalIcon from "../../../assets/images/paypal.png";
+import cardIcon from "../../../../assets/images/creditcard.png";
+import paypalIcon from "../../../../assets/images/paypal.png";
 
 function PaymentMethodMbl() {
   const { t } = useTranslation();

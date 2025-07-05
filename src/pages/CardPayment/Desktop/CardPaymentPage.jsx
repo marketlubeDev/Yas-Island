@@ -1,6 +1,6 @@
 import React from "react";
 import CardPaymentBody from "./Components/CardPaymentBody";
-import Header from "../../layouts/Header/Header";
+import Header from "../../../layouts/Header/Header";
 
 export default function CardPaymentPage() {
   return (
