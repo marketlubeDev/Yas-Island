@@ -10,6 +10,8 @@ import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
 import PaymentSuccessPage from "../pages/PaymentSuccess/PaymentSuccessPage";
 import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
 import ResponsiveWrapper from "../components/ResponsiveWrapper";
+import EmailVerificationMobile from "../pages/EmailVerification/EmilVarificationMobile";
+import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobile";
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +44,7 @@ export const router = createBrowserRouter([
         path: "email-verification",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={EmailVerificationMobile}
             DesktopComponent={PaymentCheckout}
           />
         ),
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
         path: "otp-confirmation",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={OtpConfirmationMobile}
             DesktopComponent={OtpConfirmation}
           />
         ),

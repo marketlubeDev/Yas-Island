@@ -338,6 +338,11 @@
   z-index: 10000;
   transition: background 0.2s;
 
+  @include respond(desktop) {
+    top: -13%;
+    right: 5px;
+  }
+
   &:hover {
     background: #fff;
   }
@@ -383,6 +388,25 @@
 
   @include respond(desktop) {
     padding: 0;
+  }
+}
+
+.product-description-api {
+  max-height: 50vh;
+  height: fit-content;
+  min-height: 30vh;
+  overflow-y: auto;
+
+  @include respond(desktop) {
+    max-height: 40vh;
+    height: fit-content;
+    min-height: 30vh;
+  }
+
+  @include respond(bigDesktop) {
+    max-height: 40vh;
+    height: fit-content;
+    min-height: 30vh;
   }
 }
 
@@ -581,6 +605,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @include respond(desktop) {
+    padding: 0px;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 0 20px;
+  }
 }
 
 /* Calendar container */
@@ -591,10 +623,10 @@
   width: 40%;
 
   @include respond(desktop) {
-    padding: 0 30px;
-    width: 42%;
+    padding: 0 20px;
+    width: 40%;
     border-radius: 14px;
-    margin-bottom: 4rem;
+    // margin-bottom: 4rem;
   }
 
   @include respond(bigDesktop) {
@@ -791,16 +823,24 @@
 .guest-section {
   padding: 0 24px;
   width: 60%;
-  min-height: 600px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
 
-  // @include respond(desktop) {
-  //   padding: 0 18px;
-  //   width: 100%;
-  // }
+  @include respond(desktop) {
+    padding: 0 18px;
+    width: 60%;
+    height: 440px;
+  }
+
+  @include respond(bigDesktop) {
+    padding: 0 18px;
+    width: 60%;
+    min-height: 480px;
+    height: 510px;
+  }
 }
 
 .section-title {
@@ -812,7 +852,7 @@
   text-transform: capitalize;
 
   @include respond(desktop) {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
   }
 
   @include respond(bigDesktop) {
@@ -823,10 +863,10 @@
 .guest-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 35px;
-  padding: 40px 20px 40px 20px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 0.826px solid var(--color-base-product-card-card-item-border-calendar);
-  width: 30.5625rem;
+  width: 25.5625rem;
   height: fit-content;
   flex-shrink: 0;
 
@@ -880,12 +920,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
-  margin-bottom: 22px;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-base-product-card-divider);
+  // margin-bottom: 22px;
 
   @include respond(desktop) {
-    margin-top: 6px;
-    margin-bottom: 16px;
+    padding-bottom: 12px;
+    // margin-bottom: 16px;
   }
 }
 
@@ -914,7 +956,7 @@
 
 .guest-label {
   color: var(--color-base-text);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -955,6 +997,7 @@ html[lang="ar"] {
   justify-content: center;
   cursor: pointer;
   color: var(--color-base-text);
+  padding: 10px;
 
   @include respond(desktop) {
     width: 40px;
@@ -1085,18 +1128,19 @@ html[lang="ar"] {
 
 .booking-section-divider {
   width: 2px;
-  height: 600px;
+  max-height: 550px;
+  height: 550px;
   background-color: var(--color-base-product-card-divider);
   // margin: 0 3rem 0 7rem;
 
   @include respond(desktop) {
-    height: 450px;
-    margin: 0 4.5rem 0 3rem;
+    height: 440px;
+    // margin: 0 4.5rem 0 3rem;
   }
 
   @include respond(bigDesktop) {
-    height: 450px;
-    margin: 0 4.5rem 0 3rem;
+    height: 510px;
+    // margin: 0 4.5rem 0 3rem;
   }
 }
 
@@ -1108,16 +1152,16 @@ html[lang="ar"] {
   overflow-y: scroll;
   gap: 20px;
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 8px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  // &::-webkit-scrollbar-track {
+  //   background: transparent;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-base-product-card-scroll-bar);
-    border-radius: 4px;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background: var(--color-base-product-card-scroll-bar);
+  //   border-radius: 4px;
+  // }
 }

@@ -75,60 +75,62 @@ export default function ProductModal({
     }
   }, [selectedProduct]);
 
+  function getAvailableDates(product) {
+    const today = new Date();
+    const startDate = product?.sale_date_offset || 0;
+    today.setDate(today.getDate() + startDate);
+    let endDate;
 
-function getAvailableDates(product){
-  const today = new Date();
-  const startDate = product?.sale_date_offset || 0;
-  today.setDate(today.getDate() + startDate);
-  let endDate;
+    if (product?.calendar_range_days && product?.calendar_end_date) {
+      const rangeEndDate = new Date(today);
+      rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
+      const calendarEndDate = new Date(product?.calendar_end_date);
+      endDate = new Date(
+        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
+      );
+    } else if (product?.calendar_range_days) {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + product?.calendar_range_days);
+    } else if (product?.calendar_end_date) {
+      endDate = new Date(product?.calendar_end_date);
+    } else {
+      endDate = new Date(today.getFullYear(), 11, 31);
+    }
 
-  if(product?.calendar_range_days && product?.calendar_end_date){
-    const rangeEndDate = new Date(today);
-    rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
-    const calendarEndDate = new Date(product?.calendar_end_date);
-    endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
-  } else if(product?.calendar_range_days){
-    endDate = new Date(today);
-    endDate.setDate(today.getDate() + product?.calendar_range_days);
-  } else if(product?.calendar_end_date){
-    endDate = new Date(product?.calendar_end_date);
-  } else {
-    endDate = new Date(today.getFullYear(), 11, 31);
+    const dates = [];
+    let currentDate = new Date(today);
+
+    while (currentDate <= endDate) {
+      dates.push(currentDate.toISOString().split("T")[0]);
+      currentDate = new Date(currentDate);
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dates;
   }
-
-  const dates = [];
-  let currentDate = new Date(today);
-  
-  while(currentDate <= endDate) {
-    dates.push(currentDate.toISOString().split('T')[0]);
-    currentDate = new Date(currentDate);
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
-  return dates;
-}
 
   const fetchAvailableDates = async () => {
-    setIsLoadingDates(true);    
+    setIsLoadingDates(true);
     try {
-    
       let hasPerformance = false;
 
-      if(selectedProduct?.product_variants?.length > 0){
+      if (selectedProduct?.product_variants?.length > 0) {
         selectedProduct?.product_variants?.forEach((variant) => {
-          if(variant?.hasperformance){
+          if (variant?.hasperformance) {
             hasPerformance = true;
           }
         });
       }
 
-      if(hasPerformance){
-        const productId = selectedProduct?.default_variant_id || selectedProduct?.product_variants[0]?.productid
+      if (hasPerformance) {
+        const productId =
+          selectedProduct?.default_variant_id ||
+          selectedProduct?.product_variants[0]?.productid;
         const performanceData = await getPerformance(
           formatDate(validStartDate),
           formatDate(validEndDate),
           productId
         );
-  
+
         if (performanceData && performanceData.performance) {
           dispatch(setPerformanceData(performanceData.performance));
           const dates = performanceData.performance.map((p) => p.date);
@@ -137,11 +139,9 @@ function getAvailableDates(product){
       } else {
         setAvailableDates(getAvailableDates(selectedProduct));
       }
-
-
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong")
+      toast.error(error?.response?.data?.message || "Something went wrong");
       // if it is error then close all modals
       onClose();
       setShowBookingSection(false);
@@ -156,7 +156,9 @@ function getAvailableDates(product){
   };
 
   const defaultVariant = (product) => {
-    let defaultVariant = product?.product_variants?.find((variant) => variant.isdefault);
+    let defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
     if (!defaultVariant) {
       defaultVariant = product?.product_variants[0];
     }
@@ -182,11 +184,13 @@ function getAvailableDates(product){
                 modules={[Autoplay, Pagination]}
                 className="mySwiper"
               >
-                {selectedProduct?.product_images?.image_urls?.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={image} alt={`Product ${index + 1}`} />
-                  </SwiperSlide>
-                ))}
+                {selectedProduct?.product_images?.image_urls?.map(
+                  (image, index) => (
+                    <SwiperSlide key={index}>
+                      <img src={image} alt={`Product ${index + 1}`} />
+                    </SwiperSlide>
+                  )
+                )}
               </Swiper>
             </div>
             <div className="product-modal-details">
@@ -195,7 +199,7 @@ function getAvailableDates(product){
                 dangerouslySetInnerHTML={{
                   __html: selectedProduct?.productdesc,
                 }}
-                style={{ height: "35vh", overflowY: "auto" }}
+                className="product-description-api"
               ></div>
 
               <div className="price-section">
@@ -211,10 +215,7 @@ function getAvailableDates(product){
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
-                <button
-                  className="add-to-cart-btn"
-                  onClick={handleAddToCart}
-                >
+                <button className="add-to-cart-btn" onClick={handleAddToCart}>
                   {t("product.addToCart")}
                 </button>
               </div>
@@ -225,8 +226,8 @@ function getAvailableDates(product){
         <BookingSection
           product={selectedProduct}
           onBack={() => {
-            setShowBookingSection(false)
-            onClose()
+            setShowBookingSection(false);
+            onClose();
           }}
           availableDates={availableDates}
           isLoadingDates={isLoadingDates}

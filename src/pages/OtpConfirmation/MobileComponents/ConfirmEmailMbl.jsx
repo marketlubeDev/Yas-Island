@@ -1,12 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-// import MobileHeader from "../../Home/MobileComponents/MobileHeader"; // Adjust the import path as needed
-// import backIcon from "../../../assets/icons/back.svg";
 import PaymentHeaderMbl from "../../Home/MobileComponents/PaymentHeaderMbl";
 import OtpSectionMbl from "./OtpSectionMbl";
 import TimerMbl from "./TimerMbl";
+import OtpFormMbl from "./OtpFormMbl";
 
-function ConfirmEmailMbl({ email = "example@panashi.ae", onConfirm, onBack }) {
+function ConfirmEmailMbl({
+  email ,
+  onBack,
+}) {
   const { t } = useTranslation();
 
   return (
@@ -20,7 +22,6 @@ function ConfirmEmailMbl({ email = "example@panashi.ae", onConfirm, onBack }) {
             </div>
             <div className="confirm-email__input-underline">{email}</div>
             <OtpSectionMbl />
-
             <div className="confirm-email__otp-info">
               {t("payment.verification.codeSent")} <span>{email}</span>
               <br />
@@ -28,24 +29,8 @@ function ConfirmEmailMbl({ email = "example@panashi.ae", onConfirm, onBack }) {
                 {t("payment.verification.checkSpam")}
               </div>
             </div>
-
             <TimerMbl />
-
-            <form
-              style={{ textAlign: "center" }}
-              onSubmit={(e) => {
-                e.preventDefault();
-                onConfirm();
-              }}
-            >
-              <button
-                className="confirm-email__confirm-btn"
-                type="submit"
-                style={{ marginTop: 24 }}
-              >
-                {t("payment.verification.confirmOtp")}
-              </button>
-            </form>
+            <OtpFormMbl />
           </div>
         </div>
       </div>
