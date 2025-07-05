@@ -3,7 +3,6 @@ import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
-import MobilePaymentFlow from "../pages/PaymentCheckout/MobilePaymentFlow";
 import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
 import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";
 import CardPaymentPage from "../pages/CardPayment/CardPaymentPage";
