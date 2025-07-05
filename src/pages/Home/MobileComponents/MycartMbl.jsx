@@ -155,8 +155,10 @@ function MycartMbl({ onClose, visible }) {
         ) : (
           <>
             <div className="mycart-modal__items">
-              {cartItems.map((item, index) => (
-                <div className="mycart-modal__item" key={index}>
+              {cartItems.map((item, index) => {
+                const isExpired = new Date(item?.validTo).toDateString() < new Date().toDateString();
+                return (
+                <div className={`mycart-modal__item ${isExpired ? 'expired-item' : ''}`} key={index}>
                   <img
                     src={item?.image}
                     alt={item?.title}
@@ -185,6 +187,7 @@ function MycartMbl({ onClose, visible }) {
                     <div className="mycart-modal__item-date">
                       Valid from <span>{item?.validFrom}</span> to <span>{item?.validTo}</span>
                     </div>
+                    {isExpired && <p className="expired-text">This ticket is expired</p>}
                     <div className="mycart-modal__item-qty-row">
                       <span style={{ color: "var(--color-email-form-label)" }}>
                         {item?.variantName}
@@ -221,7 +224,8 @@ function MycartMbl({ onClose, visible }) {
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mycart-modal__footer">

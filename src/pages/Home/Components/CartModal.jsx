@@ -27,7 +27,6 @@ const CartModal = ({ isOpen, onClose }) => {
 
   const {cartItems, subtotal, vatAndTax, total, isEmailVerification} = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
-  console.log(isEmailVerification , "email verification>>");
 
   const handleCheckout = () => {
     if(!isEmailVerification){
@@ -81,7 +80,6 @@ const CartModal = ({ isOpen, onClose }) => {
 
     checkBasket(data, {
       onSuccess: (res) => {
-        console.log(res);
         if (res?.orderDetails?.error?.code) {
           toast.error(
             res?.orderDetails?.error?.text || t("Something went wrong"),

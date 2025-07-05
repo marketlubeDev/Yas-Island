@@ -5445,6 +5445,31 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   margin-bottom: 4px;
 }
 
+.mycart-modal__item.expired-item {
+  opacity: 0.5;
+  filter: grayscale(30%);
+  position: relative;
+}
+.mycart-modal__item.expired-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.1);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.expired-text {
+  color: var(--color-error-text, #ff4d4f);
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px 0 0 0;
+  padding: 0;
+}
+
 .mycart-modal__item-qty-row {
   display: flex;
   align-items: center;
