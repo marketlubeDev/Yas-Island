@@ -155,6 +155,133 @@
           }
         }
       }
+
+      // Country Selector Styles
+      .country-option {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        color: var(--color-base-text-secondary);
+        background-color: transparent;
+
+        &:hover {
+          background-color: var(--color-base-hover);
+        }
+
+        @include respond(desktop) {
+          padding: 6px 10px;
+        }
+
+        .country-flag {
+          width: 18px;
+          height: 18px;
+          margin-right: 8px;
+          border-radius: 2px;
+          flex-shrink: 0;
+          border: 1px solid var(--ip-bodr-btm);
+          background-color: transparent;
+
+          @include respond(desktop) {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+          }
+        }
+
+        .country-name {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 1rem;
+          color: var(--color-base-text-secondary);
+
+          @include respond(desktop) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .country-single-value {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        white-space: nowrap;
+        overflow: hidden;
+        color: var(--color-base-text-secondary);
+
+        @include respond(desktop) {
+          height: 36px;
+        }
+
+        .country-flag {
+          width: 18px;
+          height: 18px;
+          margin-right: 8px;
+          border-radius: 2px;
+          flex-shrink: 0;
+          border: 1px solid var(--ip-bodr-btm);
+          background-color: transparent;
+
+          @include respond(desktop) {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+          }
+        }
+
+        .country-name {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 1rem;
+          color: var(--color-base-text-secondary);
+
+          @include respond(desktop) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+
+    // Phone Input Dropdown Modal Styling
+    .react-tel-input {
+      .flag-dropdown {
+        .country-list {
+          background-color: var(--color-base-bg) !important;
+          border: 1px solid var(--ip-bodr-btm) !important;
+          
+          .country {
+            color: var(--color-base-text-secondary) !important;
+            background-color: transparent !important;
+            
+            &:hover, &.highlight {
+              background-color: var(--color-base-hover) !important;
+            }
+            
+            .dial-code {
+              color: var(--color-base-text-secondary) !important;
+            }
+            
+            .country-name {
+              color: var(--color-base-text-secondary) !important;
+            }
+          }
+          
+          .search {
+            background-color: var(--color-base-bg) !important;
+            border-bottom: 1px solid var(--ip-bodr-btm) !important;
+            color: var(--color-base-text-secondary) !important;
+            
+            &::placeholder {
+              color: var(--color-base-text-secondary) !important;
+              opacity: 0.6;
+            }
+          }
+        }
+      }
     }
 
     // Specific styling for phone number label
@@ -215,6 +342,41 @@
             padding: 0.4rem 0;
             font-size: 0.9rem;
           }
+        }
+      }
+
+      // Country Selector Responsive Styles for bigDesktop
+      .country-option {
+        padding: 6px 10px;
+        color: var(--color-base-text-secondary);
+
+        .country-flag {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+          border: 1px solid var(--ip-bodr-btm);
+        }
+
+        .country-name {
+          font-size: 0.85rem;
+          color: var(--color-base-text-secondary);
+        }
+      }
+
+      .country-single-value {
+        height: 36px;
+        color: var(--color-base-text-secondary);
+
+        .country-flag {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+          border: 1px solid var(--ip-bodr-btm);
+        }
+
+        .country-name {
+          font-size: 0.85rem;
+          color: var(--color-base-text-secondary);
         }
       }
 

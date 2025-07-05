@@ -25,17 +25,22 @@ const CartModal = ({ isOpen, onClose }) => {
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const {cartItems, subtotal, vatAndTax, total} = useSelector((state) => state.cart);
+  const {cartItems, subtotal, vatAndTax, total, isEmailVerification} = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
+  console.log(isEmailVerification , "email verification>>");
 
   const handleCheckout = () => {
-    navigate("/email-verification");
+    if(!isEmailVerification){
+      navigate("/email-verification");
+    }else{
+      navigate("/payment-details");
+    }
     onClose();
   };
 
-  const handleSaveCart = () => {
-    onClose();
-  };
+  // const handleSaveCart = () => {
+  //   onClose();
+  // };
 
   const handleQuantityChange = (id, change, validFrom, minQuantity , maxQuantity , incrementNumber = 1) => {
     const item = cartItems.find((item) => item.productId === id && item.validFrom === validFrom);
@@ -156,8 +161,10 @@ const CartModal = ({ isOpen, onClose }) => {
         ) : (
           <>
             <div className="cart-items">
-              {cartItems.map((item, index) => (
-                <div key={index} className="cart-item">
+              {cartItems.map((item, index) => {
+                const isExpired = new Date(item?.validTo).toDateString() < new Date().toDateString();
+                return (
+                <div key={index} className={`cart-item ${isExpired ? 'expired-item' : ''}`}>
                   <img src={item?.image} alt={item?.title} />
                   <div className="item-details">
                     <h4>{item?.title}</h4>
@@ -166,6 +173,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       Valid from <span>{item?.validFrom}</span> to{" "}
                       <span>{item?.validTo}</span>
                     </div>
+                   { isExpired && <p className="expired-text">This ticket is expired</p>}
                   </div>
                   <div className="quantity-controls">
                     <span>{item?.variantName}</span>
@@ -189,8 +197,10 @@ const CartModal = ({ isOpen, onClose }) => {
                       </Button>
                     </div>
                   </div>
+             
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="cart-summary">

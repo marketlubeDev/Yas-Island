@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useVerification from "../../../apiHooks/email/verification";
 import { setOtp } from "../../../global/otpSlice";
+import { setIsEmailVerification, setVerificationEmail } from "../../../global/cartSlice";
 
 export default function VerificationBox({ email }) {
   const dispatch = useDispatch();
@@ -111,6 +112,11 @@ export default function VerificationBox({ email }) {
   };
 
   const handleConfirmEmail = async () => {
+    if(email === ""){
+      toast.error("Please enter a valid email");
+      navigate("/email-verification");
+      return;
+    }
     if (isExpired) {
       toast.error("OTP has expired. Please request a new one.");
       return;
@@ -122,6 +128,8 @@ export default function VerificationBox({ email }) {
     }
     const isValid = await validateOTP(otpString, OTP);
     if (isValid) {
+      dispatch(setIsEmailVerification(true));
+      dispatch(setVerificationEmail(email));
       navigate("/payment-details");
     } else {
       toast.error("OTP is incorrect ❌");

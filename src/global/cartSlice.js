@@ -2,21 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const loadCartFromStorage = () => {
-  try {
-    const savedCart = localStorage.getItem('yasIslandCart');
-    if (savedCart) {
-      return JSON.parse(savedCart);
-    }
-  } catch (error) {
-    console.error('Error loading cart from localStorage:', error);
-  }
-  return {
+  const defaultState = {
     cartItems: [],
     subtotal: 0,
     vatAndTax: 0,
     total: 0,
     isCartOpen: false,
+    isEmailVerification: false,
+    verificationEmail: "",
   };
+
+  try {
+    const savedCart = localStorage.getItem('yasIslandCart');
+    if (savedCart) {
+      const parsedCart = JSON.parse(savedCart);
+      // Merge saved cart with default state to ensure all properties exist
+      return {
+        ...defaultState,
+        ...parsedCart
+      };
+    }
+  } catch (error) {
+    console.error('Error loading cart from localStorage:', error);
+  }
+  return defaultState;
 };
 
 const initialState = loadCartFromStorage();
@@ -105,8 +114,16 @@ const cartSlice = createSlice({
       state.total = totals.total;
       saveCartToStorage(state);
     },
+    setIsEmailVerification: (state, action) => {
+      state.isEmailVerification = action.payload;
+      saveCartToStorage(state);
+    },
+    setVerificationEmail: (state, action) => {
+      state.verificationEmail = action.payload;
+      saveCartToStorage(state);
+    },  
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, setIsCartOpen, removeItemFromCart, updateQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, setIsCartOpen, removeItemFromCart, updateQuantity, setIsEmailVerification, setVerificationEmail } = cartSlice.actions;
 export default cartSlice.reducer;

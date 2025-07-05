@@ -343,6 +343,33 @@
 }
 
 .cart-drawer {
+  .expired-text {
+    color: red !important;
+    font-size: 10px;
+    line-height: normal;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .expired-item {
+    opacity: 0.5;
+    filter: grayscale(30%);
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(128, 128, 128, 0.1);
+      pointer-events: none;
+    }
+  }
+}
+
+.cart-drawer {
   .ant-drawer-body {
     background-color: var(--color-base-bg) !important;
   }
