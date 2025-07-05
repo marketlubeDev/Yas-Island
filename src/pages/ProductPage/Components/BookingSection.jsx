@@ -461,7 +461,9 @@ export default function BookingSection({
                               </span>
                               <span className="guest-label-price">
                                 {guestData.quantity > 0 &&
-                                  `AED ${variantData?.gross * guestData.quantity}`}
+                                  `AED ${
+                                    variantData?.gross * guestData.quantity
+                                  }`}
                               </span>
                             </div>
                             <div className="counter-controls">
