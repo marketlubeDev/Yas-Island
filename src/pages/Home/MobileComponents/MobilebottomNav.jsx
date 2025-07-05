@@ -64,18 +64,15 @@ function MobileBottomNav() {
           onClick={handleCartClick}
           style={{ cursor: "pointer" }}
         >
-          <span style={{ display: "flex" }}>
-            <img
-              src={cartIconSrc}
-              alt={t("common.cart")}
-              style={isDarkMode ? { opacity: 0.6 } : {}}
-            />
-            {cartItems.length > 0 && (
-              <span className="cart-notification-mobile">
-                {cartItems.length}
-              </span>
-            )}
-          </span>
+          <img
+            src={cartIconSrc}
+            alt={t("common.cart")}
+            // style={isDarkMode ? { opacity: 1 } : { opacity: 1 }}
+          />
+          {cartItems.length > 0 && (
+            <span className="cart-notification-mobile">{cartItems.length}</span>
+          )}
+
           <span>{t("common.cart")}</span>
         </div>
       </div>

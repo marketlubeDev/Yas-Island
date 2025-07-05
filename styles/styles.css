@@ -5049,9 +5049,6 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   background: transparent;
   transition: background 0.2s;
 }
-.mobile-bottom-nav__item span {
-  opacity: 0.6;
-}
 .mobile-bottom-nav__item img {
   width: 28px;
   height: 28px;
@@ -5074,9 +5071,9 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 }
 
 .cart-notification-mobile {
-  position: relative;
-  top: -10px;
-  right: 0rem;
+  position: absolute;
+  top: 0px;
+  right: 2rem;
   z-index: 100;
   width: 20px;
   height: 20px;
