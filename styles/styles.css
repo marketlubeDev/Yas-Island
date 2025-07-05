@@ -6182,7 +6182,7 @@ html[lang=ar] .confirm-email__input-underline {
 }
 
 .email-checkout__container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -6252,19 +6252,6 @@ html[lang=ar] .confirm-email__input-underline {
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-.email-checkout__form-container::-webkit-scrollbar {
-  width: 6px;
-}
-.email-checkout__form-container::-webkit-scrollbar-track {
-  background: #fff;
-}
-.email-checkout__form-container::-webkit-scrollbar-thumb {
-  background: #bdbdc6;
-  border-radius: 3px;
 }
 
 .email-checkout__form {
