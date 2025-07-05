@@ -2487,6 +2487,29 @@ html[lang=ar] .guest-label {
   line-height: normal;
 }
 
+.cart-drawer .expired-text {
+  color: red !important;
+  font-size: 10px;
+  line-height: normal;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.cart-drawer .expired-item {
+  opacity: 0.5;
+  filter: grayscale(30%);
+  position: relative;
+}
+.cart-drawer .expired-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(128, 128, 128, 0.1);
+  pointer-events: none;
+}
+
 .cart-drawer .ant-drawer-body {
   background-color: var(--color-base-bg) !important;
 }
@@ -3359,6 +3382,119 @@ html[lang=ar] .guest-label {
     font-size: 0.9rem;
   }
 }
+.payment-form__left .form-group .country-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--color-base-text-secondary);
+  background-color: transparent;
+}
+.payment-form__left .form-group .country-option:hover {
+  background-color: var(--color-base-hover);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-option {
+    padding: 6px 10px;
+  }
+}
+.payment-form__left .form-group .country-option .country-flag {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  border: 1px solid var(--ip-bodr-btm);
+  background-color: transparent;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-option .country-flag {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+}
+.payment-form__left .form-group .country-option .country-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  color: var(--color-base-text-secondary);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-option .country-name {
+    font-size: 0.9rem;
+  }
+}
+.payment-form__left .form-group .country-single-value {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--color-base-text-secondary);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-single-value {
+    height: 36px;
+  }
+}
+.payment-form__left .form-group .country-single-value .country-flag {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  border: 1px solid var(--ip-bodr-btm);
+  background-color: transparent;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-single-value .country-flag {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+}
+.payment-form__left .form-group .country-single-value .country-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  color: var(--color-base-text-secondary);
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form__left .form-group .country-single-value .country-name {
+    font-size: 0.9rem;
+  }
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list {
+  background-color: var(--color-base-bg) !important;
+  border: 1px solid var(--ip-bodr-btm) !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .country {
+  color: var(--color-base-text-secondary) !important;
+  background-color: transparent !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .country:hover, .payment-form__left .react-tel-input .flag-dropdown .country-list .country.highlight {
+  background-color: var(--color-base-hover) !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .country .dial-code {
+  color: var(--color-base-text-secondary) !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .country .country-name {
+  color: var(--color-base-text-secondary) !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .search {
+  background-color: var(--color-base-bg) !important;
+  border-bottom: 1px solid var(--ip-bodr-btm) !important;
+  color: var(--color-base-text-secondary) !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown .country-list .search::placeholder {
+  color: var(--color-base-text-secondary) !important;
+  opacity: 0.6;
+}
 .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
   margin-left: -2rem;
 }
@@ -3410,6 +3546,34 @@ html[lang=ar] .guest-label {
     width: 180px;
     padding: 0.4rem 0;
     font-size: 0.9rem;
+  }
+  .payment-form__left .country-option {
+    padding: 6px 10px;
+    color: var(--color-base-text-secondary);
+  }
+  .payment-form__left .country-option .country-flag {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border: 1px solid var(--ip-bodr-btm);
+  }
+  .payment-form__left .country-option .country-name {
+    font-size: 0.85rem;
+    color: var(--color-base-text-secondary);
+  }
+  .payment-form__left .country-single-value {
+    height: 36px;
+    color: var(--color-base-text-secondary);
+  }
+  .payment-form__left .country-single-value .country-flag {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border: 1px solid var(--ip-bodr-btm);
+  }
+  .payment-form__left .country-single-value .country-name {
+    font-size: 0.85rem;
+    color: var(--color-base-text-secondary);
   }
   .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
     margin-left: -1.5rem;

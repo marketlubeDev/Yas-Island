@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import PersonalDetailsForm from "../../PaymentCheckout/Components/PersonalDetailsForm";
 import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 export default function PaymentDetails({ onProceed }) {
+  const verificationEmail = useSelector((state) => state.cart.verificationEmail);
+  console.log(verificationEmail , "verification email>>");
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    firstName: "vivek",
-    lastName: "panashi",
-    country: "UAE",
-    nationality: "UAE",
-    email: "",
+    firstName: "",
+    lastName: "",
+    country: "",
+    nationality: "",
+    email: verificationEmail,
     phoneCode: "+971",
     phoneNumber: "971",
-    promoCode: "f0981902",
+    promoCode: "",
   });
 
   return (

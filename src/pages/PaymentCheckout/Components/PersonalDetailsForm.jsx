@@ -2,13 +2,15 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import Select from 'react-select'
+import { getData } from 'country-list'
+import ReactCountryFlag from 'react-country-flag'
 
-const COUNTRIES = [
-  { value: "UAE", label: "UAE" },
-  { value: "IND", label: "India" },
-  { value: "USA", label: "USA" },
-  { value: "UK", label: "UK" },
-];
+const COUNTRIES = getData().map(country => ({
+  value: country.code,
+  label: country.name,
+  code: country.code.toLowerCase()
+}));
 
 const FormInput = ({ label, value, onChange, type = "text", className = "" }) => (
   <div className="form-group">
@@ -22,22 +24,137 @@ const FormInput = ({ label, value, onChange, type = "text", className = "" }) =>
   </div>
 );
 
-const FormSelect = ({ label, value, onChange, options, className = "" }) => (
-  <div className="form-group">
-    <label className="form-group__label">{label}</label>
-    <select
-      className={`form-group__select ${className}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+
+
+const FormSelectWithSearch = ({ label, value, onChange, options, className = "" }) => {
+  const selectedOption = value && value !== '' ? options.find(option => option.value === value) : null;
+  const customOption = ({ data, ...props }) => (
+    <div {...props.innerProps} className="country-option">
+      <ReactCountryFlag 
+        countryCode={data.code} 
+        svg 
+        className="country-flag"
+      />
+      <span className="country-name">
+        {data.label}
+      </span>
+    </div>
+  );
+
+  const customSingleValue = ({ data }) => (
+    <div className="country-single-value">
+      <ReactCountryFlag 
+        countryCode={data.code} 
+        svg 
+        className="country-flag"
+      />
+      <span className="country-name">
+        {data.label}
+      </span>
+    </div>
+  );
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      border: 'none',
+      borderBottom: '1px solid var(--ip-bodr-btm)',
+      borderRadius: '0',
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+      minHeight: '40px',
+      height: '40px',
+      padding: '0',
+      cursor: 'text',
+      display: 'flex',
+      alignItems: 'center',
+      '&:hover': {
+        borderBottom: '1px solid var(--ip-bodr-btm)',
+      }
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      padding: '0',
+      height: '40px',
+      display: 'flex',
+      alignItems: 'center',
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: 'var(--color-base-text-secondary)',
+      margin: '0',
+      padding: '0',
+      height: '40px',
+      display: 'flex',
+      alignItems: 'center',
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: 'var(--color-base-text-secondary)',
+      height: '40px',
+      display: 'flex',
+      alignItems: 'center',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      margin: '0',
+      padding: '0',
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: 'var(--color-base-bg)',
+      border: '1px solid var(--ip-bodr-btm)',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected 
+        ? 'var(--color-base-primary)' 
+        : state.isFocused 
+          ? 'var(--color-base-hover)' 
+          : 'transparent',
+      '&:hover': {
+        backgroundColor: 'var(--color-base-hover)',
+      }
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: 'var(--color-base-text-secondary)',
+      padding: '0 8px',
+    }),
+  };
+
+  return (
+    <div className="form-group">
+      <label className="form-group__label">{label}</label>
+      <Select
+        key={`${label}-${value}`}
+        value={selectedOption}
+        onChange={(selectedOption) => {
+          onChange(selectedOption?.value || '');
+        }}
+        options={options}
+        components={{ 
+          Option: customOption, 
+          SingleValue: customSingleValue 
+        }}
+        styles={customStyles}
+        placeholder=""
+        isSearchable={true}
+        isClearable={false}
+        blurInputOnSelect={false}
+        openMenuOnClick={true}
+        openMenuOnFocus={true}
+        closeMenuOnSelect={true}
+        hideSelectedOptions={false}
+        controlShouldRenderValue={true}
+        className={className}
+      />
+    </div>
+  );
+};
 
 const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
   <div className="form-group">
@@ -58,14 +175,14 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
       }}
       inputStyle={{
         width: '100%',
-        height: 'auto',
+        height: '40px',
         fontSize: '1rem',
         border: 'none',
         borderBottom: '1px solid var(--ip-bodr-btm)',
         borderRadius: '0',
         background: 'transparent',
         color: 'var(--color-base-text-secondary)',
-        padding: '0.5rem 0',
+        padding: '8px 0',
         paddingLeft: '58px'
       }}
       buttonStyle={{
@@ -73,8 +190,9 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
         borderBottom: '1px solid var(--ip-bodr-btm)',
         borderRadius: '0',
         background: 'transparent',
-        height: 'auto',
-        padding: '0.5rem 0'
+        height: '40px',
+        padding: '8px 4px',
+        width: '50px'
       }}
     />
   </div>
@@ -103,23 +221,17 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
       </div>
 
       <div className="form-group-row">
-        <FormSelect
+        <FormSelectWithSearch
           label={t("payment.personalDetails.countryOfResidence")}
           value={formData.country}
           onChange={handleInputChange("country")}
-          options={COUNTRIES.map(country => ({
-            value: country.value,
-            label: t(`payment.personalDetails.countries.${country.label}`)
-          }))}
+          options={COUNTRIES}
         />
-        <FormSelect
+        <FormSelectWithSearch
           label={t("payment.personalDetails.nationality")}
           value={formData.nationality}
           onChange={handleInputChange("nationality")}
-          options={COUNTRIES.map(country => ({
-            value: country.value,
-            label: t(`payment.personalDetails.nationalities.${country.label}`)
-          }))}
+          options={COUNTRIES}
         />
       </div>
 

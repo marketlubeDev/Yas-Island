@@ -11,8 +11,7 @@ const initialState = {
   phoneNumber: "",
   countryCode: "",
   isTnCAgrred: false,
-  isConsentAgreed: false,
-  
+  isConsentAgreed: false
 };
 
 
