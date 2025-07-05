@@ -161,7 +161,7 @@ export const ar = {
     },
     emailConfirmation: {
       emailLabel: "البريد الإلكتروني *",
-      emailPlaceholder: "vivek@dev.vanasthi.ae",
+      emailPlaceholder: "example@email.com",
       confirmButton: "تأكيد البريد الإلكتروني",
       completeVerification: "إكمال التحقق",
     },
@@ -194,6 +194,7 @@ export const ar = {
         India: "+٩١",
         USA: "+١",
       },
+      email: "البريد الإلكتروني *",
     },
     orderSummary: {
       title: "فيراري وورلد ياس آيلاند ليوم واحد",

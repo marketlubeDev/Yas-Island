@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PersonalDetailsForm from "../../PaymentCheckout/Components/PersonalDetailsForm";
 import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
-import AmazonPayDemoButton from "../../../components/payment/amazonpay";
 
 export default function PaymentDetails({ onProceed }) {
   const { t } = useTranslation();
@@ -11,8 +10,9 @@ export default function PaymentDetails({ onProceed }) {
     lastName: "panashi",
     country: "UAE",
     nationality: "UAE",
+    email: "",
     phoneCode: "+971",
-    phoneNumber: "527263748",
+    phoneNumber: "971",
     promoCode: "f0981902",
   });
 
@@ -24,7 +24,6 @@ export default function PaymentDetails({ onProceed }) {
         <button className="proceedbtn" onClick={onProceed}>
           {t("payment.paymentDetails.proceedToPayment")}
         </button>
-        {/* <AmazonPayDemoButton /> */}
       </div>
     </div>
   );

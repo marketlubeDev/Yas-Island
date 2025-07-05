@@ -9,7 +9,6 @@ import dropbox from "../../assets/icons/dropbox.svg";
 import house from "../../assets/icons/house.svg";
 import chef from "../../assets/icons/chef.svg";
 import camera from "../../assets/icons/cam.svg";
-import shop from "../../assets/icons/shop.svg";
 import { useSelector } from "react-redux";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -20,7 +19,9 @@ export default function SideBar() {
   const { language } = useLanguage();
 
   const handleClick = (item) => {
-    setActiveItem(item);
+    if (item === "topAttractions") {
+      setActiveItem(item);
+    }
   };
 
   // Define the sidebar items with translation keys
@@ -53,12 +54,16 @@ export default function SideBar() {
               language === "العربية"
                 ? `ar-side-bar-list-item-container ${
                     activeItem === item.name ? "active" : ""
-                  }`
+                  } ${item.name !== "topAttractions" ? "disabled" : ""}`
                 : `side-bar-list-item-container ${
                     activeItem === item.name ? "active" : ""
-                  }`
+                  } ${item.name !== "topAttractions" ? "disabled" : ""}`
             }
             onClick={() => handleClick(item.name)}
+            style={{
+              cursor: item.name === "topAttractions" ? "pointer" : "default",
+              opacity: item.name === "topAttractions" ? 1 : 0.5,
+            }}
           >
             <li
               className={
@@ -70,7 +75,6 @@ export default function SideBar() {
                       activeItem === item.name ? "activeItem" : ""
                     }`
               }
-              onClick={() => handleClick(item.name)}
             >
               <div
                 className={`item-icon ${

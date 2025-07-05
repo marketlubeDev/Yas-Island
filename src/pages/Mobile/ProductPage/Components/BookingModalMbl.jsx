@@ -5,20 +5,35 @@ import leftIcon from "../../../../assets/icons/left.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Loading from "../../../../components/Loading/ButtonLoading";
+import { addToCart, setIsCartOpen } from "../../../../global/cartSlice";
+import { toast } from "sonner";
+import useCheckBasket from "../../../../apiHooks/Basket/checkbasket";
+import { useNavigate } from "react-router-dom";
+
 function BookingModalMbl({
   onClose,
   onBack,
   onSaveToCart,
   onCheckout,
   product,
+  availableDates,
+  isLoadingDates,
 }) {
+  const { mutate: checkBasket, isPending } = useCheckBasket();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const performanceData = useSelector(
+    (state) => state.performance.performanceData
+  );
+  const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
@@ -26,7 +41,11 @@ function BookingModalMbl({
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
-      variants[variant?.productvariantname] = 1;
+      variants[variant?.productid] = {
+        quantity: variant?.min_quantity || 0,
+        name: variant?.productvariantname,
+        variant: variant,
+      };
     });
     return variants;
   }
@@ -37,35 +56,11 @@ function BookingModalMbl({
 
   useEffect(() => {
     let newTotalPrice = 0;
-
-    product?.product_variants?.forEach((variant) => {
-      const variantName = variant.productvariantname;
-      if (guests[variantName]) {
-        newTotalPrice += variant.gross * guests[variantName];
-      }
+    Object.values(guests).forEach((guestData) => {
+      newTotalPrice += guestData.variant.gross * guestData.quantity;
     });
-
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
-
-  function getValidDateRange(product) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
-
-    let tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); // Normalize tomorrow's date
-
-    let endDate;
-    if (product?.calendar_end_date) {
-      endDate = new Date(product.calendar_end_date);
-    } else {
-      endDate = new Date(today.getFullYear(), 11, 31);
-    }
-    endDate.setHours(23, 59, 59, 999); // Set end date to end of day
-
-    return { startDate: tomorrow, endDate };
-  }
 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -75,34 +70,195 @@ function BookingModalMbl({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const handleDateClick = (date) => {
-    if (!startDate || (startDate && endDate)) {
-      // Start new selection
-      setStartDate(date);
-      setEndDate(null);
-    } else {
-      // Complete the selection
-      if (date < startDate) {
-        setStartDate(date);
-        setEndDate(startDate);
-      } else {
-        setEndDate(date);
-      }
-    }
+  const formatDateToYYYYMMDD = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
-  const isDateInRange = (date) => {
-    if (!startDate || !endDate) return false;
-    return date >= startDate && date <= endDate;
+  const handleDateClick = (date) => {
+    const formattedDate = formatDateToYYYYMMDD(date);
+    setSelectedDate(formattedDate);
+  };
+
+  const isDateSelected = (date) => {
+    if (!selectedDate) return false;
+    return formatDateToYYYYMMDD(date) === selectedDate;
+  };
+
+  const getValidToDate = (id, selectedDate) => {
+    const item = selectedProduct?.product_variants?.find(
+      (variant) => variant?.productid == id
+    );
+    const validFromDate = new Date(selectedDate);
+    let validToDate = selectedDate;
+    const endDate = new Date(validFromDate);
+    endDate.setDate(validFromDate.getDate() + (item?.validitydays || 1));
+    validToDate = formatDateToYYYYMMDD(endDate);
+
+    return validToDate;
+  };
+
+  const getPerformanceId = (date) => {
+    const performance = performanceData.find((p) => p.date == date);
+    return performance ? performance.performanceId : false;
+  };
+
+  // Common function to handle basket check and cart operations
+  const handleBasketCheck = (onSuccess) => {
+    if (!selectedDate) {
+      toast.error(t("Please SelectDate"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    let hasPerformance = false;
+    let performanceId = null;
+
+    selectedProduct?.product_variants?.forEach((variant) => {
+      if (variant?.hasperformance) {
+        hasPerformance = true;
+      }
+    });
+
+    if (hasPerformance) {
+      performanceId = getPerformanceId(selectedDate);
+      if (!performanceId) {
+        toast.error(t("NoPerformance"), {
+          position: "top-center",
+        });
+        return;
+      }
+    }
+
+    const items = [];
+    Object.entries(guests).forEach(([productId, guestData]) => {
+      if (guestData.quantity < 1) {
+        return;
+      }
+      let hasperformance = false;
+      if (guestData.variant?.hasperformance) {
+        hasperformance = true;
+      }
+      items.push({
+        productId: productId,
+        quantity: guestData.quantity,
+        performance: hasperformance
+          ? [{ performanceId: getPerformanceId(selectedDate) }]
+          : [],
+        validFrom: selectedDate,
+        validTo: getValidToDate(productId, selectedDate),
+      });
+    });
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true,
+    };
+
+    if (items.length === 0) {
+      toast.error(t("Please enter a valid quantity"), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          const orderDetails = res?.orderdetails;
+
+          orderDetails?.order?.items?.forEach((item) => {
+            const variantData = selectedProduct?.product_variants?.find(
+              (variant) => variant?.productid == item?.productId
+            );
+
+            let price = {
+              currency: "AED",
+              net: variantData?.net_amount,
+              tax: variantData?.vat,
+              gross: variantData?.gross,
+            };
+            let obj = {
+              capacityGuid: item?.capacityGuid,
+              discount: item?.discount,
+              groupingCode: item?.groupingCode,
+              itemPromotionList: item?.itemPromotionList,
+              original: item?.original,
+              packageCode: item?.packageCode,
+              performances:
+                item?.performances?.[0]?.performanceId ||
+                getPerformanceId(item?.validFrom) ||
+                null,
+              price: price,
+              productId: item?.productId,
+              quantity: item?.quantity,
+              rechargeAmount: item?.rechargeAmount,
+              validFrom: item?.validFrom,
+              validTo: item?.validTo
+                ? formatDateToYYYYMMDD(item?.validTo)
+                : getValidToDate(item?.productId, selectedDate),
+              image: selectedProduct?.product_images?.thumbnail_url,
+              title: selectedProduct?.product_title,
+              variantName: selectedProduct?.product_variants?.find(
+                (variant) => variant?.productid == item?.productId
+              )?.productvariantname,
+              minQuantity: variantData?.min_quantity,
+              maxQuantity: variantData?.max_quantity,
+              incrementNumber: variantData?.increment_number,
+            };
+            dispatch(addToCart(obj));
+          });
+
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      },
+    });
+  };
+
+  const handleSaveToCart = () => {
+    handleBasketCheck(() => {
+      toast.success(t("booking.productAddedToCart"), {
+        position: "top-center",
+      });
+      onClose();
+      dispatch(setIsCartOpen(true));
+    });
+  };
+
+  const handleCheckout = () => {
+    handleBasketCheck(() => {
+      const variants = {};
+      Object.entries(guests).forEach(([productId, guestData]) => {
+        variants[productId] = guestData.quantity;
+      });
+
+      navigate("/email-verification");
+    });
   };
 
   const generateCalendarDays = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDayOfMonth = getFirstDayOfMonth(currentDate);
     const days = [];
-    const { startDate: minDate, endDate: maxDate } = getValidDateRange(product);
 
-    // Add empty cells at the start
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(
         <div
@@ -112,33 +268,25 @@ function BookingModalMbl({
       );
     }
 
-    // Add the days
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
-        day,
-        0,
-        0,
-        0,
-        0
+        day
       );
 
-      const isSelected =
-        (startDate && date.toDateString() === startDate.toDateString()) ||
-        (endDate && date.toDateString() === endDate.toDateString());
-      const isInRange = isDateInRange(date);
-      const isToday = date.toDateString() === new Date().toDateString();
-      const isDisabled =
-        date.getTime() < minDate.getTime() ||
-        date.getTime() > maxDate.getTime();
+      const formattedDateString = formatDateToYYYYMMDD(date);
+      const isSelected = isDateSelected(date);
+      const isToday =
+        formatDateToYYYYMMDD(date) === formatDateToYYYYMMDD(new Date());
+      const isDisabled = !availableDates?.includes(formattedDateString);
 
       days.push(
         <button
           key={day}
           className={`booking-modal__calendar-date${
             isSelected ? " selected" : ""
-          }${isInRange ? " in-range" : ""}${isDisabled ? " disabled" : ""}`}
+          }${isToday ? " today" : ""}${isDisabled ? " disabled" : ""}`}
           onClick={() => !isDisabled && handleDateClick(date)}
           disabled={isDisabled}
         >
@@ -165,18 +313,18 @@ function BookingModalMbl({
   const formatMonthYear = (date) => {
     if (i18n.language === "ar") {
       const arabicMonths = {
-        0: "يناير", // Yanāyir
-        1: "فبراير", // Fibrayir
-        2: "مارس", // Māris
-        3: "أبريل", // Abrīl
-        4: "مايو", // Māyū
-        5: "يونيو", // Yūniyū
-        6: "يوليو", // Yūlyū
-        7: "أغسطس", // Aghustus
-        8: "سبتمبر", // Septambir
-        9: "أكتوبر", // Oktūbar
-        10: "نوفمبر", // Nūfambir
-        11: "ديسمبر", // Dīsambir
+        0: "يناير",
+        1: "فبراير",
+        2: "مارس",
+        3: "أبريل",
+        4: "مايو",
+        5: "يونيو",
+        6: "يوليو",
+        7: "أغسطس",
+        8: "سبتمبر",
+        9: "أكتوبر",
+        10: "نوفمبر",
+        11: "ديسمبر",
       };
       const arabicMonth = arabicMonths[date.getMonth()];
       const gregorianYear = date
@@ -205,14 +353,129 @@ function BookingModalMbl({
     return num;
   };
 
+  const renderCalendarSkeleton = () => (
+    <div className="calendar-skeleton">
+      <div className="calendar-header-skeleton skeleton"></div>
+      <div className="calendar-days-skeleton">
+        {Array(7)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              key={`weekday-${i}`}
+              className="skeleton"
+              style={{ height: "20px" }}
+            ></div>
+          ))}
+        {Array(28)
+          .fill(0)
+          .map((_, i) => (
+            <div key={`day-${i}`} className="day-skeleton skeleton"></div>
+          ))}
+      </div>
+    </div>
+  );
+
+  const renderGuestSectionSkeleton = () => (
+    <div className="guest-section-skeleton">
+      <div
+        className="guest-summary-skeleton skeleton"
+        style={{ height: "24px", marginBottom: "16px", width: "50%" }}
+      ></div>
+      {Array(2)
+        .fill(0)
+        .map((_, i) => (
+          <div key={`guest-${i}`} style={{ marginBottom: "16px" }}>
+            <div
+              className="guest-row-skeleton skeleton"
+              style={{ height: "32px", marginBottom: "12px" }}
+            ></div>
+            <div className="guest-controls-skeleton">
+              <div 
+                className="control-btn-skeleton skeleton" 
+                style={{ width: "24px", height: "24px" }}
+              ></div>
+              <div 
+                className="control-value-skeleton skeleton" 
+                style={{ width: "32px", height: "24px" }}
+              ></div>
+              <div 
+                className="control-btn-skeleton skeleton" 
+                style={{ width: "24px", height: "24px" }}
+              ></div>
+            </div>
+            {i < 1 && (
+              <div
+                style={{ height: "1px", background: "#eee", margin: "16px 0" }}
+              ></div>
+            )}
+          </div>
+        ))}
+    </div>
+  );
+
+  const skeletonStyles = `
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .calendar-skeleton {
+    width: 100%;
+    padding: 16px;
+    height: fit-content;
+  }
+
+  .calendar-header-skeleton {
+    height: 32px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+
+  .calendar-days-skeleton {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .day-skeleton {
+    aspect-ratio: 1;
+    border-radius: 4px;
+  }
+
+  .guest-section-skeleton {
+    padding: 16px;
+    height: fit-content;
+  }
+
+  .guest-controls-skeleton {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+  }
+  `;
+
+  useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = skeletonStyles;
+    document.head.appendChild(styleSheet);
+
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
   return (
     <div
       className="booking-modal-overlay"
       style={{ background: "var(--color-bkg-body-bg)" }}
     >
-  
-
-    
       <div className="booking-modal">
         <div className="booking-modal__header">
           <img
@@ -227,115 +490,154 @@ function BookingModalMbl({
         </div>
         <div className="booking-modal__body">
           {/* Calendar */}
-
           <div className="booking-modal__calendar">
-            <div className="booking-modal__calendar-header">
-              <button onClick={handlePrevMonth}>
-                <img src={leftIcon} alt="Previous" />
-              </button>
-              <span className="booking-modal__calendar-month">
-                {formatMonthYear(currentDate)}
-              </span>
-              <button onClick={handleNextMonth}>
-                <img
-                  src={leftIcon}
-                  alt="Next"
-                  className="booking-modal__calendar-arrow--rotated"
-                />
-              </button>
-            </div>
-            <div className="booking-modal__calendar-divider"></div>
-            <div className="booking-modal__calendar-grid">
-              {Object.values(
-                t("booking.weekDays", { returnObjects: true })
-              ).map((d) => (
-                <span key={d} className="booking-modal__calendar-dayname">
-                  {d}
-                </span>
-              ))}
-              {generateCalendarDays()}
-            </div>
+            {isLoadingDates ? (
+              renderCalendarSkeleton()
+            ) : (
+              <>
+                <div className="booking-modal__calendar-header">
+                  <button onClick={handlePrevMonth}>
+                    <img src={leftIcon} alt="Previous" />
+                  </button>
+                  <span className="booking-modal__calendar-month">
+                    {formatMonthYear(currentDate)}
+                  </span>
+                  <button onClick={handleNextMonth}>
+                    <img
+                      src={leftIcon}
+                      alt="Next"
+                      className="booking-modal__calendar-arrow--rotated"
+                    />
+                  </button>
+                </div>
+                <div className="booking-modal__calendar-divider"></div>
+                <div className="booking-modal__calendar-grid">
+                  {Object.values(
+                    t("booking.weekDays", { returnObjects: true })
+                  ).map((d) => (
+                    <span key={d} className="booking-modal__calendar-dayname">
+                      {d}
+                    </span>
+                  ))}
+                  {generateCalendarDays()}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Guests */}
           <div className="booking-modal__guests-section">
             <div className="booking-modal__guests-title">
-              {t("booking.chooseGuests")}
+              {product?.quantitydesc || t("booking.chooseGuests")}
             </div>
 
             <div className="guests-box-container">
               <div className="guests-box">
-                <div className="guests-summary">
-                  {Object.keys(guests).map((variant, idx, arr) => (
-                    <span key={variant}>
-                      {variant}: {toArabicNumeral(guests[variant])}
-                      {idx < arr.length - 1 ? " / " : ""}
-                    </span>
-                  ))}
-                </div>
-                <div className="guests-divider"></div>
-                {Object.keys(guests).map((variant, idx) => {
-                  const variantData = product.product_variants.find(
-                    (v) => v.productvariantname === variant
-                  );
-                  return (
-                    <React.Fragment key={idx}>
-                      <div className="guests-row">
-                        <div className="guest-label-container">
-                          <span className="guest-label">
-                            {variant}{" "}
-                            {variantData?.productvariantdesc &&
-                              `(${variantData.productvariantdesc})`}
-                          </span>
-                          <span className="guest-label-price">
-                            AED {variantData?.gross * guests[variant]}{" "}
-                          </span>
-                        </div>
+                {isLoadingDates ? (
+                  renderGuestSectionSkeleton()
+                ) : (
+                  <>
+                    <div className="guests-summary">
+                      {Object.entries(guests).map(([productId, guestData], idx, arr) => (
+                        <span key={productId}>
+                          {guestData.name}: {guestData.quantity}
+                          {idx < arr.length - 1 ? " / " : ""}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="guests-divider"></div>
+                    {Object.entries(guests).map(([productId, guestData], idx) => {
+                      const variantData = guestData.variant;
+                      return (
+                        <React.Fragment key={productId}>
+                          <div className="guests-row">
+                            <div className="guest-label-container">
+                              <span className="guest-label">
+                                {guestData.name}{" "}
+                                {variantData?.productvariantdesc &&
+                                  `(${variantData.productvariantdesc})`}
+                              </span>
+                              <span className="guest-label-price">
+                                {variantData.quantity > 0 &&
+                                  `AED ${variantData?.gross * guestData.quantity}`}
+                              </span>
+                            </div>
 
-                        <div className="guests-controls">
-                          <button
-                            className="guests-btn"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                            onClick={() =>
-                              setGuests((prev) => ({
-                                ...prev,
-                                [variant]: Math.max(0, prev[variant] - 1),
-                              }))
-                            }
-                          >
-                            -
-                          </button>
-                          <span
-                            className="guests-count"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                          >
-                            {toArabicNumeral(guests[variant])}
-                          </span>
-                          <button
-                            className="guests-btn"
-                            style={{
-                              color: "var(--color-bkg-guest-title-clr)",
-                            }}
-                            onClick={() =>
-                              setGuests((prev) => ({
-                                ...prev,
-                                [variant]: prev[variant] + 1,
-                              }))
-                            }
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                      <div className="guests-divider"></div>
-                    </React.Fragment>
-                  );
-                })}
-                <div className="guests-note">{t("booking.kidsFree")}</div>
+                            <div className="guests-controls">
+                              <button
+                                className="guests-btn"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue = prev[productId].quantity;
+                                    const newValue = Math.max(
+                                      variantData?.min_quantity || 0,
+                                      currentValue -
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity <=
+                                  (variantData?.min_quantity || 0)
+                                }
+                              >
+                                -
+                              </button>
+                              <span
+                                className="guests-count"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                              >
+                                {toArabicNumeral(guestData.quantity)}
+                              </span>
+                              <button
+                                className="guests-btn"
+                                style={{
+                                  color: "var(--color-bkg-guest-title-clr)",
+                                }}
+                                onClick={() =>
+                                  setGuests((prev) => {
+                                    const currentValue = prev[productId].quantity;
+                                    const newValue = Math.min(
+                                      variantData?.max_quantity || 100,
+                                      currentValue +
+                                        (variantData?.increment_number || 1)
+                                    );
+                                    return {
+                                      ...prev,
+                                      [productId]: {
+                                        ...prev[productId],
+                                        quantity: newValue,
+                                      },
+                                    };
+                                  })
+                                }
+                                disabled={
+                                  guestData.quantity >=
+                                  (variantData?.max_quantity || 100)
+                                }
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <div className="guests-divider"></div>
+                        </React.Fragment>
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -343,10 +645,9 @@ function BookingModalMbl({
         <div className="booking-modal__footer">
           <button
             className="booking-modal__checkout"
-            onClick={() =>
-              onCheckout &&
-              onCheckout({ startDate, endDate, guests, totalPrice })
-            }
+            onClick={handleCheckout}
+            disabled={isLoadingDates || isPending}
+            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
@@ -355,17 +656,17 @@ function BookingModalMbl({
           </button>
           <button
             className="booking-modal__save"
-            onClick={() =>
-              onSaveToCart &&
-              onSaveToCart({ startDate, endDate, guests, totalPrice })
-            }
+            onClick={handleSaveToCart}
+            disabled={isLoadingDates || isPending}
+            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
           >
-            {t("booking.saveToCart")}
+            {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default BookingModalMbl;

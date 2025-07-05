@@ -13,13 +13,17 @@ import { setSelectedProduct } from "../../../../global/productSlice";
 import { clearPerformance } from "../../../../global/performanceSlice";
 
 const AttractionsListMbl = ({ productList }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const dispatch = useDispatch();
+  const [availableDates, setAvailableDates] = useState([]);
+  const [isLoadingDates, setIsLoadingDates] = useState(false);
+
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
@@ -81,6 +85,8 @@ const AttractionsListMbl = ({ productList }) => {
             attraction={selectedAttraction}
             onClose={handleCloseModal}
             setShowBookingSection={setModalType}
+            setAvailableDates={setAvailableDates}
+            setIsLoadingDates={setIsLoadingDates}
           />
         );
       case "booking":
@@ -91,6 +97,8 @@ const AttractionsListMbl = ({ productList }) => {
             onSaveToCart={handleSaveToCart}
             onCheckout={handleCheckout}
             product={selectedAttraction}
+            availableDates={availableDates}
+            isLoadingDates={isLoadingDates}   
           />
         );
       default:
@@ -99,9 +107,12 @@ const AttractionsListMbl = ({ productList }) => {
   };
 
   const defaultVariant = (product) => {
-    const defaultVariant = product?.product_variants?.find(
+    let defaultVariant = product?.product_variants?.find(
       (variant) => variant.isdefault
     );
+    if (!defaultVariant) {
+      defaultVariant = product?.product_variants[0];
+    }
     return defaultVariant;
   };
 
@@ -132,13 +143,13 @@ const AttractionsListMbl = ({ productList }) => {
                   >
                     {t("common.add")}
                   </button>
-                  <div className="attraction-card__price">
+                  <div className="attraction-card__price" style={{marginRight: "0.5rem"}}>
                     <span>AED {defaultVariant(item)?.gross}</span>
                   </div>
-                  <span className="attraction-card__vat">
+                  {/* <span className="attraction-card__vat">
                     {defaultVariant(item)?.net_amount}+{" "}
                     {(defaultVariant(item)?.gross * 0.05).toFixed(2)} Net & Tax
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>

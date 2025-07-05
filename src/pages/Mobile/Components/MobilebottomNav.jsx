@@ -52,7 +52,7 @@ function MobileBottomNav() {
         </div>
         <div className="mobile-bottom-nav__item">
           <img
-            src={chatIconSrc}
+            src={chatIconSrc} 
             alt={t("common.chatWithUs")}
             style={isDarkMode ? { opacity: 0.6 } : {}}
           />

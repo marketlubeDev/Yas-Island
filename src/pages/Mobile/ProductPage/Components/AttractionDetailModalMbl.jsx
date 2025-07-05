@@ -17,6 +17,8 @@ function AttractionDetailModalMbl({
   attraction,
   onClose,
   setShowBookingSection,
+  setAvailableDates,
+  setIsLoadingDates,
 }) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -24,8 +26,6 @@ function AttractionDetailModalMbl({
   const dispatch = useDispatch();
   const [validStartDate, setValidStartDate] = useState(null);
   const [validEndDate, setValidEndDate] = useState(null);
-  const [availableDates, setAvailableDates] = useState([]);
-  const [isLoadingDates, setIsLoadingDates] = useState(false);
 
   useEffect(() => {
     // When modal is open, prevent background scroll

@@ -7,10 +7,12 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import PlusIcon from "../../../assets/icons/plus.svg";
 import MinusIcon from "../../../assets/icons/minus.svg";
+import InvertMinusIcon from "../../../assets/icons/invertminus.svg";
+import InvertPlusIcon from "../../../assets/icons/invertplus.svg";
 import { addToCart, setIsCartOpen } from "../../../global/cartSlice";
 import { toast } from "sonner";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
-import Loading from "../../../components/Loading/Loading";
+import Loading from "../../../components/Loading/ButtonLoading";
 
 export default function BookingSection({
   product,
@@ -34,6 +36,7 @@ export default function BookingSection({
     (state) => state.performance.performanceData
   );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   function getVariants() {
     const variants = {};
@@ -235,6 +238,13 @@ export default function BookingSection({
       capacityManagement: true,
     };
 
+    if (items.length === 0) {
+      toast.error(t("Please enter a valid quantity"), {
+        position: "top-center",
+      });
+      return;
+    }
+
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
@@ -285,7 +295,7 @@ export default function BookingSection({
               minQuantity: variantData?.min_quantity,
               maxQuantity: variantData?.max_quantity,
               incrementNumber: variantData?.increment_number,
-            };  
+            };
             dispatch(addToCart(obj));
           });
 
@@ -450,7 +460,10 @@ export default function BookingSection({
                                   `(${variantData.productvariantdesc})`}
                               </span>
                               <span className="guest-label-price">
-                                AED {variantData?.gross * guestData.quantity}{" "}
+                                {guestData.quantity > 0 &&
+                                  `AED ${
+                                    variantData?.gross * guestData.quantity
+                                  }`}
                               </span>
                             </div>
                             <div className="counter-controls">
@@ -479,7 +492,10 @@ export default function BookingSection({
                                   (variantData?.min_quantity || 0)
                                 }
                               >
-                                <img src={MinusIcon} alt="minus" />
+                                <img
+                                  src={isDarkMode ? InvertMinusIcon : MinusIcon}
+                                  alt="minus"
+                                />
                               </button>
                               <span className="counter-value">
                                 {guestData.quantity}
@@ -509,7 +525,10 @@ export default function BookingSection({
                                   (variantData?.max_quantity || 100)
                                 }
                               >
-                                <img src={PlusIcon} alt="plus" />
+                                <img
+                                  src={isDarkMode ? InvertPlusIcon : PlusIcon}
+                                  alt="plus"
+                                />
                               </button>
                             </div>
                           </div>
@@ -559,8 +578,6 @@ export default function BookingSection({
           </button>
         </div>
       </div>
-
-     
     </div>
   );
 }

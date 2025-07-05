@@ -4,7 +4,7 @@ import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 import { useDispatch } from "react-redux";
 import useVerification from "../../../apiHooks/email/verification";
 import { setOtp } from "../../../global/otpSlice";
-import Loading from "../../../components/Loading/Loading";
+import Loading from "../../../components/Loading/ButtonLoading";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
