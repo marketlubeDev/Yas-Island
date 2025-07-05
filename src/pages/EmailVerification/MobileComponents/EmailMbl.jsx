@@ -7,6 +7,7 @@ import { setOtp } from "../../../global/otpSlice";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { setVerificationEmail } from "../../../global/cartSlice";
 
 function EmailMbl() {
   const dispatch = useDispatch();
@@ -30,6 +31,8 @@ function EmailMbl() {
       verification(emailValue, {
         onSuccess: (res) => {
           dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
+          // dispatch(setEmailVerification(true));
+          dispatch(setVerificationEmail(emailValue));
           navigate("/otp-confirmation");
         },
         onError: (error) => {

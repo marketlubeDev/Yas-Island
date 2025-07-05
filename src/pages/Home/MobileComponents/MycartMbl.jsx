@@ -23,14 +23,20 @@ function MycartMbl({ onClose, visible }) {
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const { cartItems, subtotal, vatAndTax, total } = useSelector((state) => state.cart);
+  const { cartItems, subtotal, vatAndTax, total, isEmailVerification } = useSelector((state) => state.cart);
+  console.log(isEmailVerification , "isEmailVerification>>");
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const deleteIconSrc = isDarkMode ? InvertDeleteIcon : DeleteIcon;
 
   const handleCheckout = () => {
-    navigate("/email-verification");
+    console.log(isEmailVerification , "isEmailVerification>> handleCheckout");
+    if(!isEmailVerification){
+      navigate("/email-verification");
+    }else{
+      navigate("/payment-details");
+    }
     onClose();
   };
 
