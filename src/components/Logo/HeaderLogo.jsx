@@ -44,6 +44,7 @@ export default function HeaderLogo() {
   const dispatch = useDispatch();
   // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
   const { cartItems } = useSelector((state) => state.cart);
+  const currentLanguage = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -62,10 +63,13 @@ export default function HeaderLogo() {
   }, [showLangDropdown]);
 
   const changeLanguage = (lng) => {
-    const newLanguage = lng === "en" ? "English" : "العربية";
-    toggleLanguage(newLanguage);
-    dispatch(setLanguage(lng));
-    dispatch(setProducts([]));
+    // Only proceed if the language is actually changing
+    if (currentLanguage !== lng) {
+      const newLanguage = lng === "en" ? "English" : "العربية";
+      toggleLanguage(newLanguage);
+      dispatch(setLanguage(lng));
+      dispatch(setProducts([])); // Only clear products when language changes
+    }
   };
 
   const onAccessibilityOpen = () => setIsAccessibilityModalOpen(true);

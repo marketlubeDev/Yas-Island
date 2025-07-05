@@ -16,7 +16,7 @@ const useGetProductList = () => {
   // Dispatch to Redux only when data changes
   useEffect(() => {
     const arr = response?.data?.data?.results;
-    if (response.data && response.data.data && arr) {
+    if (response.data && response.data.data && arr && arr.length > 0) {
       let orderedProducts = [...arr]?.sort(
         (a, b) => a.display_order - b.display_order
       );
