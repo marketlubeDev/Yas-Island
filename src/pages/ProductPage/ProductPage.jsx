@@ -93,12 +93,12 @@ export default function ProductPage() {
         {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
           <div>Loading...</div>
-          // <div><Loader /></div>
         ) : (
+          // <div><Loader /></div>
           <ProductCard productList={filteredProducts} />
         )}
-        {(isMobile || isTablet) && <ProductSoloThumbnail />}
-        {(isMobile || isTablet) && <MobSelectorGroup />}
+        {/* {(isMobile || isTablet) && <ProductSoloThumbnail />}
+        {(isMobile || isTablet) && <MobSelectorGroup />} */}
         <AccessibilityModal
           isOpen={isAccessibilityModalOpen}
           onClose={() => setIsAccessibilityModalOpen(false)}

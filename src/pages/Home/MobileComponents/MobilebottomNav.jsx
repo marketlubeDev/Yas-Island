@@ -20,6 +20,7 @@ function MobileBottomNav() {
   const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
   const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
   const cartIconSrc = isDarkMode ? cartIconInverter : cartIcon;
+  const { cartItems } = useSelector((state) => state.cart);
 
   const handleCartClick = useCallback(() => {
     setIsCartModalOpen(true);
@@ -52,7 +53,7 @@ function MobileBottomNav() {
         </div>
         <div className="mobile-bottom-nav__item">
           <img
-            src={chatIconSrc} 
+            src={chatIconSrc}
             alt={t("common.chatWithUs")}
             style={isDarkMode ? { opacity: 0.6 } : {}}
           />
@@ -63,11 +64,18 @@ function MobileBottomNav() {
           onClick={handleCartClick}
           style={{ cursor: "pointer" }}
         >
-          <img
-            src={cartIconSrc}
-            alt={t("common.cart")}
-            style={isDarkMode ? { opacity: 0.6 } : {}}
-          />
+          <span style={{ display: "flex" }}>
+            <img
+              src={cartIconSrc}
+              alt={t("common.cart")}
+              style={isDarkMode ? { opacity: 0.6 } : {}}
+            />
+            {cartItems.length > 0 && (
+              <span className="cart-notification-mobile">
+                {cartItems.length}
+              </span>
+            )}
+          </span>
           <span>{t("common.cart")}</span>
         </div>
       </div>

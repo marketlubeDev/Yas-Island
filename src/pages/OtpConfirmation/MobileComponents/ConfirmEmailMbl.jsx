@@ -3,12 +3,10 @@ import { useTranslation } from "react-i18next";
 import PaymentHeaderMbl from "../../Home/MobileComponents/PaymentHeaderMbl";
 import OtpSectionMbl from "./OtpSectionMbl";
 import TimerMbl from "./TimerMbl";
-import OtpFormMbl from "./OtpFormMbl";  
+import OtpFormMbl from "./OtpFormMbl";
 import { useSelector } from "react-redux";
 
-function ConfirmEmailMbl({
-  onBack,
-}) {
+function ConfirmEmailMbl({ onBack }) {
   const { t } = useTranslation();
   const email = useSelector((state) => state.cart.verificationEmail);
 

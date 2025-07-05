@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 55.6px;
+  height: 60px;
   width: 100vw;
   background: var(--color-base-mobile-bottom-nav-bg);
   display: flex;
@@ -56,4 +56,20 @@ html[lang="ar"] {
       background: var(--color-base-mobile-bottom-nav-item-active-bg--ar);
     }
   }
+}
+.cart-notification-mobile {
+  position: relative;
+  top: -10px;
+  right: 0rem;
+  z-index: 100;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(#ff3988, #bf0650);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
 }

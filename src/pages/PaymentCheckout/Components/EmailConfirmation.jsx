@@ -14,25 +14,23 @@ export default function EmailConfirmation() {
   const [emailValue, setEmailValue] = useState("");
   const { mutate: verification, isPending } = useVerification();
   const navigate = useNavigate();
+
   const handleConfirmEmail = () => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailValue)) {
-        toast.error("Please enter a valid email address");
-        return;
-      }
-      verification(
-        emailValue,
-        {
-          onSuccess: (res) => {
-            dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
-            navigate("/otp-confirmation");
-          },
-          onError: (error) => {
-            console.log(error , "error>>");
-            toast.error(error?.response?.data?.message || "Something went wrong");
-          }
-        }
-      );
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailValue)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    verification(emailValue, {
+      onSuccess: (res) => {
+        dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
+        navigate("/otp-confirmation");
+      },
+      onError: (error) => {
+        console.log(error, "error>>");
+        toast.error(error?.response?.data?.message || "Something went wrong");
+      },
+    });
   };
 
   return (
@@ -49,12 +47,9 @@ export default function EmailConfirmation() {
         <div className="input-underline"></div>
       </div>
 
-
-      <button className="confirm-button" onClick={handleConfirmEmail}>  
-          {isPending ? <Loading /> : t("payment.emailConfirmation.confirmButton")}
+      <button className="confirm-button" onClick={handleConfirmEmail}>
+        {isPending ? <Loading /> : t("payment.emailConfirmation.confirmButton")}
       </button>
     </div>
   );
 }
-
-
