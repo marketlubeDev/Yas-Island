@@ -1,13 +1,15 @@
 .confirm-email__modal {
   max-width: 500px;
   width: 100vw;
-  height: 100vh;
-
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   background: var(--color-email-form-bg);
   overflow: hidden;
+  @media (max-width: 375px) {
+    height: 100%;
+  }
 }
 
 .confirm-email__content {
@@ -28,13 +30,13 @@
   box-shadow: var(--color-email-form-box-shadow);
   align-items: center;
   padding: 32px 36px;
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
+  // height: 100%;
+  // overflow-y: auto;
+  // -webkit-overflow-scrolling: touch;
+  // scrollbar-width: thin;
+  // &::-webkit-scrollbar {
+  //   width: 6px;
+  // }
 
   @media (min-width: 340px) and (max-width: 374px) {
     padding: 88px 27px;

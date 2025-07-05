@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EmailVerificationMbl from "./MobileComponents/EmailVerificationMbl";
-import ConfirmEmail from "./MobileComponents/ConfirmEmailMbl";
+// import ConfirmEmail from "./MobileComponents/ConfirmEmailMbl";
 import CheckOutMbl from "./MobileComponents/CheckOutMbl";
 import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import MakePaymentMbl from "./MobileComponents/MakePaymentMbl";
