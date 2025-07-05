@@ -24,14 +24,12 @@ function MycartMbl({ onClose, visible }) {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
   const { cartItems, subtotal, vatAndTax, total, isEmailVerification } = useSelector((state) => state.cart);
-  console.log(isEmailVerification , "isEmailVerification>>");
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const deleteIconSrc = isDarkMode ? InvertDeleteIcon : DeleteIcon;
 
   const handleCheckout = () => {
-    console.log(isEmailVerification , "isEmailVerification>> handleCheckout");
     if(!isEmailVerification){
       navigate("/email-verification");
     }else{
@@ -77,7 +75,6 @@ function MycartMbl({ onClose, visible }) {
 
     checkBasket(data, {
       onSuccess: (res) => {
-        console.log(res);
         if (res?.orderDetails?.error?.code) {
           toast.error(
             res?.orderDetails?.error?.text || t("Something went wrong"),
