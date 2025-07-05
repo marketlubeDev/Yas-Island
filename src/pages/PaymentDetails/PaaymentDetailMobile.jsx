@@ -10,7 +10,7 @@ import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
 function PaymentDetailsMobile({
   onProceedToPayment,
-  onBack,
+  // onBack,
   onApplyPromo,
   promoApplied,
 }) {

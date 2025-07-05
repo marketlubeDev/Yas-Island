@@ -36,15 +36,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "payment",
-        element: (
-          <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
-            DesktopComponent={PaymentCheckout}
-          />
-        ),
-      },
-      {
         path: "email-verification",
         element: (
           <ResponsiveWrapper
