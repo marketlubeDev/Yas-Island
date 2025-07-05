@@ -2,9 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import cardIcon from "../../../assets/images/creditcard.png";
 import paypalIcon from "../../../assets/images/paypal.png";
+import { useNavigate } from "react-router-dom";
 
 function PaymentMethodMbl() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="make-payment__payment-method">
       <div className="make-payment__payment-options">
@@ -56,6 +58,14 @@ function PaymentMethodMbl() {
           </label>
         </div>
       </div>
+      <button
+                className="make-payment__pay-btn"
+                onClick={() => {
+                  navigate("/payment-success");
+                }}
+              >
+                {t("payment.cardPayment.makePayment")}
+              </button>
     </div>
   );
 }

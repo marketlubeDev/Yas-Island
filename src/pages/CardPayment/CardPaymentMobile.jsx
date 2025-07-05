@@ -5,8 +5,9 @@ import CheckOutSummaryMbl from "./MobileComponent/CheckOutSummaryMbl";
 import PaymentMethodMbl from "./MobileComponent/PaymentMethodMbl";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
-function CardPaymentMobile({ onClose, onPaymentSuccess, promoApplied }) {
+function CardPaymentMobile() {
   const { t, i18n } = useTranslation();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,20 +22,15 @@ function CardPaymentMobile({ onClose, onPaymentSuccess, promoApplied }) {
           <div className="make-payment-modal">
             <div className="make-payment__content">
               {/* Order Summary */}
-              <CheckOutSummaryMbl promoApplied={promoApplied} />
+              <CheckOutSummaryMbl />
               <br />
               <br />
 
               {/* Payment Method */}
-              <PaymentMethodMbl />
+              <PaymentMethodMbl  />
 
-              {/* Pay Button */}
-              <button
-                className="make-payment__pay-btn"
-                onClick={onPaymentSuccess}
-              >
-                {t("payment.cardPayment.makePayment")}
-              </button>
+     
+             
 
               {/* Card Logos */}
               <div className="make-payment__card-logos">

@@ -2,7 +2,7 @@ import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useTranslation } from "react-i18next";
 
-export default function PaymentSuccess() {
+export default function PaymentSuccess({ onBack, onLottieClick }) {
   const { t } = useTranslation();
   return (
     <div
@@ -30,6 +30,7 @@ export default function PaymentSuccess() {
           src="https://lottie.host/dfefcc9b-253e-408d-870c-a4d1b14fd929/xfHI5sbgj4.lottie"
           loop
           autoplay
+          onClick={onLottieClick}
         />
       </div>
       {/* Success Text */}

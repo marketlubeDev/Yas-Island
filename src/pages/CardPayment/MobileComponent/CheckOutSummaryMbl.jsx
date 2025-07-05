@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function CheckOutSummaryMbl({ promoApplied }) {
+function CheckOutSummaryMbl() {
   const { t } = useTranslation();
 
   // Calculate totals
   const subtotal = 935.71;
   const vatAndTax = 49.29;
-  const promoSavings = promoApplied ? 100.0 : 0;
+  const promoSavings = 100.0;
   const total = subtotal + vatAndTax - promoSavings;
 
   return (
@@ -59,7 +59,7 @@ function CheckOutSummaryMbl({ promoApplied }) {
             <span>{t("payment.orderSummary.vatAndTax")}</span>
             <span>+ {vatAndTax.toFixed(2)} VAT & Tax</span>
           </div>
-          {promoApplied && (
+          {/* {promoApplied && ( */}
             <div
               className="email-checkout__summary-row"
               style={{ color: "var(--color-pymnt-step-clr)" }}
@@ -67,7 +67,7 @@ function CheckOutSummaryMbl({ promoApplied }) {
               <span>{t("payment.orderSummary.promoCodeSavings")}</span>
               <span>-{promoSavings.toFixed(2)}</span>
             </div>
-          )}
+          {/* )} */}  
         </div>
 
         <div className="email-checkout__summary-row email-checkout__summary-row--total">

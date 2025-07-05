@@ -1,9 +1,23 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-function PaymentSuccessMobile({ onShowExperience }) {
+function PaymentSuccessMobile() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const timeout = setTimeout(() => {
+      navigate("/payment-response");
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <>
@@ -26,7 +40,10 @@ function PaymentSuccessMobile({ onShowExperience }) {
           <div
             className="payment-success-message"
             style={{ cursor: "pointer" }}
-            onClick={onShowExperience}
+            // onClick={onShowExperience}
+            onClick={() => {
+              navigate("/payment-response");
+            }}  
           >
             {t("payment.success.title")}
           </div>
