@@ -6158,6 +6158,11 @@ html[lang=ar] .confirm-email__input-underline {
 .confirm-email__confirm-btn:hover {
   background: var(--color-email-form-confirm-btn);
 }
+.confirm-email__confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .confirm-email__steps-underline {
   width: 100%;
   height: 2.5px;

@@ -1,14 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PaymentHeaderMbl from "../../Home/MobileComponents/PaymentHeaderMbl";
 import OtpSectionMbl from "./OtpSectionMbl";
 import TimerMbl from "./TimerMbl";
-import OtpFormMbl from "./OtpFormMbl";  
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import { validateOTP } from "../../../utils/OTPvalidate";
+import {
+  setIsEmailVerification,
+  setVerificationEmail,
+} from "../../../global/cartSlice";
+import { useNavigate } from "react-router-dom";
+import useVerification from "../../../apiHooks/email/verification";
+import { setOtp } from "../../../global/otpSlice";
 
 function ConfirmEmailMbl({ onBack }) {
+  const { mutate: verification, isPending } = useVerification();
   const { t } = useTranslation();
   const email = useSelector((state) => state.cart.verificationEmail);
+  const { OTP } = useSelector((state) => state.otp);
+  const [otp, setOtpInput] = useState(new Array(6).fill(""));
+  const [isExpired, setIsExpired] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [canResend, setCanResend] = useState(false);
+  const [timer, setTimer] = useState(180);
+
+  useEffect(() => {
+    if (isExpired) {
+      setOtpInput(new Array(6).fill(""));
+      setCanResend(true);
+    }
+  }, [isExpired]);
+
+  const handleConfirmEmail = async () => {
+    if (email === "") {
+      toast.error("Please enter a valid email");
+      navigate("/email-verification");
+      return;
+    }
+    if (isExpired) {
+      toast.error("OTP has expired. Please request a new one.");
+      return;
+    }
+    const otpString = otp.join("");
+    if (otpString.length !== 6) {
+      toast.error("Please enter a valid OTP");
+      return;
+    }
+    const isValid = await validateOTP(otpString, OTP);
+    if (isValid) {
+      dispatch(setIsEmailVerification(true));
+      dispatch(setVerificationEmail(email));
+      navigate("/payment-details");
+    } else {
+      toast.error("OTP is incorrect ❌");
+    }
+  };
+
+  const handleResendOTP = () => {
+    if (!canResend) return;
+    verification(email, {
+      onSuccess: (res) => {
+        dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
+        setTimer(180);
+        setCanResend(false);
+        setIsExpired(false);
+        setOtpInput(new Array(6).fill(""));
+      },
+      onError: (error) => {
+        console.log(error, "error>>");
+      },
+    });
+  };
 
   return (
     <div className="confirm-email__overlay">
@@ -20,7 +84,7 @@ function ConfirmEmailMbl({ onBack }) {
               {t("payment.emailConfirmation.emailLabel")}
             </div>
             <div className="confirm-email__input-underline">{email}</div>
-            <OtpSectionMbl />
+            <OtpSectionMbl otp={otp} setOtp={setOtpInput} isExpired={isExpired} />
             <div className="confirm-email__otp-info">
               {t("payment.verification.codeSent")} <span>{email}</span>
               <br />
@@ -28,8 +92,20 @@ function ConfirmEmailMbl({ onBack }) {
                 {t("payment.verification.checkSpam")}
               </div>
             </div>
-            <TimerMbl />
-            <OtpFormMbl />
+            <TimerMbl setIsExpired={setIsExpired} handleResendOTP={handleResendOTP} timer={timer} setTimer={setTimer}/>
+            <div style={{ textAlign: "center" }}>
+              <button
+                className={`confirm-email__confirm-btn ${
+                  isExpired ? "disabled" : ""
+                }`}
+                type="submit"
+                style={{ marginTop: 24 }}
+                onClick={handleConfirmEmail}
+                disabled={isExpired}
+              >
+                {t("payment.verification.confirmOtp")}
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -205,6 +205,10 @@ html[lang="ar"] {
   &:active {
     // transform: translateX(16.5%) translateY(0);
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .confirm-email__steps-underline {

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {  useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-function OtpSectionMbl({ onOtpComplete }) {
-  const { t } = useTranslation();
-  const [otp, setOtp] = useState(Array(6).fill("")); // Assuming 6-digit OTP
+function OtpSectionMbl({ onOtpComplete , otp , setOtp  , isExpired }) {
+  const { t } = useTranslation(); 
+  const inputRefs = useRef([]);
 
   const handleOtpChange = (value, currentIndex) => {
     if (!value) {
@@ -13,7 +13,6 @@ function OtpSectionMbl({ onOtpComplete }) {
       setOtp(newOtp);
       return;
     }
-
     // Only allow numbers
     if (!/^\d*$/.test(value)) return;
 
@@ -23,12 +22,7 @@ function OtpSectionMbl({ onOtpComplete }) {
 
     // Auto-focus next input
     if (currentIndex < 5 && value) {
-      const nextInput = document.getElementById(
-        `otp-input-${currentIndex + 1}`
-      );
-      if (nextInput) {
-        nextInput.focus();
-      }
+      inputRefs.current[currentIndex + 1]?.focus();
     }
 
     // Check if OTP is complete
@@ -43,14 +37,39 @@ function OtpSectionMbl({ onOtpComplete }) {
   const handleKeyDown = (e, currentIndex) => {
     // Handle backspace focus
     if (e.key === "Backspace" && !otp[currentIndex] && currentIndex > 0) {
-      const prevInput = document.getElementById(
-        `otp-input-${currentIndex - 1}`
-      );
-      if (prevInput) {
-        prevInput.focus();
-      }
+      inputRefs.current[currentIndex - 1]?.focus();
     }
   };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData("text").slice(0, 6);
+
+    if (!/^\d+$/.test(pastedData)) return;
+
+    const newOtp = [...otp];
+    pastedData.split("").forEach((value, index) => {
+      if (index < 6) {
+        newOtp[index] = value;
+      }
+    });
+    setOtp(newOtp);
+
+    // Focus the next empty input or the last input if all are filled
+    const nextEmptyIndex = newOtp.findIndex((val) => !val);
+    if (nextEmptyIndex !== -1 && nextEmptyIndex < 6) {
+      inputRefs.current[nextEmptyIndex]?.focus();
+    } else {
+      inputRefs.current[5]?.focus();
+    }
+
+    // Check if OTP is complete after pasting
+    const completedOtp = newOtp.join("");
+    if (completedOtp.length === 6 && onOtpComplete) {
+      onOtpComplete(completedOtp);
+    }
+  };
+
 
   return (
     <div className="confirm-email__otp-section-bg">
@@ -62,6 +81,7 @@ function OtpSectionMbl({ onOtpComplete }) {
           <input
             key={idx}
             id={`otp-input-${idx}`}
+            ref={(el) => (inputRefs.current[idx] = el)}
             type="text"
             inputMode="numeric"
             maxLength={1}
@@ -69,7 +89,9 @@ function OtpSectionMbl({ onOtpComplete }) {
             value={digit}
             onChange={(e) => handleOtpChange(e.target.value, idx)}
             onKeyDown={(e) => handleKeyDown(e, idx)}
-            autoComplete="off"
+            onPaste={handlePaste}
+            autoComplete="off"  
+            disabled={isExpired}
           />
         ))}
       </div>
