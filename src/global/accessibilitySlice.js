@@ -1,30 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const loadAccessibilityFromStorage = () => {
-  try {
-    const savedAccessibility = localStorage.getItem('yasIslandAccessibility');
-    if (savedAccessibility) {
-      return JSON.parse(savedAccessibility);
-    }
-  } catch (error) {
-    console.error('Error loading accessibility settings from localStorage:', error);
-  }
-  return {
-    zoomLevel: 1,
-    isDarkMode: false,
-    isHighContrast: false,
-  };
+const initialState = {
+  zoomLevel: 1,
+  isDarkMode: false,
+  isHighContrast: false,
 };
-
-const saveAccessibilityToStorage = (state) => {
-  try {
-    localStorage.setItem('yasIslandAccessibility', JSON.stringify(state));
-  } catch (error) {
-    console.error('Error saving accessibility settings to localStorage:', error);
-  }
-};
-
-const initialState = loadAccessibilityFromStorage();
 
 const accessibilitySlice = createSlice({
   name: "accessibility",
@@ -32,7 +12,6 @@ const accessibilitySlice = createSlice({
   reducers: {
     setZoomLevel: (state, action) => {
       state.zoomLevel = action.payload;
-      saveAccessibilityToStorage(state);
     },
     toggleDarkMode: (state) => {
       if (!state.isDarkMode && !state.isHighContrast) {
@@ -48,7 +27,6 @@ const accessibilitySlice = createSlice({
         state.isDarkMode = false;
         state.isHighContrast = false;
       }
-      saveAccessibilityToStorage(state);
     },
   },
 });

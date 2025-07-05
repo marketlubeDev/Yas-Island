@@ -1,34 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-const loadCartFromStorage = () => {
-  const defaultState = {
-    cartItems: [],
-    subtotal: 0,
-    vatAndTax: 0,
-    total: 0,
-    isCartOpen: false,
-    isEmailVerification: false,
-    verificationEmail: "",
-  };
-
-  try {
-    const savedCart = localStorage.getItem('yasIslandCart');
-    if (savedCart) {
-      const parsedCart = JSON.parse(savedCart);
-      // Merge saved cart with default state to ensure all properties exist
-      return {
-        ...defaultState,
-        ...parsedCart
-      };
-    }
-  } catch (error) {
-    console.error('Error loading cart from localStorage:', error);
-  }
-  return defaultState;
+const initialState = {
+  cartItems: [],
+  subtotal: 0,
+  vatAndTax: 0,
+  total: 0,
+  isCartOpen: false,
+  isEmailVerification: false,
+  verificationEmail: "",
 };
 
-const initialState = loadCartFromStorage();
 const calculateCartTotals = (items) => {
   const subtotal = items.reduce((total, item) => total + (item?.price?.net * (item.quantity || 1)), 0);
   const vatAndTax = items.reduce((taxTotal, item) => taxTotal + (item?.price?.tax * (item.quantity || 1)), 0);
@@ -39,15 +20,6 @@ const calculateCartTotals = (items) => {
     vatAndTax,
     total
   };
-};
-
-
-const saveCartToStorage = (cartState) => {
-  try {
-    localStorage.setItem('yasIslandCart', JSON.stringify(cartState));
-  } catch (error) {
-    console.error('Error saving cart to localStorage:', error);
-  }
 };
 
 const cartSlice = createSlice({
@@ -67,7 +39,6 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
-      saveCartToStorage(state);
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
@@ -77,18 +48,15 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
-      saveCartToStorage(state);
     },
     clearCart: (state) => {
       state.cartItems = [];
       state.subtotal = 0;
       state.vatAndTax = 0;
       state.total = 0;
-      localStorage.removeItem('yasIslandCart');
     },
     setIsCartOpen: (state, action) => {
       state.isCartOpen = action.payload;
-      saveCartToStorage(state);
     },
     removeItemFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
@@ -98,7 +66,6 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
-      saveCartToStorage(state);
     },
     updateQuantity: (state, action) => {
       state.cartItems = state.cartItems
@@ -112,15 +79,12 @@ const cartSlice = createSlice({
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
       state.total = totals.total;
-      saveCartToStorage(state);
     },
     setIsEmailVerification: (state, action) => {
       state.isEmailVerification = action.payload;
-      saveCartToStorage(state);
     },
     setVerificationEmail: (state, action) => {
       state.verificationEmail = action.payload;
-      saveCartToStorage(state);
     },  
   },
 });
