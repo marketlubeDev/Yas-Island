@@ -319,7 +319,7 @@
 
   &__right {
     width: 35%;
-    background: var(--payment-right-bg);
+    background-color: var(--color-email-form-box);
 
     .order-summary {
       background: var(--payment-right-bg);
@@ -389,8 +389,6 @@
       &__pricing {
         padding: 1rem 2.5rem;
         background-color: var(--payment-right-title);
-
-        // padding: 1.5rem 0;
         margin-bottom: 1.5rem;
 
         .price-row {

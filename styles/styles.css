@@ -2395,7 +2395,7 @@ html[lang=ar] .guest-label {
   border: 2px solid var(--color-cart-item-minus-border);
   display: flex;
   width: 42.952px;
-  height: 50.27px;
+  height: 45.27px;
   border-radius: 47.725px;
   padding: 15px 10px;
   justify-content: center;
@@ -2409,7 +2409,7 @@ html[lang=ar] .guest-label {
   border: 2px solid var(--color-cart-item-minus-border);
   display: flex;
   width: 42.952px;
-  height: 50.27px;
+  height: 45.27px;
   border-radius: 47.725px;
   padding: 15px 10px;
   justify-content: center;
@@ -3529,7 +3529,7 @@ html[lang=ar] .guest-label {
 }
 .payment-form__right {
   width: 35%;
-  background: var(--payment-right-bg);
+  background-color: var(--color-email-form-box);
 }
 .payment-form__right .order-summary {
   background: var(--payment-right-bg);
