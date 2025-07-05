@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import visaIcon from "../../../assets/images/visa3.png";
+import visaIcon from "../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
-import CheckOutSummaryMbl from "./CheckOutSummaryMbl";
-import PaymentMethodMbl from "./PaymentMethodMbl";
+import CheckOutSummaryMbl from "./MobileComponent/CheckOutSummaryMbl";
+import PaymentMethodMbl from "./MobileComponent/PaymentMethodMbl";
+import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
-function MakePaymentMbl({ onClose, onPaymentSuccess, promoApplied }) {
+function CardPaymentMobile({ onClose, onPaymentSuccess, promoApplied }) {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -14,6 +15,7 @@ function MakePaymentMbl({ onClose, onPaymentSuccess, promoApplied }) {
   return (
     <>
       {/* <PaymentHeader /> */}
+      <MobileHeader />
       <div className="outer-modal-bg">
         <div className="make-payment-modal-container">
           <div className="make-payment-modal">
@@ -50,4 +52,4 @@ function MakePaymentMbl({ onClose, onPaymentSuccess, promoApplied }) {
   );
 }
 
-export default MakePaymentMbl;
+export default CardPaymentMobile;

@@ -13,6 +13,9 @@ import ResponsiveWrapper from "../components/ResponsiveWrapper";
 import EmailVerificationMobile from "../pages/EmailVerification/EmilVarificationMobile";
 import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobile";
 import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
+import CardPaymentMobile from "../pages/CardPayment/CardPaymentMobile";
+import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
+import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
 
 export const router = createBrowserRouter([
   {
@@ -29,15 +32,6 @@ export const router = createBrowserRouter([
           <ResponsiveWrapper
             MobileComponent={MobileProductPage}
             DesktopComponent={ProductPage}
-          />
-        ),
-      },
-      {
-        path: "payment",
-        element: (
-          <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
-            DesktopComponent={PaymentCheckout}
           />
         ),
       },
@@ -72,7 +66,7 @@ export const router = createBrowserRouter([
         path: "card-payment",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={CardPaymentMobile}
             DesktopComponent={CardPaymentPage}
           />
         ),
@@ -81,7 +75,7 @@ export const router = createBrowserRouter([
         path: "payment-success",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={PaymentSuccessMobile}
             DesktopComponent={PaymentSuccessPage}
           />
         ),
@@ -90,7 +84,7 @@ export const router = createBrowserRouter([
         path: "payment-response",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={PaymentResponseMobile}
             DesktopComponent={PaymentResponsePage}
           />
         ),

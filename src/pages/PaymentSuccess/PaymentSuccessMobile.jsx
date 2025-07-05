@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import MobileHeader from "../../Home/MobileComponents/MobileHeader";
+import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
-function PaymentSuccessfulMbl({ onShowExperience }) {
+function PaymentSuccessMobile({ onShowExperience }) {
   const { t } = useTranslation();
 
   return (
@@ -36,4 +36,4 @@ function PaymentSuccessfulMbl({ onShowExperience }) {
   );
 }
 
-export default PaymentSuccessfulMbl;
+export default PaymentSuccessMobile;
