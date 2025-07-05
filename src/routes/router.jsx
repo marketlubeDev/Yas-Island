@@ -12,6 +12,7 @@ import PaymentResponsePage from "../pages/PaymentResponse/PaymentResponsePage";
 import ResponsiveWrapper from "../components/ResponsiveWrapper";
 import EmailVerificationMobile from "../pages/EmailVerification/EmilVarificationMobile";
 import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobile";
+import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
 
 export const router = createBrowserRouter([
   {
@@ -62,7 +63,7 @@ export const router = createBrowserRouter([
         path: "payment-details",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobilePaymentFlow}
+            MobileComponent={PaymentDetailsMobile}
             DesktopComponent={PaymentDetailsPage}
           />
         ),
