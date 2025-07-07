@@ -36,6 +36,10 @@
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 1.5rem;
     justify-items: left;
+
+    @include respond(bigTablets) {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
   }
 
   &__card {
@@ -52,6 +56,13 @@
     flex-direction: column;
     align-items: center;
 
+    @include respond(bigTablets) {
+      width: 100%;
+      min-width: 15.156rem;
+      max-width: 16.156rem;
+      height: 22.882rem;
+    }
+
     &__image {
       width: 100%;
       height: 201.573px;
@@ -59,11 +70,19 @@
       background-color: #f0f0f0;
       border-radius: 0.8rem;
 
+      @include respond(bigTablets) {
+        height: 151.573px;
+      }
+
       & img {
         width: 100%;
         height: 201.573px;
         object-fit: cover;
         border-radius: 0.8rem;
+
+        @include respond(bigTablets) {
+          height: 161.573px;
+        }
       }
     }
 
@@ -91,6 +110,12 @@
         text-overflow: ellipsis;
         max-width: 280px;
 
+        @include respond(bigTablets) {
+          font-size: 18px;
+          font-weight: 600;
+          max-width: 220px;
+        }
+
         @include respond(desktop) {
           font-size: 17px;
           font-weight: 600;
@@ -114,6 +139,10 @@
         font-weight: 400;
         line-height: 28.8px;
         margin-top: 0.8rem;
+
+        @include respond(bigTablets) {
+          font-size: 16px;
+        }
 
         @include respond(desktop) {
           font-size: 16px;
@@ -164,6 +193,11 @@
           font-weight: 600;
           line-height: normal;
           text-transform: capitalize;
+
+          @include respond(bigTablets) {
+            font-size: 16px;
+            font-weight: 600;
+          }
 
           @include respond(desktop) {
             font-size: 14px;
@@ -228,6 +262,14 @@
     line-height: normal;
     // text-transform: capitalize;
     cursor: pointer;
+
+    @include respond(bigTablets) {
+      width: 100px;
+      height: 45px;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 6px;
+    }
 
     @include respond(desktop) {
       width: 100px;
@@ -352,9 +394,21 @@
   display: flex;
   gap: 32px;
   width: 100%;
+  align-content: start;
+
+  @include respond(bigTablets) {
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    gap: 16px;
+    flex-direction: column !important;
+    align-content: center !important;
+  }
 
   @include respond(desktop) {
     gap: 24px;
+  }
+
+  @include respond(bigTablets) {
   }
 }
 
@@ -363,8 +417,17 @@
   max-width: 40%;
   border-radius: 1.47rem;
 
+  @include respond(bigTablets) {
+    max-width: 50% !important;
+  }
+
   @include respond(desktop) {
     border-radius: 1.2rem;
+  }
+
+  @include respond(bigDesktop) {
+    height: 600px;
+    max-height: 600px;
   }
 }
 
@@ -594,7 +657,7 @@
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #fff !important; /* Active bullet is also white, but fully opaque */
+  background: #fff !important;
   box-shadow: 0 0 4px #0002;
 }
 
@@ -605,6 +668,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @include respond(bigTablets) {
+    flex-direction: column !important;
+    align-content: center !important;
+    overflow-y: auto !important;
+    height: 80vh !important;
+  }
 
   @include respond(desktop) {
     padding: 0px;
@@ -621,6 +691,10 @@
   border-radius: 16px;
   padding: 0 40px;
   width: 40%;
+
+  @include respond(bigTablets) {
+    width: 100% !important;
+  }
 
   @include respond(desktop) {
     padding: 0 20px;
@@ -828,6 +902,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
+
+  @include respond(bigTablets) {
+    width: 100%;
+    height: 100%;
+  }
 
   @include respond(desktop) {
     padding: 0 18px;
@@ -1132,6 +1211,10 @@ html[lang="ar"] {
   height: 550px;
   background-color: var(--color-base-product-card-divider);
   // margin: 0 3rem 0 7rem;
+
+  @include respond(bigTablets) {
+    display: none;
+  }
 
   @include respond(desktop) {
     height: 440px;

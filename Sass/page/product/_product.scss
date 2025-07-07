@@ -20,6 +20,12 @@
     padding-left: 2rem;
     padding-top: 0.5rem;
 
+    @include respond(bigTablets) {
+      gap: 1rem;
+      padding-left: 1rem;
+      padding-top: 1.2rem;
+    }
+
     &__right {
       display: flex;
       justify-content: left;
@@ -307,4 +313,62 @@
 .product-top-pay {
   height: 12vh;
   background-color: var(--color-base-product-card-card-item-bg);
+}
+
+.product-heading {
+  @include respond(smallPhone) {
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 5px !important;
+  }
+}
+
+.product-description {
+  @include respond(smallPhone) {
+    // font-size: 1rem !important;
+    font-size: 14px !important;
+    font-style: normal;
+    // font-weight: 500;
+    line-height: normal;
+    margin-bottom: 10px !important;
+  }
+}
+
+.product-separator {
+  @include respond(smallPhone) {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+.product-subheading {
+  @include respond(smallPhone) {
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 5px 0px !important;
+  }
+}
+
+.product-list {
+  @include respond(smallPhone) {
+    margin: 5px 0px !important;
+  }
+}
+
+.product-list-item {
+  @include respond(smallPhone) {
+    font-size: 14px !important;
+    font-style: normal;
+    line-height: normal;
+    margin: 5px 0px !important;
+  }
+  &:before {
+    @include respond(smallPhone) {
+      line-height: 1 !important;
+    }
+  }
 }

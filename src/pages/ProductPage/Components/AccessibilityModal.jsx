@@ -54,7 +54,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
         </span>
       }
       className="accessibility-web-modal"
-      width="40%"
+      // width="40%"
     >
       <div className="modal-content">
         <h2>{t("accessibility.title")}</h2>

@@ -8,17 +8,14 @@
   align-items: center;
   justify-content: space-between;
 
-  // @include respond(smallPhone) {
-  //   margin: 0 auto;
-  // }
-  // @include respond(phone) {
-  //   margin: 0 auto;
-  // }
+  @include respond(bigTablets) {
+    width: 100%;
+    max-width: 20rem;
+  }
 
   @include respond(desktop) {
     width: 70%;
     max-width: 25rem;
-    // height: 2.2rem;
   }
 
   @include respond(bigDesktop) {

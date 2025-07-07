@@ -1,4 +1,11 @@
+@use "../../base/responive" as *;
+
 .accessibility-web-modal {
+  width: 40% !important;
+  @include respond(bigTablets) {
+    width: 70% !important;
+  }
+
   .ant-modal-content {
     background: var(--color-pymnt-container-bg);
     border: 2.353px solid var(--color-base-product-card-card-item-border);

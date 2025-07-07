@@ -10,9 +10,8 @@ export default function ProductHead() {
   const { language } = useLanguage();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { isDesktop, isBigDesktop, isExtraBigDesktop } = useSelector(
-    (state) => state.responsive
-  );
+  const { isDesktop, isBigDesktop, isExtraBigDesktop, isBigTablets } =
+    useSelector((state) => state.responsive);
   const { currentPark, allProducts, currentSort } = useSelector(
     (state) => state.product
   );
@@ -67,7 +66,7 @@ export default function ProductHead() {
       className={language === "العربية" ? "ar-product-head" : "product-head"}
     >
       <Search />
-      {(isDesktop || isBigDesktop || isExtraBigDesktop) && (
+      {(isDesktop || isBigDesktop || isExtraBigDesktop || isBigTablets) && (
         <div className="product-head__right">
           <Selector
             label={t("productHead.sortBy")}

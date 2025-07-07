@@ -9,13 +9,11 @@ import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
-import {  removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
+import { removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
-
-
 
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
@@ -24,14 +22,16 @@ const CartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const { isBigTablets, isDesktop } = useSelector((state) => state.responsive);
 
-  const {cartItems, subtotal, vatAndTax, total, isEmailVerification} = useSelector((state) => state.cart);
+  const { cartItems, subtotal, vatAndTax, total, isEmailVerification } =
+    useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const handleCheckout = () => {
-    if(!isEmailVerification){
+    if (!isEmailVerification) {
       navigate("/email-verification");
-    }else{
+    } else {
       navigate("/payment-details");
     }
     onClose();
@@ -41,24 +41,34 @@ const CartModal = ({ isOpen, onClose }) => {
   //   onClose();
   // };
 
-  const handleQuantityChange = (id, change, validFrom, minQuantity , maxQuantity , incrementNumber = 1) => {
-    const item = cartItems.find((item) => item.productId === id && item.validFrom === validFrom);
+  const handleQuantityChange = (
+    id,
+    change,
+    validFrom,
+    minQuantity,
+    maxQuantity,
+    incrementNumber = 1
+  ) => {
+    const item = cartItems.find(
+      (item) => item.productId === id && item.validFrom === validFrom
+    );
     if (!item) return;
 
     // Calculate the actual change amount based on increment number
     const actualChange = change > 0 ? incrementNumber : -incrementNumber;
-    
+
     // Calculate new quantity respecting min and max bounds
-    const newQuantity = Math.max(minQuantity, Math.min(maxQuantity, item.quantity + actualChange));
-    
+    const newQuantity = Math.max(
+      minQuantity,
+      Math.min(maxQuantity, item.quantity + actualChange)
+    );
 
     dispatch(updateQuantity({ id, quantity: newQuantity, validFrom }));
   };
 
-  const handleDeleteItem = (id , validFrom) => {
-    dispatch(removeItemFromCart({id , validFrom}));
+  const handleDeleteItem = (id, validFrom) => {
+    dispatch(removeItemFromCart({ id, validFrom }));
   };
-
 
   const handleBasketCheck = (onSuccess) => {
     let items = [];
@@ -66,9 +76,11 @@ const CartModal = ({ isOpen, onClose }) => {
       items.push({
         productId: item?.productId,
         quantity: item?.quantity,
-        performance: item?.performances ? [{performanceId: item?.performances}] : [],
+        performance: item?.performances
+          ? [{ performanceId: item?.performances }]
+          : [],
         validFrom: item?.validFrom,
-        validTo: item?.validTo
+        validTo: item?.validTo,
       });
     });
 
@@ -92,23 +104,27 @@ const CartModal = ({ isOpen, onClose }) => {
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
-            performances: item?.performances ? [{performanceId: item?.performances}] : [],
+            performances: item?.performances
+              ? [{ performanceId: item?.performances }]
+              : [],
             validFrom: item?.validFrom,
-            validTo: item?.validTo 
+            validTo: item?.validTo,
           }));
-          dispatch(setCheckout({
-            coupons: [],
-            items: items,
-            emailId: "",
-            language: language,
-            amount: orderDetails?.total?.gross,
-            firstName: "",
-            lastName: "", 
-            phoneNumber: "",
-            countryCode: "",
-            isTnCAgrred: false,
-            isConsentAgreed: false,
-          }));
+          dispatch(
+            setCheckout({
+              coupons: [],
+              items: items,
+              emailId: "",
+              language: language,
+              amount: orderDetails?.total?.gross,
+              firstName: "",
+              lastName: "",
+              phoneNumber: "",
+              countryCode: "",
+              isTnCAgrred: false,
+              isConsentAgreed: false,
+            })
+          );
           onSuccess();
         }
       },
@@ -128,7 +144,7 @@ const CartModal = ({ isOpen, onClose }) => {
       placement={isRTL ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
-      width="34%"
+      width={isBigTablets ? "60%" : isDesktop ? "45%" : "35%"}
       className="cart-drawer"
       closeIcon={null}
       headerStyle={{ display: "none" }}
@@ -160,43 +176,78 @@ const CartModal = ({ isOpen, onClose }) => {
           <>
             <div className="cart-items">
               {cartItems.map((item, index) => {
-                const isExpired = new Date(item?.validTo).toDateString() < new Date().toDateString();
+                const isExpired =
+                  new Date(item?.validTo).toDateString() <
+                  new Date().toDateString();
                 return (
-                <div key={index} className={`cart-item ${isExpired ? 'expired-item' : ''}`}>
-                  <img src={item?.image} alt={item?.title} />
-                  <div className="item-details">
-                    <h4>{item?.title}</h4>
-                    <p>AED {item?.price?.net} +<span className="text-xs text-gray-500"> {item?.price?.tax} Net&Tax</span></p>
-                    <div className="validity-date" style={{}}>
-                      Valid from <span>{item?.validFrom}</span> to{" "}
-                      <span>{item?.validTo}</span>
+                  <div
+                    key={index}
+                    className={`cart-item ${isExpired ? "expired-item" : ""}`}
+                  >
+                    <img src={item?.image} alt={item?.title} />
+                    <div className="item-details">
+                      <h4>{item?.title}</h4>
+                      <p>
+                        AED {item?.price?.net} +
+                        <span className="text-xs text-gray-500">
+                          {" "}
+                          {item?.price?.tax} Net&Tax
+                        </span>
+                      </p>
+                      <div className="validity-date" style={{}}>
+                        Valid from <span>{item?.validFrom}</span> to{" "}
+                        <span>{item?.validTo}</span>
+                      </div>
+                      {isExpired && (
+                        <p className="expired-text">This ticket is expired</p>
+                      )}
                     </div>
-                   { isExpired && <p className="expired-text">This ticket is expired</p>}
-                  </div>
-                  <div className="quantity-controls">
-                    <span>{item?.variantName}</span>
-                    <div className="controls">
-                      <Button
-                        className="minus-btn-web"
-                        icon={<MinusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, -1 , item?.validFrom , item?.minQuantity , item?.maxQuantity , item?.incrementNumber)}
-                      />
-                      <span>{item?.quantity}</span>
-                      <Button
-                        className="plus-btn-web"
-                        icon={<PlusOutlined />}
-                        onClick={() => handleQuantityChange(item?.productId, 1 , item?.validFrom , item?.minQuantity , item?.maxQuantity , item?.incrementNumber)}
-                      />
-                      <Button className="delete-btn" onClick={() => handleDeleteItem(item?.productId , item?.validFrom )}>
-                        <img
-                          src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
-                          alt={t("cart.delete")}
+                    <div className="quantity-controls">
+                      <span>{item?.variantName}</span>
+                      <div className="controls">
+                        <Button
+                          className="minus-btn-web"
+                          icon={<MinusOutlined />}
+                          onClick={() =>
+                            handleQuantityChange(
+                              item?.productId,
+                              -1,
+                              item?.validFrom,
+                              item?.minQuantity,
+                              item?.maxQuantity,
+                              item?.incrementNumber
+                            )
+                          }
                         />
-                      </Button>
+                        <span>{item?.quantity}</span>
+                        <Button
+                          className="plus-btn-web"
+                          icon={<PlusOutlined />}
+                          onClick={() =>
+                            handleQuantityChange(
+                              item?.productId,
+                              1,
+                              item?.validFrom,
+                              item?.minQuantity,
+                              item?.maxQuantity,
+                              item?.incrementNumber
+                            )
+                          }
+                        />
+                        <Button
+                          className="delete-btn"
+                          onClick={() =>
+                            handleDeleteItem(item?.productId, item?.validFrom)
+                          }
+                        >
+                          <img
+                            src={isDarkMode ? InvertDeleteIcon : DeleteIcon}
+                            alt={t("cart.delete")}
+                          />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-             
-                </div>
                 );
               })}
             </div>
@@ -222,7 +273,10 @@ const CartModal = ({ isOpen, onClose }) => {
                 {/* <button className="save-cart-btn" onClick={handleSaveCart}>
                   {t("cart.saveCartAndPayLater")}
                 </button> */}
-                <button className="checkout-btn" onClick={() => handleBasketCheck(handleCheckout)}>
+                <button
+                  className="checkout-btn"
+                  onClick={() => handleBasketCheck(handleCheckout)}
+                >
                   {isPending ? <Loading /> : t("cart.checkOut")}
                 </button>
               </div>

@@ -596,6 +596,13 @@ body {
   padding-left: 2rem;
   padding-top: 0.5rem;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-head {
+    gap: 1rem;
+    padding-left: 1rem;
+    padding-top: 1.2rem;
+  }
+}
 .product-head__right {
   display: flex;
   justify-content: left;
@@ -834,6 +841,62 @@ body {
   background-color: var(--color-base-product-card-card-item-bg);
 }
 
+@media only screen and (max-width: 575.98px) {
+  .product-heading {
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 5px !important;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .product-description {
+    font-size: 14px !important;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .product-separator {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .product-subheading {
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 5px 0px !important;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .product-list {
+    margin: 5px 0px !important;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .product-list-item {
+    font-size: 14px !important;
+    font-style: normal;
+    line-height: normal;
+    margin: 5px 0px !important;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .product-list-item:before {
+    line-height: 1 !important;
+  }
+}
+
 .header {
   width: 100%;
   background-color: var(--color-base-product-card-bg);
@@ -898,6 +961,11 @@ body {
   gap: 1.5rem;
   justify-items: left;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
 .ProductCard__card {
   width: auto;
   min-width: 19.156rem;
@@ -912,6 +980,14 @@ body {
   flex-direction: column;
   align-items: center;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card {
+    width: 100%;
+    min-width: 15.156rem;
+    max-width: 16.156rem;
+    height: 22.882rem;
+  }
+}
 .ProductCard__card__image {
   width: 100%;
   height: 201.573px;
@@ -919,11 +995,21 @@ body {
   background-color: #f0f0f0;
   border-radius: 0.8rem;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__image {
+    height: 151.573px;
+  }
+}
 .ProductCard__card__image img {
   width: 100%;
   height: 201.573px;
   object-fit: cover;
   border-radius: 0.8rem;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__image img {
+    height: 161.573px;
+  }
 }
 .ProductCard__card__content {
   width: 100%;
@@ -950,6 +1036,13 @@ body {
   text-overflow: ellipsis;
   max-width: 280px;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content__title {
+    font-size: 18px;
+    font-weight: 600;
+    max-width: 220px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content__title {
     font-size: 17px;
@@ -975,6 +1068,11 @@ body {
   font-weight: 400;
   line-height: 28.8px;
   margin-top: 0.8rem;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__content__description {
+    font-size: 16px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__content__description {
@@ -1017,6 +1115,12 @@ body {
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ProductCard__card__pricetag__price__text {
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__pricetag__price__text {
@@ -1080,6 +1184,15 @@ body {
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .AddtoCartbtn__button {
+    width: 100px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 6px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .AddtoCartbtn__button {
@@ -1197,21 +1310,41 @@ body {
   display: flex;
   gap: 32px;
   width: 100%;
+  align-content: start;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-modal-content {
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    gap: 16px;
+    flex-direction: column !important;
+    align-content: center !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal-content {
     gap: 24px;
   }
 }
-
 .product-modal-image {
   flex: 1;
   max-width: 40%;
   border-radius: 1.47rem;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-modal-image {
+    max-width: 50% !important;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal-image {
     border-radius: 1.2rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-modal-image {
+    height: 600px;
+    max-height: 600px;
   }
 }
 
@@ -1452,7 +1585,7 @@ body {
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #fff !important; /* Active bullet is also white, but fully opaque */
+  background: #fff !important;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1333333333);
 }
 
@@ -1463,6 +1596,14 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .booking-section {
+    flex-direction: column !important;
+    align-content: center !important;
+    overflow-y: auto !important;
+    height: 80vh !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .booking-section {
@@ -1481,6 +1622,11 @@ body {
   border-radius: 16px;
   padding: 0 40px;
   width: 40%;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .calendar-container {
+    width: 100% !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-container {
@@ -1688,6 +1834,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-self: flex-start;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .guest-section {
+    width: 100%;
+    height: 100%;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-section {
@@ -1999,6 +2151,11 @@ html[lang=ar] .guest-label {
   height: 550px;
   background-color: var(--color-base-product-card-divider);
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .booking-section-divider {
+    display: none;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .booking-section-divider {
     height: 440px;
@@ -2019,6 +2176,14 @@ html[lang=ar] .guest-label {
   gap: 20px;
 }
 
+.accessibility-web-modal {
+  width: 40% !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .accessibility-web-modal {
+    width: 70% !important;
+  }
+}
 .accessibility-web-modal .ant-modal-content {
   background: var(--color-pymnt-container-bg);
   border: 2.353px solid var(--color-base-product-card-card-item-border);
@@ -7256,6 +7421,11 @@ html[lang=ar] .make-payment__summary-top {
   display: block;
   width: 100%;
 }
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__image {
+    margin-bottom: 1rem;
+  }
+}
 .attraction-detail-modal__main-title {
   font-size: 20px;
   font-weight: 700;
@@ -7283,6 +7453,11 @@ html[lang=ar] .make-payment__summary-top {
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__footer {
+    top: 20px;
+  }
 }
 .attraction-detail-modal__footer .attraction-detail-modal__footer-divider {
   position: absolute;
@@ -8114,6 +8289,12 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   justify-content: space-between;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .search {
+    width: 100%;
+    max-width: 20rem;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .search {
     width: 70%;
@@ -8155,6 +8336,11 @@ html[lang=ar] .make-payment__summary-top {
   width: 13rem;
   display: flex;
   align-items: center;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .selector {
+    width: 12rem;
+  }
 }
 .selector select {
   width: 100%;

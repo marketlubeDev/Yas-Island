@@ -1,3 +1,5 @@
+@use "../../base/responive" as *;
+
 .attraction-detail-modal {
   max-width: 420px;
   width: 98vw;
@@ -41,8 +43,10 @@
     height: 270px;
     display: block;
     width: 100%;
+    @include respond(smallPhone) {
+      margin-bottom: 1rem;
+    }
   }
-
   &__main-title {
     font-size: 20px;
     font-weight: 700;
@@ -73,6 +77,10 @@
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
+
+    @include respond(smallPhone) {
+      top: 20px;
+    }
 
     .attraction-detail-modal__footer-divider {
       position: absolute;
