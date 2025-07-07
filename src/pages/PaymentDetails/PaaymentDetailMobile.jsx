@@ -7,29 +7,24 @@ import CheckBoxMbl from "./MobileComponents/CheckBoxMbl";
 import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import PaymentHeaderMbl from "../Home/MobileComponents/PaymentHeaderMbl";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
-
-function PaymentDetailsMobile({
-  onProceedToPayment,
-  // onBack,
-  onApplyPromo,
-  promoApplied,
-}) {
+import { useNavigate } from "react-router-dom";
+  
+function PaymentDetailsMobile() {
   const { t } = useTranslation();
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receiveComms, setReceiveComms] = useState(false);
   const [promo, setPromo] = useState("");
   const [showPromoPopup, setShowPromoPopup] = useState(false);
-
+  const navigate = useNavigate();
   const handleApplyPromo = () => {
     setShowPromoPopup(true);
-    onApplyPromo();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (acceptTerms) {
       window.scrollTo(0, 0);
-      onProceedToPayment();
+      navigate("/card-payment");
     }
   };
 
@@ -45,13 +40,9 @@ function PaymentDetailsMobile({
 
               <InputFieldsMbl />
 
-              <CheckOutSummaryMbl promoApplied={promoApplied} />
+              <CheckOutSummaryMbl />
 
-              <PromoBoxMbl
-                promo={promo}
-                setPromo={setPromo}
-                onApplyPromo={handleApplyPromo}
-              />
+              <PromoBoxMbl />
               <CheckBoxMbl
                 acceptTerms={acceptTerms}
                 setAcceptTerms={setAcceptTerms}
@@ -61,18 +52,13 @@ function PaymentDetailsMobile({
 
               <button
                 className="email-checkout__btn"
-                type="button"
+                type="submit"
                 style={{
                   backgroundColor: "var(--color-email-form-confirm-btn)",
                   color: "var(--color-email-form-confirm-btn-clr)",
                 }}
                 disabled={!acceptTerms}
-                onClick={() => {
-                  if (acceptTerms) {
-                    window.scrollTo(0, 0);
-                    onProceedToPayment();
-                  }
-                }}
+                
               >
                 {t("payment.paymentDetails.proceedToPayment")}
               </button>

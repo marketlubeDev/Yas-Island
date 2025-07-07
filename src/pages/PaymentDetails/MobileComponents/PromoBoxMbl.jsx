@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function PromoBoxMbl({ promo, setPromo, onApplyPromo }) {
+function PromoBoxMbl() {
   const { t } = useTranslation();
 
   return (
@@ -23,18 +23,11 @@ function PromoBoxMbl({ promo, setPromo, onApplyPromo }) {
             id="promoCode"
             type="text"
             className="email-checkout__input email-checkout__promo-input"
-            value={promo}
-            onChange={(e) => setPromo(e.target.value)}
             placeholder="f0981902"
           />
           <button
             type="button"
             className="email-checkout__promo-apply"
-            onClick={() => {
-              if (promo.trim()) {
-                onApplyPromo();
-              }
-            }}
           >
             {t("payment.orderSummary.promoCode.apply")}
           </button>
