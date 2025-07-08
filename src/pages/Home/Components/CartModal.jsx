@@ -24,8 +24,14 @@ const CartModal = ({ isOpen, onClose }) => {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { isBigTablets, isDesktop } = useSelector((state) => state.responsive);
 
-  const { cartItems, subtotal, vatAndTax, total, isEmailVerification } =
-    useSelector((state) => state.cart);
+  const {
+    cartItems,
+    subtotal,
+    vatAndTax,
+    total,
+    isEmailVerification,
+    verificationEmail,
+  } = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const handleCheckout = () => {
