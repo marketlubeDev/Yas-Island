@@ -11,7 +11,12 @@ export const ar = {
     searchPlaceholder: "ماذا تبحث عن؟",
     home: "الرئيسية",
     cart: "السلة",
-    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",
+    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",  
+    netAndTax: "صافي وضريبة",
+    validFrom: "صالح من",
+    to: "إلى",
+    validTo: "صالح إلى",
+    thisTicketIsExpired: "هذا التذكرة منتهية",
   },
   accessibility: {
     title: "إمكانية الوصول",
