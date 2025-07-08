@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 export default function PaymentDetails({ onProceed }) {
   const verificationEmail = useSelector((state) => state.cart.verificationEmail);
   const checkout = useSelector((state) => state.checkout);
-  console.log(checkout , "checkout>>");
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",

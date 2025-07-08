@@ -32,6 +32,7 @@ export default function BookingSection({
   const { language } = useLanguage();
   const dispatch = useDispatch();
 
+
   const performanceData = useSelector(
     (state) => state.performance.performanceData
   );
@@ -62,6 +63,13 @@ export default function BookingSection({
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
+  // Auto-select first available date when dates are loaded
+  useEffect(() => {
+    if (availableDates && availableDates.length > 0 && !selectedDate && !isLoadingDates) {
+      setSelectedDate(availableDates[0]);
+    }
+  }, [availableDates, selectedDate, isLoadingDates]);
+
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -86,6 +94,36 @@ export default function BookingSection({
   const isDateSelected = (date) => {
     if (!selectedDate) return false;
     return formatDateToYYYYMMDD(date) === selectedDate;
+  };
+
+  // Function to check if a variant is available for the selected date
+  const isVariantAvailableForDate = (variantProductId) => {
+    // If no date is selected, all variants are unavailable
+    if (!selectedDate) {
+      return false;
+    }
+    
+    // If no performance data, variants should be unavailable
+    if (!performanceData.length) {
+      return false;
+    }
+    
+    // Find the variant data in performanceData
+    const variantData = performanceData.find(v => v.variantProductId === variantProductId);
+    
+    if (!variantData) {
+      return false;
+    }
+
+    // First check if the variant has any available dates at all
+    if (!variantData.isAvailable) {
+      return false;
+    }
+
+    // Then check if selected date is in this variant's available dates
+    const isAvailable = variantData.availableDates.includes(selectedDate);
+    
+    return isAvailable;
   };
 
   const generateCalendarDays = () => {
@@ -203,7 +241,7 @@ export default function BookingSection({
     });
 
     if (hasPerformance) {
-      performanceId = getPerformanceId(selectedDate);
+      performanceId = getPerformanceId(selectedDate, selectedProduct?.product_variants[0]?.productid);
       if (!performanceId) {
         toast.error(t("NoPerformance"), {
           position: "top-center",
@@ -225,7 +263,7 @@ export default function BookingSection({
         productId: productId,
         quantity: guestData.quantity,
         performance: hasperformance
-          ? [{ performanceId: getPerformanceId(selectedDate) }]
+          ? [{ performanceId: getPerformanceId(selectedDate, productId) }]
           : [],
         validFrom: selectedDate,
         validTo: getValidToDate(productId, selectedDate),
@@ -277,7 +315,7 @@ export default function BookingSection({
               packageCode: item?.packageCode,
               performances:
                 item?.performances?.[0]?.performanceId ||
-                getPerformanceId(item?.validFrom) ||
+                getPerformanceId(item?.validFrom, item?.productId) ||
                 null,
               price: price,
               productId: item?.productId,
@@ -332,8 +370,13 @@ export default function BookingSection({
     });
   };
 
-  const getPerformanceId = (date) => {
-    const performance = performanceData.find((p) => p.date == date);
+  const getPerformanceId = (date, variantProductId) => {
+    // Find the variant data in performanceData
+    const variantData = performanceData.find(v => v.variantProductId === variantProductId);
+    if (!variantData || !variantData.performances) return false;
+    
+    // Find performance for the specific date
+    const performance = variantData.performances.find(p => p.date.split('T')[0] === date);
     return performance ? performance.performanceId : false;
   };
 
@@ -450,14 +493,23 @@ export default function BookingSection({
                   {Object.entries(guests)?.map(
                     ([productId, guestData], idx) => {
                       const variantData = guestData.variant;
+                      const isAvailable = variantData?.hasperformance ? isVariantAvailableForDate(productId) : true;
                       return (
                         <div key={productId}>
-                          <div className="guest-row">
+                          <div className={`guest-row ${!isAvailable ? 'unavailable-variant' : ''}`}>
                             <div className="guest-label-container">
                               <span className="guest-label">
                                 {guestData.name}{" "}
                                 {variantData?.productvariantdesc &&
                                   `(${variantData.productvariantdesc})`}
+                                {!isAvailable && (
+                                  <span className="unavailable-notice">
+                                    {!selectedDate 
+                                      ? "- Please select a date first" 
+                                      : "- Not available on selected date"
+                                    }
+                                  </span>
+                                )}
                               </span>
                               <span className="guest-label-price">
                                 {guestData.quantity > 0 &&
@@ -488,16 +540,23 @@ export default function BookingSection({
                                   })
                                 }
                                 disabled={
+                                  !isAvailable ||
                                   guestData.quantity <=
                                   (variantData?.min_quantity || 0)
                                 }
+                                style={{
+                                  opacity: !isAvailable ? 0.5 : 1,
+                                  cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                                }}
                               >
                                 <img
                                   src={isDarkMode ? InvertMinusIcon : MinusIcon}
                                   alt="minus"
                                 />
                               </button>
-                              <span className="counter-value">
+                              <span className="counter-value" style={{
+                                opacity: !isAvailable ? 0.5 : 1
+                              }}>
                                 {guestData.quantity}
                               </span>
                               <button
@@ -521,9 +580,14 @@ export default function BookingSection({
                                   })
                                 }
                                 disabled={
+                                  !isAvailable ||
                                   guestData.quantity >=
                                   (variantData?.max_quantity || 100)
                                 }
+                                style={{
+                                  opacity: !isAvailable ? 0.5 : 1,
+                                  cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                                }}
                               >
                                 <img
                                   src={isDarkMode ? InvertPlusIcon : PlusIcon}

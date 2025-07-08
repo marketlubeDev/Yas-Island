@@ -504,3 +504,17 @@
     }
   }
 }
+
+.guest-row {
+  &.unavailable-variant {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .unavailable-notice {
+    color: #ff4d4f;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+}

@@ -34,7 +34,6 @@ const CartModal = ({ isOpen, onClose }) => {
   } = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
-  console.log(productList , "productList");
 
   const handleCheckout = () => {
     if (!isEmailVerification) {
@@ -199,7 +198,6 @@ const CartModal = ({ isOpen, onClose }) => {
                     ...item  // include any other cart item properties
                   }
                 } : null;
-                console.log(productData , "productData");
 
                 const isExpired =
                   new Date(item?.validTo).toDateString() <

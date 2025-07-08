@@ -122,27 +122,54 @@ export default function ProductModal({
       }
 
       if (hasPerformance) {
-        const productId =
-          selectedProduct?.default_variant_id ||
-          selectedProduct?.product_variants[0]?.productid;
-        const performanceData = await getPerformance(
-          formatDate(validStartDate),
-          formatDate(validEndDate),
-          productId
-        );
-
-        if (performanceData && performanceData.performance) {
-          dispatch(setPerformanceData(performanceData.performance));
-          const dates = performanceData.performance.map((p) => p.date);
-          setAvailableDates(dates);
+        const productId = selectedProduct?.product_masterid;
+        const performanceData = await getPerformance(productId);
+        
+        // Check if we have any performance data
+        if (!performanceData || performanceData.length === 0) {
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onClose();
+          setShowBookingSection(false);
+          return;
         }
+
+        // Format dates for each variant and mark variants with no dates as unavailable
+        const formattedData = performanceData.map(variant => {
+          const formattedDates = variant.availableDates?.map(date => date.split('T')[0]) || [];
+          return {
+            ...variant,
+            availableDates: formattedDates,
+            isAvailable: formattedDates.length > 0 // Add flag to track if variant has any dates
+          };
+        });
+
+        // Get all unique dates from all variants for calendar display
+        const allUniqueDates = [...new Set(
+          formattedData.flatMap(variant => variant.availableDates)
+        )];
+
+        // Check if all variants have no dates
+        const allVariantsUnavailable = formattedData.every(variant => !variant.isAvailable);
+        
+        if (allVariantsUnavailable) {
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onClose();
+          setShowBookingSection(false);
+          return;
+        }
+
+        dispatch(setPerformanceData(formattedData));
+        setAvailableDates(allUniqueDates);
       } else {
         setAvailableDates(getAvailableDates(selectedProduct));
       }
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || "Something went wrong");
-      // if it is error then close all modals
       onClose();
       setShowBookingSection(false);
     } finally {

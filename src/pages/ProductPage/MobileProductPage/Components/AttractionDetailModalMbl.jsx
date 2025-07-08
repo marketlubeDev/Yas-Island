@@ -124,22 +124,48 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, 
       }
 
       if(hasPerformance){
-        const productId = attraction?.default_variant_id || attraction?.product_variants[0]?.productid
+        const productId = attraction?.product_masterid;
         const performanceData = await getPerformance(
           formatDate(validStartDate),
           formatDate(validEndDate),
           productId
         );
-  
-        if (performanceData && performanceData.performance) {
-          dispatch(setPerformanceData(performanceData.performance));
-          const dates = performanceData.performance.map((p) => p.date);
-          setAvailableDates(dates);
+
+        
+        // Check if performance data is empty or all variants have empty availableDates
+        const hasValidPerformances = performanceData && 
+          performanceData.length > 0 && 
+          performanceData.some(variant => 
+            variant.availableDates && variant.availableDates.length > 0
+          );
+
+        if (!hasValidPerformances) {
+          // No performances available - show error message
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onClose();
+          return;
         }
+        
+        // Format dates and store variant-wise availability
+        const formattedData = performanceData.map(variant => {
+          return {
+            ...variant,
+            availableDates: variant.availableDates.map(date => date.split('T')[0])
+          }
+        });
+
+        // Get ALL unique dates from all variants for calendar display
+        const allUniqueDates = [...new Set(
+          formattedData.flatMap(variant => variant.availableDates)
+        )];
+
+        dispatch(setPerformanceData(formattedData));
+        setAvailableDates(allUniqueDates);
       } else {
         setAvailableDates(getAvailableDates(attraction));
       }
-
 
     } catch (error) {
       console.log(error);
