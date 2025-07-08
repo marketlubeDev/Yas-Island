@@ -25,7 +25,7 @@ const CartModal = ({ isOpen, onClose }) => {
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const {cartItems, subtotal, vatAndTax, total, isEmailVerification} = useSelector((state) => state.cart);
+  const {cartItems, subtotal, vatAndTax, total, isEmailVerification , verificationEmail} = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const handleCheckout = () => {
@@ -99,7 +99,7 @@ const CartModal = ({ isOpen, onClose }) => {
           dispatch(setCheckout({
             coupons: [],
             items: items,
-            emailId: "",
+            emailId: verificationEmail || "",
             language: language,
             amount: orderDetails?.total?.gross,
             firstName: "",

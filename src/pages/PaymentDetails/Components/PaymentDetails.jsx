@@ -6,13 +6,14 @@ import { useSelector } from "react-redux";
 
 export default function PaymentDetails({ onProceed }) {
   const verificationEmail = useSelector((state) => state.cart.verificationEmail);
-  console.log(verificationEmail , "verification email>>");
+  const checkout = useSelector((state) => state.checkout);
+  console.log(checkout , "checkout>>");
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    country: "",
-    nationality: "",
+    firstName: checkout?.firstName || "",
+    lastName: checkout?.lastName || "",
+    country: checkout?.country || "",
+    nationality: checkout?.nationality || "",
     email: verificationEmail,
     phoneCode: "+971",
     phoneNumber: "971",
