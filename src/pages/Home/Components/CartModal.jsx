@@ -220,8 +220,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         </span>
                       </p>
                       <div className="validity-date" style={{}}>
-                        {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
-                        <span>{item?.validTo}</span>
+                         <span>{item?.validFrom}</span> 
+                        {/* {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
+                        <span>{item?.validTo}</span> */}
                       </div>
                       {isExpired && (
                         <p className="expired-text">{t("common.thisTicketIsExpired")}</p>
