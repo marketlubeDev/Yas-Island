@@ -12,6 +12,11 @@ export const en = {
     home: "Home",
     cart: "Cart",
     searchPlaceholderMobile: "Search Attractions 'Ferrari World' ",
+    netAndTax: "Net&Tax",
+    validFrom: "Valid from",
+    to: "to",
+    validTo: "Valid to",
+    thisTicketIsExpired: "This ticket is expired",
   },
   accessibility: {
     title: "Accessibility",

@@ -27,6 +27,8 @@ const CartModal = ({ isOpen, onClose }) => {
   const { cartItems, subtotal, vatAndTax, total, isEmailVerification } =
     useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
+  const productList = useSelector((state) => state.product.allProducts);
+  console.log(productList , "productList");
 
   const handleCheckout = () => {
     if (!isEmailVerification) {
@@ -176,34 +178,53 @@ const CartModal = ({ isOpen, onClose }) => {
           <>
             <div className="cart-items">
               {cartItems.map((item, index) => {
+                const product = productList.find(
+                  (product) => product.product_variants.some(variant => variant.productid === item.productId)
+                );
+                
+                const productData = product ? {
+                  ...product,
+                  selectedVariant: {
+                    ...product.product_variants.find(variant => variant.productid === item.productId),
+                    quantity: item.quantity,
+                    date: item.date,
+                    time: item.time,
+                    cartItemId: item.id,
+                    ...item  // include any other cart item properties
+                  }
+                } : null;
+                console.log(productData , "productData");
+
                 const isExpired =
                   new Date(item?.validTo).toDateString() <
                   new Date().toDateString();
+
+             
                 return (
                   <div
                     key={index}
                     className={`cart-item ${isExpired ? "expired-item" : ""}`}
                   >
-                    <img src={item?.image} alt={item?.title} />
+                    <img src={item?.image} alt={productData?.product_title} />
                     <div className="item-details">
-                      <h4>{item?.title}</h4>
+                      <h4>{productData?.product_title}</h4>
                       <p>
-                        AED {item?.price?.net} +
+                        AED {productData?.selectedVariant?.price?.net} +
                         <span className="text-xs text-gray-500">
                           {" "}
-                          {item?.price?.tax} Net&Tax
+                          {productData?.selectedVariant?.price?.tax} {t("common.netAndTax")}
                         </span>
                       </p>
                       <div className="validity-date" style={{}}>
-                        Valid from <span>{item?.validFrom}</span> to{" "}
+                        {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
                         <span>{item?.validTo}</span>
                       </div>
                       {isExpired && (
-                        <p className="expired-text">This ticket is expired</p>
+                        <p className="expired-text">{t("common.thisTicketIsExpired")}</p>
                       )}
                     </div>
                     <div className="quantity-controls">
-                      <span>{item?.variantName}</span>
+                      <span>{productData?.selectedVariant?.productvariantname}</span>
                       <div className="controls">
                         <Button
                           className="minus-btn-web"
