@@ -416,10 +416,6 @@ body {
 .side-bar-list-item .item-text.active {
   color: var(--color-base-side-bar-item-right-text-active);
 }
-.side-bar-list-item:hover:not(.active):not(.selected) {
-  border: 2px solid var(--color-base-side-bar-item-box-border);
-  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
-}
 
 .ar-side-bar-list-item {
   position: relative;
@@ -475,10 +471,6 @@ body {
 }
 .ar-side-bar-list-item .item-text.active {
   color: var(--color-base-side-bar-item-right-text-active);
-}
-.ar-side-bar-list-item:hover:not(.active):not(.selected) {
-  border: 2px solid var(--color-base-side-bar-item-box-border);
-  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
 }
 
 .side-bar-list-item-container {
