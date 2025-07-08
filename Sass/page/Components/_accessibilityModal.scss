@@ -143,6 +143,14 @@
   color: #18142b;
   &.active {
     color: #e7ebd4;
+    font-weight: 500;
+  }
+}
+
+.high-contrast {
+  color: #18142b;
+  &.active {
+    color: #e7ebd4;
   }
 }
 

@@ -10,11 +10,11 @@
   scroll-behavior: smooth;
 
   @include respond(desktop) {
-    height: calc(100vh - 11.3rem);
+    height: calc(100vh - 0rem);
   }
 
   @include respond(bigDesktop) {
-    height: calc(100vh - 11.3rem);
+    height: calc(100vh - 0rem);
   }
 
   &::-webkit-scrollbar {

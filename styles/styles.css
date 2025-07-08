@@ -936,12 +936,12 @@ body {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard {
-    height: calc(100vh - 11.3rem);
+    height: calc(100vh - 0rem);
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ProductCard {
-    height: calc(100vh - 11.3rem);
+    height: calc(100vh - 0rem);
   }
 }
 .ProductCard::-webkit-scrollbar {
@@ -2316,6 +2316,14 @@ html[lang=ar] .guest-label {
   color: #18142b;
 }
 .invert-colors.active {
+  color: #e7ebd4;
+  font-weight: 500;
+}
+
+.high-contrast {
+  color: #18142b;
+}
+.high-contrast.active {
   color: #e7ebd4;
 }
 

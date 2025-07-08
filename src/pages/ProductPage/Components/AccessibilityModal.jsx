@@ -77,7 +77,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
               </span>{" "}
               <span className="vertical-divider-card"></span>
               <span
-                className={`high-contrast ${isHighContrast ? "active" : ""}`}
+                className={`high-contrast ${isDarkMode ? "active" : ""}`}
               >
                 High Contrast
               </span>
