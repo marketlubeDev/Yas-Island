@@ -1,8 +1,8 @@
 import apiClient from "../../../config/axiosInstance";
 
-const getPerformance = async (fromDate, toDate, productId) => {
+const getPerformance = async (productId) => {
 
-    const response = await apiClient.get(`/products/getperformances?fromDate=${fromDate}&toDate=${toDate}&productId=${productId}`);
+    const response = await apiClient.get(`/products/getperformanceslist?productId=${productId}`);
     return response.data;
 };
 

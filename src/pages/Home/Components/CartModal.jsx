@@ -15,6 +15,26 @@ import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
 
+// Helper function to check if a date is expired
+const isDateExpired = (validToDate) => {
+  if (!validToDate) return false;
+  
+  try {
+    // Convert both dates to UTC to ensure consistent comparison
+    const validTo = new Date(validToDate);
+    const now = new Date();
+    
+    // Reset both dates to start of day in UTC
+    const validToUTC = Date.UTC(validTo.getUTCFullYear(), validTo.getUTCMonth(), validTo.getUTCDate());
+    const nowUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    
+    return validToUTC < nowUTC;
+  } catch (error) {
+    console.error("Error comparing dates:", error);
+    return false;
+  }
+};
+
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
@@ -34,7 +54,6 @@ const CartModal = ({ isOpen, onClose }) => {
   } = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
-  console.log(productList , "productList");
 
   const handleCheckout = () => {
     if (!isEmailVerification) {
@@ -185,7 +204,7 @@ const CartModal = ({ isOpen, onClose }) => {
             <div className="cart-items">
               {cartItems.map((item, index) => {
                 const product = productList.find(
-                  (product) => product.product_variants.some(variant => variant.productid === item.productId)
+                  (product) =>  product.product_variants.some(variant => variant.productid === item.productId)
                 );
                 
                 const productData = product ? {
@@ -199,12 +218,8 @@ const CartModal = ({ isOpen, onClose }) => {
                     ...item  // include any other cart item properties
                   }
                 } : null;
-                console.log(productData , "productData");
 
-                const isExpired =
-                  new Date(item?.validTo).toDateString() <
-                  new Date().toDateString();
-
+                const isExpired = isDateExpired(item?.validTo);
              
                 return (
                   <div
@@ -222,8 +237,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         </span>
                       </p>
                       <div className="validity-date" style={{}}>
-                        {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
-                        <span>{item?.validTo}</span>
+                         <span>{item?.validFrom}</span> 
+                        {/* {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
+                        <span>{item?.validTo}</span> */}
                       </div>
                       {isExpired && (
                         <p className="expired-text">{t("common.thisTicketIsExpired")}</p>
@@ -286,8 +302,8 @@ const CartModal = ({ isOpen, onClose }) => {
                   <span>AED {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
-                  <span>{t("cart.vatAndTax")}</span>
-                  <span>+ AED {vatAndTax.toFixed(2)} VAT & Tax</span>
+                  <span>{t("cart.vat")}</span>
+                  <span>+ AED {vatAndTax.toFixed(2)} {t("cart.vat")}</span>
                 </div>
               </div>
               <div className="custom-divider"></div>

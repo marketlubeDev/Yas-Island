@@ -12,7 +12,7 @@ export const en = {
     home: "Home",
     cart: "Cart",
     searchPlaceholderMobile: "Search Attractions 'Ferrari World' ",
-    netAndTax: "Net&Tax",
+    netAndTax: "Net&VAT",
     validFrom: "Valid from",
     to: "to",
     validTo: "Valid to",
@@ -127,6 +127,7 @@ export const en = {
       price: "AED 328.57",
       vatAndTax: "16.43 VAT & Tax",
     },
+    vat: "VAT",
   },
   product: {
     addToCart: "Add to cart",
@@ -179,6 +180,7 @@ export const en = {
       resend: "Resend",
       confirmOtp: "Confirm OTP",
       expired: "OTP has expired",
+      editEmail: "Not your email?",
     },
     personalDetails: {
       firstName: "FIRST NAME *",

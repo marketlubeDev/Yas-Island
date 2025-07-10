@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
   allProducts: [],
@@ -38,6 +40,12 @@ const productSlice = createSlice({
   },
 });
 
+const persistConfig = {
+  key: 'yasIslandProduct',
+  storage,
+  whitelist: ['allProducts', 'parks', 'currentPark', 'currentSort'] // Only persist these fields
+};
+
 export const {
   setProducts,
   clearProducts,
@@ -47,4 +55,6 @@ export const {
   setCurrentSort,
   setSearchQuery,
 } = productSlice.actions;
-export default productSlice.reducer;
+
+const persistedProductReducer = persistReducer(persistConfig, productSlice.reducer);
+export default persistedProductReducer;

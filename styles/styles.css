@@ -8192,6 +8192,17 @@ html[lang=ar] .make-payment__summary-top {
   filter: var(--color-base-icon-filter);
 }
 
+.guest-row.unavailable-variant {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 12px;
+}
+.guest-row .unavailable-notice {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .payment-header__container {
   display: flex;
   flex-direction: column;
