@@ -4,13 +4,14 @@ import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { updatePersonalDetails } from "../../../global/checkoutSlice";
+import usePayment from "../../../apiHooks/payment/payment";
 
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
-  const currentLanguage = useSelector((state) => state.language);
+  const currentLanguage = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
+  const { mutate: createOrder, isPending } = usePayment();
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",
@@ -36,31 +37,35 @@ export default function PaymentDetails() {
 
   const handleProceedToPayment = () => {
 
-  const data =  {
-    coupons: [],
-    items: checkout?.items.map((item) => ({
-      productId: item.productId,
-      quantity: item.quantity,
-      performance: [
-        {
-          performanceId: item.performances[0]
-        }
-      ],
-      validFrom: item.validFrom,
-      validTo: item.validTo
-    })),
-    emailId: checkout?.emailId,
-    language: currentLanguage,
-    amount: checkout?.netAmount,
-    firstName: checkout?.firstName,
-    lastName: checkout?.lastName,
-    phoneNumber: checkout?.phoneNumber,
-    countryCode: checkout?.country,
-    isTnCAgrred: true,
-    isConsentAgreed: true
-  }
+    const data =  {
+      coupons: [],
+      items: checkout?.items.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        performance: item.performances,
+        validFrom: item.validFrom,
+        validTo: item.validTo
+      })),
+      emailId: checkout?.emailId,
+      language: currentLanguage,
+      amount: checkout?.netAmount,
+      firstName: checkout?.firstName,
+      lastName: checkout?.lastName,
+      phoneNumber: checkout?.phoneNumber,
+      countryCode: checkout?.country,
+      isTnCAgrred: true,
+      isConsentAgreed: true
+    }
     console.log(data , "data>>")
-    // navigate("/card-payment");
+
+    createOrder(data, {
+      onSuccess: (data) => {
+        console.log(data , "data>>")
+      },
+      onError: (error) => {
+        console.log(error , "error>>")
+      }
+    });
   };
 
   return (
