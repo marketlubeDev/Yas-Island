@@ -3829,7 +3829,7 @@ html[lang=ar] .guest-label {
   }
   .payment-form__right .order-summary__pricing {
     padding: 1rem 2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0rem;
   }
   .payment-form__right .order-summary__pricing .price-row {
     margin-bottom: 0.6rem;
@@ -4028,7 +4028,7 @@ html[lang=ar] .guest-label {
 .payment-form__right .order-summary__pricing {
   padding: 1rem 2.5rem;
   background-color: var(--payment-right-title);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0rem;
 }
 .payment-form__right .order-summary__pricing .price-row {
   display: flex;
@@ -4147,6 +4147,7 @@ html[lang=ar] .guest-label {
   margin-bottom: 0rem;
   padding: 1rem 5rem;
   background-color: var(--payment-right-title);
+  background-color: var(--color-order-summary-bg);
 }
 .payment-form__right .promo-code__label {
   font-size: 0.75rem;
@@ -6919,6 +6920,65 @@ html[lang=ar] .confirm-email__input-underline {
 
 [data-theme=dark] {
   --down-arrow-icon: url("../../../src/assets/icons/inverteddown.svg");
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+  color: var(--color-base-text-secondary);
+}
+.checkbox-container.rtl {
+  padding-left: 0;
+  padding-right: 35px;
+  text-align: right;
+}
+.checkbox-container.rtl .checkbox-custom {
+  left: auto;
+  right: 0;
+}
+.checkbox-container.rtl .checkbox-input:checked ~ .checkbox-custom:after {
+  left: auto;
+  right: 6px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: var(--color-base-checkbox-bg);
+  border: 1px solid var(--color-base-checkbox-border);
+  border-radius: 4px;
+}
+.checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-base-checkbox-check);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-input:checked ~ .checkbox-custom:after {
+  display: block;
 }
 
 .make-payment-modal {

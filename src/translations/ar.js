@@ -11,7 +11,7 @@ export const ar = {
     searchPlaceholder: "ماذا تبحث عن؟",
     home: "الرئيسية",
     cart: "السلة",
-    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",  
+    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",
     netAndTax: "صافي وضريبة القيمة المضافة",
     validFrom: "صالح من",
     to: "إلى",
@@ -214,6 +214,7 @@ export const ar = {
       promoCodeSavings: "توفير رمز الخصم :",
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",
+        label2: "للحصول على تخفيض",
         placeholder: "أدخل رمز الخصم",
         apply: "تطبيق",
       },
