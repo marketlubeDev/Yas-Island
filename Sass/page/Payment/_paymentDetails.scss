@@ -9,9 +9,17 @@
   flex-direction: row;
   justify-content: space-between;
 
+  @include respond(bigTablets) {
+    flex-direction: column;
+  }
+
   &__left {
     padding: 2rem;
     width: 65%;
+
+    @include respond(bigTablets) {
+      width: 100%;
+    }
 
     @include respond(desktop) {
       padding: 1.5rem;
@@ -483,6 +491,10 @@
   &__right {
     width: 35%;
     background-color: var(--color-email-form-box);
+
+    @include respond(bigTablets) {
+      width: 100%;
+    }
 
     .order-summary {
       background: var(--payment-right-bg);

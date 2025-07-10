@@ -29,7 +29,7 @@ function AccessibilityMbl({ onClose, visible }) {
       onCancel={handleClose}
       footer={null}
       centered
-      width={400}
+      width="fit-content"
       className="accessibility-modal"
       closeIcon={
         <span className="custom-modal-close">

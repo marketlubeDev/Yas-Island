@@ -380,6 +380,14 @@
   z-index: 10000;
   transition: background 0.2s;
 
+  @include respond(bigTablets) {
+    top: -7%;
+    right: 5px;
+    // height: 40px;
+    // width: 40px;
+    // font-size: 24px;
+  }
+
   @include respond(desktop) {
     top: -13%;
     right: 5px;
@@ -700,7 +708,8 @@
   width: 40%;
 
   @include respond(bigTablets) {
-    width: 100% !important;
+    width: 85% !important;
+    margin-bottom: 2rem;
   }
 
   @include respond(desktop) {

@@ -1,3 +1,5 @@
+@use "../../base/responive" as *;
+
 .booking-modal__header {
   display: flex;
   align-items: center;
@@ -464,6 +466,12 @@
   overflow-y: scroll;
   scrollbar-width: thin;
   border-radius: 20px;
+
+  @include respond(tablets) {
+    height: fit-content;
+    min-height: 75vh;
+    max-height: 95vh;
+  }
 }
 :where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {
   position: fixed;
