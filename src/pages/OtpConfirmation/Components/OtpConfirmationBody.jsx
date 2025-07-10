@@ -4,7 +4,8 @@ import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHe
 import VerificationBox from "./VerificationBox";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-    
+import { FaEdit } from 'react-icons/fa';
+     
 export default function OtpConfirmationBody() {
   const { email } = useSelector((state) => state.otp);
   const navigate = useNavigate();
@@ -20,7 +21,6 @@ export default function OtpConfirmationBody() {
     navigate("/email-verification");
   };
 
-
   return (
     <div className="payment-checkout">
       <CheckoutSteps currentStep="email" />
@@ -30,18 +30,33 @@ export default function OtpConfirmationBody() {
         <div className="form-container">
           <div className="form-group">
             <label>Enter OTP</label>
-            <input
-              disabled
-              type="email"
-              // placeholder={t("payment.emailConfirmation.emailPlaceholder")}
-              className="form-control"
-              value={email}
-            />
+            <div className="email-input-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <input
+                disabled
+                type="email"
+                className="form-control"
+                value={email}
+              />
+              <button 
+                onClick={() => navigate('/email-verification')}
+                className="edit-email-btn"
+                style={{ 
+                  position: 'absolute',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '5px'
+                }}
+              >
+                <FaEdit size={18} />
+              </button>
+            </div>
             <div className="input-underline"></div>
           </div>
           <VerificationBox email={email} />
-
-          
         </div>
       </div>
     </div>
