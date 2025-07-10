@@ -11,7 +11,6 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { useSelector, useDispatch } from "react-redux";
 import accessibilityIconInverter from "../../../assets/icons/assessinverter.svg";
 import globeIconInverter from "../../../assets/icons/invertGlob.svg";
-import { useTranslation } from "react-i18next";
 import { setLanguage } from "../../../global/languageSlice";
 
 function MobileHeader() {
@@ -20,13 +19,12 @@ function MobileHeader() {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(false);
   const langBtnRef = useRef(null);
-  const { language, toggleLanguage } = useLanguage();
+  const { toggleLanguage } = useLanguage();
   const accessibilityIconSrc = isDarkMode
     ? accessibilityIconInverter
     : accessibilityIcon;
   const globeIconSrc = isDarkMode ? globeIconInverter : globeIcon;
   const dropdownIconSrc = isDarkMode ? dropdownIconInverter : dropdownIcon;
-  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -101,9 +99,10 @@ function MobileHeader() {
                 <div
                   className="mobile-header__lang-option"
                   onClick={() => {
-                    toggleLanguage("English");
-                    i18n.changeLanguage("en");
+                    // Update Redux state - this will trigger i18n change via useI18nSync
                     dispatch(setLanguage("en"));
+                    // Update LanguageContext for UI display
+                    toggleLanguage("English");
                     setShowLangDropdown(false);
                   }}
                 >
@@ -115,9 +114,10 @@ function MobileHeader() {
                 <div
                   className="mobile-header__lang-option"
                   onClick={() => {
-                    toggleLanguage("العربية");
-                    i18n.changeLanguage("ar");
+                    // Update Redux state - this will trigger i18n change via useI18nSync
                     dispatch(setLanguage("ar"));
+                    // Update LanguageContext for UI display
+                    toggleLanguage("العربية");
                     setShowLangDropdown(false);
                   }}
                 >

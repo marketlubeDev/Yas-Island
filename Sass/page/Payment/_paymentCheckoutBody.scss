@@ -4,7 +4,7 @@
 .payment-checkout {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
   // height: 82vh;
   min-height: calc(100vh - 12vh);
 }
@@ -13,8 +13,13 @@
   background: var(--color-email-form-bg);
 }
 
+.payment-checkout-page-details {
+  background: var(--color-email-form-bg);
+  min-height: calc(100vh - 6rem);
+}
+
 .payment-checkout__header {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .back-button {
@@ -25,11 +30,16 @@
   gap: 8px;
   cursor: pointer;
   color: var(--color-base-accessibility-modal-title);
-  font-size: 1.25rem;
+  font-size: 1.19rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
+  cursor: pointer;
   // text-transform: capitalize;
+
+  &:hover {
+  }
 
   @include respond(desktop) {
     margin-left: 1rem;
@@ -45,9 +55,9 @@
 .payment-checkout__steps {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   position: relative;
-  padding: 10px 0px;
+  padding: 0px;
 
   @include respond(desktop) {
     margin-bottom: 25px;
@@ -73,7 +83,7 @@
   display: block;
   margin-bottom: 8px;
   color: var(--color-pymnt-step-clr);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -93,7 +103,7 @@
 .step h2 {
   margin: 0;
   color: var(--color-pymnt-step-clr);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -114,14 +124,14 @@
 
 .step-line {
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   left: 0;
   width: 100%;
   height: 3px;
   background-color: #ddd;
 
   @include respond(desktop) {
-    bottom: -18px;
+    bottom: -15px;
     height: 2.5px;
   }
 }
@@ -134,7 +144,7 @@
 
 .payment-checkout__content {
   border-radius: 16px;
-  padding: 40px;
+  padding: 35px;
   border-radius: 2.5rem;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
@@ -240,23 +250,23 @@
 
 .form-group {
   margin: 0 2.5rem;
-  margin-bottom: 24px;
+  margin-bottom: 4rem;
   position: relative;
 
   @include respond(desktop) {
-    margin: 0 5rem;
-    margin-bottom: 20px;
+    margin: 0 3rem;
+    margin-bottom: 3rem;
   }
 
   @include respond(bigDesktop) {
-    margin: 0 3rem;
-    margin-bottom: 15px;
+    margin: 0 4rem;
+    margin-bottom: 3rem;
   }
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 3rem;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-size: 1.05rem;
@@ -267,13 +277,13 @@
 
   @include respond(desktop) {
     font-size: 0.9rem;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
     margin-left: 1rem;
   }
 
   @include respond(bigDesktop) {
     font-size: 0.9rem;
-    margin-bottom: 6px;
+    margin-bottom: 3rem;
   }
 }
 
@@ -312,14 +322,14 @@
 
 @include respond(desktop) {
   .input-underline {
-    width: 80%;
-    margin-left: 1rem;
+    width: 100%;
+    // margin-left: 1rem;
   }
 }
 
 @include respond(bigDesktop) {
   .input-underline {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -338,8 +348,8 @@
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 65%;
-    margin: 8px 0px 0 83px;
+    // width: 75%;
+    // margin: 8px 0px 0 83px;
   }
 
   @include respond(bigDesktop) {
@@ -353,7 +363,15 @@
 .payment-checkout__header {
   display: flex;
   align-items: center;
+  justify-content: center; // Center the title horizontally
   width: 100%;
+  position: relative; // Allows absolute positioning of back button if needed
+
+  @include respond(desktop) {
+  }
+
+  @include respond(bigDesktop) {
+  }
 }
 
 .back-button {
@@ -365,7 +383,7 @@
   text-align: center;
   margin: 0;
   color: var(--color-pymnt-title-clr);
-  font-size: 2.125rem;
+  font-size: 1.7rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -373,12 +391,14 @@
 
   @include respond(desktop) {
     font-size: 1.5rem;
-    margin-left: -9rem;
   }
 
   @include respond(bigDesktop) {
     font-size: 1.5rem;
-    margin-left: -10rem;
+  }
+
+  @include respond(bigTablets) {
+    font-size: 1.5rem;
   }
 }
 
@@ -572,4 +592,10 @@
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
+}
+
+.back-button {
+  .rtl-arrow {
+    transform: rotate(180deg);
+  }
 }

@@ -77,6 +77,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .back-buttonn {
@@ -91,6 +93,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
 }
 
 .ar-back-button {
@@ -107,6 +110,8 @@
   line-height: normal;
   transform: rotate(180deg);
   flex-direction: row-reverse;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .cart-button {
@@ -311,7 +316,8 @@
   }
 }
 .product-top-pay {
-  height: 12vh;
+  min-height: 6rem;
+  max-height: 6rem;
   background-color: var(--color-base-product-card-card-item-bg);
 }
 

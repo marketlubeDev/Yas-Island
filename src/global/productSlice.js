@@ -56,5 +56,8 @@ export const {
   setSearchQuery,
 } = productSlice.actions;
 
-const persistedProductReducer = persistReducer(productPersistConfig, productSlice.reducer);
+const persistedProductReducer = persistReducer(
+  productPersistConfig,
+  productSlice.reducer
+);
 export default persistedProductReducer;

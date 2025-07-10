@@ -1,37 +1,34 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setLanguage } from "../global/languageSlice";
+import i18n from "../i18n";
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("English");
-  const [isRTL, setIsRTL] = useState(false);
+  const dispatch = useDispatch();
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
+  const [language, setDisplayLanguage] = useState(
+    currentLanguage === "ar" ? "العربية" : "English"
+  );
+  const [isRTL, setIsRTL] = useState(currentLanguage === "ar");
 
   useEffect(() => {
-    // Set initial language from localStorage or default to English
-    const savedLanguage = localStorage.getItem("language") || "English";
-    setLanguage(savedLanguage);
-    setIsRTL(savedLanguage === "العربية");
+    const displayLanguage = currentLanguage === "ar" ? "العربية" : "English";
+    setDisplayLanguage(displayLanguage);
+    setIsRTL(currentLanguage === "ar");
 
     // Set document direction
-    document.documentElement.dir = savedLanguage === "العربية" ? "rtl" : "ltr";
-    document.documentElement.lang = savedLanguage === "العربية" ? "ar" : "en";
-  }, []);
+    document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = currentLanguage;
+  }, [currentLanguage]);
 
-  const toggleLanguage = (newLanguage) => {
-    setLanguage(newLanguage);
-    setIsRTL(newLanguage === "العربية");
-
-    // Update i18n language
-    i18n.changeLanguage(newLanguage === "العربية" ? "ar" : "en");
-
-    // Update document direction
-    document.documentElement.dir = newLanguage === "العربية" ? "rtl" : "ltr";
-    document.documentElement.lang = newLanguage === "العربية" ? "ar" : "en";
-
-    // Save to localStorage
-    localStorage.setItem("language", newLanguage);
+  const toggleLanguage = (newDisplayLanguage) => {
+    const newLang = newDisplayLanguage === "العربية" ? "ar" : "en";
+    dispatch(setLanguage(newLang));
+    i18n.changeLanguage(newLang);
   };
 
   return (

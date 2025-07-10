@@ -641,6 +641,8 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .back-buttonn {
@@ -655,6 +657,7 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
 }
 
 .ar-back-button {
@@ -671,6 +674,8 @@ body {
   line-height: normal;
   transform: rotate(180deg);
   flex-direction: row-reverse;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .cart-button {
@@ -829,7 +834,8 @@ body {
 }
 
 .product-top-pay {
-  height: 12vh;
+  min-height: 6rem;
+  max-height: 6rem;
   background-color: var(--color-base-product-card-card-item-bg);
 }
 
@@ -1316,6 +1322,13 @@ body {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal-content {
     gap: 24px;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-modal-content {
+    max-height: 60vh !important;
   }
 }
 .product-modal-image {
@@ -1635,7 +1648,7 @@ body {
 }
 .calendar-container h2 {
   color: var(--color-base-text);
-  font-size: 2.125rem !important;
+  font-size: 1.8rem !important;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -1851,7 +1864,7 @@ body {
 
 .section-title {
   color: var(--color-base-text);
-  font-size: 2.125rem !important;
+  font-size: 1.8rem !important;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -1897,7 +1910,6 @@ body {
   font-size: 24px;
   font-weight: 500;
   margin-top: 0.2rem;
-  margin-bottom: 16px;
   padding-bottom: 16px;
   padding-top: -1rem;
   border-bottom: 2px solid var(--color-base-product-card-divider);
@@ -1908,21 +1920,20 @@ body {
   line-height: normal;
   text-transform: capitalize;
 }
-
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-summary {
-    font-size: 1.5rem;
+    font-size: 20px;
   }
 }
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .guest-summary {
+    font-size: 22px;
+  }
+}
+
 .guest-controls {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .guest-controls {
-    gap: 12px;
-  }
 }
 
 .guest-row {
@@ -2166,6 +2177,10 @@ html[lang=ar] .guest-label {
   justify-content: space-between;
   overflow-y: scroll;
   gap: 20px;
+}
+
+.rtl-arrow {
+  transform: rotate(180deg);
 }
 
 .accessibility-web-modal {
@@ -2718,6 +2733,7 @@ html[lang=ar] .guest-label {
 
 .cart-drawer .ant-drawer-body {
   background-color: var(--color-base-bg) !important;
+  padding-top: 0px !important;
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -2836,7 +2852,7 @@ html[lang=ar] .guest-label {
 .payment-checkout {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
   min-height: 88vh;
 }
 
@@ -2844,8 +2860,13 @@ html[lang=ar] .guest-label {
   background: var(--color-email-form-bg);
 }
 
+.payment-checkout-page-details {
+  background: var(--color-email-form-bg);
+  min-height: calc(100vh - 6rem);
+}
+
 .payment-checkout__header {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .back-button {
@@ -2856,10 +2877,12 @@ html[lang=ar] .guest-label {
   gap: 8px;
   cursor: pointer;
   color: var(--color-base-accessibility-modal-title);
-  font-size: 1.25rem;
+  font-size: 1.19rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 100;
+  cursor: pointer;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .back-button {
@@ -2877,9 +2900,9 @@ html[lang=ar] .guest-label {
 .payment-checkout__steps {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   position: relative;
-  padding: 10px 0px;
+  padding: 0px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__steps {
@@ -2908,7 +2931,7 @@ html[lang=ar] .guest-label {
   display: block;
   margin-bottom: 8px;
   color: var(--color-pymnt-step-clr);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -2930,7 +2953,7 @@ html[lang=ar] .guest-label {
 .step h2 {
   margin: 0;
   color: var(--color-pymnt-step-clr);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -2953,7 +2976,7 @@ html[lang=ar] .guest-label {
 
 .step-line {
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   left: 0;
   width: 100%;
   height: 3px;
@@ -2961,7 +2984,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step-line {
-    bottom: -18px;
+    bottom: -15px;
     height: 2.5px;
   }
 }
@@ -2972,7 +2995,7 @@ html[lang=ar] .guest-label {
 
 .payment-checkout__content {
   border-radius: 16px;
-  padding: 40px;
+  padding: 35px;
   border-radius: 2.5rem;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
@@ -3091,25 +3114,25 @@ html[lang=ar] .guest-label {
 
 .form-group {
   margin: 0 2.5rem;
-  margin-bottom: 24px;
+  margin-bottom: 4rem;
   position: relative;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group {
-    margin: 0 5rem;
-    margin-bottom: 20px;
+    margin: 0 3rem;
+    margin-bottom: 3rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .form-group {
-    margin: 0 3rem;
-    margin-bottom: 15px;
+    margin: 0 4rem;
+    margin-bottom: 3rem;
   }
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 3rem;
   color: var(--color-email-form-label);
   font-family: Inter;
   font-size: 1.05rem;
@@ -3121,14 +3144,14 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group label {
     font-size: 0.9rem;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
     margin-left: 1rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .form-group label {
     font-size: 0.9rem;
-    margin-bottom: 6px;
+    margin-bottom: 3rem;
   }
 }
 
@@ -3168,13 +3191,12 @@ html[lang=ar] .guest-label {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .input-underline {
-    width: 80%;
-    margin-left: 1rem;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .input-underline {
-    width: 90%;
+    width: 100%;
   }
 }
 .confirm-button {
@@ -3193,8 +3215,6 @@ html[lang=ar] .guest-label {
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 65%;
-    margin: 8px 0px 0 83px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -3210,9 +3230,10 @@ html[lang=ar] .guest-label {
 .payment-checkout__header {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  position: relative;
 }
-
 .back-button {
   flex-shrink: 0; /* Prevents button from shrinking */
 }
@@ -3222,7 +3243,7 @@ html[lang=ar] .guest-label {
   text-align: center;
   margin: 0;
   color: var(--color-pymnt-title-clr);
-  font-size: 2.125rem;
+  font-size: 1.7rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -3231,13 +3252,16 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__title {
     font-size: 1.5rem;
-    margin-left: -9rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-checkout__title {
     font-size: 1.5rem;
-    margin-left: -10rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__title {
+    font-size: 1.5rem;
   }
 }
 
@@ -3442,6 +3466,10 @@ html[lang=ar] .guest-label {
 .verification-containerBox {
   padding: 20px;
   border-radius: 8px;
+}
+
+.back-button .rtl-arrow {
+  transform: rotate(180deg);
 }
 
 .payment-form {
@@ -3807,7 +3835,7 @@ html[lang=ar] .guest-label {
   }
   .payment-form__right .order-summary__pricing {
     padding: 1rem 2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0rem;
   }
   .payment-form__right .order-summary__pricing .price-row {
     margin-bottom: 0.6rem;
@@ -4004,9 +4032,9 @@ html[lang=ar] .guest-label {
   transform: rotate(180deg);
 }
 .payment-form__right .order-summary__pricing {
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 2.5rem;
   background-color: var(--payment-right-title);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0rem;
 }
 .payment-form__right .order-summary__pricing .price-row {
   display: flex;
@@ -4125,6 +4153,7 @@ html[lang=ar] .guest-label {
   margin-bottom: 0rem;
   padding: 1rem 5rem;
   background-color: var(--payment-right-title);
+  background-color: var(--color-order-summary-bg);
 }
 .payment-form__right .promo-code__label {
   font-size: 0.75rem;
@@ -7188,6 +7217,65 @@ html[lang=ar] .confirm-email__input-underline {
   --down-arrow-icon: url("../../../src/assets/icons/inverteddown.svg");
 }
 
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+  color: var(--color-base-text-secondary);
+}
+.checkbox-container.rtl {
+  padding-left: 0;
+  padding-right: 35px;
+  text-align: right;
+}
+.checkbox-container.rtl .checkbox-custom {
+  left: auto;
+  right: 0;
+}
+.checkbox-container.rtl .checkbox-input:checked ~ .checkbox-custom:after {
+  left: auto;
+  right: 6px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: var(--color-base-checkbox-bg);
+  border: 1px solid var(--color-base-checkbox-border);
+  border-radius: 4px;
+}
+.checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-base-checkbox-check);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
 .make-payment-modal {
   background: var(--color-email-form-box);
   border-radius: 24px;
@@ -8657,6 +8745,10 @@ html[lang=ar] .make-payment__summary-top {
   filter: var(--color-base-icon-filter);
 }
 
+.guest-row {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
 .guest-row.unavailable-variant {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 8px;
@@ -8809,6 +8901,7 @@ html[lang=ar] .make-payment__summary-top {
   width: 100%;
   color: var(--color-base-text);
   font-size: 17px;
+  padding: 0 10px;
 }
 .search input::placeholder {
   color: var(--color-base-text);

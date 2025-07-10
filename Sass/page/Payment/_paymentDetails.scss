@@ -252,29 +252,30 @@
         .country-list {
           background-color: var(--color-base-bg) !important;
           border: 1px solid var(--ip-bodr-btm) !important;
-          
+
           .country {
             color: var(--color-base-text-secondary) !important;
             background-color: transparent !important;
-            
-            &:hover, &.highlight {
+
+            &:hover,
+            &.highlight {
               background-color: var(--color-base-hover) !important;
             }
-            
+
             .dial-code {
               color: var(--color-base-text-secondary) !important;
             }
-            
+
             .country-name {
               color: var(--color-base-text-secondary) !important;
             }
           }
-          
+
           .search {
             background-color: var(--color-base-bg) !important;
             border-bottom: 1px solid var(--ip-bodr-btm) !important;
             color: var(--color-base-text-secondary) !important;
-            
+
             &::placeholder {
               color: var(--color-base-text-secondary) !important;
               opacity: 0.6;
@@ -414,7 +415,7 @@
 
         &__pricing {
           padding: 1rem 2rem;
-          margin-bottom: 1.2rem;
+          margin-bottom: 0rem;
 
           .price-row {
             margin-bottom: 0.6rem;
@@ -508,25 +509,25 @@
         max-height: 180px; // Height to show exactly 2 accordions
         overflow-y: auto;
         padding: 0.5rem 0;
-        
+
         /* Custom scrollbar styling */
         &::-webkit-scrollbar {
           width: 4px;
         }
-        
+
         &::-webkit-scrollbar-track {
           background: transparent;
         }
-        
+
         &::-webkit-scrollbar-thumb {
           background: #ada5b7;
           border-radius: 2px;
         }
-        
+
         &::-webkit-scrollbar-thumb:hover {
           background: #8a8193;
         }
-        
+
         .item-accordion {
           margin: 0.5rem 2rem;
           border-radius: 0.5rem;
@@ -612,14 +613,14 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 0.5rem;
-                
+
                 span {
                   &:first-child {
                     color: #ada5b7;
                     font-size: 0.75rem;
                     font-weight: 500;
                   }
-                  
+
                   &:last-child {
                     color: var(--pay-check-price);
                     font-size: 0.8rem;
@@ -629,7 +630,7 @@
 
                 &:last-child {
                   margin-bottom: 0;
-                  
+
                   span:last-child {
                     color: var(--color-base-text-secondary);
                   }
@@ -652,9 +653,9 @@
       }
 
       &__pricing {
-        padding: 1rem 2.5rem;
+        padding: 0.8rem 2.5rem;
         background-color: var(--payment-right-title);
-        margin-bottom: 1.5rem;
+        margin-bottom: 0rem;
 
         .price-row {
           display: flex;
@@ -677,8 +678,8 @@
         margin-top: -6.5rem;
 
         &__items {
-          max-height: 160px;  // Adjusted for bigger screens to show 2 accordions
-          
+          max-height: 160px; // Adjusted for bigger screens to show 2 accordions
+
           .item-accordion {
             margin: 0.4rem 1.5rem;
 
@@ -724,7 +725,7 @@
                     &:first-child {
                       font-size: 0.65rem;
                     }
-                    
+
                     &:last-child {
                       font-size: 0.7rem;
                     }
@@ -743,8 +744,8 @@
 
       @include respond(desktop) {
         &__items {
-          max-height: 140px;  // Adjusted for desktop screens to show 2 accordions
-          
+          max-height: 140px; // Adjusted for desktop screens to show 2 accordions
+
           .item-accordion {
             margin: 0.4rem 1rem;
 
@@ -790,7 +791,7 @@
                     &:first-child {
                       font-size: 0.6rem;
                     }
-                    
+
                     &:last-child {
                       font-size: 0.65rem;
                     }
@@ -812,6 +813,12 @@
       margin-bottom: 0rem;
       padding: 1rem 5rem;
       background-color: var(--payment-right-title);
+
+      background-color: var(--color-order-summary-bg);
+      // border-radius: 10px;
+      // height: 110px;
+      // width: 300px;
+      // padding: 10px;
 
       &__label {
         font-size: 0.75rem;

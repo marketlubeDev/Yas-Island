@@ -13,19 +13,24 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
   const productList = useSelector((state) => state.product.allProducts);
-  console.log(checkout , "checkout>>")
+  console.log(checkout, "checkout>>");
 
-  const getProduct = (item ) => {
-    const product = productList.find(
-      (product) => product.product_variants.some(variant => variant.productid === item)
+  const getProduct = (item) => {
+    const product = productList.find((product) =>
+      product.product_variants.some((variant) => variant.productid === item)
     );
-  
-    const productVariant = product?.product_variants.find(variant => variant.productid === item);
-    console.log(productVariant , "productVariant>>")
+
+    const productVariant = product?.product_variants.find(
+      (variant) => variant.productid === item
+    );
+    console.log(productVariant, "productVariant>>");
     return {
       product,
-      productVariant
+      productVariant,
     };
   };
 
@@ -42,11 +47,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      day: 'numeric', 
-      month: 'short', 
-      year: 'numeric' 
+    return new Date(dateString).toLocaleDateString("en-US", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   };
 
@@ -69,46 +74,59 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
       className="order-summary"
       style={{ backgroundColor: "--color-order-summary-bg" }}
     >
-    
-
       {/* Display each item as accordion */}
       <div className="order-summary__items">
         {checkout?.items?.map((item, index) => (
           <div key={index} className="item-accordion">
-            <div 
-              className="item-accordion__header" 
+            <div
+              className="item-accordion__header"
               onClick={() => toggleAccordion(index)}
             >
               <div className="item-accordion__title">
                 <h4>{getProduct(item.productId)?.product?.product_title}</h4>
-           
               </div>
-              <img 
-                src={downArrow} 
-                alt="expand" 
-                className={`accordion-arrow ${expandedItem === index ? 'expanded' : ''}`}
+              <img
+                src={downArrow}
+                alt="expand"
+                className={`accordion-arrow ${
+                  expandedItem === index ? "expanded" : ""
+                }`}
               />
             </div>
-            
+
             {expandedItem === index && (
               <div className="item-accordion__content">
                 <div className="detail-row">
-                  <span className="label">{t("payment.orderSummary.datesAndGuests")}</span>
+                  <span className="label">
+                    {t("payment.orderSummary.datesAndGuests")}
+                  </span>
                   <div className="values">
                     <div>{formatDate(item.validFrom)}</div>
                     <div>
-                      {getProduct(item.productId)?.productVariant?.productvariantname} - {item.quantity}
+                      {
+                        getProduct(item.productId)?.productVariant
+                          ?.productvariantname
+                      }{" "}
+                      - {item.quantity}
                     </div>
                   </div>
                 </div>
                 <div className="price-details">
                   <div className="price-row">
                     <span>Net Amount:</span>
-                    <span>AED {getProduct(item.productId)?.productVariant?.net_amount * item.quantity}</span>
+                    <span>
+                      AED{" "}
+                      {getProduct(item.productId)?.productVariant?.net_amount *
+                        item.quantity}
+                    </span>
                   </div>
                   <div className="price-row">
                     <span>VAT & Tax:</span>
-                    <span>+ {getProduct(item.productId)?.productVariant?.vat * item.quantity}</span>
+                    <span>
+                      +{" "}
+                      {getProduct(item.productId)?.productVariant?.vat *
+                        item.quantity}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -128,30 +146,25 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
           <span className="price-row__label">
             {t("payment.orderSummary.vatAndTax")}
           </span>
-          <span className="price-row__values">+ {checkout?.taxAmount} VAT & Tax</span>
+          <span className="price-row__values">
+            + {checkout?.taxAmount} VAT & Tax
+          </span>
         </div>
         <div className="divider-line"></div>
         <div className="price-row total">
           <span className="price-row__label-total">
             {t("payment.orderSummary.total")}
           </span>
-          <span className="price-row__values-total">AED {checkout?.grossAmount}</span>
+          <span className="price-row__values-total">
+            AED {checkout?.grossAmount}
+          </span>
         </div>
       </div>
 
-      <div
-        className="promo-code"
-        style={{
-          backgroundColor: "var(--color-order-summary-bg)",
-          borderRadius: "10px",
-          height: "110px",
-          width: "300px",
-          padding: "10px",
-          marginLeft: isBigDesktop ? "40px" : isDesktop ? "20px" : "4.5rem",
-        }}
-      >
+      <div className="promo-code" style={{}}>
         <p className="promo-code__label">
-          {t("payment.orderSummary.promoCode.label")}
+          {t("payment.orderSummary.promoCode.label")}{" "}
+          {t("payment.orderSummary.promoCode.label2")}
         </p>
         <div className="promo-code__input-group">
           <input
@@ -169,7 +182,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
       </div>
 
       <div className="terms">
-        <label className="checkbox-container">
+        <label
+          className={`checkbox-container ${
+            currentLanguage === "ar" ? "rtl" : ""
+          }`}
+        >
           <input 
             type="checkbox" 
             className="checkbox-input"
@@ -185,7 +202,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
           </span>
         </label>
 
-        <label className="checkbox-container">
+        <label
+          className={`checkbox-container ${
+            currentLanguage === "ar" ? "rtl" : ""
+          }`}
+        >
           <input 
             type="checkbox" 
             className="checkbox-input"

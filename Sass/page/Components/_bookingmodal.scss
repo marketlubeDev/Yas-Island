@@ -506,6 +506,8 @@
 }
 
 .guest-row {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
   &.unavailable-variant {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 8px;

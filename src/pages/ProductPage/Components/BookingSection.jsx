@@ -34,13 +34,15 @@ export default function BookingSection({
   const { language } = useLanguage();
   const dispatch = useDispatch();
 
-
   const performanceData = useSelector(
     (state) => state.performance.performanceData
   );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const {verificationEmail,isEmailVerification} = useSelector((state) => state.cart);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
 
   function getVariants() {
     const variants = {};
@@ -68,7 +70,12 @@ export default function BookingSection({
 
   // Auto-select first available date when dates are loaded
   useEffect(() => {
-    if (availableDates && availableDates.length > 0 && !selectedDate && !isLoadingDates) {
+    if (
+      availableDates &&
+      availableDates.length > 0 &&
+      !selectedDate &&
+      !isLoadingDates
+    ) {
       setSelectedDate(availableDates[0]);
     }
   }, [availableDates, selectedDate, isLoadingDates]);
@@ -105,15 +112,17 @@ export default function BookingSection({
     if (!selectedDate) {
       return false;
     }
-    
+
     // If no performance data, variants should be unavailable
     if (!performanceData.length) {
       return false;
     }
-    
+
     // Find the variant data in performanceData
-    const variantData = performanceData.find(v => v.variantProductId === variantProductId);
-    
+    const variantData = performanceData.find(
+      (v) => v.variantProductId === variantProductId
+    );
+
     if (!variantData) {
       return false;
     }
@@ -125,7 +134,7 @@ export default function BookingSection({
 
     // Then check if selected date is in this variant's available dates
     const isAvailable = variantData.availableDates.includes(selectedDate);
-    
+
     return isAvailable;
   };
 
@@ -244,7 +253,10 @@ export default function BookingSection({
     });
 
     if (hasPerformance) {
-      performanceId = getPerformanceId(selectedDate, selectedProduct?.product_variants[0]?.productid);
+      performanceId = getPerformanceId(
+        selectedDate,
+        selectedProduct?.product_variants[0]?.productid
+      );
       if (!performanceId) {
         toast.error(t("NoPerformance"), {
           position: "top-center",
@@ -404,11 +416,15 @@ export default function BookingSection({
 
   const getPerformanceId = (date, variantProductId) => {
     // Find the variant data in performanceData
-    const variantData = performanceData.find(v => v.variantProductId === variantProductId);
+    const variantData = performanceData.find(
+      (v) => v.variantProductId === variantProductId
+    );
     if (!variantData || !variantData.performances) return false;
-    
+
     // Find performance for the specific date
-    const performance = variantData.performances.find(p => p.date.split('T')[0] === date);
+    const performance = variantData.performances.find(
+      (p) => p.date.split("T")[0] === date
+    );
     return performance ? performance.performanceId : false;
   };
 
@@ -475,11 +491,19 @@ export default function BookingSection({
             <>
               <div className="calendar-header">
                 <button onClick={handlePrevMonth}>
-                  <img src={LeftArrow} alt="Left Arrow" />
+                  <img
+                    src={LeftArrow}
+                    alt="Left Arrow"
+                    className={currentLanguage === "ar" ? "rtl-arrow" : ""}
+                  />
                 </button>
                 <h3>{formatMonthYear(currentDate)}</h3>
                 <button onClick={handleNextMonth}>
-                  <img src={RightArrow} alt="Right Arrow" />
+                  <img
+                    src={RightArrow}
+                    alt="Right Arrow"
+                    className={currentLanguage === "ar" ? "rtl-arrow" : ""}
+                  />
                 </button>
               </div>
 
@@ -525,10 +549,16 @@ export default function BookingSection({
                   {Object.entries(guests)?.map(
                     ([productId, guestData], idx) => {
                       const variantData = guestData.variant;
-                      const isAvailable = variantData?.hasperformance ? isVariantAvailableForDate(productId) : true;
+                      const isAvailable = variantData?.hasperformance
+                        ? isVariantAvailableForDate(productId)
+                        : true;
                       return (
                         <div key={productId}>
-                          <div className={`guest-row ${!isAvailable ? 'unavailable-variant' : ''}`}>
+                          <div
+                            className={`guest-row ${
+                              !isAvailable ? "unavailable-variant" : ""
+                            }`}
+                          >
                             <div className="guest-label-container">
                               <span className="guest-label">
                                 {guestData.name}{" "}
@@ -536,10 +566,9 @@ export default function BookingSection({
                                   `(${variantData.productvariantdesc})`}
                                 {!isAvailable && (
                                   <span className="unavailable-notice">
-                                    {!selectedDate 
-                                      ? "- Please select a date first" 
-                                      : "- Not available on selected date"
-                                    }
+                                    {!selectedDate
+                                      ? "- Please select a date first"
+                                      : "- Not available on selected date"}
                                   </span>
                                 )}
                               </span>
@@ -574,11 +603,13 @@ export default function BookingSection({
                                 disabled={
                                   !isAvailable ||
                                   guestData.quantity <=
-                                  (variantData?.min_quantity || 0)
+                                    (variantData?.min_quantity || 0)
                                 }
                                 style={{
                                   opacity: !isAvailable ? 0.5 : 1,
-                                  cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                                  cursor: !isAvailable
+                                    ? "not-allowed"
+                                    : "pointer",
                                 }}
                               >
                                 <img
@@ -586,9 +617,12 @@ export default function BookingSection({
                                   alt="minus"
                                 />
                               </button>
-                              <span className="counter-value" style={{
-                                opacity: !isAvailable ? 0.5 : 1
-                              }}>
+                              <span
+                                className="counter-value"
+                                style={{
+                                  opacity: !isAvailable ? 0.5 : 1,
+                                }}
+                              >
                                 {guestData.quantity}
                               </span>
                               <button
@@ -614,11 +648,13 @@ export default function BookingSection({
                                 disabled={
                                   !isAvailable ||
                                   guestData.quantity >=
-                                  (variantData?.max_quantity || 100)
+                                    (variantData?.max_quantity || 100)
                                 }
                                 style={{
                                   opacity: !isAvailable ? 0.5 : 1,
-                                  cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                                  cursor: !isAvailable
+                                    ? "not-allowed"
+                                    : "pointer",
                                 }}
                               >
                                 <img

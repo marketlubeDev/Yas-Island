@@ -5,7 +5,7 @@ import storage from "redux-persist/lib/storage";
 const initialState = {
   // Personal Details
   firstName: "",
-  lastName: "", 
+  lastName: "",
   country: "",
   nationality: "",
   emailId: "",
@@ -18,7 +18,7 @@ const initialState = {
   netAmount: 0,
   taxAmount: 0,
   grossAmount: 0,
-  
+
   // Language
   language: "",
 
@@ -27,7 +27,7 @@ const initialState = {
   isConsentAgreed: false,
 
   // Additional Info
-  promoCode: ""
+  promoCode: "",
 };
 
 const checkoutSlice = createSlice({
@@ -38,10 +38,17 @@ const checkoutSlice = createSlice({
     setCheckout: (state, action) => {
       return { ...state, ...action.payload };
     },
-    
+
     // Update personal details
     updatePersonalDetails: (state, action) => {
-      const { firstName, lastName, country, nationality, emailId, phoneNumber } = action.payload;
+      const {
+        firstName,
+        lastName,
+        country,
+        nationality,
+        emailId,
+        phoneNumber,
+      } = action.payload;
       state.firstName = firstName || state.firstName;
       state.lastName = lastName || state.lastName;
       state.country = country || state.country;
@@ -81,28 +88,45 @@ const checkoutSlice = createSlice({
     clearCheckout: () => {
       return initialState;
     },
-  },  
+  },
 });
 
 const persistConfig = {
-  key: 'yasIslandCheckout',
+  key: "yasIslandCheckout",
   storage,
   whitelist: [
-    'firstName', 'lastName', 'country', 'nationality', 'emailId', 
-    'phoneNumber', 'countryCode', 'coupons', 'items', 'amount', 
-    'language', 'isTnCAgrred', 'isConsentAgreed', 'promoCode' , 'netAmount' , 'taxAmount' , 'grossAmount'
-  ]
+    "firstName",
+    "lastName",
+    "country",
+    "nationality",
+    "emailId",
+    "phoneNumber",
+    "countryCode",
+    "coupons",
+    "items",
+    "amount",
+    "language",
+    "isTnCAgrred",
+    "isConsentAgreed",
+    "promoCode",
+    "netAmount",
+    "taxAmount",
+    "grossAmount",
+  ],
 };
 
-export const { 
-  setCheckout, 
-  updatePersonalDetails, 
-  updateCartDetails, 
+export const {
+  setCheckout,
+  updatePersonalDetails,
+  updateCartDetails,
   updateAgreements,
   setCheckoutEmail, 
   clearCheckout,
   updateTermsAcceptance
 } = checkoutSlice.actions;
 
-const persistedCheckoutReducer = persistReducer(persistConfig, checkoutSlice.reducer);
+const persistedCheckoutReducer = persistReducer(
+  persistConfig,
+  checkoutSlice.reducer
+);
 export default persistedCheckoutReducer;

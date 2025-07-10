@@ -18,16 +18,24 @@ import { toast } from "sonner";
 // Helper function to check if a date is expired
 const isDateExpired = (validToDate) => {
   if (!validToDate) return false;
-  
+
   try {
     // Convert both dates to UTC to ensure consistent comparison
     const validTo = new Date(validToDate);
     const now = new Date();
-    
+
     // Reset both dates to start of day in UTC
-    const validToUTC = Date.UTC(validTo.getUTCFullYear(), validTo.getUTCMonth(), validTo.getUTCDate());
-    const nowUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-    
+    const validToUTC = Date.UTC(
+      validTo.getUTCFullYear(),
+      validTo.getUTCMonth(),
+      validTo.getUTCDate()
+    );
+    const nowUTC = Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate()
+    );
+
     return validToUTC < nowUTC;
   } catch (error) {
     console.error("Error comparing dates:", error);
@@ -207,24 +215,30 @@ const CartModal = ({ isOpen, onClose }) => {
           <>
             <div className="cart-items">
               {cartItems.map((item, index) => {
-                const product = productList.find(
-                  (product) => product.product_variants.some(variant => variant.productid === item.productId)
+                const product = productList.find((product) =>
+                  product.product_variants.some(
+                    (variant) => variant.productid === item.productId
+                  )
                 );
-                
-                const productData = product ? {
-                  ...product,
-                  selectedVariant: {
-                    ...product.product_variants.find(variant => variant.productid === item.productId),
-                    quantity: item.quantity,
-                    date: item.date,
-                    time: item.time,
-                    cartItemId: item.id,
-                    ...item  // include any other cart item properties
-                  }
-                } : null;
+
+                const productData = product
+                  ? {
+                      ...product,
+                      selectedVariant: {
+                        ...product.product_variants.find(
+                          (variant) => variant.productid === item.productId
+                        ),
+                        quantity: item.quantity,
+                        date: item.date,
+                        time: item.time,
+                        cartItemId: item.id,
+                        ...item, // include any other cart item properties
+                      },
+                    }
+                  : null;
 
                 const isExpired = isDateExpired(item?.validTo);
-             
+
                 return (
                   <div
                     key={index}
@@ -237,20 +251,25 @@ const CartModal = ({ isOpen, onClose }) => {
                         AED {productData?.selectedVariant?.price?.net} +
                         <span className="text-xs text-gray-500">
                           {" "}
-                          {productData?.selectedVariant?.price?.tax} {t("common.netAndTax")}
+                          {productData?.selectedVariant?.price?.tax}{" "}
+                          {t("common.netAndTax")}
                         </span>
                       </p>
                       <div className="validity-date" style={{}}>
-                         <span>{item?.validFrom}</span> 
+                        <span>{item?.validFrom}</span>
                         {/* {t("common.validFrom")} <span>{item?.validFrom}</span> {t("common.to")}{" "}
                         <span>{item?.validTo}</span> */}
                       </div>
                       {isExpired && (
-                        <p className="expired-text">{t("common.thisTicketIsExpired")}</p>
+                        <p className="expired-text">
+                          {t("common.thisTicketIsExpired")}
+                        </p>
                       )}
                     </div>
                     <div className="quantity-controls">
-                      <span>{productData?.selectedVariant?.productvariantname}</span>
+                      <span>
+                        {productData?.selectedVariant?.productvariantname}
+                      </span>
                       <div className="controls">
                         <Button
                           className="minus-btn-web"
@@ -306,8 +325,10 @@ const CartModal = ({ isOpen, onClose }) => {
                   <span>AED {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
-                  <span>{t("cart.vatAndTax")}</span>
-                  <span>+ AED {vatAndTax.toFixed(2)} VAT & Tax</span>
+                  <span>{t("cart.vat")}</span>
+                  <span>
+                    + AED {vatAndTax.toFixed(2)} {t("cart.vat")}
+                  </span>
                 </div>
               </div>
               <div className="custom-divider"></div>

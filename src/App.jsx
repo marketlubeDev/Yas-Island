@@ -5,9 +5,11 @@ import { useResponsive } from "./hooks/responsiveHook/useResponsive";
 import GlobalZoomEffect from "./components/GlobalZoomEffect";
 import GlobalInvertColor from "./components/GlobalInvertColor";
 import { useLanguage } from "./context/LanguageContext";
+import { useI18nSync } from "./hooks/useI18nSync";
 
 export default function App() {
   useResponsive();
+  useI18nSync();
   const { isRTL } = useLanguage();
 
   return (

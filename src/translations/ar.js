@@ -11,8 +11,8 @@ export const ar = {
     searchPlaceholder: "ماذا تبحث عن؟",
     home: "الرئيسية",
     cart: "السلة",
-    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",  
-    netAndTax: "صافي وضريبة",
+    searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",
+    netAndTax: "صافي وضريبة القيمة المضافة",
     validFrom: "صالح من",
     to: "إلى",
     validTo: "صالح إلى",
@@ -127,6 +127,7 @@ export const ar = {
     validFrom: "صالح من",
     to: "إلى",
     children: "الأطفال",
+    vat: "ضريبة القيمة المضافة",
   },
   product: {
     addToCart: "أضف إلى السلة",
@@ -178,6 +179,7 @@ export const ar = {
       resend: "إعادة الإرسال",
       confirmOtp: "تأكيد رمز التحقق",
       expired: "رمز التحقق لقد انتهى",
+      editEmail: "ليست بريدك الإلكتروني؟",
     },
     personalDetails: {
       firstName: "الاسم الأول *",
@@ -212,6 +214,7 @@ export const ar = {
       promoCodeSavings: "توفير رمز الخصم :",
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",
+        label2: "للحصول على تخفيض",
         placeholder: "أدخل رمز الخصم",
         apply: "تطبيق",
       },
