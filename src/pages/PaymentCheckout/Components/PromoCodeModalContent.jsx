@@ -1,32 +1,37 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function PromoCodeModalContent() {
+  const { t } = useTranslation();
+
   return (
     <div className="promo-modal-content">
-      <h2 className="promo-modal-content__title">Promo Code Applied</h2>
-      <div className="promo-modal-content__amount">AED 100.00</div>
-      <div className="promo-modal-content__saved">
-        Saved! that feels amazing, right?
+      <h2 className="promo-modal-content__title">{t("promo.applied")}</h2>
+      <div className="promo-modal-content__amount">
+        {t("promo.amount")} 100.00
       </div>
+      <div className="promo-modal-content__saved">{t("promo.saved")}</div>
       <hr className="promo-modal-content__divider" />
       <div className="promo-modal-content__summary">
         <div className="promo-modal-content__row">
-          <span>Sub total :</span>
-          <span>AED 935.71</span>
+          <span>{t("payment.orderSummary.subTotal")}</span>
+          <span>{t("promo.amount")} 935.71</span>
         </div>
         <div className="promo-modal-content__row">
-          <span>vat & tax :</span>
-          <span>+ 49.29 VAT & Tax</span>
+          <span>{t("payment.orderSummary.vatAndTax")}</span>
+          <span>+ 49.29 {t("cart.vat")} & Tax</span>
         </div>
         <div className="promo-modal-content__row promo-modal-content__row--savings">
-          <span>promo code savings :</span>
+          <span>{t("promo.savings")}</span>
           <span>-100.00</span>
         </div>
       </div>
       <hr className="promo-modal-content__divider" />
       <div className="promo-modal-content__total">
-        <span>Total :</span>
-        <span className="promo-modal-content__total-amount">AED 885.00</span>
+        <span>{t("payment.orderSummary.total")}</span>
+        <span className="promo-modal-content__total-amount">
+          {t("promo.amount")} 885.00
+        </span>
       </div>
     </div>
   );
