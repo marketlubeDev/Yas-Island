@@ -12,7 +12,7 @@ export const en = {
     home: "Home",
     cart: "Cart",
     searchPlaceholderMobile: "Search Attractions 'Ferrari World' ",
-    netAndTax: "Net&V",
+    netAndTax: "Net&VAT",
     validFrom: "Valid from",
     to: "to",
     validTo: "Valid to",

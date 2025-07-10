@@ -218,9 +218,6 @@ const CartModal = ({ isOpen, onClose }) => {
                     ...item  // include any other cart item properties
                   }
                 } : null;
-                console.log(productList , "productList")
-                console.log(product , "product")
-                console.log(productData , "productData")
 
                 const isExpired = isDateExpired(item?.validTo);
              
