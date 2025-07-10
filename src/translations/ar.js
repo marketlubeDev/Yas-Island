@@ -179,6 +179,7 @@ export const ar = {
       resend: "إعادة الإرسال",
       confirmOtp: "تأكيد رمز التحقق",
       expired: "رمز التحقق لقد انتهى",
+      editEmail: "ليست بريدك الإلكتروني؟",
     },
     personalDetails: {
       firstName: "الاسم الأول *",

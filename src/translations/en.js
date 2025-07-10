@@ -12,7 +12,7 @@ export const en = {
     home: "Home",
     cart: "Cart",
     searchPlaceholderMobile: "Search Attractions 'Ferrari World' ",
-    netAndTax: "Net&VAT",
+    netAndTax: "Net&V",
     validFrom: "Valid from",
     to: "to",
     validTo: "Valid to",
@@ -180,6 +180,7 @@ export const en = {
       resend: "Resend",
       confirmOtp: "Confirm OTP",
       expired: "OTP has expired",
+      editEmail: "Not your email?",
     },
     personalDetails: {
       firstName: "FIRST NAME *",

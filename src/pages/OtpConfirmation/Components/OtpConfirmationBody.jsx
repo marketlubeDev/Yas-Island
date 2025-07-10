@@ -37,22 +37,7 @@ export default function OtpConfirmationBody() {
                 className="form-control"
                 value={email}
               />
-              <button 
-                onClick={() => navigate('/email-verification')}
-                className="edit-email-btn"
-                style={{ 
-                  position: 'absolute',
-                  right: '10px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '5px'
-                }}
-              >
-                <FaEdit size={18} />
-              </button>
+             
             </div>
             <div className="input-underline"></div>
           </div>

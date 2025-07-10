@@ -143,6 +143,22 @@ export default function VerificationBox({ email }) {
         <span className="email" style={{ textDecoration: "underline" }}>
           {email}
         </span>
+        {" "}
+        <button 
+          onClick={() => navigate('/email-verification')}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0 0 0 5px',
+            color: '#0066cc',
+            fontSize: '14px',
+            textDecoration: 'underline',
+            fontWeight: '500'
+          }}
+        >
+          {t("payment.verification.editEmail")}
+        </button>
       </p>
       <p className="spam-notice">{t("payment.verification.checkSpam")}</p>
 
