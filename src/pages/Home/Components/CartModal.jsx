@@ -15,6 +15,26 @@ import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
 
+// Helper function to check if a date is expired
+const isDateExpired = (validToDate) => {
+  if (!validToDate) return false;
+  
+  try {
+    // Convert both dates to UTC to ensure consistent comparison
+    const validTo = new Date(validToDate);
+    const now = new Date();
+    
+    // Reset both dates to start of day in UTC
+    const validToUTC = Date.UTC(validTo.getUTCFullYear(), validTo.getUTCMonth(), validTo.getUTCDate());
+    const nowUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    
+    return validToUTC < nowUTC;
+  } catch (error) {
+    console.error("Error comparing dates:", error);
+    return false;
+  }
+};
+
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
@@ -199,10 +219,7 @@ const CartModal = ({ isOpen, onClose }) => {
                   }
                 } : null;
 
-                const isExpired =
-                  new Date(item?.validTo).toDateString() <
-                  new Date().toDateString();
-
+                const isExpired = isDateExpired(item?.validTo);
              
                 return (
                   <div
