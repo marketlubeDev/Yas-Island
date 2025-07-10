@@ -406,6 +406,13 @@
 
   @include respond(desktop) {
     gap: 24px;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+
+  @include respond(bigDesktop) {
+    max-height: 60vh !important;
+    // overflow-y: auto !important;
   }
 
   @include respond(bigTablets) {

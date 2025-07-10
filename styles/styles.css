@@ -1316,6 +1316,13 @@ body {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal-content {
     gap: 24px;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-modal-content {
+    max-height: 60vh !important;
   }
 }
 .product-modal-image {

@@ -44,7 +44,9 @@ export default function HeaderLogo() {
   const dispatch = useDispatch();
   // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
   const { cartItems } = useSelector((state) => state.cart);
-  const currentLanguage = useSelector((state) => state.language.currentLanguage);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -65,10 +67,13 @@ export default function HeaderLogo() {
   const changeLanguage = (lng) => {
     // Only proceed if the language is actually changing
     if (currentLanguage !== lng) {
+      // Update Redux state - this will trigger i18n change via useI18nSync
+      dispatch(setLanguage(lng));
+      dispatch(setProducts([])); // Clear products when language changes
+
+      // Update LanguageContext for UI display
       const newLanguage = lng === "en" ? "English" : "العربية";
       toggleLanguage(newLanguage);
-      dispatch(setLanguage(lng));
-      dispatch(setProducts([])); // Only clear products when language changes
     }
   };
 
