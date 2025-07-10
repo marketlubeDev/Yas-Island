@@ -40,10 +40,10 @@ const productSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: 'yasIslandProduct',
+const productPersistConfig = {
+  key: "yasIslandProduct",
   storage,
-  whitelist: ['allProducts', 'parks', 'currentPark', 'currentSort'] // Only persist these fields
+  whitelist: ["allProducts", "parks", "currentPark", "currentSort"], // Only persist these fields
 };
 
 export const {
@@ -56,5 +56,8 @@ export const {
   setSearchQuery,
 } = productSlice.actions;
 
-const persistedProductReducer = persistReducer(persistConfig, productSlice.reducer);
+const persistedProductReducer = persistReducer(
+  productPersistConfig,
+  productSlice.reducer
+);
 export default persistedProductReducer;
