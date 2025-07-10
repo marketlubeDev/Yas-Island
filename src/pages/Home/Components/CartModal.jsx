@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import Loading from "../../../components/Loading/ButtonLoading";
-import { setCheckout } from "../../../global/checkoutSlice";
+import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
 
 // Helper function to check if a date is expired
@@ -59,6 +59,7 @@ const CartModal = ({ isOpen, onClose }) => {
     if (!isEmailVerification) {
       navigate("/email-verification");
     } else {
+      dispatch(setCheckoutEmail(verificationEmail));
       navigate("/payment-details");
     }
     onClose();
@@ -143,7 +144,9 @@ const CartModal = ({ isOpen, onClose }) => {
               items: items,
               emailId: "",
               language: language,
-              amount: orderDetails?.total?.gross,
+              grossAmount: orderDetails?.total?.gross,
+              netAmount: orderDetails?.total?.net,
+              taxAmount: orderDetails?.total?.tax,
               firstName: "",
               lastName: "",
               phoneNumber: "",
@@ -156,6 +159,7 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
+        console.log(err , "err")
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });

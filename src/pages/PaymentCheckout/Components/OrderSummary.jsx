@@ -1,27 +1,31 @@
-import React from "react";
-import { Modal } from "antd";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import PromoCodeModalContent from "../Components/PromoCodeModalContent";
+import { Modal } from "antd";
+import PromoCodeModalContent from "./PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
+import { useSelector } from "react-redux";
+import downArrow from "../../../assets/icons/downArrow.svg";
 
-export default function OrderSummary({ formData, setFormData }) {
+export default function OrderSummary({ formData, setFormData, checkout }) {
   const { t } = useTranslation();
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [expandedItem, setExpandedItem] = useState(null);
+  const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
+  const productList = useSelector((state) => state.product.allProducts);
+  console.log(checkout , "checkout>>")
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+  const getProduct = (item ) => {
+    const product = productList.find(
+      (product) => product.product_variants.some(variant => variant.productid === item)
+    );
+  
+    const productVariant = product?.product_variants.find(variant => variant.productid === item);
+    console.log(productVariant , "productVariant>>")
+    return {
+      product,
+      productVariant
     };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Check if screen is bigDesktop (1400px - 1699px)
-  const isBigDesktop = windowWidth >= 1400 && windowWidth <= 1699;
-  // Check if screen is desktop (1200px - 1399px)
-  const isDesktop = windowWidth >= 1200 && windowWidth <= 1399;
+  };
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -31,26 +35,70 @@ export default function OrderSummary({ formData, setFormData }) {
     setIsModalVisible(false);
   };
 
+  const toggleAccordion = (index) => {
+    setExpandedItem(expandedItem === index ? null : index);
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', { 
+      weekday: 'short', 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
   return (
     <div
       className="order-summary"
       style={{ backgroundColor: "--color-order-summary-bg" }}
     >
-      <h3 className="order-summary__title">
-        {t("payment.orderSummary.title")}
-      </h3>
+    
 
-      <div className="order-summary__details">
-        <div className="detail-row">
-          <span className="label">
-            {t("payment.orderSummary.datesAndGuests")}
-          </span>
-          <div className="values">
-            <div>THU 08- FEB 2025</div>
-            <div>{t("payment.orderSummary.adult")} - 2</div>
-            <div>{t("payment.orderSummary.children")} - 1</div>
+      {/* Display each item as accordion */}
+      <div className="order-summary__items">
+        {checkout?.items?.map((item, index) => (
+          <div key={index} className="item-accordion">
+            <div 
+              className="item-accordion__header" 
+              onClick={() => toggleAccordion(index)}
+            >
+              <div className="item-accordion__title">
+                <h4>{getProduct(item.productId)?.product?.product_title}</h4>
+           
+              </div>
+              <img 
+                src={downArrow} 
+                alt="expand" 
+                className={`accordion-arrow ${expandedItem === index ? 'expanded' : ''}`}
+              />
+            </div>
+            
+            {expandedItem === index && (
+              <div className="item-accordion__content">
+                <div className="detail-row">
+                  <span className="label">{t("payment.orderSummary.datesAndGuests")}</span>
+                  <div className="values">
+                    <div>{formatDate(item.validFrom)}</div>
+                    <div>
+                      {getProduct(item.productId)?.productVariant?.productvariantname} - {item.quantity}
+                    </div>
+                  </div>
+                </div>
+                <div className="price-details">
+                  <div className="price-row">
+                    <span>Net Amount:</span>
+                    <span>AED {getProduct(item.productId)?.productVariant?.net_amount * item.quantity}</span>
+                  </div>
+                  <div className="price-row">
+                    <span>VAT & Tax:</span>
+                    <span>+ {getProduct(item.productId)?.productVariant?.vat * item.quantity}</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
+        ))}
       </div>
 
       <div className="order-summary__pricing">
@@ -58,20 +106,20 @@ export default function OrderSummary({ formData, setFormData }) {
           <span className="price-row__label">
             {t("payment.orderSummary.subTotal")}
           </span>
-          <span className="price-row__values">AED 935.71</span>
+          <span className="price-row__values">AED {checkout?.netAmount}</span>
         </div>
         <div className="price-row">
           <span className="price-row__label">
             {t("payment.orderSummary.vatAndTax")}
           </span>
-          <span className="price-row__values">+ 49.29 VAT & Tax</span>
+          <span className="price-row__values">+ {checkout?.taxAmount} VAT & Tax</span>
         </div>
         <div className="divider-line"></div>
         <div className="price-row total">
           <span className="price-row__label-total">
             {t("payment.orderSummary.total")}
           </span>
-          <span className="price-row__values-total">AED 985.00</span>
+          <span className="price-row__values-total">AED {checkout?.grossAmount}</span>
         </div>
       </div>
 

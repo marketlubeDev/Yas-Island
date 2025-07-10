@@ -10,10 +10,10 @@ export default function PaymentDetailsBody() {
     navigate("/otp-confirmation");
   };
 
-  const handleProceedToPayment = () => {
-    // Navigate to card payment
-    navigate("/card-payment");
-  };
+  // const handleProceedToPayment = () => {
+  //   // Navigate to card payment
+  //   navigate("/card-payment");
+  // };
 
   return (
     <div className="payment-checkout">
@@ -21,7 +21,7 @@ export default function PaymentDetailsBody() {
       <PaymentCheckHeading onBackClick={handleBackClick} />
 
       <div className="payment-checkout__content payment-checkout__content--with-header">
-        <PaymentDetails onProceed={handleProceedToPayment} />
+        <PaymentDetails />
       </div>
     </div>
   );

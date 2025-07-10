@@ -177,6 +177,8 @@ export default function ProductModal({
     }
   };
 
+  
+
   const handleAddToCart = () => {
     setShowBookingSection(true);
     fetchAvailableDates();
@@ -237,7 +239,7 @@ export default function ProductModal({
                   </h3>
                   <p className="tax">
                     {defaultVariant(selectedProduct)?.net_amount} +
-                    {(defaultVariant(selectedProduct)?.gross * 0.05).toFixed(2)}{" "}
+                    {(defaultVariant(selectedProduct)?.vat)}
                     {"Net & Tax"}
                   </p>
                 </div>
