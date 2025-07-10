@@ -316,7 +316,8 @@
   }
 }
 .product-top-pay {
-  height: 12vh;
+  min-height: 6rem;
+  max-height: 6rem;
   background-color: var(--color-base-product-card-card-item-bg);
 }
 
