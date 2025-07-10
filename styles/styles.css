@@ -2506,7 +2506,7 @@ html[lang=ar] .guest-label {
 }
 
 [dir=rtl] .cart-item {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .cart-item img {
@@ -2574,7 +2574,7 @@ html[lang=ar] .guest-label {
 }
 
 [dir=rtl] .quantity-controls {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .minus-btn-web {
