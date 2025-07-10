@@ -204,7 +204,7 @@ const CartModal = ({ isOpen, onClose }) => {
             <div className="cart-items">
               {cartItems.map((item, index) => {
                 const product = productList.find(
-                  (product) => product.product_variants.some(variant => variant.productid === item.productId)
+                  (product) =>  product.product_variants.some(variant => variant.productid === item.productId)
                 );
                 
                 const productData = product ? {
@@ -218,6 +218,9 @@ const CartModal = ({ isOpen, onClose }) => {
                     ...item  // include any other cart item properties
                   }
                 } : null;
+                console.log(productList , "productList")
+                console.log(product , "product")
+                console.log(productData , "productData")
 
                 const isExpired = isDateExpired(item?.validTo);
              
@@ -302,8 +305,8 @@ const CartModal = ({ isOpen, onClose }) => {
                   <span>AED {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
-                  <span>{t("cart.vatAndTax")}</span>
-                  <span>+ AED {vatAndTax.toFixed(2)} VAT & Tax</span>
+                  <span>{t("cart.vat")}</span>
+                  <span>+ AED {vatAndTax.toFixed(2)} {t("cart.vat")}</span>
                 </div>
               </div>
               <div className="custom-divider"></div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
 import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
 import VerificationBox from "./VerificationBox";
@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 export default function OtpConfirmationBody() {
   const { email } = useSelector((state) => state.otp);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!email){
+      navigate("/email-verification");
+    }
+  }, [email, navigate])
+  
 
   const handleBackClick = () => {
     navigate("/email-verification");

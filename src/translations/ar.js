@@ -12,7 +12,7 @@ export const ar = {
     home: "الرئيسية",
     cart: "السلة",
     searchPlaceholderMobile: "ابحث عن معالم 'فيراري وورلد'",  
-    netAndTax: "صافي وضريبة",
+    netAndTax: "صافي وضريبة القيمة المضافة",
     validFrom: "صالح من",
     to: "إلى",
     validTo: "صالح إلى",
@@ -127,6 +127,7 @@ export const ar = {
     validFrom: "صالح من",
     to: "إلى",
     children: "الأطفال",
+    vat: "ضريبة القيمة المضافة",
   },
   product: {
     addToCart: "أضف إلى السلة",
