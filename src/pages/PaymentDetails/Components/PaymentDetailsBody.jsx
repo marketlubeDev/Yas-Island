@@ -2,16 +2,17 @@ import React from "react";
 import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
 import PaymentCheckHeading from "../../PaymentCheckout/Components/PaymentCheckHeading";
 import PaymentDetails from "./PaymentDetails";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentDetailsBody() {
+  const navigate = useNavigate();
   const handleBackClick = () => {
-    // Navigate back to OTP confirmation
-    window.location.href = "/otp-confirmation";
+    navigate("/otp-confirmation");
   };
 
   const handleProceedToPayment = () => {
     // Navigate to card payment
-    window.location.href = "/card-payment";
+    navigate("/card-payment");
   };
 
   return (
