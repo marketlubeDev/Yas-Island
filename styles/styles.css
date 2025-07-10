@@ -1294,6 +1294,12 @@ body {
   z-index: 10000;
   transition: background 0.2s;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-modal .ant-modal-close {
+    top: -7%;
+    right: 5px;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-close {
     top: -13%;
@@ -1630,7 +1636,8 @@ body {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .calendar-container {
-    width: 100% !important;
+    width: 85% !important;
+    margin-bottom: 2rem;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -2499,7 +2506,7 @@ html[lang=ar] .guest-label {
 }
 
 [dir=rtl] .cart-item {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .cart-item img {
@@ -2567,7 +2574,7 @@ html[lang=ar] .guest-label {
 }
 
 [dir=rtl] .quantity-controls {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .minus-btn-web {
@@ -2855,6 +2862,12 @@ html[lang=ar] .guest-label {
   padding: 10px 20px 10px 20px;
   min-height: 88vh;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
+}
 
 .payment-checkout-page {
   background: var(--color-email-form-bg);
@@ -2903,6 +2916,12 @@ html[lang=ar] .guest-label {
   margin-bottom: 25px;
   position: relative;
   padding: 0px;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__steps {
+    margin-bottom: 40px;
+    padding: 8px 0px;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__steps {
@@ -3481,9 +3500,19 @@ html[lang=ar] .guest-label {
   flex-direction: row;
   justify-content: space-between;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-form {
+    flex-direction: column;
+  }
+}
 .payment-form__left {
   padding: 2rem;
   width: 65%;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-form__left {
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left {
@@ -3888,6 +3917,11 @@ html[lang=ar] .guest-label {
 .payment-form__right {
   width: 35%;
   background-color: var(--color-email-form-box);
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-form__right {
+    width: 100%;
+  }
 }
 .payment-form__right .order-summary {
   background: var(--payment-right-bg);
@@ -6530,6 +6564,11 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   flex-direction: column;
   gap: 24px;
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .email-verification__form {
+    height: 80vh;
+  }
+}
 @media (min-width: 375px) and (max-width: 389px) {
   .email-verification__form {
     height: 68vh;
@@ -6658,6 +6697,12 @@ html[lang=ar] .mobile-bottom-nav__item--active {
     height: 100%;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .confirm-email__modal {
+    max-width: 100vw !important;
+    height: 100vh !important;
+  }
+}
 
 .confirm-email__content {
   flex: 1;
@@ -6677,6 +6722,13 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   box-shadow: var(--color-email-form-box-shadow);
   align-items: center;
   padding: 32px 36px;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .confirm-email__form-container {
+    width: 70vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+  }
 }
 @media (min-width: 340px) and (max-width: 374px) {
   .confirm-email__form-container {
@@ -6938,6 +6990,12 @@ html[lang=ar] .confirm-email__input-underline {
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .email-checkout__form-container {
+    width: 80vw !important;
+    max-width: 100vw !important;
+  }
 }
 
 .email-checkout__form {
@@ -7832,6 +7890,13 @@ html[lang=ar] .make-payment__summary-top {
   flex-direction: column;
   align-items: center;
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .experience-content-container {
+    width: 80vw !important;
+    max-width: 100vw !important;
+    height: 80vh !important;
+  }
+}
 
 .promo-popup-overlay {
   position: fixed;
@@ -7948,6 +8013,18 @@ html[lang=ar] .make-payment__summary-top {
   max-width: 420px;
   width: 98vw;
   max-height: 99vh;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .attraction-detail-modal {
+    width: 90vw !important;
+    max-width: 80vw !important;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .attraction-detail-modal {
+    width: 90vw !important;
+    max-width: 80vw !important;
+  }
 }
 .attraction-detail-modal__header {
   position: relative;
@@ -8705,6 +8782,13 @@ html[lang=ar] .make-payment__summary-top {
   overflow-y: scroll;
   scrollbar-width: thin;
   border-radius: 20px;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .booking-modal .ant-modal-content {
+    height: fit-content;
+    min-height: 75vh;
+    max-height: 95vh;
+  }
 }
 
 :where(.css-dev-only-do-not-override-5uvb3z).ant-modal-root .ant-modal-wrap {

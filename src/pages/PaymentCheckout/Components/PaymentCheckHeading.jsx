@@ -9,8 +9,6 @@ export default function PaymentCheckoutHeader({ onBackClick }) {
     (state) => state.language.currentLanguage
   );
 
-  console.log(currentLanguage, "currenterereLanguage");
-
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 

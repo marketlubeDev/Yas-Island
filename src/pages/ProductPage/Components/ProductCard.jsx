@@ -71,7 +71,7 @@ export default function ProductCard({ productList }) {
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
-        width="85%"
+        width="fit-content"
         className={`product-modal ${
           showBookingSection ? "booking-active" : ""
         }`}

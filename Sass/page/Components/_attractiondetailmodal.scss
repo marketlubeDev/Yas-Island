@@ -5,6 +5,16 @@
   width: 98vw;
   max-height: 99vh;
 
+  @include respond(tablets) {
+    width: 90vw !important;
+    max-width: 80vw !important;
+  }
+
+  @include respond(bigTablets) {
+    width: 90vw !important;
+    max-width: 80vw !important;
+  }
+
   &__header {
     position: relative;
     display: flex;
