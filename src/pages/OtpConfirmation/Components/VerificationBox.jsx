@@ -20,7 +20,7 @@ export default function VerificationBox({ email }) {
   const inputRefs = useRef([]);
   const { OTP } = useSelector((state) => state.otp);
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(180); // 3 minutes in seconds
+  const [timer, setTimer] = useState(300); // 3 minutes in seconds
   const [canResend, setCanResend] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
@@ -55,7 +55,7 @@ export default function VerificationBox({ email }) {
     verification(email, {
       onSuccess: (res) => {
         dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
-        setTimer(120);
+        setTimer(300);
         setCanResend(false);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
