@@ -23,24 +23,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
   const handlePaymentSuccess = () => {
     console.log('Payment successful, starting redirect countdown...');
     setPaymentStatus('success');
-    
-    // Start countdown
-    let timeLeft = 5;
-    const countdownInterval = setInterval(() => {
-      timeLeft -= 1;
-      setCountdown(timeLeft);
-      
-      if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-        window.location.href = '/payment-success';
-      }
-    }, 1000);
-
-    // Force redirect after 6 seconds (backup)
-    setTimeout(() => {
-      clearInterval(countdownInterval);
-      window.location.href = '/payment-success';
-    }, 6000);
+    window.location.href = '/payment-success';
   };
 
   useEffect(() => {
@@ -71,10 +54,8 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
       // Listen for messages from the iframe
       const handleMessage = (event) => {
         console.log('Received message from iframe:', event.data);
-        if (event.data && typeof event.data === 'string') {
-          if (event.data.includes('Payment Successful') || event.data.includes('payment_successful')) {
+        if (event.data && event.data.action === 'redirect') {
             handlePaymentSuccess();
-          }
         }
       };
 
