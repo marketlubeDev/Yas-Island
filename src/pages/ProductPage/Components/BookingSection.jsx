@@ -43,7 +43,7 @@ export default function BookingSection({
     const variants = {};
     product?.product_variants?.forEach((variant) => {
       variants[variant?.productid] = {
-        quantity: variant?.min_quantity || 0,
+        quantity: variant?.default_quantity || 0,
         name: variant?.productvariantname,
         variant: variant,
       };

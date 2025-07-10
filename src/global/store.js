@@ -9,6 +9,7 @@ import productReducer from "./productSlice";
 import performanceReducer from "./performanceSlice";
 import cartReducer from "./cartSlice";
 import otpReducer from "./otpSlice";
+import orderReducer from "./orderSlice";
 
 
 const cartPersistConfig = {
@@ -43,6 +44,7 @@ const store = configureStore({
     performance: performanceReducer,
     cart: persistedCartReducer,
     otp: otpReducer,
+    order: orderReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

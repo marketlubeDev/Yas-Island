@@ -4,12 +4,15 @@ import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { updatePersonalDetails } from "../../../global/checkoutSlice";
+import { setOrderData } from "../../../global/orderSlice";
 import usePayment from "../../../apiHooks/payment/payment";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
   const currentLanguage = useSelector((state) => state.language.currentLanguage);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const { mutate: createOrder, isPending } = usePayment();
   const [formData, setFormData] = useState({
@@ -59,11 +62,15 @@ export default function PaymentDetails() {
     console.log(data , "data>>")
 
     createOrder(data, {
-      onSuccess: (data) => {
-        console.log(data , "data>>")
+      onSuccess: (responseData) => {
+        console.log(responseData, "API Response>>")
+        // Store the order data in Redux
+        dispatch(setOrderData(responseData));
+        // Navigate to card payment page
+        navigate('/card-payment');
       },
       onError: (error) => {
-        console.log(error , "error>>")
+        console.log(error, "error>>")
       }
     });
   };
@@ -73,8 +80,8 @@ export default function PaymentDetails() {
       <PersonalDetailsForm formData={formData} setFormData={setFormData} />
       <div className="payment-form__right">
         <OrderSummary formData={formData} setFormData={setFormData} checkout={checkout} />
-        <button className="proceedbtn" onClick={handleProceedToPayment}>
-          {t("payment.paymentDetails.proceedToPayment")}
+        <button className="proceedbtn" onClick={handleProceedToPayment} disabled={isPending}>
+          {isPending ? "Processing..." : t("payment.paymentDetails.proceedToPayment")}
         </button>
       </div>
     </div>

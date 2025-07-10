@@ -1,15 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CardPaymentDetail from "./CardPaymentDetail";
 
 export default function CardPaymentBody() {
+  const navigate = useNavigate();
+  const orderData = useSelector((state) => state.order.orderData);
+
   const handleBackClick = () => {
     // Navigate back to payment details
-    window.location.href = "/payment-details";
+    navigate("/payment-details");
   };
 
   const handlePaymentComplete = () => {
     // Navigate to payment success
-    window.location.href = "/payment-success";
+    navigate("/payment-success");
   };
 
   return (
@@ -18,6 +23,7 @@ export default function CardPaymentBody() {
         <CardPaymentDetail
           onBack={handleBackClick}
           onPaymentComplete={handlePaymentComplete}
+          orderData={orderData}
         />
       </div>
     </div>
