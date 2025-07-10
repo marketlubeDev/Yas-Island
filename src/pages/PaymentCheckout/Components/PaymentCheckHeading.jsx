@@ -21,6 +21,7 @@ export default function PaymentCheckoutHeader({ onBackClick }) {
           src={isDarkMode ? arrowDark : arrow}
           alt={t("payment.arrow")}
           className={currentLanguage === "ar" ? "rtl-arrow" : ""}
+          style={{ width: "20px", height: "20px" }}
         />{" "}
         {t("payment.back")}
       </button>

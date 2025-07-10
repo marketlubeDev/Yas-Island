@@ -6,7 +6,11 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useVerification from "../../../apiHooks/email/verification";
 import { setOtp } from "../../../global/otpSlice";
-import { setIsEmailVerification, setVerificationEmail } from "../../../global/cartSlice";
+import {
+  setIsEmailVerification,
+  setVerificationEmail,
+} from "../../../global/cartSlice";
+import { setCheckoutEmail } from "../../../global/checkoutSlice";
 
 export default function VerificationBox({ email }) {
   const dispatch = useDispatch();
@@ -112,7 +116,7 @@ export default function VerificationBox({ email }) {
   };
 
   const handleConfirmEmail = async () => {
-    if(email === ""){
+    if (email === "") {
       toast.error("Please enter a valid email");
       navigate("/email-verification");
       return;
@@ -130,6 +134,7 @@ export default function VerificationBox({ email }) {
     if (isValid) {
       dispatch(setIsEmailVerification(true));
       dispatch(setVerificationEmail(email));
+      dispatch(setCheckoutEmail(email));
       navigate("/payment-details");
     } else {
       toast.error("OTP is incorrect ❌");
@@ -142,19 +147,18 @@ export default function VerificationBox({ email }) {
         {t("payment.verification.codeSent")}{" "}
         <span className="email" style={{ textDecoration: "underline" }}>
           {email}
-        </span>
-        {" "}
-        <button 
-          onClick={() => navigate('/email-verification')}
-          style={{ 
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '0 0 0 5px',
-            color: '#0066cc',
-            fontSize: '14px',
-            textDecoration: 'underline',
-            fontWeight: '500'
+        </span>{" "}
+        <button
+          onClick={() => navigate("/email-verification")}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "0 0 0 5px",
+            color: "#0066cc",
+            fontSize: "14px",
+            textDecoration: "underline",
+            fontWeight: "500",
           }}
         >
           {t("payment.verification.editEmail")}

@@ -4026,7 +4026,7 @@ html[lang=ar] .guest-label {
   transform: rotate(180deg);
 }
 .payment-form__right .order-summary__pricing {
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 2.5rem;
   background-color: var(--payment-right-title);
   margin-bottom: 0rem;
 }
