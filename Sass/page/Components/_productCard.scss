@@ -718,7 +718,7 @@
   h2 {
     color: var(--color-base-text);
     // font-family: Urbanist;
-    font-size: 2.125rem !important;
+    font-size: 1.8rem !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -931,7 +931,7 @@
 
 .section-title {
   color: var(--color-base-text);
-  font-size: 2.125rem !important;
+  font-size: 1.8rem !important;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -974,7 +974,6 @@
   font-weight: 500;
   margin-top: 0.2rem;
 
-  margin-bottom: 16px;
   padding-bottom: 16px;
   padding-top: -1rem;
   border-bottom: 2px solid var(--color-base-product-card-divider);
@@ -984,22 +983,19 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
-}
 
-@include respond(desktop) {
-  .guest-summary {
-    font-size: 1.5rem;
+  @include respond(desktop) {
+    font-size: 20px;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 22px;
   }
 }
 
 .guest-controls {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-
-  @include respond(desktop) {
-    gap: 12px;
-  }
 }
 
 .guest-row {
@@ -1254,4 +1250,8 @@ html[lang="ar"] {
   //   background: var(--color-base-product-card-scroll-bar);
   //   border-radius: 4px;
   // }
+}
+
+.rtl-arrow {
+  transform: rotate(180deg);
 }
