@@ -133,7 +133,7 @@ const CartModal = ({ isOpen, onClose }) => {
             productId: item?.productId,
             quantity: item?.quantity,
             performances: item?.performances
-              ? [{ performanceId: item?.performances }]
+              ? item?.performances
               : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,

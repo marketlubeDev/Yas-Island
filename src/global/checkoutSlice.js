@@ -70,6 +70,13 @@ const checkoutSlice = createSlice({
       state.emailId = action.payload;
     },
 
+    // Update terms acceptance
+    updateTermsAcceptance: (state, action) => {
+      const { isTnCAgrred, isConsentAgreed } = action.payload;
+      state.isTnCAgrred = isTnCAgrred;
+      state.isConsentAgreed = isConsentAgreed;
+    },
+
     // Clear checkout
     clearCheckout: () => {
       return initialState;
@@ -93,7 +100,8 @@ export const {
   updateCartDetails, 
   updateAgreements,
   setCheckoutEmail, 
-  clearCheckout 
+  clearCheckout,
+  updateTermsAcceptance
 } = checkoutSlice.actions;
 
 const persistedCheckoutReducer = persistReducer(persistConfig, checkoutSlice.reducer);

@@ -18,7 +18,30 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
   const [showPayFortForm, setShowPayFortForm] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState('loading');
   const [isIframeLoading, setIsIframeLoading] = useState(true);
-  const [showRedirectButton, setShowRedirectButton] = useState(false);
+  const [countdown, setCountdown] = useState(5);
+
+  const handlePaymentSuccess = () => {
+    console.log('Payment successful, starting redirect countdown...');
+    setPaymentStatus('success');
+    
+    // Start countdown
+    let timeLeft = 5;
+    const countdownInterval = setInterval(() => {
+      timeLeft -= 1;
+      setCountdown(timeLeft);
+      
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        window.location.href = '/payment-success';
+      }
+    }, 1000);
+
+    // Force redirect after 6 seconds (backup)
+    setTimeout(() => {
+      clearInterval(countdownInterval);
+      window.location.href = '/payment-success';
+    }, 6000);
+  };
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
@@ -30,7 +53,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
 
       Object.entries(orderData.tokenizationResponse.formParameters || {}).forEach(([key, value]) => {
         const input = document.createElement('input');
-        input.type = 'hidden'; 
+        input.type = 'hidden';
         input.name = key;
         input.value = value;
         form.appendChild(input);
@@ -50,8 +73,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
         console.log('Received message from iframe:', event.data);
         if (event.data && typeof event.data === 'string') {
           if (event.data.includes('Payment Successful') || event.data.includes('payment_successful')) {
-            console.log('Payment successful, showing redirect button');
-            setShowRedirectButton(true);
+            handlePaymentSuccess();
           }
         }
       };
@@ -65,8 +87,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             const iframeContent = iframeDoc.body ? iframeDoc.body.innerText : '';
             
             if (iframeContent.includes('Payment Successful') || iframeContent.includes('Redirecting')) {
-              console.log('Payment successful detected, showing redirect button');
-              setShowRedirectButton(true);
+              handlePaymentSuccess();
             }
           } catch (e) {
             console.log('Cannot access iframe content due to cross-origin restrictions');
@@ -84,11 +105,6 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
       };
     }
   }, [orderData]);
-
-  const handleRedirect = () => {
-    // Add any cleanup or state updates needed before redirect
-    window.location.href = '/payment-success';
-  };
 
   return (
     <div className="payment-container">
@@ -144,31 +160,38 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
           />
         </div>
 
-        {/* Redirect Button */}
-        {showRedirectButton && (
+        {paymentStatus === 'success' && (
           <div style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
             textAlign: 'center',
-            marginTop: '2rem'
+            zIndex: 1000
           }}>
-            <button
-              onClick={handleRedirect}
-              style={{
-                background: '#28a745',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '1rem 2rem',
-                fontSize: '1rem',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}
-              onMouseOver={(e) => e.target.style.background = '#218838'}
-              onMouseOut={(e) => e.target.style.background = '#28a745'}
-            >
-              Continue to Order Details
-            </button>
+            <div style={{ marginBottom: '1rem' }}>
+              <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                <circle cx="25" cy="25" r="25" fill="#28a745"/>
+                <path d="M20 25L23 28L30 21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <h3 style={{ margin: '0 0 1rem', color: '#28a745' }}>Payment Successful!</h3>
+            <p style={{ margin: '0 0 1rem', color: '#666' }}>
+              Redirecting to order details in {countdown} seconds...
+            </p>
+            <div className="loading-spinner" style={{
+              width: '30px',
+              height: '30px',
+              border: '3px solid #f3f3f3',
+              borderTop: '3px solid #28a745',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite',
+              margin: '0 auto'
+            }} />
           </div>
         )}
       </div>

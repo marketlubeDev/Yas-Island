@@ -7,6 +7,8 @@ import { updatePersonalDetails } from "../../../global/checkoutSlice";
 import { setOrderData } from "../../../global/orderSlice";
 import usePayment from "../../../apiHooks/payment/payment";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
@@ -37,10 +39,61 @@ export default function PaymentDetails() {
     }));
   }, [formData, dispatch]);
 
+  const validateData = (data) => {
+    const errors = [];
+
+    // Validate items array
+    if (!data.items || !Array.isArray(data.items) || data.items.length === 0) {
+      errors.push("No items in cart");
+    } else {
+      // Validate each item
+      data.items.forEach((item, index) => {
+        if (!item.productId) errors.push(`Item ${index + 1}: Missing product ID`);
+        if (!item.quantity || item.quantity < 1) errors.push(`Item ${index + 1}: Invalid quantity`);
+        if (!item.validFrom) errors.push(`Item ${index + 1}: Missing valid from date`);
+      });
+    }
+
+    // Validate personal details
+    if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      errors.push("Invalid email address");
+    }
+    if (!data.firstName || data.firstName.trim().length < 2) {
+      errors.push("First name is required ");
+    }
+    if (!data.lastName || data.lastName.trim().length < 2) {
+      errors.push("Last name is required ");
+    }
+    if (!data.phoneNumber || data.phoneNumber.length < 8) {
+      errors.push("Valid phone number is required");
+    }
+    if (!data.countryCode) {
+      errors.push("Country is required");
+    }
+    if (!data.amount || data.amount <= 0) {
+      errors.push("Invalid order amount");
+    }
+    if (!data.language) {
+      errors.push("Language preference is required");
+    }
+
+    if (!data.isTnCAgrred) {
+      errors.push("Please accept the terms and conditions to proceed");
+    }
+    if (!data.nationality) {
+      errors.push("Nationality is required");
+    }
+
+    return errors;
+  };
 
   const handleProceedToPayment = () => {
+    if (!checkout.isTnCAgrred) {
+      toast.error("Please accept the terms and conditions to proceed");
+      return;
+    }
 
-    const data =  {
+    const data = {
       coupons: [],
       items: checkout?.items.map((item) => ({
         productId: item.productId,
@@ -56,21 +109,29 @@ export default function PaymentDetails() {
       lastName: checkout?.lastName,
       phoneNumber: checkout?.phoneNumber,
       countryCode: checkout?.country,
-      isTnCAgrred: true,
-      isConsentAgreed: true
+      isTnCAgrred: checkout.isTnCAgrred,
+      isConsentAgreed: checkout.isConsentAgreed,
+      nationality: checkout?.nationality
+    };
+
+    // Validate data before proceeding
+    const validationErrors = validateData(data);
+    
+    if (validationErrors.length > 0) {
+      validationErrors.forEach(error => {
+        toast.error(error);
+      });
+      return;
     }
-    console.log(data , "data>>")
 
     createOrder(data, {
       onSuccess: (responseData) => {
-        console.log(responseData, "API Response>>")
-        // Store the order data in Redux
         dispatch(setOrderData(responseData));
-        // Navigate to card payment page
         navigate('/card-payment');
       },
       onError: (error) => {
-        console.log(error, "error>>")
+        console.log(error, "error>>");
+        toast.error(error?.response?.data?.message || "Something went wrong with the payment");
       }
     });
   };
@@ -80,8 +141,16 @@ export default function PaymentDetails() {
       <PersonalDetailsForm formData={formData} setFormData={setFormData} />
       <div className="payment-form__right">
         <OrderSummary formData={formData} setFormData={setFormData} checkout={checkout} />
-        <button className="proceedbtn" onClick={handleProceedToPayment} disabled={isPending}>
-          {isPending ? "Processing..." : t("payment.paymentDetails.proceedToPayment")}
+        <button 
+          className="proceedbtn" 
+          onClick={handleProceedToPayment} 
+          disabled={isPending || !checkout.isTnCAgrred}
+          style={{ 
+            opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
+            cursor: isPending || !checkout.isTnCAgrred ? 'not-allowed' : 'pointer'
+          }}
+        >
+          {isPending ? <ButtonLoading/> : t("payment.paymentDetails.proceedToPayment")}
         </button>
       </div>
     </div>

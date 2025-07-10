@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Modal } from "antd";
 import PromoCodeModalContent from "./PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import downArrow from "../../../assets/icons/downArrow.svg";
+import { updateTermsAcceptance } from "../../../global/checkoutSlice";
 
 export default function OrderSummary({ formData, setFormData, checkout }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
@@ -46,6 +48,20 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
       month: 'short', 
       year: 'numeric' 
     });
+  };
+
+  const handleTermsChange = (type, checked) => {
+    if (type === 'terms') {
+      dispatch(updateTermsAcceptance({
+        isTnCAgrred: checked,
+        isConsentAgreed: checkout.isConsentAgreed
+      }));
+    } else if (type === 'consent') {
+      dispatch(updateTermsAcceptance({
+        isTnCAgrred: checkout.isTnCAgrred,
+        isConsentAgreed: checked
+      }));
+    }
   };
 
   return (
@@ -154,7 +170,12 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
 
       <div className="terms">
         <label className="checkbox-container">
-          <input type="checkbox" className="checkbox-input" />
+          <input 
+            type="checkbox" 
+            className="checkbox-input"
+            checked={checkout.isTnCAgrred}
+            onChange={(e) => handleTermsChange('terms', e.target.checked)}
+          />
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
             {t("payment.orderSummary.terms.acceptTerms")}{" "}
@@ -165,7 +186,12 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         </label>
 
         <label className="checkbox-container">
-          <input type="checkbox" className="checkbox-input" />
+          <input 
+            type="checkbox" 
+            className="checkbox-input"
+            checked={checkout.isConsentAgreed}
+            onChange={(e) => handleTermsChange('consent', e.target.checked)}
+          />
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
             {t("payment.orderSummary.terms.receiveCommunications")}
