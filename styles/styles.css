@@ -3113,7 +3113,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group {
-    margin: 0 5rem;
+    margin: 0 3rem;
     margin-bottom: 3rem;
   }
 }
@@ -3185,8 +3185,7 @@ html[lang=ar] .guest-label {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .input-underline {
-    width: 85%;
-    margin-left: 1rem;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -3210,8 +3209,6 @@ html[lang=ar] .guest-label {
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 65%;
-    margin: 8px 0px 0 83px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -3227,9 +3224,10 @@ html[lang=ar] .guest-label {
 .payment-checkout__header {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  position: relative;
 }
-
 .back-button {
   flex-shrink: 0; /* Prevents button from shrinking */
 }
@@ -3248,13 +3246,16 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__title {
     font-size: 1.5rem;
-    margin-left: -9rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-checkout__title {
     font-size: 1.5rem;
-    margin-left: -10rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__title {
+    font-size: 1.5rem;
   }
 }
 

@@ -246,7 +246,7 @@
   position: relative;
 
   @include respond(desktop) {
-    margin: 0 5rem;
+    margin: 0 3rem;
     margin-bottom: 3rem;
   }
 
@@ -314,8 +314,8 @@
 
 @include respond(desktop) {
   .input-underline {
-    width: 85%;
-    margin-left: 1rem;
+    width: 100%;
+    // margin-left: 1rem;
   }
 }
 
@@ -340,8 +340,8 @@
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 65%;
-    margin: 8px 0px 0 83px;
+    // width: 75%;
+    // margin: 8px 0px 0 83px;
   }
 
   @include respond(bigDesktop) {
@@ -355,7 +355,15 @@
 .payment-checkout__header {
   display: flex;
   align-items: center;
+  justify-content: center; // Center the title horizontally
   width: 100%;
+  position: relative; // Allows absolute positioning of back button if needed
+
+  @include respond(desktop) {
+  }
+
+  @include respond(bigDesktop) {
+  }
 }
 
 .back-button {
@@ -375,12 +383,14 @@
 
   @include respond(desktop) {
     font-size: 1.5rem;
-    margin-left: -9rem;
   }
 
   @include respond(bigDesktop) {
     font-size: 1.5rem;
-    margin-left: -10rem;
+  }
+
+  @include respond(bigTablets) {
+    font-size: 1.5rem;
   }
 }
 
