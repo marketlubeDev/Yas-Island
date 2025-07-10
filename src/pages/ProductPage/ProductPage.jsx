@@ -92,7 +92,16 @@ export default function ProductPage() {
         <MainProductHead />
         {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "calc(100vh - 11rem)" }}><Loader /></div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "calc(100vh - 11rem)",
+            }}
+          >
+            <Loader />
+          </div>
         ) : (
           // <div><Loader /></div>
           <ProductCard productList={filteredProducts} />

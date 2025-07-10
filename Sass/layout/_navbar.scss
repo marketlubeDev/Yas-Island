@@ -213,32 +213,32 @@
     border-radius: 126.103px;
     background-color: var(--color-base-product-card-bg);
 
-    // // Curved notch at top left (inward curve)
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   top: -24px;
-    //   right: 0px;
-    //   width: 20px;
-    //   height: 20px;
-    //   background-color: var(--color-base-product-card-card-item-bg);
-    //   border-bottom-right-radius: 20px;
-    //   box-shadow: 0.5px 4px 0 0 var(--color-base-side-bar-border);
-    // }
+    // Curved notch at top left (inward curve)
+    &::before {
+      content: "";
+      position: absolute;
+      top: -24px;
+      right: 0px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--color-base-product-card-card-item-bg);
+      border-bottom-right-radius: 20px;
+      box-shadow: 0.5px 4px 0 0 var(--color-base-side-bar-border);
+    }
 
-    // // Curved notch at bottom left (inward curve)
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   bottom: -24px;
-    //   right: 0px;
-    //   width: 20px;
-    //   height: 20px;
-    //   background-color: var(--color-base-product-card-card-item-bg);
-    //   border-top-right-radius: 20px;
-    //   box-shadow: 0.5px -4px 0 0 var(--color-base-side-bar-border);
-    //   z-index: 100;
-    // }
+    // Curved notch at bottom left (inward curve)
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -24px;
+      right: 0px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--color-base-product-card-card-item-bg);
+      border-top-right-radius: 20px;
+      box-shadow: 0.5px -4px 0 0 var(--color-base-side-bar-border);
+      z-index: 100;
+    }
   }
 }
 
