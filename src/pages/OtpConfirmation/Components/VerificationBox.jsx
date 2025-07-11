@@ -24,6 +24,13 @@ export default function VerificationBox({ email }) {
   const [canResend, setCanResend] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
+  // Focus first input on mount
+  useEffect(() => {
+    if (inputRefs.current[0]) {
+      inputRefs.current[0].focus();
+    }
+  }, []);
+
   useEffect(() => {
     let interval;
     if (timer > 0) {
@@ -176,7 +183,9 @@ export default function VerificationBox({ email }) {
               key={index}
               type="text"
               maxLength="1"
-              className={`code-input ${isExpired ? "expired" : ""}`}
+              className={`code-input ${isExpired ? "expired" : ""} ${
+                index === 0 && !otp.some((digit) => digit) ? "blinking" : ""
+              }`}
               value={otp[index]}
               onChange={(e) => handleChange(e.target, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}

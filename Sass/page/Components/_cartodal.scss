@@ -186,6 +186,10 @@
   justify-content: space-between;
   gap: 30px;
 
+  @include respond(bigDesktop) {
+    gap: 10px;
+  }
+
   span {
     color: var(--cart-item-var);
     font-size: 0.85225rem;
@@ -198,6 +202,12 @@
 
 [dir="rtl"] .quantity-controls {
   flex-direction: row;
+  gap: 10px;
+}
+.ant-btn {
+  @include respond(bigDesktop) {
+    padding: 0;
+  }
 }
 
 .minus-btn-web {
@@ -312,6 +322,7 @@
 .delete-btn {
   color: red;
   border: none;
+
   img {
     width: 1.3rem;
     height: 1.3rem;
@@ -443,6 +454,10 @@
 
   .quantity-controls {
     gap: 25px;
+
+    @include respond(bigDesktop) {
+      gap: 10px;
+    }
 
     span {
       font-size: 0.75rem;

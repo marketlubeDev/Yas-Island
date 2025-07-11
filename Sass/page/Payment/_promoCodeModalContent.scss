@@ -13,7 +13,7 @@
 
   &__amount {
     margin-bottom: 4px;
-    color: #594f67;
+    color: var(--color-base-text);
     font-size: 25px;
     font-style: normal;
     font-weight: 700;
@@ -30,7 +30,7 @@
 
   &__divider {
     border: none;
-    border-top: 2px solid #d9d9d9;
+    border-top: 1px solid var(--separator-color);
     margin: 24px 0;
   }
 
@@ -41,7 +41,7 @@
 
     padding: 0 3rem;
 
-    color: #594f67;
+    color: var(--color-base-text);
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -59,7 +59,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 3rem;
-    color: #594f67;
+    color: var(--color-base-text);
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -68,7 +68,7 @@
 
   &__total-amount {
     font-size: 28px;
-    color: #594f67;
+    color: var(--color-base-text);
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
