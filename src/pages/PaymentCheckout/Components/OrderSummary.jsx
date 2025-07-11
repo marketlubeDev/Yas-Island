@@ -17,7 +17,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
-  const [promoCode, setPromoCode] = useState("");
+  const [promoCode, setPromoCode] = useState(checkout?.coupons?.[0]?.code || "");
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -74,7 +74,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     }
   };
 
-  const handleBasketCheck = (promoCode) => {
+  const handleBasketCheck = (promoCode = "", message = "") => { 
     let items = [];
     checkout?.items?.forEach((item) => {
       items.push({
@@ -89,7 +89,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     });
 
     const data = {
-      coupons: [{couponCode:promoCode}],
+      coupons: promoCode ? [{couponCode:promoCode}] : [],
       items: items,
       capacityManagement: true,
     };
@@ -135,7 +135,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
             })
           );
           setPromoCodeApplying(false);
-          setIsModalVisible(true);
+          if(promoCode){
+            setIsModalVisible(true);
+          }else{
+            toast.error(message || "Invalid promo code");
+          }
         }
       },
       onError: (err) => {
@@ -158,8 +162,10 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     const response = await validatePromocode(promoCode);
     if (!response?.data?.coupondetails?.coupon) {
       setIsModalVisible(false);
-      toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
-      setPromoCodeApplying(false);  
+      // toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
+      let message = response?.coupondetails?.error?.text || "Invalid promo code";
+   
+      handleBasketCheck("" , message);
     } else{
       setFormData({ ...formData, promoCode: promoCode });
       handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
@@ -167,6 +173,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || "Invalid promo code");
+     
     } 
   };
 
@@ -270,7 +277,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         <div className="promo-code__input-group">
           <input
             type="text"
-            value={promoCode}
+            value={ promoCode}
             onChange={(e) =>
               setPromoCode(e.target.value)
             }
