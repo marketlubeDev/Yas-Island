@@ -159,6 +159,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     if (!response?.data?.coupondetails?.coupon) {
       setIsModalVisible(false);
       toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
+      setPromoCodeApplying(false);  
     } else{
       setFormData({ ...formData, promoCode: promoCode });
       handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
