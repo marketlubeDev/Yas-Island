@@ -73,13 +73,14 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             <p>{t("accessibility.colorBlindness")}</p>
             <span>
               <span className={`invert-colors ${isDarkMode ? "active" : ""}`}>
-                Invert Colors
+                {t("accessibility.invertColors")}
               </span>{" "}
               <span className="vertical-divider-card"></span>
               <span
                 className={`high-contrast ${isDarkMode ? "active" : ""}`}
+                style={{ fontWeight: isHighContrast ? "bold" : "normal" }}
               >
-                High Contrast
+                {t("accessibility.highContrast")}
               </span>
             </span>
           </div>
