@@ -3,6 +3,7 @@
   --color-base-bg: #fff;
   --color-base-text: #231942;
   --color-base-text-secondary: #6c6c8a;
+  --separator-color: #d9d9d9;
   --color-base-btn-bg: #fff;
   --color-base-btn-border: #dcd6e5;
   --color-base-chat-btn-bg: linear-gradient(180deg, #0597e5 0%, #0758dd 100%);
@@ -788,7 +789,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  left: 0rem;
+  left: -2px;
+  top: -2px;
   width: 15rem;
   height: 5rem;
   border-radius: 0rem 0rem 1.25rem 0rem;
@@ -1005,11 +1007,6 @@ body {
 .cart-button,
 .ar-cart-button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.cart-button:hover,
-.ar-cart-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px -20px 60px 0px rgba(27, 36, 53, 0.25);
 }
 .cart-button:active,
 .ar-cart-button:active {
@@ -1483,6 +1480,10 @@ body {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+}
+
+.product-separator {
+  border-top: 0.14706rem solid var(--color-base-product-card-divider) !important;
 }
 
 @supports (-webkit-appearance: none) {
