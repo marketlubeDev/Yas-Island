@@ -73,9 +73,6 @@ const CartModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  // const handleSaveCart = () => {
-  //   onClose();
-  // };
 
   const handleQuantityChange = (
     id,

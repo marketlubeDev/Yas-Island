@@ -5,7 +5,11 @@ import PromoCodeModalContent from "./PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
 import { useSelector, useDispatch } from "react-redux";
 import downArrow from "../../../assets/icons/downArrow.svg";
-import { updateTermsAcceptance } from "../../../global/checkoutSlice";
+import { setCheckout, updateTermsAcceptance } from "../../../global/checkoutSlice";
+import validatePromocode from "../../../serivces/promocode/promocode";
+import { toast } from "sonner";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 
 export default function OrderSummary({ formData, setFormData, checkout }) {
   const { t } = useTranslation();
@@ -13,11 +17,13 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [expandedItem, setExpandedItem] = useState(null);
   const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
   const productList = useSelector((state) => state.product.allProducts);
-  console.log(checkout, "checkout>>");
+  const { mutate: checkBasket, isPending } = useCheckBasket();
 
   const getProduct = (item) => {
     const product = productList.find((product) =>
@@ -27,7 +33,6 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     const productVariant = product?.product_variants.find(
       (variant) => variant.productid === item
     );
-    console.log(productVariant, "productVariant>>");
     return {
       product,
       productVariant,
@@ -66,6 +71,100 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         isTnCAgrred: checkout.isTnCAgrred,
         isConsentAgreed: checked
       }));
+    }
+  };
+
+  const handleBasketCheck = (promoCode) => {
+    let items = [];
+    checkout?.items?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances
+          ? item?.performances
+          : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo,
+      });
+    });
+
+    const data = {
+      coupons: [{couponCode:promoCode}],
+      items: items,
+      capacityManagement: true,
+    };
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          setIsModalVisible(true);
+          const orderDetails = res?.orderdetails?.order;
+          const items = orderDetails?.items?.map((item) => ({
+            productId: item?.productId,
+            quantity: item?.quantity,
+            performances: item?.performances
+              ? item?.performances
+              : [],
+            validFrom: item?.validFrom,
+            validTo: item?.validTo,
+          }));
+          dispatch(
+            setCheckout({
+              coupons: orderDetails?.coupons,
+              items: items,
+              emailId: checkout?.email,
+              language: currentLanguage,
+              grossAmount: orderDetails?.total?.gross,
+              netAmount: orderDetails?.total?.net,
+              taxAmount: orderDetails?.total?.tax,
+              firstName: checkout?.firstName,
+              lastName: checkout?.lastName,
+              phoneNumber: checkout?.phoneNumber,
+              countryCode: checkout?.countryCode,
+              isTnCAgrred: checkout?.isTnCAgrred,
+              isConsentAgreed: checkout?.isConsentAgreed,
+            })
+          );
+        }
+      },
+      onError: (err) => {
+        console.log(err , "err")
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+      },
+    });
+  };
+
+  const handlePromoCode = async () => {
+    try {
+      setPromoCodeApplying(true);
+    if (!promoCode) {
+      toast.error("Please enter a promo code");
+      return;
+    };
+    const response = await validatePromocode(promoCode);
+    if (!response?.data?.coupondetails?.coupon) {
+     
+      setIsModalVisible(false);
+      toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
+    } else{
+      setFormData({ ...formData, promoCode: promoCode });
+      handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+
+    }
+    } catch (error) {
+      setPromoCodeApplying(false);
+      toast.error(error?.message || "Invalid promo code");
+    } finally {
+      setPromoCodeApplying(false);
     }
   };
 
@@ -169,14 +268,15 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         <div className="promo-code__input-group">
           <input
             type="text"
-            value={formData.promoCode}
+            value={promoCode}
             onChange={(e) =>
-              setFormData({ ...formData, promoCode: e.target.value })
+              setPromoCode(e.target.value)
             }
             placeholder={t("payment.orderSummary.promoCode.placeholder")}
           />
-          <button className="apply-btn" onClick={() => setIsModalVisible(true)}>
-            {t("payment.orderSummary.promoCode.apply")}
+          <button className="apply-btn" onClick={handlePromoCode} disabled={promoCodeApplying}>
+            {promoCodeApplying ? <ButtonLoading height="15px" width="15px" /> : t("payment.orderSummary.promoCode.apply")}
+            {/* <ButtonLoading height="15px" width="15px" /> */}
           </button>
         </div>
       </div>
