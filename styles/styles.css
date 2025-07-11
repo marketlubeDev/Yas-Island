@@ -4544,7 +4544,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-form__right .order-summary {
-    margin-top: -6.5rem;
+    margin-top: 0rem !important;
   }
   .payment-form__right .order-summary__title {
     font-size: 0.9rem;
