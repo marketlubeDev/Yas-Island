@@ -4,7 +4,7 @@
 
   &__title {
     margin-bottom: 8px;
-    color: #18142b;
+    color: var(--color-base-text);
     font-size: 30px;
     font-style: normal;
     font-weight: 600;
@@ -79,7 +79,7 @@
 .promo-modal {
   .ant-modal-content {
     border-radius: 40px;
-    background: #fff;
+    background: var(--color-base-bg);
     box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   }
 }

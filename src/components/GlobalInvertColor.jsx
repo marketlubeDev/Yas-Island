@@ -13,6 +13,18 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#fff" : "#18142B"
     );
     document.documentElement.style.setProperty(
+      "--bg-skeleton",
+      isDarkMode ? "#1a1a1a" : "#eee"
+    );
+    document.documentElement.style.setProperty(
+      "--border-skeleton-one",
+      isDarkMode ? "#1a1a1a" : "#ececec"
+    );
+    document.documentElement.style.setProperty(
+      "--border-skeleton-two",
+      isDarkMode ? "#333333" : "#f5f5f5"
+    );
+    document.documentElement.style.setProperty(
       "--down-arrow-icon",
       isDarkMode
         ? 'url("../../../src/assets/icons/inverteddown.svg")'
@@ -1879,6 +1891,16 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");
 
       document.documentElement.style.setProperty("--cart-btn-var-save", "#fff");
+
+      document.documentElement.style.setProperty("--bg-skeleton", "#eee");
+      document.documentElement.style.setProperty(
+        "--border-skeleton-one",
+        "#ececec"
+      );
+      document.documentElement.style.setProperty(
+        "--border-skeleton-two",
+        "#f5f5f5"
+      );
     };
   }, [isDarkMode, isHighContrast]);
 
