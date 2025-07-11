@@ -1,14 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export default function PromoCodeModalContent() {
+export default function PromoCodeModalContent({checkout}) {
+  console.log(checkout, "checkout>>");
   const { t } = useTranslation();
 
   return (
     <div className="promo-modal-content">
       <h2 className="promo-modal-content__title">{t("promo.applied")}</h2>
       <div className="promo-modal-content__amount">
-        {t("promo.amount")} 100.00
+        {t("promo.amount")} {checkout?.promotions?.[0]?.discount}
       </div>
       <div className="promo-modal-content__saved">{t("promo.saved")}</div>
       <hr className="promo-modal-content__divider" />
@@ -23,14 +24,14 @@ export default function PromoCodeModalContent() {
         </div>
         <div className="promo-modal-content__row promo-modal-content__row--savings">
           <span>{t("promo.savings")}</span>
-          <span>-100.00</span>
+          <span>{checkout?.promotions?.[0]?.discount}</span>
         </div>
       </div>
       <hr className="promo-modal-content__divider" />
       <div className="promo-modal-content__total">
         <span>{t("payment.orderSummary.total")}</span>
         <span className="promo-modal-content__total-amount">
-          {t("promo.amount")} 885.00
+          {t("promo.amount")} {checkout?.grossAmount}
         </span>
       </div>
     </div>

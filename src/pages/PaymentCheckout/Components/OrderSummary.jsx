@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 
-export default function OrderSummary({ formData, setFormData, checkout }) {
+export default function OrderSummary({ formData, setFormData, checkout }) { 
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -96,6 +96,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
 
     checkBasket(data, {
       onSuccess: (res) => {
+    
         if (res?.orderDetails?.error?.code) {
           toast.error(
             res?.orderDetails?.error?.text || t("Something went wrong"),
@@ -104,7 +105,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
             }
           );
         } else {
-          setIsModalVisible(true);
+         
           const orderDetails = res?.orderdetails?.order;
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
@@ -119,7 +120,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
             setCheckout({
               coupons: orderDetails?.coupons,
               items: items,
-              emailId: checkout?.email,
+              emailId: checkout?.emailId,
               language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
@@ -130,8 +131,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
               countryCode: checkout?.countryCode,
               isTnCAgrred: checkout?.isTnCAgrred,
               isConsentAgreed: checkout?.isConsentAgreed,
+              promotions: orderDetails?.promotions,
             })
           );
+          setPromoCodeApplying(false);
+          setIsModalVisible(true);
         }
       },
       onError: (err) => {
@@ -139,6 +143,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
+        setPromoCodeApplying(false);
       },
     });
   };
@@ -152,20 +157,16 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     };
     const response = await validatePromocode(promoCode);
     if (!response?.data?.coupondetails?.coupon) {
-     
       setIsModalVisible(false);
       toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
     } else{
       setFormData({ ...formData, promoCode: promoCode });
       handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
-
     }
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || "Invalid promo code");
-    } finally {
-      setPromoCodeApplying(false);
-    }
+    } 
   };
 
   return (
@@ -334,7 +335,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
           </span>
         }
       >
-        <PromoCodeModalContent />
+        <PromoCodeModalContent checkout={checkout} />
       </Modal>
     </div>
   );

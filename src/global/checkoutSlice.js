@@ -28,6 +28,7 @@ const initialState = {
 
   // Additional Info
   promoCode: "",
+  promotions: [],
 };
 
 const checkoutSlice = createSlice({
@@ -112,6 +113,7 @@ const persistConfig = {
     "netAmount",
     "taxAmount",
     "grossAmount",
+    "promotions",
   ],
 };
 
