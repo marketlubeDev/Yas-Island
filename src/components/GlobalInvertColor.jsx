@@ -13,6 +13,18 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#fff" : "#18142B"
     );
     document.documentElement.style.setProperty(
+      "--bg-skeleton",
+      isDarkMode ? "#1a1a1a" : "#eee"
+    );
+    document.documentElement.style.setProperty(
+      "--border-skeleton-one",
+      isDarkMode ? "#1a1a1a" : "#ececec"
+    );
+    document.documentElement.style.setProperty(
+      "--border-skeleton-two",
+      isDarkMode ? "#333333" : "#f5f5f5"
+    );
+    document.documentElement.style.setProperty(
       "--down-arrow-icon",
       isDarkMode
         ? 'url("../../../src/assets/icons/inverteddown.svg")'
@@ -26,27 +38,22 @@ export default function GlobalInvertColor() {
       "--color-base-text",
       isDarkMode ? "#E7EBD4" : "#18142B"
     );
-
     document.documentElement.style.setProperty(
       "--color-base-date-clr",
       isDarkMode ? "#FFFFFF" : "#1e1e1e"
     );
-
     document.documentElement.style.setProperty(
       "--color-today-bg",
       isDarkMode ? "#000000" : "#EEF7FE"
     );
-
     document.documentElement.style.setProperty(
       "--color-today-border",
       isDarkMode ? "#F8A622" : "none"
     );
-
     document.documentElement.style.setProperty(
       "--color-date-selected-bg",
       isDarkMode ? "#F8A622" : "#22215B"
     );
-
     document.documentElement.style.setProperty(
       "--color-base-text-secondary",
       isDarkMode ? "#E7EBD4" : "#514760"
@@ -71,12 +78,10 @@ export default function GlobalInvertColor() {
       "--color-base-chat-btn-text",
       isDarkMode ? "#000" : "#fff"
     );
-
     document.documentElement.style.setProperty(
       "--color-checkbox-clr",
       isDarkMode ? "#A2A999" : isHighContrast ? "#231942" : "#908999"
     );
-
     document.documentElement.style.setProperty(
       "--color-base-side-bar-border",
       isDarkMode ? "#F7B141" : isHighContrast ? "#084EBE" : "#F7D148"
@@ -829,6 +834,10 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#FFAD33" : "#1976d2"
     );
     document.documentElement.style.setProperty(
+      "--separator-color",
+      isDarkMode ? "#262626" : "#d9d9d9"
+    );
+    document.documentElement.style.setProperty(
       "--cart-border",
       isDarkMode
         ? "linear-gradient(90deg, #F9A251 0%, #CB5F26 100%) 1"
@@ -1225,6 +1234,10 @@ export default function GlobalInvertColor() {
       );
       document.documentElement.style.setProperty(
         "--color-base-product-card-divider",
+        "#d9d9d9"
+      );
+      document.documentElement.style.setProperty(
+        "--separator-color",
         "#d9d9d9"
       );
       document.documentElement.style.setProperty(
@@ -1878,6 +1891,16 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");
 
       document.documentElement.style.setProperty("--cart-btn-var-save", "#fff");
+
+      document.documentElement.style.setProperty("--bg-skeleton", "#eee");
+      document.documentElement.style.setProperty(
+        "--border-skeleton-one",
+        "#ececec"
+      );
+      document.documentElement.style.setProperty(
+        "--border-skeleton-two",
+        "#f5f5f5"
+      );
     };
   }, [isDarkMode, isHighContrast]);
 

@@ -459,6 +459,10 @@
   height: 100vh !important;
 }
 
+.product-separator {
+  border-top: 0.14706rem solid var(--color-base-product-card-divider) !important;
+}
+
 // Specific fixes for macOS Safari and other webkit browsers
 @supports (-webkit-appearance: none) {
   .product-modal .ant-modal-wrap {

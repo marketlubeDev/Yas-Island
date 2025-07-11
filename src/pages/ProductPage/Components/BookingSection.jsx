@@ -39,7 +39,9 @@ export default function BookingSection({
   );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const {verificationEmail,isEmailVerification} = useSelector((state) => state.cart);
+  const { verificationEmail, isEmailVerification } = useSelector(
+    (state) => state.cart
+  );
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -235,7 +237,7 @@ export default function BookingSection({
   };
 
   // Common function to handle basket check and cart operations
-  const handleBasketCheck = (onSuccess , type = "cart") => {
+  const handleBasketCheck = (onSuccess, type = "cart") => {
     if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
         position: "top-center",
@@ -313,71 +315,68 @@ export default function BookingSection({
           console.log(orderDetails, "orderDetails>>");
 
           if (type === "cart") {
-        orderDetails?.order?.items?.forEach((item) => {
-          const variantData = selectedProduct?.product_variants?.find(
-            (variant) => variant?.productid == item?.productId
-          );
+            orderDetails?.order?.items?.forEach((item) => {
+              const variantData = selectedProduct?.product_variants?.find(
+                (variant) => variant?.productid == item?.productId
+              );
 
-          let price = {
-            currency: "AED",
-            net: variantData?.net_amount,
-            tax: variantData?.vat,
-            gross: variantData?.gross,
-          };
-          let obj = {
-            capacityGuid: item?.capacityGuid,
-            discount: item?.discount,
-            groupingCode: item?.groupingCode,
-            itemPromotionList: item?.itemPromotionList,
-            original: item?.original,
-            packageCode: item?.packageCode,
-            performances:
-              item?.performances?.[0]?.performanceId ||
-              getPerformanceId(item?.validFrom, item?.productId) ||
-              null,
-            price: price,
-            productId: item?.productId,
-            quantity: item?.quantity,
-            rechargeAmount: item?.rechargeAmount,
-            validFrom: item?.validFrom,
-            validTo: item?.validTo
-              ? formatDateToYYYYMMDD(item?.validTo)
-              : getValidToDate(item?.productId, selectedDate),
-            image: selectedProduct?.product_images?.thumbnail_url,
-            title: selectedProduct?.product_title,
-            variantName: selectedProduct?.product_variants?.find(
-              (variant) => variant?.productid == item?.productId
-            )?.productvariantname,
-            minQuantity: variantData?.min_quantity,
-            maxQuantity: variantData?.max_quantity,
-            incrementNumber: variantData?.increment_number,
-          };
-          dispatch(addToCart(obj));
-        });
-      }else{
-        const checkoutData = {
-          coupons: [],
-          items: orderDetails?.order?.items,
-          emailId: verificationEmail || "",
-          country: "",
-          nationality: "",
-          phoneNumber: "",
-          language: language,
-          grossAmount: orderDetails?.order?.total?.gross,
-          netAmount: orderDetails?.order?.total?.net,
-          taxAmount: orderDetails?.order?.total?.tax,
-          firstName: "",
-          lastName: "",
-          phoneNumber: "",
-          countryCode: "",
-          isTnCAgrred: false,
-          isConsentAgreed: false,
-            promoCode: ""
-        }
-        dispatch(
-          setCheckout(checkoutData)
-        );
-      }
+              let price = {
+                currency: "AED",
+                net: variantData?.net_amount,
+                tax: variantData?.vat,
+                gross: variantData?.gross,
+              };
+              let obj = {
+                capacityGuid: item?.capacityGuid,
+                discount: item?.discount,
+                groupingCode: item?.groupingCode,
+                itemPromotionList: item?.itemPromotionList,
+                original: item?.original,
+                packageCode: item?.packageCode,
+                performances:
+                  item?.performances?.[0]?.performanceId ||
+                  getPerformanceId(item?.validFrom, item?.productId) ||
+                  null,
+                price: price,
+                productId: item?.productId,
+                quantity: item?.quantity,
+                rechargeAmount: item?.rechargeAmount,
+                validFrom: item?.validFrom,
+                validTo: item?.validTo
+                  ? formatDateToYYYYMMDD(item?.validTo)
+                  : getValidToDate(item?.productId, selectedDate),
+                image: selectedProduct?.product_images?.thumbnail_url,
+                title: selectedProduct?.product_title,
+                variantName: selectedProduct?.product_variants?.find(
+                  (variant) => variant?.productid == item?.productId
+                )?.productvariantname,
+                minQuantity: variantData?.min_quantity,
+                maxQuantity: variantData?.max_quantity,
+                incrementNumber: variantData?.increment_number,
+              };
+              dispatch(addToCart(obj));
+            });
+          } else {
+            const checkoutData = {
+              coupons: [],
+              items: orderDetails?.order?.items,
+              emailId: verificationEmail || "",
+              country: "",
+              nationality: "",
+              phoneNumber: "",
+              language: language,
+              grossAmount: orderDetails?.order?.total?.gross,
+              netAmount: orderDetails?.order?.total?.net,
+              taxAmount: orderDetails?.order?.total?.tax,
+              firstName: "",
+              lastName: "",
+              countryCode: "",
+              isTnCAgrred: false,
+              isConsentAgreed: false,
+              promoCode: "",
+            };
+            dispatch(setCheckout(checkoutData));
+          }
           onSuccess();
         }
       },
@@ -397,7 +396,7 @@ export default function BookingSection({
       });
       onBack();
       dispatch(setIsCartOpen(true));
-    } , "cart");
+    }, "cart");
   };
 
   const handleCheckout = () => {
@@ -411,7 +410,7 @@ export default function BookingSection({
       } else {
         navigate("/payment-details");
       }
-    } , "checkout");
+    }, "checkout");
   };
 
   const getPerformanceId = (date, variantProductId) => {
