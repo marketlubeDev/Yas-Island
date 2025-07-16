@@ -23,6 +23,7 @@ import {
   setProducts,
   setCurrentSort,
   setCurrentPark,
+  setSearchQuery,
 } from "../../global/productSlice";
 import { setIsCartOpen } from "../../global/cartSlice";
 import { getSortValueForLanguage } from "../../utils/sortTranslation";
@@ -95,6 +96,7 @@ export default function HeaderLogo() {
 
       dispatch(setCurrentSort(""));
       dispatch(setCurrentPark(""));
+      dispatch(setSearchQuery(""));
 
       // Update LanguageContext for UI display
       const newLanguage = lng === "en" ? "English" : "العربية";
