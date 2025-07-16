@@ -19,8 +19,14 @@ import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
 import down from "../../assets/icons/down.svg";
 import invertdown from "../../assets/icons/invertdown.svg";
-import { setProducts } from "../../global/productSlice";
+import {
+  setProducts,
+  setCurrentSort,
+  setCurrentPark,
+} from "../../global/productSlice";
 import { setIsCartOpen } from "../../global/cartSlice";
+import { getSortValueForLanguage } from "../../utils/sortTranslation";
+import { getParkNameForLanguage } from "../../utils/parkTranslation";
 
 export default function HeaderLogo() {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
@@ -47,6 +53,10 @@ export default function HeaderLogo() {
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+  const currentSort = useSelector((state) => state.product.currentSort);
+  const currentPark = useSelector((state) => state.product.currentPark);
+
+  console.log(currentPark, "currentdgdgdPark");
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -70,6 +80,21 @@ export default function HeaderLogo() {
       // Update Redux state - this will trigger i18n change via useI18nSync
       dispatch(setLanguage(lng));
       dispatch(setProducts([])); // Clear products when language changes
+
+      // // Update currentSort to the corresponding language
+      // if (currentSort) {
+      //   const translatedSort = getSortValueForLanguage(currentSort, lng);
+      //   dispatch(setCurrentSort(translatedSort));
+      // }
+
+      // // Update currentPark to the corresponding language
+      // if (currentPark) {
+      //   const translatedPark = getParkNameForLanguage(currentPark, lng);
+      //   dispatch(setCurrentPark(translatedPark));
+      // }
+
+      dispatch(setCurrentSort(""));
+      dispatch(setCurrentPark(""));
 
       // Update LanguageContext for UI display
       const newLanguage = lng === "en" ? "English" : "العربية";

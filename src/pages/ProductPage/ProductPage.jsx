@@ -55,8 +55,6 @@ export default function ProductPage() {
         const defaultVariant = product?.product_variants?.find(
           (variant) => variant.isdefault
         );
-
-        console.log(defaultVariant, "defaultVariant");
         // If no default variant found, use the first variant
         const variantToUse = defaultVariant || product?.product_variants?.[0];
         return variantToUse?.gross || 0;
