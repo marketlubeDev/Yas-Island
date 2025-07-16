@@ -124,7 +124,7 @@ export default function ProductModal({
       if (hasPerformance) {
         const productId = selectedProduct?.product_masterid;
         const performanceData = await getPerformance(productId);
-        
+
         // Check if we have any performance data
         if (!performanceData || performanceData.length === 0) {
           toast.error("This product is currently not available", {
@@ -136,23 +136,28 @@ export default function ProductModal({
         }
 
         // Format dates for each variant and mark variants with no dates as unavailable
-        const formattedData = performanceData.map(variant => {
-          const formattedDates = variant.availableDates?.map(date => date.split('T')[0]) || [];
+        const formattedData = performanceData.map((variant) => {
+          const formattedDates =
+            variant.availableDates?.map((date) => date.split("T")[0]) || [];
           return {
             ...variant,
             availableDates: formattedDates,
-            isAvailable: formattedDates.length > 0 // Add flag to track if variant has any dates
+            isAvailable: formattedDates.length > 0, // Add flag to track if variant has any dates
           };
         });
 
         // Get all unique dates from all variants for calendar display
-        const allUniqueDates = [...new Set(
-          formattedData.flatMap(variant => variant.availableDates)
-        )];
+        const allUniqueDates = [
+          ...new Set(
+            formattedData.flatMap((variant) => variant.availableDates)
+          ),
+        ];
 
         // Check if all variants have no dates
-        const allVariantsUnavailable = formattedData.every(variant => !variant.isAvailable);
-        
+        const allVariantsUnavailable = formattedData.every(
+          (variant) => !variant.isAvailable
+        );
+
         if (allVariantsUnavailable) {
           toast.error("This product is currently not available", {
             position: "top-center",
@@ -176,8 +181,6 @@ export default function ProductModal({
       setIsLoadingDates(false);
     }
   };
-
-  
 
   const handleAddToCart = () => {
     setShowBookingSection(true);
@@ -239,8 +242,8 @@ export default function ProductModal({
                   </h3>
                   <p className="tax">
                     {defaultVariant(selectedProduct)?.net_amount} +
-                    {(defaultVariant(selectedProduct)?.vat)}
-                    {"Net & Tax"}
+                    {defaultVariant(selectedProduct)?.vat}
+                    {t("common.netAndTax")}
                   </p>
                 </div>
                 <div className="vertical-divider"></div>
