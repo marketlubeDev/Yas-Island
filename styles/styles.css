@@ -3399,7 +3399,6 @@ html[lang=ar] .guest-label {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   border-radius: 8px;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 .order-summary-new .secure-payment-section .secure-payment-button:hover {
