@@ -13,7 +13,9 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
   console.log(checkout, "checkout>>123");
-  const currentLanguage = useSelector((state) => state.language.currentLanguage);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -30,14 +32,16 @@ export default function PaymentDetails() {
   });
 
   useEffect(() => {
-    dispatch(updatePersonalDetails({
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      country: formData.country,
-      nationality: formData.nationality,
-      emailId: formData.email,
-      phoneNumber: formData.phoneNumber
-    }));
+    dispatch(
+      updatePersonalDetails({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        country: formData.country,
+        nationality: formData.nationality,
+        emailId: formData.email,
+        phoneNumber: formData.phoneNumber,
+      })
+    );
   }, [formData, dispatch]);
 
   const validateData = (data) => {
@@ -49,9 +53,12 @@ export default function PaymentDetails() {
     } else {
       // Validate each item
       data.items.forEach((item, index) => {
-        if (!item.productId) errors.push(`Item ${index + 1}: Missing product ID`);
-        if (!item.quantity || item.quantity < 1) errors.push(`Item ${index + 1}: Invalid quantity`);
-        if (!item.validFrom) errors.push(`Item ${index + 1}: Missing valid from date`);
+        if (!item.productId)
+          errors.push(`Item ${index + 1}: Missing product ID`);
+        if (!item.quantity || item.quantity < 1)
+          errors.push(`Item ${index + 1}: Invalid quantity`);
+        if (!item.validFrom)
+          errors.push(`Item ${index + 1}: Missing valid from date`);
       });
     }
 
@@ -88,8 +95,6 @@ export default function PaymentDetails() {
     return errors;
   };
 
-
-
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
       toast.error("Please accept the terms and conditions to proceed");
@@ -103,7 +108,7 @@ export default function PaymentDetails() {
         quantity: item.quantity,
         performance: item.performances,
         validFrom: item.validFrom,
-        validTo: item.validTo
+        validTo: item.validTo,
       })),
       emailId: checkout?.emailId,
       language: currentLanguage,
@@ -114,14 +119,14 @@ export default function PaymentDetails() {
       countryCode: checkout?.country,
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
-      nationality: checkout?.nationality
+      nationality: checkout?.nationality,
     };
 
     // Validate data before proceeding
     const validationErrors = validateData(data);
-    
+
     if (validationErrors.length > 0) {
-      validationErrors.forEach(error => {
+      validationErrors.forEach((error) => {
         toast.error(error);
       });
       return;
@@ -130,31 +135,49 @@ export default function PaymentDetails() {
     createOrder(data, {
       onSuccess: (responseData) => {
         dispatch(setOrderData(responseData));
-        navigate('/card-payment');
+        navigate("/card-payment");
       },
       onError: (error) => {
         console.log(error, "error>>");
-        toast.error(error?.response?.data?.message || "Something went wrong with the payment");
-      }
+        toast.error(
+          error?.response?.data?.message ||
+            "Something went wrong with the payment"
+        );
+      },
     });
   };
 
   return (
     <div className="payment-form">
-      <PersonalDetailsForm formData={formData} setFormData={setFormData} />
+      <PersonalDetailsForm
+        formData={formData}
+        setFormData={setFormData}
+        handleProceedToPayment={handleProceedToPayment}
+        isPending={isPending}
+        checkout={checkout}
+      />
       <div className="payment-form__right">
-        <OrderSummary formData={formData} setFormData={setFormData} checkout={checkout} />
-        <button 
-          className="proceedbtn" 
-          onClick={handleProceedToPayment} 
+        <OrderSummary
+          formData={formData}
+          setFormData={setFormData}
+          checkout={checkout}
+        />
+        {/* <button
+          className="proceedbtn"
+          onClick={handleProceedToPayment}
           disabled={isPending || !checkout.isTnCAgrred}
-          style={{ 
+          style={{
             opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
-            cursor: isPending || !checkout.isTnCAgrred ? 'not-allowed' : 'pointer'
+            cursor:
+              isPending || !checkout.isTnCAgrred ? "not-allowed" : "pointer",
           }}
         >
-          {isPending ? <ButtonLoading/> : t("payment.paymentDetails.proceedToPayment")}
-        </button>
+          {isPending ? (
+            <ButtonLoading />
+          ) : (
+            t("payment.paymentDetails.proceedToPayment")
+          )}
+        </button> */}
       </div>
     </div>
   );
