@@ -3747,19 +3747,17 @@ html[lang=ar] .guest-label {
 }
 
 .form-group {
-  margin: 0 2.5rem;
+  margin: 0 0rem;
   margin-bottom: 4rem;
   position: relative;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group {
-    margin: 0 3rem;
     margin-bottom: 3rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .form-group {
-    margin: 0 4rem;
     margin-bottom: 3rem;
   }
 }
@@ -4139,12 +4137,10 @@ html[lang=ar] .guest-label {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
-  margin-left: -2rem;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group-row {
     margin-bottom: 1.5rem;
-    margin-left: -1.5rem;
   }
 }
 .payment-form__left .form-group-row .form-group {
@@ -4512,7 +4508,6 @@ html[lang=ar] .guest-label {
   .payment-form__left .form-group-row {
     gap: 1.5rem;
     margin-bottom: 1.5rem;
-    margin-left: -1.5rem;
   }
   .payment-form__left .form-group {
     margin-bottom: 1.5rem;
