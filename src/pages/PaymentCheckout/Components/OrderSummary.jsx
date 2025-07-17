@@ -18,7 +18,7 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [showAllItems, setShowAllItems] = useState(false);
   // const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
   const [promoCode, setPromoCode] = useState(
     checkout?.coupons?.[0]?.code || ""
@@ -52,8 +52,8 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
     setIsModalVisible(false);
   };
 
-  const toggleAccordion = (index) => {
-    setExpandedItem(expandedItem === index ? null : index);
+  const toggleAllItems = () => {
+    setShowAllItems(!showAllItems);
   };
 
   const formatDate = (dateString) => {
@@ -191,52 +191,80 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         </div>
       </div>
 
-      {/* Items Section */}
-      <div className="order-items-section">
-        {/* <div className="section-header">
-          <span className="section-title">DATES & GUESTS</span>
-        </div> */}
-
-        <div className="items-container">
-          {checkout?.items?.map((item, index) => (
-            <div key={index} className="order-item">
-              <div
-                className="item-header"
-                onClick={() => toggleAccordion(index)}
+      {/* View All Items Section */}
+      <div className="view-items-section">
+        <div className="view-items-header" onClick={toggleAllItems}>
+          <div className="view-items-left">
+            <div className="shopping-bag-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <div className="item-info">
-                  <h4 className="item-title">
-                    {getProduct(item.productId)?.product?.product_title}
-                  </h4>
-                  <div className="item-meta">
-                    <span className="item-date">
-                      {formatDate(item.validFrom)}
-                    </span>
-                    <span className="item-quantity">
-                      • {item.quantity}{" "}
-                      {item.quantity === 1 ? "guest" : "guests"}
+                <path
+                  d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
+                  stroke="#666"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
+                  stroke="#666"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
+                  stroke="#666"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <span className="view-items-text">View Items</span>
+          </div>
+          <img
+            src={downArrow}
+            alt="expand"
+            className={`view-items-arrow ${showAllItems ? "expanded" : ""}`}
+          />
+        </div>
+
+        {showAllItems && (
+          <div className="items-container">
+            {checkout?.items?.map((item, index) => (
+              <div key={index} className="order-item">
+                <div className="item-header">
+                  <div className="item-info">
+                    <h4 className="item-title">
+                      {getProduct(item.productId)?.product?.product_title}
+                    </h4>
+                    <div className="item-meta">
+                      <span className="item-date">
+                        {formatDate(item.validFrom)}
+                      </span>
+                      <span className="item-quantity">
+                        • {item.quantity}{" "}
+                        {item.quantity === 1 ? "guest" : "guests"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="item-price">
+                    <span className="price-amount">
+                      AED{" "}
+                      {(
+                        getProduct(item.productId)?.productVariant?.net_amount *
+                        item.quantity
+                      ).toFixed(2)}
                     </span>
                   </div>
                 </div>
-                <div className="item-price">
-                  <span className="price-amount">
-                    AED{" "}
-                    {(
-                      getProduct(item.productId)?.productVariant?.net_amount *
-                      item.quantity
-                    ).toFixed(2)}
-                  </span>
-                  <img
-                    src={downArrow}
-                    alt="expand"
-                    className={`expand-icon ${
-                      expandedItem === index ? "expanded" : ""
-                    }`}
-                  />
-                </div>
-              </div>
 
-              {expandedItem === index && (
                 <div className="item-details">
                   <div className="detail-row">
                     <span className="detail-label">Variant:</span>
@@ -280,10 +308,10 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Pricing Section */}
@@ -328,52 +356,11 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
           </div>
         </div>
 
-        {/* <div className="pricing-divider"></div> */}
-
         <div className="pricing-row total-row">
           <span className="total-label">Total</span>
           <span className="total-value">AED {checkout?.grossAmount}</span>
         </div>
       </div>
-
-      {/* <div className="terms">
-        <label
-          className={`checkbox-container ${
-            currentLanguage === "ar" ? "rtl" : ""
-          }`}
-        >
-          <input
-            type="checkbox"
-            className="checkbox-input"
-            checked={checkout.isTnCAgrred}
-            onChange={(e) => handleTermsChange("terms", e.target.checked)}
-          />
-          <span className="checkbox-custom"></span>
-          <span className="checkbox-text">
-            {t("payment.orderSummary.terms.acceptTerms")}{" "}
-            <a href="#" className="terms-link">
-              {t("payment.orderSummary.terms.termsAndConditions")}
-            </a>
-          </span>
-        </label>
-
-        <label
-          className={`checkbox-container ${
-            currentLanguage === "ar" ? "rtl" : ""
-          }`}
-        >
-          <input
-            type="checkbox"
-            className="checkbox-input"
-            checked={checkout.isConsentAgreed}
-            onChange={(e) => handleTermsChange("consent", e.target.checked)}
-          />
-          <span className="checkbox-custom"></span>
-          <span className="checkbox-text">
-            {t("payment.orderSummary.terms.receiveCommunications")}
-          </span>
-        </label>
-      </div> */}
 
       <Modal
         open={isModalVisible}
