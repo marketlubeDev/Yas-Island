@@ -257,6 +257,8 @@ export const en = {
         "Your payment has been processed successfully. You will receive a confirmation email shortly.",
       viewBooking: "View Booking",
       backToHome: "Back to Home",
+      redirecting: "You will be redirected to the home page in",
+      seconds: "seconds",
     },
     response: {
       ticketSent: "Your ticket has been sent to the registered mail ID!",
@@ -267,6 +269,8 @@ export const en = {
       average: "Average",
       poor: "Poor",
       thankYou: "Thank you! Visit again",
+      redirecting: "You will be redirected to the home page in",
+      seconds: "seconds",
     },
   },
   promo: {
@@ -274,5 +278,6 @@ export const en = {
     saved: "Saved! that feels amazing, right?",
     savings: "promo code savings :",
     amount: "AED",
+    redirecting: "You will be redirected to the home page in 3 seconds",
   },
 };

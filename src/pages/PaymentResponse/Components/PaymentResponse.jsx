@@ -6,6 +6,8 @@ import Average from "../../../assets/icons/smile.svg";
 import Poor from "../../../assets/icons/poor.svg";
 import { useNavigate } from "react-router-dom";
 import thanksmile from "../../../assets/icons/thanksmile.svg";
+import updateSurvey from "../../../serivces/survey/survey";
+import { toast } from "sonner";
 
 export default function PaymentResponse() {
   const { t } = useTranslation();
@@ -13,6 +15,8 @@ export default function PaymentResponse() {
   const emojiRef = useRef(null);
   const navigate = useNavigate();
   const [showThankYou, setShowThankYou] = useState(false);
+  const [countdown, setCountdown] = useState(3); // Add countdown state
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add isSubmitting state
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -27,13 +31,36 @@ export default function PaymentResponse() {
     };
   }, []);
 
-  const handleEmojiClick = (emojiType) => {
-    setSelectedEmoji(emojiType === selectedEmoji ? null : emojiType);
-    setShowThankYou(true);
+  useEffect(() => {
+    if (showThankYou) {
+      if (countdown === 0) {
+        navigate("/");
+        return;
+      }
+      const timer = setTimeout(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showThankYou, countdown, navigate]);
 
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
+  const handleEmojiClick = async (emojiType) => {
+    if (isSubmitting) return; // Prevent double click
+    setIsSubmitting(true);
+    try {
+      const response = await updateSurvey(emojiType);
+      if (response.status === 200) {
+        setShowThankYou(true);
+        setSelectedEmoji(emojiType === selectedEmoji ? null : emojiType);
+        setCountdown(3); // Reset countdown when thank you is shown
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data);
+    } finally {
+      setIsSubmitting(false);
+    }
+    // Remove navigate timeout from here, handled by countdown
   };
 
   return (
@@ -52,10 +79,18 @@ export default function PaymentResponse() {
               {t("payment.response.rateExperience")}
             </div>
 
-            <div className="feedback-options" ref={emojiRef}>
+            <div
+              className="feedback-options"
+              ref={emojiRef}
+              style={{
+                pointerEvents: isSubmitting ? "none" : "auto",
+                opacity: isSubmitting ? 0.5 : 1,
+                transition: "opacity 0.3s"
+              }}
+            >
               <div
                 className="option"
-                onClick={() => handleEmojiClick("excellent")}
+                onClick={() => handleEmojiClick("Satisfied")}
               >
                 <img
                   className="emoji green"
@@ -72,7 +107,7 @@ export default function PaymentResponse() {
               </div>
               <div
                 className="option"
-                onClick={() => handleEmojiClick("average")}
+                onClick={() => handleEmojiClick("Neutral")}
               >
                 <img
                   className="emoji yellow"
@@ -87,7 +122,7 @@ export default function PaymentResponse() {
                 />
                 <div className="label">{t("payment.response.average")}</div>
               </div>
-              <div className="option" onClick={() => handleEmojiClick("poor")}>
+              <div className="option" onClick={() => handleEmojiClick("Unsatisfied")}>
                 <img
                   className="emoji red"
                   src={Poor}
@@ -113,6 +148,8 @@ export default function PaymentResponse() {
             <img src={thanksmile} alt="Smiley" className="smiley-img" />
           </div>
           <p className="feedback-text">{t("payment.response.thankYou")}</p>
+          <p className="feedback-text">{t("payment.response.redirecting")} {countdown} {t("payment.response.seconds")}</p>
+
         </div>
       )}
     </div>
