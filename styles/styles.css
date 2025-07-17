@@ -3638,8 +3638,8 @@ html[lang=ar] .guest-label {
   width: 100%;
   max-width: 1300px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: start;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__content {
@@ -3748,19 +3748,17 @@ html[lang=ar] .guest-label {
 }
 
 .form-group {
-  margin: 0 2.5rem;
+  margin: 0 0rem;
   margin-bottom: 4rem;
   position: relative;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group {
-    margin: 0 3rem;
     margin-bottom: 3rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .form-group {
-    margin: 0 4rem;
     margin-bottom: 3rem;
   }
 }
@@ -5187,7 +5185,7 @@ html[lang=ar] .guest-label {
   height: 100%;
   max-width: 800px;
   background-color: var(--color-resend-btn-bg);
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
 }
 .payment-container .order-summary {
   margin-bottom: 2rem;

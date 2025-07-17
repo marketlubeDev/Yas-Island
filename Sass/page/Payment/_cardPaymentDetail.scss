@@ -6,7 +6,7 @@
   max-width: 800px;
   background-color: var(--color-resend-btn-bg);
   // border: 1px solid #000;
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
 
   .order-summary {
     margin-bottom: 2rem;
@@ -548,3 +548,102 @@
     font-size: 0.9rem;
   }
 }
+
+// Two-column layout for card payment page
+
+// .card-payment-layout {
+//   display: flex;
+//   gap: 2rem;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   padding: 2rem;
+
+//   @include respond(bigDesktop) {
+//     gap: 1.5rem;
+//     padding: 1.5rem;
+//   }
+
+//   @include respond(desktop) {
+//     flex-direction: column;
+//     gap: 1rem;
+//     padding: 1rem;
+//   }
+
+//   .card-payment-main {
+//     flex: 1;
+//     min-width: 0; // Prevents flex item from overflowing
+
+//     .payment-container {
+//       max-width: none;
+//       width: 100%;
+//       padding: 1.5rem;
+
+//       @include respond(bigDesktop) {
+//         padding: 1.2rem;
+//       }
+
+//       @include respond(desktop) {
+//         padding: 1rem;
+//       }
+//     }
+//   }
+
+//   .card-payment-sidebar {
+//     flex: 0 0 400px;
+//     min-width: 0; // Prevents flex item from overflowing
+
+//     @include respond(bigDesktop) {
+//       flex: 0 0 350px;
+//     }
+
+//     @include respond(desktop) {
+//       flex: none;
+//       width: 100%;
+//     }
+
+//     .order-summary-new {
+//       background: white;
+//       border-radius: 12px;
+//       // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+//       padding: 1.5rem;
+//       height: fit-content;
+//       position: sticky;
+//       top: 2rem;
+
+//       @include respond(bigDesktop) {
+//         padding: 1.2rem;
+//         top: 1.5rem;
+//       }
+
+//       @include respond(desktop) {
+//         position: static;
+//         padding: 1rem;
+//       }
+//     }
+//   }
+// }
+
+// // Responsive adjustments for mobile
+// @include respond(tablet) {
+//   .card-payment-layout {
+//     flex-direction: column;
+//     gap: 1rem;
+//     padding: 1rem;
+
+//     .card-payment-main {
+//       .payment-container {
+//         padding: 1rem;
+//       }
+//     }
+
+//     .card-payment-sidebar {
+//       flex: none;
+//       width: 100%;
+
+//       .order-summary-new {
+//         position: static;
+//         padding: 1rem;
+//       }
+//     }
+//   }
+// }
