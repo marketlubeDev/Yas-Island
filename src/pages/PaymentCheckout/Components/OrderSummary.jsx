@@ -362,6 +362,39 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         </div>
       </div>
 
+      {/* Secure Payment Section */}
+      <div className="secure-payment-section">
+        <div className="secure-payment-button">
+          <div className="secure-icon">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L3 7V12C3 16.4183 6.58172 20 11 20H13C17.4183 20 21 16.4183 21 12V7L12 2Z"
+                fill="#22C55E"
+                stroke="#22C55E"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 9L15 12L12 15L9 12L12 9Z"
+                fill="white"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <span className="secure-text">Secure Payment</span>
+        </div>
+      </div>
+
       <Modal
         open={isModalVisible}
         onOk={handleOk}
