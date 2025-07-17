@@ -284,11 +284,11 @@
 }
 
 .payment-form {
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
   background: var(--color-email-form-box);
   border-radius: 8px;
-  margin-top: 2rem;
+  // margin-top: 2rem;
 
   @include respond(bigDesktop) {
     padding: 1.5rem;

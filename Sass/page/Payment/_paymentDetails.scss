@@ -14,7 +14,7 @@
   }
 
   &__left {
-    padding: 2rem;
+    padding: 2rem 2rem 0 2rem;
     width: 65%;
 
     @include respond(bigTablets) {
@@ -301,14 +301,141 @@
         margin-left: -1.5rem;
       }
     }
+
+    // Terms section styling for left side
+    .terms {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      @include respond(desktop) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .checkbox-container {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        position: relative;
+        padding-left: 30px;
+
+        @include respond(desktop) {
+          margin-bottom: 0.8rem;
+          padding-left: 25px;
+        }
+
+        .checkbox-input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        .checkbox-custom {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 18px;
+          width: 18px;
+          background-color: transparent;
+          border: 2px solid var(--ip-bodr-btm);
+          border-radius: 3px;
+
+          @include respond(desktop) {
+            height: 18px;
+            width: 18px;
+          }
+
+          &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid var(--color-base-text-secondary);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+
+            @include respond(desktop) {
+              left: 5px;
+              top: 1px;
+              width: 4px;
+              height: 9px;
+            }
+          }
+        }
+
+        .checkbox-input:checked ~ .checkbox-custom:after {
+          display: block;
+        }
+
+        .checkbox-text {
+          font-size: 0.9rem;
+          color: var(--color-base-text-secondary);
+          line-height: 1.4;
+
+          @include respond(desktop) {
+            font-size: 0.8rem;
+          }
+
+          a {
+            color: var(--color-base-text-secondary);
+            text-decoration: underline;
+            font-weight: 500;
+          }
+        }
+
+        &.rtl {
+          padding-left: 0;
+          padding-right: 30px;
+
+          @include respond(desktop) {
+            padding-right: 25px;
+          }
+
+          .checkbox-custom {
+            left: auto;
+            right: 0;
+          }
+        }
+      }
+    }
+
+    // Button styling for left side
+    .proceedbtn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 2.92381rem;
+      background: var(--color-base-accessibility-modal-btn-bg);
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 1rem;
+
+      @include respond(desktop) {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
   }
 
   @include respond(bigDesktop) {
     gap: 1.5rem;
 
     &__left {
-      padding: 0rem;
-      margin-top: -1.5rem;
+      padding: 2rem;
+      // margin-top: -1.5rem;
 
       .form-group-row {
         gap: 1.5rem;
@@ -1063,8 +1190,8 @@
 }
 
 .proceedbtn {
-  width: 95%;
-  margin-left: 1rem;
+  width: 100%;
+  // margin-left: 1rem;
   padding: 1rem;
   border-radius: 2.92381rem;
   background: var(--color-base-accessibility-modal-btn-bg);

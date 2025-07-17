@@ -7,6 +7,9 @@ import { getData } from "country-list";
 import ReactCountryFlag from "react-country-flag";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTermsAcceptance } from "../../../global/checkoutSlice";
 
 const COUNTRIES = getData().map((country) => ({
   value: country.code,
@@ -33,15 +36,15 @@ const FormInput = ({
         style={{ width: "100%" }}
       />
       {button && (
-        <div 
-          className="form-group__button" 
-          style={{ 
+        <div
+          className="form-group__button"
+          style={{
             position: "absolute",
             right: "0",
             top: "50%",
             transform: "translateY(-50%)",
             background: "none",
-            border: "none"
+            border: "none",
           }}
         >
           {button}
@@ -77,7 +80,7 @@ const FormSelectWithSearch = ({
   );
 
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       border: "none",
       borderBottom: "1px solid var(--ip-bodr-btm)",
@@ -220,12 +223,40 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
   </div>
 );
 
-export default function PersonalDetailsForm({ formData, setFormData }) {
+export default function PersonalDetailsForm({
+  formData,
+  setFormData,
+  handleProceedToPayment,
+  isPending,
+  checkout,
+}) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
 
   const handleInputChange = (field) => (value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleTermsChange = (type, checked) => {
+    if (type === "terms") {
+      dispatch(
+        updateTermsAcceptance({
+          isTnCAgrred: checked,
+          isConsentAgreed: checkout.isConsentAgreed,
+        })
+      );
+    } else if (type === "consent") {
+      dispatch(
+        updateTermsAcceptance({
+          isTnCAgrred: checkout.isTnCAgrred,
+          isConsentAgreed: checked,
+        })
+      );
+    }
   };
 
   return (
@@ -265,7 +296,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
           onChange={handleInputChange("email")}
           type="email"
           button={
-            <button 
+            <button
               onClick={() => navigate("/email-verification")}
               style={{
                 background: "none",
@@ -274,7 +305,7 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
                 padding: "5px",
                 display: "flex",
                 alignItems: "center",
-                marginRight: "5px"
+                marginRight: "5px",
               }}
             >
               <FaEdit size={18} color="#666" />
@@ -287,6 +318,62 @@ export default function PersonalDetailsForm({ formData, setFormData }) {
           onPhoneNumberChange={handleInputChange("phoneNumber")}
         />
       </div>
+
+      <div className="terms">
+        <label
+          className={`checkbox-container ${
+            currentLanguage === "ar" ? "rtl" : ""
+          }`}
+        >
+          <input
+            type="checkbox"
+            className="checkbox-input"
+            checked={checkout.isTnCAgrred}
+            onChange={(e) => handleTermsChange("terms", e.target.checked)}
+          />
+          <span className="checkbox-custom"></span>
+          <span className="checkbox-text">
+            {t("payment.orderSummary.terms.acceptTerms")}{" "}
+            <a href="#" className="terms-link">
+              {t("payment.orderSummary.terms.termsAndConditions")}
+            </a>
+          </span>
+        </label>
+
+        <label
+          className={`checkbox-container ${
+            currentLanguage === "ar" ? "rtl" : ""
+          }`}
+        >
+          <input
+            type="checkbox"
+            className="checkbox-input"
+            checked={checkout.isConsentAgreed}
+            onChange={(e) => handleTermsChange("consent", e.target.checked)}
+          />
+          <span className="checkbox-custom"></span>
+          <span className="checkbox-text">
+            {t("payment.orderSummary.terms.receiveCommunications")}
+          </span>
+        </label>
+      </div>
+
+      <button
+        className="proceedbtn"
+        onClick={handleProceedToPayment}
+        disabled={isPending || !checkout.isTnCAgrred}
+        style={{
+          opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
+          cursor:
+            isPending || !checkout.isTnCAgrred ? "not-allowed" : "pointer",
+        }}
+      >
+        {isPending ? (
+          <ButtonLoading />
+        ) : (
+          t("payment.paymentDetails.proceedToPayment")
+        )}
+      </button>
     </div>
   );
 }
