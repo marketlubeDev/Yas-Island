@@ -17,8 +17,6 @@ export default function PaymentCheckoutBody() {
     navigate("/product");
   };
 
- 
-
   const showHeaderComponents =
     currentStep === "email" || currentStep === "details";
 
