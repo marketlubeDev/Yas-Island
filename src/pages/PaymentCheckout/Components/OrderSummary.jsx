@@ -249,7 +249,7 @@ export default function OrderSummary({
                     <h4 className="item-title">
                       {getProduct(item.productId)?.product?.product_title}
                     </h4>
-                    <div className="item-meta">
+                    {/* <div className="item-meta">
                       <span className="item-date">
                         {formatDate(item.validFrom)}
                       </span>
@@ -257,7 +257,7 @@ export default function OrderSummary({
                         • {item.quantity}{" "}
                         {item.quantity === 1 ? "guest" : "guests"}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="item-price">
                     <span className="price-amount">
@@ -302,7 +302,7 @@ export default function OrderSummary({
                       </span>
                     </div>
                     <div className="breakdown-row">
-                      <span>VAT & Tax:</span>
+                      <span>VAT :</span>
                       <span>
                         + AED{" "}
                         {(
@@ -326,10 +326,8 @@ export default function OrderSummary({
           <span className="pricing-value">AED {checkout?.netAmount}</span>
         </div>
         <div className="pricing-row">
-          <span className="pricing-label">VAT & Tax</span>
-          <span className="pricing-value">
-            + {checkout?.taxAmount} VAT & Tax
-          </span>
+          <span className="pricing-label">VAT</span>
+          <span className="pricing-value">+ {checkout?.taxAmount} VAT</span>
         </div>
 
         {/* Promo Code Section */}
