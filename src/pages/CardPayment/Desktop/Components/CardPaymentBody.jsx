@@ -32,7 +32,7 @@ export default function CardPaymentBody() {
 
   return (
     <div className="payment-checkout">
-      <div className="payment-checkout__content payment-checkout__content--no-header">
+      <div className="payment-checkout__contentnew payment-checkout__contentnew--no-header">
         <CardPaymentDetail
           onBack={handleBackClick}
           onPaymentComplete={handlePaymentComplete}
