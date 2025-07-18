@@ -43,6 +43,7 @@ export default function CardPaymentBody() {
             formData={formData}
             setFormData={setFormData}
             checkout={checkout}
+            showPromoCode={false}
           />
         </div>
       </div>

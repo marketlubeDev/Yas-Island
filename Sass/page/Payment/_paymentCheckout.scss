@@ -7,6 +7,8 @@
   max-height: 600px;
   overflow-y: auto;
   font-family: "Inter", sans-serif;
+  width: fit-content;
+  min-width: 370px;
 
   /* Header */
   .order-summary-header {

@@ -14,7 +14,12 @@ import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 
-export default function OrderSummary({ formData, setFormData, checkout }) {
+export default function OrderSummary({
+  formData,
+  setFormData,
+  checkout,
+  showPromoCode = true,
+}) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -328,33 +333,35 @@ export default function OrderSummary({ formData, setFormData, checkout }) {
         </div>
 
         {/* Promo Code Section */}
-        <div className="promo-section">
-          <div className="promo-header">
-            <span className="promo-title">
-              ENTER YOUR PROMO CODE TO GET DISCOUNT
-            </span>
+        {showPromoCode && (
+          <div className="promo-section">
+            <div className="promo-header">
+              <span className="promo-title">
+                ENTER YOUR PROMO CODE TO GET DISCOUNT
+              </span>
+            </div>
+            <div className="promo-input-group">
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                placeholder="Enter promo code"
+                className="promo-input"
+              />
+              <button
+                className="promo-apply-btn"
+                onClick={handlePromoCode}
+                disabled={promoCodeApplying}
+              >
+                {promoCodeApplying ? (
+                  <ButtonLoading height="16px" width="16px" />
+                ) : (
+                  "Apply"
+                )}
+              </button>
+            </div>
           </div>
-          <div className="promo-input-group">
-            <input
-              type="text"
-              value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
-              placeholder="Enter promo code"
-              className="promo-input"
-            />
-            <button
-              className="promo-apply-btn"
-              onClick={handlePromoCode}
-              disabled={promoCodeApplying}
-            >
-              {promoCodeApplying ? (
-                <ButtonLoading height="16px" width="16px" />
-              ) : (
-                "Apply"
-              )}
-            </button>
-          </div>
-        </div>
+        )}
 
         <div className="pricing-row total-row">
           <span className="total-label">Total</span>

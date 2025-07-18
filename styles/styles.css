@@ -3104,6 +3104,8 @@ html[lang=ar] .guest-label {
   max-height: 600px;
   overflow-y: auto;
   font-family: "Inter", sans-serif;
+  width: fit-content;
+  min-width: 370px;
   /* Header */
   /* View All Items Section */
   /* Animation for dropdown */
@@ -5394,7 +5396,7 @@ html[lang=ar] .guest-label {
   display: flex;
   flex-direction: row;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   justify-content: flex-start;
 }
 .payment-container .payment-methods .method {

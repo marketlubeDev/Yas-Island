@@ -155,7 +155,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             // overflow: 'hidden',
             // position: 'relative'
             minHeight: "450px",
-            height: "fit-content",
+            height: "350px",
           }}
         >
           {isIframeLoading && (
