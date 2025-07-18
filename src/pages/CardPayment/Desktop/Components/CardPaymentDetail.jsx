@@ -102,21 +102,61 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">Please enter payment details</h2>
 
+      <div className="payment-methods">
+        <label className="method active">
+          <input
+            type="radio"
+            name="payment"
+            defaultChecked
+            className="method-input custom-radio"
+            style={{ height: "20px", width: "20px" }}
+          />
+          <span className="custom-radio-check"></span>
+          <div className="method-content">
+            <span className="card-icon">
+              <img src={cardIcon} alt="card" />
+            </span>
+            <span className="method-title">
+              {t("payment.cardPayment.paymentMethods.creditDebitCard")}
+            </span>
+          </div>
+        </label>
+
+        <label className="method">
+          <input
+            type="radio"
+            name="payment"
+            className="method-input custom-radio"
+            style={{ height: "20px", width: "20px" }}
+          />
+          <span className="custom-radio-check"></span>
+          <div className="method-content">
+            <span className="paypal-icon">
+              <img src={paypalIcon} alt="paypal" />
+            </span>
+            <span className="method-title">
+              {t("payment.cardPayment.paymentMethods.paypal")}
+            </span>
+          </div>
+        </label>
+      </div>
+
       <div className="payfort-container">
         <div
           className="iframe-container"
-          style={
-            {
-              // maxWidth: '800px',
-              // margin: '0 auto',
-              // padding: '2rem',
-              // background: 'white',
-              // borderRadius: '12px',
-              // boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-              // overflow: 'hidden',
-              // position: 'relative'
-            }
-          }
+          style={{
+            // maxWidth: '800px',
+            // margin: '0 auto',
+            // padding: '2rem',
+            // background: 'white',
+            borderRadius: "1rem",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+            // padding: "10px",
+            // overflow: 'hidden',
+            // position: 'relative'
+            minHeight: "450px",
+            height: "fit-content",
+          }}
         >
           {isIframeLoading && (
             <div
