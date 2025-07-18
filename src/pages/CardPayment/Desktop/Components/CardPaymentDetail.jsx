@@ -155,7 +155,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             // overflow: 'hidden',
             // position: 'relative'
             minHeight: "450px",
-            height: "fit-content",
+            height: "350px",
           }}
         >
           {isIframeLoading && (
@@ -201,6 +201,17 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             }}
             onLoad={() => setIsIframeLoading(false)}
           />
+        </div>
+
+        <div className="card-ad">
+          {/* <img src="/path-to/visa.png" alt="visa" className="card-logo" />
+          <img
+            src="/path-to/mastercard.png"
+            alt="mastercard"
+            className="card-logo"
+          />
+          <img src="/path-to/amex.png" alt="amex" className="card-logo" /> */}
+          <img src={visaIcon} alt="visa" className="card-logo" />
         </div>
 
         {paymentStatus === "success" && (

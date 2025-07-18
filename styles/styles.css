@@ -3104,6 +3104,8 @@ html[lang=ar] .guest-label {
   max-height: 600px;
   overflow-y: auto;
   font-family: "Inter", sans-serif;
+  width: fit-content;
+  min-width: 370px;
   /* Header */
   /* View All Items Section */
   /* Animation for dropdown */
@@ -5390,7 +5392,7 @@ html[lang=ar] .guest-label {
   display: flex;
   flex-direction: row;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   justify-content: flex-start;
 }
 .payment-container .payment-methods .method {
@@ -5574,6 +5576,16 @@ html[lang=ar] .guest-label {
 }
 .payment-input-row.multi-row .payment-input-group:nth-child(2) {
   flex: 0 0 100px;
+}
+
+.card-ad {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1rem;
+}
+.card-ad .card-logo {
+  height: 5rem;
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -8345,7 +8357,7 @@ html[lang=ar] .make-payment__summary-top {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 .make-payment__card-logos img {
   object-fit: contain;
