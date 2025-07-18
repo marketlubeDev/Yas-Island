@@ -8,6 +8,12 @@ export default function GlobalInvertColor() {
   );
 
   useEffect(() => {
+    // order summary
+    document.documentElement.style.setProperty(
+      "--color-summary-title",
+      isDarkMode ? "#E7EBD4" : "#1a1a1a"
+    );
+
     document.documentElement.style.setProperty(
       "--card-box-shadow",
       isDarkMode ? "#ffffff20" : "#00000014"
@@ -1910,6 +1916,11 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--border-skeleton-two",
         "#f5f5f5"
+      );
+
+      document.documentElement.style.setProperty(
+        "--color-summary-title",
+        "#1a1a1a"
       );
     };
   }, [isDarkMode, isHighContrast]);

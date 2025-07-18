@@ -22,7 +22,7 @@
     .order-summary-title {
       font-size: 18px;
       font-weight: 600;
-      color: var(--color-base-product-card-price);
+      color: var(--color-summary-title);
       margin: 0 0 4px 0;
     }
 
@@ -69,7 +69,7 @@
         .view-items-text {
           font-size: 16px;
           font-weight: 500;
-          color: #1a1a1a;
+          color: var(--color-summary-title);
         }
       }
 
@@ -118,7 +118,7 @@
           .item-title {
             font-size: 16px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--color-summary-title);
             margin: 0 0;
             line-height: 1.4;
           }
@@ -148,7 +148,7 @@
           .price-amount {
             font-size: 16px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--color-summary-title);
           }
         }
       }

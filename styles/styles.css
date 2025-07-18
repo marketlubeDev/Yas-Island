@@ -258,6 +258,7 @@
   --color-fb-smile-bg: #ffe600;
   --color-fb-sad-bg: #ff4d4f;
   --card-box-shadow: #00000014;
+  --color-summary-title: #1a1a1a;
 }
 :root [data-theme=dark] {
   --color-base-bg: #0b0c0c;
@@ -3128,7 +3129,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .order-summary-header .order-summary-title {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-base-product-card-price);
+  color: var(--color-summary-title);
   margin: 0 0 4px 0;
 }
 .order-summary-new .order-summary-header .order-summary-subtitle {
@@ -3169,7 +3170,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .view-items-section .view-items-header .view-items-left .view-items-text {
   font-size: 16px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-summary-title);
 }
 .order-summary-new .view-items-section .view-items-header .view-items-arrow {
   width: 16px;
@@ -3211,7 +3212,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .view-items-section .order-item .item-header .item-info .item-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--color-summary-title);
   margin: 0 0;
   line-height: 1.4;
 }
@@ -3236,7 +3237,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .view-items-section .order-item .item-header .item-price .price-amount {
   font-size: 16px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--color-summary-title);
 }
 .order-summary-new .view-items-section .order-item .item-details {
   padding: 16px;
