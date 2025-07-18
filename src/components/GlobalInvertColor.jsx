@@ -9,6 +9,11 @@ export default function GlobalInvertColor() {
 
   useEffect(() => {
     document.documentElement.style.setProperty(
+      "--card-box-shadow",
+      isDarkMode ? "#ffffff20" : "#00000014"
+    );
+
+    document.documentElement.style.setProperty(
       "--text-color",
       isDarkMode ? "#fff" : "#18142B"
     );
@@ -32,7 +37,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-bg",
-      isDarkMode ? "#000" : isHighContrast ? "#fff" : "#fff"
+      isDarkMode ? "#000000" : isHighContrast ? "#ffffff" : "#ffffff"
     );
     document.documentElement.style.setProperty(
       "--color-base-text",
@@ -1886,6 +1891,11 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-fb-sad-bg",
         "#ff4d4f"
+      );
+
+      document.documentElement.style.setProperty(
+        "--card-box-shadow",
+        "#00000014"
       );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");

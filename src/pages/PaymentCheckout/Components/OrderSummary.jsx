@@ -189,10 +189,12 @@ export default function OrderSummary({
     <div className="order-summary-new">
       {/* Header */}
       <div className="order-summary-header">
-        <h3 className="order-summary-title">Order Summary</h3>
+        <h3 className="order-summary-title">{t("orderSummary.title")}</h3>
         <div className="order-summary-subtitle">
           {checkout?.items?.length}{" "}
-          {checkout?.items?.length === 1 ? "item" : "items"}
+          {checkout?.items?.length === 1
+            ? t("orderSummary.item")
+            : t("orderSummary.items")}
         </div>
       </div>
 
@@ -231,7 +233,9 @@ export default function OrderSummary({
                 />
               </svg>
             </div>
-            <span className="view-items-text">View Items</span>
+            <span className="view-items-text">
+              {t("orderSummary.viewItems")}
+            </span>
           </div>
           <img
             src={downArrow}
@@ -249,7 +253,7 @@ export default function OrderSummary({
                     <h4 className="item-title">
                       {getProduct(item.productId)?.product?.product_title}
                     </h4>
-                    <div className="item-meta">
+                    {/* <div className="item-meta">
                       <span className="item-date">
                         {formatDate(item.validFrom)}
                       </span>
@@ -257,7 +261,7 @@ export default function OrderSummary({
                         • {item.quantity}{" "}
                         {item.quantity === 1 ? "guest" : "guests"}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="item-price">
                     <span className="price-amount">
@@ -272,7 +276,9 @@ export default function OrderSummary({
 
                 <div className="item-details">
                   <div className="detail-row">
-                    <span className="detail-label">Variant:</span>
+                    <span className="detail-label">
+                      {t("orderSummary.variants")}
+                    </span>
                     <span className="detail-value">
                       {
                         getProduct(item.productId)?.productVariant
@@ -281,18 +287,22 @@ export default function OrderSummary({
                     </span>
                   </div>
                   <div className="detail-row">
-                    <span className="detail-label">Date:</span>
+                    <span className="detail-label">
+                      {t("orderSummary.date")}
+                    </span>
                     <span className="detail-value">
                       {formatDate(item.validFrom)}
                     </span>
                   </div>
                   <div className="detail-row">
-                    <span className="detail-label">Quantity:</span>
+                    <span className="detail-label">
+                      {t("orderSummary.quantity")}
+                    </span>
                     <span className="detail-value">{item.quantity}</span>
                   </div>
                   <div className="price-breakdown">
                     <div className="breakdown-row">
-                      <span>Net Amount:</span>
+                      <span>{t("orderSummary.netAmount")} :</span>
                       <span>
                         AED{" "}
                         {(
@@ -302,7 +312,7 @@ export default function OrderSummary({
                       </span>
                     </div>
                     <div className="breakdown-row">
-                      <span>VAT & Tax:</span>
+                      <span>{t("orderSummary.vat")} :</span>
                       <span>
                         + AED{" "}
                         {(
@@ -322,14 +332,12 @@ export default function OrderSummary({
       {/* Pricing Section */}
       <div className="pricing-section">
         <div className="pricing-row">
-          <span className="pricing-label">Sub Total</span>
+          <span className="pricing-label">{t("orderSummary.subTotal")}</span>
           <span className="pricing-value">AED {checkout?.netAmount}</span>
         </div>
         <div className="pricing-row">
-          <span className="pricing-label">VAT & Tax</span>
-          <span className="pricing-value">
-            + {checkout?.taxAmount} VAT & Tax
-          </span>
+          <span className="pricing-label">{t("orderSummary.vat")}</span>
+          <span className="pricing-value">+ {checkout?.taxAmount} VAT</span>
         </div>
 
         {/* Promo Code Section */}
@@ -337,7 +345,7 @@ export default function OrderSummary({
           <div className="promo-section">
             <div className="promo-header">
               <span className="promo-title">
-                ENTER YOUR PROMO CODE TO GET DISCOUNT
+                {t("orderSummary.promoDiscount")}
               </span>
             </div>
             <div className="promo-input-group">
@@ -345,7 +353,7 @@ export default function OrderSummary({
                 type="text"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                placeholder="Enter promo code"
+                placeholder={t("orderSummary.enterPromoCode")}
                 className="promo-input"
               />
               <button
@@ -356,7 +364,7 @@ export default function OrderSummary({
                 {promoCodeApplying ? (
                   <ButtonLoading height="16px" width="16px" />
                 ) : (
-                  "Apply"
+                  t("orderSummary.apply")
                 )}
               </button>
             </div>
@@ -364,7 +372,7 @@ export default function OrderSummary({
         )}
 
         <div className="pricing-row total-row">
-          <span className="total-label">Total</span>
+          <span className="total-label">{t("orderSummary.total")}</span>
           <span className="total-value">AED {checkout?.grossAmount}</span>
         </div>
       </div>

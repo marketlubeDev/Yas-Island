@@ -100,9 +100,9 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
   return (
     <div className="payment-container">
       <style>{spinnerStyle}</style>
-      <h2 className="payment-title">Please enter payment details</h2>
+      <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      <div className="payment-methods">
+      {/* <div className="payment-methods">
         <label className="method active">
           <input
             type="radio"
@@ -139,7 +139,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             </span>
           </div>
         </label>
-      </div>
+      </div> */}
 
       <div className="payfort-container">
         <div
