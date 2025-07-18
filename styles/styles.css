@@ -5582,6 +5582,16 @@ html[lang=ar] .guest-label {
   flex: 0 0 100px;
 }
 
+.card-ad {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1rem;
+}
+.card-ad .card-logo {
+  height: 5rem;
+}
+
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-container {
     padding: 1.5rem;
@@ -8351,7 +8361,7 @@ html[lang=ar] .make-payment__summary-top {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 .make-payment__card-logos img {
   object-fit: contain;

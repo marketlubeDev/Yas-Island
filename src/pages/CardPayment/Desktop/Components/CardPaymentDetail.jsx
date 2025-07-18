@@ -203,6 +203,17 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
           />
         </div>
 
+        <div className="card-ad">
+          {/* <img src="/path-to/visa.png" alt="visa" className="card-logo" />
+          <img
+            src="/path-to/mastercard.png"
+            alt="mastercard"
+            className="card-logo"
+          />
+          <img src="/path-to/amex.png" alt="amex" className="card-logo" /> */}
+          <img src={visaIcon} alt="visa" className="card-logo" />
+        </div>
+
         {paymentStatus === "success" && (
           <div
             style={{

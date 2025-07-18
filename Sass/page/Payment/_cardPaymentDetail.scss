@@ -459,6 +459,16 @@
   }
 }
 
+.card-ad {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1rem;
+  .card-logo {
+    height: 5rem;
+  }
+}
+
 // Responsive styles for bigDesktop
 @include respond(bigDesktop) {
   .payment-container {
