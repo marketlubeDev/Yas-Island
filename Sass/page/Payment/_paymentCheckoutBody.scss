@@ -161,8 +161,8 @@
   width: 100%;
   max-width: 1300px;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
 
   @include respond(desktop) {
     padding: 20px;
