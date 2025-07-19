@@ -355,8 +355,8 @@
       gap: 8px;
       width: 100%;
       padding: 12px 16px;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
+      background: var(--secure-payment-bg);
+      border: 1px solid var(--secure-payment-border);
       border-radius: 8px;
       // cursor: pointer;
       transition: all 0.2s ease;
