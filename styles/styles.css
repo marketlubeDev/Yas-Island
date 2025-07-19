@@ -7916,7 +7916,7 @@ html[lang=ar] .confirm-email__input-underline {
   flex-direction: column;
   gap: 10px;
   background: var(--color-email-form-box);
-  padding: 4px 18px 64px 18px;
+  padding: 4px 18px 24px 18px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(0, 0, 0, 0.25);
 }
@@ -8028,6 +8028,10 @@ html[lang=ar] .confirm-email__input-underline {
   width: 20px;
   height: 20px;
 }
+.email-checkout__summary-viewItems-icon-text {
+  color: var(--color-base-product-card-price);
+  font-weight: 400;
+}
 .email-checkout__summary-viewItems-content {
   border: 1px solid #e0e0e0;
   border-radius: 6px;
@@ -8050,6 +8054,133 @@ html[lang=ar] .confirm-email__input-underline {
 .email-checkout__summary-viewItems-content-item-price {
   font-weight: 500;
   color: var(--color-base-product-card-price);
+}
+.email-checkout__summary-viewItems-content-item-details {
+  margin-bottom: 8px;
+}
+.email-checkout__summary-viewItems-content-item-details-setOne {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.email-checkout__summary-viewItems-content-item-details-setTwo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.email-checkout__summary-viewItems-content-item-details-setThree {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.email-checkout__summary-viewItems-content-item-price-details {
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+.email-checkout__summary-viewItems-content-item-price-details-netAmount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.email-checkout__summary-viewItems-content-item-price-details-netAmount-Content {
+  color: #333;
+  font-size: 14px;
+}
+.email-checkout__summary-viewItems-content-item-price-details-netAmount-Value {
+  color: #333;
+  font-size: 14px;
+}
+.email-checkout__summary-viewItems-content-item-price-details-vat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.email-checkout__summary-viewItems-content-item-price-details-vat-Content {
+  color: #333;
+  font-size: 14px;
+}
+.email-checkout__summary-viewItems-content-item-price-details-vat-Value {
+  color: #333;
+  font-size: 14px;
+}
+.email-checkout__summary-costBreakdown {
+  margin-bottom: 16px;
+}
+.email-checkout__summary-costBreakdown-subTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.email-checkout__summary-costBreakdown-subTotal-Content {
+  color: #333;
+}
+.email-checkout__summary-costBreakdown-subTotal-Value {
+  color: #333;
+}
+.email-checkout__summary-costBreakdown-vat {
+  display: flex;
+  justify-content: space-between;
+}
+.email-checkout__summary-costBreakdown-vat-Content {
+  color: #333;
+}
+.email-checkout__summary-costBreakdown-vat-Value {
+  color: #333;
+}
+.email-checkout__summary-promoCode {
+  margin-bottom: 16px;
+}
+.email-checkout__summary-promoCode-title {
+  font-size: 12px;
+  color: #333;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: left;
+}
+.email-checkout__summary-promoCode-input-container {
+  display: flex;
+  gap: 8px;
+}
+.email-checkout__summary-promoCode-input-container-inputBox {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.email-checkout__summary-promoCode-input-container-applyButton {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  color: #333;
+  cursor: pointer;
+}
+.email-checkout__summary-grandTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+.email-checkout__summary-grandTotal-Content {
+  font-weight: bold;
+  color: #333;
+}
+.email-checkout__summary-grandTotal-Value {
+  font-weight: bold;
+  color: #333;
+}
+.email-checkout__summary-securePayment {
+  width: 100%;
+  padding: 0px 16px;
+  border: none;
+  color: #4caf50;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .email-checkout__summary-row {
   display: flex;
@@ -8088,7 +8219,7 @@ html[lang=ar] .confirm-email__input-underline {
   padding: 15px 10px 10px 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 .email-checkout__checkboxes label {
   font-size: 12px;
@@ -8313,6 +8444,16 @@ html[lang=ar] .confirm-email__input-underline {
 
 .checkbox-input:checked ~ .checkbox-custom:after {
   display: block;
+}
+
+.setSection-Content {
+  color: #666;
+  font-size: 14px;
+}
+
+.setSection-Value {
+  color: #333;
+  font-size: 14px;
 }
 
 .make-payment-modal {
