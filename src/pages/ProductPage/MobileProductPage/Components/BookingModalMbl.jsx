@@ -11,6 +11,7 @@ import { addToCart, setIsCartOpen } from "../../../../global/cartSlice";
 import { toast } from "sonner";
 import useCheckBasket from "../../../../apiHooks/Basket/checkbasket";
 import { useNavigate } from "react-router-dom";
+import { setCheckout } from "../../../../global/checkoutSlice";
 
 function BookingModalMbl({
   onClose,
@@ -27,9 +28,12 @@ function BookingModalMbl({
     (state) => state.performance.performanceData
   );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const { verificationEmail, isEmailVerification } = useSelector(
+    (state) => state.cart
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
@@ -42,7 +46,7 @@ function BookingModalMbl({
     const variants = {};
     product?.product_variants?.forEach((variant) => {
       variants[variant?.productid] = {
-        quantity: variant?.min_quantity || 0,
+        quantity: variant?.default_quantity || 0,
         name: variant?.productvariantname,
         variant: variant,
       };
@@ -61,6 +65,18 @@ function BookingModalMbl({
     });
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
+
+  // Auto-select first available date when dates are loaded
+  useEffect(() => {
+    if (
+      availableDates &&
+      availableDates.length > 0 &&
+      !selectedDate &&
+      !isLoadingDates
+    ) {
+      setSelectedDate(availableDates[0]);
+    }
+  }, [availableDates, selectedDate, isLoadingDates]);
 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -88,6 +104,38 @@ function BookingModalMbl({
     return formatDateToYYYYMMDD(date) === selectedDate;
   };
 
+  // Function to check if a variant is available for the selected date
+  const isVariantAvailableForDate = (variantProductId) => {
+    // If no date is selected, all variants are unavailable
+    if (!selectedDate) {
+      return false;
+    }
+
+    // If no performance data, variants should be unavailable
+    if (!performanceData.length) {
+      return false;
+    }
+
+    // Find the variant data in performanceData
+    const variantData = performanceData.find(
+      (v) => v.variantProductId === variantProductId
+    );
+
+    if (!variantData) {
+      return false;
+    }
+
+    // First check if the variant has any available dates at all
+    if (!variantData.isAvailable) {
+      return false;
+    }
+
+    // Then check if selected date is in this variant's available dates
+    const isAvailable = variantData.availableDates.includes(selectedDate);
+
+    return isAvailable;
+  };
+
   const getValidToDate = (id, selectedDate) => {
     const item = selectedProduct?.product_variants?.find(
       (variant) => variant?.productid == id
@@ -101,13 +149,22 @@ function BookingModalMbl({
     return validToDate;
   };
 
-  const getPerformanceId = (date) => {
-    const performance = performanceData.find((p) => p.date == date);
+  const getPerformanceId = (date, variantProductId) => {
+    // Find the variant data in performanceData
+    const variantData = performanceData.find(
+      (v) => v.variantProductId === variantProductId
+    );
+    if (!variantData || !variantData.performances) return false;
+
+    // Find performance for the specific date
+    const performance = variantData.performances.find(
+      (p) => p.date.split("T")[0] === date
+    );
     return performance ? performance.performanceId : false;
   };
 
   // Common function to handle basket check and cart operations
-  const handleBasketCheck = (onSuccess) => {
+  const handleBasketCheck = (onSuccess, type = "cart") => {
     if (!selectedDate) {
       toast.error(t("Please SelectDate"), {
         position: "top-center",
@@ -125,7 +182,10 @@ function BookingModalMbl({
     });
 
     if (hasPerformance) {
-      performanceId = getPerformanceId(selectedDate);
+      performanceId = getPerformanceId(
+        selectedDate,
+        selectedProduct?.product_variants[0]?.productid
+      );
       if (!performanceId) {
         toast.error(t("NoPerformance"), {
           position: "top-center",
@@ -147,7 +207,7 @@ function BookingModalMbl({
         productId: productId,
         quantity: guestData.quantity,
         performance: hasperformance
-          ? [{ performanceId: getPerformanceId(selectedDate) }]
+          ? [{ performanceId: getPerformanceId(selectedDate, productId) }]
           : [],
         validFrom: selectedDate,
         validTo: getValidToDate(productId, selectedDate),
@@ -179,48 +239,71 @@ function BookingModalMbl({
         } else {
           const orderDetails = res?.orderdetails;
 
-          orderDetails?.order?.items?.forEach((item) => {
-            const variantData = selectedProduct?.product_variants?.find(
-              (variant) => variant?.productid == item?.productId
-            );
+          console.log(orderDetails, "orderDetails>>");
 
-            let price = {
-              currency: "AED",
-              net: variantData?.net_amount,
-              tax: variantData?.vat,
-              gross: variantData?.gross,
-            };
-            let obj = {
-              capacityGuid: item?.capacityGuid,
-              discount: item?.discount,
-              groupingCode: item?.groupingCode,
-              itemPromotionList: item?.itemPromotionList,
-              original: item?.original,
-              packageCode: item?.packageCode,
-              performances:
-                item?.performances?.[0]?.performanceId ||
-                getPerformanceId(item?.validFrom) ||
-                null,
-              price: price,
-              productId: item?.productId,
-              quantity: item?.quantity,
-              rechargeAmount: item?.rechargeAmount,
-              validFrom: item?.validFrom,
-              validTo: item?.validTo
-                ? formatDateToYYYYMMDD(item?.validTo)
-                : getValidToDate(item?.productId, selectedDate),
-              image: selectedProduct?.product_images?.thumbnail_url,
-              title: selectedProduct?.product_title,
-              variantName: selectedProduct?.product_variants?.find(
+          if (type === "cart") {
+            orderDetails?.order?.items?.forEach((item) => {
+              const variantData = selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
-              )?.productvariantname,
-              minQuantity: variantData?.min_quantity,
-              maxQuantity: variantData?.max_quantity,
-              incrementNumber: variantData?.increment_number,
-            };
-            dispatch(addToCart(obj));
-          });
+              );
 
+              let price = {
+                currency: "AED",
+                net: variantData?.net_amount,
+                tax: variantData?.vat,
+                gross: variantData?.gross,
+              };
+              let obj = {
+                capacityGuid: item?.capacityGuid,
+                discount: item?.discount,
+                groupingCode: item?.groupingCode,
+                itemPromotionList: item?.itemPromotionList,
+                original: item?.original,
+                packageCode: item?.packageCode,
+                performances:
+                  item?.performances?.[0]?.performanceId ||
+                  getPerformanceId(item?.validFrom, item?.productId) ||
+                  null,
+                price: price,
+                productId: item?.productId,
+                quantity: item?.quantity,
+                rechargeAmount: item?.rechargeAmount,
+                validFrom: item?.validFrom,
+                validTo: item?.validTo
+                  ? formatDateToYYYYMMDD(item?.validTo)
+                  : getValidToDate(item?.productId, selectedDate),
+                image: selectedProduct?.product_images?.thumbnail_url,
+                title: selectedProduct?.product_title,
+                variantName: selectedProduct?.product_variants?.find(
+                  (variant) => variant?.productid == item?.productId
+                )?.productvariantname,
+                minQuantity: variantData?.min_quantity,
+                maxQuantity: variantData?.max_quantity,
+                incrementNumber: variantData?.increment_number,
+              };
+              dispatch(addToCart(obj));
+            });
+          } else {
+            const checkoutData = {
+              coupons: [],
+              items: orderDetails?.order?.items,
+              emailId: verificationEmail || "",
+              country: "",
+              nationality: "",
+              phoneNumber: "",
+              language: language,
+              grossAmount: orderDetails?.order?.total?.gross,
+              netAmount: orderDetails?.order?.total?.net,
+              taxAmount: orderDetails?.order?.total?.tax,
+              firstName: "",
+              lastName: "",
+              countryCode: "",
+              isTnCAgrred: false,
+              isConsentAgreed: false,
+              promoCode: "",
+            };
+            dispatch(setCheckout(checkoutData));
+          }
           onSuccess();
         }
       },
@@ -240,7 +323,7 @@ function BookingModalMbl({
       });
       onClose();
       dispatch(setIsCartOpen(true));
-    });
+    }, "cart");
   };
 
   const handleCheckout = () => {
@@ -249,9 +332,12 @@ function BookingModalMbl({
       Object.entries(guests).forEach(([productId, guestData]) => {
         variants[productId] = guestData.quantity;
       });
-
-      navigate("/email-verification");
-    });
+      if (!isEmailVerification) {
+        navigate("/email-verification");
+      } else {
+        navigate("/payment-details");
+      }
+    }, "checkout");
   };
 
   const generateCalendarDays = () => {
@@ -390,16 +476,16 @@ function BookingModalMbl({
               style={{ height: "32px", marginBottom: "12px" }}
             ></div>
             <div className="guest-controls-skeleton">
-              <div 
-                className="control-btn-skeleton skeleton" 
+              <div
+                className="control-btn-skeleton skeleton"
                 style={{ width: "24px", height: "24px" }}
               ></div>
-              <div 
-                className="control-value-skeleton skeleton" 
+              <div
+                className="control-value-skeleton skeleton"
                 style={{ width: "32px", height: "24px" }}
               ></div>
-              <div 
-                className="control-btn-skeleton skeleton" 
+              <div
+                className="control-btn-skeleton skeleton"
                 style={{ width: "24px", height: "24px" }}
               ></div>
             </div>
@@ -538,104 +624,137 @@ function BookingModalMbl({
                 ) : (
                   <>
                     <div className="guests-summary">
-                      {Object.entries(guests).map(([productId, guestData], idx, arr) => (
-                        <span key={productId}>
-                          {guestData.name}: {guestData.quantity}
-                          {idx < arr.length - 1 ? " / " : ""}
-                        </span>
-                      ))}
+                      {Object.entries(guests).map(
+                        ([productId, guestData], idx, arr) => (
+                          <span key={productId}>
+                            {guestData.name}: {guestData.quantity}
+                            {idx < arr.length - 1 ? " / " : ""}
+                          </span>
+                        )
+                      )}
                     </div>
                     <div className="guests-divider"></div>
-                    {Object.entries(guests).map(([productId, guestData], idx) => {
-                      const variantData = guestData.variant;
-                      return (
-                        <React.Fragment key={productId}>
-                          <div className="guests-row">
-                            <div className="guest-label-container">
-                              <span className="guest-label">
-                                {guestData.name}{" "}
-                                {variantData?.productvariantdesc &&
-                                  `(${variantData.productvariantdesc})`}
-                              </span>
-                              <span className="guest-label-price">
-                                {variantData.quantity > 0 &&
-                                  `AED ${variantData?.gross * guestData.quantity}`}
-                              </span>
-                            </div>
+                    {Object.entries(guests).map(
+                      ([productId, guestData], idx) => {
+                        const variantData = guestData.variant;
+                        const isAvailable = variantData?.hasperformance
+                          ? isVariantAvailableForDate(productId)
+                          : true;
+                        return (
+                          <React.Fragment key={productId}>
+                            <div
+                              className={`guests-row ${
+                                !isAvailable ? "unavailable-variant" : ""
+                              }`}
+                            >
+                              <div className="guest-label-container">
+                                <span className="guest-label">
+                                  {guestData.name}{" "}
+                                  {variantData?.productvariantdesc &&
+                                    `(${variantData.productvariantdesc})`}
+                                  {!isAvailable && (
+                                    <span className="unavailable-notice">
+                                      {!selectedDate
+                                        ? "- Please select a date first"
+                                        : "- Not available on selected date"}
+                                    </span>
+                                  )}
+                                </span>
+                                <span className="guest-label-price">
+                                  {guestData.quantity > 0 &&
+                                    `AED ${
+                                      variantData?.gross * guestData.quantity
+                                    }`}
+                                </span>
+                              </div>
 
-                            <div className="guests-controls">
-                              <button
-                                className="guests-btn"
-                                style={{
-                                  color: "var(--color-bkg-guest-title-clr)",
-                                }}
-                                onClick={() =>
-                                  setGuests((prev) => {
-                                    const currentValue = prev[productId].quantity;
-                                    const newValue = Math.max(
-                                      variantData?.min_quantity || 0,
-                                      currentValue -
-                                        (variantData?.increment_number || 1)
-                                    );
-                                    return {
-                                      ...prev,
-                                      [productId]: {
-                                        ...prev[productId],
-                                        quantity: newValue,
-                                      },
-                                    };
-                                  })
-                                }
-                                disabled={
-                                  guestData.quantity <=
-                                  (variantData?.min_quantity || 0)
-                                }
-                              >
-                                -
-                              </button>
-                              <span
-                                className="guests-count"
-                                style={{
-                                  color: "var(--color-bkg-guest-title-clr)",
-                                }}
-                              >
-                                {toArabicNumeral(guestData.quantity)}
-                              </span>
-                              <button
-                                className="guests-btn"
-                                style={{
-                                  color: "var(--color-bkg-guest-title-clr)",
-                                }}
-                                onClick={() =>
-                                  setGuests((prev) => {
-                                    const currentValue = prev[productId].quantity;
-                                    const newValue = Math.min(
-                                      variantData?.max_quantity || 100,
-                                      currentValue +
-                                        (variantData?.increment_number || 1)
-                                    );
-                                    return {
-                                      ...prev,
-                                      [productId]: {
-                                        ...prev[productId],
-                                        quantity: newValue,
-                                      },
-                                    };
-                                  })
-                                }
-                                disabled={
-                                  guestData.quantity >=
-                                  (variantData?.max_quantity || 100)
-                                }
-                              >
-                                +
-                              </button>
+                              <div className="guests-controls">
+                                <button
+                                  className="guests-btn"
+                                  style={{
+                                    color: "var(--color-bkg-guest-title-clr)",
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                    cursor: !isAvailable
+                                      ? "not-allowed"
+                                      : "pointer",
+                                  }}
+                                  onClick={() =>
+                                    setGuests((prev) => {
+                                      const currentValue =
+                                        prev[productId].quantity;
+                                      const newValue = Math.max(
+                                        variantData?.min_quantity || 0,
+                                        currentValue -
+                                          (variantData?.increment_number || 1)
+                                      );
+                                      return {
+                                        ...prev,
+                                        [productId]: {
+                                          ...prev[productId],
+                                          quantity: newValue,
+                                        },
+                                      };
+                                    })
+                                  }
+                                  disabled={
+                                    !isAvailable ||
+                                    guestData.quantity <=
+                                      (variantData?.min_quantity || 0)
+                                  }
+                                >
+                                  -
+                                </button>
+                                <span
+                                  className="guests-count"
+                                  style={{
+                                    color: "var(--color-bkg-guest-title-clr)",
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                  }}
+                                >
+                                  {toArabicNumeral(guestData.quantity)}
+                                </span>
+                                <button
+                                  className="guests-btn"
+                                  style={{
+                                    color: "var(--color-bkg-guest-title-clr)",
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                    cursor: !isAvailable
+                                      ? "not-allowed"
+                                      : "pointer",
+                                  }}
+                                  onClick={() =>
+                                    setGuests((prev) => {
+                                      const currentValue =
+                                        prev[productId].quantity;
+                                      const newValue = Math.min(
+                                        variantData?.max_quantity || 100,
+                                        currentValue +
+                                          (variantData?.increment_number || 1)
+                                      );
+                                      return {
+                                        ...prev,
+                                        [productId]: {
+                                          ...prev[productId],
+                                          quantity: newValue,
+                                        },
+                                      };
+                                    })
+                                  }
+                                  disabled={
+                                    !isAvailable ||
+                                    guestData.quantity >=
+                                      (variantData?.max_quantity || 100)
+                                  }
+                                >
+                                  +
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                          <div className="guests-divider"></div>
-                        </React.Fragment>
-                      );
-                    })}
+                            <div className="guests-divider"></div>
+                          </React.Fragment>
+                        );
+                      }
+                    )}
                   </>
                 )}
               </div>
@@ -647,7 +766,11 @@ function BookingModalMbl({
             className="booking-modal__checkout"
             onClick={handleCheckout}
             disabled={isLoadingDates || isPending}
-            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
+            style={
+              isLoadingDates || isPending
+                ? { opacity: 0.5, pointerEvents: "none" }
+                : {}
+            }
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
@@ -658,7 +781,11 @@ function BookingModalMbl({
             className="booking-modal__save"
             onClick={handleSaveToCart}
             disabled={isLoadingDates || isPending}
-            style={isLoadingDates || isPending ? { opacity: 0.5, pointerEvents: "none" } : {}}
+            style={
+              isLoadingDates || isPending
+                ? { opacity: 0.5, pointerEvents: "none" }
+                : {}
+            }
           >
             {isPending ? <Loading /> : t("booking.saveToCart")}
           </button>
@@ -667,6 +794,5 @@ function BookingModalMbl({
     </div>
   );
 }
-
 
 export default BookingModalMbl;

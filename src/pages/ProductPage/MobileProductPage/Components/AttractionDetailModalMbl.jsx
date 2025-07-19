@@ -13,7 +13,13 @@ import getPerformance from "../../../../serivces/performance/performance";
 import formatDate from "../../../../utils/dateFormatter";
 import { toast } from "sonner";
 
-function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, setAvailableDates, setIsLoadingDates }) {
+function AttractionDetailModalMbl({
+  attraction,
+  onClose,
+  setShowBookingSection,
+  setAvailableDates,
+  setIsLoadingDates,
+}) {
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
@@ -78,101 +84,108 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, 
     }
   }, [attraction]);
 
-  function getAvailableDates(product){
+  function getAvailableDates(product) {
     const today = new Date();
     const startDate = product?.sale_date_offset || 0;
     today.setDate(today.getDate() + startDate);
     let endDate;
-  
-    if(product?.calendar_range_days && product?.calendar_end_date){
+
+    if (product?.calendar_range_days && product?.calendar_end_date) {
       const rangeEndDate = new Date(today);
       rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
       const calendarEndDate = new Date(product?.calendar_end_date);
-      endDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
-    } else if(product?.calendar_range_days){
+      endDate = new Date(
+        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
+      );
+    } else if (product?.calendar_range_days) {
       endDate = new Date(today);
       endDate.setDate(today.getDate() + product?.calendar_range_days);
-    } else if(product?.calendar_end_date){
+    } else if (product?.calendar_end_date) {
       endDate = new Date(product?.calendar_end_date);
     } else {
       endDate = new Date(today.getFullYear(), 11, 31);
     }
-  
+
     const dates = [];
     let currentDate = new Date(today);
-    
-    while(currentDate <= endDate) {
-      dates.push(currentDate.toISOString().split('T')[0]);
+
+    while (currentDate <= endDate) {
+      dates.push(currentDate.toISOString().split("T")[0]);
       currentDate = new Date(currentDate);
       currentDate.setDate(currentDate.getDate() + 1);
     }
     return dates;
   }
 
-
   const fetchAvailableDates = async () => {
-    setIsLoadingDates(true);    
+    setIsLoadingDates(true);
     try {
       let hasPerformance = false;
 
-      if(attraction?.product_variants?.length > 0){
+      if (attraction?.product_variants?.length > 0) {
         attraction?.product_variants?.forEach((variant) => {
-          if(variant?.hasperformance){
+          if (variant?.hasperformance) {
             hasPerformance = true;
           }
         });
       }
 
-      if(hasPerformance){
+      if (hasPerformance) {
         const productId = attraction?.product_masterid;
-        const performanceData = await getPerformance(
-          formatDate(validStartDate),
-          formatDate(validEndDate),
-          productId
-        );
+        const performanceData = await getPerformance(productId);
 
-        
-        // Check if performance data is empty or all variants have empty availableDates
-        const hasValidPerformances = performanceData && 
-          performanceData.length > 0 && 
-          performanceData.some(variant => 
-            variant.availableDates && variant.availableDates.length > 0
-          );
-
-        if (!hasValidPerformances) {
-          // No performances available - show error message
+        // Check if we have any performance data
+        if (!performanceData || performanceData.length === 0) {
           toast.error("This product is currently not available", {
             position: "top-center",
           });
           onClose();
+          // setShowBookingSection(false);
           return;
         }
-        
-        // Format dates and store variant-wise availability
-        const formattedData = performanceData.map(variant => {
+
+        // Format dates for each variant and mark variants with no dates as unavailable
+        const formattedData = performanceData.map((variant) => {
+          const formattedDates =
+            variant.availableDates?.map((date) => date.split("T")[0]) || [];
           return {
             ...variant,
-            availableDates: variant.availableDates.map(date => date.split('T')[0])
-          }
+            availableDates: formattedDates,
+            isAvailable: formattedDates.length > 0, // Add flag to track if variant has any dates
+          };
         });
 
-        // Get ALL unique dates from all variants for calendar display
-        const allUniqueDates = [...new Set(
-          formattedData.flatMap(variant => variant.availableDates)
-        )];
+        // Get all unique dates from all variants for calendar display
+        const allUniqueDates = [
+          ...new Set(
+            formattedData.flatMap((variant) => variant.availableDates)
+          ),
+        ];
+
+        // Check if all variants have no dates
+        const allVariantsUnavailable = formattedData.every(
+          (variant) => !variant.isAvailable
+        );
+
+        if (allVariantsUnavailable) {
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onClose();
+          // setShowBookingSection(false);
+          return;
+        }
 
         dispatch(setPerformanceData(formattedData));
         setAvailableDates(allUniqueDates);
       } else {
         setAvailableDates(getAvailableDates(attraction));
       }
-
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong")
-      // if it is error then close all modals
+      toast.error(error?.response?.data?.message || "Something went wrong");
       onClose();
-     
+      setShowBookingSection(false);
     } finally {
       setIsLoadingDates(false);
     }
@@ -181,6 +194,16 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, 
   const handleAddToCart = () => {
     setShowBookingSection("booking");
     fetchAvailableDates();
+  };
+
+  const defaultVariant = (product) => {
+    let defaultVariant = product?.product_variants?.find(
+      (variant) => variant.isdefault
+    );
+    if (!defaultVariant) {
+      defaultVariant = product?.product_variants[0];
+    }
+    return defaultVariant;
   };
 
   return (
@@ -212,11 +235,12 @@ function AttractionDetailModalMbl({ attraction, onClose, setShowBookingSection, 
         <div className="attraction-detail-modal__footer-divider"></div>
         <div className="attraction-detail-modal__footer-left">
           <div className="attraction-detail-modal__price">
-            AED {attraction?.product_variants[0]?.gross}
+            {attraction.currency || "AED"} {defaultVariant(attraction)?.gross}
           </div>
           <div className="attraction-detail-modal__vat">
-            +{(attraction?.product_variants[0]?.gross * 0.05).toFixed(2)} Net &
-            Tax
+            {defaultVariant(attraction)?.net_amount} +
+            {defaultVariant(attraction)?.vat}
+            {t("common.netAndTax")}
           </div>
         </div>
         <div className="attraction-detail-modal__footer-vertical-divider"></div>
