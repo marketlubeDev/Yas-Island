@@ -187,7 +187,7 @@ export const en = {
       lastName: "LAST NAME *",
       countryOfResidence: "COUNTRY OF RESIDENCE *",
       nationality: "NATIONALITY *",
-      phoneNumber: "PHONE NUMBER  *",
+      phoneNumber: "PHONE NUMBER ",
       preferredNumber: "(PREFERRED NUMBER) *",
       countries: {
         UAE: "UAE",

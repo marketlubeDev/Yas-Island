@@ -5,6 +5,7 @@ import { useState } from "react";
 function InputFieldsMbl() {
   const [firstName, setFirstName] = useState("vivek");
   const [lastName, setLastName] = useState("panashi");
+  const [email, setEmail] = useState("");
   const [country, setCountry] = useState("UAE");
   const [nationality, setNationality] = useState("UAE");
   const [phone, setPhone] = useState("527263748");
@@ -84,20 +85,18 @@ function InputFieldsMbl() {
         style={{ flexDirection: "column" }}
       >
         <span style={{ whiteSpace: "nowrap" }}>
-          {t("payment.personalDetails.phoneNumber")}
+          {t("payment.personalDetails.phoneNumber")}&nbsp;
           <span style={{ opacity: 0.75 }}>
             {t("payment.personalDetails.preferredNumber")}
           </span>
-          <span
+          {/* <span
             id="phoneNumber"
             style={{
               color: "#18142B",
               fontSize: 14,
               fontWeight: 200,
             }}
-          >
-            {/* (PREFERRED NUMBER) */}
-          </span>{" "}
+          ></span> */}
           {/* * */}
         </span>
         <div className="email-checkout__phone-row">
@@ -126,9 +125,19 @@ function InputFieldsMbl() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
-            style={{ letterSpacing: "5px", width: "120px" }}
           />
         </div>
+      </label>
+      <label className="email-checkout__label" id="email">
+        {t("payment.personalDetails.email")}
+        <input
+          id="email"
+          type="email"
+          className="email-checkout__input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
       </label>
     </div>
   );

@@ -8,7 +8,7 @@ import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import PaymentHeaderMbl from "../Home/MobileComponents/PaymentHeaderMbl";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
 import { useNavigate } from "react-router-dom";
-  
+
 function PaymentDetailsMobile() {
   const { t } = useTranslation();
   const [acceptTerms, setAcceptTerms] = useState(false);
@@ -42,7 +42,7 @@ function PaymentDetailsMobile() {
 
               <CheckOutSummaryMbl />
 
-              <PromoBoxMbl />
+              {/* <PromoBoxMbl /> */}
               <CheckBoxMbl
                 acceptTerms={acceptTerms}
                 setAcceptTerms={setAcceptTerms}
@@ -58,7 +58,6 @@ function PaymentDetailsMobile() {
                   color: "var(--color-email-form-confirm-btn-clr)",
                 }}
                 disabled={!acceptTerms}
-                
               >
                 {t("payment.paymentDetails.proceedToPayment")}
               </button>
