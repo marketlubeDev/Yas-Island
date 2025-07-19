@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import visaIcon from "../../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
-import CheckOutSummaryMbl from "./Components/CheckOutSummaryMbl";
+import CheckOutSummaryMbl from "../../PaymentDetails/MobileComponents/CheckOutSummaryMbl";
 import PaymentMethodMbl from "./Components/PaymentMethodMbl";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 
 function CardPaymentMobile() {
   const { t, i18n } = useTranslation();
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,15 +21,13 @@ function CardPaymentMobile() {
           <div className="make-payment-modal">
             <div className="make-payment__content">
               {/* Order Summary */}
-              <CheckOutSummaryMbl />
+              {/* <CheckOutSummaryMbl /> */}
+              <CheckOutSummaryMbl promoApplied={false} />
               <br />
               <br />
 
               {/* Payment Method */}
-              <PaymentMethodMbl  />
-
-     
-             
+              <PaymentMethodMbl />
 
               {/* Card Logos */}
               <div className="make-payment__card-logos">

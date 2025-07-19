@@ -1,3 +1,4 @@
+@use "../../base/responive" as *;
 /* New Order Summary Design */
 .order-summary-new {
   background: var(--color-base-bg);
@@ -9,6 +10,11 @@
   font-family: "Inter", sans-serif;
   width: fit-content;
   min-width: 370px;
+
+  @include respond(bigTablets) {
+    min-width: 100%;
+    width: 100%;
+  }
 
   /* Header */
   .order-summary-header {
