@@ -6,19 +6,25 @@ const initialState = {
   vatAndTax: 0,
   total: 0,
   isCartOpen: false,
-  isEmailVerification: false,
-  verificationEmail: "",
+  isEmailVerification: true,
+  verificationEmail: "ajaydev.marketlube@gmail.com",
 };
 
 const calculateCartTotals = (items) => {
-  const subtotal = items.reduce((total, item) => total + (item?.price?.net * (item.quantity || 1)), 0);
-  const vatAndTax = items.reduce((taxTotal, item) => taxTotal + (item?.price?.tax * (item.quantity || 1)), 0);
+  const subtotal = items.reduce(
+    (total, item) => total + item?.price?.net * (item.quantity || 1),
+    0
+  );
+  const vatAndTax = items.reduce(
+    (taxTotal, item) => taxTotal + item?.price?.tax * (item.quantity || 1),
+    0
+  );
   const total = subtotal + vatAndTax;
-  
+
   return {
     subtotal,
     vatAndTax,
-    total
+    total,
   };
 };
 
@@ -28,10 +34,14 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const existingItemIndex = state.cartItems.findIndex(
-        (item) => item.productId === action.payload.productId && item.validFrom === action.payload.validFrom 
+        (item) =>
+          item.productId === action.payload.productId &&
+          item.validFrom === action.payload.validFrom
       );
       if (existingItemIndex !== -1) {
-        state.cartItems[existingItemIndex].quantity = (state.cartItems[existingItemIndex].quantity || 1) + (action.payload.quantity || 1);
+        state.cartItems[existingItemIndex].quantity =
+          (state.cartItems[existingItemIndex].quantity || 1) +
+          (action.payload.quantity || 1);
       } else {
         state.cartItems.push({ ...action.payload });
       }
@@ -60,7 +70,11 @@ const cartSlice = createSlice({
     },
     removeItemFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
-        (item) => !(item.productId === action.payload.id && item.validFrom === action.payload.validFrom)
+        (item) =>
+          !(
+            item.productId === action.payload.id &&
+            item.validFrom === action.payload.validFrom
+          )
       );
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
@@ -70,11 +84,12 @@ const cartSlice = createSlice({
     updateQuantity: (state, action) => {
       state.cartItems = state.cartItems
         .map((item) =>
-          (item.productId === action.payload.id && item.validFrom === action.payload.validFrom) 
-            ? { ...item, quantity: action.payload.quantity } 
+          item.productId === action.payload.id &&
+          item.validFrom === action.payload.validFrom
+            ? { ...item, quantity: action.payload.quantity }
             : item
         )
-        .filter(item => item.quantity > 0);
+        .filter((item) => item.quantity > 0);
       const totals = calculateCartTotals(state.cartItems);
       state.subtotal = totals.subtotal;
       state.vatAndTax = totals.vatAndTax;
@@ -85,9 +100,18 @@ const cartSlice = createSlice({
     },
     setVerificationEmail: (state, action) => {
       state.verificationEmail = action.payload;
-    },  
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, setIsCartOpen, removeItemFromCart, updateQuantity, setIsEmailVerification, setVerificationEmail } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  setIsCartOpen,
+  removeItemFromCart,
+  updateQuantity,
+  setIsEmailVerification,
+  setVerificationEmail,
+} = cartSlice.actions;
 export default cartSlice.reducer;
