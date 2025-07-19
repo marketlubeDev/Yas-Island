@@ -8016,8 +8016,8 @@ html[lang=ar] .confirm-email__input-underline {
 .email-checkout__summary-viewItems {
   width: 100%;
   padding: 12px 16px;
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: var(--color-base-bg);
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -8039,11 +8039,11 @@ html[lang=ar] .confirm-email__input-underline {
   font-weight: 400;
 }
 .email-checkout__summary-viewItems-content {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
-  background-color: #f9f9f9;
+  background-color: var(--summary-header-bg);
 }
 .email-checkout__summary-viewItems-content-item {
   display: flex;
@@ -8051,7 +8051,7 @@ html[lang=ar] .confirm-email__input-underline {
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-viewItems-content-item-title {
   font-weight: 500;
@@ -8081,7 +8081,7 @@ html[lang=ar] .confirm-email__input-underline {
 }
 .email-checkout__summary-viewItems-content-item-price-details {
   padding-top: 8px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount {
   display: flex;
@@ -8089,11 +8089,11 @@ html[lang=ar] .confirm-email__input-underline {
   margin-bottom: 4px;
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount-Content {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount-Value {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat {
@@ -8102,11 +8102,11 @@ html[lang=ar] .confirm-email__input-underline {
   margin-bottom: 4px;
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat-Content {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat-Value {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
 .email-checkout__summary-costBreakdown {
@@ -8118,27 +8118,27 @@ html[lang=ar] .confirm-email__input-underline {
   margin-bottom: 8px;
 }
 .email-checkout__summary-costBreakdown-subTotal-Content {
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-costBreakdown-subTotal-Value {
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-costBreakdown-vat {
   display: flex;
   justify-content: space-between;
 }
 .email-checkout__summary-costBreakdown-vat-Content {
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-costBreakdown-vat-Value {
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-promoCode {
   margin-bottom: 16px;
 }
 .email-checkout__summary-promoCode-title {
   font-size: 12px;
-  color: #333;
+  color: var(--cart-total-price);
   text-transform: uppercase;
   margin-bottom: 8px;
   text-align: left;
@@ -8150,16 +8150,17 @@ html[lang=ar] .confirm-email__input-underline {
 .email-checkout__summary-promoCode-input-container-inputBox {
   flex: 1;
   padding: 8px 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
   font-size: 14px;
+  background-color: var(--summary-header-bg);
 }
 .email-checkout__summary-promoCode-input-container-applyButton {
   padding: 8px 16px;
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: var(--summary-header-bg);
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
-  color: #333;
+  color: var(--cart-total-price);
   cursor: pointer;
 }
 .email-checkout__summary-grandTotal {
@@ -8167,15 +8168,15 @@ html[lang=ar] .confirm-email__input-underline {
   justify-content: space-between;
   margin-bottom: 16px;
   padding-top: 12px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-grandTotal-Content {
   font-weight: bold;
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-grandTotal-Value {
   font-weight: bold;
-  color: #333;
+  color: var(--cart-total-price);
 }
 .email-checkout__summary-securePayment {
   width: 100%;
@@ -8198,7 +8199,7 @@ html[lang=ar] .confirm-email__input-underline {
 .email-checkout__summary-row--total {
   font-weight: 600;
   font-size: 15px;
-  border-top: 1.5px solid #e3e3e3;
+  border-top: 1.5px solid var(--color-base-product-card-divider);
   padding: 15px 10px 18px 10px;
 }
 
@@ -8458,7 +8459,7 @@ html[lang=ar] .confirm-email__input-underline {
 }
 
 .setSection-Value {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
 
