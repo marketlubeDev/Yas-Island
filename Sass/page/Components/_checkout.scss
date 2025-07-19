@@ -207,8 +207,8 @@
   &-viewItems {
     width: 100%;
     padding: 12px 16px;
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    background-color: var(--color-base-bg);
+    border: 1px solid var(--color-base-product-card-divider);
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -233,11 +233,11 @@
     }
 
     &-content {
-      border: 1px solid #e0e0e0;
+      border: 1px solid var(--color-base-product-card-divider);
       border-radius: 6px;
       padding: 16px;
       margin-bottom: 16px;
-      background-color: #f9f9f9;
+      background-color: var(--summary-header-bg);
 
       &-item {
         display: flex;
@@ -245,7 +245,7 @@
         align-items: center;
         margin-bottom: 12px;
         padding-bottom: 8px;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid var(--color-base-product-card-divider);
 
         &-title {
           font-weight: 500;
@@ -281,7 +281,7 @@
 
         &-price-details {
           padding-top: 8px;
-          border-top: 1px solid #e0e0e0;
+          border-top: 1px solid var(--color-base-product-card-divider);
 
           &-netAmount {
             display: flex;
@@ -289,12 +289,12 @@
             margin-bottom: 4px;
 
             &-Content {
-              color: #333;
+              color: var(--cart-total-price);
               font-size: 14px;
             }
 
             &-Value {
-              color: #333;
+              color: var(--cart-total-price);
               font-size: 14px;
             }
           }
@@ -305,12 +305,12 @@
             margin-bottom: 4px;
 
             &-Content {
-              color: #333;
+              color: var(--cart-total-price);
               font-size: 14px;
             }
 
             &-Value {
-              color: #333;
+              color: var(--cart-total-price);
               font-size: 14px;
             }
           }
@@ -328,11 +328,11 @@
       margin-bottom: 8px;
 
       &-Content {
-        color: #333;
+        color: var(--cart-total-price);
       }
 
       &-Value {
-        color: #333;
+        color: var(--cart-total-price);
       }
     }
 
@@ -341,11 +341,11 @@
       justify-content: space-between;
 
       &-Content {
-        color: #333;
+        color: var(--cart-total-price);
       }
 
       &-Value {
-        color: #333;
+        color: var(--cart-total-price);
       }
     }
   }
@@ -355,7 +355,7 @@
 
     &-title {
       font-size: 12px;
-      color: #333;
+      color: var(--cart-total-price);
       text-transform: uppercase;
       margin-bottom: 8px;
       text-align: left;
@@ -368,17 +368,18 @@
       &-inputBox {
         flex: 1;
         padding: 8px 12px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid var(--color-base-product-card-divider);
         border-radius: 6px;
         font-size: 14px;
+        background-color: var(--summary-header-bg);
       }
 
       &-applyButton {
         padding: 8px 16px;
-        background-color: white;
-        border: 1px solid #e0e0e0;
+        background-color: var(--summary-header-bg);
+        border: 1px solid var(--color-base-product-card-divider);
         border-radius: 6px;
-        color: #333;
+        color: var(--cart-total-price);
         cursor: pointer;
       }
     }
@@ -389,16 +390,16 @@
     justify-content: space-between;
     margin-bottom: 16px;
     padding-top: 12px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--color-base-product-card-divider);
 
     &-Content {
       font-weight: bold;
-      color: #333;
+      color: var(--cart-total-price);
     }
 
     &-Value {
       font-weight: bold;
-      color: #333;
+      color: var(--cart-total-price);
     }
   }
 
@@ -424,7 +425,7 @@
     &--total {
       font-weight: 600;
       font-size: 15px;
-      border-top: 1.5px solid #e3e3e3;
+      border-top: 1.5px solid var(--color-base-product-card-divider);
       padding: 15px 10px 18px 10px;
     }
   }
@@ -710,6 +711,6 @@
   font-size: 14px;
 }
 .setSection-Value {
-  color: #333;
+  color: var(--cart-total-price);
   font-size: 14px;
 }
