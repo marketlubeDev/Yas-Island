@@ -107,7 +107,7 @@
 .email-checkout__form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   background: var(--color-email-form-box);
   padding: 4px 18px 64px 18px;
   border-radius: 12px;
@@ -115,11 +115,14 @@
 }
 
 .email-checkout__form-container-inner {
-  max-width: 210px;
+  // max-width: 210px;
+  max-width: 100%;
   margin: 0 auto;
   gap: 1rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 1rem;
 
   @include respond(tablets) {
     max-width: 100%;
@@ -378,9 +381,9 @@
   color: var(--color-country-code-clr);
   border: none;
   border-bottom: 2px solid var(--color-email-form-input-border);
-  width: 40px;
+  width: 55px;
   background: transparent;
-  padding: 0px 15px 0px 0px;
+  padding: 0px 10px 0px 0px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -226,7 +226,7 @@ function CheckOutSummaryMbl({ promoApplied }) {
       <div
         style={{
           width: "100%",
-          padding: "12px 16px",
+          padding: "0px 16px",
           border: "none",
           color: "#4CAF50",
           fontSize: "14px",
