@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function CheckOutSummaryMbl({ promoApplied }) {
+function CheckOutSummaryMbl({ promoApplied = false }) {
   const { t } = useTranslation();
   const [showItems, setShowItems] = useState(false);
 
@@ -113,25 +113,26 @@ function CheckOutSummaryMbl({ promoApplied }) {
       </div>
 
       {/* Promo Code Section */}
-      <div className="email-checkout__summary-promoCode">
-        <div className="email-checkout__summary-promoCode-title">
-          Enter your promo code to get discount
+      {promoApplied && (
+        <div className="email-checkout__summary-promoCode">
+          <div className="email-checkout__summary-promoCode-title">
+            Enter your promo code to get discount
+          </div>
+          <div className="email-checkout__summary-promoCode-input-container">
+            <input
+              type="text"
+              placeholder="Enter promo code"
+              className="email-checkout__summary-promoCode-input-container-inputBox"
+            />
+            <button
+              className="email-checkout__summary-promoCode-input-container-applyButton"
+              type="button"
+            >
+              Apply
+            </button>
+          </div>
         </div>
-        <div className="email-checkout__summary-promoCode-input-container">
-          <input
-            type="text"
-            placeholder="Enter promo code"
-            className="email-checkout__summary-promoCode-input-container-inputBox"
-          />
-          <button
-            className="email-checkout__summary-promoCode-input-container-applyButton"
-            type="button"
-          >
-            Apply
-          </button>
-        </div>
-      </div>
-
+      )}
       {/* Total */}
       <div className="email-checkout__summary-grandTotal">
         <span className="grandTotal-Content">
