@@ -312,7 +312,6 @@ export default function BookingSection({
         } else {
           const orderDetails = res?.orderdetails;
 
-          console.log(orderDetails, "orderDetails>>");
 
           if (type === "cart") {
             orderDetails?.order?.items?.forEach((item) => {

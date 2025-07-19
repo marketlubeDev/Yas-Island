@@ -39,7 +39,6 @@ export default function ProductCard({ productList }) {
     return defaultVariant;
   };
 
-  console.log(productList, "proddsdsuctList");
 
   return (
     <div className="ProductCard">

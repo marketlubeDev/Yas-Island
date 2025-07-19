@@ -57,7 +57,6 @@ export default function HeaderLogo() {
   const currentSort = useSelector((state) => state.product.currentSort);
   const currentPark = useSelector((state) => state.product.currentPark);
 
-  console.log(currentPark, "currentdgdgdPark");
 
   useEffect(() => {
     function handleClickOutside(event) {

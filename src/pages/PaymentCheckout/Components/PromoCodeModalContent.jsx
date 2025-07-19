@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 export default function PromoCodeModalContent({checkout}) {
-  console.log(checkout, "checkout>>");
   const { t } = useTranslation();
 
   return (

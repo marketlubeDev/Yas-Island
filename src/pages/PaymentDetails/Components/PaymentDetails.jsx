@@ -12,7 +12,6 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
-  console.log(checkout, "checkout>>123");
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -46,7 +45,6 @@ export default function PaymentDetails() {
 
   const validateData = (data) => {
     const errors = [];
-    console.log(data, "data>>");
     // Validate items array
     if (!data.items || !Array.isArray(data.items) || data.items.length === 0) {
       errors.push("No items in cart");
