@@ -3121,6 +3121,12 @@ html[lang=ar] .guest-label {
   scrollbar-width: none; /* Firefox */
   /* Secure Payment Section */
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .order-summary-new {
+    min-width: 100%;
+    width: 100%;
+  }
+}
 .order-summary-new .order-summary-header {
   margin-bottom: 24px;
   padding-bottom: 0px;

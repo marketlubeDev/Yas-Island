@@ -15,10 +15,9 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
     <div className="email-checkout__summary">
       {/* Header */}
       <div className="email-checkout__summary-title">
-        <h3>Order Summary</h3>
-        <span>1 item</span>
+        <h3>{t("orderSummary.title")}</h3>
+        <span>1 {t("orderSummary.items")}</span>
       </div>
-
       {/* View Items Button */}
       <button
         onClick={() => setShowItems(!showItems)}
@@ -39,7 +38,7 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           <span className="email-checkout__summary-viewItems-icon-text">
-            View Items
+            {t("orderSummary.viewItems")}
           </span>
         </div>
         <svg
@@ -72,26 +71,34 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
 
           <div className="email-checkout__summary-viewItems-content-item-details">
             <div className="email-checkout__summary-viewItems-content-item-details-setOne">
-              <span className="setSection-Content">Variants</span>
+              <span className="setSection-Content">
+                {t("orderSummary.variants")}
+              </span>
               <span className="setSection-Value">Adult</span>
             </div>
             <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
-              <span className="setSection-Content">Date</span>
+              <span className="setSection-Content">
+                {t("orderSummary.date")}
+              </span>
               <span className="setSection-Value">Sat, Jul 19, 2025</span>
             </div>
             <div className="email-checkout__summary-viewItems-content-item-details-setThree">
-              <span className="setSection-Content">Quantity</span>
+              <span className="setSection-Content">
+                {t("orderSummary.quantity")}
+              </span>
               <span className="setSection-Value">2</span>
             </div>
           </div>
 
           <div className="email-checkout__summary-viewItems-content-item-price-details">
             <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
-              <span className="netAmount-Content">Net Amount :</span>
+              <span className="netAmount-Content">
+                {t("orderSummary.netAmount")} :
+              </span>
               <span className="netAmount-Value">AED 561.90</span>
             </div>
             <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
-              <span className="vat-Content">VAT :</span>
+              <span className="vat-Content">{t("orderSummary.vat")} :</span>
               <span className="vat-Value">+ AED 28.10</span>
             </div>
           </div>
@@ -107,7 +114,7 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
           <span className="subTotal-Value">AED {subtotal.toFixed(1)}</span>
         </div>
         <div className="email-checkout__summary-costBreakdown-vat">
-          <span className="vat-Content">VAT</span>
+          <span className="vat-Content">{t("orderSummary.vat")}</span>
           <span className="vat-Value">+ {vat.toFixed(1)} VAT</span>
         </div>
       </div>
@@ -116,19 +123,19 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
       {promoApplied && (
         <div className="email-checkout__summary-promoCode">
           <div className="email-checkout__summary-promoCode-title">
-            Enter your promo code to get discount
+            {t("orderSummary.promoDiscount")}
           </div>
           <div className="email-checkout__summary-promoCode-input-container">
             <input
               type="text"
-              placeholder="Enter promo code"
+              placeholder={t("orderSummary.enterPromoCode")}
               className="email-checkout__summary-promoCode-input-container-inputBox"
             />
             <button
               className="email-checkout__summary-promoCode-input-container-applyButton"
               type="button"
             >
-              Apply
+              {t("orderSummary.apply")}
             </button>
           </div>
         </div>
@@ -154,7 +161,7 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           <path d="M9 12l2 2 4-4"></path>
         </svg>
-        Secure Payment
+        {t("orderSummary.securePayment")}
       </div>
     </div>
   );

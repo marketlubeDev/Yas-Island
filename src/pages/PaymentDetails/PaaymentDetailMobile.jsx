@@ -40,7 +40,7 @@ function PaymentDetailsMobile() {
 
               <InputFieldsMbl />
 
-              <CheckOutSummaryMbl />
+              <CheckOutSummaryMbl promoApplied={true} />
 
               {/* <PromoBoxMbl /> */}
               <CheckBoxMbl

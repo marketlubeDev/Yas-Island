@@ -298,5 +298,6 @@ export const ar = {
     promoDiscount: "أدخل رمز الخصم للحصول على تخفيض",
     enterPromoCode: "أدخل رمز الخصم",
     apply: "تطبيق",
+    securePayment: "دفع آمن",
   },
 };

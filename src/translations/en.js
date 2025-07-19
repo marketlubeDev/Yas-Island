@@ -295,5 +295,6 @@ export const en = {
     promoDiscount: "ENTER YOUR PROMO CODE TO GET DISCOUNT",
     enterPromoCode: "Enter promo code",
     apply: "Apply",
+    securePayment: "Secure Payment",
   },
 };
