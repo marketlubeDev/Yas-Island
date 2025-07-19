@@ -7,7 +7,6 @@ import { setOtp } from "../../../global/otpSlice";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { setVerificationEmail } from "../../../global/cartSlice";
 
 function EmailMbl() {
   const dispatch = useDispatch();
@@ -16,39 +15,26 @@ function EmailMbl() {
   const { mutate: verification, isPending } = useVerification();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    try {
-      e.preventDefault();
-
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailValue)) {
-        toast.error("Please enter a valid email address");
-        return;
-      }
-
-      // Call the verification API
-      verification(emailValue, {
-        onSuccess: (res) => {
-          dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
-          // dispatch(setEmailVerification(true));
-          dispatch(setVerificationEmail(emailValue));
-          navigate("/otp-confirmation");
-        },
-        onError: (error) => {
-          console.log(error, "error>>");
-          toast.error(error?.response?.data?.message || "Something went wrong");
-        },
-      });
-    } catch (error) {
-      console.log(error, "error>>");
-      toast.error(error?.response?.data?.message || "Something went wrong");
+  const handleConfirmEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailValue)) {
+      toast.error("Please enter a valid email address");
+      return;
     }
+    verification(emailValue, {
+      onSuccess: (res) => {
+        dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
+        navigate("/otp-confirmation");
+      },
+      onError: (error) => {
+        toast.error(error?.response?.data?.message || "Something went wrong");
+      },
+    });
   };
 
   return (
     <>
-      <form className="email-verification__form" onSubmit={handleSubmit}>
+      <div className="email-verification__form">
         <div className="email-verification-form-box">
           <label className="email-verification-label" id="email">
             {t("payment.emailConfirmation.emailLabel")}
@@ -65,7 +51,7 @@ function EmailMbl() {
           />
           <button
             className="email-verification-confirm-btn"
-            type="submit"
+            onClick={handleConfirmEmail}
             disabled={isPending}
           >
             {isPending ? (
@@ -75,7 +61,7 @@ function EmailMbl() {
             )}
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 }
