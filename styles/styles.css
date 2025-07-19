@@ -259,6 +259,7 @@
   --color-fb-sad-bg: #ff4d4f;
   --card-box-shadow: #00000014;
   --color-summary-title: #1a1a1a;
+  --summary-header-bg: #fafafa;
 }
 :root [data-theme=dark] {
   --color-base-bg: #0b0c0c;
@@ -3189,13 +3190,13 @@ html[lang=ar] .guest-label {
   animation: slideDown 0.3s ease-out;
 }
 .order-summary-new .view-items-section .order-item {
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.2s ease;
 }
 .order-summary-new .view-items-section .order-item:hover {
-  border-color: #e0e0e0;
+  border-color: var(--color-base-product-card-divider);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .order-summary-new .view-items-section .order-item .item-header {
@@ -3203,7 +3204,7 @@ html[lang=ar] .guest-label {
   justify-content: space-between;
   align-items: flex-start;
   padding: 10px 16px;
-  background: #fafafa;
+  background: var(--summary-header-bg);
 }
 .order-summary-new .view-items-section .order-item .item-header .item-info {
   flex: 1;
@@ -3241,8 +3242,8 @@ html[lang=ar] .guest-label {
 }
 .order-summary-new .view-items-section .order-item .item-details {
   padding: 16px;
-  background: #ffffff;
-  border-top: 1px solid #f0f0f0;
+  background: var(--summary-header-bg);
+  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .order-summary-new .view-items-section .order-item .item-details .detail-row {
   display: flex;
@@ -3260,13 +3261,13 @@ html[lang=ar] .guest-label {
 }
 .order-summary-new .view-items-section .order-item .item-details .detail-row .detail-value {
   font-size: 14px;
-  color: #1a1a1a;
+  color: var(--cart-total-price);
   font-weight: 500;
 }
 .order-summary-new .view-items-section .order-item .item-details .price-breakdown {
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .order-summary-new .view-items-section .order-item .item-details .price-breakdown .breakdown-row {
   display: flex;
@@ -3282,7 +3283,7 @@ html[lang=ar] .guest-label {
   color: #666;
 }
 .order-summary-new .view-items-section .order-item .item-details .price-breakdown .breakdown-row span:last-child {
-  color: #1a1a1a;
+  color: var(--cart-total-price);
   font-weight: 500;
 }
 @keyframes slideDown {
@@ -3307,13 +3308,13 @@ html[lang=ar] .guest-label {
   font-weight: 500;
 }
 .order-summary-new .pricing-section .pricing-row .pricing-value {
-  color: #1a1a1a;
+  color: var(--cart-total-price);
   font-weight: 500;
 }
 .order-summary-new .pricing-section .pricing-row.total-row {
   margin-bottom: 0;
   padding-top: 16px;
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--color-base-product-card-divider);
 }
 .order-summary-new .pricing-section .pricing-row.total-row .total-label {
   font-size: 18px;
@@ -3350,11 +3351,11 @@ html[lang=ar] .guest-label {
 .order-summary-new .promo-section .promo-input-group .promo-input {
   flex: 1;
   padding: 12px 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 8px;
   font-size: 14px;
   color: #1a1a1a;
-  background: #ffffff;
+  background: var(--summary-header-bg);
   transition: border-color 0.2s ease;
 }
 .order-summary-new .promo-section .promo-input-group .promo-input::placeholder {
@@ -3367,12 +3368,12 @@ html[lang=ar] .guest-label {
 }
 .order-summary-new .promo-section .promo-input-group .promo-apply-btn {
   padding: 12px 20px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--summary-header-bg);
+  border: 1px solid var(--color-base-product-card-divider);
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-summary-title);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -3391,7 +3392,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .secure-payment-section {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .order-summary-new .secure-payment-section .secure-payment-button {
   display: flex;

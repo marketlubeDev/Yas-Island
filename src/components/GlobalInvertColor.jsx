@@ -10,6 +10,10 @@ export default function GlobalInvertColor() {
   useEffect(() => {
     // order summary
     document.documentElement.style.setProperty(
+      "--summary-header-bg",
+      isDarkMode ? "#0B0C0C" : "#fafafa"
+    );
+    document.documentElement.style.setProperty(
       "--color-summary-title",
       isDarkMode ? "#E7EBD4" : "#1a1a1a"
     );
@@ -1921,6 +1925,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-summary-title",
         "#1a1a1a"
+      );
+      document.documentElement.style.setProperty(
+        "--summary-header-bg",
+        "#fafafa"
       );
     };
   }, [isDarkMode, isHighContrast]);
