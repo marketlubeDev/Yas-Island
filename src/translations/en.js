@@ -128,6 +128,7 @@ export const en = {
       vatAndTax: "16.43 VAT & Tax",
     },
     vat: "VAT :",
+    vatUnit: "VAT",
   },
   product: {
     addToCart: "Add to cart",

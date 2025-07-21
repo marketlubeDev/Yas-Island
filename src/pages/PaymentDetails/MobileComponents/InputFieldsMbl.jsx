@@ -344,6 +344,7 @@ function InputFieldsMbl() {
               display: "flex",
               alignItems: "center",
               marginRight: "5px",
+              marginBottom: "5px",
             }}
           >
             <FaEdit size={18} color="#666" />

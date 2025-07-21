@@ -128,6 +128,7 @@ export const ar = {
     to: "إلى",
     children: "الأطفال",
     vat: "ضريبة القيمة المضافة",
+    vatUnit: "ضريبة القيمة المضافة",
   },
   product: {
     addToCart: "أضف إلى السلة",
