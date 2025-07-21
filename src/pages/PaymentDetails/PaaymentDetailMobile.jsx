@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import InputFieldsMbl from "./MobileComponents/InputFieldsMbl";
 import CheckOutSummaryMbl from "./MobileComponents/CheckOutSummaryMbl";
 import PromoBoxMbl from "./MobileComponents/PromoBoxMbl";
@@ -15,7 +16,12 @@ function PaymentDetailsMobile() {
   const [receiveComms, setReceiveComms] = useState(false);
   const [promo, setPromo] = useState("");
   const [showPromoPopup, setShowPromoPopup] = useState(false);
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+
+  // Get checkout data from Redux
+  const checkout = useSelector((state) => state.checkout);
+
   const handleApplyPromo = () => {
     setShowPromoPopup(true);
   };
@@ -40,7 +46,13 @@ function PaymentDetailsMobile() {
 
               <InputFieldsMbl />
 
-              <CheckOutSummaryMbl promoApplied={true} />
+              <CheckOutSummaryMbl
+                promoApplied={true}
+                formData={formData}
+                setFormData={setFormData}
+                checkout={checkout}
+                showPromoCode={true}
+              />
 
               {/* <PromoBoxMbl /> */}
               <CheckBoxMbl

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import visaIcon from "../../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
 import CheckOutSummaryMbl from "../../PaymentDetails/MobileComponents/CheckOutSummaryMbl";
@@ -7,6 +8,10 @@ import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 
 function CardPaymentMobile() {
   const { t, i18n } = useTranslation();
+  const [formData, setFormData] = useState({});
+
+  // Get checkout data from Redux
+  const checkout = useSelector((state) => state.checkout);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,7 +27,13 @@ function CardPaymentMobile() {
             <div className="make-payment__content">
               {/* Order Summary */}
               {/* <CheckOutSummaryMbl /> */}
-              <CheckOutSummaryMbl promoApplied={false} />
+              <CheckOutSummaryMbl
+                promoApplied={false}
+                formData={formData}
+                setFormData={setFormData}
+                checkout={checkout}
+                showPromoCode={false}
+              />
               <br />
               <br />
 
