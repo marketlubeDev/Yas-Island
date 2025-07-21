@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import InputFieldsMbl from "./MobileComponents/InputFieldsMbl";
 import CheckOutSummaryMbl from "./MobileComponents/CheckOutSummaryMbl";
-import PromoBoxMbl from "./MobileComponents/PromoBoxMbl";
+// import PromoBoxMbl from "./MobileComponents/PromoBoxMbl";
 import CheckBoxMbl from "./MobileComponents/CheckBoxMbl";
 import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import PaymentHeaderMbl from "../Home/MobileComponents/PaymentHeaderMbl";
@@ -45,7 +45,6 @@ function PaymentDetailsMobile() {
               <div className="email-checkout__steps-underline"></div>
 
               <InputFieldsMbl />
-
               <CheckOutSummaryMbl
                 promoApplied={true}
                 formData={formData}
@@ -53,8 +52,6 @@ function PaymentDetailsMobile() {
                 checkout={checkout}
                 showPromoCode={true}
               />
-
-              {/* <PromoBoxMbl /> */}
               <CheckBoxMbl
                 acceptTerms={acceptTerms}
                 setAcceptTerms={setAcceptTerms}

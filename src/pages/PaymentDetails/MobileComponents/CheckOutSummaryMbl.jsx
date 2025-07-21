@@ -209,22 +209,23 @@ function CheckOutSummaryMbl({
         <div className="email-checkout__summary-viewItems-content">
           {checkout?.items && checkout.items.length > 0 ? (
             checkout.items.map((item, index) => (
-              <div
-                key={index}
-                className="email-checkout__summary-viewItems-content-item"
-              >
-                <span className="email-checkout__summary-viewItems-content-item-title">
-                  {getProduct(item.productId)?.product?.product_title ||
-                    "Product"}
-                </span>
-                <span className="email-checkout__summary-viewItems-content-item-price">
-                  AED{" "}
-                  {(
-                    (getProduct(item.productId)?.productVariant?.net_amount ||
-                      0) * (item.quantity || 0)
-                  ).toFixed(2)}
-                </span>
-
+              <>
+                <div
+                  key={index}
+                  className="email-checkout__summary-viewItems-content-item"
+                >
+                  <span className="email-checkout__summary-viewItems-content-item-title">
+                    {getProduct(item.productId)?.product?.product_title ||
+                      "Product"}
+                  </span>
+                  <span className="email-checkout__summary-viewItems-content-item-price">
+                    AED{" "}
+                    {(
+                      (getProduct(item.productId)?.productVariant?.net_amount ||
+                        0) * (item.quantity || 0)
+                    ).toFixed(2)}
+                  </span>
+                </div>
                 <div className="email-checkout__summary-viewItems-content-item-details">
                   <div className="email-checkout__summary-viewItems-content-item-details-setOne">
                     <span className="setSection-Content">
@@ -279,7 +280,7 @@ function CheckOutSummaryMbl({
                     </span>
                   </div>
                 </div>
-              </div>
+              </>
             ))
           ) : (
             <div className="email-checkout__summary-viewItems-content-item">
