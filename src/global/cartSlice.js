@@ -6,8 +6,8 @@ const initialState = {
   vatAndTax: 0,
   total: 0,
   isCartOpen: false,
-  isEmailVerification: true,
-  verificationEmail: "ajaydev.marketlube@gmail.com",
+  isEmailVerification: false,
+  verificationEmail: "",
 };
 
 const calculateCartTotals = (items) => {

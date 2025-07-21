@@ -1,22 +1,169 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setCheckout } from "../../../global/checkoutSlice";
+import validatePromocode from "../../../serivces/promocode/promocode";
+import { toast } from "sonner";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 
-function CheckOutSummaryMbl({ promoApplied = false }) {
+function CheckOutSummaryMbl({
+  promoApplied = false,
+  formData,
+  setFormData,
+  checkout,
+  showPromoCode = true,
+}) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [showItems, setShowItems] = useState(false);
+  const [promoCode, setPromoCode] = useState(
+    checkout?.coupons?.[0]?.code || ""
+  );
+  const [promoCodeApplying, setPromoCodeApplying] = useState(false);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
+  const productList = useSelector((state) => state.product.allProducts);
+  const { mutate: checkBasket } = useCheckBasket();
 
-  // Calculate totals
-  const subtotal = 561.9;
-  const vat = 28.1;
-  const promoSavings = promoApplied ? 100.0 : 0;
-  const total = subtotal + vat - promoSavings;
+  const getProduct = (item) => {
+    if (!productList || !item) return { product: null, productVariant: null };
+
+    const product = productList.find((product) =>
+      product.product_variants.some((variant) => variant.productid === item)
+    );
+
+    const productVariant = product?.product_variants.find(
+      (variant) => variant.productid === item
+    );
+    return {
+      product,
+      productVariant,
+    };
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    try {
+      return new Date(dateString).toLocaleDateString("en-US", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    } catch (error) {
+      return "N/A";
+    }
+  };
+
+  const handleBasketCheck = (promoCode = "", message = "") => {
+    let items = [];
+    checkout?.items?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances ? item?.performances : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo,
+      });
+    });
+
+    const data = {
+      coupons: promoCode ? [{ couponCode: promoCode }] : [],
+      items: items,
+      capacityManagement: true,
+    };
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(
+            res?.orderDetails?.error?.text || t("Something went wrong"),
+            {
+              position: "top-center",
+            }
+          );
+        } else {
+          const orderDetails = res?.orderdetails?.order;
+          const items = orderDetails?.items?.map((item) => ({
+            productId: item?.productId,
+            quantity: item?.quantity,
+            performances: item?.performances ? item?.performances : [],
+            validFrom: item?.validFrom,
+            validTo: item?.validTo,
+          }));
+          dispatch(
+            setCheckout({
+              coupons: orderDetails?.coupons,
+              items: items,
+              emailId: checkout?.emailId,
+              language: currentLanguage,
+              grossAmount: orderDetails?.total?.gross,
+              netAmount: orderDetails?.total?.net,
+              taxAmount: orderDetails?.total?.tax,
+              firstName: checkout?.firstName,
+              lastName: checkout?.lastName,
+              phoneNumber: checkout?.phoneNumber,
+              countryCode: checkout?.countryCode,
+              isTnCAgrred: checkout?.isTnCAgrred,
+              isConsentAgreed: checkout?.isConsentAgreed,
+              promotions: orderDetails?.promotions,
+            })
+          );
+          setPromoCodeApplying(false);
+          if (promoCode) {
+            toast.success("Promo code applied successfully!");
+          } else {
+            toast.error(message || "Invalid promo code");
+          }
+        }
+      },
+      onError: (err) => {
+        console.log(err, "err");
+        toast.error(err?.response?.data?.message || t("Something went wrong"), {
+          position: "top-center",
+        });
+        setPromoCodeApplying(false);
+      },
+    });
+  };
+
+  const handlePromoCode = async () => {
+    try {
+      setPromoCodeApplying(true);
+      if (!promoCode) {
+        toast.error("Please enter a promo code");
+        return;
+      }
+      const response = await validatePromocode(promoCode);
+      if (!response?.data?.coupondetails?.coupon) {
+        let message =
+          response?.coupondetails?.error?.text || "Invalid promo code";
+
+        handleBasketCheck("", message);
+      } else {
+        setFormData({ ...formData, promoCode: promoCode });
+        handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+      }
+    } catch (error) {
+      setPromoCodeApplying(false);
+      toast.error(error?.message || "Invalid promo code");
+    }
+  };
+
+  // Calculate totals with fallbacks
+
+  const total = checkout?.grossAmount || 0;
 
   return (
     <div className="email-checkout__summary">
       {/* Header */}
       <div className="email-checkout__summary-title">
         <h3>{t("orderSummary.title")}</h3>
-        <span>1 {t("orderSummary.items")}</span>
+        <span>
+          {checkout?.items?.length || 1} {t("orderSummary.items")}
+        </span>
       </div>
       {/* View Items Button */}
       <button
@@ -60,48 +207,87 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
       {/* Item Details Section */}
       {showItems && (
         <div className="email-checkout__summary-viewItems-content">
-          <div className="email-checkout__summary-viewItems-content-item">
-            <span className="email-checkout__summary-viewItems-content-item-title">
-              1 Day Water World
-            </span>
-            <span className="email-checkout__summary-viewItems-content-item-price">
-              AED 561.90
-            </span>
-          </div>
+          {checkout?.items && checkout.items.length > 0 ? (
+            checkout.items.map((item, index) => (
+              <div
+                key={index}
+                className="email-checkout__summary-viewItems-content-item"
+              >
+                <span className="email-checkout__summary-viewItems-content-item-title">
+                  {getProduct(item.productId)?.product?.product_title ||
+                    "Product"}
+                </span>
+                <span className="email-checkout__summary-viewItems-content-item-price">
+                  AED{" "}
+                  {(
+                    (getProduct(item.productId)?.productVariant?.net_amount ||
+                      0) * (item.quantity || 0)
+                  ).toFixed(2)}
+                </span>
 
-          <div className="email-checkout__summary-viewItems-content-item-details">
-            <div className="email-checkout__summary-viewItems-content-item-details-setOne">
-              <span className="setSection-Content">
-                {t("orderSummary.variants")}
-              </span>
-              <span className="setSection-Value">Adult</span>
-            </div>
-            <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
-              <span className="setSection-Content">
-                {t("orderSummary.date")}
-              </span>
-              <span className="setSection-Value">Sat, Jul 19, 2025</span>
-            </div>
-            <div className="email-checkout__summary-viewItems-content-item-details-setThree">
-              <span className="setSection-Content">
-                {t("orderSummary.quantity")}
-              </span>
-              <span className="setSection-Value">2</span>
-            </div>
-          </div>
+                <div className="email-checkout__summary-viewItems-content-item-details">
+                  <div className="email-checkout__summary-viewItems-content-item-details-setOne">
+                    <span className="setSection-Content">
+                      {t("orderSummary.variants")}
+                    </span>
+                    <span className="setSection-Value">
+                      {getProduct(item.productId)?.productVariant
+                        ?.productvariantname || "Variant"}
+                    </span>
+                  </div>
+                  <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
+                    <span className="setSection-Content">
+                      {t("orderSummary.date")}
+                    </span>
+                    <span className="setSection-Value">
+                      {formatDate(item.validFrom)}
+                    </span>
+                  </div>
+                  <div className="email-checkout__summary-viewItems-content-item-details-setThree">
+                    <span className="setSection-Content">
+                      {t("orderSummary.quantity")}
+                    </span>
+                    <span className="setSection-Value">
+                      {item.quantity || 0}
+                    </span>
+                  </div>
+                </div>
 
-          <div className="email-checkout__summary-viewItems-content-item-price-details">
-            <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
-              <span className="netAmount-Content">
-                {t("orderSummary.netAmount")} :
+                <div className="email-checkout__summary-viewItems-content-item-price-details">
+                  <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
+                    <span className="netAmount-Content">
+                      {t("orderSummary.netAmount")} :
+                    </span>
+                    <span className="netAmount-Value">
+                      AED{" "}
+                      {(
+                        (getProduct(item.productId)?.productVariant
+                          ?.net_amount || 0) * (item.quantity || 0)
+                      ).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
+                    <span className="vat-Content">
+                      {t("orderSummary.vat")} :
+                    </span>
+                    <span className="vat-Value">
+                      + AED{" "}
+                      {(
+                        (getProduct(item.productId)?.productVariant?.vat || 0) *
+                        (item.quantity || 0)
+                      ).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="email-checkout__summary-viewItems-content-item">
+              <span className="email-checkout__summary-viewItems-content-item-title">
+                No items in cart
               </span>
-              <span className="netAmount-Value">AED 561.90</span>
             </div>
-            <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
-              <span className="vat-Content">{t("orderSummary.vat")} :</span>
-              <span className="vat-Value">+ AED 28.10</span>
-            </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -111,16 +297,16 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
           <span className="subTotal-Content">
             {t("payment.orderSummary.subTotal")}
           </span>
-          <span className="subTotal-Value">AED {subtotal.toFixed(1)}</span>
+          <span className="subTotal-Value">AED {checkout?.netAmount}</span>
         </div>
         <div className="email-checkout__summary-costBreakdown-vat">
           <span className="vat-Content">{t("orderSummary.vat")}</span>
-          <span className="vat-Value">+ {vat.toFixed(1)} VAT</span>
+          <span className="vat-Value">+ {checkout?.taxAmount} VAT</span>
         </div>
       </div>
 
       {/* Promo Code Section */}
-      {promoApplied && (
+      {showPromoCode && (
         <div className="email-checkout__summary-promoCode">
           <div className="email-checkout__summary-promoCode-title">
             {t("orderSummary.promoDiscount")}
@@ -130,12 +316,16 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
               type="text"
               placeholder={t("orderSummary.enterPromoCode")}
               className="email-checkout__summary-promoCode-input-container-inputBox"
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
             />
             <button
               className="email-checkout__summary-promoCode-input-container-applyButton"
               type="button"
+              onClick={handlePromoCode}
+              disabled={promoCodeApplying}
             >
-              {t("orderSummary.apply")}
+              {promoCodeApplying ? <ButtonLoading /> : t("orderSummary.apply")}
             </button>
           </div>
         </div>
@@ -145,7 +335,7 @@ function CheckOutSummaryMbl({ promoApplied = false }) {
         <span className="grandTotal-Content">
           {t("payment.orderSummary.total")}
         </span>
-        <span className="grandTotal-Value">AED {total.toFixed(0)}</span>
+        <span className="grandTotal-Value">AED {checkout?.grossAmount}</span>
       </div>
 
       {/* Secure Payment Button */}
