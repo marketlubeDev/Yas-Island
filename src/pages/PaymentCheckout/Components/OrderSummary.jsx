@@ -164,6 +164,7 @@ export default function OrderSummary({
     try {
       setPromoCodeApplying(true);
       if (!promoCode) {
+        setPromoCodeApplying(false);
         toast.error("Please enter a promo code");
         return;
       }

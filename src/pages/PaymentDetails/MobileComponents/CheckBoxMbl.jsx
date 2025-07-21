@@ -6,6 +6,7 @@ function CheckBoxMbl({
   setAcceptTerms,
   receiveComms,
   setReceiveComms,
+  handleTermsChange,
 }) {
   const { t } = useTranslation();
   return (
@@ -23,7 +24,7 @@ function CheckBoxMbl({
           id="acceptTerms"
           type="checkbox"
           checked={acceptTerms}
-          onChange={() => setAcceptTerms((v) => !v)}
+          onChange={() => handleTermsChange("terms", !acceptTerms)}
           required
         />
         {t("payment.orderSummary.terms.acceptTerms")}{" "}
@@ -47,7 +48,7 @@ function CheckBoxMbl({
           id="receiveComms"
           type="checkbox"
           checked={receiveComms}
-          onChange={() => setReceiveComms((v) => !v)}
+          onChange={() => handleTermsChange("consent", !receiveComms)}
         />
         {t("payment.orderSummary.terms.receiveCommunications")}
       </label>

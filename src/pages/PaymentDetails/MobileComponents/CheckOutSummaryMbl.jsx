@@ -134,6 +134,7 @@ function CheckOutSummaryMbl({
       setPromoCodeApplying(true);
       if (!promoCode) {
         toast.error("Please enter a promo code");
+        setPromoCodeApplying(false);
         return;
       }
       const response = await validatePromocode(promoCode);
