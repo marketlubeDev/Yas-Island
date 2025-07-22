@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import usePayment from "../../apiHooks/payment/payment";
 import { setOrderData } from "../../global/orderSlice";
 import { updateTermsAcceptance } from "../../global/checkoutSlice";
+import ButtonLoading from "../../components/Loading/ButtonLoading";
 
 function PaymentDetailsMobile() {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ function PaymentDetailsMobile() {
   );
   const dispatch = useDispatch();
 
-  const { mutate: createOrder } = usePayment();
+  const { mutate: createOrder, isPending } = usePayment();
 
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
@@ -195,7 +196,11 @@ function PaymentDetailsMobile() {
                 }}
                 disabled={!acceptTerms}
               >
-                {t("payment.paymentDetails.proceedToPayment")}
+                {isPending ? (
+                  <ButtonLoading />
+                ) : (
+                  t("payment.paymentDetails.proceedToPayment")
+                )}
               </button>
             </form>
           </div>

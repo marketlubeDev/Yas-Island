@@ -78,7 +78,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
             ) {
               handlePaymentSuccess();
             }
-          } catch (e) {
+          } catch {
             console.log(
               "Cannot access iframe content due to cross-origin restrictions"
             );
@@ -145,15 +145,8 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
         <div
           className="iframe-container"
           style={{
-            // maxWidth: '800px',
-            // margin: '0 auto',
-            // padding: '2rem',
-            // background: 'white',
             borderRadius: "1rem",
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-            // padding: "10px",
-            // overflow: 'hidden',
-            // position: 'relative'
             minHeight: "450px",
             height: "350px",
           }}
@@ -204,13 +197,6 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
         </div>
 
         <div className="card-ad">
-          {/* <img src="/path-to/visa.png" alt="visa" className="card-logo" />
-          <img
-            src="/path-to/mastercard.png"
-            alt="mastercard"
-            className="card-logo"
-          />
-          <img src="/path-to/amex.png" alt="amex" className="card-logo" /> */}
           <img src={visaIcon} alt="visa" className="card-logo" />
         </div>
 
