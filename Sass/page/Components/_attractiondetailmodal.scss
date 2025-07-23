@@ -31,7 +31,7 @@
   &__title {
     flex: 1;
     text-align: center;
-    margin-right: 24px;
+    margin-right: 0px;
     font-size: 20px;
     font-weight: 700;
     color: var(--color-dtl-header-color);
@@ -40,8 +40,12 @@
   &__body {
     padding: 0px 6px 24px 6px;
     background-color: var(--color-dtl-body-bg);
-    height: calc(99dvh - 11rem);
+    height: calc(99dvh - 11.5rem);
     overflow-y: auto;
+
+    @include respond(smallPhone) {
+      height: calc(99dvh - 13.5rem);
+    }
   }
 
   &__image {

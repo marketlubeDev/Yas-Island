@@ -207,60 +207,20 @@ function CheckOutSummaryMbl({
 
       {/* Item Details Section */}
       {showItems && (
-        <div className="email-checkout__summary-viewItems-content">
+        <>
           {checkout?.items && checkout.items.length > 0 ? (
             checkout.items.map((item, index) => (
               <>
-                <div
-                  key={index}
-                  className="email-checkout__summary-viewItems-content-item"
-                >
-                  <span className="email-checkout__summary-viewItems-content-item-title">
-                    {getProduct(item.productId)?.product?.product_title ||
-                      "Product"}
-                  </span>
-                  <span className="email-checkout__summary-viewItems-content-item-price">
-                    AED{" "}
-                    {(
-                      (getProduct(item.productId)?.productVariant?.net_amount ||
-                        0) * (item.quantity || 0)
-                    ).toFixed(2)}
-                  </span>
-                </div>
-                <div className="email-checkout__summary-viewItems-content-item-details">
-                  <div className="email-checkout__summary-viewItems-content-item-details-setOne">
-                    <span className="setSection-Content">
-                      {t("orderSummary.variants")}
+                <div className="email-checkout__summary-viewItems-content">
+                  <div
+                    key={index}
+                    className="email-checkout__summary-viewItems-content-item"
+                  >
+                    <span className="email-checkout__summary-viewItems-content-item-title">
+                      {getProduct(item.productId)?.product?.product_title ||
+                        "Product"}
                     </span>
-                    <span className="setSection-Value">
-                      {getProduct(item.productId)?.productVariant
-                        ?.productvariantname || "Variant"}
-                    </span>
-                  </div>
-                  <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
-                    <span className="setSection-Content">
-                      {t("orderSummary.date")}
-                    </span>
-                    <span className="setSection-Value">
-                      {formatDate(item.validFrom)}
-                    </span>
-                  </div>
-                  <div className="email-checkout__summary-viewItems-content-item-details-setThree">
-                    <span className="setSection-Content">
-                      {t("orderSummary.quantity")}
-                    </span>
-                    <span className="setSection-Value">
-                      {item.quantity || 0}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="email-checkout__summary-viewItems-content-item-price-details">
-                  <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
-                    <span className="netAmount-Content">
-                      {t("orderSummary.netAmount")} :
-                    </span>
-                    <span className="netAmount-Value">
+                    <span className="email-checkout__summary-viewItems-content-item-price">
                       AED{" "}
                       {(
                         (getProduct(item.productId)?.productVariant
@@ -268,17 +228,59 @@ function CheckOutSummaryMbl({
                       ).toFixed(2)}
                     </span>
                   </div>
-                  <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
-                    <span className="vat-Content">
-                      {t("orderSummary.vat")} :
-                    </span>
-                    <span className="vat-Value">
-                      + AED{" "}
-                      {(
-                        (getProduct(item.productId)?.productVariant?.vat || 0) *
-                        (item.quantity || 0)
-                      ).toFixed(2)}
-                    </span>
+                  <div className="email-checkout__summary-viewItems-content-item-details">
+                    <div className="email-checkout__summary-viewItems-content-item-details-setOne">
+                      <span className="setSection-Content">
+                        {t("orderSummary.variants")}
+                      </span>
+                      <span className="setSection-Value">
+                        {getProduct(item.productId)?.productVariant
+                          ?.productvariantname || "Variant"}
+                      </span>
+                    </div>
+                    <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
+                      <span className="setSection-Content">
+                        {t("orderSummary.date")}
+                      </span>
+                      <span className="setSection-Value">
+                        {formatDate(item.validFrom)}
+                      </span>
+                    </div>
+                    <div className="email-checkout__summary-viewItems-content-item-details-setThree">
+                      <span className="setSection-Content">
+                        {t("orderSummary.quantity")}
+                      </span>
+                      <span className="setSection-Value">
+                        {item.quantity || 0}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="email-checkout__summary-viewItems-content-item-price-details">
+                    <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
+                      <span className="netAmount-Content">
+                        {t("orderSummary.netAmount")} :
+                      </span>
+                      <span className="netAmount-Value">
+                        AED{" "}
+                        {(
+                          (getProduct(item.productId)?.productVariant
+                            ?.net_amount || 0) * (item.quantity || 0)
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
+                      <span className="vat-Content">
+                        {t("orderSummary.vat")} :
+                      </span>
+                      <span className="vat-Value">
+                        + AED{" "}
+                        {(
+                          (getProduct(item.productId)?.productVariant?.vat ||
+                            0) * (item.quantity || 0)
+                        ).toFixed(2)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </>
@@ -290,7 +292,7 @@ function CheckOutSummaryMbl({
               </span>
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* Cost Breakdown */}

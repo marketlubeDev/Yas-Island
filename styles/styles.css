@@ -6679,7 +6679,7 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 .cart-notification-mobile {
   position: absolute;
   top: 0px;
-  right: 2rem;
+  right: 40px;
   z-index: 100;
   width: 20px;
   height: 20px;
@@ -9169,7 +9169,7 @@ html[lang=ar] .make-payment__summary-top {
 .attraction-detail-modal__title {
   flex: 1;
   text-align: center;
-  margin-right: 24px;
+  margin-right: 0px;
   font-size: 20px;
   font-weight: 700;
   color: var(--color-dtl-header-color);
@@ -9177,8 +9177,13 @@ html[lang=ar] .make-payment__summary-top {
 .attraction-detail-modal__body {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
-  height: calc(99dvh - 11rem);
+  height: calc(99dvh - 11.5rem);
   overflow-y: auto;
+}
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__body {
+    height: calc(99dvh - 13.5rem);
+  }
 }
 .attraction-detail-modal__image {
   border-radius: 16px;
