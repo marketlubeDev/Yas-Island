@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import visaIcon from "../../../assets/images/visa3.png";
 import { useTranslation } from "react-i18next";
 import CheckOutSummaryMbl from "../../PaymentDetails/MobileComponents/CheckOutSummaryMbl";
 import PaymentMethodMbl from "./Components/PaymentMethodMbl";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
+import { clearCart } from "../../../global/cartSlice";
 
 function CardPaymentMobile() {
   const { t, i18n } = useTranslation();
@@ -13,6 +14,7 @@ function CardPaymentMobile() {
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [countdown, setCountdown] = useState(5);
+  const dispatch = useDispatch();
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
 
@@ -22,6 +24,7 @@ function CardPaymentMobile() {
 
   const handlePaymentSuccess = () => {
     console.log("Payment successful, starting redirect countdown...");
+    dispatch(clearCart());
     setPaymentStatus("success");
     window.location.href = "/payment-success";
   };

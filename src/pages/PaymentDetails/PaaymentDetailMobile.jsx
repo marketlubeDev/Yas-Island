@@ -61,7 +61,7 @@ function PaymentDetailsMobile() {
     if (!data.firstName || data.firstName.trim().length < 2) {
       errors.push("First name is required ");
     }
-    if (!data.lastName || data.lastName.trim().length < 2) {
+    if (!data.lastName || data.lastName.trim().length < 1) {
       errors.push("Last name is required ");
     }
     if (!data.phoneNumber || data.phoneNumber.length < 8) {

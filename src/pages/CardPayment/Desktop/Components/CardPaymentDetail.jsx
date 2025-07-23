@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import cardIcon from "../../../../assets/icons/card.png";
-import paypalIcon from "../../../../assets/icons/paypal.png";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../../../global/cartSlice";
 import visaIcon from "../../../../assets/icons/payment.png";
 
 // Add keyframe animation
@@ -12,10 +12,9 @@ const spinnerStyle = `
   }
 `;
 
-export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
+export default function CardPaymentDetail({ orderData }) {
   const { t } = useTranslation();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [showPayFortForm, setShowPayFortForm] = useState(true);
+  const dispatch = useDispatch();
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [countdown, setCountdown] = useState(5);
@@ -23,6 +22,7 @@ export default function CardPaymentDetail({ onPaymentComplete, orderData }) {
   const handlePaymentSuccess = () => {
     console.log("Payment successful, starting redirect countdown...");
     setPaymentStatus("success");
+    dispatch(clearCart()); // Clear the cart when payment is successful
     window.location.href = "/payment-success";
   };
 
