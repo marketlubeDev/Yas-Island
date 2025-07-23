@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import updateSurvey from "../../../serivces/survey/survey";
 import smileGreen from "../../../assets/images/green.png";
 import smileDark from "../../../assets/images/happy.png";
 import smileYellow from "../../../assets/images/yellow.jpg";
@@ -9,14 +12,35 @@ import smileRedDark from "../../../assets/images/sad.png";
 
 function SmileSectionMbl({ selected, setSelected }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleEmojiClick = async (emojiType) => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      const response = await updateSurvey(emojiType);
+      if (response.status === 200) {
+        setSelected(emojiType);
+        setTimeout(() => {
+          navigate("/product");
+        }, 3000);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data || "Something went wrong");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="experience-rate-options">
       <div
         className={`experience-rate-option${
-          selected === "excellent" ? " selected-green" : ""
+          selected === "Satisfied" ? " selected-green" : ""
         }`}
-        onClick={() => setSelected("excellent")}
+        onClick={() => handleEmojiClick("Satisfied")}
       >
         <div className="smile-circle">
           <img src={smileGreen} alt="Excellent" className="excellent-emoji" />
@@ -30,9 +54,9 @@ function SmileSectionMbl({ selected, setSelected }) {
       </div>
       <div
         className={`experience-rate-option${
-          selected === "average" ? " selected-yellow" : ""
+          selected === "Neutral" ? " selected-yellow" : ""
         }`}
-        onClick={() => setSelected("average")}
+        onClick={() => handleEmojiClick("Neutral")}
       >
         <div className="smile-circle">
           <img src={smileYellow} alt="Average" className="average-emoji" />
@@ -46,9 +70,9 @@ function SmileSectionMbl({ selected, setSelected }) {
       </div>
       <div
         className={`experience-rate-option${
-          selected === "poor" ? " selected-red" : ""
+          selected === "Unsatisfied" ? " selected-red" : ""
         }`}
-        onClick={() => setSelected("poor")}
+        onClick={() => handleEmojiClick("Unsatisfied")}
       >
         <div className="smile-circle">
           <img src={smileRed} alt="Poor" className="poor-emoji" />

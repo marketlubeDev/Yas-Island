@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ticketImg from "../../assets/images/ticket.svg";
 import SmileSection from "./MobileComponents/SmileSectionMbl";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
 
 function PaymentResponseMobile() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
   const { t } = useTranslation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (selected) {
-      const timer = setTimeout(() => {
-        navigate("/product"); // Go to MobileProductList page
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [selected, navigate]);
 
   return (
     <>
