@@ -20,6 +20,9 @@
     display: flex;
     align-items: center;
     padding: 1rem;
+    @include respond(smallPhone) {
+      padding: 1rem 0.5rem;
+    }
   }
 
   &__back-icon {
@@ -35,6 +38,9 @@
     font-size: 20px;
     font-weight: 700;
     color: var(--color-dtl-header-color);
+    @include respond(smallPhone) {
+      font-size: 18px;
+    }
   }
 
   &__body {
@@ -44,7 +50,7 @@
     overflow-y: auto;
 
     @include respond(smallPhone) {
-      height: calc(99dvh - 13.5rem);
+      height: calc(99dvh - 12rem);
     }
   }
 

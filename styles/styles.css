@@ -9161,6 +9161,11 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   padding: 1rem;
 }
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__header {
+    padding: 1rem 0.5rem;
+  }
+}
 .attraction-detail-modal__back-icon {
   width: 20px;
   height: 20px;
@@ -9174,6 +9179,11 @@ html[lang=ar] .make-payment__summary-top {
   font-weight: 700;
   color: var(--color-dtl-header-color);
 }
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__title {
+    font-size: 18px;
+  }
+}
 .attraction-detail-modal__body {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
@@ -9182,7 +9192,7 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
-    height: calc(99dvh - 13.5rem);
+    height: calc(99dvh - 12rem);
   }
 }
 .attraction-detail-modal__image {

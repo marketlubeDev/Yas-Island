@@ -167,7 +167,7 @@ function CardPaymentMobile() {
                     name="payfort-iframe"
                     title="PayFort Payment"
                     width="100%"
-                    height="600"
+                    height="100%"
                     frameBorder="0"
                     style={{
                       border: "none",
@@ -176,6 +176,7 @@ function CardPaymentMobile() {
                       background: "transparent",
                       opacity: isIframeLoading ? 0 : 1,
                       transition: "opacity 0.3s ease",
+                      padding: "1rem",
                     }}
                     onLoad={() => setIsIframeLoading(false)}
                   />
