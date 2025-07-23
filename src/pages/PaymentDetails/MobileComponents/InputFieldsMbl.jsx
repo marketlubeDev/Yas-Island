@@ -26,6 +26,7 @@ const FormInput = ({
   type = "text",
   className = "",
   button = null,
+  isRTL = false,
 }) => (
   <label
     className="email-checkout__label"
@@ -44,11 +45,13 @@ const FormInput = ({
         <div
           style={{
             position: "absolute",
-            right: "0",
+            [isRTL ? "left" : "right"]: 0,
             top: "50%",
             transform: "translateY(-50%)",
             background: "none",
             border: "none",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           {button}
@@ -254,7 +257,7 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
 );
 
 function InputFieldsMbl() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -316,6 +319,8 @@ function InputFieldsMbl() {
     });
   }, [checkout]);
 
+  const isRTL = i18n.language === "ar";
+
   return (
     <div className="email-checkout__form-container-inner">
       <FormInput
@@ -343,13 +348,16 @@ function InputFieldsMbl() {
               padding: "5px",
               display: "flex",
               alignItems: "center",
-              marginRight: "5px",
+              marginLeft: isRTL ? "5px" : "0",
+              marginRight: isRTL ? "0" : "5px",
               marginBottom: "5px",
+              order: isRTL ? -1 : 1,
             }}
           >
             <FaEdit size={18} color="#666" />
           </button>
         }
+        isRTL={isRTL}
       />
       <FormSelectWithSearch
         label={t("payment.personalDetails.countryOfResidence")}
