@@ -41,6 +41,7 @@ function BookingModalMbl({
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
+  const isRTL = i18n.language === "ar";
 
   function getVariants() {
     const variants = {};
@@ -238,7 +239,6 @@ function BookingModalMbl({
           );
         } else {
           const orderDetails = res?.orderdetails;
-
 
           if (type === "cart") {
             orderDetails?.order?.items?.forEach((item) => {
@@ -568,6 +568,9 @@ function BookingModalMbl({
             alt="Back"
             className="attraction-detail-modal__back-icon"
             onClick={onClose}
+            style={{
+              transform: isRTL ? "scaleX(-1)" : "none",
+            }}
           />
           <span className="booking-modal__title">
             {t("booking.chooseDate")}
@@ -582,7 +585,13 @@ function BookingModalMbl({
               <>
                 <div className="booking-modal__calendar-header">
                   <button onClick={handlePrevMonth}>
-                    <img src={leftIcon} alt="Previous" />
+                    <img
+                      src={leftIcon}
+                      alt="Previous"
+                      style={{
+                        transform: isRTL ? "scaleX(-1)" : "none",
+                      }}
+                    />
                   </button>
                   <span className="booking-modal__calendar-month">
                     {formatMonthYear(currentDate)}
@@ -592,6 +601,9 @@ function BookingModalMbl({
                       src={leftIcon}
                       alt="Next"
                       className="booking-modal__calendar-arrow--rotated"
+                      style={{
+                        transform: isRTL ? "scaleX(1)" : "scaleX(-1)",
+                      }}
                     />
                   </button>
                 </div>

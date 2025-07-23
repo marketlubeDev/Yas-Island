@@ -168,7 +168,7 @@ export const ar = {
     },
     emailConfirmation: {
       emailLabel: "البريد الإلكتروني *",
-      emailPlaceholder: "example@email.com",
+      emailPlaceholder: "البريد الإلكتروني",
       confirmButton: "تأكيد البريد الإلكتروني",
       completeVerification: "إكمال التحقق",
     },

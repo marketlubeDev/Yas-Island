@@ -20,13 +20,13 @@ function AttractionDetailModalMbl({
   setAvailableDates,
   setIsLoadingDates,
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const dispatch = useDispatch();
   const [validStartDate, setValidStartDate] = useState(null);
   const [validEndDate, setValidEndDate] = useState(null);
-
+  const isRTL = i18n.language === "ar";
   useEffect(() => {
     // When modal is open, prevent background scroll
     document.body.style.overflow = "hidden";
@@ -214,6 +214,9 @@ function AttractionDetailModalMbl({
           alt="Back"
           className="attraction-detail-modal__back-icon"
           onClick={onClose}
+          style={{
+            transform: isRTL ? "scaleX(-1)" : "none",
+          }}
         />
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
