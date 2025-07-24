@@ -12,7 +12,6 @@ import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 
 export default function ProductPage() {
-  const { isMobile, isTablet } = useSelector((state) => state.responsive);
   const productList = useSelector((state) => state.product.allProducts);
   const currentPark = useSelector((state) => state.product.currentPark);
   const currentSort = useSelector((state) => state.product.currentSort);
