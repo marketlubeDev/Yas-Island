@@ -60,11 +60,11 @@ export default function CardPaymentDetail({ orderData }) {
       document.body.appendChild(form);
       form.submit();
 
-      setTimeout(() => {
-        if (document.body.contains(form)) {
-          document.body.removeChild(form);
-        }
-      }, 1000);
+      // setTimeout(() => {
+      //   if (document.body.contains(form)) {
+      //     document.body.removeChild(form);
+      //   }
+      // }, 1000);
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
