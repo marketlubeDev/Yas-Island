@@ -10,21 +10,6 @@ const spinnerStyle = `
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(0.95);
-      opacity: 0.7;
-    }
-    50% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(0.95);
-      opacity: 0.7;
-    }
-  }
 `;
 
 export default function CardPaymentDetail({ orderData }) {
@@ -33,12 +18,10 @@ export default function CardPaymentDetail({ orderData }) {
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [countdown, setCountdown] = useState(5);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   const handlePaymentSuccess = () => {
     console.log("Payment successful, starting redirect countdown...");
     setPaymentStatus("success");
-    setIsProcessing(false);
     dispatch(clearCart()); // Clear the cart when payment is successful
 
     // Start countdown before redirect
@@ -89,38 +72,7 @@ export default function CardPaymentDetail({ orderData }) {
         if (event.data && event.data.action === "redirect") {
           handlePaymentSuccess();
         }
-        // Check if payment processing has started
-        if (event.data && event.data.action === "processing") {
-          setIsProcessing(true);
-        }
       };
-
-      // Monitor iframe for navigation changes
-      let lastUrl = null;
-      const checkIframeNavigation = () => {
-        const iframe = document.querySelector('iframe[name="payfort-iframe"]');
-        if (iframe) {
-          try {
-            const currentUrl = iframe.contentWindow.location.href;
-            if (lastUrl && currentUrl !== lastUrl) {
-              // URL changed, payment might be processing
-              console.log("Iframe navigation detected");
-              setIsProcessing(true);
-            }
-            lastUrl = currentUrl;
-          } catch {
-            // Cross-origin, but we can still detect some changes
-            if (lastUrl !== null) {
-              // If we previously had access and now we don't, navigation occurred
-              console.log("Cross-origin navigation detected");
-              setIsProcessing(true);
-            }
-          }
-        }
-      };
-
-      // Start monitoring after iframe loads
-      const monitorInterval = setInterval(checkIframeNavigation, 500);
 
       // Poll iframe content to detect success page
       const pollIframeContent = () => {
@@ -133,26 +85,11 @@ export default function CardPaymentDetail({ orderData }) {
               ? iframeDoc.body.innerText
               : "";
 
-            // Check if the iframe is empty or blank (processing state)
-            if (iframeContent.trim() === "" && !isIframeLoading) {
-              setIsProcessing(true);
-            }
-
             if (
               iframeContent.includes("Payment Successful") ||
               iframeContent.includes("Redirecting")
             ) {
               handlePaymentSuccess();
-            }
-
-            // Check for failure messages
-            if (
-              iframeContent.includes("Payment Failed") ||
-              iframeContent.includes("Transaction Declined") ||
-              iframeContent.includes("Error")
-            ) {
-              setIsProcessing(false);
-              setPaymentStatus("failed");
             }
           } catch {
             console.log(
@@ -169,10 +106,9 @@ export default function CardPaymentDetail({ orderData }) {
       return () => {
         window.removeEventListener("message", handleMessage);
         clearInterval(pollInterval);
-        clearInterval(monitorInterval);
       };
     }
-  }, [orderData, isIframeLoading]);
+  }, [orderData]);
 
   return (
     <div className="payment-container">
@@ -189,7 +125,6 @@ export default function CardPaymentDetail({ orderData }) {
             position: "relative",
           }}
         >
-          {/* Success overlay */}
           {paymentStatus === "success" && (
             <div
               style={{
@@ -236,114 +171,6 @@ export default function CardPaymentDetail({ orderData }) {
               />
             </div>
           )}
-
-          {/* Processing overlay - shows when payment is being processed */}
-          {isProcessing && paymentStatus !== "success" && (
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "rgba(255, 255, 255, 0.98)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: 999,
-                borderRadius: "8px",
-              }}
-            >
-              <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    margin: "0 auto 1.5rem",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: "100%",
-                      height: "100%",
-                      border: "3px solid #e0e0e0",
-                      borderRadius: "50%",
-                    }}
-                  />
-                  <div
-                    className="loading-spinner"
-                    style={{
-                      position: "absolute",
-                      width: "100%",
-                      height: "100%",
-                      border: "3px solid transparent",
-                      borderTop: "3px solid #3498db",
-                      borderRadius: "50%",
-                      animation: "spin 1s linear infinite",
-                    }}
-                  />
-                </div>
-                <h3
-                  style={{
-                    margin: "0 0 0.5rem",
-                    color: "#333",
-                    fontWeight: "500",
-                  }}
-                >
-                  Processing Payment
-                </h3>
-                <p
-                  style={{
-                    margin: "0 0 1rem",
-                    color: "#666",
-                    fontSize: "14px",
-                  }}
-                >
-                  Please wait while we process your payment...
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "4px",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#3498db",
-                      animation: "pulse 1.5s ease-in-out infinite",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#3498db",
-                      animation: "pulse 1.5s ease-in-out 0.3s infinite",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#3498db",
-                      animation: "pulse 1.5s ease-in-out 0.6s infinite",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Initial loading */}
           {isIframeLoading && (
             <div
               style={{
@@ -371,7 +198,6 @@ export default function CardPaymentDetail({ orderData }) {
               </p>
             </div>
           )}
-
           <iframe
             name="payfort-iframe"
             title="PayFort Payment"
