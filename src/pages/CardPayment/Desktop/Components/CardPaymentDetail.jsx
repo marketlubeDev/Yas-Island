@@ -34,7 +34,7 @@ export default function CardPaymentDetail({ orderData }) {
         }
         return prev - 1;
       });
-    }, 1000);
+    }, 500);
   };
 
   console.log(orderData?.tokenizationResponse, "askgdkjasgkdgsa");
@@ -60,17 +60,27 @@ export default function CardPaymentDetail({ orderData }) {
       document.body.appendChild(form);
       form.submit();
 
-      // setTimeout(() => {
-      //   if (document.body.contains(form)) {
-      //     document.body.removeChild(form);
-      //   }
-      // }, 1000);
+      // Keep the form in DOM to maintain iframe functionality
+      // Form will only be removed on component unmount or payment completion
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
         console.log("Received message from iframe:", event.data);
-        if (event.data && event.data.action === "redirect") {
-          handlePaymentSuccess();
+
+        // Handle different payment statuses
+        if (event.data) {
+          if (
+            event.data.action === "redirect" ||
+            event.data.status === "success"
+          ) {
+            handlePaymentSuccess();
+          } else if (
+            event.data.status === "failed" ||
+            event.data.status === "cancelled"
+          ) {
+            setPaymentStatus("failed");
+            console.log("Payment failed or cancelled");
+          }
         }
       };
 
@@ -106,9 +116,19 @@ export default function CardPaymentDetail({ orderData }) {
       return () => {
         window.removeEventListener("message", handleMessage);
         clearInterval(pollInterval);
+
+        // Clean up form only on unmount or when payment is complete
+        if (paymentStatus === "success" || paymentStatus === "failed") {
+          const existingForm = document.querySelector(
+            'form[target="payfort-iframe"]'
+          );
+          if (existingForm && document.body.contains(existingForm)) {
+            document.body.removeChild(existingForm);
+          }
+        }
       };
     }
-  }, [orderData]);
+  }, [orderData, paymentStatus]);
 
   return (
     <div className="payment-container">
@@ -169,6 +189,57 @@ export default function CardPaymentDetail({ orderData }) {
                   margin: "0 auto",
                 }}
               />
+            </div>
+          )}
+          {paymentStatus === "failed" && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                background: "white",
+                padding: "2rem",
+                borderRadius: "12px",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                textAlign: "center",
+                zIndex: 1000,
+              }}
+            >
+              <div style={{ marginBottom: "1rem" }}>
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <circle cx="25" cy="25" r="25" fill="#dc3545" />
+                  <path
+                    d="M18 18L32 32M32 18L18 32"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <h3 style={{ margin: "0 0 1rem", color: "#dc3545" }}>
+                Payment Failed
+              </h3>
+              <p style={{ margin: "0 0 1rem", color: "#666" }}>
+                Your payment could not be processed. Please try again.
+              </p>
+              <button
+                onClick={() => {
+                  setPaymentStatus("loading");
+                  window.location.reload();
+                }}
+                style={{
+                  background: "#dc3545",
+                  color: "white",
+                  border: "none",
+                  padding: "0.5rem 1.5rem",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                }}
+              >
+                Try Again
+              </button>
             </div>
           )}
           {isIframeLoading && (
