@@ -23,8 +23,21 @@ export default function CardPaymentDetail({ orderData }) {
     console.log("Payment successful, starting redirect countdown...");
     setPaymentStatus("success");
     dispatch(clearCart()); // Clear the cart when payment is successful
-    window.location.href = "/payment-success";
+
+    // Start countdown before redirect
+    const countdownInterval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          window.location.href = "/payment-success";
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
   };
+
+  console.log(orderData?.tokenizationResponse, "askgdkjasgkdgsa");
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
@@ -102,55 +115,62 @@ export default function CardPaymentDetail({ orderData }) {
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      {/* <div className="payment-methods">
-        <label className="method active">
-          <input
-            type="radio"
-            name="payment"
-            defaultChecked
-            className="method-input custom-radio"
-            style={{ height: "20px", width: "20px" }}
-          />
-          <span className="custom-radio-check"></span>
-          <div className="method-content">
-            <span className="card-icon">
-              <img src={cardIcon} alt="card" />
-            </span>
-            <span className="method-title">
-              {t("payment.cardPayment.paymentMethods.creditDebitCard")}
-            </span>
-          </div>
-        </label>
-
-        <label className="method">
-          <input
-            type="radio"
-            name="payment"
-            className="method-input custom-radio"
-            style={{ height: "20px", width: "20px" }}
-          />
-          <span className="custom-radio-check"></span>
-          <div className="method-content">
-            <span className="paypal-icon">
-              <img src={paypalIcon} alt="paypal" />
-            </span>
-            <span className="method-title">
-              {t("payment.cardPayment.paymentMethods.paypal")}
-            </span>
-          </div>
-        </label>
-      </div> */}
-
       <div className="payfort-container">
         <div
           className="iframe-container"
           style={{
             borderRadius: "1rem",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
             minHeight: "450px",
             height: "350px",
+            position: "relative",
           }}
         >
+          {paymentStatus === "success" && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                background: "white",
+                padding: "2rem",
+                borderRadius: "12px",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                textAlign: "center",
+                zIndex: 1000,
+              }}
+            >
+              <div style={{ marginBottom: "1rem" }}>
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                  <circle cx="25" cy="25" r="25" fill="#28a745" />
+                  <path
+                    d="M20 25L23 28L30 21"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <h3 style={{ margin: "0 0 1rem", color: "#28a745" }}>
+                Payment Successful!
+              </h3>
+              <p style={{ margin: "0 0 1rem", color: "#666" }}>
+                Redirecting to order details in {countdown} seconds...
+              </p>
+              <div
+                className="loading-spinner"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  border: "3px solid #f3f3f3",
+                  borderTop: "3px solid #28a745",
+                  borderRadius: "50%",
+                  animation: "spin 1s linear infinite",
+                  margin: "0 auto",
+                }}
+              />
+            </div>
+          )}
           {isIframeLoading && (
             <div
               style={{
@@ -199,53 +219,6 @@ export default function CardPaymentDetail({ orderData }) {
         <div className="card-ad">
           <img src={visaIcon} alt="visa" className="card-logo" />
         </div>
-
-        {paymentStatus === "success" && (
-          <div
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              background: "white",
-              padding: "2rem",
-              borderRadius: "12px",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-              textAlign: "center",
-              zIndex: 1000,
-            }}
-          >
-            <div style={{ marginBottom: "1rem" }}>
-              <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-                <circle cx="25" cy="25" r="25" fill="#28a745" />
-                <path
-                  d="M20 25L23 28L30 21"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <h3 style={{ margin: "0 0 1rem", color: "#28a745" }}>
-              Payment Successful!
-            </h3>
-            <p style={{ margin: "0 0 1rem", color: "#666" }}>
-              Redirecting to order details in {countdown} seconds...
-            </p>
-            <div
-              className="loading-spinner"
-              style={{
-                width: "30px",
-                height: "30px",
-                border: "3px solid #f3f3f3",
-                borderTop: "3px solid #28a745",
-                borderRadius: "50%",
-                animation: "spin 1s linear infinite",
-                margin: "0 auto",
-              }}
-            />
-          </div>
-        )}
       </div>
     </div>
   );
