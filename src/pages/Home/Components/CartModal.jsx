@@ -141,6 +141,7 @@ const CartModal = ({ isOpen, onClose }) => {
             productId: item?.productId,
             quantity: item?.quantity,
             performances: item?.performances ? item?.performances : [],
+            performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
           }));
@@ -165,6 +166,7 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
+        console.log(err, "err");
         console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
@@ -278,7 +280,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         <Button
                           className="minus-btn-web"
                           icon={<MinusOutlined />}
+                          disabled={isExpired}
                           onClick={() =>
+                            !isExpired &&
                             handleQuantityChange(
                               item?.productId,
                               -1,
@@ -293,7 +297,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         <Button
                           className="plus-btn-web"
                           icon={<PlusOutlined />}
+                          disabled={isExpired}
                           onClick={() =>
+                            !isExpired &&
                             handleQuantityChange(
                               item?.productId,
                               1,

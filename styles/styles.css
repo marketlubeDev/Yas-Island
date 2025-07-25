@@ -4276,6 +4276,7 @@ html[lang=ar] .guest-label {
 
 .back-button .rtl-arrow {
   transform: rotate(180deg);
+  margin-top: 10px;
 }
 
 .payment-form {
@@ -10385,8 +10386,8 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .lang-btn-head img {
-  height: 24px;
-  width: 24px;
+  height: 18px;
+  width: 18px;
   display: block;
 }
 
