@@ -140,9 +140,7 @@ const CartModal = ({ isOpen, onClose }) => {
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
-            performances: item?.performances
-              ? item?.performances
-              : [],
+            performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
           }));
@@ -167,7 +165,7 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
-        console.log(err , "err")
+        console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
@@ -322,19 +320,19 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>AED {subtotal.toFixed(2)}</span>
+                  <span>AED {subtotal?.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + AED {vatAndTax.toFixed(2)} {t("cart.vat")}
+                    + AED {vatAndTax?.toFixed(2)} {t("cart.vat")}
                   </span>
                 </div>
               </div>
               <div className="custom-divider"></div>
               <div className="total">
                 <span>{t("cart.total")}</span>
-                <span>AED {total.toFixed(2)}</span>
+                <span>AED {total?.toFixed(2)}</span>
               </div>
 
               <div className="cart-actions">
