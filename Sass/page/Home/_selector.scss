@@ -29,6 +29,21 @@
     // @include respond(bigDesktop) {
     //   font-size: 14px;
     // }
+
+    option {
+      background-color: var(--color-selector-option-bg);
+      color: var(--color-base-text);
+      padding: 8px 12px;
+
+      // &:hover {
+      //   background-color: var(--color-selector-option-hover-bg);
+      // }
+
+      // &:checked {
+      //   background-color: var(--color-selector-option-selected-bg);
+      //   color: var(--color-selector-option-text);
+      // }
+    }
   }
 }
 

@@ -269,7 +269,7 @@ function MycartMbl({ onClose, visible }) {
                       </div>
                       <div className="mycart-modal__item-price">
                         <span className="mycart-modal__item-price-main">
-                          AED {productData?.selectedVariant?.price?.net}
+                        {t("common.aed")} {productData?.selectedVariant?.price?.net}
                         </span>
                         <span className="mycart-modal__item-vat">
                           +
@@ -342,17 +342,17 @@ function MycartMbl({ onClose, visible }) {
               <div className="mycart-modal__summary">
                 <div className="mycart-modal__summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>AED {subtotal.toFixed(2)}</span>
+                  <span>{t("common.aed")} {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="mycart-modal__summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + AED {vatAndTax.toFixed(2)} {t("cart.vatUnit")}
+                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("cart.vatUnit")}
                   </span>
                 </div>
                 <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
                   <span>{t("cart.total")}</span>
-                  <span>AED {total.toFixed(2)}</span>
+                  <span>{t("common.aed")} {total.toFixed(2)}</span>
                 </div>
               </div>
               <button

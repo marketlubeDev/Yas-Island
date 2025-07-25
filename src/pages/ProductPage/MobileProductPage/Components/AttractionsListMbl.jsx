@@ -24,7 +24,6 @@ const AttractionsListMbl = ({ productList }) => {
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(false);
 
-
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
     dispatch(setSelectedProduct(item));
@@ -37,8 +36,6 @@ const AttractionsListMbl = ({ productList }) => {
     dispatch(setSelectedProduct({}));
     dispatch(clearPerformance());
   };
-
-
 
   const handleBookingModalBack = () => {
     setModalType("attraction");
@@ -100,7 +97,7 @@ const AttractionsListMbl = ({ productList }) => {
             onCheckout={handleCheckout}
             product={selectedAttraction}
             availableDates={availableDates}
-            isLoadingDates={isLoadingDates}   
+            isLoadingDates={isLoadingDates}
           />
         );
       default:
@@ -145,8 +142,13 @@ const AttractionsListMbl = ({ productList }) => {
                   >
                     {t("common.add")}
                   </button>
-                  <div className="attraction-card__price" style={{marginRight: "0.5rem"}}>
-                    <span>AED {defaultVariant(item)?.gross}</span>
+                  <div
+                    className="attraction-card__price"
+                    style={{ marginRight: "0.5rem" }}
+                  >
+                    <span>
+                      {t("common.aed")} {defaultVariant(item)?.gross}
+                    </span>
                   </div>
                   {/* <span className="attraction-card__vat">
                     {defaultVariant(item)?.net_amount}+{" "}

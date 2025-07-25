@@ -248,7 +248,7 @@ const CartModal = ({ isOpen, onClose }) => {
                     <div className="item-details">
                       <h4>{productData?.product_title}</h4>
                       <p>
-                        AED {productData?.selectedVariant?.price?.net} +
+                      {t("common.aed")} {productData?.selectedVariant?.price?.net} +
                         <span className="text-xs text-gray-500">
                           {" "}
                           {productData?.selectedVariant?.price?.tax}{" "}
@@ -322,19 +322,19 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>AED {subtotal.toFixed(2)}</span>
+                  <span>{t("common.aed")} {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + AED {vatAndTax.toFixed(2)} {t("cart.vat")}
+                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("cart.vat")}
                   </span>
                 </div>
               </div>
               <div className="custom-divider"></div>
               <div className="total">
                 <span>{t("cart.total")}</span>
-                <span>AED {total.toFixed(2)}</span>
+                <span>{t("common.aed")} {total.toFixed(2)}</span>
               </div>
 
               <div className="cart-actions">
