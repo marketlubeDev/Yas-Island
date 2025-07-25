@@ -235,7 +235,7 @@ function AttractionDetailModalMbl({
       </div>
 
       <div className="attraction-detail-modal__footer">
-        <div className="attraction-detail-modal__footer-divider"></div>
+        {/* <div className="attraction-detail-modal__footer-divider"></div> */}
         <div className="attraction-detail-modal__footer-left">
           <div className="attraction-detail-modal__price">
             {attraction.currency || "AED"} {defaultVariant(attraction)?.gross}

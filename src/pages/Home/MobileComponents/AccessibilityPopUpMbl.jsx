@@ -57,9 +57,8 @@ function AccessibilityPopUpMbl() {
           />
         </div>
         <div className="accessibility-popup-label">
-          {t("accessibility.colorBlindnessMode1")}
-          <br />
-          {t("accessibility.mode")}
+          {/* {t("accessibility.colorBlindnessMode1")}
+           {t("accessibility.mode")} */}
           <div className="color-blindness-options">
             <span
               className={`invert-colors ${isDarkMode ? "active" : ""}`}
@@ -72,7 +71,9 @@ function AccessibilityPopUpMbl() {
               style={{ margin: "0 4px" }}
             ></span>
             <span
-              className={`high-contrast ${isHighContrast ? "active" : ""}`}
+              className={`high-contrast ${
+                isHighContrast ? "active highActive" : ""
+              }`}
               // onClick={handleHighContrastClick}
             >
               {t("accessibility.highContrast") || "High Contrast"}

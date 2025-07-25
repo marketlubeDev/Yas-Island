@@ -6267,7 +6267,7 @@ html[lang=ar] .guest-label {
   padding: 5px 2px 5px 4px;
   align-items: flex-start;
   gap: 12px;
-  margin-right: 0.5rem;
+  margin-right: 0.1rem;
   margin-left: 0.5rem;
   margin-bottom: -0.5rem;
 }
@@ -6382,6 +6382,17 @@ html[lang=ar] .guest-label {
   margin-bottom: 56px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+.scroll-section::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-section::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 4px;
+  border: 2px solid var(--color-base-product-card-scroll-bar-border);
 }
 
 .mobile-header {
@@ -6655,6 +6666,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   min-width: 165px;
   padding: 8px 0;
   z-index: 1000;
+  border: 1px solid var(--color-base-mobile-top-item-text-active);
 }
 .mobile-top-search-section__dropdown--ar {
   left: 0;
@@ -6663,7 +6675,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
 }
 .mobile-top-search-section__dropdown-option {
   padding: 10px 10px;
-  gap: 1rem;
+  gap: 0rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6825,8 +6837,8 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 
 .accessibility-popup-icon-circle {
   margin-bottom: 16px;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 3.31513rem;
   border: 3.183px solid var(--color-accessibility-popup-icon-border);
   background: #e1f1ff;
@@ -6963,6 +6975,11 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 }
 .ant-modal {
   top: 0 !important;
+}
+
+.highActive {
+  color: #231942 !important;
+  font-weight: 700 !important;
 }
 
 .mycart-modal-mobile {
@@ -9282,17 +9299,26 @@ html[lang=ar] .make-payment__summary-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 18px 18px 18px;
+  padding: 10px;
   gap: 18px;
   background: var(--color-dtl-footer-bg);
   border-radius: 0 0 24px 24px;
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
+  top: 60px;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
-    top: 20px;
+    top: 35px;
+  }
+}
+html[lang=ar] .attraction-detail-modal__footer {
+  top: 20px !important;
+}
+@media only screen and (max-width: 575.98px) {
+  html[lang=ar] .attraction-detail-modal__footer {
+    top: 20px !important;
   }
 }
 .attraction-detail-modal__footer .attraction-detail-modal__footer-divider {
@@ -9321,7 +9347,7 @@ html[lang=ar] .make-payment__summary-top {
   height: 48px;
   background: var(--color-dtl-footer-vrl-divider);
   border-radius: 2px;
-  margin: 0 1px 0 -1rem;
+  margin: 0 1px 0 0rem;
   flex-shrink: 0;
 }
 .attraction-detail-modal__price {
@@ -9350,6 +9376,9 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   gap: 8px;
   margin-left: -0.5rem;
+}
+html[lang=ar] .attraction-detail-modal__add-btn {
+  padding: 10px 20px;
 }
 
 .attraction-detail-modal .ant-modal {

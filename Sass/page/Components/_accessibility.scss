@@ -78,8 +78,8 @@
 
 .accessibility-popup-icon-circle {
   margin-bottom: 16px;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 3.31513rem;
   border: 3.183px solid var(--color-accessibility-popup-icon-border);
   background: #e1f1ff;
@@ -237,4 +237,9 @@
 
 .ant-modal {
   top: 0 !important;
+}
+
+.highActive {
+  color: #231942 !important;
+  font-weight: 700 !important;
 }
