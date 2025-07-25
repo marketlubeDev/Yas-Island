@@ -284,22 +284,9 @@ export default function BookingSection({
       }
     }
 
-    const items = [];
+
     const currentItems = [];
 
-    if (type === "checkout") {
-      cartItems?.forEach((item) => {
-        items.push({
-          productId: item?.productId,
-          quantity: item?.quantity,
-          performance: item?.performances
-            ? [{ performanceId: item?.performances }]
-            : [],
-          validFrom: item?.validFrom,
-          validTo: item?.validTo,
-        });
-      });
-    }
     Object.entries(guests).forEach(([productId, guestData]) => {
       if (guestData.quantity < 1) {
         return;
