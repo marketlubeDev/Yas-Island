@@ -53,26 +53,31 @@ function CheckOutSummaryMbl() {
         <div className="email-checkout__summary-row-container">
           <div className="email-checkout__summary-row">
             <span>{t("payment.orderSummary.subTotal")}</span>
-            <span>AED {subtotal.toFixed(2)}</span>
+            <span>
+              {" "}
+              {t("common.aed")} {subtotal.toFixed(2)}
+            </span>
           </div>
           <div className="email-checkout__summary-row">
             <span>{t("payment.orderSummary.vatAndTax")}</span>
             <span>+ {vatAndTax.toFixed(2)} VAT & Tax</span>
           </div>
           {/* {promoApplied && ( */}
-            <div
-              className="email-checkout__summary-row"
-              style={{ color: "var(--color-pymnt-step-clr)" }}
-            >
-              <span>{t("payment.orderSummary.promoCodeSavings")}</span>
-              <span>-{promoSavings.toFixed(2)}</span>
-            </div>
-          {/* )} */}  
+          <div
+            className="email-checkout__summary-row"
+            style={{ color: "var(--color-pymnt-step-clr)" }}
+          >
+            <span>{t("payment.orderSummary.promoCodeSavings")}</span>
+            <span>-{promoSavings.toFixed(2)}</span>
+          </div>
+          {/* )} */}
         </div>
 
         <div className="email-checkout__summary-row email-checkout__summary-row--total">
           <span>{t("payment.orderSummary.total")}</span>
-          <span>AED {total.toFixed(2)}</span>
+          <span>
+            {t("common.aed")} {total.toFixed(2)}
+          </span>
         </div>
       </div>
     </div>

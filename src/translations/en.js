@@ -17,6 +17,9 @@ export const en = {
     to: "to",
     validTo: "Valid to",
     thisTicketIsExpired: "This ticket is expired",
+    vat: "VAT",
+    tax: "Tax",
+    aed: "AED",
   },
   accessibility: {
     title: "Accessibility",

@@ -17,6 +17,9 @@ export const ar = {
     to: "إلى",
     validTo: "صالح إلى",
     thisTicketIsExpired: "هذا التذكرة منتهية",
+    vat: "ضريبة القيمة المضافة",
+    tax: "ضريبة",
+    aed: "درهم",
   },
   accessibility: {
     title: "إمكانية الوصول",

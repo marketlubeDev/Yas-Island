@@ -693,7 +693,7 @@ export default function BookingSection({
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>
-              AED {totalPrice}
+            {t("common.aed")} {totalPrice}
             </span>
           </button>
           <button

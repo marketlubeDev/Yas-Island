@@ -221,7 +221,7 @@ function CheckOutSummaryMbl({
                         "Product"}
                     </span>
                     <span className="email-checkout__summary-viewItems-content-item-price">
-                      AED{" "}
+                      {t("common.aed")}{" "}
                       {(
                         (getProduct(item.productId)?.productVariant
                           ?.net_amount || 0) * (item.quantity || 0)
@@ -262,7 +262,7 @@ function CheckOutSummaryMbl({
                         {t("orderSummary.netAmount")} :
                       </span>
                       <span className="netAmount-Value">
-                        AED{" "}
+                        {t("common.aed")}{" "}
                         {(
                           (getProduct(item.productId)?.productVariant
                             ?.net_amount || 0) * (item.quantity || 0)
@@ -274,7 +274,7 @@ function CheckOutSummaryMbl({
                         {t("orderSummary.vat")} :
                       </span>
                       <span className="vat-Value">
-                        + AED{" "}
+                        + {t("common.aed")}{" "}
                         {(
                           (getProduct(item.productId)?.productVariant?.vat ||
                             0) * (item.quantity || 0)
@@ -301,11 +301,15 @@ function CheckOutSummaryMbl({
           <span className="subTotal-Content">
             {t("payment.orderSummary.subTotal")}
           </span>
-          <span className="subTotal-Value">AED {checkout?.netAmount}</span>
+          <span className="subTotal-Value">
+            {t("common.aed")} {checkout?.netAmount}
+          </span>
         </div>
         <div className="email-checkout__summary-costBreakdown-vat">
           <span className="vat-Content">{t("orderSummary.vat")}</span>
-          <span className="vat-Value">+ {checkout?.taxAmount} VAT</span>
+          <span className="vat-Value">
+            + {t("common.aed")} {checkout?.taxAmount}{" "}
+          </span>
         </div>
       </div>
 
@@ -339,7 +343,9 @@ function CheckOutSummaryMbl({
         <span className="grandTotal-Content">
           {t("payment.orderSummary.total")}
         </span>
-        <span className="grandTotal-Value">AED {checkout?.grossAmount}</span>
+        <span className="grandTotal-Value">
+          {t("common.aed")} {checkout?.grossAmount}
+        </span>
       </div>
 
       {/* Secure Payment Button */}

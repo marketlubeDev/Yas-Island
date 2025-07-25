@@ -238,11 +238,25 @@ export default function OrderSummary({
               {t("orderSummary.viewItems")}
             </span>
           </div>
-          <img
+          {/* <img
             src={downArrow}
             alt="expand"
             className={`view-items-arrow ${showAllItems ? "expanded" : ""}`}
-          />
+          /> */}
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#666"
+            strokeWidth="2"
+            style={{
+              transform: showAllItems ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.2s",
+            }}
+          >
+            <polyline points="6,9 12,15 18,9"></polyline>
+          </svg>
         </div>
 
         {showAllItems && (
@@ -266,7 +280,7 @@ export default function OrderSummary({
                   </div>
                   <div className="item-price">
                     <span className="price-amount">
-                      AED{" "}
+                      {t("common.aed")}{" "}
                       {(
                         getProduct(item.productId)?.productVariant?.net_amount *
                         item.quantity
@@ -305,7 +319,7 @@ export default function OrderSummary({
                     <div className="breakdown-row">
                       <span>{t("orderSummary.netAmount")} :</span>
                       <span>
-                        AED{" "}
+                        {t("common.aed")}{" "}
                         {(
                           getProduct(item.productId)?.productVariant
                             ?.net_amount * item.quantity
@@ -315,7 +329,7 @@ export default function OrderSummary({
                     <div className="breakdown-row">
                       <span>{t("orderSummary.vat")} :</span>
                       <span>
-                        + AED{" "}
+                        + {t("common.aed")}{" "}
                         {(
                           getProduct(item.productId)?.productVariant?.vat *
                           item.quantity
@@ -334,11 +348,15 @@ export default function OrderSummary({
       <div className="pricing-section">
         <div className="pricing-row">
           <span className="pricing-label">{t("orderSummary.subTotal")}</span>
-          <span className="pricing-value">AED {checkout?.netAmount}</span>
+          <span className="pricing-value">
+            {t("common.aed")} {checkout?.netAmount}
+          </span>
         </div>
         <div className="pricing-row">
           <span className="pricing-label">{t("orderSummary.vat")}</span>
-          <span className="pricing-value">+ {checkout?.taxAmount} VAT</span>
+          <span className="pricing-value">
+            + {t("common.aed")} {checkout?.taxAmount}
+          </span>
         </div>
 
         {/* Promo Code Section */}
@@ -374,7 +392,9 @@ export default function OrderSummary({
 
         <div className="pricing-row total-row">
           <span className="total-label">{t("orderSummary.total")}</span>
-          <span className="total-value">AED {checkout?.grossAmount}</span>
+          <span className="total-value">
+            {t("common.aed")} {checkout?.grossAmount}
+          </span>
         </div>
       </div>
 
