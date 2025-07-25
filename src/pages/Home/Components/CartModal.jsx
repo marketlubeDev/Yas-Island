@@ -140,9 +140,7 @@ const CartModal = ({ isOpen, onClose }) => {
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
-            performances: item?.performances
-              ? item?.performances
-              : [],
+            performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
           }));
@@ -167,7 +165,7 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
-        console.log(err , "err")
+        console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
@@ -248,7 +246,8 @@ const CartModal = ({ isOpen, onClose }) => {
                     <div className="item-details">
                       <h4>{productData?.product_title}</h4>
                       <p>
-                      {t("common.aed")} {productData?.selectedVariant?.price?.net} +
+                        {t("common.aed")}{" "}
+                        {productData?.selectedVariant?.price?.net} +
                         <span className="text-xs text-gray-500">
                           {" "}
                           {productData?.selectedVariant?.price?.tax}{" "}
@@ -274,7 +273,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         <Button
                           className="minus-btn-web"
                           icon={<MinusOutlined />}
+                          disabled={isExpired}
                           onClick={() =>
+                            !isExpired &&
                             handleQuantityChange(
                               item?.productId,
                               -1,
@@ -289,7 +290,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         <Button
                           className="plus-btn-web"
                           icon={<PlusOutlined />}
+                          disabled={isExpired}
                           onClick={() =>
+                            !isExpired &&
                             handleQuantityChange(
                               item?.productId,
                               1,
@@ -322,7 +325,9 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>{t("common.aed")} {subtotal.toFixed(2)}</span>
+                  <span>
+                    {t("common.aed")} {subtotal.toFixed(2)}
+                  </span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vat")}</span>
@@ -334,7 +339,9 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="custom-divider"></div>
               <div className="total">
                 <span>{t("cart.total")}</span>
-                <span>{t("common.aed")} {total.toFixed(2)}</span>
+                <span>
+                  {t("common.aed")} {total.toFixed(2)}
+                </span>
               </div>
 
               <div className="cart-actions">
