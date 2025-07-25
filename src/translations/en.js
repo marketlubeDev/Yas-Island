@@ -130,7 +130,7 @@ export const en = {
       price: "AED 328.57",
       vatAndTax: "16.43 VAT & Tax",
     },
-    vat: "VAT :",
+    vat: "VAT",
     vatUnit: "VAT",
   },
   product: {
