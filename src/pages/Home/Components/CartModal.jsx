@@ -140,9 +140,7 @@ const CartModal = ({ isOpen, onClose }) => {
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
-            performances: item?.performances
-              ? item?.performances
-              : [],
+            performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
           }));
@@ -167,7 +165,7 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
-        console.log(err , "err")
+        console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
@@ -237,6 +235,8 @@ const CartModal = ({ isOpen, onClose }) => {
                     }
                   : null;
 
+   
+
                 const isExpired = isDateExpired(item?.validTo);
 
                 return (
@@ -244,14 +244,18 @@ const CartModal = ({ isOpen, onClose }) => {
                     key={index}
                     className={`cart-item ${isExpired ? "expired-item" : ""}`}
                   >
-                    <img src={item?.image} alt={productData?.product_title} />
+                    <img
+                      src={productData?.product_images?.thumbnail_url}
+                      alt={productData?.product_title}
+                    />
                     <div className="item-details">
                       <h4>{productData?.product_title}</h4>
                       <p>
-                      {t("common.aed")} {productData?.selectedVariant?.price?.net} +
+                        {t("common.aed")}{" "}
+                        {productData?.selectedVariant?.net_amount} +
                         <span className="text-xs text-gray-500">
                           {" "}
-                          {productData?.selectedVariant?.price?.tax}{" "}
+                          {productData?.selectedVariant?.vat}{" "}
                           {t("common.netAndTax")}
                         </span>
                       </p>
@@ -322,19 +326,23 @@ const CartModal = ({ isOpen, onClose }) => {
               <div className="subtotal">
                 <div className="summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>{t("common.aed")} {subtotal.toFixed(2)}</span>
+                  <span>
+                    {t("common.aed")} {subtotal?.toFixed(2)}
+                  </span>
                 </div>
                 <div className="summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("cart.vat")}
+                    + {t("common.aed")} {vatAndTax?.toFixed(2)} {t("cart.vat")}
                   </span>
                 </div>
               </div>
               <div className="custom-divider"></div>
               <div className="total">
                 <span>{t("cart.total")}</span>
-                <span>{t("common.aed")} {total.toFixed(2)}</span>
+                <span>
+                  {t("common.aed")} {total?.toFixed(2)}
+                </span>
               </div>
 
               <div className="cart-actions">

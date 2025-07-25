@@ -32,16 +32,20 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
-      const existingItemIndex = state.cartItems.findIndex(
-        (item) =>
-          item.productId === action.payload.productId &&
-          item.validFrom === action.payload.validFrom
-      );
-      if (existingItemIndex !== -1) {
-        state.cartItems[existingItemIndex].quantity =
-          (state.cartItems[existingItemIndex].quantity || 1) +
-          (action.payload.quantity || 1);
+    addToCart: (state, action, type = "cart") => {
+      if (type === "cart") {
+        const existingItemIndex = state.cartItems.findIndex(
+          (item) =>
+            item.productId === action.payload.productId &&
+            item.validFrom === action.payload.validFrom
+        );
+        if (existingItemIndex !== -1) {
+          state.cartItems[existingItemIndex].quantity =
+            (state.cartItems[existingItemIndex].quantity || 1) +
+            (action.payload.quantity || 1);
+        } else {
+          state.cartItems.push({ ...action.payload });
+        }
       } else {
         state.cartItems.push({ ...action.payload });
       }
