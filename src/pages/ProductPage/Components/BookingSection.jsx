@@ -24,6 +24,7 @@ export default function BookingSection({
   isLoadingDates,
 }) {
   const { mutate: checkBasket, isPending } = useCheckBasket();
+  const productList = useSelector((state) => state.product.allProducts);
   const verifiedEmail = useSelector((state) => state.checkout.emailId);
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -138,6 +139,22 @@ export default function BookingSection({
     const isAvailable = variantData.availableDates.includes(selectedDate);
 
     return isAvailable;
+  };
+
+  // Helper function to find variant data from product list by variant ID
+  const findVariantById = (variantId, productList = []) => {
+    // Search through all products to find the variant
+    for (const product of productList) {
+      if (product?.product_variants) {
+        const variant = product.product_variants.find(
+          (variant) => variant?.productid == variantId
+        );
+        if (variant) {
+          return variant;
+        }
+      }
+    }
+    return null; // Return null if variant not found
   };
 
   const generateCalendarDays = () => {
@@ -267,7 +284,22 @@ export default function BookingSection({
       }
     }
 
+    const items = [];
     const currentItems = [];
+
+    if (type === "checkout") {
+      cartItems?.forEach((item) => {
+        items.push({
+          productId: item?.productId,
+          quantity: item?.quantity,
+          performance: item?.performances
+            ? [{ performanceId: item?.performances }]
+            : [],
+          validFrom: item?.validFrom,
+          validTo: item?.validTo,
+        });
+      });
+    }
     Object.entries(guests).forEach(([productId, guestData]) => {
       if (guestData.quantity < 1) {
         return;
@@ -446,6 +478,47 @@ export default function BookingSection({
               promoCode: "",
             };
             dispatch(setCheckout(checkoutData));
+            dispatch(clearCart());
+
+            orderDetails?.order?.items?.forEach((item) => {
+              const variantData = findVariantById(item?.productId, productList);
+
+              let price = {
+                currency: "AED",
+                net: variantData?.net_amount,
+                tax: variantData?.vat,
+                gross: variantData?.gross,
+              };
+              let obj = {
+                capacityGuid: item?.capacityGuid,
+                discount: item?.discount,
+                groupingCode: item?.groupingCode,
+                itemPromotionList: item?.itemPromotionList,
+                original: item?.original,
+                packageCode: item?.packageCode,
+                performances:
+                  item?.performances?.[0]?.performanceId ||
+                  getPerformanceId(item?.validFrom, item?.productId) ||
+                  null,
+                price: price,
+                productId: item?.productId,
+                quantity: item?.quantity,
+                rechargeAmount: item?.rechargeAmount,
+                validFrom: item?.validFrom,
+                validTo: item?.validTo
+                  ? formatDateToYYYYMMDD(item?.validTo)
+                  : getValidToDate(item?.productId, selectedDate),
+                image: selectedProduct?.product_images?.thumbnail_url,
+                title: selectedProduct?.product_title,
+                variantName: selectedProduct?.product_variants?.find(
+                  (variant) => variant?.productid == item?.productId
+                )?.productvariantname,
+                minQuantity: variantData?.min_quantity,
+                maxQuantity: variantData?.max_quantity,
+                incrementNumber: variantData?.increment_number,
+              };
+              dispatch(addToCart(obj, "checkout"));
+            });
           }
           onSuccess();
         }
@@ -761,7 +834,7 @@ export default function BookingSection({
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>
-              AED {totalPrice}
+              {t("common.aed")} {totalPrice}
             </span>
           </button>
           <button

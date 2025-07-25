@@ -8,6 +8,16 @@ export default function GlobalInvertColor() {
   );
 
   useEffect(() => {
+    //selector dropdown options
+    document.documentElement.style.setProperty(
+      "--color-selector-option-bg",
+      isDarkMode ? "#1a1a1a" : "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--color-selector-option-text",
+      isDarkMode ? "#ffffff" : "#222"
+    );
+
     // secure payment
     document.documentElement.style.setProperty(
       "--secure-payment-bg",

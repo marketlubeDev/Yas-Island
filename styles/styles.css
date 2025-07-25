@@ -95,6 +95,10 @@
   --color-search-dropdown-bg: #fff;
   --color-search-dropdown-option: #f5f5f5;
   --color-search-dropdown-option-text: #222;
+  --color-selector-option-bg: #fff;
+  --color-selector-option-text: #222;
+  --color-selector-option-hover-bg: #f5f5f5;
+  --color-selector-option-selected-bg: #f5f5f5;
   --color-base-mobile-header-bg: #fff;
   --color-base-mobile-header-icon-btn-border: #bcbcc9;
   --color-base-mobile-header-icon-btn-bg: #fff;
@@ -6120,7 +6124,7 @@ html[lang=ar] .guest-label {
 /* Add this to your CSS file */
 .promo-modal .ant-modal-close {
   position: absolute;
-  top: -12%;
+  top: -20%;
   right: 0px;
   border-radius: 50%;
   height: 50px;
@@ -10204,6 +10208,11 @@ html[lang=ar] .make-payment__summary-top {
   cursor: pointer;
   font-weight: 400;
   font-size: 17px;
+}
+.selector select option {
+  background-color: var(--color-selector-option-bg);
+  color: var(--color-base-text);
+  padding: 8px 12px;
 }
 
 .selector-container {

@@ -29,6 +29,33 @@ export default function ProductModal({
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(false);
 
+  // Reset scroll position when new product is opened
+  useEffect(() => {
+    const resetScroll = () => {
+      const productDescriptionElement = document.querySelector(
+        ".product-description-api"
+      );
+      if (productDescriptionElement) {
+        // Force scroll reset with multiple methods
+        productDescriptionElement.scrollTop = 0;
+        productDescriptionElement.scrollLeft = 0;
+        productDescriptionElement.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "instant",
+        });
+      }
+    };
+
+    // Reset immediately
+    resetScroll();
+
+    // Also reset after a small delay to ensure element is fully rendered
+    const timeoutId = setTimeout(resetScroll, 10);
+
+    return () => clearTimeout(timeoutId);
+  }, [selectedProduct]);
+
   useEffect(() => {
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
       // 1. Calculate startDate
