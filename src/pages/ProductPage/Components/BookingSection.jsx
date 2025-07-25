@@ -312,7 +312,6 @@ export default function BookingSection({
         } else {
           const orderDetails = res?.orderdetails;
 
-
           if (type === "cart") {
             orderDetails?.order?.items?.forEach((item) => {
               const variantData = selectedProduct?.product_variants?.find(
@@ -410,6 +409,7 @@ export default function BookingSection({
         navigate("/payment-details");
       }
     }, "checkout");
+    console.log(guests, "guests");
   };
 
   const getPerformanceId = (date, variantProductId) => {
