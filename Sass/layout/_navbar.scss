@@ -212,20 +212,20 @@
     border-right: none;
     border-radius: 126.103px;
     background-color: var(--color-base-product-card-bg);
-
-    ////
+    width: 90%;
 
     // Curved notch at top right (inward curve)
     &::before {
       content: "";
       position: absolute;
       top: -34px;
-      right: 0px;
+      right: -10.5%;
       width: 30px;
       height: 30px;
       background-color: transparent;
       border-bottom-right-radius: 25px;
       box-shadow: 2px 4px 0 0px var(--color-base-side-bar-border);
+      z-index: 100;
     }
 
     // Curved notch at bottom right (inward curve)
@@ -233,7 +233,7 @@
       content: "";
       position: absolute;
       bottom: -34px;
-      right: 0px;
+      right: -10.5%;
       width: 30px;
       height: 30px;
       background-color: transparent;
@@ -291,245 +291,3 @@
     }
   }
 }
-
-// Responsive styles for desktop
-// @include respond(desktop) {
-//   .side-bar {
-//     font-size: 0.85rem;
-//     padding: 0.8rem 0;
-
-//     &-bottom {
-//       padding: 0.8rem 0;
-
-//       .chat-button {
-//         border-radius: 1.7rem;
-//         padding: 0.7rem 1rem;
-//         font-size: 0.85rem;
-//       }
-//     }
-//   }
-
-//   .side-bar-list-item {
-//     border-radius: 1.7rem;
-
-//     .item-icon {
-//       width: 3rem;
-//       height: 3rem;
-//       margin-right: 0.6rem;
-
-//       img {
-//         width: 1.2rem;
-//         height: 1.2rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 0.85rem;
-//     }
-//   }
-
-//   .ar-side-bar-list-item {
-//     border-radius: 1.7rem;
-
-//     .item-icon {
-//       width: 3rem;
-//       height: 3rem;
-//       margin-right: 0.6rem;
-
-//       img {
-//         width: 1.2rem;
-//         height: 1.2rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 0.85rem;
-//     }
-//   }
-
-//   .side-bar-list-item-container {
-//     padding: 0.4rem;
-//     border-width: 3px;
-//     border-radius: 105px;
-
-//     &.active {
-//       border-width: 3px;
-//       border-radius: 105px;
-//     }
-//   }
-
-//   .ar-side-bar-list-item-container {
-//     padding: 0.4rem;
-//     border-width: 3px;
-//     border-radius: 105px;
-
-//     &.active {
-//       border-width: 3px;
-//       border-radius: 105px;
-//     }
-//   }
-// }
-
-// Responsive styles for bigDesktop
-// @include respond(bigDesktop) {
-//   .side-bar {
-//     font-size: 1rem;
-//     padding: 1rem 0;
-
-//     &-bottom {
-//       padding: 1rem 0;
-
-//       .chat-button {
-//         border-radius: 2rem;
-//         padding: 0.85rem 1.5rem;
-//         font-size: 1rem;
-//       }
-//     }
-//   }
-
-//   .side-bar-list-item {
-//     border-radius: 2rem;
-
-//     .item-icon {
-//       width: 3.5rem;
-//       height: 3.5rem;
-//       margin-right: 1rem;
-
-//       img {
-//         width: 1.5rem;
-//         height: 1.5rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 1rem;
-//     }
-//   }
-
-//   .ar-side-bar-list-item {
-//     border-radius: 2rem;
-
-//     .item-icon {
-//       width: 3.5rem;
-//       height: 3.5rem;
-//       margin-right: 1rem;
-
-//       img {
-//         width: 1.5rem;
-//         height: 1.5rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 1rem;
-//     }
-//   }
-
-//   .side-bar-list-item-container {
-//     padding: 0.5rem;
-//     border-width: 3.5px;
-//     border-radius: 125px;
-
-//     &.active {
-//       border-width: 3.5px;
-//       border-radius: 125px;
-//     }
-//   }
-
-//   .ar-side-bar-list-item-container {
-//     padding: 0.5rem;
-//     border-width: 3.5px;
-//     border-radius: 125px;
-
-//     &.active {
-//       border-width: 3.5px;
-//       border-radius: 125px;
-//     }
-//   }
-// }
-
-// Responsive styles for extraBigDesktop
-// @include respond(extraBigDesktop) {
-//   .side-bar {
-//     font-size: 1.1rem;
-//     padding: 1.1rem 0;
-
-//     &-bottom {
-//       padding: 1.1rem 0;
-
-//       .chat-button {
-//         border-radius: 2.2rem;
-//         padding: 1rem 2rem;
-//         font-size: 1.1rem;
-//         height: auto;
-//         min-height: 3.2rem;
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//       }
-//     }
-//   }
-
-//   .side-bar-list-item {
-//     border-radius: 2.2rem;
-//     padding-left: 0px;
-//     padding-right: 5px;
-
-//     .item-icon {
-//       width: 3.8rem;
-//       height: 3.8rem;
-//       margin-right: 1.1rem;
-
-//       img {
-//         width: 1.6rem;
-//         height: 1.6rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 1.1rem;
-//     }
-//   }
-
-//   .ar-side-bar-list-item {
-//     border-radius: 2.2rem;
-
-//     .item-icon {
-//       width: 3.8rem;
-//       height: 3.8rem;
-//       margin-right: 1.1rem;
-
-//       img {
-//         width: 1.6rem;
-//         height: 1.6rem;
-//       }
-//     }
-
-//     .item-text {
-//       font-size: 1.1rem;
-//     }
-//   }
-
-//   .side-bar-list-item-container {
-//     padding: 0.55rem;
-
-//     border-width: 4px;
-//     border-radius: 130px;
-
-//     &.active {
-//       border-width: 4px;
-//       border-radius: 130px;
-//     }
-//   }
-
-//   .ar-side-bar-list-item-container {
-//     padding: 0.55rem;
-//     border-width: 4px;
-//     border-radius: 130px;
-
-//     &.active {
-//       border-width: 4px;
-//       border-radius: 130px;
-//     }
-//   }
-// }

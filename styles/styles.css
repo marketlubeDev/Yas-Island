@@ -504,23 +504,25 @@ body {
   border-right: none;
   border-radius: 126.103px;
   background-color: var(--color-base-product-card-bg);
+  width: 90%;
 }
 .side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
   top: -34px;
-  right: 0px;
+  right: -10.5%;
   width: 30px;
   height: 30px;
   background-color: transparent;
   border-bottom-right-radius: 25px;
   box-shadow: 2px 4px 0 0px var(--color-base-side-bar-border);
+  z-index: 100;
 }
 .side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
   bottom: -34px;
-  right: 0px;
+  right: -10.5%;
   width: 30px;
   height: 30px;
   background-color: transparent;

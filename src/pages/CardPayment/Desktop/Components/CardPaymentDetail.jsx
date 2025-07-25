@@ -283,7 +283,7 @@ export default function CardPaymentDetail({ orderData }) {
               opacity: isIframeLoading ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}
-            onLoad={() => setIsIframeLoading(false)}
+            onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
           />
         </div>
 
