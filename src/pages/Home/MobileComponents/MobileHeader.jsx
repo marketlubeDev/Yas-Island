@@ -12,6 +12,12 @@ import { useSelector, useDispatch } from "react-redux";
 import accessibilityIconInverter from "../../../assets/icons/assessinverter.svg";
 import globeIconInverter from "../../../assets/icons/invertGlob.svg";
 import { setLanguage } from "../../../global/languageSlice";
+import {
+  setProducts,
+  setCurrentSort,
+  setCurrentPark,
+  setSearchQuery,
+} from "../../../global/productSlice";
 
 function MobileHeader() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
@@ -29,6 +35,23 @@ function MobileHeader() {
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+
+  const changeLanguage = (lng) => {
+    // Only proceed if the language is actually changing
+    if (currentLanguage !== lng) {
+      // Update Redux state - this will trigger i18n change via useI18nSync
+      dispatch(setLanguage(lng));
+      dispatch(setProducts([]));
+
+      dispatch(setCurrentSort(""));
+      dispatch(setCurrentPark(""));
+      dispatch(setSearchQuery(""));
+
+      // Update LanguageContext for UI display
+      const newLanguage = lng === "en" ? "English" : "العربية";
+      toggleLanguage(newLanguage);
+    }
+  };
 
   // Optional: Close dropdown when clicking outside
   useEffect(() => {
@@ -99,10 +122,7 @@ function MobileHeader() {
                 <div
                   className="mobile-header__lang-option"
                   onClick={() => {
-                    // Update Redux state - this will trigger i18n change via useI18nSync
-                    dispatch(setLanguage("en"));
-                    // Update LanguageContext for UI display
-                    toggleLanguage("English");
+                    changeLanguage("en");
                     setShowLangDropdown(false);
                   }}
                 >
@@ -114,10 +134,7 @@ function MobileHeader() {
                 <div
                   className="mobile-header__lang-option"
                   onClick={() => {
-                    // Update Redux state - this will trigger i18n change via useI18nSync
-                    dispatch(setLanguage("ar"));
-                    // Update LanguageContext for UI display
-                    toggleLanguage("العربية");
+                    changeLanguage("ar");
                     setShowLangDropdown(false);
                   }}
                 >
