@@ -374,6 +374,7 @@ export default function OrderSummary({
                 onChange={(e) => setPromoCode(e.target.value)}
                 placeholder={t("orderSummary.enterPromoCode")}
                 className="promo-input"
+                disabled={promoCodeApplying}
               />
               <button
                 className="promo-apply-btn"

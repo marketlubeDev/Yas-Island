@@ -6124,7 +6124,7 @@ html[lang=ar] .guest-label {
 /* Add this to your CSS file */
 .promo-modal .ant-modal-close {
   position: absolute;
-  top: -12%;
+  top: -20%;
   right: 0px;
   border-radius: 50%;
   height: 50px;
