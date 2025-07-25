@@ -785,7 +785,7 @@ function BookingModalMbl({
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
-              AED {toArabicNumeral(totalPrice)}
+              {t("common.aed")} {toArabicNumeral(totalPrice)}
             </span>
           </button>
           <button
