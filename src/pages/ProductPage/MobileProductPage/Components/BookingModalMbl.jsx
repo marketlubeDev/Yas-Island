@@ -7,7 +7,11 @@ import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with y
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../../../components/Loading/ButtonLoading";
-import { addToCart, setIsCartOpen } from "../../../../global/cartSlice";
+import {
+  addToCart,
+  setIsCartOpen,
+  clearCart,
+} from "../../../../global/cartSlice";
 import { toast } from "sonner";
 import useCheckBasket from "../../../../apiHooks/Basket/checkbasket";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +32,7 @@ function BookingModalMbl({
     (state) => state.performance.performanceData
   );
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
-  const { verificationEmail, isEmailVerification } = useSelector(
+  const { verificationEmail, isEmailVerification, cartItems } = useSelector(
     (state) => state.cart
   );
   const dispatch = useDispatch();
@@ -195,7 +199,7 @@ function BookingModalMbl({
       }
     }
 
-    const items = [];
+    const currentItems = [];
     Object.entries(guests).forEach(([productId, guestData]) => {
       if (guestData.quantity < 1) {
         return;
@@ -204,7 +208,7 @@ function BookingModalMbl({
       if (guestData.variant?.hasperformance) {
         hasperformance = true;
       }
-      items.push({
+      currentItems.push({
         productId: productId,
         quantity: guestData.quantity,
         performance: hasperformance
@@ -215,13 +219,28 @@ function BookingModalMbl({
       });
     });
 
+    // For checkout, include existing cart items + current items
+    let allItems = currentItems;
+    if (type === "checkout") {
+      const existingCartItems = cartItems.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        performance: item.performances
+          ? [{ performanceId: item.performances }]
+          : [],
+        validFrom: item.validFrom,
+        validTo: item.validTo,
+      }));
+      allItems = [...existingCartItems, ...currentItems];
+    }
+
     const data = {
       coupons: [],
-      items: items,
+      items: allItems,
       capacityManagement: true,
     };
 
-    if (items.length === 0) {
+    if (currentItems.length === 0) {
       toast.error(t("Please enter a valid quantity"), {
         position: "top-center",
       });
@@ -241,6 +260,62 @@ function BookingModalMbl({
           const orderDetails = res?.orderdetails;
 
           if (type === "cart") {
+            // For cart, add only the new items to cart
+            // Filter to only include current items (not existing cart items)
+            const newItems = orderDetails?.order?.items?.filter((item) => {
+              // Check if this item matches any of the current items being added
+              return currentItems.some(
+                (currentItem) =>
+                  currentItem.productId == item?.productId &&
+                  currentItem.validFrom === item?.validFrom
+              );
+            });
+
+            newItems?.forEach((item) => {
+              const variantData = selectedProduct?.product_variants?.find(
+                (variant) => variant?.productid == item?.productId
+              );
+
+              let price = {
+                currency: "AED",
+                net: variantData?.net_amount,
+                tax: variantData?.vat,
+                gross: variantData?.gross,
+              };
+              let obj = {
+                capacityGuid: item?.capacityGuid,
+                discount: item?.discount,
+                groupingCode: item?.groupingCode,
+                itemPromotionList: item?.itemPromotionList,
+                original: item?.original,
+                packageCode: item?.packageCode,
+                performances:
+                  item?.performances?.[0]?.performanceId ||
+                  getPerformanceId(item?.validFrom, item?.productId) ||
+                  null,
+                price: price,
+                productId: item?.productId,
+                quantity: item?.quantity,
+                rechargeAmount: item?.rechargeAmount,
+                validFrom: item?.validFrom,
+                validTo: item?.validTo
+                  ? formatDateToYYYYMMDD(item?.validTo)
+                  : getValidToDate(item?.productId, selectedDate),
+                image: selectedProduct?.product_images?.thumbnail_url,
+                title: selectedProduct?.product_title,
+                variantName: selectedProduct?.product_variants?.find(
+                  (variant) => variant?.productid == item?.productId
+                )?.productvariantname,
+                minQuantity: variantData?.min_quantity,
+                maxQuantity: variantData?.max_quantity,
+                incrementNumber: variantData?.increment_number,
+              };
+              dispatch(addToCart(obj));
+            });
+          } else if (type === "checkout") {
+            // For checkout, clear cart first and add all verified items
+            dispatch(clearCart());
+
             orderDetails?.order?.items?.forEach((item) => {
               const variantData = selectedProduct?.product_variants?.find(
                 (variant) => variant?.productid == item?.productId
@@ -282,7 +357,8 @@ function BookingModalMbl({
               };
               dispatch(addToCart(obj));
             });
-          } else {
+
+            // Update the checkout slice
             const checkoutData = {
               coupons: [],
               items: orderDetails?.order?.items,
@@ -327,16 +403,13 @@ function BookingModalMbl({
 
   const handleCheckout = () => {
     handleBasketCheck(() => {
-      const variants = {};
-      Object.entries(guests).forEach(([productId, guestData]) => {
-        variants[productId] = guestData.quantity;
-      });
+      // Navigate to email verification or payment details without opening cart modal
       if (!isEmailVerification) {
         navigate("/email-verification");
       } else {
         navigate("/payment-details");
       }
-    }, "checkout");
+    }, "checkout"); // Use "checkout" type to include existing cart items + current items
   };
 
   const generateCalendarDays = () => {
