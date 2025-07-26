@@ -388,7 +388,7 @@ body {
   padding: 0rem;
   color: var(--color-base-side-bar-item-right-text);
   background: var(--color-base-side-bar-item-right-bg);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -396,7 +396,7 @@ body {
 .side-bar-list-item.activeItem {
   box-shadow: 0px 0px 7px var(--Number, 2px) var(--color-base-side-bar-item-box);
   border: 2px solid var(--color-base-side-bar-item-box-border);
-  width: 110%;
+  width: 112%;
   z-index: 1000;
 }
 .side-bar-list-item .item-icon {
@@ -432,6 +432,10 @@ body {
 .side-bar-list-item .item-text.active {
   color: var(--color-base-side-bar-item-right-text-active);
 }
+.side-bar-list-item:hover:not(.active):not(.selected) {
+  border: 2px solid var(--color-base-side-bar-item-box-border);
+  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
+}
 
 .ar-side-bar-list-item {
   position: relative;
@@ -446,7 +450,7 @@ body {
   padding: 0rem;
   color: var(--color-base-side-bar-item-right-text);
   background: var(--color-base-side-bar-item-right-bg);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -488,6 +492,10 @@ body {
 }
 .ar-side-bar-list-item .item-text.active {
   color: var(--color-base-side-bar-item-right-text-active);
+}
+.ar-side-bar-list-item:hover:not(.active):not(.selected) {
+  border: 2px solid var(--color-base-side-bar-item-box-border);
+  box-shadow: 0px 0.901px 7.206px var(--Number, 3px) var(--color-base-side-bar-item-box);
 }
 
 .side-bar-list-item-container {

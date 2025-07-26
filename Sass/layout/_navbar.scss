@@ -61,7 +61,8 @@
   padding: 0rem;
   color: var(--color-base-side-bar-item-right-text);
   background: var(--color-base-side-bar-item-right-bg);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease,
+    color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -70,7 +71,7 @@
     box-shadow: 0px 0px 7px var(--Number, 2px)
       var(--color-base-side-bar-item-box);
     border: 2px solid var(--color-base-side-bar-item-box-border);
-    width: 110%;
+    width: 112%;
     z-index: 1000;
   }
 
@@ -116,11 +117,11 @@
     }
   }
 
-  // &:hover:not(.active):not(.selected) {
-  //   border: 2px solid var(--color-base-side-bar-item-box-border);
-  //   box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
-  //     var(--color-base-side-bar-item-box);
-  // }
+  &:hover:not(.active):not(.selected) {
+    border: 2px solid var(--color-base-side-bar-item-box-border);
+    box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
+      var(--color-base-side-bar-item-box);
+  }
 }
 
 .ar-side-bar-list-item {
@@ -136,7 +137,8 @@
   padding: 0rem;
   color: var(--color-base-side-bar-item-right-text);
   background: var(--color-base-side-bar-item-right-bg);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease,
+    color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -154,7 +156,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // margin-right: 1rem;
     background-color: var(--color-base-side-bar-item-bg);
     transition: all 0.3s ease;
 
@@ -191,11 +192,11 @@
     }
   }
 
-  // &:hover:not(.active):not(.selected) {
-  //   border: 2px solid var(--color-base-side-bar-item-box-border);
-  //   box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
-  //     var(--color-base-side-bar-item-box);
-  // }
+  &:hover:not(.active):not(.selected) {
+    border: 2px solid var(--color-base-side-bar-item-box-border);
+    box-shadow: 0px 0.901px 7.206px var(--Number, 3px)
+      var(--color-base-side-bar-item-box);
+  }
 }
 
 .side-bar-list-item-container {
@@ -259,7 +260,6 @@
   border-radius: 126.103px;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
-  // z-index: 1000;
 
   &.active {
     border-top: 4px solid var(--color-base-side-bar-border);
