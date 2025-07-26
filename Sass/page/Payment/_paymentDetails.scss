@@ -74,16 +74,17 @@
         font-size: 1rem;
         background: transparent;
         color: var(--color-base-text-secondary);
+        font-family: "YAS Font", sans-serif;
 
         @include respond(desktop) {
           padding: 0.4rem 0;
           font-size: 0.9rem;
         }
 
-        // &:focus {
-        //   outline: none;
-        //   border-bottom-color: #000;
-        // }
+        &:focus {
+          outline: none;
+          border-bottom-color: #000;
+        }
       }
 
       &__select {

@@ -23,10 +23,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/product" replace />,
-      },
-      {
-        path: "product",
+        //   element: <Navigate to="/product" replace />,
+        // },
+        // {
+        //   path: "product",
         element: (
           <ResponsiveWrapper
             MobileComponent={MobileProductPage}

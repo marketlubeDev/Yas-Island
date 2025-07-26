@@ -40,6 +40,7 @@
   line-height: normal;
   z-index: 100;
   cursor: pointer;
+  font-family: "YAS Font", sans-serif;
   // text-transform: capitalize;
 
   &:hover {
@@ -62,6 +63,7 @@
   margin-bottom: 25px;
   position: relative;
   padding: 0px;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(bigTablets) {
     margin-bottom: 40px;
@@ -78,7 +80,7 @@
   text-align: center;
   position: relative;
   min-width: 500px;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     min-width: 450px;
   }
@@ -97,6 +99,7 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
@@ -119,7 +122,6 @@
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
-
   @include respond(desktop) {
     font-size: 1.1rem;
   }
@@ -165,6 +167,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     padding: 20px;
@@ -262,7 +265,7 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     padding: 20px;
     border-radius: 1.5rem;
@@ -382,6 +385,7 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 0.9rem;
@@ -406,7 +410,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 12px;
     padding: 6px 17px;
@@ -426,6 +430,7 @@
   width: 100%;
   height: 1px;
   background-color: #6f677c;
+  font-family: "YAS Font", sans-serif;
 }
 
 @include respond(desktop) {
@@ -451,6 +456,7 @@
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     padding: 12px;
@@ -521,7 +527,7 @@
   font-weight: 500;
   // line-height: 34px;
   text-transform: none;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 12px;
     margin-bottom: 6px;
@@ -557,7 +563,7 @@
   font-style: normal;
   font-weight: 500;
   margin-bottom: 16px;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 12px;
     margin-bottom: 12px;
@@ -644,7 +650,7 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 11.5px;
   }

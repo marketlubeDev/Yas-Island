@@ -162,10 +162,11 @@
 
 .confirm-button {
   // ... existing styles ...
-
+  font-family: "YAS Font", sans-serif;
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+    font-family: "YAS Font", sans-serif;
   }
 }

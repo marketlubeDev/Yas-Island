@@ -3652,6 +3652,7 @@ html[lang=ar] .guest-label {
   line-height: normal;
   z-index: 100;
   cursor: pointer;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .back-button {
@@ -3672,6 +3673,7 @@ html[lang=ar] .guest-label {
   margin-bottom: 25px;
   position: relative;
   padding: 0px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout__steps {
@@ -3690,6 +3692,7 @@ html[lang=ar] .guest-label {
   text-align: center;
   position: relative;
   min-width: 500px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step {
@@ -3711,6 +3714,7 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -3782,6 +3786,7 @@ html[lang=ar] .guest-label {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__content {
@@ -3892,6 +3897,7 @@ html[lang=ar] .guest-label {
   display: flex;
   justify-content: space-between;
   align-items: start;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__contentnew {
@@ -4025,6 +4031,7 @@ html[lang=ar] .guest-label {
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-group label {
@@ -4051,6 +4058,7 @@ html[lang=ar] .guest-label {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .form-control {
@@ -4072,6 +4080,7 @@ html[lang=ar] .guest-label {
   width: 100%;
   height: 1px;
   background-color: #6f677c;
+  font-family: "YAS Font", sans-serif;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -4094,6 +4103,7 @@ html[lang=ar] .guest-label {
   cursor: pointer;
   margin-top: 8px;
   color: var(--btn-clr);
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .confirm-button {
@@ -4161,6 +4171,7 @@ html[lang=ar] .guest-label {
   font-style: normal;
   font-weight: 500;
   text-transform: none;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .verification-text {
@@ -4201,6 +4212,7 @@ html[lang=ar] .guest-label {
   font-style: normal;
   font-weight: 500;
   margin-bottom: 16px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .spam-notice {
@@ -4295,6 +4307,7 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .expire-text {
@@ -4434,12 +4447,17 @@ html[lang=ar] .guest-label {
   font-size: 1rem;
   background: transparent;
   color: var(--color-base-text-secondary);
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group__input {
     padding: 0.4rem 0;
     font-size: 0.9rem;
   }
+}
+.payment-form__left .form-group__input:focus {
+  outline: none;
+  border-bottom-color: #000;
 }
 .payment-form__left .form-group__select {
   width: 100%;
@@ -7747,10 +7765,14 @@ html[lang=ar] .mobile-bottom-nav__item--active {
     box-shadow: none;
   }
 }
+.confirm-button {
+  font-family: "YAS Font", sans-serif;
+}
 .confirm-button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+  font-family: "YAS Font", sans-serif;
 }
 
 .confirm-email__modal {

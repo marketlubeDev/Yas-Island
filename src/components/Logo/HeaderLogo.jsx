@@ -40,7 +40,7 @@ export default function HeaderLogo() {
     navigate("/");
   };
 
-  const isPaymentRoute = location.pathname === "/product";
+  const isPaymentRoute = location.pathname === "/";
 
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const langBtnRef = useRef(null);
