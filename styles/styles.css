@@ -2591,6 +2591,7 @@ html[lang=ar] .guest-label {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .subtitle {
@@ -2600,6 +2601,7 @@ html[lang=ar] .guest-label {
   font-weight: 400;
   line-height: normal;
   margin-bottom: 2.5rem;
+  font-family: "YAS Font", sans-serif;
 }
 
 .options-container {
@@ -2659,10 +2661,12 @@ html[lang=ar] .guest-label {
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .invert-colors {
   color: #18142b;
+  font-family: "YAS Font", sans-serif;
 }
 .invert-colors.active {
   color: #e7ebd4;
@@ -2671,6 +2675,7 @@ html[lang=ar] .guest-label {
 
 .high-contrast {
   color: #18142b;
+  font-family: "YAS Font", sans-serif;
 }
 .high-contrast.active {
   color: #e7ebd4;
@@ -2690,6 +2695,7 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .continue-button:hover {
