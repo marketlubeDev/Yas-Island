@@ -391,10 +391,13 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
   overflow: hidden;
+  z-index: 1000;
 }
 .side-bar-list-item.activeItem {
   box-shadow: 0px 0px 7px var(--Number, 2px) var(--color-base-side-bar-item-box);
   border: 2px solid var(--color-base-side-bar-item-box-border);
+  width: 110%;
+  z-index: 1000;
 }
 .side-bar-list-item .item-icon {
   width: 3.3rem;
@@ -509,26 +512,28 @@ body {
 .side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -34px;
+  top: -23.5px;
   right: -10.5%;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border-bottom-right-radius: 25px;
+  width: 25px;
+  height: 20px;
+  background-color: #ffffff;
+  border-bottom-right-radius: 15px;
   box-shadow: 2px 4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  border-top-left-radius: 15px;
 }
 .side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
-  bottom: -34px;
+  bottom: -24.2px;
   right: -10.5%;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border-top-right-radius: 25px;
+  width: 25px;
+  height: 20px;
+  background-color: #fff;
+  border-top-right-radius: 15px;
   box-shadow: 2px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  border-bottom-left-radius: 15px;
 }
 
 .ar-side-bar-list-item-container {
@@ -557,9 +562,10 @@ body {
   left: 0px;
   width: 30px;
   height: 30px;
-  background-color: transparent;
+  background-color: #fff;
   border-bottom-left-radius: 25px;
   box-shadow: -4px 4px 0 0px var(--color-base-side-bar-border);
+  z-index: 100;
 }
 .ar-side-bar-list-item-container.active::after {
   content: "";
@@ -568,7 +574,7 @@ body {
   left: 0px;
   width: 30px;
   height: 30px;
-  background-color: transparent;
+  background-color: #fff;
   border-top-left-radius: 25px;
   box-shadow: -4px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;

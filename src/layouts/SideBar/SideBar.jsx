@@ -100,7 +100,19 @@ export default function SideBar() {
                     <div key={index}>{word}</div>
                   ))}
               </div>
+              {/* <div>hi</div> */}
             </li>
+            <div
+              style={{
+                width: "25px",
+                height: "6.5rem",
+                background: "#f0f0f0",
+                position: "absolute",
+                right: "-12%",
+                top: "-20%",
+                zIndex: 10,
+              }}
+            ></div>
           </div>
         ))}
       </ul>
