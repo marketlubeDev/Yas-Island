@@ -224,6 +224,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 280px;
+        font-family: "YAS Font", sans-serif;
 
         @include respond(bigTablets) {
           font-size: 18px;
@@ -254,7 +255,7 @@
         font-weight: 400;
         line-height: 28.8px;
         margin-top: 0.8rem;
-
+        font-family: "YAS Font", sans-serif;
         @include respond(bigTablets) {
           font-size: 16px;
         }
@@ -377,6 +378,7 @@
     line-height: normal;
     // text-transform: capitalize;
     cursor: pointer;
+    font-family: "YAS Font", sans-serif;
 
     @include respond(bigTablets) {
       width: 100px;
@@ -593,6 +595,7 @@
   height: fit-content;
   min-height: 30vh;
   overflow-y: auto;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     max-height: 40vh;
@@ -611,12 +614,11 @@
   font-size: 24px;
   margin-bottom: 16px;
   color: var(--color-base-text);
-  // font-family: Urbanist;
   font-size: 2.125rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  // margin-top: -1rem;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 1.8rem;
@@ -693,6 +695,7 @@
   font-weight: 600;
   line-height: normal;
   margin-bottom: 4px;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 1rem;
@@ -706,7 +709,7 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: 16px;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 0.8rem;
     margin-bottom: 12px;
@@ -730,6 +733,7 @@
   gap: 0.625rem;
   flex-shrink: 0;
   color: var(--btn-clr);
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     width: 16rem;
@@ -853,6 +857,7 @@
     text-align: center;
     margin-bottom: 2.5rem;
     margin-top: -1rem;
+    font-family: "YAS Font", sans-serif;
 
     @include respond(desktop) {
       font-size: 1.8rem !important;
@@ -926,7 +931,7 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 16px;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 20px;
     margin-bottom: 12px;
@@ -941,6 +946,7 @@
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 1.3rem;
@@ -1064,6 +1070,7 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 1.5rem !important;
@@ -1101,7 +1108,6 @@
   font-size: 24px;
   font-weight: 500;
   margin-top: 0.2rem;
-
   padding-bottom: 16px;
   padding-top: -1rem;
   border-bottom: 2px solid var(--color-base-product-card-divider);
@@ -1111,6 +1117,7 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 20px;
@@ -1172,6 +1179,7 @@
   line-height: normal;
   text-transform: capitalize;
   text-align: left;
+  font-family: "YAS Font", sans-serif;
 }
 
 html[lang="ar"] {
@@ -1305,6 +1313,7 @@ html[lang="ar"] {
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     width: 22rem;
@@ -1326,6 +1335,7 @@ html[lang="ar"] {
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     width: 22rem;

@@ -98,7 +98,6 @@ export default function SideBar() {
                     <div key={index}>{word}</div>
                   ))}
               </div>
-              {/* <div>hi</div> */}
             </li>
             {activeItem === item.name && (
               <div className="side-bar-item-hidden-bg"></div>

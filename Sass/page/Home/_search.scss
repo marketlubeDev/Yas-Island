@@ -42,11 +42,13 @@
     color: var(--color-base-text);
     font-size: 17px;
     padding: 0 10px;
+    font-family: "YAS Font", sans-serif;
 
     &::placeholder {
       color: var(--color-base-text);
       opacity: 0.6;
       font-size: 17px;
+      font-family: "YAS Font", sans-serif;
     }
   }
 }

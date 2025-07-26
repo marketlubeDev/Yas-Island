@@ -97,6 +97,7 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 0.9rem;
@@ -117,6 +118,7 @@
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 1.1rem;
@@ -494,7 +496,7 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
-
+  font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 1.5rem;
   }

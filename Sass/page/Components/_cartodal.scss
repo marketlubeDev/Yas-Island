@@ -66,6 +66,7 @@
   border-bottom: 1px solid transparent;
   border-image: var(--cart-border);
   padding: 10px 20px 10px 20px;
+  font-family: "YAS Font", sans-serif;
 
   h2 {
     flex: 1;
@@ -143,6 +144,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "YAS Font", sans-serif;
 
   p {
     color: var(--cart-item-price);
@@ -161,6 +163,7 @@
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .item-details small {
@@ -185,6 +188,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(bigDesktop) {
     gap: 10px;
@@ -260,6 +264,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  font-family: "YAS Font", sans-serif;
 
   span {
     color: var(--color-base-text);
@@ -272,6 +277,7 @@
   font-weight: bold;
   font-size: 18px;
   margin: 20px 0;
+  font-family: "YAS Font", sans-serif;
 
   span {
     color: var(--cart-total-price);
@@ -317,6 +323,7 @@
   gap: 0.625rem;
   flex-shrink: 0;
   cursor: pointer;
+  font-family: "YAS Font", sans-serif;
 }
 
 .delete-btn {
@@ -437,14 +444,17 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
+      font-family: "YAS Font", sans-serif;
     }
 
     p {
       font-size: 0.75rem;
+      font-family: "YAS Font", sans-serif;
     }
 
     small {
       font-size: 0.7rem;
+      font-family: "YAS Font", sans-serif;
     }
   }
 

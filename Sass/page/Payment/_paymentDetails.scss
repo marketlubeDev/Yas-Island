@@ -16,6 +16,7 @@
   &__left {
     padding: 2rem 2rem 0 2rem;
     width: 65%;
+    font-family: "YAS Font", sans-serif;
 
     @include respond(bigTablets) {
       width: 100%;
@@ -296,6 +297,7 @@
     // Specific styling for phone number label
     .form-group:has(.form-group__phone) .form-group__label {
       margin-left: -2rem;
+      font-family: "YAS Font", sans-serif;
 
       @include respond(desktop) {
         margin-left: -1.5rem;

@@ -10,6 +10,7 @@
   font-family: "Inter", sans-serif;
   width: fit-content;
   min-width: 370px;
+  font-family: "YAS Font", sans-serif;
 
   @include respond(bigTablets) {
     min-width: 100%;
@@ -76,6 +77,7 @@
           font-size: 16px;
           font-weight: 500;
           color: var(--color-summary-title);
+          font-family: "YAS Font", sans-serif;
         }
       }
 
@@ -241,11 +243,13 @@
       .pricing-label {
         color: #666;
         font-weight: 500;
+        font-family: "YAS Font", sans-serif;
       }
 
       .pricing-value {
         color: var(--cart-total-price);
         font-weight: 500;
+        font-family: "YAS Font", sans-serif;
       }
 
       &.total-row {
@@ -257,12 +261,14 @@
           font-size: 18px;
           font-weight: 600;
           color: var(--cart-total-price);
+          font-family: "YAS Font", sans-serif;
         }
 
         .total-value {
           font-size: 18px;
           font-weight: 600;
           color: var(--cart-total-price);
+          font-family: "YAS Font", sans-serif;
         }
       }
     }
@@ -287,6 +293,7 @@
         color: #666;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        font-family: "YAS Font", sans-serif;
       }
     }
 
@@ -303,7 +310,7 @@
         color: #1a1a1a;
         background: var(--summary-header-bg);
         transition: border-color 0.2s ease;
-
+        font-family: "YAS Font", sans-serif;
         &::placeholder {
           color: #999;
         }
@@ -326,7 +333,7 @@
         cursor: pointer;
         transition: all 0.2s ease;
         white-space: nowrap;
-
+        font-family: "YAS Font", sans-serif;
         &:hover:not(:disabled) {
           background: #f8f9fa;
           border-color: #d0d0d0;
@@ -384,6 +391,7 @@
         font-size: 14px;
         font-weight: 500;
         color: #166534;
+        font-family: "YAS Font", sans-serif;
       }
     }
   }
@@ -400,6 +408,7 @@
 
       .order-summary-title {
         font-size: 18px;
+        font-family: "YAS Font", sans-serif;
       }
     }
 

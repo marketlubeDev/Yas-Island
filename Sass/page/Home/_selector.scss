@@ -21,6 +21,7 @@
     cursor: pointer;
     font-weight: 400;
     font-size: 17px;
+    font-family: "YAS Font", sans-serif;
 
     // @include respond(desktop) {
     //   font-size: 13px;
@@ -34,6 +35,7 @@
       background-color: var(--color-selector-option-bg);
       color: var(--color-base-text);
       padding: 8px 12px;
+      font-family: "YAS Font", sans-serif;
 
       // &:hover {
       //   background-color: var(--color-selector-option-hover-bg);
@@ -62,7 +64,7 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
-
+  font-family: "YAS Font", sans-serif;
   // @include respond(desktop) {
   //   font-size: 14px;
   // }

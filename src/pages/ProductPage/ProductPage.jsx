@@ -90,7 +90,6 @@ export default function ProductPage() {
       <SideBar />
       <div className="product-content">
         <MainProductHead />
-        {/* <ProductHead label="Sort by" /> */}
         {isLoading ? (
           <div
             style={{
@@ -103,11 +102,8 @@ export default function ProductPage() {
             <Loader />
           </div>
         ) : (
-          // <div><Loader /></div>
           <ProductCard productList={filteredProducts} />
         )}
-        {/* {(isMobile || isTablet) && <ProductSoloThumbnail />}
-        {(isMobile || isTablet) && <MobSelectorGroup />} */}
         <AccessibilityModal
           isOpen={isAccessibilityModalOpen}
           onClose={() => setIsAccessibilityModalOpen(false)}

@@ -111,6 +111,7 @@
     flex-grow: 1;
     font-size: 1rem;
     transition: all 0.3s ease;
+    font-family: "Bebas Neue", sans-serif;
 
     &.active {
       color: var(--color-base-side-bar-item-right-text-active);

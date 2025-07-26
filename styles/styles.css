@@ -428,6 +428,7 @@ body {
   flex-grow: 1;
   font-size: 1rem;
   transition: all 0.3s ease;
+  font-family: "Bebas Neue", sans-serif;
 }
 .side-bar-list-item .item-text.active {
   color: var(--color-base-side-bar-item-right-text-active);
@@ -867,6 +868,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  font-family: "YAS Font", sans-serif;
 }
 
 .ar-cart-button {
@@ -891,6 +893,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  font-family: "YAS Font", sans-serif;
 }
 
 .product-header__title {
@@ -1345,6 +1348,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 280px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__content__title {
@@ -1378,6 +1382,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 400;
   line-height: 28.8px;
   margin-top: 0.8rem;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__content__description {
@@ -1494,6 +1499,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .AddtoCartbtn__button {
@@ -1705,6 +1711,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   height: fit-content;
   min-height: 30vh;
   overflow-y: auto;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-description-api {
@@ -1729,6 +1736,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal-details h2 {
@@ -1808,6 +1816,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 600;
   line-height: normal;
   margin-bottom: 4px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .price-details h3 {
@@ -1822,6 +1831,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 400;
   line-height: normal;
   margin-bottom: 16px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .price-details .tax {
@@ -1847,6 +1857,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 0.625rem;
   flex-shrink: 0;
   color: var(--btn-clr);
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .add-to-cart-btn {
@@ -1978,6 +1989,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   text-align: center;
   margin-bottom: 2.5rem;
   margin-top: -1rem;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-container h2 {
@@ -2045,6 +2057,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 16px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-header h2 {
@@ -2061,6 +2074,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-header h3 {
@@ -2192,6 +2206,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .section-title {
@@ -2242,6 +2257,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-summary {
@@ -2307,6 +2323,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   line-height: normal;
   text-transform: capitalize;
   text-align: left;
+  font-family: "YAS Font", sans-serif;
 }
 
 html[lang=ar] .guest-label {
@@ -2438,6 +2455,7 @@ html[lang=ar] .guest-label {
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .checkout-btnn {
@@ -2460,6 +2478,7 @@ html[lang=ar] .guest-label {
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-btn {
@@ -2766,6 +2785,7 @@ html[lang=ar] .guest-label {
   border-bottom: 1px solid transparent;
   border-image: var(--cart-border);
   padding: 10px 20px 10px 20px;
+  font-family: "YAS Font", sans-serif;
 }
 .cart-header h2 {
   flex: 1;
@@ -2837,6 +2857,7 @@ html[lang=ar] .guest-label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "YAS Font", sans-serif;
 }
 .item-details p {
   color: var(--cart-item-price);
@@ -2855,6 +2876,7 @@ html[lang=ar] .guest-label {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .item-details small {
@@ -2879,6 +2901,7 @@ html[lang=ar] .guest-label {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .quantity-controls {
@@ -2955,6 +2978,7 @@ html[lang=ar] .guest-label {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  font-family: "YAS Font", sans-serif;
 }
 .summary-row span {
   color: var(--color-base-text);
@@ -2966,6 +2990,7 @@ html[lang=ar] .guest-label {
   font-weight: bold;
   font-size: 18px;
   margin: 20px 0;
+  font-family: "YAS Font", sans-serif;
 }
 .total span {
   color: var(--cart-total-price);
@@ -3009,6 +3034,7 @@ html[lang=ar] .guest-label {
   gap: 0.625rem;
   flex-shrink: 0;
   cursor: pointer;
+  font-family: "YAS Font", sans-serif;
 }
 
 .delete-btn {
@@ -3111,12 +3137,15 @@ html[lang=ar] .guest-label {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    font-family: "YAS Font", sans-serif;
   }
   .item-details p {
     font-size: 0.75rem;
+    font-family: "YAS Font", sans-serif;
   }
   .item-details small {
     font-size: 0.7rem;
+    font-family: "YAS Font", sans-serif;
   }
   .item-date .item-date {
     font-size: 0.7rem;
@@ -3193,6 +3222,7 @@ html[lang=ar] .guest-label {
   font-family: "Inter", sans-serif;
   width: fit-content;
   min-width: 370px;
+  font-family: "YAS Font", sans-serif;
   /* Header */
   /* View All Items Section */
   /* Animation for dropdown */
@@ -3262,6 +3292,7 @@ html[lang=ar] .guest-label {
   font-size: 16px;
   font-weight: 500;
   color: var(--color-summary-title);
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .view-items-section .view-items-header .view-items-arrow {
   width: 16px;
@@ -3396,10 +3427,12 @@ html[lang=ar] .guest-label {
 .order-summary-new .pricing-section .pricing-row .pricing-label {
   color: #666;
   font-weight: 500;
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .pricing-section .pricing-row .pricing-value {
   color: var(--cart-total-price);
   font-weight: 500;
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .pricing-section .pricing-row.total-row {
   margin-bottom: 0;
@@ -3410,11 +3443,13 @@ html[lang=ar] .guest-label {
   font-size: 18px;
   font-weight: 600;
   color: var(--cart-total-price);
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .pricing-section .pricing-row.total-row .total-value {
   font-size: 18px;
   font-weight: 600;
   color: var(--cart-total-price);
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .pricing-section .pricing-divider {
   height: 1px;
@@ -3433,6 +3468,7 @@ html[lang=ar] .guest-label {
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .promo-section .promo-input-group {
   display: flex;
@@ -3447,6 +3483,7 @@ html[lang=ar] .guest-label {
   color: #1a1a1a;
   background: var(--summary-header-bg);
   transition: border-color 0.2s ease;
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .promo-section .promo-input-group .promo-input::placeholder {
   color: #999;
@@ -3467,6 +3504,7 @@ html[lang=ar] .guest-label {
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  font-family: "YAS Font", sans-serif;
 }
 .order-summary-new .promo-section .promo-input-group .promo-apply-btn:hover:not(:disabled) {
   background: #f8f9fa;
@@ -3511,6 +3549,7 @@ html[lang=ar] .guest-label {
   font-size: 14px;
   font-weight: 500;
   color: #166534;
+  font-family: "YAS Font", sans-serif;
 }
 
 /* Responsive Design */
@@ -3524,6 +3563,7 @@ html[lang=ar] .guest-label {
   }
   .order-summary-new .order-summary-header .order-summary-title {
     font-size: 18px;
+    font-family: "YAS Font", sans-serif;
   }
   .order-summary-new .order-items-section .order-item .item-header {
     padding: 12px;
@@ -3665,6 +3705,7 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step span {
@@ -3687,6 +3728,7 @@ html[lang=ar] .guest-label {
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step h2 {
@@ -4085,6 +4127,7 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__title {
@@ -4327,6 +4370,7 @@ html[lang=ar] .guest-label {
 .payment-form__left {
   padding: 2rem 2rem 0 2rem;
   width: 65%;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-form__left {
@@ -4578,6 +4622,7 @@ html[lang=ar] .guest-label {
 }
 .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
   margin-left: -2rem;
+  font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
@@ -5388,6 +5433,7 @@ html[lang=ar] .guest-label {
   max-width: 800px;
   background-color: var(--color-resend-btn-bg);
   padding: 2rem 0 2rem 2rem;
+  font-family: "YAS Font", sans-serif;
 }
 .payment-container .order-summary {
   margin-bottom: 2rem;
@@ -10077,6 +10123,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: center;
   justify-content: center;
   padding: 0;
+  font-family: "YAS Font", sans-serif;
 }
 .calendar-header button img {
   width: 24px;
@@ -10127,6 +10174,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   left: 12px;
   cursor: pointer;
   z-index: 1;
+  font-family: "YAS Font", sans-serif;
 }
 .payment-header__back-button--rtl {
   left: auto;
@@ -10242,11 +10290,13 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   color: var(--color-base-text);
   font-size: 17px;
   padding: 0 10px;
+  font-family: "YAS Font", sans-serif;
 }
 .search input::placeholder {
   color: var(--color-base-text);
   opacity: 0.6;
   font-size: 17px;
+  font-family: "YAS Font", sans-serif;
 }
 
 .selector {
@@ -10269,11 +10319,13 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   cursor: pointer;
   font-weight: 400;
   font-size: 17px;
+  font-family: "YAS Font", sans-serif;
 }
 .selector select option {
   background-color: var(--color-selector-option-bg);
   color: var(--color-base-text);
   padding: 8px 12px;
+  font-family: "YAS Font", sans-serif;
 }
 
 .selector-container {
@@ -10291,6 +10343,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
 }
 
 .language-selector {
@@ -10443,6 +10496,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  font-family: "YAS Font", sans-serif;
 }
 
 .lang-btn-head img {
