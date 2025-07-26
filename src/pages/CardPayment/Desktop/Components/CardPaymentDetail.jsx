@@ -145,7 +145,7 @@ export default function CardPaymentDetail({ orderData }) {
             position: "relative",
           }}
         >
-          {paymentStatus === "success" && (
+          {/* {paymentStatus === "success" && (
             <div
               style={{
                 position: "absolute",
@@ -241,7 +241,7 @@ export default function CardPaymentDetail({ orderData }) {
                 Try Again
               </button>
             </div>
-          )}
+          )} */}
           {isIframeLoading && (
             <div
               style={{

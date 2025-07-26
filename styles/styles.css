@@ -753,7 +753,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: flex-end;
   gap: 2rem;
   padding-left: 2rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-head {
