@@ -101,17 +101,7 @@ export default function SideBar() {
               {/* <div>hi</div> */}
             </li>
             {activeItem === item.name && (
-              <div
-                style={{
-                  width: "25px",
-                  height: "6.5rem",
-                  background: "var(--color-base-product-card-bg)",
-                  position: "absolute",
-                  right: "-12%",
-                  top: "-20%",
-                  zIndex: 10,
-                }}
-              ></div>
+              <div className="side-bar-item-hidden-bg"></div>
             )}
           </div>
         ))}
