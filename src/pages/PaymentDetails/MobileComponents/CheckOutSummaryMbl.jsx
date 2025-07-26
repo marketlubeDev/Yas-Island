@@ -6,6 +6,7 @@ import validatePromocode from "../../../serivces/promocode/promocode";
 import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import useGetProductList from "../../../apiHooks/product/product";
 
 function CheckOutSummaryMbl({
   promoApplied = false,
@@ -24,6 +25,10 @@ function CheckOutSummaryMbl({
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+
+  // Ensure products are loaded for the current language
+  useGetProductList();
+
   const productList = useSelector((state) => state.product.allProducts);
   const { mutate: checkBasket } = useCheckBasket();
 

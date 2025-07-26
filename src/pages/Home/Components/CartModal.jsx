@@ -11,6 +11,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import useGetProductList from "../../../apiHooks/product/product";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
@@ -51,6 +52,9 @@ const CartModal = ({ isOpen, onClose }) => {
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { isBigTablets, isDesktop } = useSelector((state) => state.responsive);
+
+  // Ensure products are loaded for the current language
+  useGetProductList();
 
   const {
     cartItems,
@@ -140,7 +144,6 @@ const CartModal = ({ isOpen, onClose }) => {
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
-            performances: item?.performances ? item?.performances : [],
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
@@ -236,8 +239,6 @@ const CartModal = ({ isOpen, onClose }) => {
                       },
                     }
                   : null;
-
-   
 
                 const isExpired = isDateExpired(item?.validTo);
 
