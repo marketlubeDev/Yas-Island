@@ -221,26 +221,26 @@
     &::before {
       content: "";
       position: absolute;
-      top: -23.5px;
+      top: -33%;
       right: -10.5%;
-      width: 25px;
+      width: 30px;
       height: 20px;
-      background-color: #ffffff;
-      border-bottom-right-radius: 15px;
+      background-color: var(--color-base-product-card-card-item-bg);
+      border-bottom-right-radius: 20px;
       box-shadow: 2px 4px 0 0px var(--color-base-side-bar-border);
       z-index: 100;
-      border-top-left-radius: 15px;
+      // border-top-left-radius: 30px;
     }
 
     // Curved notch at bottom right (inward curve)
     &::after {
       content: "";
       position: absolute;
-      bottom: -24.2px;
+      bottom: -33%;
       right: -10.5%;
-      width: 25px;
+      width: 30px;
       height: 20px;
-      background-color: #fff;
+      background-color: var(--color-base-product-card-card-item-bg);
       border-top-right-radius: 15px;
       box-shadow: 2px -4px 0 0px var(--color-base-side-bar-border);
       z-index: 100;

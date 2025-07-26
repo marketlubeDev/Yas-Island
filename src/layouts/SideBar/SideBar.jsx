@@ -19,9 +19,7 @@ export default function SideBar() {
   const { language } = useLanguage();
 
   const handleClick = (item) => {
-    if (item === "topAttractions") {
-      setActiveItem(item);
-    }
+    setActiveItem(item);
   };
 
   // Define the sidebar items with translation keys
@@ -54,15 +52,15 @@ export default function SideBar() {
               language === "العربية"
                 ? `ar-side-bar-list-item-container ${
                     activeItem === item.name ? "active" : ""
-                  } ${item.name !== "topAttractions" ? "disabled" : ""}`
+                  }`
                 : `side-bar-list-item-container ${
                     activeItem === item.name ? "active" : ""
-                  } ${item.name !== "topAttractions" ? "disabled" : ""}`
+                  }`
             }
             onClick={() => handleClick(item.name)}
             style={{
-              cursor: item.name === "topAttractions" ? "pointer" : "default",
-              opacity: item.name === "topAttractions" ? 1 : 0.5,
+              cursor: "pointer",
+              opacity: 1,
             }}
           >
             <li
@@ -102,17 +100,19 @@ export default function SideBar() {
               </div>
               {/* <div>hi</div> */}
             </li>
-            <div
-              style={{
-                width: "25px",
-                height: "6.5rem",
-                background: "#f0f0f0",
-                position: "absolute",
-                right: "-12%",
-                top: "-20%",
-                zIndex: 10,
-              }}
-            ></div>
+            {activeItem === item.name && (
+              <div
+                style={{
+                  width: "25px",
+                  height: "6.5rem",
+                  background: "var(--color-base-product-card-bg)",
+                  position: "absolute",
+                  right: "-12%",
+                  top: "-20%",
+                  zIndex: 10,
+                }}
+              ></div>
+            )}
           </div>
         ))}
       </ul>
