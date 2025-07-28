@@ -174,7 +174,7 @@ export default function CardPaymentDetail({ orderData }) {
             name="payfort-iframe"
             title="PayFort Payment"
             width="100%"
-            height="600"
+            height="470"
             frameBorder="0"
             style={{
               border: "none",
