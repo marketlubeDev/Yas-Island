@@ -342,6 +342,30 @@
         font-family: "YAS Font", sans-serif;
       }
 
+      .remove-promo-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        color: #ff0000;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+
+        // &:hover {
+        //   background: #f0f0f0;
+        //   color: #666;
+        // }
+
+        svg {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
       &.total-row {
         margin-bottom: 0;
         padding-top: 14px;

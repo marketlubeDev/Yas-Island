@@ -92,7 +92,11 @@ export default function OrderSummary({
   //   }
   // };
 
-  const handleBasketCheck = (promoCode = "", message = "") => {
+  const handleBasketCheck = (
+    promoCode = "",
+    message = "",
+    isRemoveOperation = false
+  ) => {
     let items = [];
     checkout?.items?.forEach((item) => {
       items.push({
@@ -149,8 +153,10 @@ export default function OrderSummary({
           setPromoCodeApplying(false);
           if (promoCode) {
             setIsModalVisible(true);
-          } else {
+          } else if (message) {
             toast.error(message || "Invalid promo code");
+          } else if (isRemoveOperation) {
+            toast.success(t("orderSummary.promoCodeRemoved"), {});
           }
         }
       },
@@ -162,6 +168,11 @@ export default function OrderSummary({
         setPromoCodeApplying(false);
       },
     });
+  };
+
+  const handleRemovePromoCode = () => {
+    setPromoCode("");
+    handleBasketCheck("", "", true); // Pass a flag to indicate this is a remove operation
   };
 
   const handlePromoCode = async () => {
@@ -326,8 +337,26 @@ export default function OrderSummary({
             <span className="pricing-label-promo">
               {t("orderSummary.promoCodeSavings")}
             </span>
-            <span className="pricing-value">
+            <span className="pricing-value" style={{ display: "flex" }}>
               {checkout?.promotions[0]?.discount}
+              <button
+                className="remove-promo-btn"
+                onClick={handleRemovePromoCode}
+                title={t("orderSummary.removePromoCode")}
+                type="button"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
             </span>
           </div>
         )}

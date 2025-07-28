@@ -304,5 +304,7 @@ export const ar = {
     apply: "تطبيق",
     securePayment: "دفع آمن",
     promoCodeSavings: "توفير رمز الخصم :",
+    removePromoCode: "إزالة رمز الخصم",
+    promoCodeRemoved: "تم إزالة رمز الخصم بنجاح",
   },
 };

@@ -249,7 +249,7 @@ function MycartMbl({ onClose, visible }) {
                     key={index}
                   >
                     <img
-                      src={item?.image}
+                      src={productData?.product_images?.thumbnail_url}
                       alt={productData?.product_title}
                       className="mycart-modal__item-img"
                     />
@@ -269,7 +269,8 @@ function MycartMbl({ onClose, visible }) {
                       </div>
                       <div className="mycart-modal__item-price">
                         <span className="mycart-modal__item-price-main">
-                        {t("common.aed")} {productData?.selectedVariant?.price?.net}
+                          {t("common.aed")}{" "}
+                          {productData?.selectedVariant?.price?.net}
                         </span>
                         <span className="mycart-modal__item-vat">
                           +
@@ -342,17 +343,22 @@ function MycartMbl({ onClose, visible }) {
               <div className="mycart-modal__summary">
                 <div className="mycart-modal__summary-row">
                   <span>{t("cart.subTotal")}</span>
-                  <span>{t("common.aed")} {subtotal.toFixed(2)}</span>
+                  <span>
+                    {t("common.aed")} {subtotal.toFixed(2)}
+                  </span>
                 </div>
                 <div className="mycart-modal__summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("cart.vatUnit")}
+                    + {t("common.aed")} {vatAndTax.toFixed(2)}{" "}
+                    {t("cart.vatUnit")}
                   </span>
                 </div>
                 <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
                   <span>{t("cart.total")}</span>
-                  <span>{t("common.aed")} {total.toFixed(2)}</span>
+                  <span>
+                    {t("common.aed")} {total.toFixed(2)}
+                  </span>
                 </div>
               </div>
               <button

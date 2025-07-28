@@ -301,5 +301,7 @@ export const en = {
     apply: "Apply",
     securePayment: "Secure Payment",
     promoCodeSavings: "promo code savings :",
+    removePromoCode: "Remove promo code",
+    promoCodeRemoved: "Promo code removed successfully",
   },
 };

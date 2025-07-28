@@ -3507,6 +3507,23 @@ html[lang=ar] .guest-label {
   font-weight: 400;
   font-family: "YAS Font", sans-serif;
 }
+.order-summary-new .pricing-section .pricing-row .remove-promo-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #ff0000;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+.order-summary-new .pricing-section .pricing-row .remove-promo-btn svg {
+  width: 12px;
+  height: 12px;
+}
 .order-summary-new .pricing-section .pricing-row.total-row {
   margin-bottom: 0;
   padding-top: 14px;
