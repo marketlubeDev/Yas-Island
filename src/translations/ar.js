@@ -303,5 +303,6 @@ export const ar = {
     enterPromoCode: "أدخل رمز الخصم",
     apply: "تطبيق",
     securePayment: "دفع آمن",
+    promoCodeSavings: "توفير رمز الخصم :",
   },
 };

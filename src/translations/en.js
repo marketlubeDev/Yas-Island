@@ -300,5 +300,6 @@ export const en = {
     enterPromoCode: "Enter promo code",
     apply: "Apply",
     securePayment: "Secure Payment",
+    promoCodeSavings: "promo code savings :",
   },
 };

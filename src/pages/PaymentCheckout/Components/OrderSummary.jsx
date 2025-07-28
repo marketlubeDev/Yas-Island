@@ -26,7 +26,7 @@ export default function OrderSummary({
   const [showAllItems, setShowAllItems] = useState(false);
   // const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
   const [promoCode, setPromoCode] = useState(
-    checkout?.coupons?.[0]?.code || ""
+    checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const currentLanguage = useSelector(
@@ -321,6 +321,16 @@ export default function OrderSummary({
             + {t("common.aed")} {checkout?.taxAmount}
           </span>
         </div>
+        {checkout?.promotions?.[0]?.discount && (
+          <div className="pricing-row">
+            <span className="pricing-label-promo">
+              {t("orderSummary.promoCodeSavings")}
+            </span>
+            <span className="pricing-value">
+              {checkout?.promotions[0]?.discount}
+            </span>
+          </div>
+        )}
 
         {/* Promo Code Section */}
         {showPromoCode && (

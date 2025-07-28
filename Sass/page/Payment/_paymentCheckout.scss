@@ -322,17 +322,23 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
-      font-size: 16px;
+      font-size: 1rem;
 
       .pricing-label {
         color: #666;
-        font-weight: 500;
+        font-weight: 400;
+        font-family: "YAS Font", sans-serif;
+      }
+
+      .pricing-label-promo {
+        color: #666;
+        font-weight: 400;
         font-family: "YAS Font", sans-serif;
       }
 
       .pricing-value {
         color: var(--cart-total-price);
-        font-weight: 500;
+        font-weight: 400;
         font-family: "YAS Font", sans-serif;
       }
 
@@ -343,14 +349,21 @@
 
         .total-label {
           font-size: 18px;
-          font-weight: 600;
+          font-weight: 500;
           color: var(--cart-total-price);
           font-family: "YAS Font", sans-serif;
         }
 
         .total-value {
           font-size: 18px;
-          font-weight: 600;
+          font-weight: 500;
+          color: var(--cart-total-price);
+          font-family: "YAS Font", sans-serif;
+        }
+
+        .total-value-promo {
+          font-size: 18px;
+          font-weight: 500;
           color: var(--cart-total-price);
           font-family: "YAS Font", sans-serif;
         }
@@ -391,7 +404,7 @@
         border: 1px solid var(--color-base-product-card-divider);
         border-radius: 6px;
         font-size: 14px;
-        color: #1a1a1a;
+        color: var(--color-summary-title);
         background: var(--summary-header-bg);
         transition: border-color 0.2s ease;
         font-family: "YAS Font", sans-serif;
