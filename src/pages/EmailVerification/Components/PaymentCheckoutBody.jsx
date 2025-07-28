@@ -14,7 +14,7 @@ export default function PaymentCheckoutBody() {
   };
 
   const handleBackClick = () => {
-    navigate("/product");
+    navigate("/");
   };
 
   const showHeaderComponents =
