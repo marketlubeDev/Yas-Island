@@ -130,6 +130,20 @@
     line-height: 1.6;
     font-family: "YAS Font", sans-serif;
 
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-base-product-card-scroll-bar);
+      border-radius: 4px;
+      border: 2px solid var(--color-base-product-card-scroll-bar-border);
+    }
+
     h1 {
       font-weight: 600;
       margin-top: 0rem !important;

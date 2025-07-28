@@ -19,7 +19,7 @@ export default function TermsAndConditionsModal({
       onCancel={onClose}
       footer={null}
       centered
-      width="60%"
+      width="70%"
       className="terms-modal"
       // closeIcon={
       //   <span className="custom-modal-close">
