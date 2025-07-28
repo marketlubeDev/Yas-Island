@@ -10,11 +10,6 @@ export default function PaymentDetailsBody() {
     navigate("/otp-confirmation");
   };
 
-  // const handleProceedToPayment = () => {
-  //   // Navigate to card payment
-  //   navigate("/card-payment");
-  // };
-
   return (
     <div className="payment-checkout">
       <CheckoutSteps currentStep="details" />

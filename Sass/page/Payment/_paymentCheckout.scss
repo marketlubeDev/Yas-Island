@@ -4,7 +4,7 @@
   background: var(--color-base-bg);
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--card-box-shadow);
-  padding: 24px;
+  padding: 20px;
   max-height: 600px;
   overflow-y: auto;
   font-family: "Inter", sans-serif;
@@ -19,7 +19,7 @@
 
   /* Header */
   .order-summary-header {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 0px;
     border-bottom: 1px solid var(--color-base-product-card-divider);
     display: flex;
@@ -42,16 +42,16 @@
 
   /* View All Items Section */
   .view-items-section {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 
     .view-items-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 12px 16px;
       background: var(--color-base-bg);
       border: 1px solid var(--color-base-product-card-price);
-      border-radius: 12px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
 
@@ -63,18 +63,18 @@
       .view-items-left {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
 
         .shopping-bag-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
         }
 
         .view-items-text {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 500;
           color: var(--color-summary-title);
           font-family: "YAS Font", sans-serif;
@@ -82,8 +82,8 @@
       }
 
       .view-items-arrow {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         transition: transform 0.2s ease;
         opacity: 0.6;
 
@@ -94,10 +94,10 @@
     }
 
     .items-container {
-      margin-top: 12px;
+      margin-top: 10px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       animation: slideDown 0.3s ease-out;
     }
 
@@ -217,6 +217,90 @@
         }
       }
     }
+
+    /* Minimized Order Item Design */
+    .order-item-minimal {
+      border: 1px solid var(--color-base-product-card-divider);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: var(--color-checkbox-a-clr);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+
+      .item-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 12px 14px;
+        gap: 12px;
+
+        .item-main {
+          flex: 1;
+          min-width: 0;
+
+          .item-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-summary-title);
+            margin: 0 0 6px 0;
+            line-height: 1.3;
+            font-family: "YAS Font", sans-serif;
+          }
+
+          .item-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.2;
+
+            .item-variant {
+              font-weight: 500;
+              color: var(--color-base-product-card-price);
+            }
+
+            .item-separator {
+              color: #ccc;
+              font-weight: normal;
+            }
+
+            .item-date {
+              color: #888;
+            }
+
+            .item-quantity {
+              color: #888;
+              font-weight: 500;
+            }
+
+            @include respond(mobile) {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 2px;
+
+              .item-separator {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .item-price {
+          flex-shrink: 0;
+
+          .price-amount {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-summary-title);
+            font-family: "YAS Font", sans-serif;
+          }
+        }
+      }
+    }
   }
 
   /* Animation for dropdown */
@@ -237,7 +321,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       font-size: 16px;
 
       .pricing-label {
@@ -254,7 +338,7 @@
 
       &.total-row {
         margin-bottom: 0;
-        padding-top: 16px;
+        padding-top: 14px;
         border-top: 2px solid var(--color-base-product-card-divider);
 
         .total-label {
@@ -276,16 +360,16 @@
     .pricing-divider {
       height: 1px;
       background: #f0f0f0;
-      margin: 20px 0;
+      margin: 18px 0;
     }
   }
 
   /* Promo Code Section */
   .promo-section {
-    margin: 20px 0;
+    margin: 16px 0;
 
     .promo-header {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
 
       .promo-title {
         font-size: 12px;
@@ -303,9 +387,9 @@
 
       .promo-input {
         flex: 1;
-        padding: 12px 16px;
+        padding: 10px 14px;
         border: 1px solid var(--color-base-product-card-divider);
-        border-radius: 8px;
+        border-radius: 6px;
         font-size: 14px;
         color: #1a1a1a;
         background: var(--summary-header-bg);
@@ -323,10 +407,10 @@
       }
 
       .promo-apply-btn {
-        padding: 12px 20px;
+        padding: 10px 16px;
         background: var(--summary-header-bg);
         border: 1px solid var(--color-base-product-card-divider);
-        border-radius: 8px;
+        border-radius: 6px;
         font-size: 14px;
         font-weight: 500;
         color: var(--color-summary-title);
@@ -357,20 +441,20 @@
 
   /* Secure Payment Section */
   .secure-payment-section {
-    margin-top: 24px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 16px;
     border-top: 1px solid var(--color-base-product-card-divider);
 
     .secure-payment-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       width: 100%;
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: var(--secure-payment-bg);
       border: 1px solid var(--secure-payment-border);
-      border-radius: 8px;
+      border-radius: 6px;
       // cursor: pointer;
       transition: all 0.2s ease;
 
@@ -383,12 +467,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
       }
 
       .secure-text {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 500;
         color: #166534;
         font-family: "YAS Font", sans-serif;

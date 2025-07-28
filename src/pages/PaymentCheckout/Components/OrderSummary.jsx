@@ -4,7 +4,6 @@ import { Modal } from "antd";
 import PromoCodeModalContent from "./PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
 import { useSelector, useDispatch } from "react-redux";
-import downArrow from "../../../assets/icons/downArrow.svg";
 import {
   setCheckout,
   // updateTermsAcceptance,
@@ -210,8 +209,8 @@ export default function OrderSummary({
           <div className="view-items-left">
             <div className="shopping-bag-icon">
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -267,80 +266,39 @@ export default function OrderSummary({
         {showAllItems && (
           <div className="items-container">
             {checkout?.items?.map((item, index) => (
-              <div key={index} className="order-item">
-                <div className="item-header">
-                  <div className="item-info">
+              <div key={index} className="order-item-minimal">
+                <div className="item-content">
+                  <div className="item-main">
                     <h4 className="item-title">
                       {getProduct(item.productId)?.product?.product_title}
                     </h4>
-                    {/* <div className="item-meta">
+                    <div className="item-meta">
+                      <span className="item-variant">
+                        {
+                          getProduct(item.productId)?.productVariant
+                            ?.productvariantname
+                        }
+                      </span>
+                      <span className="item-separator">•</span>
                       <span className="item-date">
                         {formatDate(item.validFrom)}
                       </span>
+                      <span className="item-separator">•</span>
                       <span className="item-quantity">
-                        • {item.quantity}{" "}
-                        {item.quantity === 1 ? "guest" : "guests"}
+                        Qty: {item.quantity}
                       </span>
-                    </div> */}
+                    </div>
                   </div>
                   <div className="item-price">
                     <span className="price-amount">
                       {t("common.aed")}{" "}
                       {(
                         getProduct(item.productId)?.productVariant?.net_amount *
-                        item.quantity
+                          item.quantity +
+                        getProduct(item.productId)?.productVariant?.vat *
+                          item.quantity
                       ).toFixed(2)}
                     </span>
-                  </div>
-                </div>
-
-                <div className="item-details">
-                  <div className="detail-row">
-                    <span className="detail-label">
-                      {t("orderSummary.variants")}
-                    </span>
-                    <span className="detail-value">
-                      {
-                        getProduct(item.productId)?.productVariant
-                          ?.productvariantname
-                      }
-                    </span>
-                  </div>
-                  <div className="detail-row">
-                    <span className="detail-label">
-                      {t("orderSummary.date")}
-                    </span>
-                    <span className="detail-value">
-                      {formatDate(item.validFrom)}
-                    </span>
-                  </div>
-                  <div className="detail-row">
-                    <span className="detail-label">
-                      {t("orderSummary.quantity")}
-                    </span>
-                    <span className="detail-value">{item.quantity}</span>
-                  </div>
-                  <div className="price-breakdown">
-                    <div className="breakdown-row">
-                      <span>{t("orderSummary.netAmount")} :</span>
-                      <span>
-                        {t("common.aed")}{" "}
-                        {(
-                          getProduct(item.productId)?.productVariant
-                            ?.net_amount * item.quantity
-                        ).toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="breakdown-row">
-                      <span>{t("orderSummary.vat")} :</span>
-                      <span>
-                        + {t("common.aed")}{" "}
-                        {(
-                          getProduct(item.productId)?.productVariant?.vat *
-                          item.quantity
-                        ).toFixed(2)}
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -367,11 +325,6 @@ export default function OrderSummary({
         {/* Promo Code Section */}
         {showPromoCode && (
           <div className="promo-section">
-            <div className="promo-header">
-              <span className="promo-title">
-                {t("orderSummary.promoDiscount")}
-              </span>
-            </div>
             <div className="promo-input-group">
               <input
                 type="text"
@@ -387,7 +340,7 @@ export default function OrderSummary({
                 disabled={promoCodeApplying}
               >
                 {promoCodeApplying ? (
-                  <ButtonLoading height="16px" width="16px" />
+                  <ButtonLoading height="14px" width="14px" />
                 ) : (
                   t("orderSummary.apply")
                 )}
@@ -409,8 +362,8 @@ export default function OrderSummary({
         <div className="secure-payment-button">
           <div className="secure-icon">
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -424,8 +377,8 @@ export default function OrderSummary({
                 strokeLinejoin="round"
               />
               <path
-                d="M12 9L15 12L12 15L9 12L12 9Z"
-                fill="white"
+                d="M9 12L11 14L15 10"
+                fill="none"
                 stroke="white"
                 strokeWidth="2"
                 strokeLinecap="round"

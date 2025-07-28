@@ -37,8 +37,6 @@ export default function CardPaymentDetail({ orderData }) {
     }, 500);
   };
 
-  console.log(orderData?.tokenizationResponse, "askgdkjasgkdgsa");
-
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
       const form = document.createElement("form");
@@ -145,103 +143,6 @@ export default function CardPaymentDetail({ orderData }) {
             position: "relative",
           }}
         >
-          {/* {paymentStatus === "success" && (
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                background: "white",
-                padding: "2rem",
-                borderRadius: "12px",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-                textAlign: "center",
-                zIndex: 1000,
-              }}
-            >
-              <div style={{ marginBottom: "1rem" }}>
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <circle cx="25" cy="25" r="25" fill="#28a745" />
-                  <path
-                    d="M20 25L23 28L30 21"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <h3 style={{ margin: "0 0 1rem", color: "#28a745" }}>
-                Payment Successful!
-              </h3>
-              <p style={{ margin: "0 0 1rem", color: "#666" }}>
-                Redirecting to order details in {countdown} seconds...
-              </p>
-              <div
-                className="loading-spinner"
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  border: "3px solid #f3f3f3",
-                  borderTop: "3px solid #28a745",
-                  borderRadius: "50%",
-                  animation: "spin 1s linear infinite",
-                  margin: "0 auto",
-                }}
-              />
-            </div>
-          )}
-          {paymentStatus === "failed" && (
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                background: "white",
-                padding: "2rem",
-                borderRadius: "12px",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-                textAlign: "center",
-                zIndex: 1000,
-              }}
-            >
-              <div style={{ marginBottom: "1rem" }}>
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-                  <circle cx="25" cy="25" r="25" fill="#dc3545" />
-                  <path
-                    d="M18 18L32 32M32 18L18 32"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <h3 style={{ margin: "0 0 1rem", color: "#dc3545" }}>
-                Payment Failed
-              </h3>
-              <p style={{ margin: "0 0 1rem", color: "#666" }}>
-                Your payment could not be processed. Please try again.
-              </p>
-              <button
-                onClick={() => {
-                  setPaymentStatus("loading");
-                  window.location.reload();
-                }}
-                style={{
-                  background: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  padding: "0.5rem 1.5rem",
-                  borderRadius: "6px",
-                  cursor: "pointer",
-                  fontSize: "16px",
-                }}
-              >
-                Try Again
-              </button>
-            </div>
-          )} */}
           {isIframeLoading && (
             <div
               style={{

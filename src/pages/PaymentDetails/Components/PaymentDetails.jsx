@@ -165,22 +165,6 @@ export default function PaymentDetails() {
           setFormData={setFormData}
           checkout={checkout}
         />
-        {/* <button
-          className="proceedbtn"
-          onClick={handleProceedToPayment}
-          disabled={isPending || !checkout.isTnCAgrred}
-          style={{
-            opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
-            cursor:
-              isPending || !checkout.isTnCAgrred ? "not-allowed" : "pointer",
-          }}
-        >
-          {isPending ? (
-            <ButtonLoading />
-          ) : (
-            t("payment.paymentDetails.proceedToPayment")
-          )}
-        </button> */}
       </div>
     </div>
   );
