@@ -1,9 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Modal } from "antd";
 import { useTranslation } from "react-i18next";
-import closeIcon from "../../../assets/icons/close.svg";
-import closeIconInverter from "../../../assets/icons/closeinverter.svg";
-import { useSelector } from "react-redux";
 
 export default function TermsAndConditionsModal({
   isOpen,
@@ -11,7 +8,19 @@ export default function TermsAndConditionsModal({
   termsAndConditions,
 }) {
   const { t } = useTranslation();
-  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+  const modalBodyRef = useRef(null);
+
+  // Reset scroll position when modal opens
+  useEffect(() => {
+    if (isOpen && modalBodyRef.current) {
+      // Small delay to ensure content is rendered
+      setTimeout(() => {
+        if (modalBodyRef.current) {
+          modalBodyRef.current.scrollTop = 0;
+        }
+      }, 100);
+    }
+  }, [isOpen, termsAndConditions]);
 
   return (
     <Modal
@@ -31,6 +40,7 @@ export default function TermsAndConditionsModal({
       <div className="terms-modal-content">
         {termsAndConditions ? (
           <div
+            ref={modalBodyRef}
             className="terms-modal-body"
             dangerouslySetInnerHTML={{ __html: termsAndConditions }}
           />

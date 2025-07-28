@@ -10796,7 +10796,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
   background: var(--color-base-primary);
-  color: var(--color-base-text-primary);
+  color: var(--color-pymnt-title-clr);
   border: none;
   padding: 0 !important;
   border-radius: 8px;
