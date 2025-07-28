@@ -284,7 +284,6 @@ export default function BookingSection({
       }
     }
 
-
     const currentItems = [];
 
     Object.entries(guests).forEach(([productId, guestData]) => {
@@ -445,10 +444,19 @@ export default function BookingSection({
               dispatch(addToCart(obj));
             });
 
+            const items = orderDetails?.order?.items?.map((item) => ({
+              ...item,
+              productMasterid:
+                productList.find((product) =>
+                  product.product_variants.some(
+                    (variant) => variant.productid === item?.productId
+                  )
+                )?.product_masterid || "",
+            }));
             // Update the checkout slice
             const checkoutData = {
               coupons: [],
-              items: orderDetails?.order?.items,
+              items: items,
               emailId: verificationEmail || "",
               country: "",
               nationality: "",

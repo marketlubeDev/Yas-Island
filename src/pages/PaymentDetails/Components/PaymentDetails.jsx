@@ -62,6 +62,8 @@ export default function PaymentDetails() {
           errors.push(`Item ${index + 1}: Invalid quantity`);
         if (!item.validFrom)
           errors.push(`Item ${index + 1}: Missing valid from date`);
+        if (!item.productMasterid)
+          errors.push(`Item ${index + 1}: Missing product master ID`);
       });
     }
 
@@ -112,6 +114,7 @@ export default function PaymentDetails() {
         performance: item.performances,
         validFrom: item.validFrom,
         validTo: item.validTo,
+        productMasterid: item.productMasterid,
       })),
       emailId: checkout?.emailId,
       language: currentLanguage,

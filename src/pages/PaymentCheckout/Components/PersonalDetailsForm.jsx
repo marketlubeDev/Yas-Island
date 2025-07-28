@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTermsAcceptance } from "../../../global/checkoutSlice";
+import getTermsAndCondition from "../../../serivces/termsandconditon/termsandconditionon";
+import { toast } from "sonner";
+import TermsAndConditionsModal from "./TermsAndConditionsModal";
 
 const COUNTRIES = getData().map((country) => ({
   value: country.code,
@@ -236,7 +239,8 @@ export default function PersonalDetailsForm({
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
-
+  const [termsAndConditions, setTermsAndConditions] = useState(null);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const handleInputChange = (field) => (value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
@@ -257,6 +261,32 @@ export default function PersonalDetailsForm({
         })
       );
     }
+  };
+
+  const handleTermsClick = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Get the first productId from checkout items, or use a default value
+      const productId = checkout?.items?.[0]?.productMasterid || "69";
+      const source = "web";
+
+      const response = await getTermsAndCondition(
+        `${currentLanguage}-AE`,
+        productId,
+        source
+      );
+      console.log("Terms and Conditions:", response);
+      setTermsAndConditions(response);
+      setIsTermsModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching terms and conditions:", error);
+      toast.error("Failed to load terms and conditions");
+    }
+  };
+
+  const handleCloseTermsModal = () => {
+    setIsTermsModalOpen(false);
   };
 
   return (
@@ -334,7 +364,7 @@ export default function PersonalDetailsForm({
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
             {t("payment.orderSummary.terms.acceptTerms")}{" "}
-            <a href="#" className="terms-link">
+            <a href="#" className="terms-link" onClick={handleTermsClick}>
               {t("payment.orderSummary.terms.termsAndConditions")}
             </a>
           </span>
@@ -374,6 +404,12 @@ export default function PersonalDetailsForm({
           t("payment.paymentDetails.proceedToPayment")
         )}
       </button>
+
+      <TermsAndConditionsModal
+        isOpen={isTermsModalOpen}
+        onClose={handleCloseTermsModal}
+        termsAndConditions={termsAndConditions}
+      />
     </div>
   );
 }

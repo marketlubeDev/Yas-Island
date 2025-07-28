@@ -39,37 +39,34 @@ export default function ProductCard({ productList }) {
     return defaultVariant;
   };
 
-
   return (
     <div className="ProductCard">
       <div className="ProductCard__grid">
         {productList?.map((product, index) => (
-          <>
-            <div
-              className="ProductCard__card"
-              key={`${product?.product_title}-${index}`}
-            >
-              {/* <span>{index}</span> */}
-              <div className="ProductCard__card__image">
-                <img
-                  src={product?.product_images?.thumbnail_url}
-                  alt={product?.product_title}
-                />
-              </div>
-              <ProductCardContent
-                name={product?.product_title}
-                description={product?.productshortdesc}
-              />
-              <ProductCardPricetag
-                price={defaultVariant(product)?.gross}
-                tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
-                currency={product?.currency}
-                taxDescription={product?.taxDescription}
-                onAddToCart={() => showModal(product)}
-                netPrice={defaultVariant(product)?.net_amount}
+          <div
+            className="ProductCard__card"
+            key={`${product?.product_title}-${index}`}
+          >
+            {/* <span>{index}</span> */}
+            <div className="ProductCard__card__image">
+              <img
+                src={product?.product_images?.thumbnail_url}
+                alt={product?.product_title}
               />
             </div>
-          </>
+            <ProductCardContent
+              name={product?.product_title}
+              description={product?.productshortdesc}
+            />
+            <ProductCardPricetag
+              price={defaultVariant(product)?.gross}
+              tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
+              currency={product?.currency}
+              taxDescription={product?.taxDescription}
+              onAddToCart={() => showModal(product)}
+              netPrice={defaultVariant(product)?.net_amount}
+            />
+          </div>
         ))}
       </div>
 

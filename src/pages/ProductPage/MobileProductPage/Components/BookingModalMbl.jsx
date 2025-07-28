@@ -390,7 +390,15 @@ function BookingModalMbl({
             // Update the checkout slice
             const checkoutData = {
               coupons: [],
-              items: orderDetails?.order?.items,
+              items: orderDetails?.order?.items?.map((item) => ({
+                ...item,
+                productMasterid:
+                  productList.find((product) =>
+                    product.product_variants.some(
+                      (variant) => variant.productid === item?.productId
+                    )
+                  )?.product_masterid || "",
+              })),
               emailId: verificationEmail || "",
               country: "",
               nationality: "",

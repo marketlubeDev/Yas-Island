@@ -131,6 +131,12 @@ export default function OrderSummary({
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            productMasterid:
+              productList.find((product) =>
+                product.product_variants.some(
+                  (variant) => variant.productid === item?.productId
+                )
+              )?.product_masterid || "",
           }));
           dispatch(
             setCheckout({

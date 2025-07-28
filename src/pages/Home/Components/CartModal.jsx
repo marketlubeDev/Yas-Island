@@ -46,6 +46,7 @@ const isDateExpired = (validToDate) => {
 
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -147,6 +148,12 @@ const CartModal = ({ isOpen, onClose }) => {
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            productMasterid:
+              productList.find((product) =>
+                product.product_variants.some(
+                  (variant) => variant.productid === item?.productId
+                )
+              )?.product_masterid || "",
           }));
           dispatch(
             setCheckout({

@@ -73,3 +73,136 @@
 // //     width: 100%;
 // //   }
 // // }
+
+// Terms and Conditions Modal Styles
+.terms-modal {
+  .ant-modal-content {
+    position: relative;
+    background-color: var(--color-base-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--color-bkg-modal-border);
+    border-radius: 40px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    padding: 20px 24px;
+    max-height: 80vh;
+    overflow: hidden;
+
+    // Dark mode styles
+    .dark-mode & {
+      background-color: var(--color-base-mobile-product-page-text, #18142b);
+      color: var(--color-base-mobile-product-page-bg, #ffffff);
+    }
+  }
+
+  // Custom close button styles
+  .ant-modal-close {
+    .ant-modal-close-x {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+}
+
+.terms-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 70vh;
+
+  .terms-modal-title {
+    color: var(--color-base-text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: "YAS Font", sans-serif;
+  }
+
+  .terms-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-base-text-secondary);
+    line-height: 1.6;
+    font-family: "YAS Font", sans-serif;
+
+    h1 {
+      font-weight: 600;
+      margin-top: 0rem !important;
+      margin-bottom: 1rem !important;
+      color: var(--color-base-text-primary) !important;
+      position: sticky;
+      top: 0;
+      background-color: var(--color-base-bg);
+      z-index: 100;
+      text-align: center !important;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    strong,
+    b {
+      font-weight: 600;
+      color: var(--color-base-text-primary);
+    }
+
+    a {
+      color: var(--color-base-primary);
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .terms-modal-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-base-text-secondary);
+  }
+
+  .terms-modal-footer {
+    text-align: center;
+    padding-top: 0rem;
+    border-top: 1px solid var(--ip-bodr-btm);
+
+    .terms-modal-close-btn {
+      background: var(--color-base-primary);
+      color: var(--color-base-text-primary);
+      border: none;
+      padding: 0 !important;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: "YAS Font", sans-serif;
+
+      &:hover {
+        background: var(--color-base-primary-hover);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-base-primary-focus);
+      }
+    }
+  }
+}
