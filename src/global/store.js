@@ -10,12 +10,19 @@ import performanceReducer from "./performanceSlice";
 import cartReducer from "./cartSlice";
 import otpReducer from "./otpSlice";
 import orderReducer from "./orderSlice";
-
+import qrCodeReducer from "./qrCodeSlice";
 
 const cartPersistConfig = {
   key: "yasIslandCart",
   storage,
-  whitelist: ["cartItems", "subtotal", "vatAndTax", "total", "isEmailVerification", "verificationEmail"], // persist only these fields
+  whitelist: [
+    "cartItems",
+    "subtotal",
+    "vatAndTax",
+    "total",
+    "isEmailVerification",
+    "verificationEmail",
+  ], // persist only these fields
 };
 
 const languagePersistConfig = {
@@ -31,8 +38,14 @@ const accessibilityPersistConfig = {
 };
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
-const persistedLanguageReducer = persistReducer(languagePersistConfig, languageReducer);
-const persistedAccessibilityReducer = persistReducer(accessibilityPersistConfig, accessibilityReducer);
+const persistedLanguageReducer = persistReducer(
+  languagePersistConfig,
+  languageReducer
+);
+const persistedAccessibilityReducer = persistReducer(
+  accessibilityPersistConfig,
+  accessibilityReducer
+);
 
 const store = configureStore({
   reducer: {
@@ -45,11 +58,16 @@ const store = configureStore({
     cart: persistedCartReducer,
     otp: otpReducer,
     order: orderReducer,
+    qrCode: qrCodeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE", "persist/REGISTER"],
+        ignoredActions: [
+          "persist/PERSIST",
+          "persist/REHYDRATE",
+          "persist/REGISTER",
+        ],
       },
     }),
 });
