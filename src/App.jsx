@@ -6,6 +6,7 @@ import GlobalZoomEffect from "./components/GlobalZoomEffect";
 import GlobalInvertColor from "./components/GlobalInvertColor";
 import { useLanguage } from "./context/LanguageContext";
 import { useI18nSync } from "./hooks/useI18nSync";
+import QRCodeDetector from "./components/QRCodeDetector";
 
 export default function App() {
   useResponsive();
@@ -16,6 +17,8 @@ export default function App() {
     <div dir={isRTL ? "rtl" : "ltr"}>
       <GlobalZoomEffect />
       <GlobalInvertColor />
+      {/* QR Code Detection - handles QR code logic */}
+      <QRCodeDetector />
       <Home>
         <Outlet />
       </Home>
