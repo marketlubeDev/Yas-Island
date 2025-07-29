@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
-import { getData } from "country-list";
+import countries from "i18n-iso-countries";
 import ReactCountryFlag from "react-country-flag";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -14,11 +14,13 @@ import getTermsAndCondition from "../../../serivces/termsandconditon/termsandcon
 import { toast } from "sonner";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 
-const COUNTRIES = getData().map((country) => ({
-  value: country.code,
-  label: country.name,
-  code: country.code.toLowerCase(),
-}));
+// Import language files
+import enCountries from "i18n-iso-countries/langs/en.json";
+import arCountries from "i18n-iso-countries/langs/ar.json";
+
+// Register languages for country names
+countries.registerLocale(enCountries);
+countries.registerLocale(arCountries);
 
 const FormInput = ({
   label,
@@ -241,6 +243,26 @@ export default function PersonalDetailsForm({
   );
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+
+  // Generate countries list based on current language
+  const COUNTRIES = useMemo(() => {
+    const countryCodes = countries.getAlpha2Codes();
+    return Object.keys(countryCodes)
+      .map((code) => ({
+        value: code,
+        label: countries.getName(code, currentLanguage === "ar" ? "ar" : "en"),
+        code: code.toLowerCase(),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [currentLanguage]);
+
+  // Set UAE as default country when component mounts
+  useEffect(() => {
+    if (!formData.country) {
+      setFormData((prev) => ({ ...prev, country: "AE" }));
+    }
+  }, [formData.country, setFormData]);
+
   const handleInputChange = (field) => (value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
