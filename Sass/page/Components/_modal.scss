@@ -1,79 +1,4 @@
-// .ant-modal {
-//   .ant-modal-content {
-//     position: relative;
-//     background-color: var(--color-base-bg);
-//     background-clip: padding-box;
-//     border: 1px solid var(--color-bkg-modal-border);
-//     border-radius: 40px;
-//     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-//       0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-//     pointer-events: auto;
-//     padding: 20px 24px;
-
-//     // Dark mode styles
-//     .dark-mode & {
-//       background-color: var(--color-base-mobile-product-page-text, #18142b);
-//       color: var(--color-base-mobile-product-page-bg, #ffffff);
-//     }
-//   }
-
-//   // Custom close button styles
-//   .ant-modal-close {
-//     // top: 16px;
-//     // right: 16px;
-
-//     .ant-modal-close-x {
-//       width: 24px;
-//       height: 24px;
-
-//       line-height: 24px;
-//     }
-//   }
-// }
-
-// Accessibility modal specific styles
-// .accessibility-modal {
-//   .ant-modal-content {
-//     position: relative;
-//     background-color: var(--color-base-bg);
-//     background-clip: padding-box;
-//     border: 1px solid var(--color-bkg-modal-border);
-//     border-radius: 40px;
-//     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-//       0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-//     pointer-events: auto;
-//     padding: 20px 24px;
-
-//     // Dark mode styles
-//     .dark-mode & {
-//       background-color: var(--color-base-mobile-product-page-text, #18142b);
-//       color: var(--color-base-mobile-product-page-bg, #ffffff);
-//     }
-//   }
-
-//   // Custom close button styles
-//   .ant-modal-close {
-//     // top: 16px;
-//     // right: 16px;
-
-//     .ant-modal-close-x {
-//       width: 24px;
-//       height: 24px;
-
-//       line-height: 24px;
-//     }
-//   }
-// }
-
-// // Accessibility modal specific styles
-// // .accessibility-modal {
-// //   .ant-modal-content {
-// //     max-width: 400px;
-// //     margin: 0 auto;
-// //     width: 100%;
-// //   }
-// // }
-
+@use "../../base/responive" as *;
 // Terms and Conditions Modal Styles
 .terms-modal {
   .ant-modal-content {
@@ -89,6 +14,33 @@
     max-height: 80vh;
     overflow: hidden;
 
+    // Responsive adjustments
+    @include respond(smallPhone) {
+      border-radius: 20px;
+      padding: 16px;
+      margin: 10px;
+      max-height: 90vh !important;
+    }
+
+    @include respond(phone) {
+      border-radius: 25px;
+      padding: 18px 20px;
+      margin: 15px;
+      max-height: 85vh;
+    }
+
+    @include respond(tablets) {
+      border-radius: 30px;
+      padding: 20px 22px;
+      max-height: 82vh;
+    }
+
+    @include respond(bigTablets) {
+      border-radius: 35px;
+      padding: 20px 24px;
+      max-height: 80vh;
+    }
+
     // Dark mode styles
     .dark-mode & {
       background-color: var(--color-base-mobile-product-page-text, #18142b);
@@ -102,6 +54,18 @@
       width: 24px;
       height: 24px;
       line-height: 24px;
+
+      @include respond(smallPhone) {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      @include respond(phone) {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+      }
     }
   }
 }
@@ -112,6 +76,18 @@
   height: 100%;
   max-height: 70vh;
 
+  @include respond(smallPhone) {
+    max-height: 75vh;
+  }
+
+  @include respond(phone) {
+    max-height: 72vh;
+  }
+
+  @include respond(tablets) {
+    max-height: 70vh;
+  }
+
   .terms-modal-title {
     color: var(--color-base-text-primary);
     font-size: 1.5rem;
@@ -119,6 +95,31 @@
     margin-bottom: 1.5rem;
     text-align: center;
     font-family: "YAS Font", sans-serif;
+
+    @include respond(smallPhone) {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    @include respond(phone) {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    @include respond(tablets) {
+      font-size: 1.4rem;
+      margin-bottom: 1.3rem;
+    }
+
+    @include respond(bigTablets) {
+      font-size: 1.45rem;
+      margin-bottom: 1.4rem;
+    }
+
+    @include respond(desktop) {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
   }
 
   .terms-modal-body {
@@ -130,8 +131,40 @@
     line-height: 1.6;
     font-family: "YAS Font", sans-serif;
 
+    @include respond(smallPhone) {
+      padding: 0 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @include respond(phone) {
+      padding: 0 0.75rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    @include respond(tablets) {
+      padding: 0 0.9rem;
+      margin-bottom: 1.3rem;
+      font-size: 1rem;
+    }
+
+    @include respond(bigTablets) {
+      padding: 0 1rem;
+      margin-bottom: 1.4rem;
+    }
+
     &::-webkit-scrollbar {
       width: 10px;
+
+      @include respond(smallPhone) {
+        width: 6px;
+      }
+
+      @include respond(phone) {
+        width: 8px;
+      }
     }
 
     &::-webkit-scrollbar-track {
@@ -142,6 +175,16 @@
       background: var(--color-base-product-card-scroll-bar);
       border-radius: 4px;
       border: 2px solid var(--color-base-product-card-scroll-bar-border);
+
+      @include respond(smallPhone) {
+        border-radius: 3px;
+        border: 1px solid var(--color-base-product-card-scroll-bar-border);
+      }
+
+      @include respond(phone) {
+        border-radius: 3px;
+        border: 1.5px solid var(--color-base-product-card-scroll-bar-border);
+      }
     }
 
     h1 {
@@ -154,20 +197,127 @@
       background-color: var(--color-base-bg);
       z-index: 100;
       text-align: center !important;
+
+      @include respond(smallPhone) {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem !important;
+        padding: 0.5rem 0;
+      }
+
+      @include respond(phone) {
+        font-size: 1.2rem;
+        margin-bottom: 0.9rem !important;
+        padding: 0.6rem 0;
+      }
+
+      @include respond(tablets) {
+        font-size: 1.3rem;
+        margin-bottom: 1rem !important;
+        padding: 0.7rem 0;
+      }
+
+      @include respond(bigTablets) {
+        font-size: 1.4rem;
+        padding: 0.8rem 0;
+      }
+
+      @include respond(desktop) {
+        font-size: 1.5rem;
+        padding: 1rem 0;
+      }
+    }
+
+    h2 {
+      @include respond(smallPhone) {
+        font-size: 1rem;
+        margin-bottom: 0.8rem !important;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+        margin-bottom: 0.9rem !important;
+      }
+
+      @include respond(tablets) {
+        font-size: 1.2rem;
+        margin-bottom: 1rem !important;
+      }
+    }
+
+    h3 {
+      @include respond(smallPhone) {
+        font-size: 0.95rem;
+        margin-bottom: 0.7rem !important;
+      }
+
+      @include respond(phone) {
+        font-size: 1rem;
+        margin-bottom: 0.8rem !important;
+      }
+
+      @include respond(tablets) {
+        font-size: 1.1rem;
+        margin-bottom: 0.9rem !important;
+      }
     }
 
     p {
       margin-bottom: 1rem;
+
+      @include respond(smallPhone) {
+        margin-bottom: 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      @include respond(phone) {
+        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+      }
+
+      @include respond(tablets) {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
     }
 
     ul,
     ol {
       margin-bottom: 1rem;
       padding-left: 1.5rem;
+
+      @include respond(smallPhone) {
+        margin-bottom: 0.8rem;
+        padding-left: 1.2rem;
+      }
+
+      @include respond(phone) {
+        margin-bottom: 0.9rem;
+        padding-left: 1.3rem;
+      }
+
+      @include respond(tablets) {
+        margin-bottom: 1rem;
+        padding-left: 1.4rem;
+      }
     }
 
     li {
       margin-bottom: 0.5rem;
+
+      @include respond(smallPhone) {
+        margin-bottom: 0.4rem;
+        font-size: 0.9rem;
+      }
+
+      @include respond(phone) {
+        margin-bottom: 0.45rem;
+        font-size: 0.95rem;
+      }
+
+      @include respond(tablets) {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
     }
 
     strong,
@@ -183,6 +333,18 @@
       &:hover {
         text-decoration: none;
       }
+
+      @include respond(smallPhone) {
+        font-size: 0.9rem;
+      }
+
+      @include respond(phone) {
+        font-size: 0.95rem;
+      }
+
+      @include respond(tablets) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -190,12 +352,36 @@
     text-align: center;
     padding: 2rem;
     color: var(--color-base-text-secondary);
+
+    @include respond(smallPhone) {
+      padding: 1.5rem;
+    }
+
+    @include respond(phone) {
+      padding: 1.8rem;
+    }
+
+    @include respond(tablets) {
+      padding: 2rem;
+    }
   }
 
   .terms-modal-footer {
     text-align: center;
     padding-top: 0rem;
     border-top: 1px solid var(--ip-bodr-btm);
+
+    @include respond(smallPhone) {
+      padding-top: 0.5rem;
+    }
+
+    @include respond(phone) {
+      padding-top: 0.75rem;
+    }
+
+    @include respond(tablets) {
+      padding-top: 1rem;
+    }
 
     .terms-modal-close-btn {
       background: var(--color-base-primary);
@@ -209,6 +395,39 @@
       transition: background-color 0.3s ease;
       font-family: "YAS Font", sans-serif;
 
+      @include respond(smallPhone) {
+        font-size: 1rem;
+        padding: 0px 16px !important;
+        border-radius: 6px;
+        min-width: 120px;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+        padding: 0px 18px !important;
+        border-radius: 7px;
+        min-width: 140px;
+      }
+
+      @include respond(tablets) {
+        font-size: 1.2rem;
+        padding: 0px 20px !important;
+        border-radius: 8px;
+        min-width: 160px;
+      }
+
+      @include respond(bigTablets) {
+        font-size: 1.25rem;
+        padding: 0px 22px !important;
+        min-width: 180px;
+      }
+
+      @include respond(desktop) {
+        font-size: 1.3rem;
+        padding: 0px 24px !important;
+        min-width: 200px;
+      }
+
       &:hover {
         background: var(--color-base-primary-hover);
       }
@@ -218,5 +437,62 @@
         box-shadow: 0 0 0 2px var(--color-base-primary-focus);
       }
     }
+  }
+}
+
+// Additional responsive modal wrapper styles
+.ant-modal {
+  @include respond(smallPhone) {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+
+  @include respond(phone) {
+    margin: 15px;
+    max-width: calc(100vw - 30px);
+  }
+
+  @include respond(tablets) {
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+  }
+
+  @include respond(bigTablets) {
+    margin: 30px;
+    max-width: calc(100vw - 60px);
+  }
+
+  @include respond(desktop) {
+    margin: 40px;
+    max-width: calc(100vw - 80px);
+  }
+
+  @include respond(bigDesktop) {
+    margin: 50px;
+    max-width: calc(100vw - 100px);
+  }
+
+  @include respond(extraBigDesktop) {
+    margin: 60px;
+    max-width: calc(100vw - 120px);
+  }
+}
+
+// Modal backdrop responsive adjustments
+.ant-modal-mask {
+  @include respond(smallPhone) {
+    backdrop-filter: blur(2px);
+  }
+
+  @include respond(phone) {
+    backdrop-filter: blur(3px);
+  }
+
+  @include respond(tablets) {
+    backdrop-filter: blur(4px);
+  }
+
+  @include respond(bigTablets) {
+    backdrop-filter: blur(5px);
   }
 }

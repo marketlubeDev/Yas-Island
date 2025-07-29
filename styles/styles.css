@@ -10780,6 +10780,36 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   max-height: 80vh;
   overflow: hidden;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal .ant-modal-content {
+    border-radius: 20px;
+    padding: 16px;
+    margin: 10px;
+    max-height: 90vh !important;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal .ant-modal-content {
+    border-radius: 25px;
+    padding: 18px 20px;
+    margin: 15px;
+    max-height: 85vh;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal .ant-modal-content {
+    border-radius: 30px;
+    padding: 20px 22px;
+    max-height: 82vh;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .terms-modal .ant-modal-content {
+    border-radius: 35px;
+    padding: 20px 24px;
+    max-height: 80vh;
+  }
+}
 .dark-mode .terms-modal .ant-modal-content {
   background-color: var(--color-base-mobile-product-page-text, #18142b);
   color: var(--color-base-mobile-product-page-bg, #ffffff);
@@ -10789,12 +10819,41 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   height: 24px;
   line-height: 24px;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal .ant-modal-close .ant-modal-close-x {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal .ant-modal-close .ant-modal-close-x {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+  }
+}
 
 .terms-modal-content {
   display: flex;
   flex-direction: column;
   height: 100%;
   max-height: 70vh;
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content {
+    max-height: 75vh;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content {
+    max-height: 72vh;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content {
+    max-height: 70vh;
+  }
 }
 .terms-modal-content .terms-modal-title {
   color: var(--color-base-text-primary);
@@ -10803,6 +10862,36 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   margin-bottom: 1.5rem;
   text-align: center;
   font-family: "YAS Font", sans-serif;
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.3rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .terms-modal-content .terms-modal-title {
+    font-size: 1.45rem;
+    margin-bottom: 1.4rem;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .terms-modal-content .terms-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 }
 .terms-modal-content .terms-modal-body {
   flex: 1;
@@ -10813,8 +10902,46 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   line-height: 1.6;
   font-family: "YAS Font", sans-serif;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body {
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body {
+    padding: 0 0.75rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body {
+    padding: 0 0.9rem;
+    margin-bottom: 1.3rem;
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .terms-modal-content .terms-modal-body {
+    padding: 0 1rem;
+    margin-bottom: 1.4rem;
+  }
+}
 .terms-modal-content .terms-modal-body::-webkit-scrollbar {
   width: 10px;
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body::-webkit-scrollbar {
+    width: 8px;
+  }
 }
 .terms-modal-content .terms-modal-body::-webkit-scrollbar-track {
   background: transparent;
@@ -10823,6 +10950,18 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: var(--color-base-product-card-scroll-bar);
   border-radius: 4px;
   border: 2px solid var(--color-base-product-card-scroll-bar-border);
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    border: 1px solid var(--color-base-product-card-scroll-bar-border);
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    border: 1.5px solid var(--color-base-product-card-scroll-bar-border);
+  }
 }
 .terms-modal-content .terms-modal-body h1 {
   font-weight: 600;
@@ -10835,16 +10974,142 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   z-index: 100;
   text-align: center !important;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem !important;
+    padding: 0.5rem 0;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.9rem !important;
+    padding: 0.6rem 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem !important;
+    padding: 0.7rem 0;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .terms-modal-content .terms-modal-body h1 {
+    font-size: 1.4rem;
+    padding: 0.8rem 0;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .terms-modal-content .terms-modal-body h1 {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body h2 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem !important;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem !important;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem !important;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem !important;
+  }
+}
 .terms-modal-content .terms-modal-body p {
   margin-bottom: 1rem;
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body p {
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
 }
 .terms-modal-content .terms-modal-body ul,
 .terms-modal-content .terms-modal-body ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body ul,
+  .terms-modal-content .terms-modal-body ol {
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body ul,
+  .terms-modal-content .terms-modal-body ol {
+    margin-bottom: 0.9rem;
+    padding-left: 1.3rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body ul,
+  .terms-modal-content .terms-modal-body ol {
+    margin-bottom: 1rem;
+    padding-left: 1.4rem;
+  }
+}
 .terms-modal-content .terms-modal-body li {
   margin-bottom: 0.5rem;
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body li {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body li {
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
 }
 .terms-modal-content .terms-modal-body strong,
 .terms-modal-content .terms-modal-body b {
@@ -10858,15 +11123,60 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .terms-modal-content .terms-modal-body a:hover {
   text-decoration: none;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-body a {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-body a {
+    font-size: 0.95rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-body a {
+    font-size: 1rem;
+  }
+}
 .terms-modal-content .terms-modal-loading {
   text-align: center;
   padding: 2rem;
   color: var(--color-base-text-secondary);
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-loading {
+    padding: 1.5rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-loading {
+    padding: 1.8rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-loading {
+    padding: 2rem;
+  }
+}
 .terms-modal-content .terms-modal-footer {
   text-align: center;
   padding-top: 0rem;
   border-top: 1px solid var(--ip-bodr-btm);
+}
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-footer {
+    padding-top: 0.5rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-footer {
+    padding-top: 0.75rem;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-footer {
+    padding-top: 1rem;
+  }
 }
 .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
   background: var(--color-base-primary);
@@ -10880,12 +11190,114 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   transition: background-color 0.3s ease;
   font-family: "YAS Font", sans-serif;
 }
+@media only screen and (max-width: 575.98px) {
+  .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
+    font-size: 1rem;
+    padding: 0px 16px !important;
+    border-radius: 6px;
+    min-width: 120px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
+    font-size: 1.1rem;
+    padding: 0px 18px !important;
+    border-radius: 7px;
+    min-width: 140px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
+    font-size: 1.2rem;
+    padding: 0px 20px !important;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
+    font-size: 1.25rem;
+    padding: 0px 22px !important;
+    min-width: 180px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
+    font-size: 1.3rem;
+    padding: 0px 24px !important;
+    min-width: 200px;
+  }
+}
 .terms-modal-content .terms-modal-footer .terms-modal-close-btn:hover {
   background: var(--color-base-primary-hover);
 }
 .terms-modal-content .terms-modal-footer .terms-modal-close-btn:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-base-primary-focus);
+}
+
+@media only screen and (max-width: 575.98px) {
+  .ant-modal {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .ant-modal {
+    margin: 15px;
+    max-width: calc(100vw - 30px);
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .ant-modal {
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ant-modal {
+    margin: 30px;
+    max-width: calc(100vw - 60px);
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .ant-modal {
+    margin: 40px;
+    max-width: calc(100vw - 80px);
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .ant-modal {
+    margin: 50px;
+    max-width: calc(100vw - 100px);
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .ant-modal {
+    margin: 60px;
+    max-width: calc(100vw - 120px);
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .ant-modal-mask {
+    backdrop-filter: blur(2px);
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .ant-modal-mask {
+    backdrop-filter: blur(3px);
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .ant-modal-mask {
+    backdrop-filter: blur(4px);
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .ant-modal-mask {
+    backdrop-filter: blur(5px);
+  }
 }
 
 /* From Uiverse.io by david-mohseni */
