@@ -307,21 +307,12 @@ body {
 .spr-chat-widget,
 [data-spr-chat-widget],
 .sprinklr-chat-widget {
-  display: none !important;
-}
-
-[class*=spr-chat],
-[class*=sprinklr],
-[class*=chat-widget],
-[class*=floating-chat],
-[class*=live-chat] {
-  display: none !important;
-}
-
-iframe[src*=sprinklr],
-iframe[src*=chat],
-iframe[src*=livechat] {
-  display: none !important;
+  position: fixed !important;
+  bottom: -100px !important;
+  right: -100px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
 }
 
 .normal-title-txt {

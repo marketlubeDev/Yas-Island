@@ -15,29 +15,19 @@ body {
 
 // Hide Sprinklr floating chat widget button
 // This hides the default floating chat button that appears on bottom right
+// Target the main Sprinklr chat widget container
 #spr-chat-widget {
   display: none !important;
 }
 
-// Alternative selectors that might be used by Sprinklr
+// Alternative approach: move the floating button off-screen
 .spr-chat-widget,
 [data-spr-chat-widget],
 .sprinklr-chat-widget {
-  display: none !important;
-}
-
-// Additional selectors to catch any floating chat elements
-[class*="spr-chat"],
-[class*="sprinklr"],
-[class*="chat-widget"],
-[class*="floating-chat"],
-[class*="live-chat"] {
-  display: none !important;
-}
-
-// Hide any iframe that might contain the chat widget
-iframe[src*="sprinklr"],
-iframe[src*="chat"],
-iframe[src*="livechat"] {
-  display: none !important;
+  position: fixed !important;
+  bottom: -100px !important;
+  right: -100px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
 }
