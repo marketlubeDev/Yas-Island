@@ -6,7 +6,8 @@ export default function ChatWithUsButton() {
 
   const handleChatClick = () => {
     if (window.sprChat) {
-      window.sprChat("open");
+      // Toggle chat box - if open, close it; if closed, open it
+      window.sprChat("toggle");
     }
   };
 

@@ -1727,6 +1727,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     min-height: 30vh;
   }
 }
+.product-description-api .product-description {
+  font-size: 1.05rem !important;
+}
+.product-description-api .product-list-item {
+  font-size: 1.05rem !important;
+}
 
 .product-modal-details h2 {
   font-size: 24px;
