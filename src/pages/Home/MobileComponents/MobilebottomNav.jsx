@@ -30,14 +30,18 @@ function MobileBottomNav() {
     setIsCartModalOpen(false);
   }, []);
 
+  const handleChatClick = useCallback(() => {
+    if (window.sprChat) {
+      window.sprChat("open");
+    }
+  }, []);
+
   return (
     <>
       <div className="mobile-bottom-nav">
         <div
           className={`mobile-bottom-nav__item${
-            location.pathname === "/"
-              ? " mobile-bottom-nav__item--active"
-              : ""
+            location.pathname === "/" ? " mobile-bottom-nav__item--active" : ""
           }`}
           onClick={() => {
             navigate("/");
@@ -51,7 +55,11 @@ function MobileBottomNav() {
           <img src={homeIconSrc} alt={t("common.home")} />
           <span>{t("common.home")}</span>
         </div>
-        <div className="mobile-bottom-nav__item">
+        <div
+          className="mobile-bottom-nav__item"
+          onClick={handleChatClick}
+          style={{ cursor: "pointer" }}
+        >
           <img
             src={chatIconSrc}
             alt={t("common.chatWithUs")}
