@@ -27,25 +27,6 @@ export default function OtpConfirmationBody() {
 
       <div className="payment-checkout__content payment-checkout__content--with-header">
         <div className="form-container">
-          {/* <div className="form-group">
-            <label>Enter OTP</label>
-            <div
-              className="email-input-container"
-              style={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <input
-                disabled
-                type="email"
-                className="form-control"
-                value={email}
-              />
-            </div>
-            <div className="input-underline"></div>
-          </div> */}
           <VerificationBox email={email} />
         </div>
       </div>

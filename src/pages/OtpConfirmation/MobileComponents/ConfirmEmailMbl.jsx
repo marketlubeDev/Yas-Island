@@ -78,6 +78,21 @@ function ConfirmEmailMbl({ onBack }) {
             <div className="confirm-email__otp-info">
               {t("payment.verification.codeSent")} <span>{email}</span>
               <br />
+              <button
+                onClick={() => navigate("/email-verification")}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "0 0 0 0",
+                  color: "#0066cc",
+                  fontSize: "12px",
+                  textDecoration: "underline",
+                  fontWeight: "500",
+                }}
+              >
+                {t("payment.verification.editEmail")}
+              </button>
               <div className="confirm-email__otp-warning">
                 {t("payment.verification.checkSpam")}
               </div>
