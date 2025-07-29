@@ -300,6 +300,30 @@ body {
   background-color: var(--color-base-bg);
 }
 
+#spr-chat-widget {
+  display: none !important;
+}
+
+.spr-chat-widget,
+[data-spr-chat-widget],
+.sprinklr-chat-widget {
+  display: none !important;
+}
+
+[class*=spr-chat],
+[class*=sprinklr],
+[class*=chat-widget],
+[class*=floating-chat],
+[class*=live-chat] {
+  display: none !important;
+}
+
+iframe[src*=sprinklr],
+iframe[src*=chat],
+iframe[src*=livechat] {
+  display: none !important;
+}
+
 .normal-title-txt {
   font-family: "Bebas Neue";
   font-size: 1.2rem;
