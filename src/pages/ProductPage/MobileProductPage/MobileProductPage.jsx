@@ -11,7 +11,8 @@ function MobileProductPage() {
   const currentPark = useSelector((state) => state.product.currentPark);
   const currentSort = useSelector((state) => state.product.currentSort);
   const searchQuery = useSelector((state) => state.product.searchQuery);
-  useGetProductList();
+
+  const { isLoading, isError } = useGetProductList();
 
   // Filter and sort products based on search, selected park and sort option
   const filteredProducts = useMemo(() => {
@@ -78,7 +79,10 @@ function MobileProductPage() {
       <MobileTop className="mobile-topnav" />
       <MobileBottomNav className="mobile-bottomnav" />
       <div className="scroll-section">
-        <AttractionsListMbl productList={filteredProducts} />
+        <AttractionsListMbl
+          productList={filteredProducts}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

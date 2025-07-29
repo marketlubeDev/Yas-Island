@@ -11,8 +11,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCheckout } from "../../../../global/checkoutSlice";
 import { setSelectedProduct } from "../../../../global/productSlice";
 import { clearPerformance } from "../../../../global/performanceSlice";
+import Loader from "../../../../components/Loading/Loader";
 
-const AttractionsListMbl = ({ productList }) => {
+const AttractionsListMbl = ({ productList, isLoading = false }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ const AttractionsListMbl = ({ productList }) => {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(false);
+
+  console.log(isLoading, "dfgdfgfdgfgwfa");
 
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
@@ -118,47 +121,53 @@ const AttractionsListMbl = ({ productList }) => {
   return (
     <>
       <div className="attractions-list">
-        {productList?.map((item, i) => (
-          <div className="attraction-card" key={i}>
-            <img
-              src={item?.product_images?.thumbnail_url}
-              alt={item?.product_title}
-              className="attraction-card__img"
-            />
-            <div className="attraction-card__content">
-              <div className="attraction-card__header">
-                <div>
-                  <div className="attraction-card__title">
-                    {item?.product_title}
+        {isLoading ? (
+          <div className="attractions-list__loading">
+            <Loader />
+          </div>
+        ) : (
+          productList?.map((item, i) => (
+            <div className="attraction-card" key={i}>
+              <img
+                src={item?.product_images?.thumbnail_url}
+                alt={item?.product_title}
+                className="attraction-card__img"
+              />
+              <div className="attraction-card__content">
+                <div className="attraction-card__header">
+                  <div>
+                    <div className="attraction-card__title">
+                      {item?.product_title}
+                    </div>
+                    <div className="attraction-card__desc">
+                      {item?.productshortdesc}
+                    </div>
                   </div>
-                  <div className="attraction-card__desc">
-                    {item?.productshortdesc}
-                  </div>
-                </div>
-                <div className="attraction-card__action">
-                  <button
-                    className="attraction-card__add-btn"
-                    onClick={() => handleAttractionClick(item)}
-                  >
-                    {t("common.add")}
-                  </button>
-                  <div
-                    className="attraction-card__price"
-                    style={{ marginRight: "0.5rem" }}
-                  >
-                    <span>
-                      {t("common.aed")} {defaultVariant(item)?.gross}
-                    </span>
-                  </div>
-                  {/* <span className="attraction-card__vat">
+                  <div className="attraction-card__action">
+                    <button
+                      className="attraction-card__add-btn"
+                      onClick={() => handleAttractionClick(item)}
+                    >
+                      {t("common.add")}
+                    </button>
+                    <div
+                      className="attraction-card__price"
+                      style={{ marginRight: "0.5rem" }}
+                    >
+                      <span>
+                        {t("common.aed")} {defaultVariant(item)?.gross}
+                      </span>
+                    </div>
+                    {/* <span className="attraction-card__vat">
                     {defaultVariant(item)?.net_amount}+{" "}
                     {(defaultVariant(item)?.gross * 0.05).toFixed(2)} Net & Tax
                   </span> */}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       <Modal
