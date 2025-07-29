@@ -44,7 +44,7 @@ export const en = {
   },
   sidebar: {
     all: "All",
-    topAttractions: "Top Attractions",
+    topAttractions: "Top attractions",
     attractions: "Attractions",
     packages: "Packages",
     hotels: "Hotels",
