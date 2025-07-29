@@ -40,7 +40,7 @@ export const en = {
     priceLowToHigh: "Price (Low to High)",
     attractions: "Attractions",
     selectPark: "Select Park",
-    selectSort: "Select Sort",
+    selectSort: "Recommended",
   },
   sidebar: {
     all: "All",
