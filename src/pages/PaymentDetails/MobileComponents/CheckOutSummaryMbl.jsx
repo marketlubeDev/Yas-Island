@@ -9,7 +9,6 @@ import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
 
 function CheckOutSummaryMbl({
-  promoApplied = false,
   formData,
   setFormData,
   checkout,
@@ -57,7 +56,7 @@ function CheckOutSummaryMbl({
         month: "short",
         year: "numeric",
       });
-    } catch (error) {
+    } catch {
       return "N/A";
     }
   };
@@ -218,92 +217,56 @@ function CheckOutSummaryMbl({
 
       {/* Item Details Section */}
       {showItems && (
-        <>
+        <div className="items-container">
           {checkout?.items && checkout.items.length > 0 ? (
             checkout.items.map((item, index) => (
-              <>
-                <div className="email-checkout__summary-viewItems-content">
-                  <div
-                    key={index}
-                    className="email-checkout__summary-viewItems-content-item"
-                  >
-                    <span className="email-checkout__summary-viewItems-content-item-title">
+              <div key={index} className="order-item-minimal">
+                <div className="item-content">
+                  <div className="item-main">
+                    <h4 className="item-title">
                       {getProduct(item.productId)?.product?.product_title ||
                         "Product"}
-                    </span>
-                    <span className="email-checkout__summary-viewItems-content-item-price">
-                      {t("common.aed")}{" "}
-                      {(
-                        (getProduct(item.productId)?.productVariant
-                          ?.net_amount || 0) * (item.quantity || 0)
-                      ).toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="email-checkout__summary-viewItems-content-item-details">
-                    <div className="email-checkout__summary-viewItems-content-item-details-setOne">
-                      <span className="setSection-Content">
-                        {t("orderSummary.variants")}
-                      </span>
-                      <span className="setSection-Value">
+                    </h4>
+                    <div className="item-meta">
+                      <span className="item-variant">
                         {getProduct(item.productId)?.productVariant
                           ?.productvariantname || "Variant"}
                       </span>
-                    </div>
-                    <div className="email-checkout__summary-viewItems-content-item-details-setTwo">
-                      <span className="setSection-Content">
-                        {t("orderSummary.date")}
-                      </span>
-                      <span className="setSection-Value">
+                      <span className="item-separator">•</span>
+                      <span className="item-date">
                         {formatDate(item.validFrom)}
                       </span>
-                    </div>
-                    <div className="email-checkout__summary-viewItems-content-item-details-setThree">
-                      <span className="setSection-Content">
-                        {t("orderSummary.quantity")}
-                      </span>
-                      <span className="setSection-Value">
-                        {item.quantity || 0}
+                      <span className="item-separator">•</span>
+                      <span className="item-quantity">
+                        Qty: {item.quantity || 0}
                       </span>
                     </div>
                   </div>
-
-                  <div className="email-checkout__summary-viewItems-content-item-price-details">
-                    <div className="email-checkout__summary-viewItems-content-item-price-details-netAmount">
-                      <span className="netAmount-Content">
-                        {t("orderSummary.netAmount")} :
-                      </span>
-                      <span className="netAmount-Value">
-                        {t("common.aed")}{" "}
-                        {(
-                          (getProduct(item.productId)?.productVariant
-                            ?.net_amount || 0) * (item.quantity || 0)
-                        ).toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="email-checkout__summary-viewItems-content-item-price-details-vat">
-                      <span className="vat-Content">
-                        {t("orderSummary.vat")} :
-                      </span>
-                      <span className="vat-Value">
-                        + {t("common.aed")}{" "}
-                        {(
-                          (getProduct(item.productId)?.productVariant?.vat ||
-                            0) * (item.quantity || 0)
-                        ).toFixed(2)}
-                      </span>
-                    </div>
+                  <div className="item-price">
+                    <span className="price-amount">
+                      {t("common.aed")}{" "}
+                      {(
+                        (getProduct(item.productId)?.productVariant
+                          ?.net_amount || 0) *
+                          (item.quantity || 0) +
+                        (getProduct(item.productId)?.productVariant?.vat || 0) *
+                          (item.quantity || 0)
+                      ).toFixed(2)}
+                    </span>
                   </div>
                 </div>
-              </>
+              </div>
             ))
           ) : (
-            <div className="email-checkout__summary-viewItems-content-item">
-              <span className="email-checkout__summary-viewItems-content-item-title">
-                No items in cart
-              </span>
+            <div className="order-item-minimal">
+              <div className="item-content">
+                <div className="item-main">
+                  <h4 className="item-title">No items in cart</h4>
+                </div>
+              </div>
             </div>
           )}
-        </>
+        </div>
       )}
 
       {/* Cost Breakdown */}

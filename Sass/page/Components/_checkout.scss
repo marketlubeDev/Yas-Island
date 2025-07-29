@@ -214,7 +214,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 
     &-icon {
       display: flex;
@@ -714,3 +714,99 @@
   color: var(--cart-total-price);
   font-size: 14px;
 }
+
+.order-item-minimal {
+  border: 1px solid var(--color-base-product-card-divider);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  margin-bottom: 10px;
+
+  &:hover {
+    border-color: var(--color-checkbox-a-clr);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 1px;
+
+    .item-main {
+      flex: 1;
+      min-width: 0;
+
+      .item-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-summary-title);
+        margin: 0 0 6px 0;
+        line-height: 1.3;
+        font-family: "YAS Font", sans-serif;
+      }
+
+      .item-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 3px;
+        font-size: 12px;
+        color: #666;
+        line-height: 1.2;
+
+        .item-variant {
+          font-weight: 500;
+          color: var(--color-base-product-card-price);
+        }
+
+        .item-separator {
+          color: #ccc;
+          font-weight: normal;
+        }
+
+        .item-date {
+          color: #888;
+        }
+
+        .item-quantity {
+          color: #888;
+          font-weight: 500;
+        }
+
+        @include respond(mobile) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+
+          .item-separator {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .item-price {
+      flex-shrink: 0;
+
+      .price-amount {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-summary-title);
+        font-family: "YAS Font", sans-serif;
+      }
+    }
+  }
+}
+
+/* Animation for dropdown */
+// @keyframes slideDown {
+//   from {
+//     opacity: 0;
+//     transform: translateY(-10px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
