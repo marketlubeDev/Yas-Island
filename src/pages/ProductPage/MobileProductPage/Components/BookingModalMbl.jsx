@@ -873,7 +873,7 @@ function BookingModalMbl({
                                     opacity: !isAvailable ? 0.5 : 1,
                                   }}
                                 >
-                                  {toArabicNumeral(guestData.quantity)}
+                                  {guestData.quantity}
                                 </span>
                                 <button
                                   className="guests-btn"
@@ -936,7 +936,7 @@ function BookingModalMbl({
           >
             {t("booking.checkOut")}{" "}
             <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
-              {t("common.aed")} {toArabicNumeral(totalPrice)}
+              {t("common.aed")} {totalPrice}
             </span>
           </button>
           <button

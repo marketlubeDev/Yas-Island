@@ -224,6 +224,8 @@ export default function ProductModal({
     return defaultVariant;
   };
 
+  console.log(selectedProduct?.product_images?.image_urls, "dgsgasdadjg");
+
   return (
     <div className="product-modal">
       {!showBookingSection ? (

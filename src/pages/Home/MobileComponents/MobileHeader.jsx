@@ -107,7 +107,7 @@ function MobileHeader() {
                 src={dropdownIconSrc}
                 alt="down arrow"
                 className="chevron"
-                style={{ width: 12, height: 12, marginLeft: 4 }}
+                style={{ width: 12, height: 12, marginLeft: 4, marginTop: 4 }}
               />
             </button>
             {showLangDropdown && (
