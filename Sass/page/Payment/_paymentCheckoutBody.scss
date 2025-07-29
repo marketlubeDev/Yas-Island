@@ -41,6 +41,7 @@
   z-index: 100;
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
+
   // text-transform: capitalize;
 
   &:hover {
@@ -489,7 +490,14 @@
 }
 
 .back-button {
-  flex-shrink: 0; /* Prevents button from shrinking */
+  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+
+  html[dir="rtl"] & {
+    left: auto;
+    right: 0;
+  }
 }
 
 .payment-checkout__title {
