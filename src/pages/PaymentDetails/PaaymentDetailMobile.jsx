@@ -14,14 +14,17 @@ import usePayment from "../../apiHooks/payment/payment";
 import { setOrderData } from "../../global/orderSlice";
 import { updateTermsAcceptance } from "../../global/checkoutSlice";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
+import getTermsAndCondition from "../../serivces/termsandconditon/termsandconditionon";
+import TermsAndConditionsModal from "../PaymentCheckout/Components/TermsAndConditionsModal";
 
 function PaymentDetailsMobile() {
   const { t } = useTranslation();
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receiveComms, setReceiveComms] = useState(false);
-  const [promo, setPromo] = useState("");
   const [showPromoPopup, setShowPromoPopup] = useState(false);
   const [formData, setFormData] = useState({});
+  const [termsAndConditions, setTermsAndConditions] = useState(null);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const navigate = useNavigate();
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -164,6 +167,32 @@ function PaymentDetailsMobile() {
     }
   };
 
+  const handleTermsClick = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Get the first productId from checkout items, or use a default value
+      const productId = checkout?.items?.[0]?.productMasterid || "69";
+      const source = "web";
+
+      const response = await getTermsAndCondition(
+        `${currentLanguage}-AE`,
+        productId,
+        source
+      );
+      console.log("Terms and Conditions:", response);
+      setTermsAndConditions(response);
+      setIsTermsModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching terms and conditions:", error);
+      toast.error("Failed to load terms and conditions");
+    }
+  };
+
+  const handleCloseTermsModal = () => {
+    setIsTermsModalOpen(false);
+  };
+
   return (
     <>
       <MobileHeader />
@@ -191,6 +220,7 @@ function PaymentDetailsMobile() {
                 receiveComms={receiveComms}
                 setReceiveComms={setReceiveComms}
                 handleTermsChange={handleTermsChange}
+                handleTermsClick={handleTermsClick}
               />
 
               <button
@@ -215,6 +245,12 @@ function PaymentDetailsMobile() {
         {showPromoPopup && (
           <PromoCodeMbl onClose={() => setShowPromoPopup(false)} />
         )}
+
+        <TermsAndConditionsModal
+          isOpen={isTermsModalOpen}
+          onClose={handleCloseTermsModal}
+          termsAndConditions={termsAndConditions}
+        />
       </div>
     </>
   );

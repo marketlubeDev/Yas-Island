@@ -3,10 +3,9 @@ import { useTranslation } from "react-i18next";
 
 function CheckBoxMbl({
   acceptTerms,
-  setAcceptTerms,
   receiveComms,
-  setReceiveComms,
   handleTermsChange,
+  handleTermsClick,
 }) {
   const { t } = useTranslation();
   return (
@@ -29,6 +28,8 @@ function CheckBoxMbl({
         />
         {t("payment.orderSummary.terms.acceptTerms")}{" "}
         <a
+          href="#"
+          onClick={handleTermsClick}
           style={{
             textDecoration: "underline",
           }}
