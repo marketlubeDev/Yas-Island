@@ -11,7 +11,7 @@ function CheckBoxMbl({
   const { t } = useTranslation();
   return (
     <div className="email-checkout__checkboxes">
-      <label
+      <div
         id="acceptTerms"
         style={{
           display: "flex",
@@ -35,8 +35,8 @@ function CheckBoxMbl({
         >
           {t("payment.orderSummary.terms.termsAndConditions")}
         </a>
-      </label>
-      <label
+      </div>
+      <div
         id="receiveComms"
         style={{
           display: "flex",
@@ -51,7 +51,7 @@ function CheckBoxMbl({
           onChange={() => handleTermsChange("consent", !receiveComms)}
         />
         {t("payment.orderSummary.terms.receiveCommunications")}
-      </label>
+      </div>
     </div>
   );
 }

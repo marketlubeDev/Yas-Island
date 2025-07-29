@@ -8492,11 +8492,11 @@ html[lang=ar] .confirm-email__input-underline {
   flex-direction: column;
   gap: 10px;
 }
-.email-checkout__checkboxes label {
+.email-checkout__checkboxes div {
   font-size: 12px;
   color: var(--color-checkbox-clr);
 }
-.email-checkout__checkboxes label a {
+.email-checkout__checkboxes div a {
   color: var(--color-checkbox-a-clr);
   text-decoration: underline;
   font-weight: 600;
