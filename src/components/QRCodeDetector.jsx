@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useQRCodeFromURL from "../hooks/useQRCodeFromURL";
 import useValidateQRcode from "../apiHooks/QRcode/qrcode";
 import {
@@ -14,13 +14,13 @@ import { addToCart, clearCart } from "../global/cartSlice";
 
 const QRCodeDetector = () => {
   const dispatch = useDispatch();
+  const productList = useSelector((state) => state.product.allProducts);
   const { qrCode, hasQRCode } = useQRCodeFromURL();
 
   const {
     data: validationData,
     isLoading: isValidating,
     isError: validationError,
-    refetch: refetchValidation,
   } = useValidateQRcode(hasQRCode ? qrCode : null);
 
   const [qrVerified, setQrVerified] = useState(false);
@@ -86,6 +86,33 @@ const QRCodeDetector = () => {
                 productId: item?.VariantProductId,
                 quantity: item?.Quantity,
                 validFrom: item?.SelectedDate,
+                minQuantity: productList
+                  ?.find((product) =>
+                    product?.product_variants?.some(
+                      (variant) => variant?.productid === item?.VariantProductId
+                    )
+                  )
+                  ?.product_variants?.find(
+                    (variant) => variant?.productid === item?.VariantProductId
+                  )?.min_quantity,
+                maxQuantity: productList
+                  ?.find((product) =>
+                    product?.product_variants?.some(
+                      (variant) => variant?.productid === item?.VariantProductId
+                    )
+                  )
+                  ?.product_variants?.find(
+                    (variant) => variant?.productid === item?.VariantProductId
+                  )?.max_quantity,
+                incrementNumber: productList
+                  ?.find((product) =>
+                    product?.product_variants?.some(
+                      (variant) => variant?.productid === item?.VariantProductId
+                    )
+                  )
+                  ?.product_variants?.find(
+                    (variant) => variant?.productid === item?.VariantProductId
+                  )?.increment_number,
               };
               dispatch(addToCart(data));
             });
