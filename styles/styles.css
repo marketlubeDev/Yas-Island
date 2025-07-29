@@ -323,37 +323,6 @@ body {
   margin-top: 2rem;
 }
 
-.spr-chat-widget {
-  display: none !important;
-}
-
-.spr-chat-widget-button {
-  display: none !important;
-}
-
-.spr-chat-widget-launcher {
-  display: none !important;
-}
-
-.spr-chat-widget-container {
-  display: none !important;
-}
-
-.spr-chat-widget-toggle {
-  display: none !important;
-}
-
-.spr-chat-widget-window {
-  display: block !important;
-  z-index: 9999 !important;
-}
-
-.spr-chat-widget-window.spr-chat-widget-window--open {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
 .base-filter {
   border-radius: 2rem;
   padding: 0.5rem;
