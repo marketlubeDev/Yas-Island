@@ -10,9 +10,15 @@ const initialState = {
   verificationEmail: "",
 };
 
-const calculateCartTotals = (items) => {
+const calculateCartTotals = (items, productList = []) => {
+  console.log("items", JSON.stringify(items, null, 2));
+  console.log("productList", JSON.stringify(productList, null, 2));
+  console.log(productList, "list");
   const subtotal = items.reduce(
-    (total, item) => total + item?.price?.net * (item.quantity || 1),
+    (total, item) =>
+      total +
+      productList.find((product) => product.id === item.productId)?.price?.net *
+        (item.quantity || 1),
     0
   );
   const vatAndTax = items.reduce(

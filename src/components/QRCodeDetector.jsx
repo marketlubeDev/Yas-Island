@@ -10,6 +10,7 @@ import {
   setCartError,
 } from "../global/qrCodeSlice";
 import useRetriveCart from "../apiHooks/QRcode/retriveCart";
+import { addToCart, clearCart } from "../global/cartSlice";
 
 const QRCodeDetector = () => {
   const dispatch = useDispatch();
@@ -33,20 +34,13 @@ const QRCodeDetector = () => {
     isError: cartError,
   } = useRetriveCart(cartQrCode);
 
-  // Debug logging
-  useEffect(() => {
-    console.log("Debug - cartQrCode:", cartQrCode);
-    console.log("Debug - qrCode:", qrCode);
-    console.log("Debug - qrVerified:", qrVerified);
-    console.log("Debug - validationData:", validationData);
-  }, [cartQrCode, qrCode, qrVerified, validationData]);
-
   useEffect(() => {
     if (isValidating) {
       console.log("Validating QR code...");
     } else if (validationData) {
       console.log("QR Code validation successful:", validationData);
-      dispatch(setQRValidationData(validationData));
+      // Only store the data portion, not the entire response with headers
+      dispatch(setQRValidationData(validationData?.data || validationData));
       dispatch(setQRCodeStatus("valid"));
 
       if (qrCode) {
@@ -78,7 +72,31 @@ const QRCodeDetector = () => {
 
       if (cartData) {
         console.log("Cart data retrieved successfully:", cartData);
-        dispatch(setCartData(cartData));
+        try {
+          const parsedCartData = JSON.parse(cartData?.data?.cartData);
+          console.log("Parsed cart data:", parsedCartData);
+
+          if (parsedCartData?.length > 0) {
+            dispatch(clearCart());
+            parsedCartData.forEach((item) => {
+              console.log("Processing cart item:", item);
+              const data = {
+                ...item,
+                performance: item?.performanceDetails?.performance,
+                productId: item?.VariantProductId,
+                quantity: item?.Quantity,
+                validFrom: item?.SelectedDate,
+              };
+              dispatch(addToCart(data));
+            });
+          }
+
+          // Store only the parsed cart data, not the entire response
+          dispatch(setCartData(parsedCartData));
+        } catch (error) {
+          console.error("Error parsing cart data:", error);
+          dispatch(setCartError("Invalid cart data format"));
+        }
       } else if (cartError) {
         console.log("Cart API failed:", cartError);
         dispatch(setCartError(cartError));
