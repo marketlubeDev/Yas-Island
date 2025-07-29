@@ -35,12 +35,12 @@ function MobileBottomNav() {
       <div className="mobile-bottom-nav">
         <div
           className={`mobile-bottom-nav__item${
-            location.pathname === "/product"
+            location.pathname === "/"
               ? " mobile-bottom-nav__item--active"
               : ""
           }`}
           onClick={() => {
-            navigate("/product");
+            navigate("/");
             window.scrollTo({
               top: 0,
               behavior: "smooth",

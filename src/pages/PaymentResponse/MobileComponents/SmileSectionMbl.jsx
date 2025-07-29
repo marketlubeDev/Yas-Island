@@ -23,7 +23,7 @@ function SmileSectionMbl({ selected, setSelected }) {
       if (response.status === 200) {
         setSelected(emojiType);
         setTimeout(() => {
-          navigate("/product");
+          navigate("/");
         }, 3000);
       }
     } catch (error) {
