@@ -6490,6 +6490,13 @@ html[lang=ar] .guest-label {
   text-overflow: ellipsis;
   max-width: 140px;
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .attraction-card__title {
+    font-size: 1.1rem;
+    white-space: wrap;
+    max-width: 500px;
+  }
+}
 .attraction-card__desc {
   font-size: 14px;
   font-weight: 400;
@@ -6499,6 +6506,18 @@ html[lang=ar] .guest-label {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 140px;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .attraction-card__desc {
+    font-size: 1.1rem;
+    white-space: wrap;
+    max-width: 500px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .attraction-card__desc {
+    font-size: 1.5rem;
+  }
 }
 .attraction-card__action {
   display: flex;
@@ -6520,6 +6539,11 @@ html[lang=ar] .guest-label {
   transition: background 0.2s;
   white-space: nowrap;
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .attraction-card__add-btn {
+    font-size: 1.1rem;
+  }
+}
 .attraction-card__price {
   display: flex;
   align-items: center;
@@ -6527,6 +6551,11 @@ html[lang=ar] .guest-label {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-base-mobile-product-page-price);
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .attraction-card__price {
+    font-size: 1.1rem;
+  }
 }
 .attraction-card__vat {
   font-size: 10px;
