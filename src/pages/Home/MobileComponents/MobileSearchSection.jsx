@@ -2,7 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { useLanguage } from "../../../context/LanguageContext";
-import { setCurrentPark, setCurrentSort, setSearchQuery } from "../../../global/productSlice";
+import {
+  setCurrentPark,
+  setCurrentSort,
+  setSearchQuery,
+} from "../../../global/productSlice";
 
 import searchIcon from "../../../assets/icons/lens.svg";
 import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
@@ -17,12 +21,19 @@ function MobileSearchSection() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const { parks, currentPark, currentSort, searchQuery } = useSelector((state) => state.product);
+  const { parks, currentPark, currentSort, searchQuery } = useSelector(
+    (state) => state.product
+  );
   const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
   const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
   const { language } = useLanguage();
 
   const sortOptions = [
+    {
+      label: t("productHead.selectSort"),
+      value: t("productHead.selectSort"),
+      isSelected: currentSort === t("productHead.selectSort"),
+    },
     {
       label: t("productHead.priceHighToLow"),
       value: t("productHead.priceHighToLow"),
@@ -32,7 +43,7 @@ function MobileSearchSection() {
       label: t("productHead.priceLowToHigh"),
       value: t("productHead.priceLowToHigh"),
       isSelected: currentSort === t("productHead.priceLowToHigh"),
-    }
+    },
   ];
 
   const filterOptions = [
@@ -41,16 +52,16 @@ function MobileSearchSection() {
       value: "",
       isSelected: !currentPark,
     },
-    ...parks.map(park => ({
+    ...parks.map((park) => ({
       label: park,
       value: park,
       isSelected: currentPark === park,
-    }))
+    })),
   ];
 
   const filterButtons = [
     {
-      label: t("productHead.sortBy"),
+      label: t("productHead.selectSort"),
       isOpen: showSortDropdown,
       onClick: () => setShowSortDropdown(!showSortDropdown),
       ref: sortBtnRef,
@@ -58,7 +69,7 @@ function MobileSearchSection() {
       onOptionClick: (value) => {
         dispatch(setCurrentSort(value));
         setShowSortDropdown(false);
-      }
+      },
     },
     {
       label: currentPark || t("productHead.filterBy"),
@@ -69,7 +80,7 @@ function MobileSearchSection() {
       onOptionClick: (value) => {
         dispatch(setCurrentPark(value));
         setShowFilterDropdown(false);
-      }
+      },
     },
   ];
 
@@ -82,7 +93,10 @@ function MobileSearchSection() {
       if (sortBtnRef.current && !sortBtnRef.current.contains(event.target)) {
         setShowSortDropdown(false);
       }
-      if (filterBtnRef.current && !filterBtnRef.current.contains(event.target)) {
+      if (
+        filterBtnRef.current &&
+        !filterBtnRef.current.contains(event.target)
+      ) {
         setShowFilterDropdown(false);
       }
     }
@@ -105,9 +119,9 @@ function MobileSearchSection() {
         {/* {t("common.selectAttractions")} */}
       </h2>
       <div className="mobile-top-search-section__searchbar">
-        <input 
-          type="text" 
-          placeholder={t("common.searchPlaceholderMobile")} 
+        <input
+          type="text"
+          placeholder={t("common.searchPlaceholderMobile")}
           value={searchQuery}
           onChange={handleSearch}
         />
