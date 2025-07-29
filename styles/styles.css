@@ -300,21 +300,6 @@ body {
   background-color: var(--color-base-bg);
 }
 
-#spr-chat-widget {
-  display: none !important;
-}
-
-.spr-chat-widget,
-[data-spr-chat-widget],
-.sprinklr-chat-widget {
-  position: fixed !important;
-  bottom: -100px !important;
-  right: -100px !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  z-index: -9999 !important;
-}
-
 .normal-title-txt {
   font-family: "Bebas Neue";
   font-size: 1.2rem;
@@ -336,6 +321,37 @@ body {
   font-size: 24px;
   color: #fff;
   margin-top: 2rem;
+}
+
+.spr-chat-widget {
+  display: none !important;
+}
+
+.spr-chat-widget-button {
+  display: none !important;
+}
+
+.spr-chat-widget-launcher {
+  display: none !important;
+}
+
+.spr-chat-widget-container {
+  display: none !important;
+}
+
+.spr-chat-widget-toggle {
+  display: none !important;
+}
+
+.spr-chat-widget-window {
+  display: block !important;
+  z-index: 9999 !important;
+}
+
+.spr-chat-widget-window.spr-chat-widget-window--open {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .base-filter {

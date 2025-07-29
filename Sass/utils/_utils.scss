@@ -1,6 +1,40 @@
 @use "../abstract/variables" as *;
 @use "../base/responive" as *;
 
+// Hide Sprinklr default chat button to use custom buttons instead
+.spr-chat-widget {
+  display: none !important;
+}
+
+.spr-chat-widget-button {
+  display: none !important;
+}
+
+.spr-chat-widget-launcher {
+  display: none !important;
+}
+
+.spr-chat-widget-container {
+  display: none !important;
+}
+
+.spr-chat-widget-toggle {
+  display: none !important;
+}
+
+// Only show the chat window when opened via custom buttons
+.spr-chat-widget-window {
+  display: block !important;
+  z-index: 9999 !important;
+}
+
+// Ensure chat window is visible and properly positioned
+.spr-chat-widget-window.spr-chat-widget-window--open {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .base-filter {
   border-radius: 2rem;
   padding: 0.5rem;
