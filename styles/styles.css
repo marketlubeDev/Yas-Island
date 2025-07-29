@@ -4655,6 +4655,7 @@ html[dir=rtl] .back-button {
   width: 18px;
   height: 18px;
   margin-right: 8px;
+  margin-left: 8px;
   border-radius: 2px;
   flex-shrink: 0;
   border: 1px solid var(--ip-bodr-btm);
@@ -4696,6 +4697,7 @@ html[dir=rtl] .back-button {
   width: 18px;
   height: 18px;
   margin-right: 8px;
+  margin-left: 8px;
   border-radius: 2px;
   flex-shrink: 0;
   border: 1px solid var(--ip-bodr-btm);
@@ -4925,6 +4927,7 @@ html[dir=rtl] .back-button {
     width: 16px;
     height: 16px;
     margin-right: 6px;
+    margin-left: 6px;
     border: 1px solid var(--ip-bodr-btm);
   }
   .payment-form__left .country-option .country-name {
@@ -4939,6 +4942,7 @@ html[dir=rtl] .back-button {
     width: 16px;
     height: 16px;
     margin-right: 6px;
+    margin-left: 6px;
     border: 1px solid var(--ip-bodr-btm);
   }
   .payment-form__left .country-single-value .country-name {
