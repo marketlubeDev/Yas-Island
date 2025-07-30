@@ -569,7 +569,11 @@
   border-radius: 1.47rem;
 
   @include respond(bigTablets) {
-    max-width: 50% !important;
+    max-width: 80% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   @include respond(desktop) {

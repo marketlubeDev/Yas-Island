@@ -1679,7 +1679,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-image {
-    max-width: 50% !important;
+    max-width: 80% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
