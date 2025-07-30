@@ -178,6 +178,10 @@
       font-size: 14px;
       color: var(--color-text-primary-chevron);
     }
+
+    html[lang="ar"] & {
+      // flex-direction: row-reverse !important;
+    }
   }
 
   @media (max-width: 360px) and (max-height: 740px) {

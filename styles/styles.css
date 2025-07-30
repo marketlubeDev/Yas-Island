@@ -459,6 +459,7 @@ body {
 .ar-side-bar-list-item.activeItem {
   box-shadow: 0px 0px 7px var(--Number, 2px) var(--color-base-side-bar-item-box);
   border: 2px solid var(--color-base-side-bar-item-box-border);
+  width: 112%;
 }
 .ar-side-bar-list-item .item-icon {
   width: 3.5rem;
@@ -522,27 +523,26 @@ body {
 .side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -33%;
+  top: -40%;
   right: -10.5%;
   width: 30px;
-  height: 20px;
+  height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-right-radius: 15px;
-  box-shadow: 2px 4px 0 0px var(--color-base-side-bar-border);
+  box-shadow: 1px 4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
 }
 .side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
-  bottom: -33%;
+  bottom: -40%;
   right: -10.5%;
   width: 30px;
-  height: 20px;
+  height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-top-right-radius: 15px;
-  box-shadow: 2px -4px 0 0px var(--color-base-side-bar-border);
+  box-shadow: 1px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
-  border-bottom-left-radius: 15px;
 }
 
 .ar-side-bar-list-item-container {
@@ -569,24 +569,24 @@ body {
   content: "";
   position: absolute;
   top: -38%;
-  left: -10%;
-  width: 25px;
+  left: -11.4%;
+  width: 30px;
   height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
-  border-bottom-left-radius: 20px;
-  box-shadow: -4px 4px 0 0px var(--color-base-side-bar-border);
+  border-bottom-left-radius: 15px;
+  box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
 }
 .ar-side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
   bottom: -38%;
-  left: -10%;
-  width: 25px;
+  left: -11.4%;
+  width: 30px;
   height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-top-left-radius: 15px;
-  box-shadow: -4px -4px 0 0px var(--color-base-side-bar-border);
+  box-shadow: -2px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
 }
 

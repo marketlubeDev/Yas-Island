@@ -28,6 +28,8 @@ function MobileSearchSection() {
   const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
   const { language } = useLanguage();
 
+  console.log(language, "languageASDFASFSA");
+
   const sortOptions = [
     {
       label: t("productHead.selectSort"),
@@ -158,13 +160,13 @@ function MobileSearchSection() {
             >
               {language === "العربية" ? (
                 <>
-                  <span>{button.label}</span>
                   <img
                     src={downArrowSrc}
                     alt="down arrow"
                     className="chevron"
                     style={{ width: 12, height: 12, marginTop: 5 }}
                   />
+                  <span>{button.label}</span>
                 </>
               ) : (
                 <>
