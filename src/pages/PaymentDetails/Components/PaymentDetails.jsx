@@ -3,7 +3,10 @@ import PersonalDetailsForm from "../../PaymentCheckout/Components/PersonalDetail
 import OrderSummary from "../../PaymentCheckout/Components/OrderSummary";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { updatePersonalDetails } from "../../../global/checkoutSlice";
+import {
+  updatePersonalDetails,
+  setCheckoutEmail,
+} from "../../../global/checkoutSlice";
 import { setOrderData } from "../../../global/orderSlice";
 import usePayment from "../../../apiHooks/payment/payment";
 import useGetProductList from "../../../apiHooks/product/product";
@@ -13,6 +16,7 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 export default function PaymentDetails() {
   const checkout = useSelector((state) => state.checkout);
+  const { email: otpEmail } = useSelector((state) => state.otp);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -29,11 +33,19 @@ export default function PaymentDetails() {
     lastName: checkout?.lastName || "",
     country: checkout?.country || "",
     nationality: checkout?.nationality || "",
-    email: checkout?.emailId || "",
+    email: otpEmail || checkout?.emailId || "",
     phoneCode: "+971",
     phoneNumber: checkout?.phoneNumber || "971",
     promoCode: checkout?.promoCode || "",
   });
+
+  // Sync email from OTP slice to checkout slice
+  useEffect(() => {
+    if (otpEmail && otpEmail !== checkout?.emailId) {
+      dispatch(setCheckoutEmail(otpEmail));
+      setFormData((prev) => ({ ...prev, email: otpEmail }));
+    }
+  }, [otpEmail, checkout?.emailId, dispatch]);
 
   useEffect(() => {
     dispatch(

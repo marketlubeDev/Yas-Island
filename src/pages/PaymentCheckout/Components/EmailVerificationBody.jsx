@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import PaymentCheckHeading from "../Components/PaymentCheckHeading";
 import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 
 export default function EmailVerificationBody() {
-  const [email] = useState("user@example.com"); // You can get this from props, context, or state
+  const email = useSelector(
+    (state) => state.otp.email || state.checkout.emailId
+  );
 
   const handleBackClick = () => {
     // Navigate back to payment page

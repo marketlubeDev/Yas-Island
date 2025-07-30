@@ -193,21 +193,6 @@ function CardPaymentMobile() {
     }
   }, [email, checkout.emailId, dispatch]);
 
-  console.log("Mobile Card Payment - Order Data:", orderData);
-  console.log("Mobile Card Payment - Email from OTP slice:", email);
-  console.log(
-    "Mobile Card Payment - Email from checkout slice:",
-    checkout.emailId
-  );
-  console.log("Mobile Card Payment - Full checkout data:", checkout);
-  console.log("Mobile Card Payment - Checkout totals:", {
-    netAmount: checkout.netAmount,
-    taxAmount: checkout.taxAmount,
-    grossAmount: checkout.grossAmount,
-    promotions: checkout.promotions,
-    coupons: checkout.coupons,
-  });
-
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
       const form = document.createElement("form");
