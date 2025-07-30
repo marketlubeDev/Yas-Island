@@ -88,6 +88,8 @@ function PromoCodeMbl({ onClose }) {
               items: items,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
+              // Reset originalNetAmount when coupon is removed
+              originalNetAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
               promotions: orderDetails?.promotions || [],
             })
@@ -123,7 +125,11 @@ function PromoCodeMbl({ onClose }) {
           <span>{t("payment.orderSummary.subTotal")}</span>
           <span>
             {t("common.aed")}{" "}
-            {toArabicNumeral((checkout?.netAmount || 0).toFixed(2))}
+            {toArabicNumeral(
+              (checkout?.originalNetAmount || checkout?.netAmount || 0).toFixed(
+                2
+              )
+            )}
           </span>
         </div>
         <div className="promo-popup-row">

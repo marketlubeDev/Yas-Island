@@ -116,6 +116,11 @@ function CheckOutSummaryMbl({
               language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
+              // Store original netAmount: use existing if coupons are applied, otherwise use current net
+              originalNetAmount:
+                orderDetails?.coupons?.length > 0
+                  ? checkout?.originalNetAmount || orderDetails?.total?.net
+                  : orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
               firstName: checkout?.firstName,
               lastName: checkout?.lastName,
@@ -304,7 +309,8 @@ function CheckOutSummaryMbl({
             {t("payment.orderSummary.subTotal")}
           </span>
           <span className="subTotal-Value">
-            {t("common.aed")} {checkout?.netAmount}
+            {t("common.aed")}{" "}
+            {checkout?.originalNetAmount || checkout?.netAmount}
           </span>
         </div>
         <div className="email-checkout__summary-costBreakdown-vat">

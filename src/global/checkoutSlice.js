@@ -16,6 +16,7 @@ const initialState = {
   coupons: [],
   items: [],
   netAmount: 0,
+  originalNetAmount: 0, // Store original subtotal before any coupons
   taxAmount: 0,
   grossAmount: 0,
 
@@ -111,6 +112,7 @@ const persistConfig = {
     "isConsentAgreed",
     "promoCode",
     "netAmount",
+    "originalNetAmount",
     "taxAmount",
     "grossAmount",
     "promotions",
@@ -122,9 +124,9 @@ export const {
   updatePersonalDetails,
   updateCartDetails,
   updateAgreements,
-  setCheckoutEmail, 
+  setCheckoutEmail,
   clearCheckout,
-  updateTermsAcceptance
+  updateTermsAcceptance,
 } = checkoutSlice.actions;
 
 const persistedCheckoutReducer = persistReducer(
