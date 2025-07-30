@@ -245,7 +245,7 @@ export default function BookingSection({
         .split("")
         .map(
           (digit) =>
-            ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"][parseInt(digit)]
+            ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"][parseInt(digit)]
         )
         .join("");
       return `${arabicMonth} ${gregorianYear}`;

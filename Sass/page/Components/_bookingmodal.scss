@@ -491,7 +491,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 1rem;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-dtl-footer-divider);
 
   button {
     width: 32px;
@@ -506,8 +508,8 @@
     font-family: "YAS Font", sans-serif;
 
     img {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       object-fit: contain;
       filter: var(--color-base-icon-filter);
     }

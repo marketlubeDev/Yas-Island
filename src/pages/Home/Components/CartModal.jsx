@@ -263,7 +263,10 @@ const CartModal = ({ isOpen, onClose }) => {
                       <p>
                         {t("common.aed")}{" "}
                         {productData?.selectedVariant?.net_amount} +
-                        <span className="text-xs text-gray-500">
+                        <span
+                          className="text-[0.7rem] font-normal"
+                          style={{ color: "var(--cart-item-date)" }}
+                        >
                           {" "}
                           {productData?.selectedVariant?.vat}{" "}
                           {t("common.netAndTax")}

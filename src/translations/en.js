@@ -138,7 +138,7 @@ export const en = {
     add: "Add",
   },
   booking: {
-    chooseDate: "Choose date",
+    chooseDate: "Choose your date",
     chooseGuests: "Choose guests",
     adults: "Adult ( 12 Yrs+ )",
     children: "Children ( <12 Yrs )",
