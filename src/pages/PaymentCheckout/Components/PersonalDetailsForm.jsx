@@ -203,6 +203,9 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
       containerStyle={{
         width: "100%",
       }}
+      // localization={{
+      //   countrySelectPlaceholder={},
+      // }}
       inputStyle={{
         width: "100%",
         height: "40px",

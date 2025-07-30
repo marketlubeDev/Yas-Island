@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
-import { getData } from "country-list";
+import countries from "i18n-iso-countries";
 import ReactCountryFlag from "react-country-flag";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +13,13 @@ import {
   updatePersonalDetails,
 } from "../../../global/checkoutSlice";
 
-const COUNTRIES = getData().map((country) => ({
-  value: country.code,
-  label: country.name,
-  code: country.code.toLowerCase(),
-}));
+// Import language files
+import enCountries from "i18n-iso-countries/langs/en.json";
+import arCountries from "i18n-iso-countries/langs/ar.json";
+
+// Register languages for country names
+countries.registerLocale(enCountries);
+countries.registerLocale(arCountries);
 
 const FormInput = ({
   label,
@@ -61,13 +63,7 @@ const FormInput = ({
   </label>
 );
 
-const FormSelectWithSearch = ({
-  label,
-  value,
-  onChange,
-  options,
-  className = "",
-}) => {
+const FormSelectWithSearch = ({ label, value, onChange, options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption =
     value && value !== ""
@@ -264,6 +260,21 @@ function InputFieldsMbl() {
   // Get data from Redux state
   const checkout = useSelector((state) => state.checkout);
   const { email } = useSelector((state) => state.otp);
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
+
+  // Generate countries list based on current language
+  const COUNTRIES = useMemo(() => {
+    const countryCodes = countries.getAlpha2Codes();
+    return Object.keys(countryCodes)
+      .map((code) => ({
+        value: code,
+        label: countries.getName(code, currentLanguage === "ar" ? "ar" : "en"),
+        code: code.toLowerCase(),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [currentLanguage]);
 
   // Initialize form data from Redux state
   const [formData, setFormData] = useState({
