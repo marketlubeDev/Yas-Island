@@ -1728,10 +1728,10 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 .product-description-api .product-description {
-  font-size: 1.05rem !important;
+  font-size: 18px !important;
 }
 .product-description-api .product-list-item {
-  font-size: 1.05rem !important;
+  font-size: 18px !important;
 }
 
 .product-modal-details h2 {
