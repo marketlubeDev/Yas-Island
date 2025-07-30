@@ -62,7 +62,11 @@ function CheckOutSummaryMbl({
     }
   };
 
-  const handleBasketCheck = (promoCode = "", message = "") => {
+  const handleBasketCheck = (
+    promoCode = "",
+    message = "",
+    isRemoveOperation = false
+  ) => {
     let items = [];
     checkout?.items?.forEach((item) => {
       items.push({
@@ -125,8 +129,19 @@ function CheckOutSummaryMbl({
           setPromoCodeApplying(false);
           if (promoCode) {
             toast.success("Promo code applied successfully!");
-          } else {
+            // Force component re-render to ensure totals update
+            setTimeout(() => {
+              // This ensures the totals display updates properly on mobile
+              setFormData({ ...formData, _timestamp: Date.now() });
+            }, 100);
+          } else if (message) {
             toast.error(message || "Invalid promo code");
+          } else if (isRemoveOperation) {
+            toast.success(t("orderSummary.promoCodeRemoved"), {});
+            // Force component re-render after removal too
+            setTimeout(() => {
+              setFormData({ ...formData, _timestamp: Date.now() });
+            }, 100);
           }
         }
       },
@@ -138,6 +153,14 @@ function CheckOutSummaryMbl({
         setPromoCodeApplying(false);
       },
     });
+  };
+
+  const handleRemovePromoCode = () => {
+    setPromoCode("");
+    handleBasketCheck("", "", true); // Pass a flag to indicate this is a remove operation
+    if (setShowPromoPopup) {
+      setShowPromoPopup(false);
+    }
   };
 
   const handlePromoCode = async () => {
@@ -157,7 +180,12 @@ function CheckOutSummaryMbl({
       } else {
         setFormData({ ...formData, promoCode: promoCode });
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
-        setShowPromoPopup(true);
+        // Delay popup opening to ensure Redux state has updated
+        if (setShowPromoPopup) {
+          setTimeout(() => {
+            setShowPromoPopup(true);
+          }, 200);
+        }
       }
     } catch (error) {
       setPromoCodeApplying(false);
@@ -166,8 +194,6 @@ function CheckOutSummaryMbl({
   };
 
   // Calculate totals with fallbacks
-
-  const total = checkout?.grossAmount || 0;
 
   return (
     <div className="email-checkout__summary">
@@ -284,9 +310,50 @@ function CheckOutSummaryMbl({
         <div className="email-checkout__summary-costBreakdown-vat">
           <span className="vat-Content">{t("orderSummary.vat")}</span>
           <span className="vat-Value">
-            + {t("common.aed")} {checkout?.taxAmount}{" "}
+            + {t("common.aed")} {(checkout?.taxAmount || 0).toFixed(2)}{" "}
           </span>
         </div>
+        {/* Promo Code Savings Display */}
+        {checkout?.promotions?.[0]?.discount && (
+          <div className="email-checkout__summary-costBreakdown-promo">
+            <span className="promo-Content">
+              {t("orderSummary.promoCodeSavings")}
+            </span>
+            <span
+              className="promo-Value"
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              {checkout?.promotions[0]?.discount}
+              <button
+                className="remove-promo-btn-mobile"
+                onClick={handleRemovePromoCode}
+                title={t("orderSummary.removePromoCode")}
+                type="button"
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "2px",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#dc3545",
+                }}
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Promo Code Section */}
@@ -320,7 +387,7 @@ function CheckOutSummaryMbl({
           {t("payment.orderSummary.total")}
         </span>
         <span className="grandTotal-Value">
-          {t("common.aed")} {checkout?.grossAmount}
+          {t("common.aed")} {(checkout?.grossAmount || 0).toFixed(2)}
         </span>
       </div>
 

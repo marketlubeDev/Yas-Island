@@ -1,7 +1,43 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import responsiveReducer from "./responsiveSlice";
+
+// Create a fallback storage for mobile browsers
+const createNoopStorage = () => {
+  return {
+    getItem() {
+      return Promise.resolve(null);
+    },
+    setItem() {
+      return Promise.resolve();
+    },
+    removeItem() {
+      return Promise.resolve();
+    },
+  };
+};
+
+// Mobile-friendly storage with better error handling
+const createMobileStorage = () => {
+  let storage;
+  try {
+    storage =
+      typeof window !== "undefined" ? window.localStorage : createNoopStorage();
+    // Test if localStorage actually works (some mobile browsers block it)
+    const testKey = "__localStorage_test__";
+    storage.setItem(testKey, "test");
+    storage.removeItem(testKey);
+  } catch (e) {
+    console.warn("localStorage not available, using fallback storage");
+    storage = createNoopStorage();
+  }
+
+  return createWebStorage("local");
+};
+
+const mobileStorage = createMobileStorage();
 import accessibilityReducer from "./accessibilitySlice";
 import languageReducer from "./languageSlice";
 import checkoutReducer from "./checkoutSlice";
@@ -39,8 +75,9 @@ const accessibilityPersistConfig = {
 
 const otpPersistConfig = {
   key: "yasIslandOTP",
-  storage,
+  storage: mobileStorage, // Use mobile-friendly storage
   whitelist: ["email", "OTP"], // persist email and OTP data
+  debug: process.env.NODE_ENV === "development", // Add debugging for persistence
 };
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
