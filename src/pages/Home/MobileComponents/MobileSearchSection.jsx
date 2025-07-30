@@ -28,8 +28,6 @@ function MobileSearchSection() {
   const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
   const { language } = useLanguage();
 
-  console.log(language, "languageASDFASFSA");
-
   const sortOptions = [
     {
       label: t("productHead.selectSort"),

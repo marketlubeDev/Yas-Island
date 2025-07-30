@@ -429,6 +429,21 @@
 
 .product-modal.booking-active .ant-modal-content {
   padding: 2rem !important;
+  // /* Hide scrollbar for modal content */
+  // overflow: auto;
+  // scrollbar-width: none; /* Firefox */
+  // -ms-overflow-style: none; /* IE and Edge */
+
+  @include respond(bigTablets) {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+.product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
+  @include respond(bigTablets) {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
 
 // Ensure proper centering for all screen sizes
@@ -1285,6 +1300,15 @@ html[lang="ar"] {
   right: 0;
   // margin: 0 auto;
   box-shadow: 0 -4px 6px -6px rgba(0, 0, 0, 0.5);
+
+  @include respond(bigTablets) {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    background-color: var(--color-base-bg);
+  }
 }
 
 .ar-booking-actions {
@@ -1296,6 +1320,15 @@ html[lang="ar"] {
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0);
   justify-content: center;
   align-items: end;
+
+  @include respond(bigTablets) {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    background-color: var(--color-base-bg);
+  }
 }
 
 .checkout-btn {
