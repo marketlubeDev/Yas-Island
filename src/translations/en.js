@@ -303,5 +303,6 @@ export const en = {
     promoCodeSavings: "promo code savings :",
     removePromoCode: "Remove promo code",
     promoCodeRemoved: "Promo code removed successfully",
+    couponApplied: "Coupon Applied",
   },
 };

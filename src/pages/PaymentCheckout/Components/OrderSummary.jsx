@@ -146,6 +146,11 @@ export default function OrderSummary({
               language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
+              // Store original netAmount: use existing if coupons are applied, otherwise use current net
+              originalNetAmount:
+                orderDetails?.coupons?.length > 0
+                  ? checkout?.originalNetAmount || orderDetails?.total?.net
+                  : orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
               firstName: checkout?.firstName,
               lastName: checkout?.lastName,
@@ -159,6 +164,8 @@ export default function OrderSummary({
           setPromoCodeApplying(false);
           if (promoCode) {
             setIsModalVisible(true);
+            // Clear the promo code input since it's now applied
+            setPromoCode("");
           } else if (message) {
             toast.error(message || "Invalid promo code");
           } else if (isRemoveOperation) {
@@ -329,7 +336,8 @@ export default function OrderSummary({
         <div className="pricing-row">
           <span className="pricing-label">{t("orderSummary.subTotal")}</span>
           <span className="pricing-value">
-            {t("common.aed")} {checkout?.netAmount}
+            {t("common.aed")}{" "}
+            {checkout?.originalNetAmount || checkout?.netAmount}
           </span>
         </div>
         <div className="pricing-row">
@@ -367,8 +375,8 @@ export default function OrderSummary({
           </div>
         )}
 
-        {/* Promo Code Section */}
-        {showPromoCode && (
+        {/* Promo Code Section - Only show if no coupon is applied */}
+        {showPromoCode && !checkout?.promotions?.[0]?.discount && (
           <div className="promo-section">
             <div className="promo-input-group">
               <input

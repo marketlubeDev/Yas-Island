@@ -134,6 +134,8 @@ function CheckOutSummaryMbl({
           setPromoCodeApplying(false);
           if (promoCode) {
             toast.success("Promo code applied successfully!");
+            // Clear the promo code input since it's now applied
+            setPromoCode("");
             // Force component re-render to ensure totals update
             setTimeout(() => {
               // This ensures the totals display updates properly on mobile
@@ -362,8 +364,8 @@ function CheckOutSummaryMbl({
         )}
       </div>
 
-      {/* Promo Code Section */}
-      {showPromoCode && (
+      {/* Promo Code Section - Only show if no coupon is applied */}
+      {showPromoCode && !checkout?.promotions?.[0]?.discount && (
         <div className="email-checkout__summary-promoCode">
           <div className="email-checkout__summary-promoCode-title">
             {t("orderSummary.promoDiscount")}
@@ -387,6 +389,48 @@ function CheckOutSummaryMbl({
           </div>
         </div>
       )}
+
+      {/* Coupon Applied Indicator */}
+      {checkout?.promotions?.[0]?.discount && (
+        <div className="email-checkout__summary-couponApplied">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "12px 16px",
+              backgroundColor: "#f0f9ff",
+              border: "1px solid #0ea5e9",
+              borderRadius: "8px",
+              margin: "16px 0",
+            }}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#0ea5e9"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 12l2 2 4-4" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            <span
+              style={{
+                color: "#0ea5e9",
+                fontWeight: "600",
+                fontSize: "14px",
+              }}
+            >
+              {t("orderSummary.couponApplied")}
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* Total */}
       <div className="email-checkout__summary-grandTotal">
         <span className="grandTotal-Content">
