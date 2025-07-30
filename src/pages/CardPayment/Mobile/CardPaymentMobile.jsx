@@ -6,6 +6,7 @@ import CheckOutSummaryMbl from "../../PaymentDetails/MobileComponents/CheckOutSu
 import PaymentMethodMbl from "./Components/PaymentMethodMbl";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import { clearCart } from "../../../global/cartSlice";
+import { setCheckoutEmail } from "../../../global/checkoutSlice";
 
 function CardPaymentMobile() {
   const { t, i18n } = useTranslation();
@@ -17,10 +18,19 @@ function CardPaymentMobile() {
   const dispatch = useDispatch();
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
+  // Get email from OTP slice as well
+  const { email } = useSelector((state) => state.otp);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Ensure email is synchronized between OTP and checkout slices
+  useEffect(() => {
+    if (email && email !== checkout.emailId) {
+      dispatch(setCheckoutEmail(email));
+    }
+  }, [email, checkout.emailId, dispatch]);
 
   const handlePaymentSuccess = () => {
     console.log("Payment successful, starting redirect countdown...");
@@ -29,7 +39,13 @@ function CardPaymentMobile() {
     window.location.href = "/payment-success";
   };
 
-  console.log(orderData, "sdglasglatskgasqg");
+  console.log("Mobile Card Payment - Order Data:", orderData);
+  console.log("Mobile Card Payment - Email from OTP slice:", email);
+  console.log(
+    "Mobile Card Payment - Email from checkout slice:",
+    checkout.emailId
+  );
+  console.log("Mobile Card Payment - Full checkout data:", checkout);
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
@@ -52,17 +68,27 @@ function CardPaymentMobile() {
       document.body.appendChild(form);
       form.submit();
 
-      setTimeout(() => {
-        if (document.body.contains(form)) {
-          document.body.removeChild(form);
-        }
-      }, 1000);
+      // Keep the form in DOM to maintain iframe functionality
+      // Form will only be removed on component unmount or payment completion
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
         console.log("Received message from iframe:", event.data);
-        if (event.data && event.data.action === "redirect") {
-          handlePaymentSuccess();
+
+        // Handle different payment statuses
+        if (event.data) {
+          if (
+            event.data.action === "redirect" ||
+            event.data.status === "success"
+          ) {
+            handlePaymentSuccess();
+          } else if (
+            event.data.status === "failed" ||
+            event.data.status === "cancelled"
+          ) {
+            setPaymentStatus("failed");
+            console.log("Payment failed or cancelled");
+          }
         }
       };
 
@@ -98,9 +124,19 @@ function CardPaymentMobile() {
       return () => {
         window.removeEventListener("message", handleMessage);
         clearInterval(pollInterval);
+
+        // Clean up form only on unmount or when payment is complete
+        if (paymentStatus === "success" || paymentStatus === "failed") {
+          const existingForm = document.querySelector(
+            'form[target="payfort-iframe"]'
+          );
+          if (existingForm && document.body.contains(existingForm)) {
+            document.body.removeChild(existingForm);
+          }
+        }
       };
     }
-  }, [orderData]);
+  }, [orderData, paymentStatus]);
 
   return (
     <>
@@ -110,6 +146,23 @@ function CardPaymentMobile() {
         <div className="make-payment-modal-container">
           <div className="make-payment-modal">
             <div className="make-payment__content">
+              {/* Email Display for Debugging */}
+              {(email || checkout.emailId) && (
+                <div
+                  style={{
+                    padding: "1rem",
+                    margin: "1rem 0",
+                    backgroundColor: "#f8f9fa",
+                    borderRadius: "8px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
+                  <p style={{ margin: "0", fontSize: "14px", color: "#666" }}>
+                    <strong>Email:</strong> {email || checkout.emailId}
+                  </p>
+                </div>
+              )}
+
               {/* Order Summary */}
               {/* <CheckOutSummaryMbl /> */}
               <CheckOutSummaryMbl
@@ -245,6 +298,67 @@ function CardPaymentMobile() {
                       margin: "0 auto",
                     }}
                   />
+                </div>
+              )}
+              {paymentStatus === "failed" && (
+                <div
+                  style={{
+                    position: "fixed",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    background: "white",
+                    padding: "2rem",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+                    textAlign: "center",
+                    zIndex: 1000,
+                    width: "80%",
+                  }}
+                >
+                  <div
+                    style={{
+                      marginBottom: "1rem",
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                      <circle cx="25" cy="25" r="25" fill="#dc3545" />
+                      <path
+                        d="M18 18L32 32M32 18L18 32"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                  <h3 style={{ margin: "0 0 1rem", color: "#dc3545" }}>
+                    Payment Failed
+                  </h3>
+                  <p style={{ margin: "0 0 1rem", color: "#666" }}>
+                    Your payment could not be processed. Please try again.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setPaymentStatus("loading");
+                      window.location.reload();
+                    }}
+                    style={{
+                      background: "#dc3545",
+                      color: "white",
+                      border: "none",
+                      padding: "0.75rem 2rem",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                      width: "100%",
+                    }}
+                  >
+                    Try Again
+                  </button>
                 </div>
               )}
             </div>

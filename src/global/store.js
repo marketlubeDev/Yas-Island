@@ -37,6 +37,12 @@ const accessibilityPersistConfig = {
   whitelist: ["zoomLevel", "isDarkMode", "isHighContrast"], // persist accessibility settings
 };
 
+const otpPersistConfig = {
+  key: "yasIslandOTP",
+  storage,
+  whitelist: ["email", "OTP"], // persist email and OTP data
+};
+
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
 const persistedLanguageReducer = persistReducer(
   languagePersistConfig,
@@ -46,6 +52,7 @@ const persistedAccessibilityReducer = persistReducer(
   accessibilityPersistConfig,
   accessibilityReducer
 );
+const persistedOtpReducer = persistReducer(otpPersistConfig, otpReducer);
 
 // Middleware to automatically recalculate cart totals
 const cartRecalculationMiddleware = (store) => (next) => (action) => {
@@ -86,7 +93,7 @@ const store = configureStore({
     product: productReducer,
     performance: performanceReducer,
     cart: persistedCartReducer,
-    otp: otpReducer,
+    otp: persistedOtpReducer,
     order: orderReducer,
     qrCode: qrCodeReducer,
   },
