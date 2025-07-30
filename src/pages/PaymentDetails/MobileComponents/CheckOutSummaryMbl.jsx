@@ -13,6 +13,7 @@ function CheckOutSummaryMbl({
   setFormData,
   checkout,
   showPromoCode = true,
+  setShowPromoPopup,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -156,6 +157,7 @@ function CheckOutSummaryMbl({
       } else {
         setFormData({ ...formData, promoCode: promoCode });
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+        setShowPromoPopup(true);
       }
     } catch (error) {
       setPromoCodeApplying(false);

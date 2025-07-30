@@ -213,6 +213,7 @@ function PaymentDetailsMobile() {
                 setFormData={setFormData}
                 checkout={checkout}
                 showPromoCode={true}
+                setShowPromoPopup={setShowPromoPopup}
               />
               <CheckBoxMbl
                 acceptTerms={acceptTerms}
