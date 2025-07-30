@@ -66,17 +66,18 @@ function ConfirmEmailMbl({ onBack }) {
         <PaymentHeaderMbl step={1} onBack={onBack} />
         <div className="confirm-email__content">
           <div className="confirm-email__form-container">
-            <div className="confirm-email__label">
+            {/* <div className="confirm-email__label">
               {t("payment.emailConfirmation.emailLabel")}
-            </div>
-            <div className="confirm-email__input-underline">{email}</div>
+            </div> */}
+            {/* <div className="confirm-email__input-underline">{email}</div> */}
             <OtpSectionMbl
               otp={otp}
               setOtp={setOtpInput}
               isExpired={isExpired}
             />
             <div className="confirm-email__otp-info">
-              {t("payment.verification.codeSent")} <span>{email}</span>
+              {t("payment.verification.codeSent")}
+              <span style={{ color: "var(--color-base-text)" }}> {email}</span>
               <br />
               <button
                 onClick={() => navigate("/email-verification")}

@@ -38,7 +38,7 @@ function TimerMbl({ setIsExpired, handleResendOTP, timer, setTimer }) {
         {timer > 0
           ? t("payment.verification.willExpire")
           : t("payment.verification.expired")}
-        {timer > 0 && <b>{formatTime(timer)}</b>}
+        &nbsp;{timer > 0 && <b>{formatTime(timer)}</b>}
       </span>
       <button
         className={`confirm-email__otp-resend ${!canResend ? "disabled" : ""}`}
