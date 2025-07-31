@@ -190,9 +190,13 @@ const CartModal = ({ isOpen, onClose }) => {
 
   // Call checkBasket on mount with cart items
   useEffect(() => {
-    handleBasketCheck(() => {
+    if (cartItems && cartItems.length > 0) {
+      handleBasketCheck(() => {
+        setIsInitialLoading(false);
+      });
+    } else {
       setIsInitialLoading(false);
-    });
+    }
   }, [cartItems, language, productList, dispatch, t]);
 
   // CartModal Skeleton Component
