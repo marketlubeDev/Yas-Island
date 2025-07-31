@@ -84,11 +84,11 @@ function PromoCodeMbl({ onClose }) {
               ...checkout,
               coupons: orderDetails?.coupons || [],
               items: items,
-              grossAmount: orderDetails?.total?.gross,
-              netAmount: orderDetails?.total?.net,
+              grossAmount: orderDetails?.order?.total?.gross,
+              netAmount: orderDetails?.order?.total?.net,
               // Reset originalNetAmount when coupon is removed
-              originalNetAmount: orderDetails?.total?.net,
-              taxAmount: orderDetails?.total?.tax,
+              originalNetAmount: orderDetails?.order?.total?.net,
+              taxAmount: orderDetails?.order?.total?.tax,
               promotions: orderDetails?.promotions || [],
             })
           );
@@ -122,12 +122,7 @@ function PromoCodeMbl({ onClose }) {
         <div className="promo-popup-row">
           <span>{t("payment.orderSummary.subTotal")}</span>
           <span>
-            {t("common.aed")}{" "}
-            {toArabicNumeral(
-              (checkout?.originalNetAmount || checkout?.netAmount || 0).toFixed(
-                2
-              )
-            )}
+            {t("common.aed")} {toArabicNumeral(checkout?.originalNetAmount)}
           </span>
         </div>
         <div className="promo-popup-row">

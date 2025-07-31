@@ -311,10 +311,7 @@ function CheckOutSummaryMbl({
             {t("payment.orderSummary.subTotal")}
           </span>
           <span className="subTotal-Value">
-            {t("common.aed")}{" "}
-            {checkout?.promotions?.[0]?.discount
-              ? checkout?.originalNetAmount
-              : checkout?.netAmount}
+            {t("common.aed")} {checkout?.netAmount}
           </span>
         </div>
         <div

@@ -5,7 +5,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setEndDate,
   setPerformanceData,
@@ -13,7 +13,7 @@ import {
   setStartDate,
 } from "../../../global/performanceSlice";
 import getPerformance from "../../../serivces/performance/performance";
-import formatDate from "../../../utils/dateFormatter";
+
 import { toast } from "sonner";
 
 export default function ProductModal({
@@ -24,10 +24,15 @@ export default function ProductModal({
 }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [validStartDate, setValidStartDate] = useState(null);
-  const [validEndDate, setValidEndDate] = useState(null);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(false);
+
+  // Get current language for RTL support
+  const currentLanguage = useSelector(
+    (state) => state.language.currentLanguage
+  );
+  const isRTL = currentLanguage === "ar";
+  const [swiperKey, setSwiperKey] = useState(0);
 
   // Reset scroll position when new product is opened
   useEffect(() => {
@@ -56,6 +61,22 @@ export default function ProductModal({
     return () => clearTimeout(timeoutId);
   }, [selectedProduct]);
 
+  // Handle language change and force Swiper re-initialization
+  useEffect(() => {
+    // Force Swiper to re-render when language changes
+    setSwiperKey((prev) => prev + 1);
+
+    // Small delay to ensure proper re-rendering
+    const timeoutId = setTimeout(() => {
+      // Trigger any additional layout updates if needed
+      if (window.dispatchEvent) {
+        window.dispatchEvent(new Event("resize"));
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [currentLanguage]);
+
   useEffect(() => {
     if (selectedProduct && Object.keys(selectedProduct).length > 0) {
       // 1. Calculate startDate
@@ -65,7 +86,6 @@ export default function ProductModal({
       const offset = selectedProduct.sale_date_offset || 0;
       const startDate = new Date(today);
       startDate.setDate(today.getDate() + offset);
-      setValidStartDate(startDate);
 
       // 2. Calculate endDate
       let endDate;
@@ -95,12 +115,12 @@ export default function ProductModal({
       }
 
       endDate.setHours(23, 59, 59, 999);
-      setValidEndDate(endDate.toISOString());
+
       dispatch(setStartDate(startDate.toDateString()));
       dispatch(setEndDate(endDate.toDateString()));
       dispatch(setProductId(selectedProduct?.default_variant_id));
     }
-  }, [selectedProduct]);
+  }, [selectedProduct, dispatch]);
 
   function getAvailableDates(product) {
     const today = new Date();
@@ -224,8 +244,6 @@ export default function ProductModal({
     return defaultVariant;
   };
 
-  console.log(selectedProduct?.product_images?.image_urls, "dgsgasdadjg");
-
   return (
     <div className="product-modal">
       {!showBookingSection ? (
@@ -244,6 +262,16 @@ export default function ProductModal({
                 }}
                 modules={[Autoplay, Pagination]}
                 className="mySwiper"
+                dir={isRTL ? "rtl" : "ltr"}
+                key={`swiper-${swiperKey}-${currentLanguage}`}
+                onSwiper={(swiper) => {
+                  // Ensure proper initialization after language change
+                  setTimeout(() => {
+                    if (swiper && swiper.update) {
+                      swiper.update();
+                    }
+                  }, 50);
+                }}
               >
                 {selectedProduct?.product_images?.image_urls?.map(
                   (image, index) => (
