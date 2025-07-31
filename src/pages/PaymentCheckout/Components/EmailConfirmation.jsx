@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import VerificationBox from "../../OtpConfirmation/Components/VerificationBox";
 import { useDispatch } from "react-redux";
 import useVerification from "../../../apiHooks/email/verification";
 import { setOtp } from "../../../global/otpSlice";

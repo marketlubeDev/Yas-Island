@@ -55,10 +55,6 @@ function CardPaymentMobile() {
       const currentCheckoutEmail = checkout.emailId;
 
       if (!currentEmail && !currentCheckoutEmail) {
-        console.log(
-          "No email found after 1s, attempting manual restoration..."
-        );
-
         // Try multiple storage sources for email recovery
         let foundEmail = null;
 

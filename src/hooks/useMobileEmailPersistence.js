@@ -63,13 +63,8 @@ export const useMobileEmailPersistence = () => {
         try {
           const foundEmail = sources[i]();
           if (foundEmail) {
-            console.log(
-              `useMobileEmailPersistence: Found email from source ${i}:`,
-              foundEmail
-            );
             dispatch(setOtp({ email: foundEmail, OTP: "" }));
             dispatch(setCheckoutEmail(foundEmail));
-
             // Also store in all backup locations
             try {
               sessionStorage.setItem("yasIsland_backup_email", foundEmail);
