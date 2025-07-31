@@ -10,6 +10,10 @@ import { setCheckoutEmail } from "../../../global/checkoutSlice";
 import { useNavigate } from "react-router-dom";
 import useVerification from "../../../apiHooks/email/verification";
 import { setOtp } from "../../../global/otpSlice";
+import {
+  setIsEmailVerification,
+  setVerificationEmail,
+} from "../../../global/cartSlice";
 
 function ConfirmEmailMbl({ onBack }) {
   const { mutate: verification, isPending } = useVerification();
@@ -37,9 +41,13 @@ function ConfirmEmailMbl({ onBack }) {
       toast.error("Please enter a valid OTP");
       return;
     }
+
     const isValid = await validateOTP(otpString, OTP);
     if (isValid) {
       dispatch(setCheckoutEmail(email));
+      dispatch(setIsEmailVerification(true));
+      dispatch(setVerificationEmail(email));
+
       navigate("/payment-details");
     } else {
       toast.error("OTP is incorrect ❌");

@@ -28,9 +28,6 @@ function EmailMbl() {
         // Store email in sessionStorage as backup for mobile
         try {
           sessionStorage.setItem("yasIsland_backup_email", emailValue);
-          console.log(
-            "Stored email backup in sessionStorage during verification"
-          );
         } catch (e) {
           console.log("Failed to store email backup in sessionStorage:", e);
         }

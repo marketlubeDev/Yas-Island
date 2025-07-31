@@ -36,10 +36,6 @@ function PaymentDetailsMobile() {
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
 
-  const handleApplyPromo = () => {
-    setShowPromoPopup(true);
-  };
-
   const validateData = (data) => {
     const errors = [];
     // Validate items array

@@ -157,6 +157,7 @@ function MycartMbl({ onClose, visible }) {
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
+              originalNetAmount: orderDetails?.total?.net,
               firstName: "",
               lastName: "",
               phoneNumber: "",
@@ -245,7 +246,7 @@ function MycartMbl({ onClose, visible }) {
                     }
                   : null;
 
-                const isExpired = isDateExpired(item?.validTo);
+                const isExpired = isDateExpired(item?.validFrom);
 
                 return (
                   <div

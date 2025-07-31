@@ -8,7 +8,7 @@ function EmailVerificationMobile() {
     <>
       <MobileHeader />
       <div className="outer-modal-bg">
-        <PaymentHeaderMbl step={1} onBack={() => window.history.back()} />
+        <PaymentHeaderMbl step={1} />
         <EmailMbl />
       </div>
     </>

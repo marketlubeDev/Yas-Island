@@ -306,6 +306,6 @@ export const ar = {
     promoCodeSavings: "توفير رمز الخصم :",
     removePromoCode: "إزالة رمز الخصم",
     promoCodeRemoved: "تم إزالة رمز الخصم بنجاح",
-    couponApplied: "تم تطبيق الكوبون",
+    couponApplied: "إزالة الكوبون",
   },
 };

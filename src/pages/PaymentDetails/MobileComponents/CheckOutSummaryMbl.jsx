@@ -22,6 +22,7 @@ function CheckOutSummaryMbl({
     checkout?.coupons?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
+  const [removingPromoCode, setRemovingPromoCode] = useState(false);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -95,6 +96,7 @@ function CheckOutSummaryMbl({
           );
         } else {
           const orderDetails = res?.orderdetails?.order;
+
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
             quantity: item?.quantity,
@@ -108,6 +110,12 @@ function CheckOutSummaryMbl({
                 )
               )?.product_masterid || "",
           }));
+          // Calculate original amount (before discounts)
+          const originalAmount =
+            orderDetails?.items?.reduce((total, item) => {
+              return total + (item?.original || 0);
+            }, 0) || orderDetails?.total?.net;
+
           dispatch(
             setCheckout({
               coupons: orderDetails?.coupons,
@@ -116,58 +124,54 @@ function CheckOutSummaryMbl({
               language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
-              // Store original netAmount: use existing if coupons are applied, otherwise use current net
+              taxAmount: orderDetails?.total?.tax,
+              // Store original netAmount: use calculated original amount if coupons are applied
               originalNetAmount:
                 orderDetails?.coupons?.length > 0
-                  ? checkout?.originalNetAmount || orderDetails?.total?.net
+                  ? originalAmount
                   : orderDetails?.total?.net,
-              taxAmount: orderDetails?.total?.tax,
-              firstName: checkout?.firstName,
-              lastName: checkout?.lastName,
+
               phoneNumber: checkout?.phoneNumber,
               countryCode: checkout?.countryCode,
-              isTnCAgrred: checkout?.isTnCAgrred,
+              isTnCAgrred: checkout?.isTnCAgreed,
               isConsentAgreed: checkout?.isConsentAgreed,
               promotions: orderDetails?.promotions,
             })
           );
-          setPromoCodeApplying(false);
+
           if (promoCode) {
             toast.success("Promo code applied successfully!");
             // Clear the promo code input since it's now applied
             setPromoCode("");
             // Force component re-render to ensure totals update
-            setTimeout(() => {
-              // This ensures the totals display updates properly on mobile
-              setFormData({ ...formData, _timestamp: Date.now() });
-            }, 100);
           } else if (message) {
             toast.error(message || "Invalid promo code");
           } else if (isRemoveOperation) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
-            // Force component re-render after removal too
-            setTimeout(() => {
-              setFormData({ ...formData, _timestamp: Date.now() });
-            }, 100);
+            setRemovingPromoCode(false);
           }
         }
       },
+
       onError: (err) => {
         console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
         setPromoCodeApplying(false);
+        setRemovingPromoCode(false);
       },
     });
   };
 
-  const handleRemovePromoCode = () => {
+  const handleRemovePromoCode = async () => {
+    setRemovingPromoCode(true);
     setPromoCode("");
-    handleBasketCheck("", "", true); // Pass a flag to indicate this is a remove operation
+    handleBasketCheck("", "", true);
     if (setShowPromoPopup) {
       setShowPromoPopup(false);
     }
+    // The loading state will be cleared in the handleBasketCheck success/error callbacks
   };
 
   const handlePromoCode = async () => {
@@ -179,24 +183,20 @@ function CheckOutSummaryMbl({
         return;
       }
       const response = await validatePromocode(promoCode);
+
       if (!response?.data?.coupondetails?.coupon) {
         let message =
           response?.coupondetails?.error?.text || "Invalid promo code";
-
         handleBasketCheck("", message);
       } else {
         setFormData({ ...formData, promoCode: promoCode });
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
-        // Delay popup opening to ensure Redux state has updated
-        if (setShowPromoPopup) {
-          setTimeout(() => {
-            setShowPromoPopup(true);
-          }, 200);
-        }
       }
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || "Invalid promo code");
+    } finally {
+      setPromoCodeApplying(false);
     }
   };
 
@@ -312,10 +312,15 @@ function CheckOutSummaryMbl({
           </span>
           <span className="subTotal-Value">
             {t("common.aed")}{" "}
-            {checkout?.originalNetAmount || checkout?.netAmount}
+            {checkout?.promotions?.[0]?.discount
+              ? checkout?.originalNetAmount
+              : checkout?.netAmount}
           </span>
         </div>
-        <div className="email-checkout__summary-costBreakdown-vat">
+        <div
+          className="email-checkout__summary-costBreakdown-vat"
+          style={{ marginBottom: ".5rem" }}
+        >
           <span className="vat-Content">{t("orderSummary.vat")}</span>
           <span className="vat-Value">
             + {t("common.aed")} {(checkout?.taxAmount || 0).toFixed(2)}{" "}
@@ -323,7 +328,10 @@ function CheckOutSummaryMbl({
         </div>
         {/* Promo Code Savings Display */}
         {checkout?.promotions?.[0]?.discount && (
-          <div className="email-checkout__summary-costBreakdown-promo">
+          <div
+            className="email-checkout__summary-costBreakdown-promo"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <span className="promo-Content">
               {t("orderSummary.promoCodeSavings")}
             </span>
@@ -331,34 +339,7 @@ function CheckOutSummaryMbl({
               className="promo-Value"
               style={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              {checkout?.promotions[0]?.discount}
-              <button
-                className="remove-promo-btn-mobile"
-                onClick={handleRemovePromoCode}
-                title={t("orderSummary.removePromoCode")}
-                type="button"
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "2px",
-                  display: "flex",
-                  alignItems: "center",
-                  color: "#dc3545",
-                }}
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
+              {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
             </span>
           </div>
         )}
@@ -392,41 +373,60 @@ function CheckOutSummaryMbl({
 
       {/* Coupon Applied Indicator */}
       {checkout?.promotions?.[0]?.discount && (
-        <div className="email-checkout__summary-couponApplied">
+        <div
+          className="email-checkout__summary-couponApplied"
+          onClick={!removingPromoCode ? handleRemovePromoCode : undefined}
+          style={{ cursor: removingPromoCode ? "not-allowed" : "pointer" }}
+        >
           <div
             style={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "space-between",
               gap: "8px",
-              padding: "12px 16px",
-              backgroundColor: "#f0f9ff",
-              border: "1px solid #0ea5e9",
+              padding: "6px 8px",
+              backgroundColor: "#fce1d3",
+              border: "1px solid #ffbbaf",
               borderRadius: "8px",
-              margin: "16px 0",
+              margin: "5px 0",
+              opacity: removingPromoCode ? 0.7 : 1,
             }}
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#0ea5e9"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M9 12l2 2 4-4" />
-              <circle cx="12" cy="12" r="10" />
-            </svg>
-            <span
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#fba596"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <span
+                style={{
+                  color: "#ff7158",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                }}
+              >
+                {t("orderSummary.couponApplied")}
+              </span>
+            </div>
+
+            {/* Loading/Remove indicator */}
+            <div
               style={{
-                color: "#0ea5e9",
-                fontWeight: "600",
-                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+                minWidth: "20px",
               }}
             >
-              {t("orderSummary.couponApplied")}
-            </span>
+              {removingPromoCode && <ButtonLoading />}
+            </div>
           </div>
         </div>
       )}

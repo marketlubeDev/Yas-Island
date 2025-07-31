@@ -164,6 +164,7 @@ const CartModal = ({ isOpen, onClose }) => {
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
+              originalNetAmount: orderDetails?.total?.net,
               firstName: "",
               lastName: "",
               phoneNumber: "",

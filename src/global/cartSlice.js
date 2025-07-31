@@ -11,10 +11,6 @@ const initialState = {
 };
 
 const calculateCartTotals = (items, productList = []) => {
-  console.log("items", JSON.stringify(items, null, 2));
-  console.log("productList", JSON.stringify(productList, null, 2));
-  console.log(productList, "list");
-
   const subtotal = items.reduce((total, item) => {
     // Find the product that contains this variant
     const product = productList.find((product) =>

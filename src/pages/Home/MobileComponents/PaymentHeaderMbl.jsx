@@ -5,26 +5,12 @@ import backIcon from "../../../assets/icons/back.svg";
 import backIconInverter from "../../../assets/icons/invertedback.svg";
 import { useSelector } from "react-redux";
 
-function PaymentHeaderMbl({ step, onBack }) {
+function PaymentHeaderMbl({ step }) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const isRTL = i18n.language === "ar" || i18n.language === "العربية";
-
-  const handleBack = () => {
-    switch (step) {
-      case 1:
-      case 2:
-      case 3:
-        if (onBack) {
-          onBack();
-        }
-        break;
-      default:
-        navigate(-1);
-    }
-  };
 
   return (
     <>
@@ -36,7 +22,7 @@ function PaymentHeaderMbl({ step, onBack }) {
           className={`payment-header__back-button ${
             isRTL ? "payment-header__back-button--rtl" : ""
           }`}
-          onClick={handleBack}
+          onClick={() => navigate(-1)}
           type="button"
         >
           <img

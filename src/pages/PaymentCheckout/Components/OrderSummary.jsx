@@ -138,6 +138,12 @@ export default function OrderSummary({
                 )
               )?.product_masterid || "",
           }));
+          // Calculate original amount (before discounts)
+          const originalAmount =
+            orderDetails?.items?.reduce((total, item) => {
+              return total + (item?.original || 0);
+            }, 0) || orderDetails?.total?.net;
+
           dispatch(
             setCheckout({
               coupons: orderDetails?.coupons,
@@ -146,12 +152,12 @@ export default function OrderSummary({
               language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
-              // Store original netAmount: use existing if coupons are applied, otherwise use current net
+              taxAmount: orderDetails?.total?.tax,
+              // Store original netAmount: use calculated original amount if coupons are applied
               originalNetAmount:
                 orderDetails?.coupons?.length > 0
-                  ? checkout?.originalNetAmount || orderDetails?.total?.net
+                  ? originalAmount
                   : orderDetails?.total?.net,
-              taxAmount: orderDetails?.total?.tax,
               firstName: checkout?.firstName,
               lastName: checkout?.lastName,
               phoneNumber: checkout?.phoneNumber,
@@ -266,11 +272,6 @@ export default function OrderSummary({
               {t("orderSummary.viewItems")}
             </span>
           </div>
-          {/* <img
-            src={downArrow}
-            alt="expand"
-            className={`view-items-arrow ${showAllItems ? "expanded" : ""}`}
-          /> */}
           <svg
             width="16"
             height="16"

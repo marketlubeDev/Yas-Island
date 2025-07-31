@@ -12,9 +12,7 @@ function PromoCodeMbl({ onClose }) {
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const checkout = useSelector((state) => state.checkout);
-  const currentLanguage = useSelector(
-    (state) => state.language.currentLanguage
-  );
+
   const { mutate: checkBasket } = useCheckBasket();
 
   const toArabicNumeral = (num) => {
