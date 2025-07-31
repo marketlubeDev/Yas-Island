@@ -31,7 +31,7 @@ export default function PaymentDetails({ isCheckout }) {
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",
-    country: checkout?.country || "",
+    country: checkout?.country || "AE",
     nationality: checkout?.nationality || "",
     email: otpEmail || checkout?.emailId || "",
     phoneCode: "+971",
