@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -191,7 +191,7 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
     <label className="form-group__label">{label}</label>
     <PhoneInput
       country={"ae"}
-      value={phoneNumber && phoneNumber.startsWith("971") ? phoneNumber : "971"}
+      value={phoneNumber || ""}
       onChange={onPhoneNumberChange}
       inputClass="form-group__phone-input"
       containerClass="form-group__phone-container"
@@ -203,9 +203,6 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
       containerStyle={{
         width: "100%",
       }}
-      // localization={{
-      //   countrySelectPlaceholder={},
-      // }}
       inputStyle={{
         width: "100%",
         height: "40px",
@@ -248,23 +245,14 @@ export default function PersonalDetailsForm({
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   // Generate countries list based on current language
-  const COUNTRIES = useMemo(() => {
-    const countryCodes = countries.getAlpha2Codes();
-    return Object.keys(countryCodes)
-      .map((code) => ({
-        value: code,
-        label: countries.getName(code, currentLanguage === "ar" ? "ar" : "en"),
-        code: code.toLowerCase(),
-      }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-  }, [currentLanguage]);
-
-  // Set UAE as default country when component mounts
-  useEffect(() => {
-    if (!formData.country) {
-      setFormData((prev) => ({ ...prev, country: "AE" }));
-    }
-  }, [formData.country, setFormData]);
+  const countryCodes = countries.getAlpha2Codes();
+  const COUNTRIES = Object.keys(countryCodes)
+    .map((code) => ({
+      value: code,
+      label: countries.getName(code, currentLanguage === "ar" ? "ar" : "en"),
+      code: code.toLowerCase(),
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 
   const handleInputChange = (field) => (value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

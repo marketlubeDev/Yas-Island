@@ -215,7 +215,7 @@ const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
     {label}
     <PhoneInput
       country={"ae"}
-      value={phoneNumber && phoneNumber.startsWith("971") ? phoneNumber : "971"}
+      value={phoneNumber || ""}
       onChange={onPhoneNumberChange}
       inputClass="email-checkout__phone-input"
       containerClass="email-checkout__phone-container"
@@ -283,7 +283,7 @@ function InputFieldsMbl() {
     email: checkout.emailId || "",
     country: checkout.country || "",
     nationality: checkout.nationality || "",
-    phoneNumber: checkout.phoneNumber || "971",
+    phoneNumber: checkout.phoneNumber || "",
   });
 
   const handleInputChange = (field) => (value) => {
@@ -326,7 +326,7 @@ function InputFieldsMbl() {
       email: checkout.emailId || "",
       country: checkout.country || "",
       nationality: checkout.nationality || "",
-      phoneNumber: checkout.phoneNumber || "971",
+      phoneNumber: checkout.phoneNumber || "",
     });
   }, [checkout]);
 
