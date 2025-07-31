@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Drawer, Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,7 @@ import useGetProductList from "../../../apiHooks/product/product";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
+import { basketService } from "../../../serivces/basket/checkBasket";
 
 // Helper function to check if a date is expired
 const isDateExpired = (validToDate) => {
@@ -46,6 +47,7 @@ const isDateExpired = (validToDate) => {
 
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -186,7 +188,215 @@ const CartModal = ({ isOpen, onClose }) => {
     });
   };
 
+  // Call checkBasket on mount with cart items
+  useEffect(() => {
+    handleBasketCheck(() => {
+      setIsInitialLoading(false);
+    });
+  }, [cartItems, language, productList, dispatch, t]);
+
+  // CartModal Skeleton Component
+  const CartModalSkeleton = () => (
+    <div className="cart-content">
+      <div className="cart-header">
+        <div
+          className="skeleton-shimmer"
+          style={{
+            height: "24px",
+            width: "120px",
+            borderRadius: "6px",
+          }}
+        ></div>
+        <div
+          className="skeleton-shimmer"
+          style={{
+            height: "32px",
+            width: "32px",
+            borderRadius: "50%",
+          }}
+        ></div>
+      </div>
+
+      <div className="cart-items">
+        {[1, 2, 3].map((index) => (
+          <div key={index} className="cart-item">
+            <div
+              className="skeleton-shimmer"
+              style={{
+                height: "80px",
+                width: "80px",
+                borderRadius: "8px",
+              }}
+            ></div>
+            <div className="item-details" style={{ flex: 1 }}>
+              <div
+                className="skeleton-shimmer"
+                style={{
+                  height: "16px",
+                  width: "80%",
+                  borderRadius: "4px",
+                  marginBottom: "8px",
+                }}
+              ></div>
+              <div
+                className="skeleton-shimmer"
+                style={{
+                  height: "14px",
+                  width: "60%",
+                  borderRadius: "4px",
+                  marginBottom: "8px",
+                }}
+              ></div>
+              <div
+                className="skeleton-shimmer"
+                style={{
+                  height: "12px",
+                  width: "40%",
+                  borderRadius: "4px",
+                }}
+              ></div>
+            </div>
+            <div className="quantity-controls">
+              <div
+                className="skeleton-shimmer"
+                style={{
+                  height: "14px",
+                  width: "60px",
+                  borderRadius: "4px",
+                  marginBottom: "8px",
+                }}
+              ></div>
+              <div className="controls">
+                <div
+                  className="skeleton-shimmer"
+                  style={{
+                    height: "32px",
+                    width: "32px",
+                    borderRadius: "6px",
+                  }}
+                ></div>
+                <div
+                  className="skeleton-shimmer"
+                  style={{
+                    height: "20px",
+                    width: "30px",
+                    borderRadius: "4px",
+                  }}
+                ></div>
+                <div
+                  className="skeleton-shimmer"
+                  style={{
+                    height: "32px",
+                    width: "32px",
+                    borderRadius: "6px",
+                  }}
+                ></div>
+                <div
+                  className="skeleton-shimmer"
+                  style={{
+                    height: "32px",
+                    width: "32px",
+                    borderRadius: "6px",
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="cart-summary">
+        <div className="subtotal">
+          <div className="summary-row">
+            <div
+              className="skeleton-shimmer"
+              style={{
+                height: "16px",
+                width: "80px",
+                borderRadius: "4px",
+              }}
+            ></div>
+            <div
+              className="skeleton-shimmer"
+              style={{
+                height: "16px",
+                width: "60px",
+                borderRadius: "4px",
+              }}
+            ></div>
+          </div>
+          <div className="summary-row">
+            <div
+              className="skeleton-shimmer"
+              style={{
+                height: "16px",
+                width: "60px",
+                borderRadius: "4px",
+              }}
+            ></div>
+            <div
+              className="skeleton-shimmer"
+              style={{
+                height: "16px",
+                width: "80px",
+                borderRadius: "4px",
+              }}
+            ></div>
+          </div>
+        </div>
+        <div className="custom-divider"></div>
+        <div className="total">
+          <div
+            className="skeleton-shimmer"
+            style={{
+              height: "20px",
+              width: "100px",
+              borderRadius: "4px",
+            }}
+          ></div>
+          <div
+            className="skeleton-shimmer"
+            style={{
+              height: "20px",
+              width: "80px",
+              borderRadius: "4px",
+            }}
+          ></div>
+        </div>
+
+        <div className="cart-actions">
+          <div
+            className="skeleton-shimmer"
+            style={{
+              height: "48px",
+              width: "100%",
+              borderRadius: "8px",
+            }}
+          ></div>
+        </div>
+      </div>
+    </div>
+  );
+
   if (!isOpen) return null;
+
+  // Show skeleton while loading
+  if (isInitialLoading) {
+    return (
+      <Drawer
+        title={null}
+        placement={isRTL ? "left" : "right"}
+        onClose={onClose}
+        open={isOpen}
+        width={isBigTablets ? "60%" : isDesktop ? "45%" : "35%"}
+        className="cart-drawer"
+        closeIcon={null}
+        headerStyle={{ display: "none" }}
+      >
+        <CartModalSkeleton />
+      </Drawer>
+    );
+  }
 
   return (
     <Drawer
