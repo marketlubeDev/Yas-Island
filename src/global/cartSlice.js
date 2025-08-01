@@ -10,6 +10,22 @@ const initialState = {
   verificationEmail: "",
 };
 
+// Function to remove expired cart items
+const removeExpiredItems = (items) => {
+  const currentDate = new Date();
+  const validItems = items.filter((item) => {
+    if (!item.validFrom) return true; // Keep items without validFrom date
+
+    const validFromDate = new Date(item.validFrom);
+    const isExpired = validFromDate < currentDate;
+    const isQuantityZero = item.quantity === 0;
+
+    return !isExpired && !isQuantityZero;
+  });
+
+  return validItems;
+};
+
 const calculateCartTotals = (items, productList = []) => {
   const subtotal = items.reduce((total, item) => {
     // Find the product that contains this variant
@@ -25,11 +41,6 @@ const calculateCartTotals = (items, productList = []) => {
     );
 
     if (variant) {
-      console.log(`Found price for ${item.productId}:`, {
-        net: variant.net_amount,
-        vat: variant.vat,
-        quantity: item.quantity,
-      });
       return total + variant.net_amount * (item.quantity || 0);
     } else {
       console.warn(`No price found for productId: ${item.productId}`);
@@ -59,8 +70,6 @@ const calculateCartTotals = (items, productList = []) => {
 
   const total = subtotal + vatAndTax;
 
-  console.log("Calculated totals:", { subtotal, vatAndTax, total });
-
   return {
     subtotal,
     vatAndTax,
@@ -84,6 +93,8 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action, type = "cart") => {
+      // Remove expired items first
+
       if (type === "cart") {
         const existingItemIndex = state.cartItems.findIndex(
           (item) =>
@@ -100,10 +111,14 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push({ ...action.payload });
       }
+      state.cartItems = removeExpiredItems(state.cartItems);
       // Trigger recalculation after adding item
       state.needsRecalculation = true;
     },
     removeFromCart: (state, action) => {
+      // Remove expired items first
+      state.cartItems = removeExpiredItems(state.cartItems);
+
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload
       );
@@ -119,8 +134,13 @@ const cartSlice = createSlice({
     },
     setIsCartOpen: (state, action) => {
       state.isCartOpen = action.payload;
+      state.cartItems = removeExpiredItems(state.cartItems);
     },
+
     removeItemFromCart: (state, action) => {
+      // Remove expired items first
+      state.cartItems = removeExpiredItems(state.cartItems);
+
       state.cartItems = state.cartItems.filter(
         (item) =>
           !(
@@ -132,6 +152,9 @@ const cartSlice = createSlice({
       state.needsRecalculation = true;
     },
     updateQuantity: (state, action) => {
+      // Remove expired items first
+      state.cartItems = removeExpiredItems(state.cartItems);
+
       state.cartItems = state.cartItems
         .map((item) =>
           item.productId === action.payload.id &&
@@ -148,6 +171,15 @@ const cartSlice = createSlice({
     },
     setVerificationEmail: (state, action) => {
       state.verificationEmail = action.payload;
+    },
+    cleanExpiredItems: (state) => {
+      const originalLength = state.cartItems.length;
+      state.cartItems = removeExpiredItems(state.cartItems);
+      const newLength = state.cartItems.length;
+
+      if (originalLength !== newLength) {
+        state.needsRecalculation = true;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -171,6 +203,7 @@ export const {
   updateQuantity,
   setIsEmailVerification,
   setVerificationEmail,
+  cleanExpiredItems,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

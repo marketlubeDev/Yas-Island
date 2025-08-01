@@ -47,7 +47,6 @@ const isDateExpired = (validToDate) => {
 
 const CartModal = ({ isOpen, onClose }) => {
   const language = useSelector((state) => state.language.currentLanguage);
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -183,26 +182,12 @@ const CartModal = ({ isOpen, onClose }) => {
         }
       },
       onError: (err) => {
-        console.log(err, "err");
-        console.log(err, "err");
         toast.error(err?.response?.data?.message || t("Something went wrong"), {
           position: "top-center",
         });
       },
     });
   };
-
-  // Call checkBasket on mount with cart items
-  useEffect(() => {
-    if (cartItems && cartItems.length > 0) {
-      setIsInitialLoading(true);
-      handleBasketCheck(() => {
-        setIsInitialLoading(false);
-      });
-    } else {
-      setIsInitialLoading(false);
-    }
-  }, [cartItems, language, productList, dispatch, t]);
 
   // CartModal Skeleton Component
   const CartModalSkeleton = () => (
@@ -389,24 +374,6 @@ const CartModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  // Show skeleton while loading
-  if (isInitialLoading) {
-    return (
-      <Drawer
-        title={null}
-        placement={isRTL ? "left" : "right"}
-        onClose={onClose}
-        open={isOpen}
-        width={isBigTablets ? "60%" : isDesktop ? "45%" : "35%"}
-        className="cart-drawer"
-        closeIcon={null}
-        headerStyle={{ display: "none" }}
-      >
-        <CartModalSkeleton />
-      </Drawer>
-    );
-  }
-
   return (
     <Drawer
       title={null}
@@ -590,11 +557,7 @@ const CartModal = ({ isOpen, onClose }) => {
                   className="checkout-btn"
                   onClick={() => handleBasketCheck(handleCheckout)}
                 >
-                  {isPending && !isInitialLoading ? (
-                    <Loading />
-                  ) : (
-                    t("cart.checkOut")
-                  )}
+                  {isPending ? <Loading /> : t("cart.checkOut")}
                 </button>
               </div>
             </div>

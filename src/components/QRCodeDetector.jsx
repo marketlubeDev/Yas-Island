@@ -36,21 +36,18 @@ const QRCodeDetector = () => {
 
   useEffect(() => {
     if (isValidating) {
-      console.log("Validating QR code...");
+      // console.log("Validating QR code...");
     } else if (validationData) {
-      console.log("QR Code validation successful:", validationData);
       // Only store the data portion, not the entire response with headers
       dispatch(setQRValidationData(validationData?.data || validationData));
       dispatch(setQRCodeStatus("valid"));
 
       if (qrCode) {
-        console.log(
-          "QR Code verified successfully. Now triggering cart API call..."
-        );
+
         setQrVerified(true);
       }
     } else if (validationError) {
-      console.log("QR Code validation failed:", validationError);
+      // console.log("QR Code validation failed:", validationError);
       dispatch(setQRCodeStatus("invalid"));
     }
   }, [
@@ -71,15 +68,12 @@ const QRCodeDetector = () => {
       dispatch(setIsCartLoading(isCartLoading));
 
       if (cartData) {
-        console.log("Cart data retrieved successfully:", cartData);
         try {
           const parsedCartData = JSON.parse(cartData?.data?.cartData);
-          console.log("Parsed cart data:", parsedCartData);
 
           if (parsedCartData?.length > 0) {
             dispatch(clearCart());
             parsedCartData.forEach((item) => {
-              console.log("Processing cart item:", item);
               const data = {
                 ...item,
                 performance: item?.performanceDetails?.performance,
@@ -125,7 +119,6 @@ const QRCodeDetector = () => {
           dispatch(setCartError("Invalid cart data format"));
         }
       } else if (cartError) {
-        console.log("Cart API failed:", cartError);
         dispatch(setCartError(cartError));
       }
     }
