@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
-export default function PaymentDetails() {
+export default function PaymentDetails({ isCheckout }) {
   const checkout = useSelector((state) => state.checkout);
   const { email: otpEmail } = useSelector((state) => state.otp);
   const currentLanguage = useSelector(
@@ -179,6 +179,7 @@ export default function PaymentDetails() {
           formData={formData}
           setFormData={setFormData}
           checkout={checkout}
+          isCheckout={isCheckout}
         />
       </div>
     </div>

@@ -251,15 +251,21 @@ function BookingModalMbl({
     // For checkout, include existing cart items + current items
     let allItems = currentItems;
     if (type === "checkout") {
-      const existingCartItems = cartItems.map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        performance: item.performances
-          ? [{ performanceId: item.performances }]
-          : [],
-        validFrom: item.validFrom,
-        validTo: item.validTo,
-      }));
+      const existingCartItems = cartItems.filter((item) => {
+        if (item?.validFrom >= new Date()) {
+          return {
+            productId: item.productId,
+            quantity: item.quantity,
+            performance: item.performances
+              ? [{ performanceId: item.performances }]
+              : [],
+            quantity: item.quantity,
+            validFrom: item.validFrom,
+            validTo: item.validTo,
+          };
+        }
+      });
+
       allItems = [...existingCartItems, ...currentItems];
     }
 
@@ -444,7 +450,11 @@ function BookingModalMbl({
       if (!isEmailVerification) {
         navigate("/email-verification");
       } else {
-        navigate("/payment-details");
+        navigate("/payment-details", {
+          state: {
+            isCheckout: true,
+          },
+        });
       }
     }, "checkout"); // Use "checkout" type to include existing cart items + current items
   };

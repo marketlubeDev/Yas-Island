@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { setCheckout } from "../../../global/checkoutSlice";
@@ -14,6 +14,7 @@ function CheckOutSummaryMbl({
   checkout,
   showPromoCode = true,
   setShowPromoPopup,
+  isCheckout,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function CheckOutSummaryMbl({
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const [removingPromoCode, setRemovingPromoCode] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -32,6 +34,19 @@ function CheckOutSummaryMbl({
 
   const productList = useSelector((state) => state.product.allProducts);
   const { mutate: checkBasket } = useCheckBasket();
+
+  // Get cart items from Redux store
+  const { cartItems } = useSelector((state) => state.cart);
+
+  // Call handleBasketCheck on component mount using cart items
+  useEffect(() => {
+    if (cartItems && cartItems.length > 0 && !isCheckout) {
+      setIsInitialLoading(true);
+      handleBasketCheck("", "", false, true); // Add isInitialLoad flag
+    } else {
+      setIsInitialLoading(false);
+    }
+  }, [cartItems, checkBasket, dispatch, productList, currentLanguage, t]);
 
   const getProduct = (item) => {
     if (!productList || !item) return { product: null, productVariant: null };
@@ -66,18 +81,34 @@ function CheckOutSummaryMbl({
   const handleBasketCheck = (
     promoCode = "",
     message = "",
-    isRemoveOperation = false
+    isRemoveOperation = false,
+    isInitialLoad = false
   ) => {
     let items = [];
-    checkout?.items?.forEach((item) => {
-      items.push({
-        productId: item?.productId,
-        quantity: item?.quantity,
-        performance: item?.performances ? item?.performances : [],
-        validFrom: item?.validFrom,
-        validTo: item?.validTo,
+
+    if (isInitialLoad) {
+      cartItems?.forEach((item) => {
+        items.push({
+          productId: item?.productId,
+          quantity: item?.quantity,
+          performance: item?.performances
+            ? [{ performanceId: item?.performances }]
+            : [],
+          validFrom: item?.validFrom,
+          validTo: item?.validTo,
+        });
       });
-    });
+    } else {
+      checkout?.items?.forEach((item) => {
+        items.push({
+          productId: item?.productId,
+          quantity: item?.quantity,
+          performance: item?.performances ? item?.performances : [],
+          validFrom: item?.validFrom,
+          validTo: item?.validTo,
+        });
+      });
+    }
 
     const data = {
       coupons: promoCode ? [{ couponCode: promoCode }] : [],
@@ -146,10 +177,12 @@ function CheckOutSummaryMbl({
             // Force component re-render to ensure totals update
           } else if (message) {
             toast.error(message || "Invalid promo code");
-          } else if (isRemoveOperation) {
+          } else if (isRemoveOperation && !isInitialLoad) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
             setRemovingPromoCode(false);
           }
+          // Set loading to false after successful API call
+          setIsInitialLoading(false);
         }
       },
 
@@ -160,6 +193,8 @@ function CheckOutSummaryMbl({
         });
         setPromoCodeApplying(false);
         setRemovingPromoCode(false);
+        // Set loading to false on error
+        setIsInitialLoading(false);
       },
     });
   };
@@ -167,7 +202,7 @@ function CheckOutSummaryMbl({
   const handleRemovePromoCode = async () => {
     setRemovingPromoCode(true);
     setPromoCode("");
-    handleBasketCheck("", "", true);
+    handleBasketCheck("", "", true, false); // Pass isInitialLoad as false for actual removal
     if (setShowPromoPopup) {
       setShowPromoPopup(false);
     }
@@ -199,6 +234,174 @@ function CheckOutSummaryMbl({
       setPromoCodeApplying(false);
     }
   };
+
+  // Skeleton component for loading state
+  const CheckOutSummaryMblSkeleton = () => (
+    <div className="email-checkout__summary">
+      {/* Header Skeleton */}
+      <div className="email-checkout__summary-title">
+        <div
+          className="skeleton-title skeleton-shimmer"
+          style={{
+            height: "20px",
+            width: "60%",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "6px",
+            marginBottom: "8px",
+          }}
+        ></div>
+        <div
+          className="skeleton-subtitle skeleton-shimmer"
+          style={{
+            height: "14px",
+            width: "40%",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "4px",
+          }}
+        ></div>
+      </div>
+
+      {/* View Items Button Skeleton */}
+      <div
+        className="skeleton-view-items skeleton-shimmer"
+        style={{
+          height: "40px",
+          width: "100%",
+          backgroundColor: "#f0f0f0",
+          borderRadius: "8px",
+          marginBottom: "16px",
+        }}
+      ></div>
+
+      {/* Cost Breakdown Skeleton */}
+      <div className="email-checkout__summary-costBreakdown">
+        <div className="email-checkout__summary-costBreakdown-subTotal">
+          <div
+            className="skeleton-label skeleton-shimmer"
+            style={{
+              height: "16px",
+              width: "80px",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "4px",
+            }}
+          ></div>
+          <div
+            className="skeleton-value skeleton-shimmer"
+            style={{
+              height: "16px",
+              width: "60px",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "4px",
+            }}
+          ></div>
+        </div>
+        <div className="email-checkout__summary-costBreakdown-vat">
+          <div
+            className="skeleton-label skeleton-shimmer"
+            style={{
+              height: "16px",
+              width: "40px",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "4px",
+            }}
+          ></div>
+          <div
+            className="skeleton-value skeleton-shimmer"
+            style={{
+              height: "16px",
+              width: "80px",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "4px",
+            }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Promo Code Section Skeleton */}
+      <div className="email-checkout__summary-promoCode">
+        <div
+          className="skeleton-promo-title skeleton-shimmer"
+          style={{
+            height: "16px",
+            width: "120px",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "4px",
+            marginBottom: "12px",
+          }}
+        ></div>
+        <div className="email-checkout__summary-promoCode-input-container">
+          <div
+            className="skeleton-promo-input skeleton-shimmer"
+            style={{
+              height: "40px",
+              width: "70%",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "6px",
+            }}
+          ></div>
+          <div
+            className="skeleton-promo-button skeleton-shimmer"
+            style={{
+              height: "40px",
+              width: "25%",
+              backgroundColor: "#f0f0f0",
+              borderRadius: "6px",
+            }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Total Skeleton */}
+      <div className="email-checkout__summary-grandTotal">
+        <div
+          className="skeleton-total-label skeleton-shimmer"
+          style={{
+            height: "18px",
+            width: "50px",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "6px",
+          }}
+        ></div>
+        <div
+          className="skeleton-total-value skeleton-shimmer"
+          style={{
+            height: "18px",
+            width: "100px",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "6px",
+          }}
+        ></div>
+      </div>
+
+      {/* Secure Payment Skeleton */}
+      <div className="email-checkout__summary-securePayment">
+        <div
+          className="skeleton-secure-icon skeleton-shimmer"
+          style={{
+            height: "14px",
+            width: "14px",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "6px",
+            marginRight: "8px",
+          }}
+        ></div>
+        <div
+          className="skeleton-secure-text skeleton-shimmer"
+          style={{
+            height: "14px",
+            width: "120px",
+            backgroundColor: "#f0f0f0",
+            borderRadius: "6px",
+          }}
+        ></div>
+      </div>
+    </div>
+  );
+
+  // Show skeleton while loading
+  if (isInitialLoading) {
+    return <CheckOutSummaryMblSkeleton />;
+  }
 
   // Calculate totals with fallbacks
 
