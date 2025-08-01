@@ -44,8 +44,13 @@ export default function ProductCard({ productList }) {
       <div className="ProductCard__grid">
         {productList?.map((product, index) => (
           <div
-            className="ProductCard__card"
+            className="ProductCard__card animate-fade-in-up"
             key={`${product?.product_title}-${index}`}
+            style={{
+              animationDelay: `${index * 0.1}s`,
+              opacity: 0,
+              animation: `fadeInUp 0.6s ease-out ${index * 0.1}s forwards`,
+            }}
           >
             {/* <span>{index}</span> */}
             <div className="ProductCard__card__image">

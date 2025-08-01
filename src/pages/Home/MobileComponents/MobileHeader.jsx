@@ -72,17 +72,17 @@ function MobileHeader() {
 
   return (
     <>
-      <div className="mobile-header">
+      <div className="mobile-header animate-mobile-header">
         <div className="mobile-header__left">
           <img
             src={isDarkMode ? invertedLogo : mobLogo}
             alt="YAS Island Logo"
-            className="mobile-header__logo"
+            className="mobile-header__logo animate-mobile-logo"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/")}
           />
         </div>
-        <div className="mobile-header__right">
+        <div className="mobile-header__right animate-mobile-actions">
           <button
             className="mobile-header__icon-btn"
             aria-label="Accessibility"

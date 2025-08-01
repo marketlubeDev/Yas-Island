@@ -126,9 +126,9 @@ export default function HeaderLogo() {
           </div>
         )}{" "}
       </div>
-      <div className="header-actions-right">
+      <div className="header-actions-right animate-fade-in">
         <button
-          className="accessibility-button"
+          className="accessibility-button animate-slide-in"
           aria-label={t("common.accessibility")}
           onClick={onAccessibilityOpen}
           style={{
@@ -148,7 +148,7 @@ export default function HeaderLogo() {
           style={{ position: "relative" }}
         >
           <button
-            className="lang-btn-head"
+            className="lang-btn-head animate-slide-in"
             aria-label={t("common.language")}
             onClick={() => setShowLangDropdown((v) => !v)}
             type="button"
@@ -203,7 +203,9 @@ export default function HeaderLogo() {
           )}
         </div>
         <button
-          className={language === "العربية" ? "ar-cart-button" : "cart-button"}
+          className={`${
+            language === "العربية" ? "ar-cart-button" : "cart-button"
+          } animate-slide-in`}
           style={{
             borderWidth: isDarkMode ? "2px" : "1px",
             ...(!isPaymentRoute && {

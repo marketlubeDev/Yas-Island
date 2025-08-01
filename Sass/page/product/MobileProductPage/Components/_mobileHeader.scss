@@ -9,6 +9,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   z-index: 10;
 
+  &.animate-mobile-header {
+    animation: slideDownHeader 0.8s ease-out;
+  }
+
   &__left {
     display: flex;
     align-items: center;
@@ -19,12 +23,20 @@
     height: 54px;
     width: auto;
     display: block;
+
+    &.animate-mobile-logo {
+      animation: gentleFloat 3s ease-in-out infinite;
+    }
   }
 
   &__right {
     display: flex;
     align-items: center;
     gap: 12px;
+
+    &.animate-mobile-actions {
+      animation: fadeInRight 0.8s ease-out 0.3s both;
+    }
   }
 
   &__icon-btn,
@@ -39,7 +51,6 @@
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s;
-
   }
 
   &__icon-btn img,
@@ -103,5 +114,38 @@
     color: #007bff;
     font-size: 14px;
     font-weight: bold;
+  }
+}
+
+// Mobile header animations
+@keyframes slideDownHeader {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

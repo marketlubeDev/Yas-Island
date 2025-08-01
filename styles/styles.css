@@ -1157,6 +1157,16 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     opacity: 1;
   }
 }
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 @keyframes cardHoverFloat {
   0%, 100% {
     transform: translateY(0px);
@@ -1948,6 +1958,50 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   opacity: 1;
   background: #fff !important;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1333333333);
+}
+
+/* RTL support for Swiper */
+[dir=rtl] .swiper-horizontal {
+  direction: rtl;
+}
+
+[dir=rtl] .swiper-pagination-bullets {
+  direction: ltr; /* Keep pagination bullets in normal order */
+}
+
+[dir=rtl] .product-modal-image .swiper {
+  direction: rtl;
+}
+
+[dir=rtl] .mySwiper {
+  direction: rtl;
+}
+
+/* Ensure Swiper maintains proper dimensions during language switching */
+.mySwiper {
+  width: 100% !important;
+  height: 100% !important;
+  transition: none; /* Prevent transition issues during re-render */
+}
+
+.product-modal-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.product-modal-image .swiper {
+  width: 100% !important;
+  height: 100% !important;
+}
+.product-modal-image .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-modal-image .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .booking-section {
@@ -6403,6 +6457,9 @@ html[dir=rtl] .back-button {
   object-fit: contain;
   max-height: 200px;
 }
+.mobile-landing .top-stroke.animate-slide-down {
+  animation: slideDown 1s ease-out;
+}
 .mobile-landing .center-logo {
   position: absolute;
   top: 50%;
@@ -6418,6 +6475,9 @@ html[dir=rtl] .back-button {
   width: 100%;
   height: auto;
 }
+.mobile-landing .center-logo img.animate-pulse-gentle {
+  animation: pulseGentle 2.5s ease-in-out infinite;
+}
 .mobile-landing .bottom-stroke {
   position: absolute;
   bottom: 0;
@@ -6427,7 +6487,40 @@ html[dir=rtl] .back-button {
   max-height: 200px;
   object-fit: contain;
 }
+.mobile-landing .bottom-stroke.animate-slide-up {
+  animation: slideUp 1s ease-out 0.3s both;
+}
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulseGentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
 .logo {
   display: flex;
   flex-direction: column;
@@ -6692,6 +6785,9 @@ html[dir=rtl] .back-button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   z-index: 10;
 }
+.mobile-header.animate-mobile-header {
+  animation: slideDownHeader 0.8s ease-out;
+}
 .mobile-header__left {
   display: flex;
   align-items: center;
@@ -6702,10 +6798,16 @@ html[dir=rtl] .back-button {
   width: auto;
   display: block;
 }
+.mobile-header__logo.animate-mobile-logo {
+  animation: gentleFloat 3s ease-in-out infinite;
+}
 .mobile-header__right {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+.mobile-header__right.animate-mobile-actions {
+  animation: fadeInRight 0.8s ease-out 0.3s both;
 }
 .mobile-header__icon-btn, .mobile-header__lang-btn {
   background: var(--color-base-mobile-header-icon-btn-bg);
@@ -6772,6 +6874,34 @@ html[dir=rtl] .back-button {
   font-weight: bold;
 }
 
+@keyframes slideDownHeader {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .mobile-top {
   margin-top: 5rem;
   height: 18.3%;
