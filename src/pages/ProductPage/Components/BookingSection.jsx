@@ -308,22 +308,21 @@ export default function BookingSection({
     // For checkout, include existing cart items + current items
     let allItems = currentItems;
     if (type === "checkout") {
-      const existingCartItems = cartItems.filter((item) => {
-        if (item?.validFrom >= new Date()) {
-          return {
-            productId: item.productId,
-            quantity: item.quantity,
-            performance: item.performances
-              ? [{ performanceId: item.performances }]
-              : [],
-            validFrom: item.validFrom,
-            validTo: item.validTo,
-          };
-        }
+      const existingCartItems = cartItems.map((item) => {
+        return {
+          productId: item.productId,
+          quantity: item.quantity,
+          performance: item.performances
+            ? [{ performanceId: item.performances }]
+            : [],
+          validFrom: item.validFrom,
+          validTo: item.validTo,
+        };
       });
 
       allItems = [...existingCartItems, ...currentItems];
     }
+
 
     const data = {
       coupons: [],

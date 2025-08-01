@@ -50,7 +50,6 @@ function MycartMbl({ onClose, visible }) {
   const navigate = useNavigate();
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const {
     cartItems,
@@ -183,18 +182,6 @@ function MycartMbl({ onClose, visible }) {
     });
   };
 
-  // Call handleBasketCheck on mount with cart items
-  useEffect(() => {
-    if (cartItems && cartItems.length > 0) {
-      setIsInitialLoading(true);
-      handleBasketCheck(() => {
-        setIsInitialLoading(false);
-      });
-    } else {
-      setIsInitialLoading(false);
-    }
-  }, [cartItems, checkBasket, dispatch, productList, language, t]);
-
   return (
     <Modal
       open={visible}
@@ -212,369 +199,188 @@ function MycartMbl({ onClose, visible }) {
       }}
       destroyOnHidden
     >
-      {isInitialLoading ? (
-        <div className="mycart-modal__content">
-          <div className="mycart-modal__header">
-            <div
-              className="skeleton-shimmer"
-              style={{
-                height: "24px",
-                width: "32px",
-                borderRadius: "6px",
-              }}
-            ></div>
-            <div
-              className="skeleton-shimmer"
-              style={{
-                height: "20px",
-                width: "80px",
-                borderRadius: "4px",
-              }}
-            ></div>
-          </div>
-
-          <div className="mycart-modal__items">
-            {[1, 2, 3].map((index) => (
-              <div key={index} className="mycart-modal__item">
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "80px",
-                    width: "80px",
-                    borderRadius: "8px",
-                  }}
-                ></div>
-                <div className="mycart-modal__item-content">
-                  <div className="mycart-modal__item-title-row">
-                    <div
-                      className="skeleton-shimmer"
-                      style={{
-                        height: "16px",
-                        width: "80%",
-                        borderRadius: "4px",
-                        marginBottom: "8px",
-                      }}
-                    ></div>
-                    <div
-                      className="skeleton-shimmer"
-                      style={{
-                        height: "20px",
-                        width: "20px",
-                        borderRadius: "4px",
-                      }}
-                    ></div>
-                  </div>
-                  <div
-                    className="skeleton-shimmer"
-                    style={{
-                      height: "14px",
-                      width: "60%",
-                      borderRadius: "4px",
-                      marginBottom: "8px",
-                    }}
-                  ></div>
-                  <div
-                    className="skeleton-shimmer"
-                    style={{
-                      height: "12px",
-                      width: "40%",
-                      borderRadius: "4px",
-                      marginBottom: "8px",
-                    }}
-                  ></div>
-                  <div className="mycart-modal__item-qty-row">
-                    <div
-                      className="skeleton-shimmer"
-                      style={{
-                        height: "12px",
-                        width: "50%",
-                        borderRadius: "4px",
-                      }}
-                    ></div>
-                    <div className="mycart-modal__item-qty-controls">
-                      <div
-                        className="skeleton-shimmer"
-                        style={{
-                          height: "32px",
-                          width: "32px",
-                          borderRadius: "6px",
-                        }}
-                      ></div>
-                      <div
-                        className="skeleton-shimmer"
-                        style={{
-                          height: "20px",
-                          width: "30px",
-                          borderRadius: "4px",
-                        }}
-                      ></div>
-                      <div
-                        className="skeleton-shimmer"
-                        style={{
-                          height: "32px",
-                          width: "32px",
-                          borderRadius: "6px",
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mycart-modal__footer">
-            <div className="mycart-modal__summary">
-              <div className="mycart-modal__summary-row">
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "16px",
-                    width: "80px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "16px",
-                    width: "60px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-              </div>
-              <div className="mycart-modal__summary-row">
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "16px",
-                    width: "60px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "16px",
-                    width: "80px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-              </div>
-              <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "20px",
-                    width: "100px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-                <div
-                  className="skeleton-shimmer"
-                  style={{
-                    height: "20px",
-                    width: "80px",
-                    borderRadius: "4px",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div
-              className="skeleton-shimmer"
-              style={{
-                height: "48px",
-                width: "100%",
-                borderRadius: "8px",
-              }}
-            ></div>
-          </div>
+      <div className="mycart-modal__content">
+        <div className="mycart-modal__header">
+          <button
+            className={`mycart-modal__back ${
+              isRTL ? "mycart-modal__back--rtl" : ""
+            }`}
+            onClick={onClose}
+            type="button"
+            style={{ cursor: "pointer" }}
+            aria-label="Close modal"
+          >
+            <img
+              src={backIconSrc}
+              alt="Back"
+              style={{ transform: isRTL ? "scaleX(-1)" : "none" }}
+            />
+          </button>
+          <span className="mycart-modal__title">{t("cart.title")}</span>
         </div>
-      ) : (
-        <div className="mycart-modal__content">
-          <div className="mycart-modal__header">
-            <button
-              className={`mycart-modal__back ${
-                isRTL ? "mycart-modal__back--rtl" : ""
-              }`}
-              onClick={onClose}
-              type="button"
-              style={{ cursor: "pointer" }}
-              aria-label="Close modal"
-            >
-              <img
-                src={backIconSrc}
-                alt="Back"
-                style={{ transform: isRTL ? "scaleX(-1)" : "none" }}
-              />
-            </button>
-            <span className="mycart-modal__title">{t("cart.title")}</span>
+
+        {cartItems.length === 0 ? (
+          <div className="mycart-modal__empty">
+            <h3>{t("cart.empty")}</h3>
+            <p>{t("cart.emptyMessage")}</p>
           </div>
+        ) : (
+          <>
+            <div className="mycart-modal__items">
+              {cartItems.map((item, index) => {
+                const product = productList.find((product) =>
+                  product.product_variants.some(
+                    (variant) => variant.productid === item.productId
+                  )
+                );
 
-          {cartItems.length === 0 ? (
-            <div className="mycart-modal__empty">
-              <h3>{t("cart.empty")}</h3>
-              <p>{t("cart.emptyMessage")}</p>
-            </div>
-          ) : (
-            <>
-              <div className="mycart-modal__items">
-                {cartItems.map((item, index) => {
-                  const product = productList.find((product) =>
-                    product.product_variants.some(
-                      (variant) => variant.productid === item.productId
-                    )
-                  );
+                const productData = product
+                  ? {
+                      ...product,
+                      selectedVariant: {
+                        ...product.product_variants.find(
+                          (variant) => variant.productid === item.productId
+                        ),
+                        quantity: item.quantity,
+                        date: item.date,
+                        time: item.time,
+                        cartItemId: item.id,
+                        ...item, // include any other cart item properties
+                      },
+                    }
+                  : null;
 
-                  const productData = product
-                    ? {
-                        ...product,
-                        selectedVariant: {
-                          ...product.product_variants.find(
-                            (variant) => variant.productid === item.productId
-                          ),
-                          quantity: item.quantity,
-                          date: item.date,
-                          time: item.time,
-                          cartItemId: item.id,
-                          ...item, // include any other cart item properties
-                        },
-                      }
-                    : null;
+                const isExpired = isDateExpired(item?.validFrom);
 
-                  const isExpired = isDateExpired(item?.validFrom);
-
-                  return (
-                    <div
-                      className={`mycart-modal__item ${
-                        isExpired ? "expired-item" : ""
-                      }`}
-                      key={index}
-                    >
-                      <img
-                        src={productData?.product_images?.thumbnail_url}
-                        alt={productData?.product_title}
-                        className="mycart-modal__item-img"
-                      />
-                      <div className="mycart-modal__item-content">
-                        <div className="mycart-modal__item-title-row">
-                          <div className="mycart-modal__item-title">
-                            {productData?.product_title}
-                          </div>
+                return (
+                  <div
+                    className={`mycart-modal__item ${
+                      isExpired ? "expired-item" : ""
+                    }`}
+                    key={index}
+                  >
+                    <img
+                      src={productData?.product_images?.thumbnail_url}
+                      alt={productData?.product_title}
+                      className="mycart-modal__item-img"
+                    />
+                    <div className="mycart-modal__item-content">
+                      <div className="mycart-modal__item-title-row">
+                        <div className="mycart-modal__item-title">
+                          {productData?.product_title}
+                        </div>
+                        <button
+                          className="mycart-modal__item-delete"
+                          onClick={() =>
+                            handleDeleteItem(item?.productId, item?.validFrom)
+                          }
+                        >
+                          <img src={deleteIconSrc} alt="Delete" />
+                        </button>
+                      </div>
+                      <div className="mycart-modal__item-price">
+                        <span className="mycart-modal__item-price-main">
+                          {t("common.aed")}{" "}
+                          {productData?.selectedVariant?.price?.net}
+                        </span>
+                        <span className="mycart-modal__item-vat">
+                          +
+                          <span className="text-xs text-gray-500">
+                            {" "}
+                            {productData?.selectedVariant?.price?.tax}{" "}
+                            {t("common.netAndTax")}
+                          </span>
+                        </span>
+                      </div>
+                      <div className="mycart-modal__item-date">
+                        <span>{item?.validFrom}</span>
+                      </div>
+                      {isExpired && (
+                        <p className="expired-text">
+                          {t("common.thisTicketIsExpired")}
+                        </p>
+                      )}
+                      <div className="mycart-modal__item-qty-row">
+                        <span
+                          style={{ color: "var(--color-email-form-label)" }}
+                        >
+                          {productData?.selectedVariant?.productvariantname}
+                        </span>
+                        <div className="mycart-modal__item-qty-controls">
                           <button
-                            className="mycart-modal__item-delete"
+                            className="minus-btn-mobile"
                             onClick={() =>
-                              handleDeleteItem(item?.productId, item?.validFrom)
+                              handleQuantityChange(
+                                item?.productId,
+                                -1,
+                                item?.validFrom,
+                                item?.minQuantity,
+                                item?.maxQuantity,
+                                item?.incrementNumber
+                              )
                             }
                           >
-                            <img src={deleteIconSrc} alt="Delete" />
+                            <MinusOutlined />
                           </button>
-                        </div>
-                        <div className="mycart-modal__item-price">
-                          <span className="mycart-modal__item-price-main">
-                            {t("common.aed")}{" "}
-                            {productData?.selectedVariant?.price?.net}
-                          </span>
-                          <span className="mycart-modal__item-vat">
-                            +
-                            <span className="text-xs text-gray-500">
-                              {" "}
-                              {productData?.selectedVariant?.price?.tax}{" "}
-                              {t("common.netAndTax")}
-                            </span>
-                          </span>
-                        </div>
-                        <div className="mycart-modal__item-date">
-                          <span>{item?.validFrom}</span>
-                        </div>
-                        {isExpired && (
-                          <p className="expired-text">
-                            {t("common.thisTicketIsExpired")}
-                          </p>
-                        )}
-                        <div className="mycart-modal__item-qty-row">
                           <span
                             style={{ color: "var(--color-email-form-label)" }}
                           >
-                            {productData?.selectedVariant?.productvariantname}
+                            {item?.quantity}
                           </span>
-                          <div className="mycart-modal__item-qty-controls">
-                            <button
-                              className="minus-btn-mobile"
-                              onClick={() =>
-                                handleQuantityChange(
-                                  item?.productId,
-                                  -1,
-                                  item?.validFrom,
-                                  item?.minQuantity,
-                                  item?.maxQuantity,
-                                  item?.incrementNumber
-                                )
-                              }
-                            >
-                              <MinusOutlined />
-                            </button>
-                            <span
-                              style={{ color: "var(--color-email-form-label)" }}
-                            >
-                              {item?.quantity}
-                            </span>
-                            <button
-                              className="plus-btn-mobile"
-                              onClick={() =>
-                                handleQuantityChange(
-                                  item?.productId,
-                                  1,
-                                  item?.validFrom,
-                                  item?.minQuantity,
-                                  item?.maxQuantity,
-                                  item?.incrementNumber
-                                )
-                              }
-                            >
-                              <PlusOutlined />
-                            </button>
-                          </div>
+                          <button
+                            className="plus-btn-mobile"
+                            onClick={() =>
+                              handleQuantityChange(
+                                item?.productId,
+                                1,
+                                item?.validFrom,
+                                item?.minQuantity,
+                                item?.maxQuantity,
+                                item?.incrementNumber
+                              )
+                            }
+                          >
+                            <PlusOutlined />
+                          </button>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
+            </div>
 
-              <div className="mycart-modal__footer">
-                <div className="mycart-modal__summary">
-                  <div className="mycart-modal__summary-row">
-                    <span>{t("cart.subTotal")}</span>
-                    <span>
-                      {t("common.aed")} {subtotal.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="mycart-modal__summary-row">
-                    <span>{t("cart.vat")}</span>
-                    <span>
-                      + {t("common.aed")} {vatAndTax.toFixed(2)}{" "}
-                      {t("common.aed")}
-                    </span>
-                  </div>
-                  <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
-                    <span>{t("cart.total")}</span>
-                    <span>
-                      {t("common.aed")} {total.toFixed(2)}
-                    </span>
-                  </div>
+            <div className="mycart-modal__footer">
+              <div className="mycart-modal__summary">
+                <div className="mycart-modal__summary-row">
+                  <span>{t("cart.subTotal")}</span>
+                  <span>
+                    {t("common.aed")} {subtotal.toFixed(2)}
+                  </span>
                 </div>
-                <button
-                  className="mycart-modal__checkout"
-                  onClick={() => handleBasketCheck(handleCheckout)}
-                >
-                  {isPending ? <Loading /> : t("cart.checkOut")}
-                </button>
+                <div className="mycart-modal__summary-row">
+                  <span>{t("cart.vat")}</span>
+                  <span>
+                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("common.aed")}
+                  </span>
+                </div>
+                <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
+                  <span>{t("cart.total")}</span>
+                  <span>
+                    {t("common.aed")} {total.toFixed(2)}
+                  </span>
+                </div>
               </div>
-            </>
-          )}
-        </div>
-      )}
+              <button
+                className="mycart-modal__checkout"
+                onClick={() => handleBasketCheck(handleCheckout)}
+              >
+                {isPending ? <Loading /> : t("cart.checkOut")}
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </Modal>
   );
 }

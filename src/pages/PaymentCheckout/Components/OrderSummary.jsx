@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderSummary({
   formData,
@@ -25,15 +26,14 @@ export default function OrderSummary({
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAllItems, setShowAllItems] = useState(false);
-  // const { isBigDesktop, isDesktop } = useSelector((state) => state.responsive);
   const [promoCode, setPromoCode] = useState(
     checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+  const navigate = useNavigate();
 
   // Ensure products are loaded for the current language
   useGetProductList();
@@ -43,16 +43,6 @@ export default function OrderSummary({
 
   // Get cart items from Redux store
   const { cartItems } = useSelector((state) => state.cart);
-
-  // Call checkBasket on component mount using cart items
-  useEffect(() => {
-    if (cartItems && cartItems.length > 0 && !isCheckout) {
-      setIsInitialLoading(true);
-      handleBasketCheck("", "", true, true, true, true); // Add isInitialLoad flag
-    } else {
-      setIsInitialLoading(false);
-    }
-  }, [cartItems, checkBasket, dispatch, productList, currentLanguage, t]);
 
   const getProduct = (item) => {
     const product = productList.find((product) =>
@@ -88,6 +78,12 @@ export default function OrderSummary({
       year: "numeric",
     });
   };
+
+  useEffect(() => {
+    if (!isCheckout) {
+      navigate("/");
+    }
+  }, []);
 
   // const handleTermsChange = (type, checked) => {
   //   if (type === "terms") {
@@ -209,8 +205,6 @@ export default function OrderSummary({
           } else if (isRemoveOperation && !isInitialLoad) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
           }
-          // Set loading to false after successful API call
-          setIsInitialLoading(false);
         }
       },
       onError: (err) => {
@@ -220,7 +214,6 @@ export default function OrderSummary({
         });
         setPromoCodeApplying(false);
         // Set loading to false on error
-        setIsInitialLoading(false);
       },
     });
   };
@@ -408,11 +401,6 @@ export default function OrderSummary({
       </div>
     </div>
   );
-
-  // Show skeleton while loading
-  if (isInitialLoading) {
-    return <OrderSummarySkeleton />;
-  }
 
   return (
     <div className="order-summary-new">

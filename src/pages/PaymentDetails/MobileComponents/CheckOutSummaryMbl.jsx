@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
+import { useNavigate } from "react-router-dom";
 
 function CheckOutSummaryMbl({
   formData,
@@ -24,11 +25,10 @@ function CheckOutSummaryMbl({
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const [removingPromoCode, setRemovingPromoCode] = useState(false);
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
-
+  const navigate = useNavigate();
   // Ensure products are loaded for the current language
   useGetProductList();
 
@@ -39,14 +39,12 @@ function CheckOutSummaryMbl({
   const { cartItems } = useSelector((state) => state.cart);
 
   // Call handleBasketCheck on component mount using cart items
+
   useEffect(() => {
-    if (cartItems && cartItems.length > 0 && !isCheckout) {
-      setIsInitialLoading(true);
-      handleBasketCheck("", "", false, true); // Add isInitialLoad flag
-    } else {
-      setIsInitialLoading(false);
+    if (!isCheckout) {
+      navigate("/");
     }
-  }, [cartItems, checkBasket, dispatch, productList, currentLanguage, t]);
+  }, []);
 
   const getProduct = (item) => {
     if (!productList || !item) return { product: null, productVariant: null };
@@ -181,8 +179,6 @@ function CheckOutSummaryMbl({
             toast.success(t("orderSummary.promoCodeRemoved"), {});
             setRemovingPromoCode(false);
           }
-          // Set loading to false after successful API call
-          setIsInitialLoading(false);
         }
       },
 
@@ -193,8 +189,6 @@ function CheckOutSummaryMbl({
         });
         setPromoCodeApplying(false);
         setRemovingPromoCode(false);
-        // Set loading to false on error
-        setIsInitialLoading(false);
       },
     });
   };
@@ -234,174 +228,6 @@ function CheckOutSummaryMbl({
       setPromoCodeApplying(false);
     }
   };
-
-  // Skeleton component for loading state
-  const CheckOutSummaryMblSkeleton = () => (
-    <div className="email-checkout__summary">
-      {/* Header Skeleton */}
-      <div className="email-checkout__summary-title">
-        <div
-          className="skeleton-title skeleton-shimmer"
-          style={{
-            height: "20px",
-            width: "60%",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-            marginBottom: "8px",
-          }}
-        ></div>
-        <div
-          className="skeleton-subtitle skeleton-shimmer"
-          style={{
-            height: "14px",
-            width: "40%",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "4px",
-          }}
-        ></div>
-      </div>
-
-      {/* View Items Button Skeleton */}
-      <div
-        className="skeleton-view-items skeleton-shimmer"
-        style={{
-          height: "40px",
-          width: "100%",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
-          marginBottom: "16px",
-        }}
-      ></div>
-
-      {/* Cost Breakdown Skeleton */}
-      <div className="email-checkout__summary-costBreakdown">
-        <div className="email-checkout__summary-costBreakdown-subTotal">
-          <div
-            className="skeleton-label skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "80px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "4px",
-            }}
-          ></div>
-          <div
-            className="skeleton-value skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "60px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "4px",
-            }}
-          ></div>
-        </div>
-        <div className="email-checkout__summary-costBreakdown-vat">
-          <div
-            className="skeleton-label skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "40px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "4px",
-            }}
-          ></div>
-          <div
-            className="skeleton-value skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "80px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "4px",
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Promo Code Section Skeleton */}
-      <div className="email-checkout__summary-promoCode">
-        <div
-          className="skeleton-promo-title skeleton-shimmer"
-          style={{
-            height: "16px",
-            width: "120px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "4px",
-            marginBottom: "12px",
-          }}
-        ></div>
-        <div className="email-checkout__summary-promoCode-input-container">
-          <div
-            className="skeleton-promo-input skeleton-shimmer"
-            style={{
-              height: "40px",
-              width: "70%",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-          <div
-            className="skeleton-promo-button skeleton-shimmer"
-            style={{
-              height: "40px",
-              width: "25%",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Total Skeleton */}
-      <div className="email-checkout__summary-grandTotal">
-        <div
-          className="skeleton-total-label skeleton-shimmer"
-          style={{
-            height: "18px",
-            width: "50px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-          }}
-        ></div>
-        <div
-          className="skeleton-total-value skeleton-shimmer"
-          style={{
-            height: "18px",
-            width: "100px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-          }}
-        ></div>
-      </div>
-
-      {/* Secure Payment Skeleton */}
-      <div className="email-checkout__summary-securePayment">
-        <div
-          className="skeleton-secure-icon skeleton-shimmer"
-          style={{
-            height: "14px",
-            width: "14px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-            marginRight: "8px",
-          }}
-        ></div>
-        <div
-          className="skeleton-secure-text skeleton-shimmer"
-          style={{
-            height: "14px",
-            width: "120px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-          }}
-        ></div>
-      </div>
-    </div>
-  );
-
-  // Show skeleton while loading
-  if (isInitialLoading) {
-    return <CheckOutSummaryMblSkeleton />;
-  }
 
   // Calculate totals with fallbacks
 
