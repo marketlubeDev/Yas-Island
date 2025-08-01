@@ -13,16 +13,19 @@ const initialState = {
 // Function to remove expired cart items
 const removeExpiredItems = (items) => {
   const currentDate = new Date();
-  const validItems = items.filter((item) => {
-    if (!item.validFrom) return true; // Keep items without validFrom date
 
-    const validFromDate = new Date(item.validFrom);
-    const isExpired = validFromDate < currentDate;
-    const isQuantityZero = item.quantity === 0;
+  const currentDateOnly = currentDate.toISOString().split("T")[0];
+
+  const validItems = items.filter((item) => {
+    const dateToCheck = item.validFrom;
+
+
+    const itemDateOnly = dateToCheck.split("T")[0];
+    const isExpired = itemDateOnly < currentDateOnly;
+    const isQuantityZero = item.quantity === 0 || item.Quantity === 0;
 
     return !isExpired && !isQuantityZero;
   });
-
   return validItems;
 };
 
