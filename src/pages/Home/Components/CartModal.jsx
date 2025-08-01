@@ -195,6 +195,7 @@ const CartModal = ({ isOpen, onClose }) => {
   // Call checkBasket on mount with cart items
   useEffect(() => {
     if (cartItems && cartItems.length > 0) {
+      setIsInitialLoading(true);
       handleBasketCheck(() => {
         setIsInitialLoading(false);
       });
@@ -589,7 +590,11 @@ const CartModal = ({ isOpen, onClose }) => {
                   className="checkout-btn"
                   onClick={() => handleBasketCheck(handleCheckout)}
                 >
-                  {isPending ? <Loading /> : t("cart.checkOut")}
+                  {isPending && !isInitialLoading ? (
+                    <Loading />
+                  ) : (
+                    t("cart.checkOut")
+                  )}
                 </button>
               </div>
             </div>
