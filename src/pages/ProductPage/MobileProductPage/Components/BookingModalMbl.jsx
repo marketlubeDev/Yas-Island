@@ -444,7 +444,11 @@ function BookingModalMbl({
       if (!isEmailVerification) {
         navigate("/email-verification");
       } else {
-        navigate("/payment-details");
+        navigate("/payment-details", {
+          state: {
+            isCheckout: true,
+          },
+        });
       }
     }, "checkout"); // Use "checkout" type to include existing cart items + current items
   };

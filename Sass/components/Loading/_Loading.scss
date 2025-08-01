@@ -168,6 +168,12 @@
 
 .cart-skeleton {
   height: 45px;
-  background: linear-gradient(110deg, #f5f5f5 8%, #ffffff 18%, #f5f5f5 33%);
+  background: var(--bg-skeleton);
+  background: linear-gradient(
+    110deg,
+    var(--border-skeleton-one) 8%,
+    var(--border-skeleton-two) 18%,
+    var(--border-skeleton-one) 33%
+  );
   border: 1px solid #ececec;
 }

@@ -8,7 +8,7 @@ import CheckBoxMbl from "./MobileComponents/CheckBoxMbl";
 import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import PaymentHeaderMbl from "../Home/MobileComponents/PaymentHeaderMbl";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import usePayment from "../../apiHooks/payment/payment";
 import { setOrderData } from "../../global/orderSlice";
@@ -30,7 +30,7 @@ function PaymentDetailsMobile() {
     (state) => state.language.currentLanguage
   );
   const dispatch = useDispatch();
-
+  const { isCheckout } = useLocation().state || {};
   const { mutate: createOrder, isPending } = usePayment();
 
   // Get checkout data from Redux
@@ -210,6 +210,7 @@ function PaymentDetailsMobile() {
                 checkout={checkout}
                 showPromoCode={true}
                 setShowPromoPopup={setShowPromoPopup}
+                isCheckout={isCheckout}
               />
               <CheckBoxMbl
                 acceptTerms={acceptTerms}

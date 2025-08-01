@@ -75,7 +75,11 @@ const CartModal = ({ isOpen, onClose }) => {
       navigate("/email-verification");
     } else {
       dispatch(setCheckoutEmail(verificationEmail));
-      navigate("/payment-details");
+      navigate("/payment-details", {
+        state: {
+          isCheckout: true,
+        },
+      });
     }
     onClose();
   };
