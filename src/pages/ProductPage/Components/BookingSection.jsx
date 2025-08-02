@@ -14,23 +14,19 @@ import { toast } from "sonner";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
+import { setPerformanceData } from "../../../global/performanceSlice";
+import getPerformance from "../../../serivces/performance/performance";
 
-export default function BookingSection({
-  product,
-  onBack,
-  startDate,
-  endDate,
-  availableDates,
-  isLoadingDates,
-}) {
+export default function BookingSection({ product, onBack }) {
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
-  const verifiedEmail = useSelector((state) => state.checkout.emailId);
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
+  const [availableDates, setAvailableDates] = useState([]);
+  const [isLoadingDates, setIsLoadingDates] = useState(true);
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
@@ -59,6 +55,118 @@ export default function BookingSection({
     return variants;
   }
 
+  function getAvailableDates(product) {
+    const today = new Date();
+    const startDate = product?.sale_date_offset || 0;
+    today.setDate(today.getDate() + startDate);
+    let endDate;
+
+    if (product?.calendar_range_days && product?.calendar_end_date) {
+      const rangeEndDate = new Date(today);
+      rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
+      const calendarEndDate = new Date(product?.calendar_end_date);
+      endDate = new Date(
+        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
+      );
+    } else if (product?.calendar_range_days) {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + product?.calendar_range_days);
+    } else if (product?.calendar_end_date) {
+      endDate = new Date(product?.calendar_end_date);
+    } else {
+      endDate = new Date(today.getFullYear(), 11, 31);
+    }
+
+    const dates = [];
+    let currentDate = new Date(today);
+
+    while (currentDate <= endDate) {
+      dates.push(currentDate.toISOString().split("T")[0]);
+      currentDate = new Date(currentDate);
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    setSelectedDate(dates[0]);
+    return dates;
+  }
+
+  const fetchAvailableDates = async () => {
+    setIsLoadingDates(true);
+    try {
+      let hasPerformance = false;
+
+      if (product?.product_variants?.length > 0) {
+        product?.product_variants?.forEach((variant) => {
+          if (variant?.hasperformance) {
+            hasPerformance = true;
+          }
+        });
+      }
+
+      if (hasPerformance) {
+        const productId = product?.product_masterid;
+        const performanceData = await getPerformance(productId);
+
+        // Check if we have any performance data
+        if (!performanceData || performanceData.length === 0) {
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onBack();
+          return;
+        }
+
+        // Format dates for each variant and mark variants with no dates as unavailable
+        const formattedData = performanceData.map((variant) => {
+          const formattedDates =
+            variant.availableDates?.map((date) => date.split("T")[0]) || [];
+          return {
+            ...variant,
+            availableDates: formattedDates,
+            isAvailable: formattedDates.length > 0, // Add flag to track if variant has any dates
+          };
+        });
+
+        // Get all unique dates from all variants for calendar display
+        const allUniqueDates = [
+          ...new Set(
+            formattedData.flatMap((variant) => variant.availableDates)
+          ),
+        ];
+
+        // Check if all variants have no dates
+        const allVariantsUnavailable = formattedData.every(
+          (variant) => !variant.isAvailable
+        );
+
+        if (allVariantsUnavailable) {
+          toast.error("This product is currently not available", {
+            position: "top-center",
+          });
+          onBack();
+          return;
+        }
+
+        dispatch(setPerformanceData(formattedData));
+        setAvailableDates(allUniqueDates);
+        setSelectedDate(allUniqueDates[0]);
+      } else {
+        setAvailableDates(getAvailableDates(product));
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Something went wrong");
+      onBack();
+    } finally {
+      setIsLoadingDates(false);
+    }
+  };
+
+  useEffect(() => {
+    if (product) {
+      fetchAvailableDates();
+    }
+  }, [product]);
+
   useEffect(() => {
     setGuests(getVariants());
   }, [product]);
@@ -71,17 +179,16 @@ export default function BookingSection({
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
-  // Auto-select first available date when dates are loaded
-  useEffect(() => {
-    if (
-      availableDates &&
-      availableDates.length > 0 &&
-      !selectedDate &&
-      !isLoadingDates
-    ) {
-      setSelectedDate(availableDates[0]);
-    }
-  }, [availableDates, selectedDate, isLoadingDates]);
+  // useEffect(() => {
+  //   if (
+  //     availableDates &&
+  //     availableDates.length > 0 &&
+  //     !selectedDate &&
+  //     !isLoadingDates
+  //   ) {
+  //     setSelectedDate(availableDates[0]);
+  //   }
+  // }, [availableDates, selectedDate, isLoadingDates]);
 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -109,19 +216,15 @@ export default function BookingSection({
     return formatDateToYYYYMMDD(date) === selectedDate;
   };
 
-  // Function to check if a variant is available for the selected date
   const isVariantAvailableForDate = (variantProductId) => {
-    // If no date is selected, all variants are unavailable
-    if (!selectedDate) {
-      return false;
-    }
+    // if (!selectedDate) {
+    //   return false;
+    // }
 
-    // If no performance data, variants should be unavailable
     if (!performanceData.length) {
       return false;
     }
 
-    // Find the variant data in performanceData
     const variantData = performanceData.find(
       (v) => v.variantProductId === variantProductId
     );
@@ -322,7 +425,6 @@ export default function BookingSection({
 
       allItems = [...existingCartItems, ...currentItems];
     }
-
 
     const data = {
       coupons: [],

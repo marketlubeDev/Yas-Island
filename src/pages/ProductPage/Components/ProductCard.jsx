@@ -7,6 +7,7 @@ import closeIcon from "../../../assets/icons/close.svg";
 import { useDispatch } from "react-redux";
 import { setSelectedProduct } from "../../../global/productSlice";
 import { clearPerformance } from "../../../global/performanceSlice";
+import BookingSection from "./BookingSection";
 
 export default function ProductCard({ productList }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,17 +15,19 @@ export default function ProductCard({ productList }) {
   const [showBookingSection, setShowBookingSection] = useState(false);
   const dispatch = useDispatch();
 
-  const showModal = (product) => {
+  const showModal = (product, type = "view") => {
     // Create a plain object to avoid non-serializable payload issues
     const plainProduct = { ...product };
     setSelectedProductState(plainProduct);
     dispatch(setSelectedProduct(plainProduct));
     setIsModalOpen(true);
+    if (type === "add-to-cart") {
+      setShowBookingSection(true);
+    }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    // dispatch(setSelectedProduct({}));
     dispatch(clearPerformance());
     setShowBookingSection(false);
   };
@@ -51,6 +54,7 @@ export default function ProductCard({ productList }) {
               opacity: 0,
               animation: `fadeInUp 0.6s ease-out ${index * 0.1}s forwards`,
             }}
+            onClick={() => showModal(product)}
           >
             {/* <span>{index}</span> */}
             <div className="ProductCard__card__image">
@@ -68,7 +72,7 @@ export default function ProductCard({ productList }) {
               tax={(defaultVariant(product)?.gross * 0.05).toFixed(2)}
               currency={product?.currency}
               taxDescription={product?.taxDescription}
-              onAddToCart={() => showModal(product)}
+              onAddToCart={() => showModal(product, "add-to-cart")}
               netPrice={defaultVariant(product)?.net_amount}
             />
           </div>
@@ -91,12 +95,21 @@ export default function ProductCard({ productList }) {
           </span>
         }
       >
-        {selectedProduct && (
+        {selectedProduct && !showBookingSection && (
           <ProductModal
             selectedProduct={selectedProduct}
             onClose={handleCancel}
             showBookingSection={showBookingSection}
             setShowBookingSection={setShowBookingSection}
+          />
+        )}
+        {selectedProduct && showBookingSection && (
+          <BookingSection
+            product={selectedProduct}
+            onBack={() => {
+              setShowBookingSection(false);
+              handleCancel();
+            }}
           />
         )}
       </Modal>

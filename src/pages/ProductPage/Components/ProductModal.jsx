@@ -8,13 +8,9 @@ import "swiper/css/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setEndDate,
-  setPerformanceData,
   setProductId,
   setStartDate,
 } from "../../../global/performanceSlice";
-import getPerformance from "../../../serivces/performance/performance";
-
-import { toast } from "sonner";
 
 export default function ProductModal({
   selectedProduct,
@@ -24,8 +20,6 @@ export default function ProductModal({
 }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [availableDates, setAvailableDates] = useState([]);
-  const [isLoadingDates, setIsLoadingDates] = useState(false);
 
   // Get current language for RTL support
   const currentLanguage = useSelector(
@@ -41,7 +35,6 @@ export default function ProductModal({
         ".product-description-api"
       );
       if (productDescriptionElement) {
-        // Force scroll reset with multiple methods
         productDescriptionElement.scrollTop = 0;
         productDescriptionElement.scrollLeft = 0;
         productDescriptionElement.scrollTo({
@@ -52,18 +45,14 @@ export default function ProductModal({
       }
     };
 
-    // Reset immediately
     resetScroll();
 
-    // Also reset after a small delay to ensure element is fully rendered
     const timeoutId = setTimeout(resetScroll, 10);
 
     return () => clearTimeout(timeoutId);
   }, [selectedProduct]);
 
-  // Handle language change and force Swiper re-initialization
   useEffect(() => {
-    // Force Swiper to re-render when language changes
     setSwiperKey((prev) => prev + 1);
 
     // Small delay to ensure proper re-rendering
@@ -122,116 +111,8 @@ export default function ProductModal({
     }
   }, [selectedProduct, dispatch]);
 
-  function getAvailableDates(product) {
-    const today = new Date();
-    const startDate = product?.sale_date_offset || 0;
-    today.setDate(today.getDate() + startDate);
-    let endDate;
-
-    if (product?.calendar_range_days && product?.calendar_end_date) {
-      const rangeEndDate = new Date(today);
-      rangeEndDate.setDate(today.getDate() + product?.calendar_range_days);
-      const calendarEndDate = new Date(product?.calendar_end_date);
-      endDate = new Date(
-        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
-      );
-    } else if (product?.calendar_range_days) {
-      endDate = new Date(today);
-      endDate.setDate(today.getDate() + product?.calendar_range_days);
-    } else if (product?.calendar_end_date) {
-      endDate = new Date(product?.calendar_end_date);
-    } else {
-      endDate = new Date(today.getFullYear(), 11, 31);
-    }
-
-    const dates = [];
-    let currentDate = new Date(today);
-
-    while (currentDate <= endDate) {
-      dates.push(currentDate.toISOString().split("T")[0]);
-      currentDate = new Date(currentDate);
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-    return dates;
-  }
-
-  const fetchAvailableDates = async () => {
-    setIsLoadingDates(true);
-    try {
-      let hasPerformance = false;
-
-      if (selectedProduct?.product_variants?.length > 0) {
-        selectedProduct?.product_variants?.forEach((variant) => {
-          if (variant?.hasperformance) {
-            hasPerformance = true;
-          }
-        });
-      }
-
-      if (hasPerformance) {
-        const productId = selectedProduct?.product_masterid;
-        const performanceData = await getPerformance(productId);
-
-        // Check if we have any performance data
-        if (!performanceData || performanceData.length === 0) {
-          toast.error("This product is currently not available", {
-            position: "top-center",
-          });
-          onClose();
-          setShowBookingSection(false);
-          return;
-        }
-
-        // Format dates for each variant and mark variants with no dates as unavailable
-        const formattedData = performanceData.map((variant) => {
-          const formattedDates =
-            variant.availableDates?.map((date) => date.split("T")[0]) || [];
-          return {
-            ...variant,
-            availableDates: formattedDates,
-            isAvailable: formattedDates.length > 0, // Add flag to track if variant has any dates
-          };
-        });
-
-        // Get all unique dates from all variants for calendar display
-        const allUniqueDates = [
-          ...new Set(
-            formattedData.flatMap((variant) => variant.availableDates)
-          ),
-        ];
-
-        // Check if all variants have no dates
-        const allVariantsUnavailable = formattedData.every(
-          (variant) => !variant.isAvailable
-        );
-
-        if (allVariantsUnavailable) {
-          toast.error("This product is currently not available", {
-            position: "top-center",
-          });
-          onClose();
-          setShowBookingSection(false);
-          return;
-        }
-
-        dispatch(setPerformanceData(formattedData));
-        setAvailableDates(allUniqueDates);
-      } else {
-        setAvailableDates(getAvailableDates(selectedProduct));
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong");
-      onClose();
-      setShowBookingSection(false);
-    } finally {
-      setIsLoadingDates(false);
-    }
-  };
-
   const handleAddToCart = () => {
     setShowBookingSection(true);
-    fetchAvailableDates();
   };
 
   const defaultVariant = (product) => {
@@ -318,8 +199,6 @@ export default function ProductModal({
             setShowBookingSection(false);
             onClose();
           }}
-          availableDates={availableDates}
-          isLoadingDates={isLoadingDates}
         />
       )}
     </div>

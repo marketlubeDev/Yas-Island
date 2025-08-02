@@ -22,8 +22,6 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-  const [availableDates, setAvailableDates] = useState([]);
-  const [isLoadingDates, setIsLoadingDates] = useState(false);
 
   console.log(isLoading, "dfgdfgfdgfgwfa");
 
@@ -87,8 +85,6 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
             attraction={selectedAttraction}
             onClose={handleCloseModal}
             setShowBookingSection={setModalType}
-            setAvailableDates={setAvailableDates}
-            setIsLoadingDates={setIsLoadingDates}
           />
         );
       case "booking":
@@ -99,8 +95,6 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
             onSaveToCart={handleSaveToCart}
             onCheckout={handleCheckout}
             product={selectedAttraction}
-            availableDates={availableDates}
-            isLoadingDates={isLoadingDates}
           />
         );
       default:
