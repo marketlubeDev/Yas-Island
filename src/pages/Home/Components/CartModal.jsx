@@ -169,13 +169,15 @@ const CartModal = ({ isOpen, onClose }) => {
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
-              originalNetAmount: orderDetails?.total?.net,
+              originalNetAmount: orderDetails?.total?.gross,
               firstName: "",
               lastName: "",
               phoneNumber: "",
               countryCode: "",
               isTnCAgrred: false,
               isConsentAgreed: false,
+              promoCode: "",
+              promotions: [],
             })
           );
           onSuccess();

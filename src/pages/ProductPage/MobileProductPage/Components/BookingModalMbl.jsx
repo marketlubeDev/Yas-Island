@@ -47,7 +47,7 @@ function BookingModalMbl({
   const [guests, setGuests] = useState(getVariants());
   const [totalPrice, setTotalPrice] = useState(0);
   const [availableDates, setAvailableDates] = useState([]);
-  const [isLoadingDates, setIsLoadingDates] = useState(false);
+  const [isLoadingDates, setIsLoadingDates] = useState(true);
   const isRTL = i18n.language === "ar";
 
   function getVariants() {
@@ -328,20 +328,6 @@ function BookingModalMbl({
     }
 
     const currentItems = [];
-
-    // if (type === "checkout") {
-    //   cartItems?.forEach((item) => {
-    //     items.push({
-    //       productId: item?.productId,
-    //       quantity: item?.quantity,
-    //       performance: item?.performances
-    //         ? [{ performanceId: item?.performances }]
-    //         : [],
-    //       validFrom: item?.validFrom,
-    //       validTo: item?.validTo,
-    //     });
-    //   });
-    // }
     Object.entries(guests).forEach(([productId, guestData]) => {
       if (guestData.quantity < 1) {
         return;
@@ -361,7 +347,6 @@ function BookingModalMbl({
       });
     });
 
-    // For checkout, include existing cart items + current items
     let allItems = currentItems;
     if (type === "checkout") {
       const existingCartItems = cartItems.map((item) => {
@@ -371,7 +356,6 @@ function BookingModalMbl({
           performance: item.performances
             ? [{ performanceId: item.performances }]
             : [],
-          quantity: item.quantity,
           validFrom: item.validFrom,
           validTo: item.validTo,
         };
@@ -459,13 +443,41 @@ function BookingModalMbl({
               dispatch(addToCart(obj));
             });
           } else if (type === "checkout") {
-            // For checkout, clear cart first and add all verified items
+            const items = orderDetails?.order?.items?.map((item) => ({
+              ...item,
+              productMasterid:
+                productList.find((product) =>
+                  product.product_variants.some(
+                    (variant) => variant.productid === item?.productId
+                  )
+                )?.product_masterid || "",
+            }));
+
+            const checkoutData = {
+              coupons: [],
+              items: items,
+              emailId: verificationEmail || "",
+              country: "",
+              nationality: "",
+              phoneNumber: "",
+              language: language,
+              grossAmount: orderDetails?.order?.total?.gross,
+              netAmount: orderDetails?.order?.total?.net,
+              taxAmount: orderDetails?.order?.total?.tax,
+              firstName: "",
+              lastName: "",
+              countryCode: "",
+              isTnCAgrred: false,
+              isConsentAgreed: false,
+              promoCode: "",
+              promotions: [],
+              originalNetAmount: orderDetails?.order?.total?.gross,
+            };
+            dispatch(setCheckout(checkoutData));
             dispatch(clearCart());
 
             orderDetails?.order?.items?.forEach((item) => {
-              const variantData = selectedProduct?.product_variants?.find(
-                (variant) => variant?.productid == item?.productId
-              );
+              const variantData = findVariantById(item?.productId, productList);
 
               let price = {
                 currency: "AED",
@@ -501,37 +513,8 @@ function BookingModalMbl({
                 maxQuantity: variantData?.max_quantity,
                 incrementNumber: variantData?.increment_number,
               };
-              dispatch(addToCart(obj));
+              dispatch(addToCart(obj, "checkout"));
             });
-
-            // Update the checkout slice
-            const checkoutData = {
-              coupons: [],
-              items: orderDetails?.order?.items?.map((item) => ({
-                ...item,
-                productMasterid:
-                  productList.find((product) =>
-                    product.product_variants.some(
-                      (variant) => variant.productid === item?.productId
-                    )
-                  )?.product_masterid || "",
-              })),
-              emailId: verificationEmail || "",
-              country: "",
-              nationality: "",
-              phoneNumber: "",
-              language: language,
-              grossAmount: orderDetails?.order?.total?.gross,
-              netAmount: orderDetails?.order?.total?.net,
-              taxAmount: orderDetails?.order?.total?.tax,
-              firstName: "",
-              lastName: "",
-              countryCode: "",
-              isTnCAgrred: false,
-              isConsentAgreed: false,
-              promoCode: "",
-            };
-            dispatch(setCheckout(checkoutData));
           }
           onSuccess();
         }

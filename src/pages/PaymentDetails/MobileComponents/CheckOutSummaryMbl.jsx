@@ -79,35 +79,18 @@ function CheckOutSummaryMbl({
   const handleBasketCheck = (
     promoCode = "",
     message = "",
-    isRemoveOperation = false,
-    isInitialLoad = false
+    isRemoveOperation = false
   ) => {
     let items = [];
-
-    if (isInitialLoad) {
-      cartItems?.forEach((item) => {
-        items.push({
-          productId: item?.productId,
-          quantity: item?.quantity,
-          performance: item?.performances
-            ? [{ performanceId: item?.performances }]
-            : [],
-          validFrom: item?.validFrom,
-          validTo: item?.validTo,
-        });
+    checkout?.items?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances ? item?.performances : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo,
       });
-    } else {
-      checkout?.items?.forEach((item) => {
-        items.push({
-          productId: item?.productId,
-          quantity: item?.quantity,
-          performance: item?.performances ? item?.performances : [],
-          validFrom: item?.validFrom,
-          validTo: item?.validTo,
-        });
-      });
-    }
-
+    });
     const data = {
       coupons: promoCode ? [{ couponCode: promoCode }] : [],
       items: items,
@@ -175,7 +158,7 @@ function CheckOutSummaryMbl({
             // Force component re-render to ensure totals update
           } else if (message) {
             toast.error(message || "Invalid promo code");
-          } else if (isRemoveOperation && !isInitialLoad) {
+          } else if (isRemoveOperation) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
             setRemovingPromoCode(false);
           }
@@ -196,7 +179,7 @@ function CheckOutSummaryMbl({
   const handleRemovePromoCode = async () => {
     setRemovingPromoCode(true);
     setPromoCode("");
-    handleBasketCheck("", "", true, false); // Pass isInitialLoad as false for actual removal
+    handleBasketCheck("", "", true);
     if (setShowPromoPopup) {
       setShowPromoPopup(false);
     }
@@ -335,39 +318,32 @@ function CheckOutSummaryMbl({
 
       {/* Cost Breakdown */}
       <div className="email-checkout__summary-costBreakdown">
-        <div className="email-checkout__summary-costBreakdown-subTotal">
-          <span className="subTotal-Content">
-            {t("payment.orderSummary.subTotal")}
-          </span>
-          <span className="subTotal-Value">
-            {t("common.aed")} {checkout?.netAmount}
-          </span>
-        </div>
-        <div
-          className="email-checkout__summary-costBreakdown-vat"
-          style={{ marginBottom: ".5rem" }}
-        >
-          <span className="vat-Content">{t("orderSummary.vat")}</span>
-          <span className="vat-Value">
-            + {t("common.aed")} {(checkout?.taxAmount || 0).toFixed(2)}{" "}
-          </span>
-        </div>
-        {/* Promo Code Savings Display */}
         {checkout?.promotions?.[0]?.discount && (
-          <div
-            className="email-checkout__summary-costBreakdown-promo"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <span className="promo-Content">
-              {t("orderSummary.promoCodeSavings")}
-            </span>
-            <span
-              className="promo-Value"
-              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+          <>
+            <div className="email-checkout__summary-costBreakdown-subTotal">
+              <span className="subTotal-Content">
+                {t("payment.orderSummary.subTotal")}
+              </span>
+              <span className="subTotal-Value">
+                {t("common.aed")} {checkout?.originalNetAmount}
+              </span>
+            </div>
+
+            <div
+              className="email-checkout__summary-costBreakdown-promo"
+              style={{ display: "flex", justifyContent: "space-between" }}
             >
-              {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
-            </span>
-          </div>
+              <span className="promo-Content">
+                {t("orderSummary.promoCodeSavings")}
+              </span>
+              <span
+                className="promo-Value"
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
+              </span>
+            </div>
+          </>
         )}
       </div>
 

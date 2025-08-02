@@ -15,16 +15,13 @@ import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
 
-// Helper function to check if a date is expired
 const isDateExpired = (validToDate) => {
   if (!validToDate) return false;
 
   try {
-    // Convert both dates to UTC to ensure consistent comparison
     const validTo = new Date(validToDate);
     const now = new Date();
 
-    // Reset both dates to start of day in UTC
     const validToUTC = Date.UTC(
       validTo.getUTCFullYear(),
       validTo.getUTCMonth(),
@@ -92,10 +89,8 @@ function MycartMbl({ onClose, visible }) {
     );
     if (!item) return;
 
-    // Calculate the actual change amount based on increment number
     const actualChange = change > 0 ? incrementNumber : -incrementNumber;
 
-    // Calculate new quantity respecting min and max bounds
     const newQuantity = Math.max(
       minQuantity,
       Math.min(maxQuantity, item.quantity + actualChange)
@@ -161,13 +156,15 @@ function MycartMbl({ onClose, visible }) {
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
-              originalNetAmount: orderDetails?.total?.net,
+              originalNetAmount: orderDetails?.total?.gross,
               firstName: "",
               lastName: "",
               phoneNumber: "",
               countryCode: "",
               isTnCAgrred: false,
               isConsentAgreed: false,
+              promoCode: "",
+              promotions: [],
             })
           );
           onSuccess();

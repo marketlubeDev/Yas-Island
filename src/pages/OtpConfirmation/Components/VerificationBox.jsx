@@ -142,7 +142,7 @@ export default function VerificationBox({ email }) {
       dispatch(setIsEmailVerification(true));
       dispatch(setVerificationEmail(email));
       dispatch(setCheckoutEmail(email));
-      navigate("/payment-details");
+      navigate("/payment-details", { state: { isCheckout: true } });
     } else {
       toast.error("OTP is incorrect ❌");
     }

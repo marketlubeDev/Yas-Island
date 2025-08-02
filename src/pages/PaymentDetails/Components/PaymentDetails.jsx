@@ -12,7 +12,7 @@ import usePayment from "../../../apiHooks/payment/payment";
 import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import ButtonLoading from "../../../components/Loading/ButtonLoading";
+
 
 export default function PaymentDetails({ isCheckout }) {
   const checkout = useSelector((state) => state.checkout);

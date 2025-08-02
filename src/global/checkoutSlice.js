@@ -3,7 +3,6 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const initialState = {
-  // Personal Details
   firstName: "",
   lastName: "",
   country: "",
@@ -11,23 +10,15 @@ const initialState = {
   emailId: "",
   phoneNumber: "",
   countryCode: "",
-
-  // Cart Details
   coupons: [],
   items: [],
   netAmount: 0,
-  originalNetAmount: 0, // Store original subtotal before any coupons
+  originalNetAmount: 0,
   taxAmount: 0,
   grossAmount: 0,
-
-  // Language
   language: "",
-
-  // Agreements
   isTnCAgrred: false,
   isConsentAgreed: false,
-
-  // Additional Info
   promoCode: "",
   promotions: [],
 };

@@ -48,7 +48,7 @@ function ConfirmEmailMbl({ onBack }) {
       dispatch(setIsEmailVerification(true));
       dispatch(setVerificationEmail(email));
 
-      navigate("/payment-details");
+      navigate("/payment-details", { state: { isCheckout: true } });
     } else {
       toast.error("OTP is incorrect ❌");
     }

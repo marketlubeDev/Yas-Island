@@ -179,17 +179,6 @@ export default function BookingSection({ product, onBack }) {
     setTotalPrice(newTotalPrice);
   }, [guests, product]);
 
-  // useEffect(() => {
-  //   if (
-  //     availableDates &&
-  //     availableDates.length > 0 &&
-  //     !selectedDate &&
-  //     !isLoadingDates
-  //   ) {
-  //     setSelectedDate(availableDates[0]);
-  //   }
-  // }, [availableDates, selectedDate, isLoadingDates]);
-
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -365,28 +354,6 @@ export default function BookingSection({ product, onBack }) {
       return;
     }
 
-    let hasPerformance = false;
-    let performanceId = null;
-
-    selectedProduct?.product_variants?.forEach((variant) => {
-      if (variant?.hasperformance) {
-        hasPerformance = true;
-      }
-    });
-
-    if (hasPerformance) {
-      performanceId = getPerformanceId(
-        selectedDate,
-        selectedProduct?.product_variants[0]?.productid
-      );
-      if (!performanceId) {
-        toast.error(t("NoPerformance"), {
-          position: "top-center",
-        });
-        return;
-      }
-    }
-
     const currentItems = [];
 
     Object.entries(guests).forEach(([productId, guestData]) => {
@@ -505,51 +472,6 @@ export default function BookingSection({ product, onBack }) {
               dispatch(addToCart(obj));
             });
           } else if (type === "checkout") {
-            // For checkout, clear cart first and add all verified items
-            dispatch(clearCart());
-
-            orderDetails?.order?.items?.forEach((item) => {
-              const variantData = selectedProduct?.product_variants?.find(
-                (variant) => variant?.productid == item?.productId
-              );
-
-              let price = {
-                currency: "AED",
-                net: variantData?.net_amount,
-                tax: variantData?.vat,
-                gross: variantData?.gross,
-              };
-              let obj = {
-                capacityGuid: item?.capacityGuid,
-                discount: item?.discount,
-                groupingCode: item?.groupingCode,
-                itemPromotionList: item?.itemPromotionList,
-                original: item?.original,
-                packageCode: item?.packageCode,
-                performances:
-                  item?.performances?.[0]?.performanceId ||
-                  getPerformanceId(item?.validFrom, item?.productId) ||
-                  null,
-                price: price,
-                productId: item?.productId,
-                quantity: item?.quantity,
-                rechargeAmount: item?.rechargeAmount,
-                validFrom: item?.validFrom,
-                validTo: item?.validTo
-                  ? formatDateToYYYYMMDD(item?.validTo)
-                  : getValidToDate(item?.productId, selectedDate),
-                image: selectedProduct?.product_images?.thumbnail_url,
-                title: selectedProduct?.product_title,
-                variantName: selectedProduct?.product_variants?.find(
-                  (variant) => variant?.productid == item?.productId
-                )?.productvariantname,
-                minQuantity: variantData?.min_quantity,
-                maxQuantity: variantData?.max_quantity,
-                incrementNumber: variantData?.increment_number,
-              };
-              dispatch(addToCart(obj));
-            });
-
             const items = orderDetails?.order?.items?.map((item) => ({
               ...item,
               productMasterid:
@@ -559,7 +481,7 @@ export default function BookingSection({ product, onBack }) {
                   )
                 )?.product_masterid || "",
             }));
-            // Update the checkout slice
+
             const checkoutData = {
               coupons: [],
               items: items,
@@ -577,6 +499,8 @@ export default function BookingSection({ product, onBack }) {
               isTnCAgrred: false,
               isConsentAgreed: false,
               promoCode: "",
+              promotions: [],
+              originalNetAmount: orderDetails?.order?.total?.gross,
             };
             dispatch(setCheckout(checkoutData));
             dispatch(clearCart());

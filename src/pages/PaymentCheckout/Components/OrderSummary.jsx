@@ -106,35 +106,18 @@ export default function OrderSummary({
   const handleBasketCheck = (
     promoCode = "",
     message = "",
-    isRemoveOperation = false,
-    isInitialLoad = false,
-    isCartItems = false
+    isRemoveOperation = false
   ) => {
     let items = [];
-
-    if (isCartItems) {
-      cartItems?.forEach((item) => {
-        items.push({
-          productId: item?.productId,
-          quantity: item?.quantity,
-          performance: item?.performances
-            ? [{ performanceId: item?.performances }]
-            : [],
-          validFrom: item?.validFrom,
-          validTo: item?.validTo,
-        });
+    checkout?.items?.forEach((item) => {
+      items.push({
+        productId: item?.productId,
+        quantity: item?.quantity,
+        performance: item?.performances ? item?.performances : [],
+        validFrom: item?.validFrom,
+        validTo: item?.validTo,
       });
-    } else {
-      checkout?.items?.forEach((item) => {
-        items.push({
-          productId: item?.productId,
-          quantity: item?.quantity,
-          performance: item?.performances ? item?.performances : [],
-          validFrom: item?.validFrom,
-          validTo: item?.validTo,
-        });
-      });
-    }
+    });
 
     const data = {
       coupons: promoCode ? [{ couponCode: promoCode }] : [],
@@ -185,7 +168,7 @@ export default function OrderSummary({
               originalNetAmount:
                 orderDetails?.coupons?.length > 0
                   ? originalAmount
-                  : orderDetails?.total?.net,
+                  : orderDetails?.total?.gross,
               firstName: checkout?.firstName,
               lastName: checkout?.lastName,
               phoneNumber: checkout?.phoneNumber,
@@ -202,7 +185,7 @@ export default function OrderSummary({
             setPromoCode("");
           } else if (message) {
             toast.error(message || "Invalid promo code");
-          } else if (isRemoveOperation && !isInitialLoad) {
+          } else if (isRemoveOperation) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
           }
         }
@@ -220,7 +203,7 @@ export default function OrderSummary({
 
   const handleRemovePromoCode = () => {
     setPromoCode("");
-    handleBasketCheck("", "", true, false); // Pass isInitialLoad as false for actual removal
+    handleBasketCheck("", "", true);
   };
 
   const handlePromoCode = async () => {
@@ -248,159 +231,6 @@ export default function OrderSummary({
       toast.error(error?.message || "Invalid promo code");
     }
   };
-
-  // Skeleton component for loading state
-  const OrderSummarySkeleton = () => (
-    <div className="order-summary-new">
-      {/* Header Skeleton */}
-      <div className="order-summary-header">
-        <div
-          className="skeleton-title skeleton-shimmer"
-          style={{
-            height: "24px",
-            width: "60%",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
-            marginBottom: "8px",
-          }}
-        ></div>
-        <div
-          className="skeleton-subtitle skeleton-shimmer"
-          style={{
-            height: "16px",
-            width: "40%",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "6px",
-          }}
-        ></div>
-      </div>
-
-      {/* View Items Section Skeleton */}
-      <div className="view-items-section">
-        <div className="view-items-header">
-          <div className="view-items-left">
-            <div
-              className="skeleton-icon skeleton-shimmer"
-              style={{
-                height: "18px",
-                width: "18px",
-                backgroundColor: "#f0f0f0",
-                borderRadius: "6px",
-                marginRight: "8px",
-              }}
-            ></div>
-            <div
-              className="skeleton-text skeleton-shimmer"
-              style={{
-                height: "16px",
-                width: "80px",
-                backgroundColor: "#f0f0f0",
-                borderRadius: "6px",
-              }}
-            ></div>
-          </div>
-          <div
-            className="skeleton-arrow skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "16px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Pricing Section Skeleton */}
-      <div className="pricing-section">
-        <div className="pricing-row">
-          <div
-            className="skeleton-label skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "60px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-          <div
-            className="skeleton-value skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "80px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-        </div>
-        <div className="pricing-row">
-          <div
-            className="skeleton-label skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "40px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-          <div
-            className="skeleton-value skeleton-shimmer"
-            style={{
-              height: "16px",
-              width: "60px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-        </div>
-        <div className="pricing-row total-row">
-          <div
-            className="skeleton-total-label skeleton-shimmer"
-            style={{
-              height: "20px",
-              width: "50px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "8px",
-            }}
-          ></div>
-          <div
-            className="skeleton-total-value skeleton-shimmer"
-            style={{
-              height: "20px",
-              width: "100px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "8px",
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Secure Payment Section Skeleton */}
-      <div className="secure-payment-section">
-        <div className="secure-payment-button">
-          <div
-            className="skeleton-secure-icon skeleton-shimmer"
-            style={{
-              height: "14px",
-              width: "14px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-              marginRight: "8px",
-            }}
-          ></div>
-          <div
-            className="skeleton-secure-text skeleton-shimmer"
-            style={{
-              height: "14px",
-              width: "120px",
-              backgroundColor: "#f0f0f0",
-              borderRadius: "6px",
-            }}
-          ></div>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="order-summary-new">
@@ -516,46 +346,48 @@ export default function OrderSummary({
 
       {/* Pricing Section */}
       <div className="pricing-section">
-        <div className="pricing-row">
-          <span className="pricing-label">{t("orderSummary.subTotal")}</span>
-          <span className="pricing-value">
-            {t("common.aed")}{" "}
-            {checkout?.originalNetAmount || checkout?.netAmount}
-          </span>
-        </div>
-        <div className="pricing-row">
-          <span className="pricing-label">{t("orderSummary.vat")}</span>
-          <span className="pricing-value">
-            + {t("common.aed")} {checkout?.taxAmount}
-          </span>
-        </div>
         {checkout?.promotions?.[0]?.discount && (
-          <div className="pricing-row">
-            <span className="pricing-label-promo">
-              {t("orderSummary.promoCodeSavings")}
-            </span>
-            <span className="pricing-value" style={{ display: "flex" }}>
-              {checkout?.promotions[0]?.discount}
-              <button
-                className="remove-promo-btn"
-                onClick={handleRemovePromoCode}
-                title={t("orderSummary.removePromoCode")}
-                type="button"
+          <>
+            <div className="pricing-row">
+              <span className="pricing-label">
+                {t("orderSummary.subTotal")}
+              </span>
+              <span className="pricing-value">
+                {t("common.aed")} {checkout?.originalNetAmount}
+              </span>
+            </div>
+
+            <div className="pricing-row">
+              <span className="pricing-label-promo">
+                {t("orderSummary.promoCodeSavings")}
+              </span>
+              <span
+                className="pricing-value"
+                style={{ display: "flex", justifyContent: "space-between" }}
               >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
+                {t("common.aed")}
+                {checkout?.promotions[0]?.discount}
+                <button
+                  className="remove-promo-btn"
+                  onClick={handleRemovePromoCode}
+                  title={t("orderSummary.removePromoCode")}
+                  type="button"
                 >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </span>
-          </div>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </span>
+            </div>
+          </>
         )}
 
         {/* Promo Code Section - Only show if no coupon is applied */}
