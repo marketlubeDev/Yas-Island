@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function PaymentDetailsBody({ isCheckout }) {
   const navigate = useNavigate();
   const handleBackClick = () => {
-    navigate("/otp-confirmation");
+    navigate("/email-verification");
   };
 
   return (

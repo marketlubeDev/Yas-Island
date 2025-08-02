@@ -106,6 +106,7 @@ function CheckOutSummaryMbl({
               position: "top-center",
             }
           );
+          setPromoCodeApplying(false);
         } else {
           const orderDetails = res?.orderdetails?.order;
 
@@ -162,6 +163,9 @@ function CheckOutSummaryMbl({
             toast.success(t("orderSummary.promoCodeRemoved"), {});
             setRemovingPromoCode(false);
           }
+
+          // Clear loading states after successful operation
+          setPromoCodeApplying(false);
         }
       },
 
@@ -207,8 +211,6 @@ function CheckOutSummaryMbl({
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || "Invalid promo code");
-    } finally {
-      setPromoCodeApplying(false);
     }
   };
 

@@ -70,7 +70,7 @@ function MobileBottomNav() {
         <div
           className="mobile-bottom-nav__item"
           onClick={handleCartClick}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", position: "relative" }}
         >
           <img
             src={cartIconSrc}
