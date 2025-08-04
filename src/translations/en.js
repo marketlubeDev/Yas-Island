@@ -305,4 +305,24 @@ export const en = {
     promoCodeRemoved: "Promo code removed successfully",
     couponApplied: "Remove Coupon",
   },
+  toastMessages: {
+    invalidEmail: "Please enter a valid email address",
+    invalidPhoneNumber: "Please enter a valid phone number",
+    invalidTerms: "Please accept the terms and conditions to proceed",
+    invalidNationality: "Please select a nationality",
+    invalidCountry: "Please select a country",
+    somethingWentWrong: "Something went wrong",
+    otpExpired: "OTP has expired. Please request a new one.",
+    invalidOTP: "Please enter a valid OTP",
+    otpIncorrect: "OTP is incorrect ❌",
+    invalidPromoCode: "Please enter a valid promo code",
+    failedToLoadTermsAndConditions: "Failed to load terms and conditions",
+    acceptTermsAndConditions:
+      "Please accept the terms and conditions to proceed",
+    thisProductIsCurrentlyNotAvailable:
+      "This product is currently not available",
+    pleaseSelectDateFirst: "Please select a date first",
+    pleaseEnterValidQuantity: "Please enter a valid quantity",
+    noPerformance: "No performance available for this date",
+  },
 };

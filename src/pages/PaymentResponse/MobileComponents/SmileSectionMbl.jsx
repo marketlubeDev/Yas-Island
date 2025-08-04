@@ -28,7 +28,9 @@ function SmileSectionMbl({ selected, setSelected }) {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data || "Something went wrong");
+      toast.error(
+        error?.response?.data || t("toastMessages.somethingWentWrong")
+      );
     } finally {
       setIsSubmitting(false);
     }

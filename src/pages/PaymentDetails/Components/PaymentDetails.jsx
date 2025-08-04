@@ -13,7 +13,6 @@ import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-
 export default function PaymentDetails({ isCheckout }) {
   const checkout = useSelector((state) => state.checkout);
   const { email: otpEmail } = useSelector((state) => state.otp);
@@ -114,7 +113,7 @@ export default function PaymentDetails({ isCheckout }) {
 
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
-      toast.error("Please accept the terms and conditions to proceed");
+      toast.error(t("toastMessages.acceptTermsAndConditions"));
       return;
     }
 
@@ -145,7 +144,7 @@ export default function PaymentDetails({ isCheckout }) {
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => {
-        toast.error(error);
+        toast.error(error || t("toastMessages.somethingWentWrong"));
       });
       return;
     }
@@ -159,7 +158,7 @@ export default function PaymentDetails({ isCheckout }) {
         console.log(error, "error>>");
         toast.error(
           error?.response?.data?.message ||
-            "Something went wrong with the payment"
+            t("toastMessages.somethingWentWrong")
         );
       },
     });

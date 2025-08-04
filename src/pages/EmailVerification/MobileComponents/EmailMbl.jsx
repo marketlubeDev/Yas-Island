@@ -18,7 +18,7 @@ function EmailMbl() {
   const handleConfirmEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailValue)) {
-      toast.error("Please enter a valid email address");
+      toast.error(t("toastMessages.invalidEmail"));
       return;
     }
     verification(emailValue, {
@@ -35,7 +35,10 @@ function EmailMbl() {
         navigate("/otp-confirmation");
       },
       onError: (error) => {
-        toast.error(error?.response?.data?.message || "Something went wrong");
+        toast.error(
+          error?.response?.data?.message ||
+            t("toastMessages.somethingWentWrong")
+        );
       },
     });
   };

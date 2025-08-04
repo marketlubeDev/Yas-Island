@@ -28,17 +28,17 @@ function ConfirmEmailMbl({ onBack }) {
 
   const handleConfirmEmail = async () => {
     if (email === "") {
-      toast.error("Please enter a valid email");
+      toast.error(t("toastMessages.invalidEmail"));
       navigate("/email-verification");
       return;
     }
     if (isExpired) {
-      toast.error("OTP has expired. Please request a new one.");
+      toast.error(t("toastMessages.otpExpired"));
       return;
     }
     const otpString = otp.join("");
     if (otpString.length !== 6) {
-      toast.error("Please enter a valid OTP");
+      toast.error(t("toastMessages.invalidOTP"));
       return;
     }
 
@@ -50,7 +50,7 @@ function ConfirmEmailMbl({ onBack }) {
 
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
-      toast.error("OTP is incorrect ❌");
+      toast.error(t("toastMessages.otpIncorrect"));
     }
   };
 
@@ -63,7 +63,10 @@ function ConfirmEmailMbl({ onBack }) {
         setOtpInput(new Array(6).fill(""));
       },
       onError: (error) => {
-        toast.error(error?.response?.data?.message || "Something went wrong");
+        toast.error(
+          error?.response?.data?.message ||
+            t("toastMessages.somethingWentWrong")
+        );
       },
     });
   };

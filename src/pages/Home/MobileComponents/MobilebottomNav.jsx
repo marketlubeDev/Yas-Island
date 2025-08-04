@@ -70,16 +70,39 @@ function MobileBottomNav() {
         <div
           className="mobile-bottom-nav__item"
           onClick={handleCartClick}
-          style={{ cursor: "pointer", position: "relative" }}
+          style={{ cursor: "pointer" }}
         >
-          <img
-            src={cartIconSrc}
-            alt={t("common.cart")}
-            // style={isDarkMode ? { opacity: 1 } : { opacity: 1 }}
-          />
-          {cartItems.length > 0 && (
-            <span className="cart-notification-mobile">{cartItems.length}</span>
-          )}
+          <div style={{ position: "relative", display: "inline-block" }}>
+            <img
+              src={cartIconSrc}
+              alt={t("common.cart")}
+              // style={isDarkMode ? { opacity: 1 } : { opacity: 1 }}
+            />
+            {cartItems.length > 0 && (
+              <span
+                className="cart-notification-mobile"
+                style={{
+                  position: "absolute",
+                  top: "-8px",
+                  right: "-8px",
+                  background: "linear-gradient(#ff3988, #bf0650)",
+                  color: "white",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  minWidth: "20px",
+                  zIndex: 1,
+                }}
+              >
+                {cartItems.length}
+              </span>
+            )}
+          </div>
 
           <span>{t("common.cart")}</span>
         </div>

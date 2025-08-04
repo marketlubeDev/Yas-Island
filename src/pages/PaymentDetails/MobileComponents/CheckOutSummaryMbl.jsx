@@ -29,16 +29,10 @@ function CheckOutSummaryMbl({
     (state) => state.language.currentLanguage
   );
   const navigate = useNavigate();
-  // Ensure products are loaded for the current language
   useGetProductList();
 
   const productList = useSelector((state) => state.product.allProducts);
   const { mutate: checkBasket } = useCheckBasket();
-
-  // Get cart items from Redux store
-  const { cartItems } = useSelector((state) => state.cart);
-
-  // Call handleBasketCheck on component mount using cart items
 
   useEffect(() => {
     if (!isCheckout) {
@@ -101,7 +95,8 @@ function CheckOutSummaryMbl({
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
           toast.error(
-            res?.orderDetails?.error?.text || t("Something went wrong"),
+            res?.orderDetails?.error?.text ||
+              t("toastMessages.somethingWentWrong"),
             {
               position: "top-center",
             }
@@ -158,7 +153,7 @@ function CheckOutSummaryMbl({
             setPromoCode("");
             // Force component re-render to ensure totals update
           } else if (message) {
-            toast.error(message || "Invalid promo code");
+            toast.error(message || t("toastMessages.invalidPromoCode"));
           } else if (isRemoveOperation) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
             setRemovingPromoCode(false);
@@ -171,9 +166,12 @@ function CheckOutSummaryMbl({
 
       onError: (err) => {
         console.log(err, "err");
-        toast.error(err?.response?.data?.message || t("Something went wrong"), {
-          position: "top-center",
-        });
+        toast.error(
+          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
+        );
         setPromoCodeApplying(false);
         setRemovingPromoCode(false);
       },
@@ -194,7 +192,7 @@ function CheckOutSummaryMbl({
     try {
       setPromoCodeApplying(true);
       if (!promoCode) {
-        toast.error("Please enter a promo code");
+        toast.error(t("toastMessages.invalidPromoCode"));
         setPromoCodeApplying(false);
         return;
       }
@@ -202,7 +200,8 @@ function CheckOutSummaryMbl({
 
       if (!response?.data?.coupondetails?.coupon) {
         let message =
-          response?.coupondetails?.error?.text || "Invalid promo code";
+          response?.coupondetails?.error?.text ||
+          t("toastMessages.invalidPromoCode");
         handleBasketCheck("", message);
       } else {
         setFormData({ ...formData, promoCode: promoCode });
@@ -210,7 +209,7 @@ function CheckOutSummaryMbl({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || "Invalid promo code");
+      toast.error(error?.message || t("toastMessages.invalidPromoCode"));
     }
   };
 

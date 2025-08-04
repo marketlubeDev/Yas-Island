@@ -91,7 +91,7 @@ function PaymentDetailsMobile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!checkout.isTnCAgrred) {
-      toast.error("Please accept the terms and conditions to proceed");
+      toast.error(t("toastMessages.acceptTermsAndConditions"));
       return;
     }
 
@@ -122,7 +122,7 @@ function PaymentDetailsMobile() {
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => {
-        toast.error(error);
+        toast.error(error || t("toastMessages.somethingWentWrong"));
       });
       return;
     }
@@ -136,7 +136,7 @@ function PaymentDetailsMobile() {
         console.log(error, "error>>");
         toast.error(
           // error?.response?.data?.message ||
-          "Something went wrong with the payment"
+          t("toastMessages.somethingWentWrong")
         );
       },
     });
@@ -181,7 +181,7 @@ function PaymentDetailsMobile() {
       setIsTermsModalOpen(true);
     } catch (error) {
       console.error("Error fetching terms and conditions:", error);
-      toast.error("Failed to load terms and conditions");
+      toast.error(t("toastMessages.failedToLoadTermsAndConditions"));
     }
   };
 

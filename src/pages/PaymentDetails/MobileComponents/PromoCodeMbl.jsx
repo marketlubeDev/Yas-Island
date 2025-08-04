@@ -63,7 +63,8 @@ function PromoCodeMbl({ onClose }) {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
           toast.error(
-            res?.orderDetails?.error?.text || t("Something went wrong"),
+            res?.orderDetails?.error?.text ||
+              t("toastMessages.somethingWentWrong"),
             {
               position: "top-center",
             }
@@ -99,9 +100,12 @@ function PromoCodeMbl({ onClose }) {
       },
       onError: (err) => {
         console.log(err, "err");
-        toast.error(err?.response?.data?.message || t("Something went wrong"), {
-          position: "top-center",
-        });
+        toast.error(
+          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
+        );
       },
     });
   };

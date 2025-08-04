@@ -108,7 +108,7 @@ export default function BookingSection({ product, onBack }) {
 
         // Check if we have any performance data
         if (!performanceData || performanceData.length === 0) {
-          toast.error("This product is currently not available", {
+          toast.error(t("toastMessages.thisProductIsCurrentlyNotAvailable"), {
             position: "top-center",
           });
           onBack();
@@ -139,7 +139,7 @@ export default function BookingSection({ product, onBack }) {
         );
 
         if (allVariantsUnavailable) {
-          toast.error("This product is currently not available", {
+          toast.error(t("toastMessages.thisProductIsCurrentlyNotAvailable"), {
             position: "top-center",
           });
           onBack();
@@ -154,7 +154,9 @@ export default function BookingSection({ product, onBack }) {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong");
+      toast.error(
+        error?.response?.data?.message || t("toastMessages.somethingWentWrong")
+      );
       onBack();
     } finally {
       setIsLoadingDates(false);
@@ -348,7 +350,7 @@ export default function BookingSection({ product, onBack }) {
   // Common function to handle basket check and cart operations
   const handleBasketCheck = (onSuccess, type = "cart") => {
     if (!selectedDate) {
-      toast.error(t("Please SelectDate"), {
+      toast.error(t("toastMessages.pleaseSelectDateFirst"), {
         position: "top-center",
       });
       return;
@@ -400,7 +402,7 @@ export default function BookingSection({ product, onBack }) {
     };
 
     if (currentItems.length === 0) {
-      toast.error(t("Please enter a valid quantity"), {
+      toast.error(t("toastMessages.pleaseEnterValidQuantity"), {
         position: "top-center",
       });
       return;
@@ -410,7 +412,8 @@ export default function BookingSection({ product, onBack }) {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
           toast.error(
-            res?.orderDetails?.error?.text || t("Something went wrong"),
+            res?.orderDetails?.error?.text ||
+              t("toastMessages.somethingWentWrong"),
             {
               position: "top-center",
             }
@@ -550,9 +553,12 @@ export default function BookingSection({ product, onBack }) {
       },
       onError: (err) => {
         console.log(err);
-        toast.error(err?.response?.data?.message || t("Something went wrong"), {
-          position: "top-center",
-        });
+        toast.error(
+          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
+        );
       },
     });
   };

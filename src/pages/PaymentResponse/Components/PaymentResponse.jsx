@@ -56,7 +56,9 @@ export default function PaymentResponse() {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data);
+      toast.error(
+        error?.response?.data || t("toastMessages.somethingWentWrong")
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -85,7 +87,7 @@ export default function PaymentResponse() {
               style={{
                 pointerEvents: isSubmitting ? "none" : "auto",
                 opacity: isSubmitting ? 0.5 : 1,
-                transition: "opacity 0.3s"
+                transition: "opacity 0.3s",
               }}
             >
               <div
@@ -122,7 +124,10 @@ export default function PaymentResponse() {
                 />
                 <div className="label">{t("payment.response.average")}</div>
               </div>
-              <div className="option" onClick={() => handleEmojiClick("Unsatisfied")}>
+              <div
+                className="option"
+                onClick={() => handleEmojiClick("Unsatisfied")}
+              >
                 <img
                   className="emoji red"
                   src={Poor}
@@ -148,8 +153,10 @@ export default function PaymentResponse() {
             <img src={thanksmile} alt="Smiley" className="smiley-img" />
           </div>
           <p className="feedback-text">{t("payment.response.thankYou")}</p>
-          <p className="feedback-text">{t("payment.response.redirecting")} {countdown} {t("payment.response.seconds")}</p>
-
+          <p className="feedback-text">
+            {t("payment.response.redirecting")} {countdown}{" "}
+            {t("payment.response.seconds")}
+          </p>
         </div>
       )}
     </div>

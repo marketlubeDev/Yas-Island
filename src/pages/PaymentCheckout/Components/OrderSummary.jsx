@@ -41,9 +41,6 @@ export default function OrderSummary({
   const productList = useSelector((state) => state.product.allProducts);
   const { mutate: checkBasket } = useCheckBasket();
 
-  // Get cart items from Redux store
-  const { cartItems } = useSelector((state) => state.cart);
-
   const getProduct = (item) => {
     const product = productList.find((product) =>
       product.product_variants.some((variant) => variant.productid === item)
@@ -129,7 +126,8 @@ export default function OrderSummary({
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
           toast.error(
-            res?.orderDetails?.error?.text || t("Something went wrong"),
+            res?.orderDetails?.error?.text ||
+              t("toastMessages.somethingWentWrong"),
             {
               position: "top-center",
             }
@@ -184,7 +182,7 @@ export default function OrderSummary({
             // Clear the promo code input since it's now applied
             setPromoCode("");
           } else if (message) {
-            toast.error(message || "Invalid promo code");
+            toast.error(message || t("toastMessages.invalidPromoCode"));
           } else if (isRemoveOperation) {
             toast.success(t("orderSummary.promoCodeRemoved"), {});
           }
@@ -192,9 +190,12 @@ export default function OrderSummary({
       },
       onError: (err) => {
         console.log(err, "err");
-        toast.error(err?.response?.data?.message || t("Something went wrong"), {
-          position: "top-center",
-        });
+        toast.error(
+          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
+        );
         setPromoCodeApplying(false);
         // Set loading to false on error
       },
@@ -202,6 +203,7 @@ export default function OrderSummary({
   };
 
   const handleRemovePromoCode = () => {
+    setPromoCodeApplying(true);
     setPromoCode("");
     handleBasketCheck("", "", true);
   };
@@ -211,7 +213,7 @@ export default function OrderSummary({
       setPromoCodeApplying(true);
       if (!promoCode) {
         setPromoCodeApplying(false);
-        toast.error("Please enter a promo code");
+        toast.error(t("toastMessages.invalidPromoCode"));
         return;
       }
       const response = await validatePromocode(promoCode);
@@ -219,7 +221,8 @@ export default function OrderSummary({
         setIsModalVisible(false);
         // toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
         let message =
-          response?.coupondetails?.error?.text || "Invalid promo code";
+          response?.coupondetails?.error?.text ||
+          t("toastMessages.invalidPromoCode");
 
         handleBasketCheck("", message);
       } else {
@@ -228,93 +231,75 @@ export default function OrderSummary({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || "Invalid promo code");
+      toast.error(error?.message || t("toastMessages.invalidPromoCode"));
     }
   };
 
   return (
-    <div className="order-summary-new">
-      {/* Header */}
-      <div className="order-summary-header">
-        <h3 className="order-summary-title">{t("orderSummary.title")}</h3>
-        <div className="order-summary-subtitle">
-          {checkout?.items?.length}{" "}
-          {checkout?.items?.length === 1
-            ? t("orderSummary.item")
-            : t("orderSummary.items")}
-        </div>
+    <div className="email-checkout__summary">
+      {/* Header - Mobile Style */}
+      <div className="email-checkout__summary-title">
+        <h3>{t("orderSummary.title")}</h3>
+        <span>
+          {checkout?.items?.length || 1} {t("orderSummary.items")}
+        </span>
       </div>
 
-      {/* View All Items Section */}
-      <div className="view-items-section">
-        <div className="view-items-header" onClick={toggleAllItems}>
-          <div className="view-items-left">
-            <div className="shopping-bag-icon">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
-                  stroke="#666"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
-                  stroke="#666"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
-                  stroke="#666"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <span className="view-items-text">
-              {t("orderSummary.viewItems")}
-            </span>
-          </div>
+      {/* View Items Button - Mobile Style */}
+      <button
+        onClick={toggleAllItems}
+        className="email-checkout__summary-viewItems"
+        type="button"
+      >
+        <div className="email-checkout__summary-viewItems-icon">
           <svg
-            width="16"
-            height="16"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#666"
+            stroke="currentColor"
             strokeWidth="2"
-            style={{
-              transform: showAllItems ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.2s",
-            }}
           >
-            <polyline points="6,9 12,15 18,9"></polyline>
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
+          <span className="email-checkout__summary-viewItems-icon-text">
+            {t("orderSummary.viewItems")}
+          </span>
         </div>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          style={{
+            transform: showAllItems ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.2s",
+          }}
+        >
+          <polyline points="6,9 12,15 18,9"></polyline>
+        </svg>
+      </button>
 
-        {showAllItems && (
-          <div className="items-container">
-            {checkout?.items?.map((item, index) => (
+      {/* Item Details Section - Mobile Style */}
+      {showAllItems && (
+        <div className="items-container">
+          {checkout?.items && checkout.items.length > 0 ? (
+            checkout.items.map((item, index) => (
               <div key={index} className="order-item-minimal">
                 <div className="item-content">
                   <div className="item-main">
                     <h4 className="item-title">
-                      {getProduct(item.productId)?.product?.product_title}
+                      {getProduct(item.productId)?.product?.product_title ||
+                        "Product"}
                     </h4>
                     <div className="item-meta">
                       <span className="item-variant">
-                        {
-                          getProduct(item.productId)?.productVariant
-                            ?.productvariantname
-                        }
+                        {getProduct(item.productId)?.productVariant
+                          ?.productvariantname || "Variant"}
                       </span>
                       <span className="item-separator">•</span>
                       <span className="item-date">
@@ -322,7 +307,7 @@ export default function OrderSummary({
                       </span>
                       <span className="item-separator">•</span>
                       <span className="item-quantity">
-                        Qty: {item.quantity}
+                        Qty: {item.quantity || 0}
                       </span>
                     </div>
                   </div>
@@ -330,132 +315,155 @@ export default function OrderSummary({
                     <span className="price-amount">
                       {t("common.aed")}{" "}
                       {(
-                        getProduct(item.productId)?.productVariant?.net_amount *
-                          item.quantity +
-                        getProduct(item.productId)?.productVariant?.vat *
-                          item.quantity
+                        (getProduct(item.productId)?.productVariant
+                          ?.net_amount || 0) *
+                          (item.quantity || 0) +
+                        (getProduct(item.productId)?.productVariant?.vat || 0) *
+                          (item.quantity || 0)
                       ).toFixed(2)}
                     </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
-      </div>
+            ))
+          ) : (
+            <div className="order-item-minimal">
+              <div className="item-content">
+                <div className="item-main">
+                  <h4 className="item-title">No items in cart</h4>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
-      {/* Pricing Section */}
-      <div className="pricing-section">
+      {/* Cost Breakdown - Mobile Style */}
+      <div className="email-checkout__summary-costBreakdown">
         {checkout?.promotions?.[0]?.discount && (
           <>
-            <div className="pricing-row">
-              <span className="pricing-label">
+            <div className="email-checkout__summary-costBreakdown-subTotal">
+              <span className="subTotal-Content">
                 {t("orderSummary.subTotal")}
               </span>
-              <span className="pricing-value">
+              <span className="subTotal-Value">
                 {t("common.aed")} {checkout?.originalNetAmount}
               </span>
             </div>
 
-            <div className="pricing-row">
-              <span className="pricing-label-promo">
+            <div
+              className="email-checkout__summary-costBreakdown-promo"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <span className="promo-Content">
                 {t("orderSummary.promoCodeSavings")}
               </span>
               <span
-                className="pricing-value"
-                style={{ display: "flex", justifyContent: "space-between" }}
+                className="promo-Value"
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
-                {t("common.aed")}
-                {checkout?.promotions[0]?.discount}
-                <button
-                  className="remove-promo-btn"
-                  onClick={handleRemovePromoCode}
-                  title={t("orderSummary.removePromoCode")}
-                  type="button"
-                >
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </button>
+                {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
               </span>
             </div>
           </>
         )}
-
-        {/* Promo Code Section - Only show if no coupon is applied */}
-        {showPromoCode && !checkout?.promotions?.[0]?.discount && (
-          <div className="promo-section">
-            <div className="promo-input-group">
-              <input
-                type="text"
-                value={promoCode}
-                onChange={(e) => setPromoCode(e.target.value)}
-                placeholder={t("orderSummary.enterPromoCode")}
-                className="promo-input"
-                disabled={promoCodeApplying}
-              />
-              <button
-                className="promo-apply-btn"
-                onClick={handlePromoCode}
-                disabled={promoCodeApplying}
-              >
-                {promoCodeApplying ? (
-                  <ButtonLoading height="14px" width="14px" />
-                ) : (
-                  t("orderSummary.apply")
-                )}
-              </button>
-            </div>
-          </div>
-        )}
-
-        <div className="pricing-row total-row">
-          <span className="total-label">{t("orderSummary.total")}</span>
-          <span className="total-value">
-            {t("common.aed")} {checkout?.grossAmount}
-          </span>
-        </div>
       </div>
 
-      {/* Secure Payment Section */}
-      <div className="secure-payment-section">
-        <div className="secure-payment-button">
-          <div className="secure-icon">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 2L3 7V12C3 16.4183 6.58172 20 11 20H13C17.4183 20 21 16.4183 21 12V7L12 2Z"
-                fill="#22C55E"
-                stroke="#22C55E"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9 12L11 14L15 10"
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+      {/* Promo Code Section - Mobile Style - Only show if no coupon is applied */}
+      {showPromoCode && !checkout?.promotions?.[0]?.discount && (
+        <div className="email-checkout__summary-promoCode">
+          <div className="email-checkout__summary-promoCode-title">
+            {t("orderSummary.promoDiscount")}
           </div>
-          <span className="secure-text">Secure Payment</span>
+          <div className="email-checkout__summary-promoCode-input-container">
+            <input
+              type="text"
+              placeholder={t("orderSummary.enterPromoCode")}
+              className="email-checkout__summary-promoCode-input-container-inputBox"
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
+              disabled={promoCodeApplying}
+            />
+            <button
+              className="email-checkout__summary-promoCode-input-container-applyButton"
+              type="button"
+              onClick={handlePromoCode}
+              disabled={promoCodeApplying}
+            >
+              {promoCodeApplying ? <ButtonLoading /> : t("orderSummary.apply")}
+            </button>
+          </div>
         </div>
+      )}
+
+      {/* Coupon Applied Indicator - Mobile Style */}
+      {checkout?.promotions?.[0]?.discount && (
+        <div
+          className="email-checkout__summary-couponApplied"
+          onClick={handleRemovePromoCode}
+          style={{ cursor: promoCodeApplying ? "not-allowed" : "pointer" }}
+          disabled={promoCodeApplying}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "8px",
+              padding: "12px 16px",
+              backgroundColor: "#fce1d3",
+              border: "1px solid #ffbbaf",
+              borderRadius: "8px",
+              margin: "10px 0",
+              opacity: promoCodeApplying ? 0.7 : 1,
+            }}
+          >
+            <span
+              style={{
+                color: "#ff7158",
+                fontWeight: "600",
+                fontSize: "14px",
+              }}
+            >
+              {t("orderSummary.removePromoCode")}
+            </span>
+
+            {/* Loading/Remove indicator */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                minWidth: "20px",
+              }}
+            >
+              {promoCodeApplying && <ButtonLoading />}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Total - Mobile Style */}
+      <div className="email-checkout__summary-grandTotal">
+        <span className="grandTotal-Content">{t("orderSummary.total")}</span>
+        <span className="grandTotal-Value">
+          {t("common.aed")} {(checkout?.grossAmount || 0).toFixed(2)}
+        </span>
+      </div>
+
+      {/* Secure Payment Button - Mobile Style */}
+      <div className="email-checkout__summary-securePayment">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        {t("orderSummary.securePayment")}
       </div>
 
       <Modal

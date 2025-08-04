@@ -43,7 +43,7 @@ const productSlice = createSlice({
 const productPersistConfig = {
   key: "yasIslandProduct",
   storage,
-  whitelist: ["allProducts", "parks", "currentPark", "currentSort"], // Only persist these fields
+  whitelist: ["allProducts", "parks"], // Only persist these fields
 };
 
 export const {
