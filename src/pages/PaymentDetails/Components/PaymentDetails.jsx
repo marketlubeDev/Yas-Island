@@ -153,7 +153,7 @@ export default function PaymentDetails({ isCheckout }) {
     createOrder(data, {
       onSuccess: (responseData) => {
         dispatch(setOrderData(responseData));
-        navigate("/card-payment");
+        navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {
         console.log(error, "error>>");

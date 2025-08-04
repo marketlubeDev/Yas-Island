@@ -281,7 +281,7 @@ export default function PersonalDetailsForm({
 
     try {
       // Get the first productId from checkout items, or use a default value
-      const productId = checkout?.items?.[0]?.productMasterid || "69";
+      const productId = checkout?.items?.[0]?.productMasterid;
       const source = "web";
 
       const response = await getTermsAndCondition(

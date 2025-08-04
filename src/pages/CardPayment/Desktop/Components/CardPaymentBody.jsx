@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CardPaymentDetail from "./CardPaymentDetail";
 import OrderSummary from "../../../PaymentCheckout/Components/OrderSummary";
 
-export default function CardPaymentBody() {
+export default function CardPaymentBody({ isCheckout }) {
   const navigate = useNavigate();
   const orderData = useSelector((state) => state.order.orderData);
   const checkout = useSelector((state) => state.checkout);
@@ -44,6 +44,7 @@ export default function CardPaymentBody() {
             setFormData={setFormData}
             checkout={checkout}
             showPromoCode={false}
+            isCheckout={isCheckout}
           />
         </div>
       </div>
