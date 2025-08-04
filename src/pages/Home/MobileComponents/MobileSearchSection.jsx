@@ -31,8 +31,8 @@ function MobileSearchSection() {
   const sortOptions = [
     {
       label: t("productHead.selectSort"),
-      value: t("productHead.selectSort"),
-      isSelected: currentSort === t("productHead.selectSort"),
+      value: "",
+      isSelected: !currentSort,
     },
     {
       label: t("productHead.priceHighToLow"),
@@ -61,7 +61,7 @@ function MobileSearchSection() {
 
   const filterButtons = [
     {
-      label: t("productHead.selectSort"),
+      label: currentSort || t("productHead.selectSort"),
       isOpen: showSortDropdown,
       onClick: () => setShowSortDropdown(!showSortDropdown),
       ref: sortBtnRef,

@@ -10,6 +10,7 @@ import AccessibilityModal from "./Components/AccessibilityModal";
 import MainProductHead from "./ProductHead/mainProductHead";
 import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
+import Header from "../../layouts/Header/Header";
 
 export default function ProductPage() {
   const productList = useSelector((state) => state.product.allProducts);
@@ -89,7 +90,7 @@ export default function ProductPage() {
     <div className="product">
       <SideBar />
       <div className="product-content">
-        <MainProductHead />
+        <Header />
         {isLoading ? (
           <div
             style={{
