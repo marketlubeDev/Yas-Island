@@ -155,7 +155,6 @@ export default function PaymentDetails({ isCheckout }) {
         navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {
-        console.log(error, "error>>");
         toast.error(
           error?.response?.data?.message ||
             t("toastMessages.somethingWentWrong")

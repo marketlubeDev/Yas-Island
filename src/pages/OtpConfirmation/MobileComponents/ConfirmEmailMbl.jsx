@@ -74,7 +74,7 @@ function ConfirmEmailMbl({ onBack }) {
   return (
     <div className="confirm-email__overlay">
       <div className="confirm-email__modal">
-        <PaymentHeaderMbl step={1} onBack={onBack} />
+        <PaymentHeaderMbl step={1} onBack={() => navigate("/email-verification")} />
         <div className="confirm-email__content">
           <div className="confirm-email__form-container">
             {/* <div className="confirm-email__label">

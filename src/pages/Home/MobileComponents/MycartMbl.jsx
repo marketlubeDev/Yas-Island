@@ -158,9 +158,9 @@ function MycartMbl({ onClose, visible }) {
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
               originalNetAmount: orderDetails?.total?.gross,
-              firstName: "",
-              lastName: "",
-              phoneNumber: "",
+              // firstName: "",
+              // lastName: "",
+              // phoneNumber: "",
               countryCode: "",
               isTnCAgrred: false,
               isConsentAgreed: false,
@@ -172,7 +172,6 @@ function MycartMbl({ onClose, visible }) {
         }
       },
       onError: (err) => {
-        console.log(err, "err");
         toast.error(
           err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
           {

@@ -189,7 +189,6 @@ export default function OrderSummary({
         }
       },
       onError: (err) => {
-        console.log(err, "err");
         toast.error(
           err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
           {
@@ -236,7 +235,7 @@ export default function OrderSummary({
   };
 
   return (
-    <div className="email-checkout__summary">
+    <div className="order-summary-new">
       {/* Header - Mobile Style */}
       <div className="email-checkout__summary-title">
         <h3>{t("orderSummary.title")}</h3>
@@ -397,7 +396,7 @@ export default function OrderSummary({
       )}
 
       {/* Coupon Applied Indicator - Mobile Style */}
-      {checkout?.promotions?.[0]?.discount && (
+      {showPromoCode && checkout?.promotions?.[0]?.discount && (
         <div
           className="email-checkout__summary-couponApplied"
           onClick={handleRemovePromoCode}

@@ -26,9 +26,9 @@ function CheckBoxMbl({
           onChange={() => handleTermsChange("terms", !acceptTerms)}
           required
           style={{
-            minWidth: '18px',
-            minHeight: '18px',
-            accentColor: 'var(--color-base-checkbox-check)',
+            minWidth: "18px",
+            minHeight: "18px",
+            accentColor: "var(--color-base-checkbox-check)",
           }}
         />
         {t("payment.orderSummary.terms.acceptTerms")}{" "}
@@ -56,9 +56,9 @@ function CheckBoxMbl({
           checked={receiveComms}
           onChange={() => handleTermsChange("consent", !receiveComms)}
           style={{
-            minWidth: '18px',
-            minHeight: '18px',
-            accentColor: 'var(--color-base-checkbox-check)',
+            minWidth: "18px",
+            minHeight: "18px",
+            accentColor: "var(--color-base-checkbox-check)",
           }}
         />
         {t("payment.orderSummary.terms.receiveCommunications")}

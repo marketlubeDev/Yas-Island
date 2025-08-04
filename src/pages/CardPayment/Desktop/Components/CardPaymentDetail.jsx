@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
 import visaIcon from "../../../../assets/icons/payment.png";
+import { useNavigate } from "react-router-dom";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -18,9 +19,8 @@ export default function CardPaymentDetail({ orderData }) {
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [countdown, setCountdown] = useState(5);
-
+  const navigate = useNavigate();
   const handlePaymentSuccess = () => {
-    console.log("Payment successful, starting redirect countdown...");
     setPaymentStatus("success");
     dispatch(clearCart()); // Clear the cart when payment is successful
 
@@ -63,7 +63,6 @@ export default function CardPaymentDetail({ orderData }) {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
-        console.log("Received message from iframe:", event.data);
 
         // Handle different payment statuses
         if (event.data) {
@@ -125,6 +124,8 @@ export default function CardPaymentDetail({ orderData }) {
           }
         }
       };
+    } else {
+      navigate("/");
     }
   }, [orderData, paymentStatus]);
 
