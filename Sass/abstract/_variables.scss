@@ -306,6 +306,11 @@ $color-yellow: #ffea00;
   // Base colors and theme
   --color-base-border: #e3dff1;
 
+  // Checkbox styling
+  --color-base-checkbox-bg: #ffffff;
+  --color-base-checkbox-border: #d9d9d9;
+  --color-base-checkbox-check: #231942;
+
   // Dark mode overrides
   [data-theme="dark"] {
     --color-base-bg: #0b0c0c;
@@ -313,6 +318,11 @@ $color-yellow: #ffea00;
     --color-base-text-secondary: #a8a8b3;
     --color-base-border: #2d2d2d;
     --color-base-icon-filter: invert(1); // Invert icons in dark mode
+
+    // Dark mode checkbox styling
+    --color-base-checkbox-bg: #2d2d2d;
+    --color-base-checkbox-border: #5a5a5a;
+    --color-base-checkbox-check: #ffffff;
 
     // Dark mode selector options
   }

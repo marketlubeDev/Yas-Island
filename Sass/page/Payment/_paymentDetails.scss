@@ -345,8 +345,8 @@
           left: 0;
           height: 18px;
           width: 18px;
-          background-color: transparent;
-          border: 2px solid var(--ip-bodr-btm);
+          background-color: var(--color-base-checkbox-bg);
+          border: 2px solid var(--color-base-checkbox-border);
           border-radius: 3px;
 
           @include respond(desktop) {
@@ -362,7 +362,7 @@
             top: 2px;
             width: 5px;
             height: 10px;
-            border: solid var(--color-base-text-secondary);
+            border: solid var(--color-base-checkbox-check);
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
 
@@ -375,8 +375,19 @@
           }
         }
 
+        .checkbox-input:checked ~ .checkbox-custom {
+          background-color: var(--color-base-checkbox-bg);
+          border-color: var(--color-base-checkbox-check);
+        }
+
         .checkbox-input:checked ~ .checkbox-custom:after {
           display: block;
+        }
+
+        // Add hover state for better UX
+        &:hover .checkbox-input:not(:checked) ~ .checkbox-custom {
+          border-color: var(--color-base-checkbox-check);
+          opacity: 0.8;
         }
 
         .checkbox-text {

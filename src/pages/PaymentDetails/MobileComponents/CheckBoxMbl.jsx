@@ -25,6 +25,11 @@ function CheckBoxMbl({
           checked={acceptTerms}
           onChange={() => handleTermsChange("terms", !acceptTerms)}
           required
+          style={{
+            minWidth: '18px',
+            minHeight: '18px',
+            accentColor: 'var(--color-base-checkbox-check)',
+          }}
         />
         {t("payment.orderSummary.terms.acceptTerms")}{" "}
         <a
@@ -50,6 +55,11 @@ function CheckBoxMbl({
           type="checkbox"
           checked={receiveComms}
           onChange={() => handleTermsChange("consent", !receiveComms)}
+          style={{
+            minWidth: '18px',
+            minHeight: '18px',
+            accentColor: 'var(--color-base-checkbox-check)',
+          }}
         />
         {t("payment.orderSummary.terms.receiveCommunications")}
       </div>

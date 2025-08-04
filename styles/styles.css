@@ -250,6 +250,9 @@
   --color-email-form-otp-warning: #ff63af;
   --cart-btn-brd-save: #d9d9d9;
   --color-base-border: #e3dff1;
+  --color-base-checkbox-bg: #ffffff;
+  --color-base-checkbox-border: #d9d9d9;
+  --color-base-checkbox-check: #231942;
   --color-email-otp-input-clr: #231942;
   --color-checkbox-clr: #908999;
   --color-checkbox-a-clr: #18142b;
@@ -273,6 +276,9 @@
   --color-base-text-secondary: #a8a8b3;
   --color-base-border: #2d2d2d;
   --color-base-icon-filter: invert(1);
+  --color-base-checkbox-bg: #2d2d2d;
+  --color-base-checkbox-border: #5a5a5a;
+  --color-base-checkbox-check: #ffffff;
 }
 
 [dir=rtl] {
@@ -4919,8 +4925,8 @@ html[dir=rtl] .back-button {
   left: 0;
   height: 18px;
   width: 18px;
-  background-color: transparent;
-  border: 2px solid var(--ip-bodr-btm);
+  background-color: var(--color-base-checkbox-bg);
+  border: 2px solid var(--color-base-checkbox-border);
   border-radius: 3px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -4937,7 +4943,7 @@ html[dir=rtl] .back-button {
   top: 2px;
   width: 5px;
   height: 10px;
-  border: solid var(--color-base-text-secondary);
+  border: solid var(--color-base-checkbox-check);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -4949,8 +4955,16 @@ html[dir=rtl] .back-button {
     height: 9px;
   }
 }
+.payment-form__left .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom {
+  background-color: var(--color-base-checkbox-bg);
+  border-color: var(--color-base-checkbox-check);
+}
 .payment-form__left .terms .checkbox-container .checkbox-input:checked ~ .checkbox-custom:after {
   display: block;
+}
+.payment-form__left .terms .checkbox-container:hover .checkbox-input:not(:checked) ~ .checkbox-custom {
+  border-color: var(--color-base-checkbox-check);
+  opacity: 0.8;
 }
 .payment-form__left .terms .checkbox-container .checkbox-text {
   font-size: 0.9rem;
@@ -8975,8 +8989,18 @@ html[lang=ar] .confirm-email__input-underline {
   transform: rotate(45deg);
 }
 
+.checkbox-input:checked ~ .checkbox-custom {
+  background-color: var(--color-base-checkbox-bg);
+  border-color: var(--color-base-checkbox-check);
+}
+
 .checkbox-input:checked ~ .checkbox-custom:after {
   display: block;
+}
+
+.checkbox-container:hover .checkbox-input:not(:checked) ~ .checkbox-custom {
+  border-color: var(--color-base-checkbox-check);
+  opacity: 0.8;
 }
 
 .setSection-Content {
