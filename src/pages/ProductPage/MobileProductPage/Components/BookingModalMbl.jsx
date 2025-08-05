@@ -48,6 +48,7 @@ function BookingModalMbl({
   const [totalPrice, setTotalPrice] = useState(0);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(true);
+  const [activeAction, setActiveAction] = useState("");
   const isRTL = i18n.language === "ar";
 
   function getVariants() {
@@ -523,6 +524,7 @@ function BookingModalMbl({
         }
       },
       onError: (err) => {
+        setActiveAction("");
         console.log(err);
         toast.error(
           err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
@@ -535,7 +537,9 @@ function BookingModalMbl({
   };
 
   const handleSaveToCart = () => {
+    setActiveAction("cart");
     handleBasketCheck(() => {
+      setActiveAction("");
       toast.success(t("booking.productAddedToCart"), {
         position: "top-center",
       });
@@ -545,7 +549,9 @@ function BookingModalMbl({
   };
 
   const handleCheckout = () => {
+    setActiveAction("checkout");
     handleBasketCheck(() => {
+      setActiveAction("");
       // Navigate to email verification or payment details without opening cart modal
       if (!isEmailVerification) {
         navigate("/email-verification");
@@ -1003,10 +1009,18 @@ function BookingModalMbl({
                 : {}
             }
           >
-            {t("booking.checkOut")}{" "}
-            <span style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}>
-              {t("common.aed")} {totalPrice}
-            </span>
+            {isPending && activeAction === "checkout" ? (
+              <Loading />
+            ) : (
+              <>
+                {t("booking.checkOut")}{" "}
+                <span
+                  style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}
+                >
+                  {t("common.aed")} {totalPrice}
+                </span>
+              </>
+            )}
           </button>
           <button
             className="booking-modal__save"
@@ -1018,7 +1032,11 @@ function BookingModalMbl({
                 : {}
             }
           >
-            {isPending ? <Loading /> : t("booking.saveToCart")}
+            {isPending && activeAction === "cart" ? (
+              <Loading />
+            ) : (
+              t("booking.saveToCart")
+            )}
           </button>
         </div>
       </div>

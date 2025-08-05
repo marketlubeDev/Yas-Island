@@ -27,6 +27,7 @@ export default function BookingSection({ product, onBack }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [availableDates, setAvailableDates] = useState([]);
   const [isLoadingDates, setIsLoadingDates] = useState(true);
+  const [activeAction, setActiveAction] = useState("");
   const navigate = useNavigate();
   const { language } = useLanguage();
   const dispatch = useDispatch();
@@ -552,6 +553,7 @@ export default function BookingSection({ product, onBack }) {
         }
       },
       onError: (err) => {
+        setActiveAction("");
         console.log(err);
         toast.error(
           err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
@@ -564,7 +566,9 @@ export default function BookingSection({ product, onBack }) {
   };
 
   const handleSaveToCart = () => {
+    setActiveAction("cart");
     handleBasketCheck(() => {
+      setActiveAction("");
       toast.success(t("booking.productAddedToCart"), {
         position: "top-center",
       });
@@ -574,7 +578,9 @@ export default function BookingSection({ product, onBack }) {
   };
 
   const handleCheckout = () => {
+    setActiveAction("checkout");
     handleBasketCheck(() => {
+      setActiveAction("");
       // Navigate to email verification or payment details without opening cart modal
       if (!isEmailVerification) {
         navigate("/email-verification");
@@ -856,27 +862,41 @@ export default function BookingSection({ product, onBack }) {
           <button
             className="checkout-btnn"
             onClick={handleCheckout}
-            disabled={isLoadingDates}
+            disabled={isLoadingDates || isPending}
             style={
               isLoadingDates || isPending
                 ? { opacity: 0.5, pointerEvents: "none" }
                 : {}
             }
           >
-            {t("booking.checkOut")}{" "}
-            <span style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}>
-              {t("common.aed")} {totalPrice}
-            </span>
+            {isPending && activeAction === "checkout" ? (
+              <Loading />
+            ) : (
+              <>
+                {t("booking.checkOut")}{" "}
+                <span
+                  style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}
+                >
+                  {t("common.aed")} {totalPrice}
+                </span>
+              </>
+            )}
           </button>
           <button
             className="cart-btn"
             onClick={handleSaveToCart}
-            disabled={isLoadingDates}
+            disabled={isLoadingDates || isPending}
             style={
-              isLoadingDates ? { opacity: 0.5, pointerEvents: "none" } : {}
+              isLoadingDates || isPending
+                ? { opacity: 0.5, pointerEvents: "none" }
+                : {}
             }
           >
-            {isPending ? <Loading /> : t("booking.saveToCart")}
+            {isPending && activeAction === "cart" ? (
+              <Loading />
+            ) : (
+              t("booking.saveToCart")
+            )}
           </button>
         </div>
       </div>
