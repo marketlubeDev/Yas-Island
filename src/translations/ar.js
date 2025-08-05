@@ -32,6 +32,7 @@ export const ar = {
     close: "إغلاق",
     invertColors: "عكس الألوان",
     highContrast: "تباين عالي",
+    default: "الافتراضي",
   },
   productHead: {
     sortBy: "ترتيب حسب السعر",
@@ -326,5 +327,8 @@ export const ar = {
     pleaseSelectDateFirst: "يرجى تحديد تاريخ أولاً",
     pleaseEnterValidQuantity: "يرجى إدخال كمية صالحة",
     noPerformance: "لا يوجد أداء متاح لهذا التاريخ",
+  },
+  mobile: {
+    swipeToChange: "اسحب لتغيير",
   },
 };

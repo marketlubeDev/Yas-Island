@@ -32,6 +32,7 @@ export const en = {
     close: "close",
     invertColors: "Invert Colors",
     highContrast: "High Contrast",
+    default: "Default",
   },
   productHead: {
     sortBy: "Sort by Price",
@@ -324,5 +325,8 @@ export const en = {
     pleaseSelectDateFirst: "Please select a date first",
     pleaseEnterValidQuantity: "Please enter a valid quantity",
     noPerformance: "No performance available for this date",
+  },
+  mobile: {
+    swipeToChange: "Swipe to change",
   },
 };
