@@ -1124,6 +1124,10 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.product-content-container {
+  background-color: var(--color-base-bg) !important;
+}
+
 .header {
   width: 100%;
   background-color: var(--color-base-product-card-bg);

@@ -93,6 +93,12 @@ export default function VerificationBox({ email }) {
         inputRefs.current[index - 1].focus();
       }
     }
+    if (e.key === "Enter") {
+      const otpString = otp.join("");
+      if (otpString.length === 6) {
+        handleConfirmEmail();
+      }
+    }
   };
 
   const handlePaste = (e) => {

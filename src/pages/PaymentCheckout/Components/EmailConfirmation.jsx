@@ -28,7 +28,8 @@ export default function EmailConfirmation() {
       onError: (error) => {
         console.log(error, "error>>");
         toast.error(
-          error?.response?.data?.message || t("toastMessages.somethingWentWrong")
+          error?.response?.data?.message ||
+            t("toastMessages.somethingWentWrong")
         );
       },
     });
@@ -44,6 +45,11 @@ export default function EmailConfirmation() {
           className="form-control"
           value={emailValue}
           onChange={(e) => setEmailValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isPending) {
+              handleConfirmEmail(); 
+            }
+          }}
         />
         <div className="input-underline"></div>
       </div>
