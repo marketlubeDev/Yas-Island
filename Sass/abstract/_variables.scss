@@ -241,6 +241,9 @@ $color-yellow: #ffea00;
   //accessibility
   --color-accessibility-popup-option-border: #e3daf2;
   --color-accessibility-popup-icon-border: #d3b8ff;
+  --color-base-accessibility-modal-btn-bg: #6c63ff;
+  --color-base-product-card-card-item-bg: #ffffff;
+  --color-base-product-card-card-item-border: #e3dff1;
 
   //mycart
   --color-cart-item-border: none;
@@ -323,6 +326,11 @@ $color-yellow: #ffea00;
     --color-base-checkbox-bg: #2d2d2d;
     --color-base-checkbox-border: #5a5a5a;
     --color-base-checkbox-check: #ffffff;
+
+    // Dark mode accessibility modal
+    --color-base-accessibility-modal-btn-bg: #8b85ff;
+    --color-base-product-card-card-item-bg: #1a1a1a;
+    --color-base-product-card-card-item-border: #3d3d3d;
 
     // Dark mode selector options
   }

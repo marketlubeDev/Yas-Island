@@ -20,6 +20,19 @@ function AccessibilityPopUpMbl() {
   const colorModeRef = useRef(null);
   const zoomRef = useRef(null);
 
+  // Helper function to get swipe text with fallback
+  const getSwipeText = () => {
+    const isRTL =
+      document.documentElement.dir === "rtl" ||
+      document.documentElement.lang === "ar" ||
+      t("accessibility.colorBlindness").includes("ع");
+
+    const swipeText =
+      t("mobile.swipeToChange") || (isRTL ? "اسحب لتغيير" : "Swipe to change");
+
+    return isRTL ? `→ ${swipeText} ←` : `← ${swipeText} →`;
+  };
+
   const zoomOptions = [
     { level: 1, label: "1x" },
     { level: 1.12, label: "1.25x" },
@@ -118,7 +131,7 @@ function AccessibilityPopUpMbl() {
           />
         </div>
         <div className="accessibility-popup-label">
-          {t("accessibility.colorBlindness")}
+          {t("accessibility.colorBlindness") || "Color blindness mode"}
         </div>
         <div
           style={{
@@ -128,11 +141,7 @@ function AccessibilityPopUpMbl() {
             marginTop: "4px",
           }}
         >
-          {document.documentElement.dir === "rtl" ||
-          document.documentElement.lang === "ar" ||
-          t("accessibility.colorBlindness").includes("ع")
-            ? `→ ${t("mobile.swipeToChange")} ←`
-            : `← ${t("mobile.swipeToChange")} →`}
+          {getSwipeText()}
         </div>
         <div
           className="color-mode-dots"
@@ -217,7 +226,7 @@ function AccessibilityPopUpMbl() {
           <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
         </div>
         <div className="accessibility-popup-label">
-          {t("accessibility.zoomMode")}
+          {t("accessibility.zoomMode") || "Zoom mode"}
         </div>
         <div
           style={{
@@ -227,11 +236,7 @@ function AccessibilityPopUpMbl() {
             marginTop: "4px",
           }}
         >
-          {document.documentElement.dir === "rtl" ||
-          document.documentElement.lang === "ar" ||
-          t("accessibility.colorBlindness").includes("ع")
-            ? `→ ${t("mobile.swipeToChange")} ←`
-            : `← ${t("mobile.swipeToChange")} →`}
+          {getSwipeText()}
         </div>
         <div
           className="zoom-buttons"

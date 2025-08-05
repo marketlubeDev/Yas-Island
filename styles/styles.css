@@ -194,6 +194,9 @@
   --color-checkout-summary-bg: #f4f3f3;
   --color-accessibility-popup-option-border: #e3daf2;
   --color-accessibility-popup-icon-border: #d3b8ff;
+  --color-base-accessibility-modal-btn-bg: #6c63ff;
+  --color-base-product-card-card-item-bg: #ffffff;
+  --color-base-product-card-card-item-border: #e3dff1;
   --color-cart-item-border: none;
   --color-cart-price-color: #075faf;
   --color-country-code-clr: #ada5b7;
@@ -279,6 +282,9 @@
   --color-base-checkbox-bg: #2d2d2d;
   --color-base-checkbox-border: #5a5a5a;
   --color-base-checkbox-check: #ffffff;
+  --color-base-accessibility-modal-btn-bg: #8b85ff;
+  --color-base-product-card-card-item-bg: #1a1a1a;
+  --color-base-product-card-card-item-border: #3d3d3d;
 }
 
 [dir=rtl] {
@@ -7266,9 +7272,32 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   cursor: pointer;
   box-shadow: var(--color-popup-box-shadow);
   border: 1px solid var(--color-popup-box-border);
+  position: relative;
+  overflow: hidden;
 }
 .accessibility-popup-option.active {
   background: var(--color-popup-box-bg);
+}
+.accessibility-popup-option .color-mode-dots,
+.accessibility-popup-option .zoom-buttons {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.accessibility-popup-option > div:last-child {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--color-base-accessibility-modal-btn-bg);
+  font-weight: 600;
+  padding: 2px 6px;
+  background-color: var(--color-base-product-card-card-item-bg) !important;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 6px auto 0;
 }
 
 .accessibility-popup-icon {
@@ -7284,6 +7313,7 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   color: var(--color-email-form-label);
   font-weight: 500;
   line-height: 1.2;
+  margin-bottom: 4px;
 }
 
 .accessibility-popup-continue {
@@ -7394,6 +7424,16 @@ html[lang=ar] .mobile-bottom-nav__item--active {
   .accessibility-popup-option {
     padding: 16px 4px;
   }
+  .accessibility-popup-option .color-mode-dots,
+  .accessibility-popup-option .zoom-buttons {
+    margin-top: 6px;
+    gap: 6px;
+  }
+  .accessibility-popup-option > div:last-child {
+    font-size: 9px;
+    padding: 1px 4px;
+    margin-top: 4px;
+  }
   .accessibility-popup-label {
     font-size: 12px;
   }
@@ -7449,6 +7489,43 @@ html[lang=ar] .mobile-bottom-nav__item--active {
 .highActive {
   color: #231942 !important;
   font-weight: 700 !important;
+}
+
+.accessibility-popup-option {
+  min-height: 120px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex-shrink: 0;
+}
+
+.accessibility-popup-option > div:nth-child(3) {
+  font-size: 9px !important;
+  color: #999 !important;
+  text-align: center !important;
+  margin-top: 4px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.color-mode-dots,
+.zoom-buttons {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+html[dir=rtl] .accessibility-popup-option,
+html[lang=ar] .accessibility-popup-option {
+  text-align: center;
+}
+html[dir=rtl] .accessibility-popup-option .color-mode-dots,
+html[dir=rtl] .accessibility-popup-option .zoom-buttons,
+html[lang=ar] .accessibility-popup-option .color-mode-dots,
+html[lang=ar] .accessibility-popup-option .zoom-buttons {
+  flex-direction: row;
 }
 
 .mycart-modal-mobile {
