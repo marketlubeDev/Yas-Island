@@ -259,7 +259,7 @@ function InputFieldsMbl() {
 
   // Get data from Redux state
   const checkout = useSelector((state) => state.checkout);
-  const { email } = useSelector((state) => state.otp);
+  const { verificationEmail: email } = useSelector((state) => state.cart);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
