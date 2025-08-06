@@ -16,6 +16,7 @@ import { toast } from "sonner";
 export default function PaymentDetails({ isCheckout }) {
   const checkout = useSelector((state) => state.checkout);
   const { email: otpEmail } = useSelector((state) => state.otp);
+  const { verificationEmail } = useSelector((state) => state.cart);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -32,19 +33,19 @@ export default function PaymentDetails({ isCheckout }) {
     lastName: checkout?.lastName || "",
     country: checkout?.country || "AE",
     nationality: checkout?.nationality || "",
-    email: otpEmail || checkout?.emailId || "",
+    email: verificationEmail,
     phoneCode: "+971",
     phoneNumber: checkout?.phoneNumber || "971",
     promoCode: checkout?.promoCode || "",
   });
 
-  // Sync email from OTP slice to checkout slice
-  useEffect(() => {
-    if (otpEmail && otpEmail !== checkout?.emailId) {
-      dispatch(setCheckoutEmail(otpEmail));
-      setFormData((prev) => ({ ...prev, email: otpEmail }));
-    }
-  }, [otpEmail, checkout?.emailId, dispatch]);
+  // // Sync email from OTP slice to checkout slice
+  // useEffect(() => {
+  //   if (otpEmail && otpEmail !== checkout?.emailId) {
+  //     dispatch(setCheckoutEmail(otpEmail));
+  //     setFormData((prev) => ({ ...prev, email: otpEmail }));
+  //   }
+  // }, [otpEmail, checkout?.emailId, dispatch]);
 
   useEffect(() => {
     dispatch(
