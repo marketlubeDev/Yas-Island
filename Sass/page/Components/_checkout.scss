@@ -372,6 +372,9 @@
         border-radius: 6px;
         font-size: 14px;
         background-color: var(--summary-header-bg);
+        &::placeholder {
+          color: var(--cart-total-price);
+        }
       }
 
       &-applyButton {

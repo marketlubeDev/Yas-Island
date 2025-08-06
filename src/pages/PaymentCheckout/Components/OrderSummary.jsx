@@ -256,7 +256,7 @@ export default function OrderSummary({
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
+            stroke="var(--cart-total-price)"
             strokeWidth="2"
           >
             <circle cx="9" cy="21" r="1"></circle>
@@ -272,7 +272,7 @@ export default function OrderSummary({
           height="16"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
+          stroke="var(--cart-total-price)"
           strokeWidth="2"
           style={{
             transform: showAllItems ? "rotate(180deg)" : "rotate(0deg)",
@@ -443,8 +443,10 @@ export default function OrderSummary({
 
       {/* Total - Mobile Style */}
       <div className="email-checkout__summary-grandTotal">
-        <span className="grandTotal-Content">{t("orderSummary.total")}</span>
-        <span className="grandTotal-Value">
+        <span className="email-checkout__summary-grandTotal-Content">
+          {t("orderSummary.total")}
+        </span>
+        <span className="email-checkout__summary-grandTotal-Value">
           {t("common.aed")} {(checkout?.grossAmount || 0).toFixed(2)}
         </span>
       </div>

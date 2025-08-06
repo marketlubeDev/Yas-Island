@@ -8776,6 +8776,9 @@ html[lang=ar] .confirm-email__input-underline {
   font-size: 14px;
   background-color: var(--summary-header-bg);
 }
+.email-checkout__summary-promoCode-input-container-inputBox::placeholder {
+  color: var(--cart-total-price);
+}
 .email-checkout__summary-promoCode-input-container-applyButton {
   padding: 8px 16px;
   background-color: var(--summary-header-bg);
