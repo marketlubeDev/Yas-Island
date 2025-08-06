@@ -21,6 +21,20 @@ export const en = {
     tax: "Tax",
     aed: "AED",
   },
+  noResults: {
+    title: "No attractions available",
+    titleWithFilters: "No results found",
+    subtitle:
+      "There are currently no attractions available. Please check back later or contact our support team.",
+    subtitleWithFilters:
+      "We couldn't find any attractions matching your search criteria. Try adjusting your filters or search terms.",
+    activeFilters: "Active filters:",
+    searchFor: "Search:",
+    park: "Park:",
+    sort: "Sort:",
+    clearFilters: "Clear Filters",
+    exploreAll: "Explore All Attractions",
+  },
   accessibility: {
     title: "Accessibility",
     subtitle: "choose options",

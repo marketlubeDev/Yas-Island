@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -9,7 +9,10 @@ import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTermsAcceptance } from "../../../global/checkoutSlice";
+import {
+  updateTermsAcceptance,
+  updatePersonalDetails,
+} from "../../../global/checkoutSlice";
 import getTermsAndCondition from "../../../serivces/termsandconditon/termsandconditionon";
 import { toast } from "sonner";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
@@ -244,6 +247,21 @@ export default function PersonalDetailsForm({
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
+  // Sync form data with Redux state when component mounts or Redux state changes
+  useEffect(() => {
+    if (checkout) {
+      setFormData((prev) => ({
+        ...prev,
+        firstName: checkout.firstName || prev.firstName,
+        lastName: checkout.lastName || prev.lastName,
+        country: checkout.country || prev.country,
+        nationality: checkout.nationality || prev.nationality,
+        email: checkout.emailId || prev.email,
+        phoneNumber: checkout.phoneNumber || prev.phoneNumber,
+      }));
+    }
+  }, [checkout]);
+
   // Generate countries list based on current language
   const countryCodes = countries.getAlpha2Codes();
   const COUNTRIES = Object.keys(countryCodes)
@@ -255,7 +273,38 @@ export default function PersonalDetailsForm({
     .sort((a, b) => a.label.localeCompare(b.label));
 
   const handleInputChange = (field) => (value) => {
+    // Update local form data
     setFormData((prev) => ({ ...prev, [field]: value }));
+
+    // Update Redux checkout state
+    const updateData = {};
+
+    // Handle special cases for field mapping
+    switch (field) {
+      case "email":
+        updateData.emailId = value;
+        break;
+      case "phoneNumber":
+        updateData.phoneNumber = value;
+        break;
+      case "firstName":
+        updateData.firstName = value;
+        break;
+      case "lastName":
+        updateData.lastName = value;
+        break;
+      case "country":
+        updateData.country = value;
+        break;
+      case "nationality":
+        updateData.nationality = value;
+        break;
+      default:
+        updateData[field] = value;
+    }
+
+    // Always dispatch with the current value (even if empty string)
+    dispatch(updatePersonalDetails(updateData));
   };
 
   const handleTermsChange = (type, checked) => {

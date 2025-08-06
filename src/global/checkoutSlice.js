@@ -42,20 +42,24 @@ const checkoutSlice = createSlice({
         emailId,
         phoneNumber,
       } = action.payload;
-      state.firstName = firstName || state.firstName;
-      state.lastName = lastName || state.lastName;
-      state.country = country || state.country;
-      state.nationality = nationality || state.nationality;
-      state.emailId = emailId || state.emailId;
-      state.phoneNumber = phoneNumber || state.phoneNumber;
+
+      // Use nullish coalescing to allow empty strings but not undefined/null
+      if (firstName !== undefined) state.firstName = firstName;
+      if (lastName !== undefined) state.lastName = lastName;
+      if (country !== undefined) state.country = country;
+      if (nationality !== undefined) state.nationality = nationality;
+      if (emailId !== undefined) state.emailId = emailId;
+      if (phoneNumber !== undefined) state.phoneNumber = phoneNumber;
     },
 
     // Update cart details
     updateCartDetails: (state, action) => {
       const { items, amount, coupons } = action.payload;
-      state.items = items || state.items;
-      state.amount = amount || state.amount;
-      state.coupons = coupons || state.coupons;
+
+      // Use nullish coalescing to allow empty values but not undefined/null
+      if (items !== undefined) state.items = items;
+      if (amount !== undefined) state.amount = amount;
+      if (coupons !== undefined) state.coupons = coupons;
     },
 
     // Update agreements

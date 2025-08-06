@@ -9,15 +9,26 @@ import closeIcon from "../../../../assets/icons/close.svg";
 import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { setCheckout } from "../../../../global/checkoutSlice";
-import { setSelectedProduct } from "../../../../global/productSlice";
+import {
+  setSelectedProduct,
+  setSearchQuery,
+  setCurrentPark,
+  setCurrentSort,
+} from "../../../../global/productSlice";
 import { clearPerformance } from "../../../../global/performanceSlice";
 import Loader from "../../../../components/Loading/Loader";
+import NoResultsFoundMobile from "../../../../components/NoResultsFound/NoResultsFoundMobile";
 
 const AttractionsListMbl = ({ productList, isLoading = false }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
+
+  // Get current filters from Redux
+  const { searchQuery, currentPark, currentSort } = useSelector(
+    (state) => state.product
+  );
 
   const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
   const [selectedAttraction, setSelectedAttraction] = useState(null);
@@ -77,6 +88,18 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     handleCloseModal();
   };
 
+  const handleClearFilters = () => {
+    dispatch(setSearchQuery(""));
+    dispatch(setCurrentPark(""));
+    dispatch(setCurrentSort(""));
+  };
+
+  const handleExploreAll = () => {
+    dispatch(setSearchQuery(""));
+    dispatch(setCurrentPark(""));
+    dispatch(setCurrentSort(""));
+  };
+
   const renderModalContent = () => {
     switch (modalType) {
       case "attraction":
@@ -119,6 +142,14 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
           <div className="attractions-list__loading">
             <Loader />
           </div>
+        ) : !productList || productList.length === 0 ? (
+          <NoResultsFoundMobile
+            searchQuery={searchQuery}
+            currentPark={currentPark}
+            currentSort={currentSort}
+            onClearFilters={handleClearFilters}
+            onExploreAll={handleExploreAll}
+          />
         ) : (
           productList?.map((item, i) => (
             <div className="attraction-card" key={i}>
