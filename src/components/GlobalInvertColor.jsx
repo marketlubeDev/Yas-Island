@@ -1153,6 +1153,10 @@ export default function GlobalInvertColor() {
       "--cart-btn-var-save",
       isDarkMode ? "#000000" : "#fff"
     );
+    document.documentElement.style.setProperty(
+      "--color-base-accessibility-modal-btn-text",
+      isDarkMode ? "#FFAD33" : "#0052CC"
+    );
 
     return () => {
       document.documentElement.style.setProperty("--text-color", "#18142B");

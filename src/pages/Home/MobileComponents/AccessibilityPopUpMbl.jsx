@@ -173,7 +173,7 @@ function AccessibilityPopUpMbl() {
                 backgroundColor:
                   (option.mode === "normal" && !isDarkMode) ||
                   (option.mode === "invert" && isDarkMode)
-                    ? "var(--color-base-accessibility-modal-btn-bg)"
+                    ? "var(--color-base-accessibility-modal-btn-text)"
                     : "#e0e0e0",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
@@ -197,7 +197,7 @@ function AccessibilityPopUpMbl() {
             marginTop: "6px",
             textAlign: "center",
             fontSize: "10px",
-            color: "var(--color-base-accessibility-modal-btn-bg)",
+            color: "var(--color-base-accessibility-modal-btn-text)",
             fontWeight: "600",
             padding: "2px 6px",
             backgroundColor:
@@ -258,16 +258,16 @@ function AccessibilityPopUpMbl() {
                 borderRadius: "12px",
                 border:
                   zoomLevel === option.level
-                    ? "2px solid var(--color-base-accessibility-modal-btn-bg)"
+                    ? "2px solid var(--color-base-accessibility-modal-btn-text)"
                     : "1px solid #ddd",
                 backgroundColor:
                   zoomLevel === option.level
-                    ? "var(--color-base-accessibility-modal-btn-bg)"
+                    ? "var(--color-base-accessibility-modal-btn-text)"
                     : "var(--color-base-product-card-card-item-bg)",
                 color:
                   zoomLevel === option.level
                     ? "white"
-                    : "var(--color-base-accessibility-modal-btn-bg)",
+                    : "var(--color-base-accessibility-modal-btn-text)",
                 cursor: "pointer",
                 fontSize: "10px",
                 fontWeight: "600",

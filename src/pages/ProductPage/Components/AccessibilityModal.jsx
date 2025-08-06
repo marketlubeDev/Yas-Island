@@ -93,7 +93,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                     borderRadius: "50%",
                     backgroundColor:
                       getCurrentColorMode() === option.mode
-                        ? "var(--color-base-accessibility-modal-btn-bg)"
+                        ? "var(--color-base-accessibility-modal-btn-text)"
                         : "#e0e0e0",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
@@ -115,7 +115,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                 marginTop: "8px",
                 textAlign: "center",
                 fontSize: "12px",
-                color: "var(--color-base-accessibility-modal-btn-bg)",
+                color: "var(--color-base-accessibility-modal-btn-text)",
                 fontWeight: "600",
                 padding: "2px 8px",
                 backgroundColor:
@@ -158,16 +158,16 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                     borderRadius: "16px",
                     border:
                       zoomLevel === option.level
-                        ? "2px solid var(--color-base-accessibility-modal-btn-bg)"
+                        ? "2px solid var(--color-base-accessibility-modal-btn-text)"
                         : "1px solid #ddd",
                     backgroundColor:
                       zoomLevel === option.level
-                        ? "var(--color-base-accessibility-modal-btn-bg)"
+                        ? "var(--color-base-accessibility-modal-btn-text)"
                         : "var(--color-base-product-card-card-item-bg)",
                     color:
                       zoomLevel === option.level
                         ? "white"
-                        : "var(--color-base-accessibility-modal-btn-bg)",
+                        : "var(--color-base-accessibility-modal-btn-text)",
                     cursor: "pointer",
                     fontSize: "12px",
                     fontWeight: "600",
