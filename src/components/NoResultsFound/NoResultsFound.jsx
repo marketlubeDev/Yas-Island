@@ -2,8 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLanguage } from "../../context/LanguageContext";
-import { FaSearch, FaFilter, FaTimes } from "react-icons/fa";
-import { MdOutlineExplore } from "react-icons/md";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
 const NoResultsFound = ({
   searchQuery = "",
@@ -71,8 +70,6 @@ const NoResultsFound = ({
   // Button container styles
   const buttonContainerStyle = {
     display: "flex",
-    gap: "1rem",
-    flexWrap: "wrap",
     justifyContent: "center",
     marginBottom: "2rem",
   };
@@ -95,32 +92,9 @@ const NoResultsFound = ({
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
   };
 
-  // Secondary button styles matching website's secondary button patterns
-  const secondaryButtonStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    padding: "0.8rem 1.5rem",
-    backgroundColor: "var(--color-base-btn-bg)",
-    border: "2px solid var(--color-base-btn-border)",
-    borderRadius: "2rem",
-    color: "var(--color-base-text)",
-    fontSize: "1rem",
-    fontWeight: "500",
-    cursor: "pointer",
-    fontFamily: '"YAS Font", sans-serif',
-    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-  };
-
   const handleClearFilters = () => {
     if (onClearFilters) {
       onClearFilters();
-    }
-  };
-
-  const handleExploreAll = () => {
-    if (onExploreAll) {
-      onExploreAll();
     }
   };
 
@@ -152,8 +126,8 @@ const NoResultsFound = ({
       </p>
 
       {/* Action Buttons */}
-      <div style={buttonContainerStyle}>
-        {hasActiveFilters && (
+      {hasActiveFilters && (
+        <div style={buttonContainerStyle}>
           <button
             style={primaryButtonStyle}
             onClick={handleClearFilters}
@@ -169,24 +143,8 @@ const NoResultsFound = ({
             <FaTimes size={14} />
             {t("noResults.clearFilters", "Clear Filters")}
           </button>
-        )}
-
-        <button
-          style={secondaryButtonStyle}
-          onClick={handleExploreAll}
-          onMouseEnter={(e) => {
-            e.target.style.transform = "translateY(-3px)";
-            e.target.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.15)";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = "translateY(0)";
-            e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
-          }}
-        >
-          <MdOutlineExplore size={16} />
-          {t("noResults.exploreAll", "Explore All Attractions")}
-        </button>
-      </div>
+        </div>
+      )}
     </div>
   );
 };

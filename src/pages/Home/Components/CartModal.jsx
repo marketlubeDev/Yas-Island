@@ -6,7 +6,7 @@ import Expand from "../../../assets/icons/shrink.svg";
 import ExpandDark from "../../../assets/icons/invertShrink.svg";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import InvertDeleteIcon from "../../../assets/icons/invertdelete.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItemFromCart, updateQuantity } from "../../../global/cartSlice";
@@ -51,6 +51,7 @@ const CartModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const { isRTL } = useLanguage();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { isBigTablets, isDesktop } = useSelector((state) => state.responsive);
@@ -100,23 +101,51 @@ const CartModal = ({ isOpen, onClose }) => {
     );
     if (!item) return;
 
-    // Calculate the actual change amount based on increment number
     const actualChange = change > 0 ? incrementNumber : -incrementNumber;
+    const proposedQuantity = item.quantity + actualChange;
 
-    // Calculate new quantity respecting min and max bounds
+    // Check if trying to exceed maximum quantity
+    if (proposedQuantity > maxQuantity) {
+      toast.error(t("cart.maxQuantityExceeded", { maxQuantity }), {
+        position: "top-center",
+      });
+      return;
+    }
+
+    // Check if trying to go below minimum quantity
+    if (proposedQuantity < minQuantity) {
+      toast.error(t("cart.minQuantityRequired", { minQuantity }), {
+        position: "top-center",
+      });
+      return;
+    }
+
     const newQuantity = Math.max(
       minQuantity,
-      Math.min(maxQuantity, item.quantity + actualChange)
+      Math.min(maxQuantity, proposedQuantity)
     );
 
-    dispatch(updateQuantity({ id, quantity: newQuantity, validFrom }));
+    dispatch(
+      updateQuantity({
+        id,
+        quantity: newQuantity,
+        validFrom,
+      })
+    );
   };
+
+  useEffect(() => {
+    // Only call handleBasketCheck if we're on payment-details page and cartItems have changed
+    if (location.pathname === "/payment-details" && cartItems.length > 0) {
+      handleBasketCheck();
+    }
+  }, [cartItems, location.pathname]);
 
   const handleDeleteItem = (id, validFrom) => {
     dispatch(removeItemFromCart({ id, validFrom }));
   };
 
-  const handleBasketCheck = (onSuccess) => {
+  const handleBasketCheck = (onSuccess = () => {}) => {
     let items = [];
     cartItems?.forEach((item) => {
       items.push({
@@ -135,6 +164,8 @@ const CartModal = ({ isOpen, onClose }) => {
       items: items,
       capacityManagement: true,
     };
+
+    console.log("items", items);
 
     checkBasket(data, {
       onSuccess: (res) => {
@@ -378,7 +409,7 @@ const CartModal = ({ isOpen, onClose }) => {
     </div>
   );
 
-  if (!isOpen) return null;
+  if (!isOpen || cartItems.length === 0) return null;
 
   return (
     <Drawer
@@ -442,6 +473,8 @@ const CartModal = ({ isOpen, onClose }) => {
 
                 const isExpired = isDateExpired(item?.validTo);
 
+                console.log("item333", item);
+
                 return (
                   <div
                     key={index}
@@ -486,7 +519,6 @@ const CartModal = ({ isOpen, onClose }) => {
                           icon={<MinusOutlined />}
                           disabled={isExpired}
                           onClick={() =>
-                            !isExpired &&
                             handleQuantityChange(
                               item?.productId,
                               -1,

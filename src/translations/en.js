@@ -147,6 +147,8 @@ export const en = {
     },
     vat: "VAT",
     vatUnit: "VAT",
+    maxQuantityExceeded: "Maximum quantity of {{maxQuantity}} exceeded",
+    minQuantityRequired: "Minimum quantity of {{minQuantity}} required",
   },
   product: {
     addToCart: "Add to cart",

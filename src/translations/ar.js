@@ -147,6 +147,8 @@ export const ar = {
     children: "الأطفال",
     vat: "ضريبة القيمة المضافة",
     vatUnit: "ضريبة القيمة المضافة",
+    maxQuantityExceeded: "تم تجاوز الحد الأقصى للكمية {{maxQuantity}}",
+    minQuantityRequired: "الحد الأدنى المطلوب للكمية {{minQuantity}}",
   },
   product: {
     addToCart: "أضف إلى السلة",

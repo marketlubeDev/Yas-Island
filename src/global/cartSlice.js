@@ -19,7 +19,6 @@ const removeExpiredItems = (items) => {
   const validItems = items.filter((item) => {
     const dateToCheck = item.validFrom;
 
-
     const itemDateOnly = dateToCheck.split("T")[0];
     const isExpired = itemDateOnly < currentDateOnly;
     const isQuantityZero = item.quantity === 0 || item.Quantity === 0;
@@ -156,7 +155,8 @@ const cartSlice = createSlice({
     },
     updateQuantity: (state, action) => {
       // Remove expired items first
-      state.cartItems = removeExpiredItems(state.cartItems);
+      // state.cartItems = removeExpiredItems(state.cartItems);
+      console.log("action.payload", action.payload.quantity);
 
       state.cartItems = state.cartItems
         .map((item) =>
