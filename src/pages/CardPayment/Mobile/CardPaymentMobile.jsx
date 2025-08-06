@@ -1,193 +1,48 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import visaIcon from "../../../assets/images/visa3.png";
+import visaIcon from "../../../assets/icons/payment.png";
 import { useTranslation } from "react-i18next";
-import CheckOutSummaryMbl from "../../PaymentDetails/MobileComponents/CheckOutSummaryMbl";
-import PaymentMethodMbl from "./Components/PaymentMethodMbl";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import { clearCart } from "../../../global/cartSlice";
-import { setCheckoutEmail } from "../../../global/checkoutSlice";
-import { setOtp } from "../../../global/otpSlice";
-import useMobileEmailPersistence from "../../../hooks/useMobileEmailPersistence";
-import PromoCodeMbl from "../../PaymentDetails/MobileComponents/PromoCodeMbl";
+import { useNavigate } from "react-router-dom";
+
+// Add keyframe animation
+const spinnerStyle = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
 
 function CardPaymentMobile() {
-  useTranslation();
-  const [formData, setFormData] = useState({});
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const orderData = useSelector((state) => state.order.orderData);
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState("loading");
-  const [countdown] = useState(5);
-  const [showPromoPopup, setShowPromoPopup] = useState(false);
-  const dispatch = useDispatch();
-  // Get checkout data from Redux
-  const checkout = useSelector((state) => state.checkout);
-  // Get email from OTP slice as well
-  const { email } = useSelector((state) => state.otp);
-
-  // Use mobile email persistence hook
-  const { email: persistedEmail } = useMobileEmailPersistence();
+  const [countdown, setCountdown] = useState(5);
 
   const handlePaymentSuccess = useCallback(() => {
-    console.log("Payment successful, starting redirect countdown...");
-    dispatch(clearCart());
     setPaymentStatus("success");
-    window.location.href = "/payment-success";
+    dispatch(clearCart()); // Clear the cart when payment is successful
+
+    // Start countdown before redirect
+    const countdownInterval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          window.location.href = "/payment-success";
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 500);
   }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Add debugging for Redux persistence rehydration
-    console.log("Mobile Card Payment Component Mounted");
-    console.log("Initial Redux State - OTP:", { email });
-    console.log("Initial Redux State - Checkout:", {
-      emailId: checkout.emailId,
-    });
-
-    // Add a small delay to check if data loads after rehydration
-    setTimeout(() => {
-      console.log("After 1s - OTP state:", { email });
-      console.log("After 1s - Checkout state:", { emailId: checkout.emailId });
-
-      // If still no email after 1 second, try manual restoration
-      const currentEmail = email;
-      const currentCheckoutEmail = checkout.emailId;
-
-      if (!currentEmail && !currentCheckoutEmail) {
-        // Try multiple storage sources for email recovery
-        let foundEmail = null;
-
-        try {
-          // First try sessionStorage backup
-          const sessionBackup = sessionStorage.getItem(
-            "yasIsland_backup_email"
-          );
-          if (sessionBackup) {
-            console.log("Found email in sessionStorage backup:", sessionBackup);
-            foundEmail = sessionBackup;
-          }
-        } catch (e) {
-          console.log("Cannot access sessionStorage:", e);
-        }
-
-        if (!foundEmail) {
-          try {
-            const persistedOtp = localStorage.getItem("persist:yasIslandOTP");
-            const persistedCheckout = localStorage.getItem(
-              "persist:yasIslandCheckout"
-            );
-
-            if (persistedOtp) {
-              const otpData = JSON.parse(persistedOtp);
-              if (otpData.email) {
-                console.log(
-                  "Manual restoration: Found email in OTP localStorage:",
-                  otpData.email
-                );
-                dispatch(
-                  setOtp({ email: otpData.email, OTP: otpData.OTP || "" })
-                );
-                dispatch(setCheckoutEmail(otpData.email));
-
-                // Also store in sessionStorage as backup for mobile
-                try {
-                  sessionStorage.setItem(
-                    "yasIsland_backup_email",
-                    otpData.email
-                  );
-                  console.log("Stored email backup in sessionStorage");
-                } catch (e) {
-                  console.log(
-                    "Failed to store email backup in sessionStorage:",
-                    e
-                  );
-                }
-              }
-            } else if (persistedCheckout) {
-              const checkoutData = JSON.parse(persistedCheckout);
-              if (checkoutData.emailId) {
-                console.log(
-                  "Manual restoration: Found email in checkout localStorage:",
-                  checkoutData.emailId
-                );
-                dispatch(setCheckoutEmail(checkoutData.emailId));
-              }
-            }
-          } catch (e) {
-            console.log("Error in manual restoration:", e);
-          }
-        } else {
-          // If we found an email in sessionStorage, use it
-          console.log("Using email from sessionStorage backup:", foundEmail);
-          dispatch(setOtp({ email: foundEmail, OTP: "" }));
-          dispatch(setCheckoutEmail(foundEmail));
-        }
-      }
-    }, 1000);
-  }, [email, checkout.emailId, dispatch]);
-
-  // Ensure email is synchronized between OTP and checkout slices
-  useEffect(() => {
-    console.log("Email sync effect - email from OTP:", email);
-    console.log("Email sync effect - email from checkout:", checkout.emailId);
-
-    if (email && email !== checkout.emailId) {
-      console.log("Syncing email from OTP to checkout:", email);
-      dispatch(setCheckoutEmail(email));
-    } else if (!email && !checkout.emailId) {
-      console.log("No email found in either OTP or checkout slices");
-
-      // First try sessionStorage backup
-      try {
-        const sessionBackup = sessionStorage.getItem("yasIsland_backup_email");
-        if (sessionBackup) {
-          console.log("Found email in sessionStorage backup:", sessionBackup);
-          dispatch(setOtp({ email: sessionBackup, OTP: "" }));
-          dispatch(setCheckoutEmail(sessionBackup));
-          return;
-        }
-      } catch (e) {
-        console.log("Cannot access sessionStorage:", e);
-      }
-
-      // Check localStorage directly for debugging and try manual restoration
-      try {
-        const persistedOtp = localStorage.getItem("persist:yasIslandOTP");
-        const persistedCheckout = localStorage.getItem(
-          "persist:yasIslandCheckout"
-        );
-        console.log("Direct localStorage check - OTP:", persistedOtp);
-        console.log("Direct localStorage check - Checkout:", persistedCheckout);
-
-        // Try to manually restore email from localStorage if Redux persistence failed
-        if (persistedOtp) {
-          const otpData = JSON.parse(persistedOtp);
-          console.log("Parsed OTP data from localStorage:", otpData);
-          if (otpData.email) {
-            console.log(
-              "Manually restoring email from localStorage:",
-              otpData.email
-            );
-            dispatch(setOtp({ email: otpData.email, OTP: otpData.OTP || "" }));
-            dispatch(setCheckoutEmail(otpData.email));
-          }
-        } else if (persistedCheckout) {
-          const checkoutData = JSON.parse(persistedCheckout);
-          console.log("Parsed Checkout data from localStorage:", checkoutData);
-          if (checkoutData.emailId) {
-            console.log(
-              "Manually restoring email from checkout localStorage:",
-              checkoutData.emailId
-            );
-            dispatch(setCheckoutEmail(checkoutData.emailId));
-          }
-        }
-      } catch (e) {
-        console.log("Error checking/restoring from localStorage:", e);
-      }
-    }
-  }, [email, checkout.emailId, dispatch]);
+  }, []);
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
@@ -215,8 +70,6 @@ function CardPaymentMobile() {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
-        console.log("Received message from iframe:", event.data);
-
         // Handle different payment statuses
         if (event.data) {
           if (
@@ -277,17 +130,86 @@ function CardPaymentMobile() {
           }
         }
       };
+    } else {
+      navigate("/");
     }
-  }, [orderData, paymentStatus, handlePaymentSuccess]);
+  }, [orderData, paymentStatus, handlePaymentSuccess, navigate]);
 
   return (
     <>
-      {/* <PaymentHeader /> */}
+      <style>{spinnerStyle}</style>
       <MobileHeader />
-      {/* Promo Code Popup */}
-      {showPromoPopup && (
-        <PromoCodeMbl onClose={() => setShowPromoPopup(false)} />
-      )}
+      <div className="payment-container" style={{ padding: "1rem" }}>
+        <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
+
+        <div className="payfort-container">
+          <div
+            className="iframe-container"
+            style={{
+              borderRadius: "1rem",
+              minHeight: "450px",
+              height: "350px",
+              position: "relative",
+            }}
+          >
+            {isIframeLoading && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  className="loading-spinner"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    border: "3px solid #f3f3f3",
+                    borderTop: "3px solid #3498db",
+                    borderRadius: "50%",
+                    animation: "spin 1s linear infinite",
+                    margin: "0 auto 1rem",
+                  }}
+                />
+                <p style={{ color: "#666", margin: 0 }}>
+                  Loading secure payment form...
+                </p>
+              </div>
+            )}
+            <iframe
+              name="payfort-iframe"
+              title="PayFort Payment"
+              width="100%"
+              height="470"
+              frameBorder="0"
+              style={{
+                border: "none",
+                borderRadius: "8px",
+                boxShadow: "none",
+                background: "transparent",
+                opacity: isIframeLoading ? 0 : 1,
+                transition: "opacity 0.3s ease",
+              }}
+              onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
+            />
+          </div>
+
+          <div
+            className="card-ad"
+            style={{ marginTop: "1rem", textAlign: "center" }}
+          >
+            <img
+              src={visaIcon}
+              alt="visa"
+              className="card-logo"
+              style={{ maxWidth: "200px" }}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
