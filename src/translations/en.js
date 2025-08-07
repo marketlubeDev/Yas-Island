@@ -322,7 +322,7 @@ export const en = {
     promoCodeRemoved: "Promo code removed successfully",
     couponApplied: "Remove Coupon",
   },
-  toastMessages: {
+  toastMessages: {  
     invalidEmail: "Please enter a valid email address",
     invalidPhoneNumber: "Please enter a valid phone number",
     invalidTerms: "Please accept the terms and conditions to proceed",
@@ -341,6 +341,8 @@ export const en = {
     pleaseSelectDateFirst: "Please select a date first",
     pleaseEnterValidQuantity: "Please enter a valid quantity",
     noPerformance: "No performance available for this date",
+    checkoutFailed: "Checkout failed. Please try again.",
+    failedToAddToCart: "Failed to add to cart. Please try again.",
   },
   mobile: {
     swipeToChange: "Swipe to change",

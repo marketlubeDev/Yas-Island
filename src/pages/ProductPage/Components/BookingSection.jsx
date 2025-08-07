@@ -348,7 +348,6 @@ export default function BookingSection({ product, onBack }) {
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
-  // Common function to handle basket check and cart operations
   const handleBasketCheck = (onSuccess, type = "cart") => {
     if (!selectedDate) {
       toast.error(t("toastMessages.pleaseSelectDateFirst"), {
@@ -412,13 +411,9 @@ export default function BookingSection({ product, onBack }) {
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
-          toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
-            {
-              position: "top-center",
-            }
-          );
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
         } else {
           const orderDetails = res?.orderdetails;
 
@@ -555,12 +550,13 @@ export default function BookingSection({ product, onBack }) {
       onError: (err) => {
         setActiveAction("");
         console.log(err);
-        toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        let message =
+          type === "cart"
+            ? t("toastMessages.failedToAddToCart")
+            : t("toastMessages.checkoutFailed");
+        toast.error(message, {
+          position: "top-center",
+        });
       },
     });
   };

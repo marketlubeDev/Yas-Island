@@ -343,7 +343,9 @@ export const ar = {
     pleaseSelectDateFirst: "يرجى تحديد تاريخ أولاً",
     pleaseEnterValidQuantity: "يرجى إدخال كمية صالحة",
     noPerformance: "لا يوجد أداء متاح لهذا التاريخ",
-  },
+    checkoutFailed: "فشل إتمام الشراء. يرجى المحاولة مرة أخرى.",
+    failedToAddToCart: "فشل إضافة المنتج إلى السلة. يرجى المحاولة مرة أخرى.",
+    },
   mobile: {
     swipeToChange: "اسحب لتغيير",
   },
