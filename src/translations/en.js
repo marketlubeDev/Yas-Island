@@ -197,7 +197,7 @@ export const en = {
       enterCode: "ENTER VERIFICATION CODE",
       codeSent: "Verification code has been sent to",
       checkSpam: "Please check your spam or junk mail folder",
-      willExpire: "Will Expire In",
+      willExpire: "You can request for new OTP in 2min",
       resend: "Resend",
       confirmOtp: "Confirm OTP",
       expired: "OTP has expired",
@@ -322,7 +322,7 @@ export const en = {
     promoCodeRemoved: "Promo code removed successfully",
     couponApplied: "Remove Coupon",
   },
-  toastMessages: {  
+  toastMessages: {
     invalidEmail: "Please enter a valid email address",
     invalidPhoneNumber: "Please enter a valid phone number",
     invalidTerms: "Please accept the terms and conditions to proceed",

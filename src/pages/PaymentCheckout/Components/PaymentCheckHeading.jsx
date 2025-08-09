@@ -14,7 +14,7 @@ export default function PaymentCheckoutHeader({ onBackClick }) {
 
   return (
     <div className="payment-checkout__header">
-      <button className="back-button" onClick={onBackClick}>
+      {/* <button className="back-button" onClick={onBackClick}>
         <img
           src={isDarkMode ? arrowDark : arrow}
           alt={t("payment.arrow")}
@@ -22,7 +22,7 @@ export default function PaymentCheckoutHeader({ onBackClick }) {
           style={{ width: "20px", height: "20px" }}
         />{" "}
         {t("payment.back")}
-      </button>
+      </button> */}
       <h1 className="payment-checkout__title">{t("payment.title")}</h1>
     </div>
   );

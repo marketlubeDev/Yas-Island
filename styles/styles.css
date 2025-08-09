@@ -4019,7 +4019,7 @@ html[lang=ar] .guest-label {
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4363,9 +4363,9 @@ html[lang=ar] .guest-label {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   position: relative;
 }
+
 .back-button {
   flex-shrink: 0;
   position: absolute;
@@ -4549,7 +4549,6 @@ html[dir=rtl] .back-button {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -8185,6 +8184,9 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
 }
 
+.resend-btn {
+  opacity: 1;
+}
 .resend-btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;

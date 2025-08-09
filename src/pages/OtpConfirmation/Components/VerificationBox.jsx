@@ -20,7 +20,7 @@ export default function VerificationBox({ email }) {
   const inputRefs = useRef([]);
   const { OTP } = useSelector((state) => state.otp);
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(300); // 3 minutes in seconds
+  const [timer, setTimer] = useState(120);
   const [canResend, setCanResend] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
@@ -62,7 +62,7 @@ export default function VerificationBox({ email }) {
     verification(email, {
       onSuccess: (res) => {
         dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
-        setTimer(300);
+        setTimer(120);
         setCanResend(false);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
@@ -177,7 +177,7 @@ export default function VerificationBox({ email }) {
           {t("payment.verification.editEmail")}
         </button>
       </p>
-      <p className="spam-notice">{t("payment.verification.checkSpam")}</p>
+      {/* <p className="spam-notice">{t("payment.verification.checkSpam")}</p> */}
 
       <div className="verification-container">
         <p className="verification-label">

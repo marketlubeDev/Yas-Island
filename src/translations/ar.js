@@ -196,7 +196,7 @@ export const ar = {
       enterCode: "أدخل رمز التحقق",
       codeSent: "تم إرسال رمز التحقق إلى",
       checkSpam: "يرجى التحقق من مجلد البريد المزعج أو غير المرغوب فيه",
-      willExpire: "سينتهي خلال",
+      willExpire: "يمكنك طلب رمز تحقق جديد بعد دقيقتين",
       resend: "إعادة الإرسال",
       confirmOtp: "تأكيد رمز التحقق",
       expired: "رمز التحقق لقد انتهى",
@@ -345,7 +345,7 @@ export const ar = {
     noPerformance: "لا يوجد أداء متاح لهذا التاريخ",
     checkoutFailed: "فشل إتمام الشراء. يرجى المحاولة مرة أخرى.",
     failedToAddToCart: "فشل إضافة المنتج إلى السلة. يرجى المحاولة مرة أخرى.",
-    },
+  },
   mobile: {
     swipeToChange: "اسحب لتغيير",
   },

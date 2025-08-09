@@ -212,7 +212,7 @@
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -527,14 +527,8 @@
   display: flex;
   align-items: center;
   justify-content: center; // Center the title horizontally
-  width: 100%;
+  // width: 100%;
   position: relative; // Allows absolute positioning of back button if needed
-
-  @include respond(desktop) {
-  }
-
-  @include respond(bigDesktop) {
-  }
 }
 
 .back-button {
@@ -705,7 +699,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 11.5px;
