@@ -54,7 +54,7 @@ export const ar = {
     priceHighToLow: "السعر (من الأعلى إلى الأقل)",
     priceLowToHigh: "السعر (من الأقل إلى الأعلى)",
     attractions: "المعالم",
-    selectPark: "اختر المتنزه",
+    selectPark: "الكل",
     selectSort: "اختر الترتيب",
   },
   sidebar: {
