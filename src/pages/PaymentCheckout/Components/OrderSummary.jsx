@@ -452,7 +452,7 @@ export default function OrderSummary({
       </div>
 
       {/* Secure Payment Button - Mobile Style */}
-      <div className="email-checkout__summary-securePayment">
+      {/* <div className="email-checkout__summary-securePayment">
         <svg
           width="16"
           height="16"
@@ -465,7 +465,7 @@ export default function OrderSummary({
           <path d="M9 12l2 2 4-4"></path>
         </svg>
         {t("orderSummary.securePayment")}
-      </div>
+      </div> */}
 
       <Modal
         open={isModalVisible}
