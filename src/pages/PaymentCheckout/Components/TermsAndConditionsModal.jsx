@@ -27,9 +27,9 @@ export default function TermsAndConditionsModal({
       open={isOpen}
       onCancel={onClose}
       footer={null}
-      centered
-      width="100%"
+      width="100vw"
       className="terms-modal"
+      style={{ top: 0, padding: 0 }}
       // closeIcon={
       //   <span className="custom-modal-close">
       //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />

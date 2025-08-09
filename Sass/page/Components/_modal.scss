@@ -496,3 +496,37 @@
     backdrop-filter: blur(5px);
   }
 }
+
+/* Full-screen overrides for Terms & Conditions modal */
+.terms-modal.ant-modal {
+  /* leave gap on all sides */
+  width: calc(100vw - 32px) !important;
+  max-width: calc(100vw - 32px) !important;
+  margin: 16px !important;
+  top: 0 !important;
+  padding: 0 !important;
+}
+
+.terms-modal .ant-modal-content {
+  /* subtract the vertical gaps from full viewport height */
+  height: calc(100vh - 32px) !important;
+  max-height: calc(100vh - 32px) !important;
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.terms-modal .ant-modal-body {
+  padding: 0 !important;
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.terms-modal-content {
+  height: 100% !important;
+  max-height: none !important;
+}
