@@ -21,7 +21,11 @@ export default function ProductHead() {
   const filterBtnRef = useRef(null);
 
   const handleParkChange = (e) => {
-    dispatch(setCurrentPark(e.target.value));
+    const selectedValue = e.target.value;
+    const allOptionLabel = t("productHead.selectPark");
+    dispatch(
+      setCurrentPark(selectedValue === allOptionLabel ? "" : selectedValue)
+    );
   };
 
   const handleSortChange = (e) => {
@@ -38,6 +42,12 @@ export default function ProductHead() {
     });
     return Array.from(uniqueParks);
   }, [allProducts]);
+
+  const allOptionLabel = t("productHead.selectPark");
+  const parkOptionsWithAll = useMemo(
+    () => [allOptionLabel, ...parkOptions],
+    [parkOptions, allOptionLabel]
+  );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -72,6 +82,7 @@ export default function ProductHead() {
             label={t("productHead.sortBy")}
             value={currentSort}
             options={[
+              t("productHead.selectSort"),
               t("productHead.priceHighToLow"),
               t("productHead.priceLowToHigh"),
             ]}
@@ -80,8 +91,8 @@ export default function ProductHead() {
           />
           <Selector
             label={t("productHead.filterBy")}
-            value={currentPark}
-            options={parkOptions}
+            value={currentPark || allOptionLabel}
+            options={parkOptionsWithAll}
             placeHolder={t("productHead.selectPark")}
             onChange={handleParkChange}
           />

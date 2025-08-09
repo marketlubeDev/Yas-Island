@@ -3,48 +3,84 @@
 
 .selector {
   width: 13rem;
-  // min-width: 12rem;
   display: flex;
   align-items: center;
+  position: relative;
 
   @include respond(bigTablets) {
     width: 12rem;
   }
 
-  & select {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: var(--color-base-text);
-    cursor: pointer;
-    font-weight: 400;
-    font-size: 17px;
-    font-family: "YAS Font", sans-serif;
-
-    // @include respond(desktop) {
-    //   font-size: 13px;
-    // }
-
-    // @include respond(bigDesktop) {
-    //   font-size: 14px;
-    // }
-
-    option {
-      background-color: var(--color-selector-option-bg);
+  // Custom select
+  &.custom-select {
+    .selector-trigger {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background-color: transparent;
       color: var(--color-base-text);
-      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 17px;
       font-family: "YAS Font", sans-serif;
+      text-align: left;
+    }
 
-      // &:hover {
-      //   background-color: var(--color-selector-option-hover-bg);
-      // }
+    // .selector-value.is-placeholder {
+    //   color: var(--color-muted, #6b7280);
+    //   font-weight: 500;
+    // }
 
-      // &:checked {
-      //   background-color: var(--color-selector-option-selected-bg);
-      //   color: var(--color-selector-option-text);
-      // }
+    .selector-chevron {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--color-base-text);
+      border-bottom: 2px solid var(--color-base-text);
+      transform: rotate(45deg);
+      transition: transform 0.2s ease;
+      margin-left: 8px;
+    }
+
+    [aria-expanded="true"] .selector-chevron {
+      transform: rotate(-135deg);
+    }
+
+    .selector-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      background: var(--color-base-mobile-header-lang-dropdown-bg);
+      border: 1px solid var(--color-selector-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+      padding: 6px 0;
+      z-index: 20;
+      max-height: 260px;
+      overflow: auto;
+      outline: none;
+    }
+
+    .selector-option {
+      padding: 12px 14px;
+      font-family: "YAS Font", sans-serif;
+      font-size: 15px;
+      color: var(--color-base-text);
+
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .selector-option:hover,
+    .selector-option.is-focused {
+      background: var(--color-selector-option-hover);
+    }
+
+    .selector-option.is-selected {
+      background: var(--color-base-product-card-bg);
+      color: var(--color-selector-option-text, var(--color-base-text));
+      font-weight: 600;
     }
   }
 }

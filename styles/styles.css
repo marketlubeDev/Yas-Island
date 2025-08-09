@@ -10872,13 +10872,14 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   width: 13rem;
   display: flex;
   align-items: center;
+  position: relative;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .selector {
     width: 12rem;
   }
 }
-.selector select {
+.selector.custom-select .selector-trigger {
   width: 100%;
   height: 100%;
   border: none;
@@ -10889,12 +10890,51 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   font-weight: 400;
   font-size: 17px;
   font-family: "YAS Font", sans-serif;
+  text-align: left;
 }
-.selector select option {
-  background-color: var(--color-selector-option-bg);
-  color: var(--color-base-text);
-  padding: 8px 12px;
+.selector.custom-select .selector-chevron {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-base-text);
+  border-bottom: 2px solid var(--color-base-text);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+}
+.selector.custom-select [aria-expanded=true] .selector-chevron {
+  transform: rotate(-135deg);
+}
+.selector.custom-select .selector-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: var(--color-base-mobile-header-lang-dropdown-bg);
+  border: 1px solid var(--color-selector-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+  padding: 6px 0;
+  z-index: 20;
+  max-height: 260px;
+  overflow: auto;
+  outline: none;
+}
+.selector.custom-select .selector-option {
+  padding: 12px 14px;
   font-family: "YAS Font", sans-serif;
+  font-size: 15px;
+  color: var(--color-base-text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.selector.custom-select .selector-option:hover,
+.selector.custom-select .selector-option.is-focused {
+  background: var(--color-selector-option-hover);
+}
+.selector.custom-select .selector-option.is-selected {
+  background: var(--color-base-product-card-bg);
+  color: var(--color-selector-option-text, var(--color-base-text));
+  font-weight: 600;
 }
 
 .selector-container {
