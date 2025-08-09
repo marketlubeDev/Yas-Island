@@ -193,6 +193,11 @@ html[lang="ar"] {
       opacity: 0.5;
       cursor: not-allowed;
     }
+
+    // Mobile styles
+    @media (max-width: 600px) {
+      padding: 6px 15px;
+    }
   }
 }
 

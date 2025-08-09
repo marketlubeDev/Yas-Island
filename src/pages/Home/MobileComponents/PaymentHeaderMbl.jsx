@@ -18,7 +18,7 @@ function PaymentHeaderMbl({ step }) {
         <div className="payment-header__title">
           {t("payment.steps.guestDetails")}
         </div>
-        <button
+        {/* <button
           className={`payment-header__back-button ${
             isRTL ? "payment-header__back-button--rtl" : ""
           }`}
@@ -34,7 +34,7 @@ function PaymentHeaderMbl({ step }) {
               transform: isRTL ? "scaleX(-1)" : "none",
             }}
           />
-        </button>
+        </button> */}
         <div className="payment-header__steps-container">
           <div
             style={{

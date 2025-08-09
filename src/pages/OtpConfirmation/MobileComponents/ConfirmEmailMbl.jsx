@@ -24,7 +24,7 @@ function ConfirmEmailMbl({ onBack }) {
   const [isExpired, setIsExpired] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(300);
+  const [timer, setTimer] = useState(120);
 
   const handleConfirmEmail = async () => {
     if (email === "") {
@@ -58,7 +58,7 @@ function ConfirmEmailMbl({ onBack }) {
     verification(email, {
       onSuccess: (res) => {
         dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
-        setTimer(300);
+        setTimer(120);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
       },
@@ -108,9 +108,9 @@ function ConfirmEmailMbl({ onBack }) {
               >
                 {t("payment.verification.editEmail")}
               </button>
-              <div className="confirm-email__otp-warning">
+              {/* <div className="confirm-email__otp-warning">
                 {t("payment.verification.checkSpam")}
-              </div>
+              </div> */}
             </div>
             <TimerMbl
               setIsExpired={setIsExpired}

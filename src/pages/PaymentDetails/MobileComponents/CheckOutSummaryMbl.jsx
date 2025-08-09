@@ -225,7 +225,7 @@ function CheckOutSummaryMbl({
         </span>
       </div>
       {/* View Items Button */}
-      <button
+      {/* <button
         onClick={() => setShowItems(!showItems)}
         className="email-checkout__summary-viewItems"
         type="button"
@@ -261,61 +261,59 @@ function CheckOutSummaryMbl({
         >
           <polyline points="6,9 12,15 18,9"></polyline>
         </svg>
-      </button>
-
+      </button> */}
       {/* Item Details Section */}
-      {showItems && (
-        <div className="items-container">
-          {checkout?.items && checkout.items.length > 0 ? (
-            checkout.items.map((item, index) => (
-              <div key={index} className="order-item-minimal">
-                <div className="item-content">
-                  <div className="item-main">
-                    <h4 className="item-title">
-                      {getProduct(item.productId)?.product?.product_title ||
-                        "Product"}
-                    </h4>
-                    <div className="item-meta">
-                      <span className="item-variant">
-                        {getProduct(item.productId)?.productVariant
-                          ?.productvariantname || "Variant"}
-                      </span>
-                      <span className="item-separator">•</span>
-                      <span className="item-date">
-                        {formatDate(item.validFrom)}
-                      </span>
-                      <span className="item-separator">•</span>
-                      <span className="item-quantity">
-                        Qty: {item.quantity || 0}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="item-price">
-                    <span className="price-amount">
-                      {t("common.aed")}{" "}
-                      {(
-                        (getProduct(item.productId)?.productVariant
-                          ?.net_amount || 0) *
-                          (item.quantity || 0) +
-                        (getProduct(item.productId)?.productVariant?.vat || 0) *
-                          (item.quantity || 0)
-                      ).toFixed(2)}
+      {/* {showItems && ( */}
+      <div className="items-container">
+        {checkout?.items && checkout.items.length > 0 ? (
+          checkout.items.map((item, index) => (
+            <div key={index} className="order-item-minimal">
+              <div className="item-content">
+                <div className="item-main">
+                  <h4 className="item-title">
+                    {getProduct(item.productId)?.product?.product_title ||
+                      "Product"}
+                  </h4>
+                  <div className="item-meta">
+                    <span className="item-variant">
+                      {getProduct(item.productId)?.productVariant
+                        ?.productvariantname || "Variant"}
+                    </span>
+                    <span className="item-separator">•</span>
+                    <span className="item-date">
+                      {formatDate(item.validFrom)}
+                    </span>
+                    <span className="item-separator">•</span>
+                    <span className="item-quantity">
+                      Qty: {item.quantity || 0}
                     </span>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <div className="order-item-minimal">
-              <div className="item-content">
-                <div className="item-main">
-                  <h4 className="item-title">No items in cart</h4>
+                <div className="item-price">
+                  <span className="price-amount">
+                    {t("common.aed")}{" "}
+                    {(
+                      (getProduct(item.productId)?.productVariant?.net_amount ||
+                        0) *
+                        (item.quantity || 0) +
+                      (getProduct(item.productId)?.productVariant?.vat || 0) *
+                        (item.quantity || 0)
+                    ).toFixed(2)}
+                  </span>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      )}
+          ))
+        ) : (
+          <div className="order-item-minimal">
+            <div className="item-content">
+              <div className="item-main">
+                <h4 className="item-title">No items in cart</h4>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Cost Breakdown */}
       <div className="email-checkout__summary-costBreakdown">
@@ -347,7 +345,6 @@ function CheckOutSummaryMbl({
           </>
         )}
       </div>
-
       {/* Promo Code Section - Only show if no coupon is applied */}
       {showPromoCode && !checkout?.promotions?.[0]?.discount && (
         <div className="email-checkout__summary-promoCode">
@@ -373,7 +370,6 @@ function CheckOutSummaryMbl({
           </div>
         </div>
       )}
-
       {/* Coupon Applied Indicator */}
       {checkout?.promotions?.[0]?.discount && (
         <div
@@ -433,7 +429,6 @@ function CheckOutSummaryMbl({
           </div>
         </div>
       )}
-
       {/* Total */}
       <div className="email-checkout__summary-grandTotal">
         <span className="grandTotal-Content">
@@ -443,9 +438,8 @@ function CheckOutSummaryMbl({
           {t("common.aed")} {(checkout?.grossAmount || 0).toFixed(2)}
         </span>
       </div>
-
       {/* Secure Payment Button */}
-      <div className="email-checkout__summary-securePayment">
+      {/* <div className="email-checkout__summary-securePayment">
         <svg
           width="16"
           height="16"
@@ -458,7 +452,7 @@ function CheckOutSummaryMbl({
           <path d="M9 12l2 2 4-4"></path>
         </svg>
         {t("orderSummary.securePayment")}
-      </div>
+      </div> */}
     </div>
   );
 }

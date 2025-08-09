@@ -8416,6 +8416,11 @@ html[lang=ar] .confirm-email__input-underline {
   opacity: 0.5;
   cursor: not-allowed;
 }
+@media (max-width: 600px) {
+  .confirm-email__otp-actions button {
+    padding: 6px 15px;
+  }
+}
 
 .confirm-email__confirm-btn {
   background: var(--color-email-form-confirm-btn);
@@ -8792,7 +8797,6 @@ html[lang=ar] .confirm-email__input-underline {
 .email-checkout__summary-grandTotal {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
   padding-top: 12px;
   border-top: 1px solid var(--color-base-product-card-divider);
 }
@@ -10727,8 +10731,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   font-weight: 600;
   color: var(--color-pymnt-title-clr);
   text-align: center;
-  margin-left: 10px;
-  margin-top: 105px;
+  margin-top: 100px;
 }
 .payment-header__back-button {
   background: none;

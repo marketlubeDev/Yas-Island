@@ -197,7 +197,7 @@ export const en = {
       enterCode: "ENTER VERIFICATION CODE",
       codeSent: "Verification code has been sent to",
       checkSpam: "Please check your spam or junk mail folder",
-      willExpire: "You can request for new OTP in 2min",
+      willExpire: "You can request for new OTP in",
       resend: "Resend",
       confirmOtp: "Confirm OTP",
       expired: "OTP has expired",
