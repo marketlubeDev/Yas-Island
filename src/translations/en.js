@@ -244,7 +244,7 @@ export const en = {
       terms: {
         acceptTerms: "I have read and accept the",
         termsAndConditions: "terms and conditions *",
-        receiveCommunications: "Receive communications via email",
+        receiveCommunications: "Receive promotions by email",
       },
     },
     paymentDetails: {

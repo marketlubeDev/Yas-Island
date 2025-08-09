@@ -242,7 +242,7 @@ export const ar = {
       terms: {
         acceptTerms: "لقد قرأت وأوافق على",
         termsAndConditions: "الشروط والأحكام *",
-        receiveCommunications: "استلام الرسائل عبر البريد الإلكتروني",
+        receiveCommunications: "تلقي العروض الترويجية عبر البريد الإلكتروني",
       },
     },
     paymentDetails: {
