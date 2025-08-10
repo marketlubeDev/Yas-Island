@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from "react";
-import ProductHead from "./ProductHead/ProductHead";
+
 import { useSelector } from "react-redux";
-import ProductSoloThumbnail from "./ProductSoloThumnail/ProductSoloThumbnail";
-import MobSelectorGroup from "./MobSelectorGroup/MobSelectorGroup";
+
 import ProductCard from "./Components/ProductCard";
 import SideBar from "../../layouts/SideBar/SideBar";
-import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
+
 import AccessibilityModal from "./Components/AccessibilityModal";
-import MainProductHead from "./ProductHead/mainProductHead";
+
 import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 import Header from "../../layouts/Header/Header";
