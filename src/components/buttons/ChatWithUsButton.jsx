@@ -19,6 +19,8 @@ export default function ChatWithUsButton() {
   //   }
   // };
 
+  console.log(isChatOpen, "is chat open");
+
   return (
     <button
       className="btn chat-with-us"
