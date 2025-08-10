@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import chatWithUsIcon from "../../assets/icons/message.svg";
+import closeIcon from "../../assets/icons/close.svg";
 
 export default function ChatWithUsButton() {
   const { t } = useTranslation();
@@ -23,8 +24,12 @@ export default function ChatWithUsButton() {
       className="btn chat-with-us"
       onClick={() => setIsChatOpen((val) => !val)}
     >
-      <img src={chatWithUsIcon} alt="Chat" className="chat-icon" />
-      <span>{t("common.chatWithUs")}</span>
+      <img
+        src={isChatOpen ? closeIcon : chatWithUsIcon}
+        alt={isChatOpen ? "Close" : "Chat"}
+        className="chat-icon"
+      />
+      {!isChatOpen && <span>{t("common.chatWithUs")}</span>}
     </button>
   );
 }

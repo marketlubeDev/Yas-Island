@@ -16,11 +16,30 @@
   gap: 0.5rem;
   color: var(--color-base-chat-btn-text);
   text-transform: capitalize !important;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 151, 229, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 
   .chat-icon {
     filter: brightness(0) invert(1);
     width: 20px;
     height: 20px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  span {
+    transition: opacity 0.3s ease;
   }
 }
 
