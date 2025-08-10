@@ -19,7 +19,10 @@ export default function ChatWithUsButton() {
   // };
 
   return (
-    <button className="btn chat-with-us">
+    <button
+      className="btn chat-with-us"
+      onClick={() => setIsChatOpen((val) => !val)}
+    >
       <img src={chatWithUsIcon} alt="Chat" className="chat-icon" />
       <span>{t("common.chatWithUs")}</span>
     </button>
