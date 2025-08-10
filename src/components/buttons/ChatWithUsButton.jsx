@@ -6,20 +6,20 @@ export default function ChatWithUsButton() {
   const { t } = useTranslation();
   const [isChatOpen, setIsChatOpen] = useState(false);
 
-  const handleChatClick = () => {
-    if (window.sprChat) {
-      if (isChatOpen) {
-        window.sprChat("close");
-        setIsChatOpen(false);
-      } else {
-        window.sprChat("open");
-        setIsChatOpen(true);
-      }
-    }
-  };
+  // const handleChatClick = () => {
+  //   if (window.sprChat) {
+  //     if (isChatOpen) {
+  //       window.sprChat("close");
+  //       setIsChatOpen(false);
+  //     } else {
+  //       window.sprChat("open");
+  //       setIsChatOpen(true);
+  //     }
+  //   }
+  // };
 
   return (
-    <button className="btn chat-with-us" onClick={handleChatClick}>
+    <button className="btn chat-with-us">
       <img src={chatWithUsIcon} alt="Chat" className="chat-icon" />
       <span>{t("common.chatWithUs")}</span>
     </button>
