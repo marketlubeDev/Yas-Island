@@ -6,11 +6,12 @@ import closeIcon from "../../assets/icons/close.svg";
 export default function ChatWithUsButton() {
   const { t } = useTranslation();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [animationClass, setAnimationClass] = useState("");
 
   // Listen for Sprinklr chat state changes
   useEffect(() => {
     // Function to check if Sprinklr chat is open
-    const checkChatState = () => {
+    const checkChatState = (previousState) => {
       // Multiple ways to check if chat is open
       const chatBox = document.querySelector(".spr-chat__box");
       const chatWidget = document.querySelector(".ezg1tqb1"); // Sprinklr chat container
@@ -26,12 +27,29 @@ export default function ChatWithUsButton() {
         isOpen = chatWidget.style.display !== "none";
       }
 
+      // Trigger animation when state changes
+      if (isOpen !== previousState) {
+        setAnimationClass(isOpen ? "is-opening" : "is-closing");
+        setTimeout(() => setAnimationClass(""), 500);
+      }
+
       setIsChatOpen(isOpen);
     };
 
     // Set up observer to watch for Sprinklr chat state changes
+    let currentState = false;
     const observer = new MutationObserver(() => {
-      checkChatState();
+      checkChatState(currentState);
+      // Update current state after check
+      const chatBox = document.querySelector(".spr-chat__box");
+      const chatWidget = document.querySelector(".ezg1tqb1");
+      if (chatBox) {
+        currentState =
+          !chatBox.classList.contains("spr-chat--minimized") &&
+          chatBox.style.display !== "none";
+      } else if (chatWidget) {
+        currentState = chatWidget.style.display !== "none";
+      }
     });
 
     // Start observing when Sprinklr is loaded
@@ -49,12 +67,20 @@ export default function ChatWithUsButton() {
         });
 
         // Initial check
-        checkChatState();
+        checkChatState(false);
 
         // Also listen for Sprinklr events if available
         if (window.sprChat && window.sprChat.on) {
-          window.sprChat.on("open", () => setIsChatOpen(true));
-          window.sprChat.on("close", () => setIsChatOpen(false));
+          window.sprChat.on("open", () => {
+            setAnimationClass("is-opening");
+            setTimeout(() => setAnimationClass(""), 500);
+            setIsChatOpen(true);
+          });
+          window.sprChat.on("close", () => {
+            setAnimationClass("is-closing");
+            setTimeout(() => setAnimationClass(""), 500);
+            setIsChatOpen(false);
+          });
         }
       }
     }, 100);
@@ -76,10 +102,11 @@ export default function ChatWithUsButton() {
     // State will be updated by the observer
   };
 
-  console.log(isChatOpen, "is chat open");
-
   return (
-    <button className="btn chat-with-us" onClick={handleChatClick}>
+    <button
+      className={`btn chat-with-us ${animationClass}`}
+      onClick={handleChatClick}
+    >
       <img
         src={isChatOpen ? closeIcon : chatWithUsIcon}
         alt={isChatOpen ? "Close" : "Chat"}

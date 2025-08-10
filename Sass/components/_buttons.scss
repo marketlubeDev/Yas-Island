@@ -16,30 +16,92 @@
   gap: 0.5rem;
   color: var(--color-base-chat-btn-text);
   text-transform: capitalize !important;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  min-width: 140px;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(5, 151, 229, 0.3);
+    box-shadow: 0 6px 20px rgba(5, 151, 229, 0.4);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.98);
   }
 
   .chat-icon {
     filter: brightness(0) invert(1);
     width: 20px;
     height: 20px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: center;
   }
 
   span {
-    transition: opacity 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+  }
+
+  // Animation states
+  &.is-opening {
+    animation: pulse 0.6s ease-out;
+
+    .chat-icon {
+      animation: rotateIn 0.5s ease-out;
+    }
+  }
+
+  &.is-closing {
+    animation: pulse 0.6s ease-out;
+
+    .chat-icon {
+      animation: rotateOut 0.5s ease-out;
+    }
+  }
+}
+
+// Icon rotation animations
+@keyframes rotateIn {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateOut {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+// Pulse effect when state changes
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(5, 151, 229, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(5, 151, 229, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(5, 151, 229, 0);
   }
 }
 
