@@ -232,6 +232,7 @@ export const ar = {
       subTotal: "المجموع الفرعي :",
       vatAndTax: "ضريبة القيمة المضافة :",
       total: "المجموع :",
+      qty: "الكمية :",
       promoCodeSavings: "توفير رمز الخصم :",
       promoCode: {
         label: "أدخل رمز الخصم للحصول على تخفيض",

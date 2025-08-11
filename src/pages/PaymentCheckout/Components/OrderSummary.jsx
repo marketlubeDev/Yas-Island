@@ -263,7 +263,7 @@ export default function OrderSummary({
                     </span>
                     <span className="item-separator">•</span>
                     <span className="item-quantity">
-                      Qty: {item.quantity || 0}
+                      {t("payment.orderSummary.qty")} : {item.quantity || 0}
                     </span>
                   </div>
                 </div>

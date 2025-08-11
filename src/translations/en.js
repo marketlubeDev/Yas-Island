@@ -234,6 +234,7 @@ export const en = {
       subTotal: "Sub total :",
       vatAndTax: "vat & tax :",
       total: "Total :",
+      qty: "Qty:",
       promoCodeSavings: "promo code savings :",
       promoCode: {
         label: "ENTER YOUR PROMO CODE ",
