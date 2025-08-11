@@ -640,13 +640,81 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 0.5rem;
   color: var(--color-base-chat-btn-text);
   text-transform: capitalize !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+}
+.chat-with-us:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 151, 229, 0.4);
+}
+.chat-with-us:active {
+  transform: translateY(0) scale(0.98);
 }
 .chat-with-us .chat-icon {
   filter: brightness(0) invert(1);
   width: 20px;
   height: 20px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+.chat-with-us span {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+.chat-with-us.is-opening {
+  animation: pulse 0.6s ease-out;
+}
+.chat-with-us.is-opening .chat-icon {
+  animation: rotateIn 0.5s ease-out;
+}
+.chat-with-us.is-closing {
+  animation: pulse 0.6s ease-out;
+}
+.chat-with-us.is-closing .chat-icon {
+  animation: rotateOut 0.5s ease-out;
 }
 
+@keyframes rotateIn {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes rotateOut {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(5, 151, 229, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(5, 151, 229, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(5, 151, 229, 0);
+  }
+}
 .yellow-btn {
   background-color: #ffea00;
   color: #fff;
@@ -10899,6 +10967,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   font-size: 17px;
   font-family: "YAS Font", sans-serif;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .selector.custom-select .selector-chevron {
   width: 10px;

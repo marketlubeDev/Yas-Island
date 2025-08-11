@@ -25,6 +25,9 @@
       font-size: 17px;
       font-family: "YAS Font", sans-serif;
       text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     // .selector-value.is-placeholder {

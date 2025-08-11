@@ -1,12 +1,8 @@
 import React, { useState, useMemo } from "react";
-
 import { useSelector } from "react-redux";
-
 import ProductCard from "./Components/ProductCard";
 import SideBar from "../../layouts/SideBar/SideBar";
-
 import AccessibilityModal from "./Components/AccessibilityModal";
-
 import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 import Header from "../../layouts/Header/Header";

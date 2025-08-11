@@ -77,7 +77,6 @@ export default function HeaderLogo() {
       // Update Redux state - this will trigger i18n change via useI18nSync
       dispatch(setLanguage(lng));
       dispatch(setProducts([]));
-
       dispatch(setCurrentSort(""));
       dispatch(setCurrentPark(""));
       dispatch(setSearchQuery(""));
