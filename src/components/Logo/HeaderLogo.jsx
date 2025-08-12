@@ -99,12 +99,6 @@ export default function HeaderLogo() {
               language === "العربية" ? "header-logo-ar" : ""
             }`}
             onClick={handleLogoClick}
-            style={
-              {
-                // paddingLeft: "2rem",
-                // paddingRight: "2rem",
-              }
-            }
           >
             <img
               src={logo}
@@ -166,11 +160,20 @@ export default function HeaderLogo() {
             >
               {i18n.language === "en" ? "English" : "العربية"}
             </span>
-            <img
-              src={isDarkMode ? invertdown : down}
-              alt="chevron"
-              className="chevron"
-            />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={isDarkMode ? "#E7EBD4" : "#18142B"}
+              strokeWidth="2"
+              style={{
+                transform: "rotate(0deg)",
+                transition: "transform 0.2s",
+              }}
+            >
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
           </button>
           {showLangDropdown && (
             <div className="mobile-header__lang-dropdown">
@@ -208,9 +211,6 @@ export default function HeaderLogo() {
           style={{
             borderWidth: isDarkMode ? "2px" : "1px",
             ...(!isPaymentRoute && {
-              // top: "-12px",
-              // right: "-2rem",
-
               left: language === "العربية" ? "auto" : undefined,
             }),
           }}

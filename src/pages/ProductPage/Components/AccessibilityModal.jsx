@@ -68,7 +68,10 @@ export default function AccessibilityModal({ isOpen, onClose }) {
         <p className="subtitle">{t("accessibility.subtitle")}</p>
 
         <div className="options-container">
-          <div className={`option-card ${isDarkMode ? "active" : ""}`}>
+          <div
+            className={`option-card ${isDarkMode ? "active" : ""}`}
+            onClick={handleDarkModeClick}
+          >
             <div className="option-icon">
               <img src={Invert} alt={t("accessibility.colorBlindness")} />
             </div>
