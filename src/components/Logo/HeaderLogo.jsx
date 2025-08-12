@@ -17,8 +17,7 @@ import globe from "../../assets/icons/globe.svg";
 import invertGlobe from "../../assets/icons/invertGlob.svg";
 import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
-import down from "../../assets/icons/down.svg";
-import invertdown from "../../assets/icons/invertdown.svg";
+
 import {
   setProducts,
   setCurrentSort,

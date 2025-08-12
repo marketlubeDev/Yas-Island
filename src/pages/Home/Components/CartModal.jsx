@@ -165,8 +165,6 @@ const CartModal = ({ isOpen, onClose }) => {
       capacityManagement: true,
     };
 
-    console.log("items", items);
-
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
@@ -402,8 +400,6 @@ const CartModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-
-  if (!isOpen || cartItems.length === 0) return null;
 
   return (
     <Drawer
