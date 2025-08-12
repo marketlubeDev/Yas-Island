@@ -494,12 +494,6 @@
 .accessibility-button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    transform: scale(1.1) rotate(10deg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    animation: floatAnimation 2s ease-in-out infinite;
-  }
-
   &:active {
     transform: scale(0.95);
   }

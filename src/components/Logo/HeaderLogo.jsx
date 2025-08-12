@@ -127,7 +127,7 @@ export default function HeaderLogo() {
       </div>
       <div className="header-actions-right animate-fade-in">
         <button
-          className="accessibility-button animate-slide-in"
+          className="accessibility-button"
           aria-label={t("common.accessibility")}
           onClick={onAccessibilityOpen}
           style={{
