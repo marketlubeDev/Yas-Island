@@ -354,9 +354,10 @@ body {
   background-color: var(--color-base-product-card-card-item-bg);
   padding: 2rem 0 3rem 1rem;
   height: 100vh;
+  max-height: 100vh;
   position: sticky;
   top: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .side-bar-ar {
   padding: 2rem 1rem 3rem 0;
@@ -369,8 +370,8 @@ body {
   justify-content: flex-start;
   gap: 0rem;
   padding-top: 1rem;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
+  min-height: 0;
 }
 .side-bar-list a {
   padding: 0;
@@ -399,19 +400,22 @@ body {
 
 .side-bar-list-item {
   position: relative;
-  border: 2px solid var(--color-base-side-bar-item-inactive-border);
+  border: 2px solid rgb(218, 218, 218);
   border-radius: 2rem;
   height: fit-content;
   width: 100%;
   display: flex;
   align-items: center;
   padding: 0rem;
-  color: var(--color-base-side-bar-item-right-text);
+  color: rgb(189, 189, 189);
   background: var(--color-base-side-bar-item-right-bg);
   transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
+}
+.side-bar-list-item:hover {
+  color: rgb(89, 89, 89);
 }
 .side-bar-list-item.activeItem {
   box-shadow: 0px 0px 7px var(--Number, 2px) var(--color-base-side-bar-item-box);
@@ -1175,11 +1179,6 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .accessibility-button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.accessibility-button:hover {
-  transform: scale(1.1) rotate(10deg);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  animation: floatAnimation 2s ease-in-out infinite;
 }
 .accessibility-button:active {
   transform: scale(0.95);

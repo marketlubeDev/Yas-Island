@@ -16,6 +16,7 @@ export default function ProductPage() {
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
   const { isLoading, isError } = useGetProductList();
+
   // Filter and sort products based on search, selected park and sort option
   const filteredProducts = useMemo(() => {
     let filtered = productList;

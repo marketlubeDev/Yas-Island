@@ -697,7 +697,7 @@ export default function BookingSection({ product, onBack }) {
       </div>
       <div className="booking-section-divider"></div>
       {/* Guest Selection */}
-      <div className="guest-section h-full flex flex-col justify-between">
+      <div className="guest-section">
         <div className="guest-section-header-container">
           <h2 className="section-title">
             {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
