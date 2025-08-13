@@ -1,5 +1,5 @@
 .mobile-header {
-  height: 80px;
+  min-height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -8,6 +8,13 @@
   padding: 20px 26px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   z-index: 10;
+  flex-shrink: 0;
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    min-height: 70px;
+    padding: 16px 20px;
+  }
 
   &.animate-mobile-header {
     animation: slideDownHeader 0.8s ease-out;
@@ -23,6 +30,11 @@
     height: 54px;
     width: auto;
     display: block;
+
+    // Samsung S8 and similar small devices
+    @media only screen and (max-width: 380px) {
+      height: 45px;
+    }
 
     &.animate-mobile-logo {
       animation: gentleFloat 3s ease-in-out infinite;
@@ -51,6 +63,12 @@
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s;
+
+    // Samsung S8 and similar small devices
+    @media only screen and (max-width: 380px) {
+      padding: 3px 3px;
+      gap: 4px;
+    }
   }
 
   &__icon-btn img,

@@ -48,7 +48,9 @@ function MobileProductPage() {
         const defaultVariant = product?.product_variants?.find(
           (variant) => variant.isdefault
         );
-        return defaultVariant?.gross || 0;
+        // If no default variant found, use the first variant
+        const variantToUse = defaultVariant || product?.product_variants?.[0];
+        return variantToUse?.gross || 0;
       };
 
       filtered = [...filtered].sort((a, b) => {
