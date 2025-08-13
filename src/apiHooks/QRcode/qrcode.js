@@ -3,14 +3,11 @@ import apiClient from "../../../config/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-const useValidateQRcode = (qrcode = "a6d171b0-666a-4538-8adb-82e796c6d3ff") => {
+const useValidateQRcode = (qrcode) => {
   console.log(qrcode, "qrcode in qrcode");
   const response = useQuery({
     queryKey: ["validateQRcode", qrcode],
-    queryFn: () =>
-      apiClient.get(
-        `/qrcode/log-locations?qrlocation=a6d171b0-666a-4538-8adb-82e796c6d3ff`
-      ),
+    queryFn: () => apiClient.get(`/qrcode/log-locations?qrlocation=${qrcode}`),
     // enabled: !!qrcode,
   });
 
