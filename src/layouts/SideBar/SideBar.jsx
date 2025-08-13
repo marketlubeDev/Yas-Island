@@ -105,7 +105,14 @@ export default function SideBar() {
           </div>
         ))}
       </ul>
-      <div className="side-bar-bottom">
+      <div
+        className="side-bar-bottom"
+        style={
+          language === "العربية"
+            ? { paddingLeft: "1rem", paddingRight: "0rem" }
+            : { paddingRight: "1rem", paddingLeft: "0rem" }
+        }
+      >
         <ChatWithUsButton />
       </div>
     </nav>
