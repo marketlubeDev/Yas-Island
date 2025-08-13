@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Logo from "../../components/Logo/Logo";
 import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
