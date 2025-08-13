@@ -43,7 +43,7 @@ function PaymentSuccessMobile() {
             // onClick={onShowExperience}
             onClick={() => {
               navigate("/payment-response");
-            }}  
+            }}
           >
             {t("payment.success.title")}
           </div>
