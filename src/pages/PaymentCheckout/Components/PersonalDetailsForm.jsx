@@ -34,6 +34,7 @@ const FormInput = ({
   button = null,
   hasError = false,
   placeholder = "",
+  isRTL = false,
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
@@ -43,7 +44,11 @@ const FormInput = ({
         className={`form-group__input ${hasError ? "error" : ""} ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        style={{ width: "100%" }}
+        style={{
+          width: "100%",
+          paddingRight: !isRTL && button ? "28px" : undefined,
+          paddingLeft: isRTL && button ? "28px" : undefined,
+        }}
         placeholder={hasError ? placeholder : ""}
       />
       {button && (
@@ -51,7 +56,7 @@ const FormInput = ({
           className="form-group__button"
           style={{
             position: "absolute",
-            right: "0",
+            [isRTL ? "left" : "right"]: "0",
             top: "50%",
             transform: "translateY(-50%)",
             background: "none",
@@ -261,6 +266,7 @@ export default function PersonalDetailsForm({
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+  const isRTL = currentLanguage === "ar";
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
@@ -458,6 +464,7 @@ export default function PersonalDetailsForm({
           type="email"
           hasError={fieldErrors.email}
           placeholder={t("payment.personalDetails.email")}
+          isRTL={isRTL}
           button={
             <button
               onClick={() => navigate("/email-verification")}
@@ -468,7 +475,8 @@ export default function PersonalDetailsForm({
                 padding: "5px",
                 display: "flex",
                 alignItems: "center",
-                marginRight: "5px",
+                marginRight: isRTL ? 0 : "5px",
+                marginLeft: isRTL ? "5px" : 0,
               }}
             >
               <FaEdit size={18} color="#666" />

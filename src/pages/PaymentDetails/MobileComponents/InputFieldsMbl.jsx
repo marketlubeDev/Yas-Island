@@ -46,6 +46,11 @@ const FormInput = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required
+        style={{
+          width: "100%",
+          paddingRight: !isRTL && button ? "28px" : undefined,
+          paddingLeft: isRTL && button ? "28px" : undefined,
+        }}
         placeholder={hasError ? placeholder : ""}
       />
       {button && (
