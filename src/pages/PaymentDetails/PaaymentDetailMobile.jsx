@@ -65,7 +65,8 @@ function PaymentDetailsMobile() {
     if (!data.lastName || data.lastName.trim().length < 1) {
       errors.push("Last name is required ");
     }
-    if (!data.phoneNumber || data.phoneNumber.length < 8) {
+    const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
+    if (phoneDigits.length < 1) {
       errors.push("Valid phone number is required");
     }
     if (!data.countryCode) {
@@ -95,6 +96,12 @@ function PaymentDetailsMobile() {
       return;
     }
 
+    const sanitize = (val) =>
+      String(val == null ? "" : val)
+        .replace(/[<>]/g, "")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .trim();
+
     const data = {
       coupons: [],
       items: checkout?.items.map((item) => ({
@@ -105,16 +112,16 @@ function PaymentDetailsMobile() {
         validTo: item.validTo,
         productMasterid: item.productMasterid,
       })),
-      emailId: checkout?.emailId,
+      emailId: sanitize(checkout?.emailId),
       language: currentLanguage,
       amount: checkout?.netAmount,
-      firstName: checkout?.firstName,
-      lastName: checkout?.lastName,
-      phoneNumber: checkout?.phoneNumber,
-      countryCode: checkout?.country,
+      firstName: sanitize(checkout?.firstName),
+      lastName: sanitize(checkout?.lastName),
+      phoneNumber: sanitize(checkout?.phoneNumber),
+      countryCode: sanitize(checkout?.country),
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
-      nationality: checkout?.nationality,
+      nationality: sanitize(checkout?.nationality),
     };
 
     // Validate data before proceeding
@@ -124,6 +131,10 @@ function PaymentDetailsMobile() {
       validationErrors.forEach((error) => {
         toast.error(error || t("toastMessages.somethingWentWrong"));
       });
+      // trigger red placeholders in the mobile inputs
+      try {
+        window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
+      } catch {}
       return;
     }
 

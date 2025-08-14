@@ -29,6 +29,8 @@ const FormInput = ({
   className = "",
   button = null,
   isRTL = false,
+  hasError = false,
+  placeholder = "",
 }) => (
   <label
     className="email-checkout__label"
@@ -38,10 +40,13 @@ const FormInput = ({
     <div style={{ position: "relative", width: "100%" }}>
       <input
         type={type}
-        className={`email-checkout__input ${className}`}
+        className={`email-checkout__input ${
+          hasError ? "error" : ""
+        } ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required
+        placeholder={hasError ? placeholder : ""}
       />
       {button && (
         <div
@@ -210,20 +215,26 @@ const FormSelectWithSearch = ({ label, value, onChange, options }) => {
   );
 };
 
-const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
+const PhoneInputComponent = ({
+  label,
+  phoneNumber,
+  onPhoneNumberChange,
+  hasError = false,
+}) => (
   <label className="email-checkout__label" id="phoneNumber">
     {label}
     <PhoneInput
       country={"ae"}
       value={phoneNumber || ""}
       onChange={onPhoneNumberChange}
-      inputClass="email-checkout__phone-input"
+      inputClass={`email-checkout__phone-input${hasError ? " error" : ""}`}
       containerClass="email-checkout__phone-container"
       buttonClass="email-checkout__phone-button"
       dropdownClass="email-checkout__phone-dropdown"
-      enableSearch={true}
-      disableSearchIcon={true}
-      preferredCountries={["ae", "in", "us", "gb"]}
+      enableSearch={false}
+      disableDropdown={true}
+      countryCodeEditable={false}
+      onlyCountries={["ae"]}
       containerStyle={{
         width: "100%",
       }}
@@ -286,6 +297,30 @@ function InputFieldsMbl() {
     phoneNumber: checkout.phoneNumber || "",
   });
 
+  const [fieldErrors, setFieldErrors] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    phoneNumber: false,
+    country: false,
+    nationality: false,
+  });
+
+  const validateFieldsForPlaceholders = () => {
+    const next = {
+      firstName: !formData.firstName || formData.firstName.trim().length < 2,
+      lastName: !formData.lastName || formData.lastName.trim().length < 1,
+      email:
+        !formData.email || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+      phoneNumber:
+        String((formData.phoneNumber || "").replace(/\D/g, "")).length <= 3,
+      country: !formData.country,
+      nationality: !formData.nationality,
+    };
+    setFieldErrors(next);
+    return next;
+  };
+
   const handleInputChange = (field) => (value) => {
     const updatedFormData = { ...formData, [field]: value };
     setFormData(updatedFormData);
@@ -332,23 +367,50 @@ function InputFieldsMbl() {
 
   const isRTL = i18n.language === "ar";
 
+  useEffect(() => {
+    const showErrors = () => {
+      // compute errors and set to show red placeholders
+      const next = {
+        firstName: !formData.firstName || formData.firstName.trim().length < 2,
+        lastName: !formData.lastName || formData.lastName.trim().length < 1,
+        email:
+          !formData.email ||
+          !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+        phoneNumber:
+          String((formData.phoneNumber || "").replace(/\D/g, "")).length <= 3,
+        country: !formData.country,
+        nationality: !formData.nationality,
+      };
+      setFieldErrors(next);
+    };
+    window.addEventListener("paymentForm:showFieldErrors", showErrors);
+    return () =>
+      window.removeEventListener("paymentForm:showFieldErrors", showErrors);
+  }, [formData]);
+
   return (
     <div className="email-checkout__form-container-inner">
       <FormInput
         label={t("payment.personalDetails.firstName")}
         value={formData.firstName}
         onChange={handleInputChange("firstName")}
+        hasError={fieldErrors.firstName}
+        placeholder={t("payment.personalDetails.firstName")}
       />
       <FormInput
         label={t("payment.personalDetails.lastName")}
         value={formData.lastName}
         onChange={handleInputChange("lastName")}
+        hasError={fieldErrors.lastName}
+        placeholder={t("payment.personalDetails.lastName")}
       />
       <FormInput
         label={t("payment.personalDetails.email")}
         value={formData.email}
         onChange={handleInputChange("email")}
         type="email"
+        hasError={fieldErrors.email}
+        placeholder={t("payment.personalDetails.email")}
         button={
           <button
             onClick={() => navigate("/email-verification")}
@@ -387,6 +449,7 @@ function InputFieldsMbl() {
         label={t("payment.personalDetails.phoneNumber")}
         phoneNumber={formData.phoneNumber}
         onPhoneNumberChange={handleInputChange("phoneNumber")}
+        hasError={fieldErrors.phoneNumber}
       />
     </div>
   );

@@ -904,24 +904,6 @@
   padding: 24px;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  @include respond(bigTablets) {
-    flex-direction: column !important;
-    align-content: center !important;
-    overflow-y: auto !important;
-    height: 80vh !important;
-  }
-
-  @include respond(desktop) {
-    padding: 0px;
-  }
-
-  @include respond(bigDesktop) {
-    padding: 0 20px;
-  }
 }
 
 /* Calendar container */
@@ -929,24 +911,24 @@
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
   padding: 0 40px;
-  width: 40%;
+  // width: 40%;
 
-  @include respond(bigTablets) {
-    width: 85% !important;
-    margin-bottom: 2rem;
-  }
+  // @include respond(bigTablets) {
+  //   width: 85% !important;
+  //   margin-bottom: 2rem;
+  // }
 
-  @include respond(desktop) {
-    padding: 0 20px;
-    width: 40%;
-    border-radius: 14px;
-    // margin-bottom: 4rem;
-  }
+  // @include respond(desktop) {
+  //   padding: 0 20px;
+  //   width: 40%;
+  //   border-radius: 14px;
+  //   // margin-bottom: 4rem;
+  // }
 
-  @include respond(bigDesktop) {
-    padding: 0 20px;
-    width: 45%;
-  }
+  // @include respond(bigDesktop) {
+  //   padding: 0 20px;
+  //   width: 45%;
+  // }
 
   h2 {
     color: var(--color-base-text);
@@ -1021,11 +1003,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-
-  @include respond(desktop) {
-    margin-bottom: 20px;
-  }
 }
 
 .calendar-header h2 {

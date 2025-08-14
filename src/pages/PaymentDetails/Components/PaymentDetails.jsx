@@ -89,7 +89,8 @@ export default function PaymentDetails({ isCheckout }) {
     if (!data.lastName || data.lastName.trim().length < 1) {
       errors.push("Last name is required ");
     }
-    if (!data.phoneNumber || data.phoneNumber.length < 8) {
+    const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
+    if (phoneDigits.length <= 3) {
       errors.push("Valid phone number is required");
     }
     if (!data.countryCode) {
@@ -112,6 +113,12 @@ export default function PaymentDetails({ isCheckout }) {
     return errors;
   };
 
+  const sanitize = (val) =>
+    String(val == null ? "" : val)
+      .replace(/[<>]/g, "")
+      .replace(/[\u0000-\u001F\u007F]/g, "")
+      .trim();
+
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
       toast.error(t("toastMessages.acceptTermsAndConditions"));
@@ -128,16 +135,16 @@ export default function PaymentDetails({ isCheckout }) {
         validTo: item.validTo,
         productMasterid: item.productMasterid,
       })),
-      emailId: checkout?.emailId,
+      emailId: sanitize(checkout?.emailId),
       language: currentLanguage,
       amount: checkout?.netAmount,
-      firstName: checkout?.firstName,
-      lastName: checkout?.lastName,
-      phoneNumber: checkout?.phoneNumber,
-      countryCode: checkout?.country,
+      firstName: sanitize(checkout?.firstName),
+      lastName: sanitize(checkout?.lastName),
+      phoneNumber: sanitize(checkout?.phoneNumber),
+      countryCode: sanitize(checkout?.country),
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
-      nationality: checkout?.nationality,
+      nationality: sanitize(checkout?.nationality),
     };
 
     // Validate data before proceeding
@@ -147,6 +154,10 @@ export default function PaymentDetails({ isCheckout }) {
       validationErrors.forEach((error) => {
         toast.error(error || t("toastMessages.somethingWentWrong"));
       });
+      // trigger red placeholders in the form via a custom event
+      try {
+        window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
+      } catch {}
       return;
     }
 

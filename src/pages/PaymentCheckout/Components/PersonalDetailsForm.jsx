@@ -32,16 +32,19 @@ const FormInput = ({
   type = "text",
   className = "",
   button = null,
+  hasError = false,
+  placeholder = "",
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
     <div style={{ position: "relative", width: "100%" }}>
       <input
         type={type}
-        className={`form-group__input ${className}`}
+        className={`form-group__input ${hasError ? "error" : ""} ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         style={{ width: "100%" }}
+        placeholder={hasError ? placeholder : ""}
       />
       {button && (
         <div
@@ -68,6 +71,8 @@ const FormSelectWithSearch = ({
   onChange,
   options,
   className = "",
+  hasError = false,
+  placeholder = "",
 }) => {
   const selectedOption =
     value && value !== ""
@@ -91,7 +96,9 @@ const FormSelectWithSearch = ({
     control: (provided) => ({
       ...provided,
       border: "none",
-      borderBottom: "1px solid var(--ip-bodr-btm)",
+      borderBottom: hasError
+        ? "2px solid var(--color-error-text, #ff4d4f)"
+        : "1px solid var(--ip-bodr-btm)",
       borderRadius: "0",
       backgroundColor: "transparent",
       boxShadow: "none",
@@ -102,7 +109,9 @@ const FormSelectWithSearch = ({
       display: "flex",
       alignItems: "center",
       "&:hover": {
-        borderBottom: "1px solid var(--ip-bodr-btm)",
+        borderBottom: hasError
+          ? "2px solid var(--color-error-text, #ff4d4f)"
+          : "1px solid var(--ip-bodr-btm)",
       },
     }),
     valueContainer: (provided) => ({
@@ -123,7 +132,9 @@ const FormSelectWithSearch = ({
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "var(--color-base-text-secondary)",
+      color: hasError
+        ? "var(--color-error-text, #ff4d4f)"
+        : "var(--color-base-text-secondary)",
       height: "40px",
       display: "flex",
       alignItems: "center",
@@ -174,7 +185,7 @@ const FormSelectWithSearch = ({
           SingleValue: customSingleValue,
         }}
         styles={customStyles}
-        placeholder=""
+        placeholder={hasError ? placeholder || label : ""}
         isSearchable={true}
         isClearable={false}
         blurInputOnSelect={false}
@@ -189,20 +200,26 @@ const FormSelectWithSearch = ({
   );
 };
 
-const PhoneInputComponent = ({ label, phoneNumber, onPhoneNumberChange }) => (
+const PhoneInputComponent = ({
+  label,
+  phoneNumber,
+  onPhoneNumberChange,
+  hasError = false,
+}) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
     <PhoneInput
       country={"ae"}
       value={phoneNumber || ""}
       onChange={onPhoneNumberChange}
-      inputClass="form-group__phone-input"
+      inputClass={`form-group__phone-input${hasError ? " error" : ""}`}
       containerClass="form-group__phone-container"
       buttonClass="form-group__phone-button"
       dropdownClass="form-group__phone-dropdown"
-      enableSearch={true}
-      disableSearchIcon={true}
-      preferredCountries={["ae", "in", "us", "gb"]}
+      enableSearch={false}
+      disableDropdown={true}
+      countryCodeEditable={false}
+      onlyCountries={["ae"]}
       containerStyle={{
         width: "100%",
       }}
@@ -351,6 +368,50 @@ export default function PersonalDetailsForm({
     setIsTermsModalOpen(false);
   };
 
+  const [fieldErrors, setFieldErrors] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    phoneNumber: false,
+    country: false,
+    nationality: false,
+  });
+
+  const validateFieldsForPlaceholders = () => {
+    const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
+    const next = {
+      firstName: !formData.firstName || formData.firstName.trim().length < 2,
+      lastName: !formData.lastName || formData.lastName.trim().length < 1,
+      email:
+        !formData.email || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+      phoneNumber: phoneDigits.length <= 3,
+      country: !formData.country,
+      nationality: !formData.nationality,
+    };
+    setFieldErrors(next);
+    return next;
+  };
+
+  useEffect(() => {
+    const showErrors = () => {
+      const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
+      const next = {
+        firstName: !formData.firstName || formData.firstName.trim().length < 2,
+        lastName: !formData.lastName || formData.lastName.trim().length < 1,
+        email:
+          !formData.email ||
+          !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+        phoneNumber: phoneDigits.length <= 3,
+        country: !formData.country,
+        nationality: !formData.nationality,
+      };
+      setFieldErrors(next);
+    };
+    window.addEventListener("paymentForm:showFieldErrors", showErrors);
+    return () =>
+      window.removeEventListener("paymentForm:showFieldErrors", showErrors);
+  }, [formData]);
+
   return (
     <div className="payment-form__left">
       <div className="form-group-row">
@@ -358,11 +419,15 @@ export default function PersonalDetailsForm({
           label={t("payment.personalDetails.firstName")}
           value={formData.firstName}
           onChange={handleInputChange("firstName")}
+          hasError={fieldErrors.firstName}
+          placeholder={t("payment.personalDetails.firstName")}
         />
         <FormInput
           label={t("payment.personalDetails.lastName")}
           value={formData.lastName}
           onChange={handleInputChange("lastName")}
+          hasError={fieldErrors.lastName}
+          placeholder={t("payment.personalDetails.lastName")}
         />
       </div>
 
@@ -372,12 +437,16 @@ export default function PersonalDetailsForm({
           value={formData.country}
           onChange={handleInputChange("country")}
           options={COUNTRIES}
+          hasError={fieldErrors.country}
+          placeholder={t("payment.personalDetails.countryOfResidence")}
         />
         <FormSelectWithSearch
           label={t("payment.personalDetails.nationality")}
           value={formData.nationality}
           onChange={handleInputChange("nationality")}
           options={COUNTRIES}
+          hasError={fieldErrors.nationality}
+          placeholder={t("payment.personalDetails.nationality")}
         />
       </div>
 
@@ -387,6 +456,8 @@ export default function PersonalDetailsForm({
           value={formData.email}
           onChange={handleInputChange("email")}
           type="email"
+          hasError={fieldErrors.email}
+          placeholder={t("payment.personalDetails.email")}
           button={
             <button
               onClick={() => navigate("/email-verification")}
@@ -408,6 +479,7 @@ export default function PersonalDetailsForm({
           label={t("payment.personalDetails.phoneNumber")}
           phoneNumber={formData.phoneNumber}
           onPhoneNumberChange={handleInputChange("phoneNumber")}
+          hasError={fieldErrors.phoneNumber}
         />
       </div>
 
@@ -452,7 +524,20 @@ export default function PersonalDetailsForm({
 
       <button
         className="proceedbtn"
-        onClick={handleProceedToPayment}
+        onClick={() => {
+          const errs = validateFieldsForPlaceholders();
+          if (
+            errs.firstName ||
+            errs.lastName ||
+            errs.email ||
+            errs.phoneNumber ||
+            errs.country ||
+            errs.nationality
+          ) {
+            // do nothing, PaymentDetails.validate will also toast; placeholders will show
+          }
+          handleProceedToPayment();
+        }}
         disabled={isPending || !checkout.isTnCAgrred}
         style={{
           opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,

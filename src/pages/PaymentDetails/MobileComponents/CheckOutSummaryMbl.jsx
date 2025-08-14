@@ -70,6 +70,11 @@ function CheckOutSummaryMbl({
     }
   };
 
+  const roundToTwoDecimals = (value) => {
+    const num = Number(value) || 0;
+    return Math.round(num * 100) / 100;
+  };
+
   const handleBasketCheck = (
     promoCode = "",
     message = "",
@@ -104,6 +109,7 @@ function CheckOutSummaryMbl({
           setPromoCodeApplying(false);
         } else {
           const orderDetails = res?.orderdetails?.order;
+          const attemptingToApplyCoupon = Boolean(promoCode);
 
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
@@ -123,6 +129,22 @@ function CheckOutSummaryMbl({
             orderDetails?.items?.reduce((total, item) => {
               return total + (item?.original || 0);
             }, 0) || orderDetails?.total?.net;
+
+          // Guard: if applying a coupon but totals didn't change or there is no discount, reject it
+          const newGross = roundToTwoDecimals(orderDetails?.total?.gross);
+          const newNet = roundToTwoDecimals(orderDetails?.total?.net);
+          const prevGross = roundToTwoDecimals(checkout?.grossAmount);
+          const prevNet = roundToTwoDecimals(checkout?.netAmount);
+          const hasDiscount = Boolean(orderDetails?.promotions?.[0]?.discount);
+
+          if (
+            attemptingToApplyCoupon &&
+            (!hasDiscount || (newGross === prevGross && newNet === prevNet))
+          ) {
+            setPromoCodeApplying(false);
+            toast.error(t("toastMessages.invalidPromoCode"));
+            return;
+          }
 
           dispatch(
             setCheckout({

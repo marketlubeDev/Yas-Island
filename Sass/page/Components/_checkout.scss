@@ -151,6 +151,38 @@
   width: 100%;
 }
 
+// Error state styles for inputs and placeholders
+.email-checkout__input.error {
+  border-bottom-color: var(--color-error-text, #ff4d4f);
+}
+
+.email-checkout__input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
+
+// Desktop form input error styles
+.form-group__input.error {
+  border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+.form-group__input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
+
+// Phone input error styles (desktop and mobile)
+.form-group__phone-input.error,
+.email-checkout__phone-input.error {
+  border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+.form-group__phone-input.error::placeholder,
+.email-checkout__phone-input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
+
 .email-checkout__btn {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
@@ -180,6 +212,55 @@
   padding: 16px;
   font-size: 15px;
   color: var(--color-email-form-label);
+
+  // Support for new scrollable layout
+  &.order-summary-new {
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    @include respond(bigTablets) {
+      max-height: 85vh;
+    }
+  }
+
+  // Scrollable wrapper for cart items
+  .order-summary-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin-bottom: 16px;
+    padding-right: 8px;
+
+    /* Custom scrollbar for better UX */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-base-product-card-divider);
+      border-radius: 3px;
+    }
+  }
+
+  // Sticky bottom section
+  .order-summary-sticky-bottom {
+    position: sticky;
+    bottom: -16px;
+    background: var(--color-base-bg);
+    border-top: 1px solid var(--color-base-product-card-divider);
+    padding-top: 16px;
+    margin: 0 -16px -16px -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    z-index: 10;
+  }
 
   &-title {
     color: var(--color-email-form-label);

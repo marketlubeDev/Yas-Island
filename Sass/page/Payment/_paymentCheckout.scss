@@ -5,9 +5,11 @@
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--card-box-shadow);
   padding: 20px;
-  max-height: 600px;
-  overflow-y: auto;
-  font-family: "Inter", sans-serif;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
   width: fit-content;
   min-width: 370px;
   font-family: "YAS Font", sans-serif;
@@ -15,6 +17,7 @@
   @include respond(bigTablets) {
     min-width: 100%;
     width: 100%;
+    max-height: 85vh;
   }
 
   /* Header */
@@ -37,6 +40,29 @@
       font-size: 12px;
       color: var(--color-base-product-card-price);
       font-weight: 400;
+    }
+  }
+
+  /* Scrollable content area */
+  .order-summary-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin-bottom: 16px;
+    padding-right: 8px;
+
+    /* Custom scrollbar for better UX */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-base-product-card-divider);
+      border-radius: 3px;
     }
   }
 
@@ -313,6 +339,17 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Sticky bottom section */
+  .order-summary-sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    background: var(--color-base-bg);
+    border-top: 1px solid var(--color-base-product-card-divider);
+    padding-top: 16px;
+    margin-top: auto;
+    z-index: 10;
   }
 
   /* Pricing Section */

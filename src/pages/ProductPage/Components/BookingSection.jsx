@@ -695,7 +695,7 @@ export default function BookingSection({ product, onBack }) {
           )}
         </div>
       </div>
-      <div className="booking-section-divider"></div>
+      {/* <div className="booking-section-divider"></div> */}
       {/* Guest Selection */}
       <div className="guest-section">
         <div className="guest-section-header-container">
