@@ -8,7 +8,7 @@ const useValidateQRcode = (qrcode) => {
   const response = useQuery({
     queryKey: ["validateQRcode", qrcode],
     queryFn: () => apiClient.get(`/qrcode/log-locations?qrlocation=${qrcode}`),
-    // enabled: !!qrcode,
+    enabled: !!qrcode,
   });
 
   return {
