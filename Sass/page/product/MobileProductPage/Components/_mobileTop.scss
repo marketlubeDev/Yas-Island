@@ -236,7 +236,7 @@
     box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
     min-width: 165px;
     padding: 8px 0;
-    z-index: 1000;
+    z-index: 10000;
     border: 1px solid var(--color-base-mobile-top-item-text-active);
 
     &--ar {

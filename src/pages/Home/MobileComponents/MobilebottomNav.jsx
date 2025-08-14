@@ -60,11 +60,7 @@ function MobileBottomNav() {
           onClick={handleChatClick}
           style={{ cursor: "pointer" }}
         >
-          <img
-            src={chatIconSrc}
-            alt={t("common.chatWithUs")}
-            style={isDarkMode ? { opacity: 0.6 } : {}}
-          />
+          <img src={chatIconSrc} alt={t("common.chatWithUs")} />
           <span>{t("common.chatWithUs")}</span>
         </div>
         <div
@@ -73,11 +69,7 @@ function MobileBottomNav() {
           style={{ cursor: "pointer" }}
         >
           <div style={{ position: "relative", display: "inline-block" }}>
-            <img
-              src={cartIconSrc}
-              alt={t("common.cart")}
-              // style={isDarkMode ? { opacity: 1 } : { opacity: 1 }}
-            />
+            <img src={cartIconSrc} alt={t("common.cart")} />
             {cartItems.length > 0 && (
               <span
                 className="cart-notification-mobile"

@@ -11,7 +11,7 @@ export const en = {
     searchPlaceholder: "What are you looking for?",
     home: "Home",
     cart: "Cart",
-    searchPlaceholderMobile: "Search Attractions",
+    searchPlaceholderMobile: "Search Attractions..",
     netAndTax: "Net&VAT",
     validFrom: "Valid from",
     to: "to",
