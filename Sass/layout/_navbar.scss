@@ -17,7 +17,8 @@
   overflow: hidden;
 
   &-ar {
-    padding: 2rem 1rem 3rem 0;
+    padding: 2rem 1rem 3rem 1rem;
+    padding-bottom: 1rem;
   }
 
   &-list {
@@ -28,7 +29,7 @@
     justify-content: flex-start;
     gap: 0rem;
     padding-top: 1rem;
-    overflow: hidden;
+    overflow: scroll;
     min-height: 0;
 
     & a {
