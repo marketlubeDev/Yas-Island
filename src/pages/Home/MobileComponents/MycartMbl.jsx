@@ -148,26 +148,49 @@ function MycartMbl({ onClose, visible }) {
                 )
               )?.product_masterid || "",
           }));
-          dispatch(
-            setCheckout({
-              coupons: [],
-              items: items,
-              emailId: "",
-              language: language,
-              grossAmount: orderDetails?.total?.gross,
-              netAmount: orderDetails?.total?.net,
-              taxAmount: orderDetails?.total?.tax,
-              originalNetAmount: orderDetails?.total?.gross,
-              // firstName: "",
-              // lastName: "",
-              // phoneNumber: "",
-              countryCode: "",
-              isTnCAgrred: false,
-              isConsentAgreed: false,
-              promoCode: "",
-              promotions: [],
-            })
-          );
+          if (cartItems.length === 0 || !items?.length) {
+            dispatch(
+              setCheckout({
+                coupons: [],
+                items: [],
+                emailId: "",
+                language: language,
+                grossAmount: 0,
+                netAmount: 0,
+                taxAmount: 0,
+                originalNetAmount: 0,
+                countryCode: "",
+                isTnCAgrred: false,
+                isConsentAgreed: false,
+                promoCode: "",
+                promotions: [],
+              })
+            );
+            // Optionally close modal and navigate home if available in this component's context
+            try {
+              if (typeof window !== "undefined") {
+                // Consumers of this component control navigation; leave a no-op hook here if needed
+              }
+            } catch {}
+          } else {
+            dispatch(
+              setCheckout({
+                coupons: [],
+                items: items,
+                emailId: "",
+                language: language,
+                grossAmount: orderDetails?.total?.gross,
+                netAmount: orderDetails?.total?.net,
+                taxAmount: orderDetails?.total?.tax,
+                originalNetAmount: orderDetails?.total?.gross,
+                countryCode: "",
+                isTnCAgrred: false,
+                isConsentAgreed: false,
+                promoCode: "",
+                promotions: [],
+              })
+            );
+          }
           onSuccess();
         }
       },

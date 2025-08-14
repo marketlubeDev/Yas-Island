@@ -135,9 +135,32 @@ const CartModal = ({ isOpen, onClose }) => {
   };
 
   useEffect(() => {
-    // Only call handleBasketCheck if we're on payment-details page and cartItems have changed
-    if (location.pathname === "/payment-details" && cartItems.length > 0) {
-      handleBasketCheck();
+    // Keep checkout in sync on the payment-details page
+    if (location.pathname === "/payment-details") {
+      if (cartItems.length > 0) {
+        handleBasketCheck();
+      } else {
+        // When cart is emptied, clear checkout too so Order Summary updates
+        dispatch(
+          setCheckout({
+            coupons: [],
+            items: [],
+            emailId: "",
+            language: language,
+            grossAmount: 0,
+            netAmount: 0,
+            taxAmount: 0,
+            originalNetAmount: 0,
+            countryCode: "",
+            isTnCAgrred: false,
+            isConsentAgreed: false,
+            promoCode: "",
+            promotions: [],
+          })
+        );
+        // Redirect to product page when cart becomes empty
+        navigate("/");
+      }
     }
   }, [cartItems, location.pathname]);
 
