@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useQRCodeFromURL from "../hooks/useQRCodeFromURL";
-import useValidateQRcode from "../apiHooks/QRcode/qrcode";
 import {
-  setQRValidationData,
   setQRCodeStatus,
   setCartData,
   setIsCartLoading,
@@ -17,16 +15,8 @@ const QRCodeDetector = () => {
   const productList = useSelector((state) => state.product.allProducts);
   const { qrCode, hasQRCode } = useQRCodeFromURL();
 
-  const {
-    data: validationData,
-    isLoading: isValidating,
-    isError: validationError,
-  } = useValidateQRcode(hasQRCode ? qrCode : null);
-
-  const [qrVerified, setQrVerified] = useState(false);
-
   // Only call cart API when QR is verified and we have a QR code
-  const cartQrCode = qrVerified && qrCode ? qrCode : null;
+  const cartQrCode = hasQRCode && qrCode ? qrCode : null;
 
   const {
     data: cartData,
@@ -35,36 +25,19 @@ const QRCodeDetector = () => {
   } = useRetriveCart(cartQrCode);
 
   useEffect(() => {
-    if (isValidating) {
-      // console.log("Validating QR code...");
-    } else if (validationData) {
-      // Only store the data portion, not the entire response with headers
-      dispatch(setQRValidationData(validationData?.data || validationData));
+    if (!hasQRCode) return;
+    dispatch(setIsCartLoading(isCartLoading));
+    if (isCartLoading) {
+      dispatch(setQRCodeStatus("validating"));
+    } else if (cartData) {
       dispatch(setQRCodeStatus("valid"));
-
-      if (qrCode) {
-
-        setQrVerified(true);
-      }
-    } else if (validationError) {
-      // console.log("QR Code validation failed:", validationError);
+    } else if (cartError) {
       dispatch(setQRCodeStatus("invalid"));
     }
-  }, [
-    validationData,
-    validationError,
-    isValidating,
-    dispatch,
-    qrCode,
-    setQrVerified,
-  ]);
+  }, [cartData, cartError, isCartLoading, dispatch, hasQRCode]);
 
   useEffect(() => {
-    setQrVerified(false);
-  }, [qrCode]);
-
-  useEffect(() => {
-    if (qrVerified && validationData) {
+    if (hasQRCode && cartData) {
       dispatch(setIsCartLoading(isCartLoading));
 
       if (cartData) {
@@ -122,14 +95,7 @@ const QRCodeDetector = () => {
         dispatch(setCartError(cartError));
       }
     }
-  }, [
-    cartData,
-    cartError,
-    isCartLoading,
-    dispatch,
-    validationData,
-    qrVerified,
-  ]);
+  }, [cartData, cartError, isCartLoading, dispatch, productList, hasQRCode]);
 
   return null;
 };
