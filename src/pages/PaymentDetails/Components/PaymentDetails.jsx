@@ -127,7 +127,9 @@ export default function PaymentDetails({ isCheckout }) {
 
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
-      toast.error(t("toastMessages.acceptTermsAndConditions"));
+      toast.error(t("toastMessages.acceptTermsAndConditions"), {
+        position: "top-center",
+      });
       return;
     }
 

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import InputFieldsMbl from "./MobileComponents/InputFieldsMbl";
 import CheckOutSummaryMbl from "./MobileComponents/CheckOutSummaryMbl";
-// import PromoBoxMbl from "./MobileComponents/PromoBoxMbl";
+
 import CheckBoxMbl from "./MobileComponents/CheckBoxMbl";
 import PromoCodeMbl from "./MobileComponents/PromoCodeMbl";
 import PaymentHeaderMbl from "../Home/MobileComponents/PaymentHeaderMbl";
