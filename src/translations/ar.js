@@ -329,6 +329,8 @@ export const ar = {
   toastMessages: {
     invalidEmail: "يرجى إدخال بريد إلكتروني صالح",
     invalidPhoneNumber: "يرجى إدخال رقم هاتف صالح",
+    invalidFirstName: "يرجى إدخال الاسم الأول بشكل صحيح",
+    invalidLastName: "يرجى إدخال اسم العائلة بشكل صحيح",
     invalidPromoCode: "يرجى إدخال رمز خصم صالح",
     invalidTerms: "يرجى قبول الشروط والأحكام للمتابعة",
     invalidNationality: "يرجى تحديد الجنسية",

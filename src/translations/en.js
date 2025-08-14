@@ -326,6 +326,8 @@ export const en = {
   toastMessages: {
     invalidEmail: "Please enter a valid email address",
     invalidPhoneNumber: "Please enter a valid phone number",
+    invalidFirstName: "Please enter a valid first name",
+    invalidLastName: "Please enter a valid last name",
     invalidTerms: "Please accept the terms and conditions to proceed",
     invalidNationality: "Please select a nationality",
     invalidCountry: "Please select a country",

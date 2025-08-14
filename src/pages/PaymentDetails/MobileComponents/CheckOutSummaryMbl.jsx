@@ -170,7 +170,7 @@ function CheckOutSummaryMbl({
           );
 
           if (promoCode) {
-            toast.success("Promo code applied successfully!");
+            toast.success(t("orderSummary.couponApplied"));
             // Clear the promo code input since it's now applied
             setPromoCode("");
             // Force component re-render to ensure totals update

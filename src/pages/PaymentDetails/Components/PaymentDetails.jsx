@@ -81,33 +81,39 @@ export default function PaymentDetails({ isCheckout }) {
 
     // Validate personal details
     if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      errors.push("Invalid email address");
+      errors.push(t("toastMessages.invalidEmail"));
     }
     if (!data.firstName || data.firstName.trim().length < 2) {
-      errors.push("First name is required ");
+      errors.push(
+        t("toastMessages.invalidFirstName") ||
+          t("toastMessages.somethingWentWrong")
+      );
     }
     if (!data.lastName || data.lastName.trim().length < 1) {
-      errors.push("Last name is required ");
+      errors.push(
+        t("toastMessages.invalidLastName") ||
+          t("toastMessages.somethingWentWrong")
+      );
     }
     const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
     if (phoneDigits.length <= 3) {
-      errors.push("Valid phone number is required");
+      errors.push(t("toastMessages.invalidPhoneNumber"));
     }
     if (!data.countryCode) {
-      errors.push("Country is required");
+      errors.push(t("toastMessages.invalidCountry"));
     }
     if (!data.amount || data.amount <= 0) {
-      errors.push("Invalid order amount");
+      errors.push(t("toastMessages.checkoutFailed"));
     }
     if (!data.language) {
-      errors.push("Language preference is required");
+      errors.push(t("toastMessages.somethingWentWrong"));
     }
 
     if (!data.isTnCAgrred) {
-      errors.push("Please accept the terms and conditions to proceed");
+      errors.push(t("toastMessages.acceptTermsAndConditions"));
     }
     if (!data.nationality) {
-      errors.push("Nationality is required");
+      errors.push(t("toastMessages.invalidNationality"));
     }
 
     return errors;
