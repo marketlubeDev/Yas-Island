@@ -249,6 +249,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  text-wrap: nowrap;
 }
 
 .ar-product-head {
@@ -261,4 +262,5 @@
   top: 0rem;
   right: 0rem;
   width: 100%;
+  text-wrap: nowrap;
 }
