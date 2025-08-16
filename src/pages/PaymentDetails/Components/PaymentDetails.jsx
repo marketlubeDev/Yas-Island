@@ -54,6 +54,7 @@ export default function PaymentDetails({ isCheckout }) {
 
   const validateData = (data) => {
     const errors = [];
+    const nameOk = (s) => /^([\p{L}\s'-]+)$/u.test(String(s || "").trim());
     // Validate items array
     if (!data.items || !Array.isArray(data.items) || data.items.length === 0) {
       errors.push("No items in cart");
@@ -75,13 +76,21 @@ export default function PaymentDetails({ isCheckout }) {
     if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       errors.push(t("toastMessages.invalidEmail"));
     }
-    if (!data.firstName || data.firstName.trim().length < 2) {
+    if (
+      !data.firstName ||
+      data.firstName.trim().length < 2 ||
+      !nameOk(data.firstName)
+    ) {
       errors.push(
         t("toastMessages.invalidFirstName") ||
           t("toastMessages.somethingWentWrong")
       );
     }
-    if (!data.lastName || data.lastName.trim().length < 1) {
+    if (
+      !data.lastName ||
+      data.lastName.trim().length < 1 ||
+      !nameOk(data.lastName)
+    ) {
       errors.push(
         t("toastMessages.invalidLastName") ||
           t("toastMessages.somethingWentWrong")

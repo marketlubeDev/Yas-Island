@@ -27,9 +27,10 @@ export default function TermsAndConditionsModal({
       open={isOpen}
       onCancel={onClose}
       footer={null}
-      width="100vw"
+      centered
+      width={900}
       className="terms-modal"
-      style={{ top: 0, padding: 0 }}
+      // style={{ top: 0, padding: 0 }}
       // closeIcon={
       //   <span className="custom-modal-close">
       //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
@@ -39,11 +40,12 @@ export default function TermsAndConditionsModal({
     >
       <div className="terms-modal-content">
         {termsAndConditions ? (
-          <div
-            ref={modalBodyRef}
-            className="terms-modal-body"
-            dangerouslySetInnerHTML={{ __html: termsAndConditions }}
-          />
+          <div ref={modalBodyRef} className="terms-modal-body">
+            <div
+              className="terms-modal-body-inner"
+              dangerouslySetInnerHTML={{ __html: termsAndConditions }}
+            />
+          </div>
         ) : (
           <div className="terms-modal-loading">
             <p>Loading...</p>

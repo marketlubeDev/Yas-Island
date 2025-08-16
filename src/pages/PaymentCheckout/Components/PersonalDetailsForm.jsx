@@ -35,6 +35,7 @@ const FormInput = ({
   hasError = false,
   placeholder = "",
   isRTL = false,
+  readOnly = false,
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
@@ -44,6 +45,7 @@ const FormInput = ({
         className={`form-group__input ${hasError ? "error" : ""} ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        readOnly={readOnly}
         style={{
           width: "100%",
           paddingRight: !isRTL && button ? "28px" : undefined,
@@ -225,7 +227,7 @@ const PhoneInputComponent = ({
       enableSearch={false}
       disableDropdown={true}
       countryCodeEditable={false}
-      onlyCountries={[countryIso || "ae"]}
+      /* allow full dataset so library can resolve dial codes reliably */
       containerStyle={{
         width: "100%",
       }}
@@ -271,17 +273,64 @@ export default function PersonalDetailsForm({
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
+  // Some ISO codes from the country list are not present in react-phone-input-2 dataset.
+  // Provide sensible fallbacks so dial codes render instead of defaulting to US.
+  const normalizeIsoForDialCode = (iso) => {
+    const m = {
+      ax: "fi", // Åland Islands → Finland (+358)
+      gg: "gb", // Guernsey → United Kingdom (+44)
+      je: "gb", // Jersey → United Kingdom (+44)
+      im: "gb", // Isle of Man → United Kingdom (+44)
+      sj: "no", // Svalbard and Jan Mayen → Norway (+47)
+      bq: "nl", // Caribbean Netherlands → Netherlands (+31)
+      gf: "fr", // French Guiana → France (+33)
+      gp: "fr", // Guadeloupe → France (+33)
+      mq: "fr", // Martinique → France (+33)
+      yt: "fr", // Mayotte → France (+33)
+      re: "fr", // Réunion → France (+33)
+      pm: "fr", // Saint Pierre and Miquelon → France (+33)
+      bl: "fr", // Saint Barthélemy → France (+33)
+      mf: "fr", // Saint Martin → France (+33)
+      fo: "dk", // Faroe Islands → Denmark (+45)
+      gi: "gb", // Gibraltar → UK dialing plan (+350 handled, fallback gb)
+      axa: "fi",
+    };
+    return m[iso] || iso || "ae";
+  };
+
+  // Exclude territories that don't reliably map to dial codes in react-phone-input-2
+  const EXCLUDED_RESIDENCE_ISOS = new Set([
+    "AX", // Åland Islands
+    "GG", // Guernsey
+    "JE", // Jersey
+    "IM", // Isle of Man
+    "SJ", // Svalbard and Jan Mayen
+    "BQ", // Caribbean Netherlands
+    "GF", // French Guiana
+    "GP", // Guadeloupe
+    "MQ", // Martinique
+    "YT", // Mayotte
+    "RE", // Réunion
+    "PM", // Saint Pierre and Miquelon
+    "BL", // Saint Barthélemy
+    "MF", // Saint Martin
+  ]);
+
   // Inputs below bind directly to Redux `checkout` state
 
   // Generate countries list based on current language
   const countryCodes = countries.getAlpha2Codes();
-  const COUNTRIES = Object.keys(countryCodes)
+  const ALL_COUNTRIES = Object.keys(countryCodes)
     .map((code) => ({
       value: code,
       label: countries.getName(code, currentLanguage === "ar" ? "ar" : "en"),
       code: code.toLowerCase(),
     }))
     .sort((a, b) => a.label.localeCompare(b.label));
+
+  const RESIDENCE_COUNTRIES = ALL_COUNTRIES.filter(
+    (c) => !EXCLUDED_RESIDENCE_ISOS.has(c.value)
+  );
 
   const handleInputChange = (field) => (value) => {
     const updateData = {};
@@ -427,7 +476,7 @@ export default function PersonalDetailsForm({
           label={t("payment.personalDetails.countryOfResidence")}
           value={checkout.country || ""}
           onChange={handleInputChange("country")}
-          options={COUNTRIES}
+          options={RESIDENCE_COUNTRIES}
           hasError={fieldErrors.country}
           placeholder={t("payment.personalDetails.countryOfResidence")}
         />
@@ -435,7 +484,7 @@ export default function PersonalDetailsForm({
           label={t("payment.personalDetails.nationality")}
           value={checkout.nationality || ""}
           onChange={handleInputChange("nationality")}
-          options={COUNTRIES}
+          options={ALL_COUNTRIES}
           hasError={fieldErrors.nationality}
           placeholder={t("payment.personalDetails.nationality")}
         />
@@ -447,6 +496,7 @@ export default function PersonalDetailsForm({
           value={checkout.emailId || ""}
           onChange={handleInputChange("email")}
           type="email"
+          readOnly
           hasError={fieldErrors.email}
           placeholder={t("payment.personalDetails.email")}
           isRTL={isRTL}
@@ -469,12 +519,16 @@ export default function PersonalDetailsForm({
           }
         />
         <PhoneInputComponent
-          key={(checkout.country || "AE").toLowerCase()}
+          key={normalizeIsoForDialCode(
+            (checkout.country || "AE").toLowerCase()
+          )}
           label={t("payment.personalDetails.phoneNumber")}
           phoneNumber={checkout.phoneNumber || ""}
           onPhoneNumberChange={handleInputChange("phoneNumber")}
           hasError={fieldErrors.phoneNumber}
-          countryIso={(checkout.country || "AE").toLowerCase()}
+          countryIso={normalizeIsoForDialCode(
+            (checkout.country || "AE").toLowerCase()
+          )}
         />
       </div>
 
@@ -533,7 +587,7 @@ export default function PersonalDetailsForm({
           }
           handleProceedToPayment();
         }}
-        disabled={isPending || !checkout.isTnCAgrred}
+        disabled={isPending}
         style={{
           opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
           cursor:

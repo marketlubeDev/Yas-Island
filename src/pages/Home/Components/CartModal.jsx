@@ -67,6 +67,7 @@ const CartModal = ({ isOpen, onClose }) => {
     isEmailVerification,
     verificationEmail,
   } = useSelector((state) => state.cart);
+  const checkoutEmail = useSelector((state) => state.checkout.emailId);
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
 
@@ -145,7 +146,7 @@ const CartModal = ({ isOpen, onClose }) => {
           setCheckout({
             coupons: [],
             items: [],
-            emailId: "",
+            emailId: checkoutEmail || verificationEmail || "",
             language: language,
             grossAmount: 0,
             netAmount: 0,
@@ -213,7 +214,7 @@ const CartModal = ({ isOpen, onClose }) => {
             setCheckout({
               coupons: [],
               items: items,
-              emailId: "",
+              emailId: checkoutEmail || verificationEmail || "",
               language: language,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,

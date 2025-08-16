@@ -38,6 +38,7 @@ function PaymentDetailsMobile() {
 
   const validateData = (data) => {
     const errors = [];
+    const nameOk = (s) => /^([\p{L}\s'-]+)$/u.test(String(s || "").trim());
     // Validate items array
     if (!data.items || !Array.isArray(data.items) || data.items.length === 0) {
       errors.push("No items in cart");
@@ -59,13 +60,21 @@ function PaymentDetailsMobile() {
     if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       errors.push(t("toastMessages.invalidEmail"));
     }
-    if (!data.firstName || data.firstName.trim().length < 2) {
+    if (
+      !data.firstName ||
+      data.firstName.trim().length < 2 ||
+      !nameOk(data.firstName)
+    ) {
       errors.push(
         t("toastMessages.invalidFirstName") ||
           t("toastMessages.somethingWentWrong")
       );
     }
-    if (!data.lastName || data.lastName.trim().length < 1) {
+    if (
+      !data.lastName ||
+      data.lastName.trim().length < 1 ||
+      !nameOk(data.lastName)
+    ) {
       errors.push(
         t("toastMessages.invalidLastName") ||
           t("toastMessages.somethingWentWrong")
@@ -253,8 +262,13 @@ function PaymentDetailsMobile() {
                 style={{
                   backgroundColor: "var(--color-email-form-confirm-btn)",
                   color: "var(--color-email-form-confirm-btn-clr)",
+                  opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
+                  cursor:
+                    isPending || !checkout.isTnCAgrred
+                      ? "not-allowed"
+                      : "pointer",
                 }}
-                disabled={!acceptTerms}
+                disabled={isPending}
               >
                 {isPending ? (
                   <ButtonLoading />
