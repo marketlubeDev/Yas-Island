@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import validatePromocode from "../../../serivces/promocode/promocode";
+import { toast } from "sonner";
 
 function PromoBoxMbl() {
   const { t } = useTranslation();
+  const [code, setCode] = useState("");
+  const [status, setStatus] = useState(null); // null | 'valid' | 'invalid'
+  const [loading, setLoading] = useState(false);
+
+  const handleApply = async () => {
+    try {
+      setLoading(true);
+      if (!code) {
+        setStatus("invalid");
+        setLoading(false);
+        toast.error(t("toastMessages.invalidPromoCode"));
+        return;
+      }
+      const response = await validatePromocode(code);
+      if (!response?.data?.coupondetails?.coupon) {
+        setStatus("invalid");
+        toast.error(
+          response?.data?.coupondetails?.error?.text ||
+            t("toastMessages.invalidPromoCode")
+        );
+      } else {
+        setStatus("valid");
+        toast.success(t("orderSummary.promoCodeApplied"));
+      }
+    } catch (e) {
+      setStatus("invalid");
+      toast.error(t("toastMessages.invalidPromoCode"));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="email-checkout__promo-container">
@@ -22,14 +55,30 @@ function PromoBoxMbl() {
           <input
             id="promoCode"
             type="text"
-            className="email-checkout__input email-checkout__promo-input"
+            className={`email-checkout__input email-checkout__promo-input ${
+              status === "valid"
+                ? "valid"
+                : status === "invalid"
+                ? "invalid"
+                : ""
+            }`}
             placeholder="f0981902"
+            value={code}
+            onChange={(e) => {
+              setCode(e.target.value);
+              setStatus(null);
+            }}
+            onFocus={() => setStatus(null)}
           />
           <button
             type="button"
             className="email-checkout__promo-apply"
+            onClick={handleApply}
+            disabled={loading}
           >
-            {t("payment.orderSummary.promoCode.apply")}
+            {loading
+              ? t("common.loading")
+              : t("payment.orderSummary.promoCode.apply")}
           </button>
         </div>
       </div>

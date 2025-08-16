@@ -31,6 +31,7 @@ const FormInput = ({
   isRTL = false,
   hasError = false,
   placeholder = "",
+  onFocus,
 }) => (
   <label
     className="email-checkout__label"
@@ -45,6 +46,7 @@ const FormInput = ({
         } ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onFocus={onFocus}
         style={{
           width: "100%",
           paddingRight: !isRTL && button ? "28px" : undefined,
@@ -72,7 +74,14 @@ const FormInput = ({
   </label>
 );
 
-const FormSelectWithSearch = ({ label, value, onChange, options }) => {
+const FormSelectWithSearch = ({
+  label,
+  value,
+  onChange,
+  options,
+  hasError = false,
+  onClearError,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption =
     value && value !== ""
@@ -95,7 +104,9 @@ const FormSelectWithSearch = ({ label, value, onChange, options }) => {
           className="custom-select-control"
           style={{
             border: "none",
-            borderBottom: "1px solid var(--ip-bodr-btm)",
+            borderBottom: hasError
+              ? "2px solid var(--color-error-text, #ff4d4f)"
+              : "1px solid var(--ip-bodr-btm)",
             borderRadius: "0",
             backgroundColor: "transparent",
             minHeight: "40px",
@@ -107,7 +118,10 @@ const FormSelectWithSearch = ({ label, value, onChange, options }) => {
             width: "100%",
             justifyContent: "space-between",
           }}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            if (onClearError) onClearError();
+          }}
         >
           {selectedOption ? (
             <div
@@ -192,7 +206,10 @@ const FormSelectWithSearch = ({ label, value, onChange, options }) => {
                       ? "white"
                       : "var(--color-base-text-secondary)",
                 }}
-                onClick={() => handleSelect(option)}
+                onClick={() => {
+                  handleSelect(option);
+                  if (onClearError) onClearError();
+                }}
                 onMouseEnter={(e) => {
                   if (option.value !== value) {
                     e.target.style.backgroundColor = "var(--color-base-hover)";
@@ -224,6 +241,7 @@ const PhoneInputComponent = ({
   phoneNumber,
   onPhoneNumberChange,
   hasError = false,
+  onFocus,
 }) => (
   <label className="email-checkout__label" id="phoneNumber">
     {label}
@@ -239,6 +257,7 @@ const PhoneInputComponent = ({
       disableDropdown={true}
       countryCodeEditable={false}
       onlyCountries={["ae"]}
+      inputProps={{ onFocus }}
       containerStyle={{
         width: "100%",
       }}
@@ -340,6 +359,9 @@ function InputFieldsMbl() {
         phoneNumber: updatedFormData.phoneNumber,
       })
     );
+
+    // Clear error for this field on interaction
+    setFieldErrors((prev) => ({ ...prev, [field]: false }));
   };
 
   // Set email from Redux state if available
@@ -400,6 +422,9 @@ function InputFieldsMbl() {
         onChange={handleInputChange("firstName")}
         hasError={fieldErrors.firstName}
         placeholder={t("payment.personalDetails.firstName")}
+        onFocus={() =>
+          setFieldErrors((prev) => ({ ...prev, firstName: false }))
+        }
       />
       <FormInput
         label={t("payment.personalDetails.lastName")}
@@ -407,6 +432,7 @@ function InputFieldsMbl() {
         onChange={handleInputChange("lastName")}
         hasError={fieldErrors.lastName}
         placeholder={t("payment.personalDetails.lastName")}
+        onFocus={() => setFieldErrors((prev) => ({ ...prev, lastName: false }))}
       />
       <FormInput
         label={t("payment.personalDetails.email")}
@@ -415,6 +441,7 @@ function InputFieldsMbl() {
         type="email"
         hasError={fieldErrors.email}
         placeholder={t("payment.personalDetails.email")}
+        onFocus={() => setFieldErrors((prev) => ({ ...prev, email: false }))}
         button={
           <button
             onClick={() => navigate("/email-verification")}
@@ -441,12 +468,20 @@ function InputFieldsMbl() {
         value={formData.country}
         onChange={handleInputChange("country")}
         options={COUNTRIES}
+        hasError={fieldErrors.country}
+        onClearError={() =>
+          setFieldErrors((prev) => ({ ...prev, country: false }))
+        }
       />
       <FormSelectWithSearch
         label={t("payment.personalDetails.nationality")}
         value={formData.nationality}
         onChange={handleInputChange("nationality")}
         options={COUNTRIES}
+        hasError={fieldErrors.nationality}
+        onClearError={() =>
+          setFieldErrors((prev) => ({ ...prev, nationality: false }))
+        }
       />
 
       <PhoneInputComponent
@@ -454,6 +489,9 @@ function InputFieldsMbl() {
         phoneNumber={formData.phoneNumber}
         onPhoneNumberChange={handleInputChange("phoneNumber")}
         hasError={fieldErrors.phoneNumber}
+        onFocus={() =>
+          setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
+        }
       />
     </div>
   );

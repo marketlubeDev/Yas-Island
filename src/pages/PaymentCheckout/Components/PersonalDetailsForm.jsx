@@ -36,6 +36,7 @@ const FormInput = ({
   placeholder = "",
   isRTL = false,
   readOnly = false,
+  onFocus,
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
@@ -45,6 +46,7 @@ const FormInput = ({
         className={`form-group__input ${hasError ? "error" : ""} ${className}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onFocus={onFocus}
         readOnly={readOnly}
         style={{
           width: "100%",
@@ -80,6 +82,7 @@ const FormSelectWithSearch = ({
   className = "",
   hasError = false,
   placeholder = "",
+  onClearError,
 }) => {
   const selectedOption =
     value && value !== ""
@@ -183,8 +186,11 @@ const FormSelectWithSearch = ({
       <Select
         key={`${label}-${value}`}
         value={selectedOption}
+        onFocus={onClearError}
+        onMenuOpen={onClearError}
         onChange={(selectedOption) => {
           onChange(selectedOption?.value || "");
+          if (onClearError) onClearError();
         }}
         options={options}
         components={{
@@ -213,6 +219,7 @@ const PhoneInputComponent = ({
   onPhoneNumberChange,
   hasError = false,
   countryIso = "ae",
+  onFocus,
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
@@ -227,6 +234,7 @@ const PhoneInputComponent = ({
       enableSearch={false}
       disableDropdown={true}
       countryCodeEditable={false}
+      inputProps={{ onFocus }}
       /* allow full dataset so library can resolve dial codes reliably */
       containerStyle={{
         width: "100%",
@@ -359,6 +367,17 @@ export default function PersonalDetailsForm({
         updateData[field] = value;
     }
     dispatch(updatePersonalDetails(updateData));
+    // Clear error on interaction
+    const fieldMap = {
+      email: "email",
+      phoneNumber: "phoneNumber",
+      firstName: "firstName",
+      lastName: "lastName",
+      country: "country",
+      nationality: "nationality",
+    };
+    const key = fieldMap[field] || field;
+    setFieldErrors((prev) => ({ ...prev, [key]: false }));
   };
 
   // Country change handled in handleInputChange("country")
@@ -461,6 +480,9 @@ export default function PersonalDetailsForm({
           onChange={handleInputChange("firstName")}
           hasError={fieldErrors.firstName}
           placeholder={t("payment.personalDetails.firstName")}
+          onFocus={() =>
+            setFieldErrors((prev) => ({ ...prev, firstName: false }))
+          }
         />
         <FormInput
           label={t("payment.personalDetails.lastName")}
@@ -468,6 +490,9 @@ export default function PersonalDetailsForm({
           onChange={handleInputChange("lastName")}
           hasError={fieldErrors.lastName}
           placeholder={t("payment.personalDetails.lastName")}
+          onFocus={() =>
+            setFieldErrors((prev) => ({ ...prev, lastName: false }))
+          }
         />
       </div>
 
@@ -479,6 +504,9 @@ export default function PersonalDetailsForm({
           options={RESIDENCE_COUNTRIES}
           hasError={fieldErrors.country}
           placeholder={t("payment.personalDetails.countryOfResidence")}
+          onClearError={() =>
+            setFieldErrors((prev) => ({ ...prev, country: false }))
+          }
         />
         <FormSelectWithSearch
           label={t("payment.personalDetails.nationality")}
@@ -487,6 +515,9 @@ export default function PersonalDetailsForm({
           options={ALL_COUNTRIES}
           hasError={fieldErrors.nationality}
           placeholder={t("payment.personalDetails.nationality")}
+          onClearError={() =>
+            setFieldErrors((prev) => ({ ...prev, nationality: false }))
+          }
         />
       </div>
 
@@ -500,6 +531,7 @@ export default function PersonalDetailsForm({
           hasError={fieldErrors.email}
           placeholder={t("payment.personalDetails.email")}
           isRTL={isRTL}
+          onFocus={() => setFieldErrors((prev) => ({ ...prev, email: false }))}
           button={
             <button
               onClick={() => navigate("/email-verification")}
@@ -529,6 +561,9 @@ export default function PersonalDetailsForm({
           countryIso={normalizeIsoForDialCode(
             (checkout.country || "AE").toLowerCase()
           )}
+          onFocus={() =>
+            setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
+          }
         />
       </div>
 

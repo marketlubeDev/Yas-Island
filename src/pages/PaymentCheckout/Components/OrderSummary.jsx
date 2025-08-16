@@ -29,6 +29,7 @@ export default function OrderSummary({
     checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
+  const [promoCodeStatus, setPromoCodeStatus] = useState(null); // null | 'valid' | 'invalid'
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -222,6 +223,7 @@ export default function OrderSummary({
   const handleRemovePromoCode = () => {
     setPromoCodeApplying(true);
     setPromoCode("");
+    setPromoCodeStatus(null);
     handleBasketCheck("", "", true);
   };
 
@@ -231,6 +233,7 @@ export default function OrderSummary({
       if (!promoCode) {
         setPromoCodeApplying(false);
         toast.error(t("toastMessages.invalidPromoCode"));
+        setPromoCodeStatus("invalid");
         return;
       }
       const response = await validatePromocode(promoCode);
@@ -241,14 +244,17 @@ export default function OrderSummary({
           response?.coupondetails?.error?.text ||
           t("toastMessages.invalidPromoCode");
 
+        setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
       } else {
         setFormData({ ...formData, promoCode: promoCode });
+        setPromoCodeStatus("valid");
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
       }
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || t("toastMessages.invalidPromoCode"));
+      setPromoCodeStatus("invalid");
     }
   };
 
@@ -362,9 +368,19 @@ export default function OrderSummary({
               <input
                 type="text"
                 placeholder={t("orderSummary.enterPromoCode")}
-                className="email-checkout__summary-promoCode-input-container-inputBox"
+                className={`email-checkout__summary-promoCode-input-container-inputBox ${
+                  promoCodeStatus === "valid"
+                    ? "valid"
+                    : promoCodeStatus === "invalid"
+                    ? "invalid"
+                    : ""
+                }`}
                 value={promoCode}
-                onChange={(e) => setPromoCode(e.target.value)}
+                onChange={(e) => {
+                  setPromoCode(e.target.value);
+                  setPromoCodeStatus(null);
+                }}
+                onFocus={() => setPromoCodeStatus(null)}
                 disabled={promoCodeApplying}
               />
               <button

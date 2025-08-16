@@ -24,6 +24,7 @@ function CheckOutSummaryMbl({
     checkout?.coupons?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
+  const [promoCodeStatus, setPromoCodeStatus] = useState(null); // null | 'valid' | 'invalid'
   const [removingPromoCode, setRemovingPromoCode] = useState(false);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -203,6 +204,7 @@ function CheckOutSummaryMbl({
   const handleRemovePromoCode = async () => {
     setRemovingPromoCode(true);
     setPromoCode("");
+    setPromoCodeStatus(null);
     handleBasketCheck("", "", true);
     if (setShowPromoPopup) {
       setShowPromoPopup(false);
@@ -216,6 +218,7 @@ function CheckOutSummaryMbl({
       if (!promoCode) {
         toast.error(t("toastMessages.invalidPromoCode"));
         setPromoCodeApplying(false);
+        setPromoCodeStatus("invalid");
         return;
       }
       const response = await validatePromocode(promoCode);
@@ -224,14 +227,17 @@ function CheckOutSummaryMbl({
         let message =
           response?.coupondetails?.error?.text ||
           t("toastMessages.invalidPromoCode");
+        setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
       } else {
         setFormData({ ...formData, promoCode: promoCode });
+        setPromoCodeStatus("valid");
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
       }
     } catch (error) {
       setPromoCodeApplying(false);
       toast.error(error?.message || t("toastMessages.invalidPromoCode"));
+      setPromoCodeStatus("invalid");
     }
   };
 
@@ -377,9 +383,19 @@ function CheckOutSummaryMbl({
             <input
               type="text"
               placeholder={t("orderSummary.enterPromoCode")}
-              className="email-checkout__summary-promoCode-input-container-inputBox"
+              className={`email-checkout__summary-promoCode-input-container-inputBox ${
+                promoCodeStatus === "valid"
+                  ? "valid"
+                  : promoCodeStatus === "invalid"
+                  ? "invalid"
+                  : ""
+              }`}
               value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
+              onChange={(e) => {
+                setPromoCode(e.target.value);
+                setPromoCodeStatus(null);
+              }}
+              onFocus={() => setPromoCodeStatus(null)}
             />
             <button
               className="email-checkout__summary-promoCode-input-container-applyButton"

@@ -352,6 +352,19 @@
     z-index: 10;
   }
 
+  /* Mobile/desktop promo input validity styles reused */
+  .email-checkout__summary-promoCode-input-container-inputBox,
+  .email-checkout__promo-input {
+    &.invalid {
+      border-color: #ff4d4f !important;
+      box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+    }
+    &.valid {
+      border-color: #28a745 !important;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
+    }
+  }
+
   /* Pricing Section */
   .pricing-section {
     .pricing-row {
@@ -469,6 +482,14 @@
         background: var(--summary-header-bg);
         transition: border-color 0.2s ease;
         font-family: "YAS Font", sans-serif;
+        &.invalid {
+          border-color: #ff4d4f !important;
+          box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+        }
+        &.valid {
+          border-color: #28a745 !important;
+          box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
+        }
         &::placeholder {
           color: #999;
         }
@@ -553,6 +574,19 @@
       }
     }
   }
+}
+
+/* Global promo input validity styles (apply on desktop and mobile) */
+.email-checkout__summary-promoCode-input-container-inputBox.invalid,
+.email-checkout__promo-input.invalid {
+  border: 1px solid #ff4d4f !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+}
+
+.email-checkout__summary-promoCode-input-container-inputBox.valid,
+.email-checkout__promo-input.valid {
+  border: 1px solid #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
 }
 
 /* Responsive Design */

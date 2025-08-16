@@ -78,6 +78,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  padding: 1rem;
   height: auto;
   max-height: 80vh;
 
@@ -373,10 +374,12 @@
   }
 
   .terms-modal-footer {
-    text-align: right;
     padding: 0 1.5rem 1rem 1.5rem;
     border-top: 1px solid var(--ip-bodr-btm);
+    display: flex;
 
+    align-items: center;
+    justify-content: centers;
     @include respond(smallPhone) {
       padding-top: 0.5rem;
     }
@@ -400,6 +403,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-family: "YAS Font", sans-serif;
+      margin: 0 auto;
 
       @include respond(smallPhone) {
         font-size: 1rem;
