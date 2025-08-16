@@ -216,7 +216,16 @@ function PaymentDetailsMobile() {
         />
         <div className="email-checkout__container">
           <div className="email-checkout__form-container">
-            <form className="email-checkout__form" onSubmit={handleSubmit}>
+            <form
+              className="email-checkout__form"
+              onSubmit={handleSubmit}
+              noValidate
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                }
+              }}
+            >
               <div className="email-checkout__steps-underline"></div>
 
               <InputFieldsMbl />

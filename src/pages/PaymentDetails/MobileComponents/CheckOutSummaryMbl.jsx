@@ -163,7 +163,7 @@ function CheckOutSummaryMbl({
 
               phoneNumber: checkout?.phoneNumber,
               countryCode: checkout?.countryCode,
-              isTnCAgrred: checkout?.isTnCAgreed,
+              isTnCAgrred: checkout?.isTnCAgrred,
               isConsentAgreed: checkout?.isConsentAgreed,
               promotions: orderDetails?.promotions,
             })

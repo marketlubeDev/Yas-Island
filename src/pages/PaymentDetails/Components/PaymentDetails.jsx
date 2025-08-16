@@ -39,14 +39,6 @@ export default function PaymentDetails({ isCheckout }) {
     promoCode: checkout?.promoCode || "",
   });
 
-  // // Sync email from OTP slice to checkout slice
-  // useEffect(() => {
-  //   if (otpEmail && otpEmail !== checkout?.emailId) {
-  //     dispatch(setCheckoutEmail(otpEmail));
-  //     setFormData((prev) => ({ ...prev, email: otpEmail }));
-  //   }
-  // }, [otpEmail, checkout?.emailId, dispatch]);
-
   useEffect(() => {
     dispatch(
       updatePersonalDetails({

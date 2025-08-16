@@ -272,8 +272,9 @@ export default function PersonalDetailsForm({
 
   // Sync form data with Redux state when component mounts or Redux state changes
   useEffect(() => {
-    if (checkout) {
-      setFormData((prev) => ({
+    if (!checkout) return;
+    setFormData((prev) => {
+      const next = {
         ...prev,
         firstName: checkout.firstName || prev.firstName,
         lastName: checkout.lastName || prev.lastName,
@@ -281,8 +282,16 @@ export default function PersonalDetailsForm({
         nationality: checkout.nationality || prev.nationality,
         email: checkout.emailId || prev.email,
         phoneNumber: checkout.phoneNumber || prev.phoneNumber,
-      }));
-    }
+      };
+      const changed =
+        next.firstName !== prev.firstName ||
+        next.lastName !== prev.lastName ||
+        next.country !== prev.country ||
+        next.nationality !== prev.nationality ||
+        next.email !== prev.email ||
+        next.phoneNumber !== prev.phoneNumber;
+      return changed ? next : prev;
+    });
   }, [checkout]);
 
   // Generate countries list based on current language
@@ -296,38 +305,8 @@ export default function PersonalDetailsForm({
     .sort((a, b) => a.label.localeCompare(b.label));
 
   const handleInputChange = (field) => (value) => {
-    // Update local form data
+    // Update only local form data; parent component will dispatch to Redux
     setFormData((prev) => ({ ...prev, [field]: value }));
-
-    // Update Redux checkout state
-    const updateData = {};
-
-    // Handle special cases for field mapping
-    switch (field) {
-      case "email":
-        updateData.emailId = value;
-        break;
-      case "phoneNumber":
-        updateData.phoneNumber = value;
-        break;
-      case "firstName":
-        updateData.firstName = value;
-        break;
-      case "lastName":
-        updateData.lastName = value;
-        break;
-      case "country":
-        updateData.country = value;
-        break;
-      case "nationality":
-        updateData.nationality = value;
-        break;
-      default:
-        updateData[field] = value;
-    }
-
-    // Always dispatch with the current value (even if empty string)
-    dispatch(updatePersonalDetails(updateData));
   };
 
   const handleTermsChange = (type, checked) => {
