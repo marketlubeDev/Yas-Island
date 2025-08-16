@@ -210,11 +210,12 @@ const PhoneInputComponent = ({
   phoneNumber,
   onPhoneNumberChange,
   hasError = false,
+  countryIso = "ae",
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
     <PhoneInput
-      country={"ae"}
+      country={countryIso || "ae"}
       value={phoneNumber || ""}
       onChange={onPhoneNumberChange}
       inputClass={`form-group__phone-input${hasError ? " error" : ""}`}
@@ -224,7 +225,7 @@ const PhoneInputComponent = ({
       enableSearch={false}
       disableDropdown={true}
       countryCodeEditable={false}
-      onlyCountries={["ae"]}
+      onlyCountries={[countryIso || "ae"]}
       containerStyle={{
         width: "100%",
       }}
@@ -270,29 +271,7 @@ export default function PersonalDetailsForm({
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
-  // Sync form data with Redux state when component mounts or Redux state changes
-  useEffect(() => {
-    if (!checkout) return;
-    setFormData((prev) => {
-      const next = {
-        ...prev,
-        firstName: checkout.firstName || prev.firstName,
-        lastName: checkout.lastName || prev.lastName,
-        country: checkout.country || prev.country,
-        nationality: checkout.nationality || prev.nationality,
-        email: checkout.emailId || prev.email,
-        phoneNumber: checkout.phoneNumber || prev.phoneNumber,
-      };
-      const changed =
-        next.firstName !== prev.firstName ||
-        next.lastName !== prev.lastName ||
-        next.country !== prev.country ||
-        next.nationality !== prev.nationality ||
-        next.email !== prev.email ||
-        next.phoneNumber !== prev.phoneNumber;
-      return changed ? next : prev;
-    });
-  }, [checkout]);
+  // Inputs below bind directly to Redux `checkout` state
 
   // Generate countries list based on current language
   const countryCodes = countries.getAlpha2Codes();
@@ -305,9 +284,35 @@ export default function PersonalDetailsForm({
     .sort((a, b) => a.label.localeCompare(b.label));
 
   const handleInputChange = (field) => (value) => {
-    // Update only local form data; parent component will dispatch to Redux
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    const updateData = {};
+    switch (field) {
+      case "email":
+        updateData.emailId = value;
+        break;
+      case "phoneNumber":
+        updateData.phoneNumber = value;
+        break;
+      case "firstName":
+        updateData.firstName = value;
+        break;
+      case "lastName":
+        updateData.lastName = value;
+        break;
+      case "country":
+        updateData.country = value;
+        // Clear phone so react-phone-input-2 pre-fills new dial code
+        updateData.phoneNumber = "";
+        break;
+      case "nationality":
+        updateData.nationality = value;
+        break;
+      default:
+        updateData[field] = value;
+    }
+    dispatch(updatePersonalDetails(updateData));
   };
+
+  // Country change handled in handleInputChange("country")
 
   const handleTermsChange = (type, checked) => {
     if (type === "terms") {
@@ -363,15 +368,16 @@ export default function PersonalDetailsForm({
   });
 
   const validateFieldsForPlaceholders = () => {
-    const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
+    const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
     const next = {
-      firstName: !formData.firstName || formData.firstName.trim().length < 2,
-      lastName: !formData.lastName || formData.lastName.trim().length < 1,
+      firstName: !checkout.firstName || checkout.firstName.trim().length < 2,
+      lastName: !checkout.lastName || checkout.lastName.trim().length < 1,
       email:
-        !formData.email || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+        !checkout.emailId ||
+        !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
       phoneNumber: phoneDigits.length <= 3,
-      country: !formData.country,
-      nationality: !formData.nationality,
+      country: !checkout.country,
+      nationality: !checkout.nationality,
     };
     setFieldErrors(next);
     return next;
@@ -379,37 +385,37 @@ export default function PersonalDetailsForm({
 
   useEffect(() => {
     const showErrors = () => {
-      const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
+      const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
       const next = {
-        firstName: !formData.firstName || formData.firstName.trim().length < 2,
-        lastName: !formData.lastName || formData.lastName.trim().length < 1,
+        firstName: !checkout.firstName || checkout.firstName.trim().length < 2,
+        lastName: !checkout.lastName || checkout.lastName.trim().length < 1,
         email:
-          !formData.email ||
-          !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+          !checkout.emailId ||
+          !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
         phoneNumber: phoneDigits.length <= 3,
-        country: !formData.country,
-        nationality: !formData.nationality,
+        country: !checkout.country,
+        nationality: !checkout.nationality,
       };
       setFieldErrors(next);
     };
     window.addEventListener("paymentForm:showFieldErrors", showErrors);
     return () =>
       window.removeEventListener("paymentForm:showFieldErrors", showErrors);
-  }, [formData]);
+  }, [checkout]);
 
   return (
     <div className="payment-form__left">
       <div className="form-group-row">
         <FormInput
           label={t("payment.personalDetails.firstName")}
-          value={formData.firstName}
+          value={checkout.firstName || ""}
           onChange={handleInputChange("firstName")}
           hasError={fieldErrors.firstName}
           placeholder={t("payment.personalDetails.firstName")}
         />
         <FormInput
           label={t("payment.personalDetails.lastName")}
-          value={formData.lastName}
+          value={checkout.lastName || ""}
           onChange={handleInputChange("lastName")}
           hasError={fieldErrors.lastName}
           placeholder={t("payment.personalDetails.lastName")}
@@ -419,7 +425,7 @@ export default function PersonalDetailsForm({
       <div className="form-group-row">
         <FormSelectWithSearch
           label={t("payment.personalDetails.countryOfResidence")}
-          value={formData.country}
+          value={checkout.country || ""}
           onChange={handleInputChange("country")}
           options={COUNTRIES}
           hasError={fieldErrors.country}
@@ -427,7 +433,7 @@ export default function PersonalDetailsForm({
         />
         <FormSelectWithSearch
           label={t("payment.personalDetails.nationality")}
-          value={formData.nationality}
+          value={checkout.nationality || ""}
           onChange={handleInputChange("nationality")}
           options={COUNTRIES}
           hasError={fieldErrors.nationality}
@@ -438,7 +444,7 @@ export default function PersonalDetailsForm({
       <div className="form-group-row">
         <FormInput
           label={t("payment.personalDetails.email")}
-          value={formData.email}
+          value={checkout.emailId || ""}
           onChange={handleInputChange("email")}
           type="email"
           hasError={fieldErrors.email}
@@ -463,10 +469,12 @@ export default function PersonalDetailsForm({
           }
         />
         <PhoneInputComponent
+          key={(checkout.country || "AE").toLowerCase()}
           label={t("payment.personalDetails.phoneNumber")}
-          phoneNumber={formData.phoneNumber}
+          phoneNumber={checkout.phoneNumber || ""}
           onPhoneNumberChange={handleInputChange("phoneNumber")}
           hasError={fieldErrors.phoneNumber}
+          countryIso={(checkout.country || "AE").toLowerCase()}
         />
       </div>
 
