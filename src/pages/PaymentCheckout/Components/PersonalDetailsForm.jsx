@@ -219,6 +219,7 @@ const PhoneInputComponent = ({
   onPhoneNumberChange,
   hasError = false,
   countryIso = "ae",
+  isRTL = false,
   onFocus,
 }) => (
   <div className="form-group">
@@ -238,6 +239,7 @@ const PhoneInputComponent = ({
       /* allow full dataset so library can resolve dial codes reliably */
       containerStyle={{
         width: "100%",
+        position: "relative",
       }}
       inputStyle={{
         width: "100%",
@@ -249,7 +251,10 @@ const PhoneInputComponent = ({
         background: "transparent",
         color: "var(--color-base-text-secondary)",
         padding: "8px 0",
-        paddingLeft: "58px",
+        paddingLeft: isRTL ? "8px" : "44px",
+        paddingRight: isRTL ? "44px" : "8px",
+        direction: "ltr",
+        textAlign: isRTL ? "right" : "left",
       }}
       buttonStyle={{
         border: "none",
@@ -257,8 +262,10 @@ const PhoneInputComponent = ({
         borderRadius: "0",
         background: "transparent",
         height: "40px",
-        padding: "8px 4px",
-        width: "50px",
+        padding: "8px 2px",
+        width: "40px",
+        position: isRTL ? "absolute" : undefined,
+        right: isRTL ? 0 : undefined,
       }}
     />
   </div>
@@ -561,6 +568,7 @@ export default function PersonalDetailsForm({
           countryIso={normalizeIsoForDialCode(
             (checkout.country || "AE").toLowerCase()
           )}
+          isRTL={isRTL}
           onFocus={() =>
             setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
           }

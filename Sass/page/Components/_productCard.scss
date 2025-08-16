@@ -449,14 +449,17 @@
 // Product Modal
 
 .product-modal .ant-modal-content {
-  padding: 4rem 2rem !important;
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
+  box-sizing: border-box;
 }
 
 .product-modal.booking-active .ant-modal-content {
-  padding: 2rem !important;
+  padding: 4rem !important; // keep same padding when booking is active
+  padding-top: 3.7rem;
+  max-height: calc(100vh - 48px);
+  overflow: hidden; // avoid outer scrolling
   // /* Hide scrollbar for modal content */
   // overflow: auto;
   // scrollbar-width: none; /* Firefox */
@@ -487,6 +490,7 @@
       left: auto !important;
       transform: none !important;
       margin: 0 auto !important;
+      max-width: 1100px; // slightly narrower to preserve perfect circles
     }
   }
 }
@@ -502,6 +506,7 @@
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  padding: 24px; // breathing room around modal on very wide screens
 }
 
 .product-separator {
@@ -527,64 +532,60 @@
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: -10%;
-  right: 5px;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  font-size: 32px;
+  top: 12px;
+  right: 12px;
+  height: 40px;
+  width: 40px;
+  font-size: 28px;
   line-height: 1;
   border-radius: 50%;
   border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: transparent;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: background 0.2s;
-
-  @include respond(bigTablets) {
-    top: -7%;
-    right: 5px;
-    // height: 40px;
-    // width: 40px;
-    // font-size: 24px;
-  }
-
-  @include respond(desktop) {
-    top: -13%;
-    right: 5px;
-  }
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
 
   &:hover {
-    background: #fff;
+    background: #f6f6f6;
+    border-color: #cfcbd8;
+    transform: scale(1.06);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
 .product-modal-content {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   width: 100%;
   align-content: start;
+  max-height: calc(100vh - 48px - 8rem); // viewport minus modal paddings
+  overflow: hidden; // prevent content overflow; inner sections handle scroll if needed
 
   @include respond(bigTablets) {
     max-height: 80vh !important;
-    overflow-y: auto !important;
+    overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
     align-content: center !important;
   }
 
   @include respond(desktop) {
-    gap: 24px;
-    max-height: 80vh !important;
-    overflow-y: auto !important;
+    gap: 20px;
+    max-height: calc(100vh - 48px - 8rem) !important;
+    overflow: hidden !important;
   }
 
   @include respond(bigDesktop) {
-    max-height: 60vh !important;
-    // overflow-y: auto !important;
+    max-height: calc(100vh - 48px - 8rem) !important;
+    // keep overflow hidden to avoid outer scroll
   }
 
   @include respond(bigTablets) {
@@ -593,7 +594,7 @@
 
 .product-modal-image {
   flex: 1;
-  max-width: 40%;
+  max-width: 38%;
   border-radius: 1.47rem;
 
   @include respond(bigTablets) {
@@ -609,8 +610,8 @@
   }
 
   @include respond(bigDesktop) {
-    height: 600px;
-    max-height: 600px;
+    height: 440px;
+    max-height: 440px;
   }
 }
 
@@ -631,6 +632,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0; // prevent flex overflow
 
   @include respond(desktop) {
     padding: 0;
@@ -638,22 +640,22 @@
 }
 
 .product-description-api {
-  max-height: 50vh;
+  max-height: 32vh; // reduce to avoid overflow
   height: fit-content;
-  min-height: 30vh;
+  min-height: 20vh;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    max-height: 40vh;
+    max-height: 28vh;
     height: fit-content;
-    min-height: 30vh;
+    min-height: 24vh;
   }
 
   @include respond(bigDesktop) {
-    max-height: 40vh;
+    max-height: 30vh;
     height: fit-content;
-    min-height: 30vh;
+    min-height: 24vh;
   }
 
   .product-description {
@@ -688,14 +690,14 @@
   font-style: normal;
   // font-weight: 500;
   line-height: normal;
-  height: 200px;
+  height: 140px;
   overflow-y: auto;
   padding-right: 1rem;
 
   @include respond(desktop) {
     margin-bottom: 24px;
     font-size: 0.9rem;
-    height: 160px;
+    height: 120px;
     padding-right: 0.8rem;
   }
 }
@@ -721,11 +723,11 @@
 }
 
 .product-modal-details-description {
-  height: 50vh;
+  height: 40vh;
   overflow-y: auto;
 
   @include respond(desktop) {
-    height: 45vh;
+    height: 36vh;
   }
 }
 
@@ -901,58 +903,33 @@
 }
 
 .booking-section {
-  padding: 24px;
+  padding: 0rem; // rely on modal padding
   width: 100%;
   display: flex;
+  gap: 3rem; // reduce to fit on lower-res desktops
+  align-items: stretch;
 }
 
 /* Calendar container */
 .calendar-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
-  padding: 0 40px;
-  // width: 40%;
+  padding: 0; // remove inner padding for uniform modal edges
+  width: 50%;
+  flex: 1 1 50%;
+  overflow: hidden;
+  height: calc(70vh - 5.5rem); // tiny increase to avoid clipping bottom row
+  display: flex;
+  flex-direction: column;
+  min-height: 0; // allow children to size within container
 
-  // @include respond(bigTablets) {
-  //   width: 85% !important;
-  //   margin-bottom: 2rem;
-  // }
+  .section-title {
+    flex: 0 0 auto;
+  }
 
-  // @include respond(desktop) {
-  //   padding: 0 20px;
-  //   width: 40%;
-  //   border-radius: 14px;
-  //   // margin-bottom: 4rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   padding: 0 20px;
-  //   width: 45%;
-  // }
-
-  h2 {
-    color: var(--color-base-text);
-    // font-family: Urbanist;
-    font-size: 1.8rem !important;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-align: center;
-    margin-bottom: 2.5rem;
-    margin-top: -1rem;
-    font-family: "YAS Font", sans-serif;
-
-    @include respond(desktop) {
-      font-size: 1.8rem !important;
-      margin-bottom: 2rem;
-      margin-top: -0.5rem;
-    }
-
-    @include respond(bigDesktop) {
-      font-size: 1.5rem !important;
-      margin-bottom: 1.5rem;
-      margin-top: -0.5rem;
-    }
+  @include respond(bigTablets) {
+    width: 100% !important;
+    margin-bottom: 2rem;
   }
 
   .selected-dates {
@@ -994,8 +971,12 @@
   border-radius: 2.6825rem;
   border: 1px solid var(--color-base-product-card-card-item-border-calendar);
   background: var(--color-base-product-card-card-item-bg);
-  padding: 2rem;
+  padding: 0.75rem; // make calendar more compact vertically
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; // enable child flex to shrink
 }
 
 /* Header with month and navigation */
@@ -1003,16 +984,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 .calendar-header h2 {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   font-family: "YAS Font", sans-serif;
   @include respond(desktop) {
     font-size: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 }
 
@@ -1025,6 +1007,7 @@
   font-style: normal;
   font-weight: 700;
   font-family: "YAS Font", sans-serif;
+  margin-bottom: 6px; // tighten header to give days more space
 
   @include respond(desktop) {
     font-size: 1.3rem;
@@ -1032,8 +1015,8 @@
 }
 
 .calendar-header button {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -1047,12 +1030,28 @@
   }
 }
 
+/* Calendar body wraps weekdays and days; it fills remaining space */
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Calendar body wrapper fills remaining space */
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
 /* Days of week header */
 .calendar-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  flex: 0 0 auto;
 
   @include respond(desktop) {
     margin-bottom: 6px;
@@ -1060,13 +1059,13 @@
 }
 
 .calendar-weekdays span {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-bkg-clndr-dayname-clr);
-  padding: 8px;
+  padding: 4px; // free up vertical height
 
   @include respond(desktop) {
-    font-size: 12px;
-    padding: 6px;
+    font-size: 11px;
+    padding: 3px;
   }
 }
 
@@ -1074,7 +1073,17 @@
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px; // allow larger circles
+  grid-template-rows: repeat(6, minmax(0, 1fr)); // ensure rows don't overflow
+  flex: 1 1 auto; // fill remaining space under header + weekdays
+  place-items: center; // center day circles within their cells
+  height: 100%;
+
+  // keep cells square so inner circle remains perfect
+  .day {
+    width: min(48px, 92%);
+    height: min(48px, 92%);
+  }
 
   @include respond(desktop) {
     gap: 6px;
@@ -1086,10 +1095,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 13px; // slightly smaller to fit
   cursor: pointer;
   border-radius: 50%;
   color: var(--color-base-date-clr);
+  height: 100%;
+  width: auto; // width follows height to maintain perfect circle
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
 }
 
 .day.empty {
@@ -1111,34 +1125,40 @@
 .day.disabled {
   color: #ccc;
   cursor: not-allowed;
+  background: transparent !important; // ensure no highlight in dark mode
+  opacity: 0.45; // make clearly muted
+  box-shadow: none !important;
 }
 
 .guest-section {
-  padding: 0 24px;
-  width: 60%;
-  height: 550px;
+  padding: 0;
+  width: 50%;
+  flex: 1 1 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-self: flex-start;
+  height: calc(70vh - 6rem); // slightly smaller to avoid overflow
 
   @include respond(bigTablets) {
     width: 100%;
     height: 100%;
   }
+}
 
-  @include respond(desktop) {
-    padding: 0 18px;
-    width: 60%;
-    height: 440px;
-  }
+.calendar-title {
+  color: var(--color-base-text);
+  // font-family: Urbanist;
+  font-size: 1.8rem !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  margin-bottom: 5%;
 
-  @include respond(bigDesktop) {
-    padding: 0 18px;
-    width: 60%;
-    min-height: 480px;
-    height: 510px;
-  }
+  margin-top: 0; // avoid visual mismatch on top padding
+  font-family: "YAS Font", sans-serif;
 }
 
 .section-title {
@@ -1146,6 +1166,7 @@
   font-size: 1.8rem !important;
   font-style: normal;
   font-weight: 700;
+  margin-bottom: 5%;
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
@@ -1159,27 +1180,40 @@
   }
 }
 
+/* Keep booking headings fixed while the modal content scrolls */
+.booking-section .section-title {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-base-bg);
+  margin-top: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Match calendar heading background to its card */
+.calendar-container > .section-title {
+  background: var(--color-base-product-card-card-item-bg);
+}
+.guest-section-scollable-container {
+  gap: 1rem;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 3rem;
+}
 .guest-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 35px;
-  padding: 20px;
+  padding: 16px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border: 0.826px solid var(--color-base-product-card-card-item-border-calendar);
-  width: 25.5625rem;
+  border: 1px solid var(--color-base-product-card-card-item-border-calendar);
+  width: 80%;
   height: fit-content;
-  flex-shrink: 0;
-
-  @include respond(desktop) {
-    padding: 10px 16px;
-    width: 24rem;
-    border-radius: 24px;
-  }
-
-  @include respond(bigDesktop) {
-    padding: 10px 16px;
-    width: 22rem;
-    border-radius: 24px;
-  }
+  flex-shrink: 1;
 }
 
 .guest-summary {
@@ -1219,6 +1253,7 @@
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-base-product-card-divider);
   // margin-bottom: 22px;
+  gap: 12px;
 
   @include respond(desktop) {
     padding-bottom: 12px;
@@ -1302,7 +1337,7 @@ html[lang="ar"] {
   }
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: not-allowed;
   }
 
@@ -1312,9 +1347,15 @@ html[lang="ar"] {
   }
 }
 
+/* Ensure icon backgrounds are transparent so dark mode shows correctly */
+.counter-btn img {
+  display: block;
+  background: transparent !important;
+}
+
 .counter-btn:disabled {
-  background: #f0f0f0;
-  color: #ccc;
+  background: var(--color-base-product-card-card-item-bg);
+  color: var(--color-base-text-secondary);
   cursor: not-allowed;
 }
 
@@ -1349,6 +1390,7 @@ html[lang="ar"] {
   flex-direction: column;
   gap: 12px;
   padding-top: 20px;
+  margin-top: auto;
   // background-color: red;
   position: relative;
   bottom: 0;
@@ -1404,7 +1446,7 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: 32.875rem;
+  width: min(32.875rem, 90%);
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -1412,7 +1454,7 @@ html[lang="ar"] {
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: 22rem;
+    width: min(22rem, 90%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -1427,14 +1469,14 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: 32.875rem;
+  width: min(32.875rem, 90%);
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: 22rem;
+    width: min(22rem, 90%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -1443,47 +1485,22 @@ html[lang="ar"] {
 }
 
 .booking-section-divider {
-  width: 2px;
-  max-height: 550px;
-  height: 550px;
-  background-color: var(--color-base-product-card-divider);
-  // margin: 0 3rem 0 7rem;
+  width: 1px;
+  height: auto;
+  background: var(--color-base-product-card-divider);
+  opacity: 0.6;
+  align-self: stretch;
+  margin: 20px 0; // align with internal card paddings
 
   @include respond(bigTablets) {
     display: none;
   }
 
   @include respond(desktop) {
-    height: 440px;
-    // margin: 0 4.5rem 0 3rem;
   }
 
   @include respond(bigDesktop) {
-    height: 510px;
-    // margin: 0 4.5rem 0 3rem;
   }
-}
-
-.guest-section-header-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  overflow-y: scroll;
-  gap: 20px;
-
-  // &::-webkit-scrollbar {
-  //   width: 8px;
-  // }
-
-  // &::-webkit-scrollbar-track {
-  //   background: transparent;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background: var(--color-base-product-card-scroll-bar);
-  //   border-radius: 4px;
-  // }
 }
 
 .rtl-arrow {

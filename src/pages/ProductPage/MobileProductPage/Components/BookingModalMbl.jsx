@@ -51,6 +51,17 @@ function BookingModalMbl({
   const [activeAction, setActiveAction] = useState("");
   const isRTL = i18n.language === "ar";
 
+  // Sanitize any server-provided text to avoid unsafe HTML/script injection in toasts
+  const sanitizeText = (text) => {
+    if (typeof text !== "string") return "";
+    // Strip HTML tags and scripts
+    const withoutTags = text.replace(/<[^>]*>/g, "");
+    // Collapse whitespace
+    const collapsed = withoutTags.replace(/\s+/g, " ").trim();
+    // Limit to a reasonable length
+    return collapsed.slice(0, 500);
+  };
+
   function getVariants() {
     const variants = {};
     product?.product_variants?.forEach((variant) => {
@@ -115,9 +126,12 @@ function BookingModalMbl({
 
         // Check if we have any performance data
         if (!performanceData || performanceData.length === 0) {
-          toast.error(t("toastMessages.thisProductIsCurrentlyNotAvailable"), {
-            position: "top-center",
-          });
+          toast.error(
+            sanitizeText(t("toastMessages.thisProductIsCurrentlyNotAvailable")),
+            {
+              position: "top-center",
+            }
+          );
           onBack();
           return;
         }
@@ -146,9 +160,12 @@ function BookingModalMbl({
         );
 
         if (allVariantsUnavailable) {
-          toast.error(t("toastMessages.thisProductIsCurrentlyNotAvailable"), {
-            position: "top-center",
-          });
+          toast.error(
+            sanitizeText(t("toastMessages.thisProductIsCurrentlyNotAvailable")),
+            {
+              position: "top-center",
+            }
+          );
           onBack();
           return;
         }
@@ -161,7 +178,10 @@ function BookingModalMbl({
     } catch (error) {
       console.log(error);
       toast.error(
-        error?.response?.data?.message || t("toastMessages.somethingWentWrong")
+        sanitizeText(
+          error?.response?.data?.message ||
+            t("toastMessages.somethingWentWrong")
+        )
       );
       onBack();
     } finally {
@@ -302,7 +322,7 @@ function BookingModalMbl({
   // Common function to handle basket check and cart operations
   const handleBasketCheck = (onSuccess, type = "cart") => {
     if (!selectedDate) {
-      toast.error(t("toastMessages.pleaseSelectDateFirst"), {
+      toast.error(sanitizeText(t("toastMessages.pleaseSelectDateFirst")), {
         position: "top-center",
       });
       return;
@@ -323,7 +343,7 @@ function BookingModalMbl({
         selectedProduct?.product_variants[0]?.productid
       );
       if (!performanceId) {
-        toast.error(t("toastMessages.noPerformance"), {
+        toast.error(sanitizeText(t("toastMessages.noPerformance")), {
           position: "top-center",
         });
         return;
@@ -374,7 +394,7 @@ function BookingModalMbl({
     };
 
     if (currentItems.length === 0) {
-      toast.error(t("toastMessages.pleaseEnterValidQuantity"), {
+      toast.error(sanitizeText(t("toastMessages.pleaseEnterValidQuantity")), {
         position: "top-center",
       });
       return;
@@ -384,8 +404,10 @@ function BookingModalMbl({
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
           toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
+            sanitizeText(
+              res?.orderDetails?.error?.text ||
+                t("toastMessages.somethingWentWrong")
+            ),
             {
               position: "top-center",
             }
@@ -527,7 +549,10 @@ function BookingModalMbl({
         setActiveAction("");
         console.log(err);
         toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
+          sanitizeText(
+            err?.response?.data?.message ||
+              t("toastMessages.somethingWentWrong")
+          ),
           {
             position: "top-center",
           }
@@ -638,31 +663,15 @@ function BookingModalMbl({
         11: "ديسمبر",
       };
       const arabicMonth = arabicMonths[date.getMonth()];
-      const gregorianYear = date
-        .getFullYear()
-        .toString()
-        .split("")
-        .map(
-          (digit) =>
-            ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"][parseInt(digit)]
-        )
-        .join("");
-      return `${arabicMonth} ${gregorianYear}`;
+      // Keep Western digits for the year in Arabic locale
+      const year = date.getFullYear();
+      return `${arabicMonth} ${year}`;
     }
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
-  const toArabicNumeral = (num) => {
-    if (i18n.language === "ar") {
-      const arabicNumerals = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
-      return num
-        .toString()
-        .split("")
-        .map((digit) => arabicNumerals[parseInt(digit)])
-        .join("");
-    }
-    return num;
-  };
+  // Keep Western digits even in Arabic
+  const toArabicNumeral = (num) => num;
 
   const renderCalendarSkeleton = () => (
     <div className="calendar-skeleton">

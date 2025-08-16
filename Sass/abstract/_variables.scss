@@ -221,6 +221,8 @@ $color-yellow: #ffea00;
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  /* Focus color for input underline (light mode: use normal border color) */
+  --color-email-form-input-focus: var(--color-email-form-input-border);
   --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
@@ -333,6 +335,8 @@ $color-yellow: #ffea00;
     --color-base-product-card-card-item-border: #3d3d3d;
 
     // Dark mode selector options
+    /* Ensure input focus underline is visible in dark mode */
+    --color-email-form-input-focus: #ffea00;
   }
   --color-email-otp-input-clr: #231942;
   --color-checkbox-clr: #908999;

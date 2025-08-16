@@ -242,49 +242,58 @@ const PhoneInputComponent = ({
   onPhoneNumberChange,
   hasError = false,
   onFocus,
-}) => (
-  <label className="email-checkout__label" id="phoneNumber">
-    {label}
-    <PhoneInput
-      country={"ae"}
-      value={phoneNumber || ""}
-      onChange={onPhoneNumberChange}
-      inputClass={`email-checkout__phone-input${hasError ? " error" : ""}`}
-      containerClass="email-checkout__phone-container"
-      buttonClass="email-checkout__phone-button"
-      dropdownClass="email-checkout__phone-dropdown"
-      enableSearch={false}
-      disableDropdown={true}
-      countryCodeEditable={false}
-      onlyCountries={["ae"]}
-      inputProps={{ onFocus }}
-      containerStyle={{
-        width: "100%",
-      }}
-      inputStyle={{
-        width: "100%",
-        height: "40px",
-        fontSize: "1rem",
-        border: "none",
-        borderBottom: "1px solid var(--ip-bodr-btm)",
-        borderRadius: "0",
-        background: "transparent",
-        color: "var(--color-base-text-secondary)",
-        padding: "8px 0",
-        paddingLeft: "58px",
-      }}
-      buttonStyle={{
-        border: "none",
-        borderBottom: "1px solid var(--ip-bodr-btm)",
-        borderRadius: "0",
-        background: "transparent",
-        height: "40px",
-        padding: "8px 4px",
-        width: "50px",
-      }}
-    />
-  </label>
-);
+}) => {
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+  return (
+    <label className="email-checkout__label" id="phoneNumber">
+      {label}
+      <PhoneInput
+        country={"ae"}
+        value={phoneNumber || ""}
+        onChange={onPhoneNumberChange}
+        inputClass={`email-checkout__phone-input${hasError ? " error" : ""}`}
+        containerClass="email-checkout__phone-container"
+        buttonClass="email-checkout__phone-button"
+        dropdownClass="email-checkout__phone-dropdown"
+        enableSearch={false}
+        disableDropdown={true}
+        countryCodeEditable={false}
+        onlyCountries={["ae"]}
+        inputProps={{ onFocus }}
+        containerStyle={{
+          width: "100%",
+        }}
+        inputStyle={{
+          width: "100%",
+          height: "40px",
+          fontSize: "1rem",
+          border: "none",
+          borderBottom: "1px solid var(--ip-bodr-btm)",
+          borderRadius: "0",
+          background: "transparent",
+          color: "var(--color-base-text-secondary)",
+          padding: "8px 0",
+          paddingLeft: isRTL ? "8px" : "44px",
+          paddingRight: isRTL ? "42px" : "8px",
+          direction: "ltr",
+          textAlign: isRTL ? "right" : "left",
+        }}
+        buttonStyle={{
+          border: "none",
+          borderBottom: "1px solid var(--ip-bodr-btm)",
+          borderRadius: "0",
+          background: "transparent",
+          height: "40px",
+          padding: "8px 2px",
+          width: "36px",
+          position: isRTL ? "absolute" : undefined,
+          right: isRTL ? 0 : undefined,
+        }}
+      />
+    </label>
+  );
+};
 
 function InputFieldsMbl() {
   const { t, i18n } = useTranslation();

@@ -303,6 +303,14 @@ export default function BookingSection({ product, onBack }) {
     );
   };
 
+  const isAtCurrentMonth = (() => {
+    const today = new Date();
+    return (
+      currentDate.getFullYear() === today.getFullYear() &&
+      currentDate.getMonth() === today.getMonth()
+    );
+  })();
+
   const getValidToDate = (id, selectedDate) => {
     const item = selectedProduct?.product_variants?.find(
       (variant) => variant?.productid == id
@@ -655,14 +663,17 @@ export default function BookingSection({ product, onBack }) {
     <div className="booking-section">
       {/* Date Selection */}
       <div className="calendar-container">
-        <h2>{t("booking.chooseDate")}</h2>
+        <h2 className="section-title ">{t("booking.chooseDate")}</h2>
         <div className="calendar-wrapper">
           {isLoadingDates ? (
             renderCalendarSkeleton()
           ) : (
             <>
               <div className="calendar-header">
-                <button onClick={handlePrevMonth}>
+                <button
+                  onClick={!isAtCurrentMonth ? handlePrevMonth : undefined}
+                  style={isAtCurrentMonth ? { visibility: "hidden" } : {}}
+                >
                   <img
                     src={LeftArrow}
                     alt="Left Arrow"
@@ -695,158 +706,162 @@ export default function BookingSection({ product, onBack }) {
           )}
         </div>
       </div>
-      {/* <div className="booking-section-divider"></div> */}
+      <div className="booking-section-divider"></div>
       {/* Guest Selection */}
       <div className="guest-section">
         <div className="guest-section-header-container">
           <h2 className="section-title">
             {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
           </h2>
-          <div className="guest-container">
-            {isLoadingDates ? (
-              renderGuestSectionSkeleton()
-            ) : (
-              <>
-                <h3 className="guest-summary">
-                  {Object.entries(guests).map(
-                    ([productId, guestData], idx, arr) => (
-                      <span className="" key={productId}>
-                        {guestData.name}: {guestData.quantity}
-                        {idx < arr.length - 1 ? " / " : ""}
-                      </span>
-                    )
-                  )}
-                </h3>
-                <div className="guest-controls">
-                  {Object.entries(guests)?.map(
-                    ([productId, guestData], idx) => {
-                      const variantData = guestData.variant;
-                      const isAvailable = variantData?.hasperformance
-                        ? isVariantAvailableForDate(productId)
-                        : true;
-                      return (
-                        <div key={productId}>
-                          <div
-                            className={`guest-row ${
-                              !isAvailable ? "unavailable-variant" : ""
-                            }`}
-                          >
-                            <div className="guest-label-container">
-                              <span className="guest-label">
-                                {guestData.name}{" "}
-                                {variantData?.productvariantdesc &&
-                                  `(${variantData.productvariantdesc})`}
-                                {!isAvailable && (
-                                  <span className="unavailable-notice">
-                                    {!selectedDate
-                                      ? "- Please select a date first"
-                                      : "- Not available on selected date"}
-                                  </span>
-                                )}
-                              </span>
-                              <span className="guest-label-price">
-                                {guestData.quantity > 0 &&
-                                  `AED ${
-                                    variantData?.gross * guestData.quantity
-                                  }`}
-                              </span>
+          <div className="guest-section-scollable-container">
+            <div className="guest-container">
+              {isLoadingDates ? (
+                renderGuestSectionSkeleton()
+              ) : (
+                <>
+                  <h3 className="guest-summary">
+                    {Object.entries(guests).map(
+                      ([productId, guestData], idx, arr) => (
+                        <span className="" key={productId}>
+                          {guestData.name}: {guestData.quantity}
+                          {idx < arr.length - 1 ? " / " : ""}
+                        </span>
+                      )
+                    )}
+                  </h3>
+                  <div className="guest-controls">
+                    {Object.entries(guests)?.map(
+                      ([productId, guestData], idx) => {
+                        const variantData = guestData.variant;
+                        const isAvailable = variantData?.hasperformance
+                          ? isVariantAvailableForDate(productId)
+                          : true;
+                        return (
+                          <div key={productId}>
+                            <div
+                              className={`guest-row ${
+                                !isAvailable ? "unavailable-variant" : ""
+                              }`}
+                            >
+                              <div className="guest-label-container">
+                                <span className="guest-label">
+                                  {guestData.name}{" "}
+                                  {variantData?.productvariantdesc &&
+                                    `(${variantData.productvariantdesc})`}
+                                  {!isAvailable && (
+                                    <span className="unavailable-notice">
+                                      {!selectedDate
+                                        ? "- Please select a date first"
+                                        : "- Not available on selected date"}
+                                    </span>
+                                  )}
+                                </span>
+                                <span className="guest-label-price">
+                                  {guestData.quantity > 0 &&
+                                    `AED ${
+                                      variantData?.gross * guestData.quantity
+                                    }`}
+                                </span>
+                              </div>
+                              <div className="counter-controls">
+                                <button
+                                  className="counter-btn minus-btn"
+                                  onClick={() =>
+                                    setGuests((prev) => {
+                                      const currentValue =
+                                        prev[productId].quantity;
+                                      const newValue = Math.max(
+                                        variantData?.min_quantity || 0,
+                                        currentValue -
+                                          (variantData?.increment_number || 1)
+                                      );
+                                      return {
+                                        ...prev,
+                                        [productId]: {
+                                          ...prev[productId],
+                                          quantity: newValue,
+                                        },
+                                      };
+                                    })
+                                  }
+                                  disabled={
+                                    !isAvailable ||
+                                    guestData.quantity <=
+                                      (variantData?.min_quantity || 0)
+                                  }
+                                  style={{
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                    cursor: !isAvailable
+                                      ? "not-allowed"
+                                      : "pointer",
+                                  }}
+                                >
+                                  <img
+                                    src={
+                                      isDarkMode ? InvertMinusIcon : MinusIcon
+                                    }
+                                    alt="minus"
+                                  />
+                                </button>
+                                <span
+                                  className="counter-value"
+                                  style={{
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                  }}
+                                >
+                                  {guestData.quantity}
+                                </span>
+                                <button
+                                  className="counter-btn plus-btn"
+                                  onClick={() =>
+                                    setGuests((prev) => {
+                                      const currentValue =
+                                        prev[productId].quantity;
+                                      const newValue = Math.min(
+                                        variantData?.max_quantity || 100,
+                                        currentValue +
+                                          (variantData?.increment_number || 1)
+                                      );
+                                      return {
+                                        ...prev,
+                                        [productId]: {
+                                          ...prev[productId],
+                                          quantity: newValue,
+                                        },
+                                      };
+                                    })
+                                  }
+                                  disabled={
+                                    !isAvailable ||
+                                    guestData.quantity >=
+                                      (variantData?.max_quantity || 100)
+                                  }
+                                  style={{
+                                    opacity: !isAvailable ? 0.5 : 1,
+                                    cursor: !isAvailable
+                                      ? "not-allowed"
+                                      : "pointer",
+                                  }}
+                                >
+                                  <img
+                                    src={isDarkMode ? InvertPlusIcon : PlusIcon}
+                                    alt="plus"
+                                  />
+                                </button>
+                              </div>
                             </div>
-                            <div className="counter-controls">
-                              <button
-                                className="counter-btn minus-btn"
-                                onClick={() =>
-                                  setGuests((prev) => {
-                                    const currentValue =
-                                      prev[productId].quantity;
-                                    const newValue = Math.max(
-                                      variantData?.min_quantity || 0,
-                                      currentValue -
-                                        (variantData?.increment_number || 1)
-                                    );
-                                    return {
-                                      ...prev,
-                                      [productId]: {
-                                        ...prev[productId],
-                                        quantity: newValue,
-                                      },
-                                    };
-                                  })
-                                }
-                                disabled={
-                                  !isAvailable ||
-                                  guestData.quantity <=
-                                    (variantData?.min_quantity || 0)
-                                }
-                                style={{
-                                  opacity: !isAvailable ? 0.5 : 1,
-                                  cursor: !isAvailable
-                                    ? "not-allowed"
-                                    : "pointer",
-                                }}
-                              >
-                                <img
-                                  src={isDarkMode ? InvertMinusIcon : MinusIcon}
-                                  alt="minus"
-                                />
-                              </button>
-                              <span
-                                className="counter-value"
-                                style={{
-                                  opacity: !isAvailable ? 0.5 : 1,
-                                }}
-                              >
-                                {guestData.quantity}
-                              </span>
-                              <button
-                                className="counter-btn plus-btn"
-                                onClick={() =>
-                                  setGuests((prev) => {
-                                    const currentValue =
-                                      prev[productId].quantity;
-                                    const newValue = Math.min(
-                                      variantData?.max_quantity || 100,
-                                      currentValue +
-                                        (variantData?.increment_number || 1)
-                                    );
-                                    return {
-                                      ...prev,
-                                      [productId]: {
-                                        ...prev[productId],
-                                        quantity: newValue,
-                                      },
-                                    };
-                                  })
-                                }
-                                disabled={
-                                  !isAvailable ||
-                                  guestData.quantity >=
-                                    (variantData?.max_quantity || 100)
-                                }
-                                style={{
-                                  opacity: !isAvailable ? 0.5 : 1,
-                                  cursor: !isAvailable
-                                    ? "not-allowed"
-                                    : "pointer",
-                                }}
-                              >
-                                <img
-                                  src={isDarkMode ? InvertPlusIcon : PlusIcon}
-                                  alt="plus"
-                                />
-                              </button>
-                            </div>
+
+                            <div className="guest-row-divider"></div>
                           </div>
+                        );
+                      }
+                    )}
+                  </div>
 
-                          <div className="guest-row-divider"></div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-
-                <p className="guest-note"></p>
-              </>
-            )}
+                  <p className="guest-note"></p>
+                </>
+              )}
+            </div>
           </div>
         </div>
 

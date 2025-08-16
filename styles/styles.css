@@ -180,6 +180,8 @@
   --color-email-form-box: #fff;
   --color-email-form-label: #231942;
   --color-email-form-input-border: #231942;
+  /* Focus color for input underline (light mode: use normal border color) */
+  --color-email-form-input-focus: var(--color-email-form-input-border);
   --color-email-form-input-border-mb: none;
   --color-email-form-confirm-btn: #ffe600;
   --color-email-form-confirm-btn-clr: #231942;
@@ -285,6 +287,8 @@
   --color-base-accessibility-modal-btn-bg: #8b85ff;
   --color-base-product-card-card-item-bg: #1a1a1a;
   --color-base-product-card-card-item-border: #3d3d3d;
+  /* Ensure input focus underline is visible in dark mode */
+  --color-email-form-input-focus: #ffea00;
 }
 
 [dir=rtl] {
@@ -314,7 +318,7 @@ html {
 body {
   font-family: "YAS Font", sans-serif !important;
   overflow-x: hidden;
-  background-color: var(--color-base-bg);
+  background-color: #f4f3f3;
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
@@ -324,6 +328,21 @@ body {
     width: 100%;
     max-width: 100vw;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-base-text-secondary);
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-base-bg) inset;
+  box-shadow: 0 0 0px 1000px var(--color-base-bg) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .normal-title-txt {
@@ -375,7 +394,8 @@ body {
   overflow: hidden;
 }
 .side-bar-ar {
-  padding: 2rem 1rem 3rem 0;
+  padding: 2rem 1rem 3rem 1rem;
+  padding-bottom: 1rem;
 }
 .side-bar-list {
   flex: 1;
@@ -385,7 +405,7 @@ body {
   justify-content: flex-start;
   gap: 0rem;
   padding-top: 1rem;
-  overflow: hidden;
+  overflow: scroll;
   min-height: 0;
 }
 .side-bar-list a {
@@ -1347,7 +1367,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1700px) {
   .ProductCard__grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -1679,14 +1699,16 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .product-modal .ant-modal-content {
-  padding: 4rem 2rem !important;
   border-radius: 40px;
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
+  box-sizing: border-box;
 }
 
 .product-modal.booking-active .ant-modal-content {
-  padding: 2rem !important;
+  padding: 4rem !important;
+  max-height: 80vh;
+  overflow: scroll;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal.booking-active .ant-modal-content {
@@ -1713,6 +1735,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   left: auto !important;
   transform: none !important;
   margin: 0 auto !important;
+  max-width: 1200px;
 }
 
 .product-modal .ant-modal-wrap {
@@ -1725,6 +1748,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  padding: 24px;
 }
 
 .product-separator {
@@ -1748,37 +1772,30 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: -10%;
-  right: 5px;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  font-size: 32px;
+  top: 12px;
+  right: 12px;
+  height: 40px;
+  width: 40px;
+  font-size: 28px;
   line-height: 1;
   border-radius: 50%;
   border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: transparent;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: background 0.2s;
-}
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .product-modal .ant-modal-close {
-    top: -7%;
-    right: 5px;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .product-modal .ant-modal-close {
-    top: -13%;
-    right: 5px;
-  }
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .product-modal .ant-modal-close:hover {
-  background: #fff;
+  background: #f6f6f6;
+  border-color: #cfcbd8;
+  transform: scale(1.06);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+.product-modal .ant-modal-close:active {
+  transform: scale(0.98);
 }
 
 .product-modal-content {
@@ -1786,6 +1803,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 32px;
   width: 100%;
   align-content: start;
+  max-height: none;
+  overflow: visible;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-content {
@@ -2131,56 +2150,26 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .booking-section {
-  padding: 24px;
+  padding: 0rem;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .booking-section {
-    flex-direction: column !important;
-    align-content: center !important;
-    overflow-y: auto !important;
-    height: 80vh !important;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .booking-section {
-    padding: 0px;
-  }
-}
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .booking-section {
-    padding: 0 20px;
-  }
+  gap: 5rem;
+  align-items: stretch;
 }
 
 /* Calendar container */
 .calendar-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
-  padding: 0 40px;
-  width: 40%;
+  padding: 0;
+  width: 50%;
+  flex: 1 1 50%;
+  overflow: hidden;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .calendar-container {
-    width: 85% !important;
+    width: 100% !important;
     margin-bottom: 2rem;
-  }
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .calendar-container {
-    padding: 0 20px;
-    width: 40%;
-    border-radius: 14px;
-  }
-}
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .calendar-container {
-    padding: 0 20px;
-    width: 45%;
   }
 }
 .calendar-container h2 {
@@ -2191,21 +2180,21 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   line-height: normal;
   text-align: center;
   margin-bottom: 2.5rem;
-  margin-top: -1rem;
+  margin-top: 0;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-container h2 {
     font-size: 1.8rem !important;
     margin-bottom: 2rem;
-    margin-top: -0.5rem;
+    margin-top: 0;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .calendar-container h2 {
     font-size: 1.5rem !important;
     margin-bottom: 1.5rem;
-    margin-top: -0.5rem;
+    margin-top: 0;
   }
 }
 .calendar-container .selected-dates {
@@ -2239,7 +2228,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border-radius: 2.6825rem;
   border: 1px solid var(--color-base-product-card-card-item-border-calendar);
   background: var(--color-base-product-card-card-item-bg);
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
 }
 
@@ -2248,12 +2237,6 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .calendar-header {
-    margin-bottom: 20px;
-  }
 }
 
 .calendar-header h2 {
@@ -2372,9 +2355,10 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .guest-section {
-  padding: 0 24px;
-  width: 60%;
-  height: 550px;
+  padding: 0;
+  width: 50%;
+  flex: 1 1 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2388,15 +2372,15 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-section {
-    padding: 0 18px;
-    width: 60%;
+    padding: 0;
+    width: 50%;
     height: 440px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .guest-section {
-    padding: 0 18px;
-    width: 60%;
+    padding: 0;
+    width: 50%;
     min-height: 480px;
     height: 510px;
   }
@@ -2425,24 +2409,24 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 .guest-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 35px;
-  padding: 20px;
+  padding: 16px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 0.826px solid var(--color-base-product-card-card-item-border-calendar);
-  width: 25.5625rem;
+  width: 100%;
   height: fit-content;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-container {
     padding: 10px 16px;
-    width: 24rem;
+    width: 100%;
     border-radius: 24px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .guest-container {
     padding: 10px 16px;
-    width: 22rem;
+    width: 100%;
     border-radius: 24px;
   }
 }
@@ -2485,6 +2469,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   padding-top: 8px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-base-product-card-divider);
+  gap: 12px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-row {
@@ -2714,27 +2699,18 @@ html[lang=ar] .guest-label {
 }
 
 .booking-section-divider {
-  width: 2px;
-  max-height: 550px;
-  height: 550px;
-  background-color: var(--color-base-product-card-divider);
+  width: 1px;
+  height: auto;
+  background: var(--color-base-product-card-divider);
+  opacity: 0.6;
+  align-self: stretch;
+  margin: 20px 0;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .booking-section-divider {
     display: none;
   }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .booking-section-divider {
-    height: 440px;
-  }
-}
-@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
-  .booking-section-divider {
-    height: 510px;
-  }
-}
-
 .guest-section-header-container {
   display: flex;
   flex-direction: column;
@@ -3446,15 +3422,19 @@ html[lang=ar] .guest-label {
   border-radius: 16px;
   box-shadow: 0 4px 20px var(--card-box-shadow);
   padding: 20px;
-  max-height: 600px;
-  overflow-y: auto;
-  font-family: "Inter", sans-serif;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: fit-content;
   min-width: 370px;
   font-family: "YAS Font", sans-serif;
   /* Header */
+  /* Scrollable content area */
   /* View All Items Section */
   /* Animation for dropdown */
+  /* Sticky bottom section */
+  /* Mobile/desktop promo input validity styles reused */
   /* Pricing Section */
   /* Promo Code Section */
   /* Hide Scrollbar */
@@ -3466,6 +3446,7 @@ html[lang=ar] .guest-label {
   .order-summary-new {
     min-width: 100%;
     width: 100%;
+    max-height: 85vh;
   }
 }
 .order-summary-new .order-summary-header {
@@ -3486,6 +3467,24 @@ html[lang=ar] .guest-label {
   font-size: 12px;
   color: var(--color-base-product-card-price);
   font-weight: 400;
+}
+.order-summary-new .order-summary-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  margin-bottom: 16px;
+  padding-right: 8px;
+  /* Custom scrollbar for better UX */
+}
+.order-summary-new .order-summary-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.order-summary-new .order-summary-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.order-summary-new .order-summary-scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-divider);
+  border-radius: 3px;
 }
 .order-summary-new .view-items-section {
   margin-bottom: 20px;
@@ -3708,6 +3707,25 @@ html[lang=ar] .guest-label {
     transform: translateY(0);
   }
 }
+.order-summary-new .order-summary-sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-base-bg);
+  border-top: 1px solid var(--color-base-product-card-divider);
+  padding-top: 16px;
+  margin-top: auto;
+  z-index: 10;
+}
+.order-summary-new .email-checkout__summary-promoCode-input-container-inputBox.invalid,
+.order-summary-new .email-checkout__promo-input.invalid {
+  border-color: #ff4d4f !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+}
+.order-summary-new .email-checkout__summary-promoCode-input-container-inputBox.valid,
+.order-summary-new .email-checkout__promo-input.valid {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
+}
 .order-summary-new .pricing-section .pricing-row {
   display: flex;
   justify-content: space-between;
@@ -3799,13 +3817,22 @@ html[lang=ar] .guest-label {
   border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
   font-size: 14px;
-  color: var(--color-summary-title);
+  color: var(--color-base-text);
   background: var(--summary-header-bg);
   transition: border-color 0.2s ease;
   font-family: "YAS Font", sans-serif;
+  caret-color: var(--color-base-text);
+}
+.order-summary-new .promo-section .promo-input-group .promo-input.invalid {
+  border-color: #ff4d4f !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+}
+.order-summary-new .promo-section .promo-input-group .promo-input.valid {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
 }
 .order-summary-new .promo-section .promo-input-group .promo-input::placeholder {
-  color: #999;
+  color: var(--color-base-text-secondary);
 }
 .order-summary-new .promo-section .promo-input-group .promo-input:focus {
   outline: none;
@@ -3869,6 +3896,19 @@ html[lang=ar] .guest-label {
   font-weight: 500;
   color: #166534;
   font-family: "YAS Font", sans-serif;
+}
+
+/* Global promo input validity styles (apply on desktop and mobile) */
+.email-checkout__summary-promoCode-input-container-inputBox.invalid,
+.email-checkout__promo-input.invalid {
+  border: 1px solid #ff4d4f !important;
+  box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+}
+
+.email-checkout__summary-promoCode-input-container-inputBox.valid,
+.email-checkout__promo-input.valid {
+  border: 1px solid #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
 }
 
 /* Responsive Design */
@@ -7144,6 +7184,7 @@ html[dir=rtl] .back-button {
   position: relative;
   min-height: 65px;
   flex-shrink: 0;
+  text-wrap: nowrap;
 }
 @media only screen and (max-width: 380px) {
   .mobile-top {
@@ -7225,7 +7266,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   padding: 5px 0 0 0;
   text-align: center;
   flex: 1;
-  overflow: auto;
+  overflow: visible;
 }
 @media only screen and (max-width: 380px) {
   .mobile-top-search-section {
@@ -7336,7 +7377,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
   min-width: 165px;
   padding: 8px 0;
-  z-index: 1000;
+  z-index: 10000;
   border: 1px solid var(--color-base-mobile-top-item-text-active);
 }
 .mobile-top-search-section__dropdown--ar {
@@ -8970,6 +9011,48 @@ html[lang=ar] .confirm-email__input-underline {
   box-sizing: border-box;
   width: 100%;
 }
+.email-checkout__input:focus {
+  border-bottom-color: var(--color-email-form-input-focus);
+}
+
+.email-checkout__input.error {
+  border-bottom-color: var(--color-error-text, #ff4d4f);
+}
+
+.email-checkout__input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
+
+.form-group__input.error {
+  border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+.form-group__input:focus {
+  border-bottom: 2px solid var(--color-email-form-input-focus) !important;
+}
+
+.form-group__input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
+
+.form-group__phone-input.error,
+.email-checkout__phone-input.error {
+  border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+/* Phone input focus underline: light uses normal color; dark uses yellow via token */
+.form-group__phone-input:focus,
+.email-checkout__phone-input:focus {
+  border-bottom: 2px solid var(--color-email-form-input-focus) !important;
+}
+
+.form-group__phone-input.error::placeholder,
+.email-checkout__phone-input.error::placeholder {
+  color: var(--color-error-text, #ff4d4f);
+  opacity: 1;
+}
 
 .email-checkout__btn {
   background: var(--color-email-form-confirm-btn);
@@ -8999,6 +9082,47 @@ html[lang=ar] .confirm-email__input-underline {
   padding: 16px;
   font-size: 15px;
   color: var(--color-email-form-label);
+}
+.email-checkout__summary.order-summary-new {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .email-checkout__summary.order-summary-new {
+    max-height: 85vh;
+  }
+}
+.email-checkout__summary .order-summary-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  margin-bottom: 16px;
+  padding-right: 8px;
+  /* Custom scrollbar for better UX */
+}
+.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-divider);
+  border-radius: 3px;
+}
+.email-checkout__summary .order-summary-sticky-bottom {
+  position: sticky;
+  bottom: -16px;
+  background: var(--color-base-bg);
+  border-top: 1px solid var(--color-base-product-card-divider);
+  padding-top: 16px;
+  margin: 0 -16px -16px -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  z-index: 10;
 }
 .email-checkout__summary-title {
   color: var(--color-email-form-label);
@@ -9161,9 +9285,12 @@ html[lang=ar] .confirm-email__input-underline {
   border-radius: 6px;
   font-size: 14px;
   background-color: var(--summary-header-bg);
+  color: var(--color-base-text);
+  caret-color: var(--color-base-text);
 }
 .email-checkout__summary-promoCode-input-container-inputBox::placeholder {
-  color: var(--cart-total-price);
+  color: var(--color-base-text-secondary);
+  opacity: 0.8;
 }
 .email-checkout__summary-promoCode-input-container-applyButton {
   padding: 8px 16px;
@@ -11553,6 +11680,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   display: flex;
   gap: 16px;
   align-items: center;
+  text-wrap: nowrap;
 }
 
 .ar-product-head {
@@ -11565,6 +11693,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   top: 0rem;
   right: 0rem;
   width: 100%;
+  text-wrap: nowrap;
 }
 
 .terms-modal .ant-modal-content {
@@ -11613,6 +11742,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background-color: var(--color-base-mobile-product-page-text, #18142b);
   color: var(--color-base-mobile-product-page-bg, #ffffff);
 }
+.terms-modal .terms-modal-body-inner {
+  padding: 1.25rem 0; /* vertical spacing moved inside to keep scrollbar full height */
+}
 .terms-modal .ant-modal-close .ant-modal-close-x {
   width: 24px;
   height: 24px;
@@ -11636,8 +11768,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .terms-modal-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  max-height: 70vh;
+  min-height: 0;
+  padding: 1rem;
+  height: auto;
+  max-height: 80vh;
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content {
@@ -11653,6 +11787,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   .terms-modal-content {
     max-height: 70vh;
   }
+}
+.terms-modal-content .tc-h1 {
+  padding: 1.5rem 0;
 }
 .terms-modal-content .terms-modal-title {
   color: var(--color-base-text-primary);
@@ -11693,10 +11830,11 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   }
 }
 .terms-modal-content .terms-modal-body {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
-  padding: 0 1rem;
-  margin-bottom: 1.5rem;
+  padding: 0 1.5rem; /* horizontal padding only so scrollbar runs full height */
+  margin: 0 0 1.5rem 0;
   color: var(--color-base-text-secondary);
   line-height: 1.6;
   font-family: "YAS Font", sans-serif;
@@ -11767,11 +11905,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   margin-top: 0rem !important;
   margin-bottom: 1rem !important;
   color: var(--color-base-text-primary) !important;
-  position: sticky;
-  top: 0;
-  background-color: var(--color-base-bg);
-  z-index: 100;
-  text-align: center !important;
+  text-align: left !important;
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-body h1 {
@@ -11938,8 +12072,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   }
 }
 .terms-modal-content .terms-modal-loading {
-  text-align: center;
-  padding: 2rem;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
   color: var(--color-base-text-secondary);
 }
 @media only screen and (max-width: 575.98px) {
@@ -11958,9 +12092,11 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   }
 }
 .terms-modal-content .terms-modal-footer {
-  text-align: center;
-  padding-top: 0rem;
+  padding: 0 1.5rem 1rem 1.5rem;
   border-top: 1px solid var(--ip-bodr-btm);
+  display: flex;
+  align-items: center;
+  justify-content: centers;
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-footer {
@@ -11981,13 +12117,14 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: var(--color-base-primary);
   color: var(--color-pymnt-title-clr);
   border: none;
-  padding: 0 !important;
+  padding: 10px 20px !important;
   border-radius: 8px;
   font-size: 1.3rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: "YAS Font", sans-serif;
+  margin: 0 auto;
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-footer .terms-modal-close-btn {
@@ -12100,37 +12237,32 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 /* Full-screen overrides for Terms & Conditions modal */
+/* Standard centered Terms & Conditions modal sizing */
 .terms-modal.ant-modal {
-  /* leave gap on all sides */
-  width: calc(100vw - 32px) !important;
-  max-width: calc(100vw - 32px) !important;
-  margin: 16px !important;
-  top: 0 !important;
-  padding: 0 !important;
+  width: 90vw !important;
+  max-width: 920px !important;
 }
 
 .terms-modal .ant-modal-content {
-  /* subtract the vertical gaps from full viewport height */
-  height: calc(100vh - 32px) !important;
-  max-height: calc(100vh - 32px) !important;
-  border-radius: 16px !important;
-  border: none !important;
-  box-shadow: none !important;
+  height: auto !important;
+  max-height: 80vh !important;
+  border-radius: 24px !important;
   padding: 0 !important;
   overflow: hidden;
 }
 
 .terms-modal .ant-modal-body {
   padding: 0 !important;
-  height: 100% !important;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
 
 .terms-modal-content {
-  height: 100% !important;
-  max-height: none !important;
+  display: flex;
+  flex-direction: column;
+  height: auto !important;
+  max-height: 80vh !important;
 }
 
 /* From Uiverse.io by david-mohseni */

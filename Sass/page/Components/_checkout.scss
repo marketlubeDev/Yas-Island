@@ -149,6 +149,9 @@
   color: var(--color-email-form-label);
   box-sizing: border-box;
   width: 100%;
+  &:focus {
+    border-bottom-color: var(--color-email-form-input-focus);
+  }
 }
 
 // Error state styles for inputs and placeholders
@@ -165,6 +168,9 @@
 .form-group__input.error {
   border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
 }
+.form-group__input:focus {
+  border-bottom: 2px solid var(--color-email-form-input-focus) !important;
+}
 
 .form-group__input.error::placeholder {
   color: var(--color-error-text, #ff4d4f);
@@ -175,6 +181,12 @@
 .form-group__phone-input.error,
 .email-checkout__phone-input.error {
   border-bottom: 2px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+/* Phone input focus underline: light uses normal color; dark uses yellow via token */
+.form-group__phone-input:focus,
+.email-checkout__phone-input:focus {
+  border-bottom: 2px solid var(--color-email-form-input-focus) !important;
 }
 
 .form-group__phone-input.error::placeholder,
@@ -453,8 +465,11 @@
         border-radius: 6px;
         font-size: 14px;
         background-color: var(--summary-header-bg);
+        color: var(--color-base-text);
+        caret-color: var(--color-base-text);
         &::placeholder {
-          color: var(--cart-total-price);
+          color: var(--color-base-text-secondary);
+          opacity: 0.8;
         }
       }
 
