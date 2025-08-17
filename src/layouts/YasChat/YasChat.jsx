@@ -313,7 +313,38 @@ export default function YasChat() {
       const style = document.createElement("style");
       style.id = STYLE_ID;
       style.type = "text/css";
-      style.appendChild(document.createTextNode(cssRef.current));
+      const baseCss = `
+        /* Close button base (hidden by default; shown via MQ + open state) */
+        #yas-chat-close-btn {
+          position: fixed;
+          z-index: 2147483647;
+          bottom: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 40px;
+          height: 40px;
+          border-radius: 9999px;
+          border: none;
+          background: #231942;
+          color: #ffffff;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          cursor: pointer;
+        }
+
+        /* When chat is open on target devices: hide launcher, show close button */
+        @media (max-width: 768px), (min-width: 810px) and (max-width: 830px), (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px), (hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px) {
+          .yas-chat-open .spr-chat__launcher,
+          .yas-chat-open [class*="spr-chat__launcher"],
+          .yas-chat-open .ezg1tqb0 { display: none !important; }
+          .yas-chat-open #yas-chat-close-btn { display: flex; }
+        }
+      `;
+      style.appendChild(
+        document.createTextNode(baseCss + "\n" + cssRef.current)
+      );
       document.head.appendChild(style);
     }
 
@@ -324,6 +355,99 @@ export default function YasChat() {
     } else {
       loadScript();
     }
+    // Create custom close button
+    const ensureCloseButton = () => {
+      if (document.getElementById("yas-chat-close-btn")) return;
+      const btn = document.createElement("button");
+      btn.id = "yas-chat-close-btn";
+      btn.setAttribute("aria-label", "Close chat");
+      btn.innerHTML = "&#10005;"; // ×
+      document.body.appendChild(btn);
+
+      btn.addEventListener("click", () => {
+        // Try to close via internal close controls first
+        const candidates = [
+          '.spr-chat__box [aria-label="Close"]',
+          '.spr-chat__box [aria-label*="close" i]',
+          ".spr-chat__box .spr-chat__close",
+          '.spr-chat__box [data-testid*="close"]',
+          '.spr-chat__box button[title*="close" i]',
+        ];
+        let closed = false;
+        for (const sel of candidates) {
+          const el = document.querySelector(sel);
+          if (el) {
+            el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            closed = true;
+            break;
+          }
+        }
+        // Fallback: toggle via launcher
+        if (!closed) {
+          const launcher = document.querySelector(
+            '.spr-chat__launcher, [class*="spr-chat__launcher"], .ezg1tqb0'
+          );
+          if (launcher) {
+            // Temporarily remove the open class to allow clicking launcher if hidden
+            document.body.classList.remove("yas-chat-open");
+            setTimeout(
+              () =>
+                launcher.dispatchEvent(
+                  new MouseEvent("click", { bubbles: true })
+                ),
+              0
+            );
+          }
+        }
+      });
+    };
+
+    // Determine if current viewport is an iPad Air/Mini target
+    const isIpadTarget = () => {
+      const mq1 = window.matchMedia("(max-width: 768px)").matches; // mobile baseline
+      const mqAirPortrait = window.matchMedia(
+        "(min-width: 810px) and (max-width: 830px)"
+      ).matches;
+      const mqMiniLandscape = window.matchMedia(
+        "(hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px)"
+      ).matches;
+      const mqAirLandscape = window.matchMedia(
+        "(hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px)"
+      ).matches;
+      return mq1 || mqAirPortrait || mqMiniLandscape || mqAirLandscape;
+    };
+
+    // Observe chat open/close state and toggle body class
+    const updateOpenState = () => {
+      const box = document.querySelector(".spr-chat__box");
+      const isOpen = !!(
+        box &&
+        box.offsetParent !== null &&
+        getComputedStyle(box).visibility !== "hidden" &&
+        getComputedStyle(box).opacity !== "0"
+      );
+      document.body.classList.toggle("yas-chat-open", isIpadTarget() && isOpen);
+    };
+
+    const observer = new MutationObserver(() => updateOpenState());
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+    window.addEventListener("resize", updateOpenState);
+    window.addEventListener("orientationchange", updateOpenState);
+
+    ensureCloseButton();
+    // Initial state evaluation (after small delay to allow widget to render if already loaded)
+    setTimeout(updateOpenState, 300);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateOpenState);
+      window.removeEventListener("orientationchange", updateOpenState);
+    };
   }, []);
 
   return null;
