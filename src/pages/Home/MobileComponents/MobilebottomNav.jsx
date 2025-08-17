@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import homeIcon from "../../../assets/icons/home.svg";
 import homeIconInverter from "../../../assets/icons/homecolor.svg";
 import chatIcon from "../../../assets/icons/message.svg";
 import chatIconInverter from "../../../assets/icons/chatcolor.svg";
+import closeIcon from "../../../assets/icons/close.svg";
+import closeIconInverter from "../../../assets/icons/closeinverter.svg";
 import cartIcon from "../../../assets/icons/shopping.svg";
 import cartIconInverter from "../../../assets/icons/cartcolor.svg";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -16,9 +18,13 @@ function MobileBottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isIpadTarget, setIsIpadTarget] = useState(false);
+  const observerRef = useRef(null);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
   const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
+  const crossIconSrc = isDarkMode ? closeIconInverter : closeIcon;
   const cartIconSrc = isDarkMode ? cartIconInverter : cartIcon;
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -31,9 +37,100 @@ function MobileBottomNav() {
   }, []);
 
   const handleChatClick = useCallback(() => {
-    if (window.sprChat) {
-      window.sprChat("open");
+    const closeChat = () => {
+      let closed = false;
+      if (window.sprChat) {
+        try {
+          window.sprChat("close");
+          closed = true;
+        } catch {}
+      }
+      if (!closed) {
+        const candidates = [
+          '.spr-chat__box [aria-label="Close"]',
+          '.spr-chat__box [aria-label*="close" i]',
+          ".spr-chat__box .spr-chat__close",
+          '.spr-chat__box [data-testid*="close"]',
+          '.spr-chat__box button[title*="close" i]',
+        ];
+        for (const sel of candidates) {
+          const el = document.querySelector(sel);
+          if (el) {
+            el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            break;
+          }
+        }
+      }
+    };
+
+    const openChat = () => {
+      if (window.sprChat) {
+        try {
+          window.sprChat("open");
+          return;
+        } catch {}
+      }
+      const launcher = document.querySelector(
+        '.spr-chat__launcher, [class*="spr-chat__launcher"], .ezg1tqb0'
+      );
+      if (launcher) {
+        launcher.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      }
+    };
+
+    if (isIpadTarget && isChatOpen) {
+      closeChat();
+    } else {
+      openChat();
     }
+  }, [isIpadTarget, isChatOpen]);
+
+  useEffect(() => {
+    const computeIsIpadTarget = () => {
+      const mq1 = window.matchMedia("(max-width: 768px)").matches; // mobile baseline
+      const mqAirPortrait = window.matchMedia(
+        "(min-width: 810px) and (max-width: 830px)"
+      ).matches;
+      const mqMiniLandscape = window.matchMedia(
+        "(hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px)"
+      ).matches;
+      const mqAirLandscape = window.matchMedia(
+        "(hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px)"
+      ).matches;
+      return mqAirPortrait || mqMiniLandscape || mqAirLandscape; // do NOT include phones here
+    };
+
+    const updateChatOpenState = () => {
+      const box = document.querySelector(".spr-chat__box");
+      const isOpen = !!(
+        box &&
+        box.offsetParent !== null &&
+        getComputedStyle(box).visibility !== "hidden" &&
+        getComputedStyle(box).opacity !== "0"
+      );
+      setIsChatOpen(isOpen);
+    };
+
+    setIsIpadTarget(computeIsIpadTarget());
+    updateChatOpenState();
+
+    const onResize = () => setIsIpadTarget(computeIsIpadTarget());
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+
+    observerRef.current = new MutationObserver(() => updateChatOpenState());
+    observerRef.current.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+      if (observerRef.current) observerRef.current.disconnect();
+    };
   }, []);
 
   return (
@@ -60,7 +157,10 @@ function MobileBottomNav() {
           onClick={handleChatClick}
           style={{ cursor: "pointer" }}
         >
-          <img src={chatIconSrc} alt={t("common.chatWithUs")} />
+          <img
+            src={isIpadTarget && isChatOpen ? crossIconSrc : chatIconSrc}
+            alt={t("common.chatWithUs")}
+          />
           <span>{t("common.chatWithUs")}</span>
         </div>
         <div
