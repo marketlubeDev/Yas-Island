@@ -1,6 +1,67 @@
+import { css } from "@emotion/react";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function YasChat() {
+  const { currentLanguage } = useSelector((state) => state.language);
+  const cssRef = useRef(null);
+
+  useEffect(() => {
+    if (currentLanguage === "ar") {
+      cssRef.current = `
+        /* Chat launcher button (stable + fallback hashed class) */
+        .spr-chat__launcher,
+        [class*="spr-chat__launcher"],
+        .ezg1tqb0 {
+          right: 20px !important;
+          left: auto !important;
+          bottom: 65px !important;
+          opacity: 0 !important;
+        }
+        /* Chat button styling container (stable + fallback hashed class) */
+        .spr-chat__launcher-container,
+        [class*="spr-chat__launcher-container"],
+        .css-15gnlaj {
+          width: 160px !important;
+          height: 40px !important;
+        }
+        /* Chat box position */
+        .spr-chat__box {
+          left: auto !important;
+          right: 20px !important;
+          transform-origin: left bottom !important;
+          bottom: 80px !important;
+        }
+      `;
+    } else {
+      cssRef.current = `
+        /* Chat launcher button (stable + fallback hashed class) */
+        .spr-chat__launcher,
+        [class*="spr-chat__launcher"],
+        .ezg1tqb0 {
+          left: 20px !important;
+          right: auto !important;
+          bottom: 65px !important;
+          opacity: 0 !important;
+        }
+        /* Chat button styling container (stable + fallback hashed class) */
+        .spr-chat__launcher-container,
+        [class*="spr-chat__launcher-container"],
+        .css-15gnlaj {
+          width: 160px !important;
+          height: 40px !important;
+        }
+        /* Chat box position */
+        .spr-chat__box {
+          right: auto !important;
+          left: 20px !important;
+          transform-origin: left bottom !important;
+          bottom: 80px !important;
+        }
+      `;
+    }
+  }, [currentLanguage]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -59,22 +120,10 @@ export default function YasChat() {
     // Inject chat CSS via a style tag so !important works and timing isn't an issue
     const STYLE_ID = "yas-chat-inline-style";
     if (!document.getElementById(STYLE_ID)) {
-      const css = `
-        /* Chat launcher button (stable + fallback hashed class) */
-        .spr-chat__launcher,
-        [class*="spr-chat__launcher"],
-        .ezg1tqb0 { left: 20px !important; right: auto !important; bottom: 65px !important; opacity: 0 !important; }
-        /* Chat button styling container (stable + fallback hashed class) */
-        .spr-chat__launcher-container,
-        [class*="spr-chat__launcher-container"],
-        .css-15gnlaj { width: 160px !important; height: 40px !important; }
-        /* Chat box position */
-        .spr-chat__box { right: auto !important; left: 20px !important; transform-origin: left bottom !important; bottom: 80px !important; }
-      `;
       const style = document.createElement("style");
       style.id = STYLE_ID;
       style.type = "text/css";
-      style.appendChild(document.createTextNode(css));
+      style.appendChild(document.createTextNode(cssRef.current));
       document.head.appendChild(style);
     }
 
