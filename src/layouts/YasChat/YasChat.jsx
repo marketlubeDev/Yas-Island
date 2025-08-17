@@ -29,7 +29,7 @@ export default function YasChat() {
         .spr-chat__box {
           left: auto !important;
           right: 20px !important;
-          transform-origin: left bottom !important;
+          transform-origin: right bottom !important;
           bottom: 80px !important;
         }
       `;
