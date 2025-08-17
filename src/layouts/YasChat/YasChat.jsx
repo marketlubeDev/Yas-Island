@@ -32,6 +32,38 @@ export default function YasChat() {
           transform-origin: right bottom !important;
           bottom: 80px !important;
         }
+
+        /* Mobile: bottom-center placement */
+        @media (max-width: 768px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__launcher-container,
+          [class*="spr-chat__launcher-container"],
+          .css-15gnlaj {
+            width: 160px !important;
+            height: 40px !important;
+          }
+          .spr-chat__box {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
       `;
     } else {
       cssRef.current = `
@@ -58,7 +90,45 @@ export default function YasChat() {
           transform-origin: left bottom !important;
           bottom: 80px !important;
         }
+
+        /* Mobile: bottom-center placement */
+        @media (max-width: 768px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__launcher-container,
+          [class*="spr-chat__launcher-container"],
+          .css-15gnlaj {
+            width: 160px !important;
+            height: 40px !important;
+          }
+          .spr-chat__box {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
       `;
+    }
+
+    // Update inline style immediately if already injected
+    if (typeof document !== "undefined") {
+      const styleEl = document.getElementById("yas-chat-inline-style");
+      if (styleEl) styleEl.textContent = cssRef.current;
     }
   }, [currentLanguage]);
 
