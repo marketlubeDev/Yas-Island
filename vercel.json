@@ -1,27 +1,15 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://prod15-live-chat.sprinklr.com https://*.sprinklr.com; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://prod15-live-chat.sprinklr.com https://*.sprinklr.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://*.yasisland.com https://*.yas.ae; font-src 'self' data: https:; connect-src 'self' https://*.yasisland.com https://*.yas.ae https://prod15-live-chat.sprinklr.com https://*.sprinklr.com wss://prod15-live-chat.sprinklr.com wss://*.sprinklr.com https://yas-uat-qrapi.dev.panashi.ae; frame-src 'self' https://prod15-live-chat.sprinklr.com https://*.sprinklr.com; frame-ancestors 'self';"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.sprinklr.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https://yas-uat-qrapi.dev.panashi.ae https: wss: https://*.sprinklr.com wss://*.sprinklr.com; worker-src 'self' blob: https://*.sprinklr.com; frame-src 'self' https://*.sprinklr.com; frame-ancestors 'self' https://*.sprinklr.com; form-action 'self'; upgrade-insecure-requests"
         },
-
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
@@ -30,18 +18,12 @@
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), payment=()"
         },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=31536000; includeSubDomains; preload"
         },
-        {
-          "key": "X-DNS-Prefetch-Control",
-          "value": "on"
-        }
+        { "key": "X-DNS-Prefetch-Control", "value": "on" }
       ]
     }
   ]
