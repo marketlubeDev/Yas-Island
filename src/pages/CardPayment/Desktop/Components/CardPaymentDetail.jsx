@@ -63,7 +63,6 @@ export default function CardPaymentDetail({ orderData }) {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
-
         // Handle different payment statuses
         if (event.data) {
           if (
@@ -134,65 +133,58 @@ export default function CardPaymentDetail({ orderData }) {
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      <div className="payfort-container">
-        <div
-          className="iframe-container"
-          style={{
-            borderRadius: "1rem",
-            minHeight: "450px",
-            height: "350px",
-            position: "relative",
-          }}
-        >
-          {isIframeLoading && (
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                textAlign: "center",
-              }}
-            >
-              <div
-                className="loading-spinner"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  border: "3px solid #f3f3f3",
-                  borderTop: "3px solid #3498db",
-                  borderRadius: "50%",
-                  animation: "spin 1s linear infinite",
-                  margin: "0 auto 1rem",
-                }}
-              />
-              <p style={{ color: "#666", margin: 0 }}>
-                Loading secure payment form...
-              </p>
-            </div>
-          )}
-          <iframe
-            name="payfort-iframe"
-            title="PayFort Payment"
-            width="100%"
-            height="470"
-            frameBorder="0"
-            style={{
-              border: "none",
-              borderRadius: "8px",
-              boxShadow: "none",
-              background: "transparent",
-              opacity: isIframeLoading ? 0 : 1,
-              transition: "opacity 0.3s ease",
-            }}
-            onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
-          />
-        </div>
-
-        <div className="card-ad">
-          <img src={visaIcon} alt="visa" className="card-logo" />
-        </div>
-      </div>
+      <div
+        className="iframe-container"
+        style={{
+          borderRadius: "1rem",
+          minHeight: "450px",
+          height: "350px",
+          position: "relative",
+        }}
+      ></div>
     </div>
   );
 }
+// {isIframeLoading && (
+//   <div
+//     style={{
+//       position: "absolute",
+//       top: "50%",
+//       left: "50%",
+//       transform: "translate(-50%, -50%)",
+//       textAlign: "center",
+//     }}
+//   >
+//     <div
+//       className="loading-spinner"
+//       style={{
+//         width: "40px",
+//         height: "40px",
+//         border: "3px solid #f3f3f3",
+//         borderTop: "3px solid #3498db",
+//         borderRadius: "50%",
+//         animation: "spin 1s linear infinite",
+//         margin: "0 auto 1rem",
+//       }}
+//     />
+//     <p style={{ color: "#666", margin: 0 }}>
+//       Loading secure payment form...
+//     </p>
+//   </div>
+// )}
+// <iframe
+//   name="payfort-iframe"
+//   title="PayFort Payment"
+//   width="100%"
+//   height="470"
+//   frameBorder="0"
+//   style={{
+//     border: "none",
+//     borderRadius: "8px",
+//     boxShadow: "none",
+//     background: "transparent",
+//     opacity: isIframeLoading ? 0 : 1,
+//     transition: "opacity 0.3s ease",
+//   }}
+//   onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
+// />
