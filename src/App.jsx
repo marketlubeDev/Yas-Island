@@ -9,6 +9,7 @@ import { useLanguage } from "./context/LanguageContext";
 import { useI18nSync } from "./hooks/useI18nSync";
 import QRCodeDetector from "./components/QRCodeDetector";
 import { cleanExpiredItems } from "./global/cartSlice";
+import YasChat from "./layouts/YasChat/YasChat";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function App() {
     <div dir={isRTL ? "rtl" : "ltr"}>
       <GlobalZoomEffect />
       <GlobalInvertColor />
+      <YasChat />
       {/* QR Code Detection - handles QR code logic */}
       <QRCodeDetector />
       <Home>

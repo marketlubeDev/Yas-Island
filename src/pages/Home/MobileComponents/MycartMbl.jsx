@@ -382,9 +382,9 @@ function MycartMbl({ onClose, visible }) {
                   </span>
                 </div>
                 <div className="mycart-modal__summary-row">
-                  <span>{t("cart.vat")}</span>
+                  <span>{t("cart.vatAndTax")}</span>
                   <span>
-                    + {t("common.aed")} {vatAndTax.toFixed(2)} {t("common.aed")}
+                    + {t("common.aed")} {vatAndTax.toFixed(2)}
                   </span>
                 </div>
                 <div className="mycart-modal__summary-row mycart-modal__summary-row--total">

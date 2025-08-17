@@ -247,7 +247,7 @@
 
 .mycart-modal__summary {
   padding: 10px 50px 10px 50px;
-  font-size: 15px;
+  font-size: 13px;
   color: var(--color-email-form-label);
 
   @media (min-width: 340px) and (max-width: 369px) {
@@ -271,7 +271,9 @@
   &--total {
     font-weight: 500;
     font-size: 17px;
-    margin-top: 10px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-base-product-card-divider);
     color: var(--color-email-form-label);
 
     @media (min-width: 360px) and (max-width: 369px) {
