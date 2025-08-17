@@ -459,12 +459,7 @@
   padding: 4rem !important; // keep same padding when booking is active
   padding-top: 3.7rem;
   max-height: calc(100vh - 48px);
-  overflow: hidden; // avoid outer scrolling
-  // /* Hide scrollbar for modal content */
-  // overflow: auto;
-  // scrollbar-width: none; /* Firefox */
-  // -ms-overflow-style: none; /* IE and Edge */
-
+  overflow: hidden;
   @include respond(bigTablets) {
     overflow: auto;
     scrollbar-width: none; /* Firefox */

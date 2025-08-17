@@ -65,5 +65,27 @@ export default function YasChat() {
     }
   }, []);
 
+  useEffect(() => {
+    const button = document.querySelector(".ezg1tqb0");
+    if (button) {
+      button.style.opacity = "0 !important";
+      button.style.bottom = "65px !important";
+      button.style.left = "20px !important";
+      button.style.right = "auto !important";
+    }
+    const buttonContainer = document.querySelector(".css-15gnlaj");
+    if (buttonContainer) {
+      buttonContainer.style.width = "160px !important";
+      buttonContainer.style.height = "40px !important";
+    }
+    const notificationBox = document.querySelector(".spr-chat__notification");
+    if (notificationBox) {
+      notificationBox.style.right = "auto !important";
+      notificationBox.style.left = "20px !important";
+      notificationBox.style.bottom = "80px !important";
+      notificationBox.style.transformOrigin = "left bottom !important";
+    }
+  }, []);
+
   return null;
 }
