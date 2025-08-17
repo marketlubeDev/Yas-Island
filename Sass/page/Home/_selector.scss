@@ -51,16 +51,14 @@
 
     .selector-menu {
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 5px);
       left: 0;
       width: 100%;
       background: var(--color-base-mobile-header-lang-dropdown-bg);
-      border: 1px solid var(--color-selector-border);
-      border-radius: 12px;
+      border: 3px solid $color-light-gray;
+      border-radius: 2rem;
       box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
-      padding: 6px 0;
       z-index: 20;
-      max-height: 260px;
       overflow: auto;
       outline: none;
     }
@@ -70,9 +68,13 @@
       font-family: "YAS Font", sans-serif;
       font-size: 15px;
       color: var(--color-base-text);
-
+      border-bottom: 1px solid $color-light-gray;
       cursor: pointer;
       transition: background 0.15s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     .selector-option:hover,
