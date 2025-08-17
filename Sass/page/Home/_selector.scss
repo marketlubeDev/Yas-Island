@@ -30,6 +30,15 @@
       justify-content: space-between;
     }
 
+    .selector-left-icon {
+      display: inline-flex;
+      margin-right: 8px;
+      img,
+      svg {
+        display: block;
+      }
+    }
+
     // .selector-value.is-placeholder {
     //   color: var(--color-muted, #6b7280);
     //   font-weight: 500;

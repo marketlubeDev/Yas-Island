@@ -9,6 +9,7 @@ export default function Selector({
   name,
   id,
   label,
+  leftIcon,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -123,6 +124,11 @@ export default function Selector({
           onClick={toggleMenu}
           onKeyDown={onTriggerKeyDown}
         >
+          {leftIcon ? (
+            <span className="selector-left-icon" aria-hidden>
+              {leftIcon}
+            </span>
+          ) : null}
           <span
             className={`selector-value ${
               selectedLabel ? "has-value" : "is-placeholder"

@@ -1,9 +1,9 @@
 /* Bebas Neue Font Family */
 @font-face {
   font-family: "Bebas Neue";
-  src: url("../fonts/Babas_Neue/BebasNeue-Regular.ttf") format("truetype");
+  src: url("../fonts/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype");
   font-weight: 400;
-  font-style: bold;
+  font-style: normal;
   font-display: swap;
 }
 

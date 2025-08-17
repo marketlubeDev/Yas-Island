@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import desc from "../../assets/logo/desc.svg";
@@ -17,6 +17,7 @@ import globe from "../../assets/icons/globe.svg";
 import invertGlobe from "../../assets/icons/invertGlob.svg";
 import cart from "../../assets/icons/cart.svg";
 import invertCart from "../../assets/icons/invertCart.svg";
+import Selector from "../Common/Selectors/Selector";
 
 import {
   setProducts,
@@ -41,8 +42,7 @@ export default function HeaderLogo() {
 
   const isPaymentRoute = location.pathname === "/";
 
-  const [showLangDropdown, setShowLangDropdown] = useState(false);
-  const langBtnRef = useRef(null);
+  // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
   const dispatch = useDispatch();
@@ -54,21 +54,7 @@ export default function HeaderLogo() {
   const currentSort = useSelector((state) => state.product.currentSort);
   const currentPark = useSelector((state) => state.product.currentPark);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (langBtnRef.current && !langBtnRef.current.contains(event.target)) {
-        setShowLangDropdown(false);
-      }
-    }
-    if (showLangDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showLangDropdown]);
+  // Dropdown open/close handled inside Selector component
 
   const changeLanguage = (lng) => {
     // Only proceed if the language is actually changing
@@ -136,72 +122,18 @@ export default function HeaderLogo() {
         </button>
         <div
           className="language-selector"
-          ref={langBtnRef}
-          style={{ position: "relative" }}
+          style={{ display: "flex", alignItems: "center", gap: "8px" }}
         >
-          <button
-            className="lang-btn-head animate-slide-in"
-            aria-label={t("common.language")}
-            onClick={() => setShowLangDropdown((v) => !v)}
-            type="button"
-            style={{
-              ...(!isPaymentRoute && {}),
-            }}
-          >
-            <img
-              src={isDarkMode ? invertGlobe : globe}
-              alt={t("common.language")}
-            />
-            <span
-              style={{
-                color: isDarkMode ? "#E7EBD4" : "#18142B",
-              }}
-            >
-              {i18n.language === "en" ? "English" : "العربية"}
-            </span>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke={isDarkMode ? "#E7EBD4" : "#18142B"}
-              strokeWidth="2"
-              style={{
-                transform: "rotate(0deg)",
-                transition: "transform 0.2s",
-              }}
-            >
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </button>
-          {showLangDropdown && (
-            <div className="mobile-header__lang-dropdown">
-              <div
-                className="mobile-header__lang-option"
-                onClick={() => {
-                  changeLanguage("en");
-                  setShowLangDropdown(false);
-                }}
-              >
-                <span className="mobile-header__lang-text">English</span>
-                {i18n.language === "en" && (
-                  <span className="mobile-header__lang-check">✓</span>
-                )}
-              </div>
-              <div
-                className="mobile-header__lang-option"
-                onClick={() => {
-                  changeLanguage("ar");
-                  setShowLangDropdown(false);
-                }}
-              >
-                <span className="mobile-header__lang-text">العربية</span>
-                {i18n.language === "ar" && (
-                  <span className="mobile-header__lang-check">✓</span>
-                )}
-              </div>
-            </div>
-          )}
+          <Selector
+            id="header-language"
+            options={["English", "العربية"]}
+            value={language}
+            onChange={(e) =>
+              changeLanguage(e.target.value === "English" ? "en" : "ar")
+            }
+            style={{ minWidth: "140px" }}
+            leftIcon={<img src={isDarkMode ? invertGlobe : globe} alt="" />}
+          />
         </div>
         <button
           className={`${
