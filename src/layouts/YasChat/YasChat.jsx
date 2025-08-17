@@ -56,34 +56,34 @@ export default function YasChat() {
 
     const spr = ensureStub();
 
+    // Inject chat CSS via a style tag so !important works and timing isn't an issue
+    const STYLE_ID = "yas-chat-inline-style";
+    if (!document.getElementById(STYLE_ID)) {
+      const css = `
+        /* Chat launcher button (stable + fallback hashed class) */
+        .spr-chat__launcher,
+        [class*="spr-chat__launcher"],
+        .ezg1tqb0 { left: 20px !important; right: auto !important; bottom: 65px !important; opacity: 0 !important; }
+        /* Chat button styling container (stable + fallback hashed class) */
+        .spr-chat__launcher-container,
+        [class*="spr-chat__launcher-container"],
+        .css-15gnlaj { width: 160px !important; height: 40px !important; }
+        /* Chat box position */
+        .spr-chat__box { right: auto !important; left: 20px !important; transform-origin: left bottom !important; bottom: 80px !important; }
+      `;
+      const style = document.createElement("style");
+      style.id = STYLE_ID;
+      style.type = "text/css";
+      style.appendChild(document.createTextNode(css));
+      document.head.appendChild(style);
+    }
+
     if (typeof spr === "function" && spr.loaded) {
       spr("update", settings);
     } else if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", loadScript);
+      document.addEventListener("DOMContentLoaded", loadScript, { once: true });
     } else {
       loadScript();
-    }
-  }, []);
-
-  useEffect(() => {
-    const button = document.querySelector(".ezg1tqb0");
-    if (button) {
-      button.style.opacity = "0 !important";
-      button.style.bottom = "65px !important";
-      button.style.left = "20px !important";
-      button.style.right = "auto !important";
-    }
-    const buttonContainer = document.querySelector(".css-15gnlaj");
-    if (buttonContainer) {
-      buttonContainer.style.width = "160px !important";
-      buttonContainer.style.height = "40px !important";
-    }
-    const notificationBox = document.querySelector(".spr-chat__notification");
-    if (notificationBox) {
-      notificationBox.style.right = "auto !important";
-      notificationBox.style.left = "20px !important";
-      notificationBox.style.bottom = "80px !important";
-      notificationBox.style.transformOrigin = "left bottom !important";
     }
   }, []);
 
