@@ -64,6 +64,66 @@ export default function YasChat() {
             transform-origin: bottom center !important;
           }
         }
+
+        /* iPad Air portrait (820px) - center like mobile */
+        @media (min-width: 810px) and (max-width: 830px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
+
+        /* iPad Mini landscape (≈1133x744) - center like mobile */
+        @media (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
+
+        /* iPad Air landscape (≈1180x820) - center like mobile */
+        @media (hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
       `;
     } else {
       cssRef.current = `
@@ -114,6 +174,66 @@ export default function YasChat() {
             transform: translateX(-50%) !important;
             transform-origin: bottom center !important;
           }
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
+
+        /* iPad Air portrait (820px) - center like mobile */
+        @media (min-width: 810px) and (max-width: 830px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
+
+        /* iPad Mini landscape (≈1133x744) - center like mobile */
+        @media (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
+          .spr-chat__notification {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 80px !important;
+            transform: translateX(-50%) !important;
+            transform-origin: bottom center !important;
+          }
+        }
+
+        /* iPad Air landscape (≈1180x820) - center like mobile */
+        @media (hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px) {
+          .spr-chat__launcher,
+          [class*="spr-chat__launcher"],
+          .ezg1tqb0 {
+            left: 50% !important;
+            right: auto !important;
+            bottom: 24px !important;
+            transform: translateX(-50%) !important;
+          }
+          .spr-chat__box,
           .spr-chat__notification {
             left: 50% !important;
             right: auto !important;
