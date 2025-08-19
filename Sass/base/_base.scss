@@ -16,7 +16,7 @@ html {
 body {
   font-family: "YAS Font", sans-serif !important;
   overflow-x: hidden;
-  background-color: variables.$color-bg-gray;
+  background-color: var(--color-base-bg);
   min-height: 100vh;
   min-height: -webkit-fill-available;
 
@@ -26,6 +26,19 @@ body {
     width: 100%;
     max-width: 100vw;
   }
+}
+
+/* Ensure full-height layout and consistent themed background
+   across all pages (non-React change as requested) */
+html {
+  background-color: var(--color-base-bg);
+}
+
+#root,
+.home,
+.main {
+  min-height: 100vh;
+  background-color: var(--color-base-bg);
 }
 
 // Normalize browser autofill styles to avoid weird background on autocomplete

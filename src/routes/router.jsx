@@ -59,12 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "card-payment",
-        element: (
-          <ResponsiveWrapper
-            MobileComponent={CardPaymentMobile}
-            DesktopComponent={CardPaymentPage}
-          />
-        ),
+        element: <CardPaymentPage />,
       },
       {
         path: "payment-success",

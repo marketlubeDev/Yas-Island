@@ -29,7 +29,9 @@
     justify-content: flex-start;
     gap: 0rem;
     padding-top: 1rem;
-    overflow: scroll;
+    overflow-y: auto; /* only show when needed */
+    overflow-x: hidden; /* prevent horizontal scrollbars from active width */
+    -webkit-overflow-scrolling: touch; /* smooth on iOS */
     min-height: 0;
 
     & a {
@@ -241,7 +243,7 @@
     &::before {
       content: "";
       position: absolute;
-      top: -40%;
+      top: -39.5%;
       right: -10.5%;
       width: 30px;
       height: 25px;
@@ -291,10 +293,10 @@
     &::before {
       content: "";
       position: absolute;
-      top: -39.5%;
-      left: -10.5%;
-      width: 30px;
-      height: 25px;
+      // top: -39.5%;
+      // left: -10.5%;
+      // width: 30px;
+      // height: 25px;
       background-color: var(--color-base-product-card-card-item-bg);
       border-bottom-left-radius: 15px;
       box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);

@@ -1,0 +1,547 @@
+.wrapper {
+  width: 100% !important;
+  max-width: 800px !important;
+  background: #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.container {
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 40px !important;
+  align-items: center !important;
+  width: fit-content !important;
+  border: none !important;
+}
+
+.input {
+  position: relative !important;
+  margin-bottom: 30px !important;
+  flex: 1 !important;
+  min-width: 300px !important;
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  border: none !important;
+}
+
+.input-field {
+  width: 100% !important;
+  padding: 8px 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  background: transparent !important;
+  transition: border-color 0.3s ease !important;
+  color: #333333 !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+.input-field:focus {
+  border-bottom-color: #333333 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.input-field::placeholder {
+  color: #999999 !important;
+}
+
+.input-label {
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  pointer-events: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  z-index: 1 !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+.input-label-content {
+  display: block !important;
+}
+
+.icon {
+  display: none !important;
+}
+
+.icon-right {
+  display: none !important;
+}
+
+.visa,
+.mastercard,
+.amex,
+.mada,
+.nps {
+  display: none !important;
+}
+
+.half-containter {
+  display: flex !important;
+  gap: 40px !important;
+  margin-bottom: 0 !important;
+  flex: 1 !important;
+  min-width: 300px !important;
+}
+
+.half1,
+.half2 {
+}
+
+.half-containter:last-of-type {
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+  flex-basis: 100% !important;
+}
+
+.half-containter:last-of-type .input {
+  width: 100% !important;
+}
+
+.pay {
+  display: block !important;
+  background: #ffd700 !important;
+  color: #000000 !important;
+  border: none !important;
+  padding: 18px 40px !important;
+  border-radius: 50px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: auto !important;
+  margin: 20px 0 0 0 !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  text-align: center !important;
+  min-width: 300px !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+.pay:hover {
+  background: #ffed4e !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.pay:active {
+  background: #e6c200 !important;
+  transform: none !important;
+}
+
+.pay:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  background: #cccccc !important;
+}
+
+.pay:focus-visible {
+  outline: 2px solid #000000 !important;
+  outline-offset: 2px !important;
+}
+
+.animate-spin {
+  display: none !important;
+}
+
+.popover {
+  display: none !important;
+}
+
+.tooltip {
+  display: none !important;
+}
+
+#paymentForm {
+  width: 100% !important;
+}
+
+input[type="hidden"] {
+  display: none !important;
+}
+
+.noscript-message {
+  display: none !important;
+}
+
+.visible {
+}
+
+.br {
+  border-radius: 0 !important;
+}
+
+.input-field:focus-visible {
+  outline: none !important;
+  border-bottom-color: #333333 !important;
+}
+
+.input-field[value] {
+  color: #333333 !important;
+}
+
+#cardNoInput {
+  font-family: "Courier New", monospace !important;
+  letter-spacing: 1px !important;
+}
+
+#expDateInput {
+  font-family: "Courier New", monospace !important;
+}
+
+#cvvInput {
+  font-family: "Courier New", monospace;
+  letter-spacing: 2px;
+}
+
+.input-label,
+#paymentForm .input-label,
+#paymentForm label {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.input-field:focus + .input-label,
+.input-field:focus ~ .input-label,
+#paymentForm input:focus + label,
+#paymentForm input:focus ~ label {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.input-label.floating,
+.input-label.focused,
+.input-label.active,
+#paymentForm label.floating,
+#paymentForm label.focused,
+#paymentForm label.active {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.input-label *,
+#paymentForm label * {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.fort-label,
+.fort-input-label,
+.fort-floating-label {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.input,
+.half-containter {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.input-label[style*="position"],
+.input-label[style*="top"],
+.input-label[style*="left"],
+.input-label[style*="transform"],
+#paymentForm label[style*="position"],
+#paymentForm label[style*="top"],
+#paymentForm label[style*="left"],
+#paymentForm label[style*="transform"] {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  color: #333333 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Prevent input-fillter class from being applied */
+.input-fillter,
+.input-field.input-fillter,
+#paymentForm .input-fillter,
+#paymentForm input.input-fillter,
+.input-field:focus.input-fillter,
+#paymentForm input:focus.input-fillter {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: transparent !important;
+  padding: 8px 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  color: #333333 !important;
+  font-size: 16px !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Prevent any PayFort specific focus classes */
+.fort-input-fillter,
+.fort-input-focused,
+.fort-input-active,
+#paymentForm .fort-input-fillter,
+#paymentForm .fort-input-focused,
+#paymentForm .fort-input-active {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: transparent !important;
+  padding: 8px 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  color: #333333 !important;
+  font-size: 16px !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Override any inline styles that might add input-fillter behavior */
+.input-field[style*="input-fillter"],
+#paymentForm input[style*="input-fillter"] {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: transparent !important;
+  padding: 8px 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  color: #333333 !important;
+  font-size: 16px !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Prevent height changes on focus/active states */
+.input-field:focus,
+.input-field:active,
+.input-field.focused,
+.input-field.active,
+#paymentForm input:focus,
+#paymentForm input:active,
+#paymentForm input.focused,
+#paymentForm input.active,
+#expDateInput:focus,
+#expDateInput:active,
+#expDateInput.focused,
+#expDateInput.active {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  line-height: normal !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  color: #333333 !important;
+  font-size: 16px !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Prevent any PayFort height modifications */
+.fort-input-field:focus,
+.fort-input-field:active,
+.fort-input-field.focused,
+.fort-input-field.active,
+#paymentForm .fort-input-field:focus,
+#paymentForm .fort-input-field:active,
+#paymentForm .fort-input-field.focused,
+#paymentForm .fort-input-field.active {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  line-height: normal !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+  color: #333333 !important;
+  font-size: 16px !important;
+  outline: none !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Ensure pay button border-radius is applied */
+.pay,
+button.pay,
+input[type="submit"].pay,
+#paymentForm .pay,
+#paymentForm button.pay,
+#paymentForm input[type="submit"].pay,
+.fort-pay,
+.fort-button,
+.fort-submit,
+#paymentForm .fort-pay,
+#paymentForm .fort-button,
+#paymentForm .fort-submit {
+  border-radius: 50px !important;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  border-top-left-radius: 50px !important;
+  border-top-right-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
+  border-bottom-right-radius: 50px !important;
+}
+
+/* Override any PayFort button styling */
+.fort-button[style*="border-radius"],
+#paymentForm .fort-button[style*="border-radius"],
+.fort-submit[style*="border-radius"],
+#paymentForm .fort-submit[style*="border-radius"] {
+  border-radius: 50px !important;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  border-top-left-radius: 50px !important;
+  border-top-right-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
+  border-bottom-right-radius: 50px !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}

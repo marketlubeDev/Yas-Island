@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
-import visaIcon from "../../../../assets/icons/payment.png";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -18,32 +17,32 @@ export default function CardPaymentDetail({ orderData }) {
   const dispatch = useDispatch();
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
-  const [countdown, setCountdown] = useState(5);
-  const navigate = useNavigate();
+  const [failureMessage, setFailureMessage] = useState("");
+  const [retryCounter, setRetryCounter] = useState(0);
+  const { theme, isDarkMode } = useSelector((state) => state.accessibility);
+
+  console.log(theme, "theme");
+
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
-    dispatch(clearCart()); // Clear the cart when payment is successful
-
-    // Start countdown before redirect
-    const countdownInterval = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(countdownInterval);
-          window.location.href = "/payment-success";
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 500);
+    dispatch(clearCart());
+    window.location.replace("/payment-success");
   };
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
+      // Remove any existing form before creating a new one
+      const oldForm = document.getElementById("payfort-form");
+      if (oldForm && document.body.contains(oldForm)) {
+        document.body.removeChild(oldForm);
+      }
+
       const form = document.createElement("form");
       form.method = "POST";
       form.action = orderData.tokenizationResponse.actionUrl;
       form.target = "payfort-iframe";
       form.style.display = "none";
+      form.id = "payfort-form";
 
       Object.entries(
         orderData.tokenizationResponse.formParameters || {}
@@ -63,55 +62,59 @@ export default function CardPaymentDetail({ orderData }) {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
-        // Handle different payment statuses
-        if (event.data) {
-          if (
-            event.data.action === "redirect" ||
-            event.data.status === "success"
-          ) {
+        const data = event?.data;
+        console.log("Received message from iframe:", data);
+
+        if (!data) return;
+
+        // Preferred explicit provider payload
+        if (data.type === "payment_result") {
+          if (data.success === true) {
             handlePaymentSuccess();
-          } else if (
-            event.data.status === "failed" ||
-            event.data.status === "cancelled"
-          ) {
-            setPaymentStatus("failed");
-            console.log("Payment failed or cancelled");
-          }
-        }
-      };
-
-      // Poll iframe content to detect success page
-      const pollIframeContent = () => {
-        const iframe = document.querySelector('iframe[name="payfort-iframe"]');
-        if (iframe) {
-          try {
-            const iframeDoc =
-              iframe.contentDocument || iframe.contentWindow.document;
-            const iframeContent = iframeDoc.body
-              ? iframeDoc.body.innerText
-              : "";
-
-            if (
-              iframeContent.includes("Payment Successful") ||
-              iframeContent.includes("Redirecting")
-            ) {
-              handlePaymentSuccess();
-            }
-          } catch {
-            console.log(
-              "Cannot access iframe content due to cross-origin restrictions"
+          } else {
+            setFailureMessage(
+              data.error || "Payment failed. Please try again."
             );
+            setPaymentStatus("failed");
           }
+          return;
+        }
+
+        // Fallback: derive from generic status strings
+        const rawStatus = (
+          data.status ||
+          data.payment_status ||
+          data.result ||
+          ""
+        ).toString();
+        const status = rawStatus.toLowerCase();
+
+        if (
+          status === "success" ||
+          status === "paid" ||
+          status === "authorized" ||
+          status === "captured"
+        ) {
+          handlePaymentSuccess();
+          return;
+        }
+
+        if (
+          status === "failed" ||
+          status === "failure" ||
+          status === "canceled" ||
+          status === "cancelled" ||
+          status === "declined"
+        ) {
+          setFailureMessage("Payment failed. Please try again.");
+          setPaymentStatus("failed");
         }
       };
-
-      const pollInterval = setInterval(pollIframeContent, 1000);
 
       window.addEventListener("message", handleMessage);
 
       return () => {
         window.removeEventListener("message", handleMessage);
-        clearInterval(pollInterval);
 
         // Clean up form only on unmount or when payment is complete
         if (paymentStatus === "success" || paymentStatus === "failed") {
@@ -123,68 +126,129 @@ export default function CardPaymentDetail({ orderData }) {
           }
         }
       };
-    } else {
-      navigate("/");
     }
-  }, [orderData, paymentStatus]);
+  }, [orderData, paymentStatus, retryCounter]);
+
+  const handleRetry = () => {
+    setFailureMessage("");
+    setPaymentStatus("loading");
+    setIsIframeLoading(true);
+    // Remove any lingering form before retry
+    const existingForm = document.getElementById("payfort-form");
+    if (existingForm && document.body.contains(existingForm)) {
+      document.body.removeChild(existingForm);
+    }
+    setRetryCounter((prev) => prev + 1);
+  };
 
   return (
     <div className="payment-container">
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      <div
-        className="iframe-container"
-        style={{
-          borderRadius: "1rem",
-          minHeight: "450px",
-          height: "350px",
-          position: "relative",
-        }}
-      ></div>
+      <div className="payfort-container">
+        <div
+          className={`iframe-container ${theme}`}
+          style={{
+            borderRadius: "1rem",
+            minHeight: "450px",
+            height: "350px",
+            position: "relative",
+          }}
+        >
+          {/* <Payfort /> */}
+          {isIframeLoading && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                textAlign: "center",
+              }}
+            >
+              <div
+                className="loading-spinner"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  border: "3px solid #f3f3f3",
+                  borderTop: "3px solid #3498db",
+                  borderRadius: "50%",
+                  animation: "spin 1s linear infinite",
+                  margin: "0 auto 1rem",
+                }}
+              />
+              <p style={{ color: "#666", margin: 0 }}>
+                Loading secure payment form...
+              </p>
+            </div>
+          )}
+          <iframe
+            name="payfort-iframe"
+            title="PayFort Payment"
+            width="100%"
+            height="470"
+            frameBorder="0"
+            style={{
+              border: "none",
+              borderRadius: "8px",
+              boxShadow: "none",
+              background: "transparent",
+              opacity: isIframeLoading ? 0 : 1,
+              transition: "opacity 0.3s ease",
+            }}
+            key={retryCounter}
+            onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
+          />
+        </div>
+
+        {paymentStatus === "failed" && (
+          <div
+            style={{
+              marginTop: "1rem",
+              padding: "1rem",
+              borderRadius: "8px",
+              background: "#fff5f5",
+              border: "1px solid #ffd6d6",
+              color: "#c53030",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "1rem",
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <strong style={{ display: "block", marginBottom: ".25rem" }}>
+                {t("payment.cardPayment.errorTitle", {
+                  defaultValue: "Payment was rejected",
+                })}
+              </strong>
+              <span>
+                {failureMessage ||
+                  t("payment.cardPayment.errorMessage", {
+                    defaultValue: "Please review your details and try again.",
+                  })}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={handleRetry}
+              style={{
+                background: "#3182ce",
+                color: "#fff",
+                border: "none",
+                borderRadius: "6px",
+                padding: ".6rem 1rem",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {t("payment.cardPayment.retry", { defaultValue: "Retry" })}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
-// {isIframeLoading && (
-//   <div
-//     style={{
-//       position: "absolute",
-//       top: "50%",
-//       left: "50%",
-//       transform: "translate(-50%, -50%)",
-//       textAlign: "center",
-//     }}
-//   >
-//     <div
-//       className="loading-spinner"
-//       style={{
-//         width: "40px",
-//         height: "40px",
-//         border: "3px solid #f3f3f3",
-//         borderTop: "3px solid #3498db",
-//         borderRadius: "50%",
-//         animation: "spin 1s linear infinite",
-//         margin: "0 auto 1rem",
-//       }}
-//     />
-//     <p style={{ color: "#666", margin: 0 }}>
-//       Loading secure payment form...
-//     </p>
-//   </div>
-// )}
-// <iframe
-//   name="payfort-iframe"
-//   title="PayFort Payment"
-//   width="100%"
-//   height="470"
-//   frameBorder="0"
-//   style={{
-//     border: "none",
-//     borderRadius: "8px",
-//     boxShadow: "none",
-//     background: "transparent",
-//     opacity: isIframeLoading ? 0 : 1,
-//     transition: "opacity 0.3s ease",
-//   }}
-//   onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
-// />

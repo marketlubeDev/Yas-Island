@@ -487,8 +487,6 @@ const CartModal = ({ isOpen, onClose }) => {
 
                 const isExpired = isDateExpired(item?.validTo);
 
-                console.log("item333", item);
-
                 return (
                   <div
                     key={index}

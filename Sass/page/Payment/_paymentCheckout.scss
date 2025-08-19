@@ -14,6 +14,28 @@
   min-width: 370px;
   font-family: "YAS Font", sans-serif;
 
+  // On small devices, make it full width and remove drop shadow
+  @include respond(tablets) {
+    min-width: 100%;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 12px;
+  }
+
+  @include respond(phone) {
+    min-width: 100%;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+
+  @include respond(smallPhone) {
+    min-width: 100%;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+
   @include respond(bigTablets) {
     min-width: 100%;
     width: 100%;

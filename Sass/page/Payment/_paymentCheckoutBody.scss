@@ -54,7 +54,6 @@
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
   min-height: calc(100vh - 12vh);
-
   @include respond(bigTablets) {
     padding: 30px;
     min-height: calc(100vh - 6rem);
@@ -315,6 +314,74 @@
   justify-content: space-between;
   align-items: start;
   font-family: "YAS Font", sans-serif;
+
+  // Stack layout and remove heavy visuals on small devices
+  @include respond(bigTablets) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 24px;
+    border-radius: 1.25rem;
+    box-shadow: none;
+  }
+
+  @include respond(tablets) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: none;
+  }
+
+  @include respond(phone) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.875rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    border-radius: 0.75rem;
+    box-shadow: none;
+  }
+
+  @include respond(smallPhone) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+
+  // Ensure children take full width when stacked
+  @include respond(bigTablets) {
+    > * {
+      width: 100%;
+    }
+  }
+
+  @include respond(tablets) {
+    > * {
+      width: 100%;
+    }
+  }
+  @include respond(phone) {
+    > * {
+      width: 100%;
+    }
+  }
+  @include respond(smallPhone) {
+    > * {
+      width: 100%;
+    }
+  }
   @include respond(desktop) {
     padding: 20px;
     border-radius: 1.5rem;
@@ -396,6 +463,28 @@
     @include respond(extraBigDesktop) {
       min-height: 80vh;
     }
+  }
+}
+
+// Spacing for Order Summary when stacked under iframe
+@include respond(bigTablets) {
+  .order-summary-container {
+    margin-top: 1rem;
+  }
+}
+@include respond(tablets) {
+  .order-summary-container {
+    margin-top: 1rem;
+  }
+}
+@include respond(phone) {
+  .order-summary-container {
+    margin-top: 0.875rem;
+  }
+}
+@include respond(smallPhone) {
+  .order-summary-container {
+    margin-top: 0.75rem;
   }
 }
 
