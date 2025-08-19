@@ -301,7 +301,7 @@
   }
 }
 .attraction-detail-modal.ant-modal-wrap {
-  background-color: red !important;
+  z-index: 2147483600 !important;
 }
 
 .attraction-detail-modal .ant-modal-body {

@@ -74,6 +74,14 @@
   }
 }
 
+/* Ensure all Ant Design modals and their masks are always the top-most layers */
+.ant-modal-root,
+.ant-modal-root .ant-modal-wrap,
+.ant-modal-root .ant-modal,
+.ant-modal-root .ant-modal-mask {
+  z-index: 2147483600 !important;
+}
+
 .terms-modal-content {
   display: flex;
   flex-direction: column;

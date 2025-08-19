@@ -58,6 +58,7 @@ function MycartMbl({ onClose, visible }) {
   } = useSelector((state) => state.cart);
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
+  const checkoutState = useSelector((state) => state.checkout);
 
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const deleteIconSrc = isDarkMode ? InvertDeleteIcon : DeleteIcon;
@@ -160,8 +161,8 @@ function MycartMbl({ onClose, visible }) {
                 taxAmount: 0,
                 originalNetAmount: 0,
                 countryCode: "",
-                isTnCAgrred: false,
-                isConsentAgreed: false,
+                isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
+                isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
                 promoCode: "",
                 promotions: [],
               })
@@ -184,8 +185,8 @@ function MycartMbl({ onClose, visible }) {
                 taxAmount: orderDetails?.total?.tax,
                 originalNetAmount: orderDetails?.total?.gross,
                 countryCode: "",
-                isTnCAgrred: false,
-                isConsentAgreed: false,
+                isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
+                isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
                 promoCode: "",
                 promotions: [],
               })

@@ -6,7 +6,7 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 20000;
+  z-index: 2147483602; /* highest to ensure on top */
   background: rgba(245, 245, 245, 0.39) !important;
   backdrop-filter: blur(8px);
   display: flex;

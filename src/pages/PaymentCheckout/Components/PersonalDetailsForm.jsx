@@ -409,6 +409,7 @@ export default function PersonalDetailsForm({
 
   const handleTermsClick = async (e) => {
     e.preventDefault();
+    e.stopPropagation(); // prevent label from toggling checkbox when link is clicked
 
     try {
       // Get the first productId from checkout items, or use a default value
@@ -590,7 +591,18 @@ export default function PersonalDetailsForm({
           <span className="checkbox-custom"></span>
           <span className="checkbox-text">
             {t("payment.orderSummary.terms.acceptTerms")}{" "}
-            <a href="#" className="terms-link" onClick={handleTermsClick}>
+            <a
+              href="#"
+              className="terms-link"
+              role="button"
+              tabIndex={0}
+              onMouseDown={(e) => {
+                // avoid label click triggering checkbox toggle before click fires
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onClick={handleTermsClick}
+            >
               {t("payment.orderSummary.terms.termsAndConditions")}
             </a>
           </span>

@@ -27,6 +27,9 @@ const useGetProductList = () => {
         ?.flat()
         ?.map((item) => item?.parkname_localized);
 
+      console.log(allParks);
+      console.log(orderedProducts);
+
       const uniqueParks = [...new Set(allParks)];
 
       dispatch(setParks(uniqueParks));

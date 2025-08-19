@@ -36,6 +36,7 @@ function BookingModalMbl({
   const { verificationEmail, isEmailVerification, cartItems } = useSelector(
     (state) => state.cart
   );
+  const checkout = useSelector((state) => state.checkout);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -493,8 +494,9 @@ function BookingModalMbl({
               // firstName: "",
               // lastName: "",
               countryCode: "",
-              isTnCAgrred: false,
-              isConsentAgreed: false,
+              // preserve existing agreement flags
+              isTnCAgrred: checkout?.isTnCAgrred ?? false,
+              isConsentAgreed: checkout?.isConsentAgreed ?? false,
               promoCode: "",
               promotions: [],
               originalNetAmount: orderDetails?.order?.total?.gross,

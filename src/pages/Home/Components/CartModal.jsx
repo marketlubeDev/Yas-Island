@@ -67,7 +67,8 @@ const CartModal = ({ isOpen, onClose }) => {
     isEmailVerification,
     verificationEmail,
   } = useSelector((state) => state.cart);
-  const checkoutEmail = useSelector((state) => state.checkout.emailId);
+  const checkoutState = useSelector((state) => state.checkout);
+  const checkoutEmail = checkoutState.emailId;
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
 
@@ -153,8 +154,8 @@ const CartModal = ({ isOpen, onClose }) => {
             taxAmount: 0,
             originalNetAmount: 0,
             countryCode: "",
-            isTnCAgrred: false,
-            isConsentAgreed: false,
+            isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
+            isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
             promoCode: "",
             promotions: [],
           })
@@ -224,8 +225,8 @@ const CartModal = ({ isOpen, onClose }) => {
               // lastName: "",
               // phoneNumber: "",
               countryCode: "",
-              isTnCAgrred: false,
-              isConsentAgreed: false,
+              isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
+              isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
               promoCode: "",
               promotions: [],
             })
@@ -587,7 +588,7 @@ const CartModal = ({ isOpen, onClose }) => {
                 <div className="summary-row">
                   <span>{t("cart.vat")}</span>
                   <span>
-                    + {t("common.aed")} {vatAndTax?.toFixed(2)} {t("cart.vat")}
+                    {t("common.aed")} {vatAndTax?.toFixed(2)}
                   </span>
                 </div>
               </div>

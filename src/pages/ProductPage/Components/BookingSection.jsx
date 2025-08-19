@@ -40,6 +40,7 @@ export default function BookingSection({ product, onBack }) {
   const { verificationEmail, isEmailVerification, cartItems } = useSelector(
     (state) => state.cart
   );
+  const checkout = useSelector((state) => state.checkout);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -503,8 +504,9 @@ export default function BookingSection({ product, onBack }) {
               // firstName: "",
               // lastName: "",
               countryCode: "",
-              isTnCAgrred: false,
-              isConsentAgreed: false,
+              // preserve existing agreement flags; don't force reset here
+              isTnCAgrred: checkout?.isTnCAgrred ?? false,
+              isConsentAgreed: checkout?.isConsentAgreed ?? false,
               promoCode: "",
               promotions: [],
               originalNetAmount: orderDetails?.order?.total?.gross,

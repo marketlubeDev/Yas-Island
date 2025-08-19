@@ -458,6 +458,16 @@
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
+
+  // Increase padding for product modal on desktop and larger screens only
+  @include respond(desktop) {
+    padding: 3rem;
+    padding-top: 3.2rem;
+  }
+  @include respond(bigDesktop) {
+    padding: 4rem;
+    padding-top: 3.7rem;
+  }
 }
 
 .product-modal.booking-active .ant-modal-content {
@@ -640,22 +650,25 @@
 }
 
 .product-description-api {
-  max-height: 32vh; // reduce to avoid overflow
+  max-height: 48vh;
   height: fit-content;
-  min-height: 20vh;
+  min-height: 28vh;
+  padding: 1rem;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    max-height: 28vh;
+    max-height: 44vh;
     height: fit-content;
-    min-height: 24vh;
+    min-height: 32vh;
+    padding: 1rem;
   }
 
   @include respond(bigDesktop) {
-    max-height: 30vh;
+    max-height: 50vh;
     height: fit-content;
-    min-height: 24vh;
+    min-height: 34vh;
+    padding: 1.25rem;
   }
 
   .product-description {
