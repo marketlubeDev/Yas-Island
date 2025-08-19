@@ -50,7 +50,7 @@
   align-items: stretch;
   gap: 12px;
   background: var(--color-bkg-body-bg);
-  overflow: hidden; /* delegate scroll to inner sections */
+  overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
   // border: 1px solid var(--color-bkg-modal-border);
@@ -142,8 +142,19 @@
   // margin-bottom: 18px;
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
+  overflow-y: auto; /* default: only guests section scrolls */
   -webkit-overflow-scrolling: touch;
+}
+
+/* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
+.booking-modal.booking-modal--scroll-all {
+  .booking-modal__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .booking-modal__guests-section {
+    overflow-y: visible;
+  }
 }
 
 /* Mobile guest section scrollbar to match desktop theme */

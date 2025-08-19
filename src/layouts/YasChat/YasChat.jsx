@@ -355,52 +355,6 @@ export default function YasChat() {
     } else {
       loadScript();
     }
-    // Create custom close button
-    const ensureCloseButton = () => {
-      if (document.getElementById("yas-chat-close-btn")) return;
-      const btn = document.createElement("button");
-      btn.id = "yas-chat-close-btn";
-      btn.setAttribute("aria-label", "Close chat");
-      btn.innerHTML = "&#10005;"; // ×
-      document.body.appendChild(btn);
-
-      btn.addEventListener("click", () => {
-        // Try to close via internal close controls first
-        const candidates = [
-          '.spr-chat__box [aria-label="Close"]',
-          '.spr-chat__box [aria-label*="close" i]',
-          ".spr-chat__box .spr-chat__close",
-          '.spr-chat__box [data-testid*="close"]',
-          '.spr-chat__box button[title*="close" i]',
-        ];
-        let closed = false;
-        for (const sel of candidates) {
-          const el = document.querySelector(sel);
-          if (el) {
-            el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-            closed = true;
-            break;
-          }
-        }
-        // Fallback: toggle via launcher
-        if (!closed) {
-          const launcher = document.querySelector(
-            '.spr-chat__launcher, [class*="spr-chat__launcher"], .ezg1tqb0'
-          );
-          if (launcher) {
-            // Temporarily remove the open class to allow clicking launcher if hidden
-            document.body.classList.remove("yas-chat-open");
-            setTimeout(
-              () =>
-                launcher.dispatchEvent(
-                  new MouseEvent("click", { bubbles: true })
-                ),
-              0
-            );
-          }
-        }
-      });
-    };
 
     // Determine if current viewport is an iPad Air/Mini target
     const isIpadTarget = () => {
@@ -439,7 +393,6 @@ export default function YasChat() {
     window.addEventListener("resize", updateOpenState);
     window.addEventListener("orientationchange", updateOpenState);
 
-    ensureCloseButton();
     // Initial state evaluation (after small delay to allow widget to render if already loaded)
     setTimeout(updateOpenState, 300);
 

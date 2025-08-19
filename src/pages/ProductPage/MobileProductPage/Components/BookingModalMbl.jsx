@@ -791,12 +791,18 @@ function BookingModalMbl({
     };
   }, []);
 
+  const hasManyGuests = Object.keys(guests || {}).length >= 2;
+
   return (
     <div
       className="booking-modal-overlay"
       style={{ background: "var(--color-bkg-body-bg)" }}
     >
-      <div className="booking-modal">
+      <div
+        className={`booking-modal ${
+          hasManyGuests ? "booking-modal--scroll-all" : ""
+        }`}
+      >
         <div className="booking-modal__header">
           <img
             src={backIconSrc}

@@ -418,7 +418,9 @@ select:-webkit-autofill:focus {
   justify-content: flex-start;
   gap: 0rem;
   padding-top: 1rem;
-  overflow: scroll;
+  overflow-y: auto; /* only show when needed */
+  overflow-x: hidden; /* prevent horizontal scrollbars from active width */
+  -webkit-overflow-scrolling: touch; /* smooth on iOS */
   min-height: 0;
 }
 .side-bar-list a {
@@ -595,7 +597,7 @@ select:-webkit-autofill:focus {
 .side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -40%;
+  top: -39.5%;
   right: -10.5%;
   width: 30px;
   height: 25px;
@@ -640,10 +642,6 @@ select:-webkit-autofill:focus {
 .ar-side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -39.5%;
-  left: -10.5%;
-  width: 30px;
-  height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-left-radius: 15px;
   box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
@@ -2414,7 +2412,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 700;
   line-height: normal;
   text-align: center;
-  margin-bottom: 5%;
+  margin-bottom: 0;
   margin-top: 0;
   font-family: "YAS Font", sans-serif;
 }
@@ -2424,10 +2422,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-size: 1.8rem !important;
   font-style: normal;
   font-weight: 700;
-  margin-bottom: 5%;
+  margin-bottom: 0;
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
+  text-align: center; /* center align section titles globally */
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .section-title {
@@ -2463,7 +2462,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .guest-container {

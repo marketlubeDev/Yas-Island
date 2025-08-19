@@ -746,8 +746,11 @@ export default function BookingSection({ product, onBack }) {
                               <div className="guest-label-container">
                                 <span className="guest-label">
                                   {guestData.name}{" "}
-                                  {variantData?.productvariantdesc &&
-                                    `(${variantData.productvariantdesc})`}
+                                  {variantData?.productvariantdesc && (
+                                    <span className="guest-label-desc">
+                                      `(${variantData.productvariantdesc})`
+                                    </span>
+                                  )}
                                   {!isAvailable && (
                                     <span className="unavailable-notice">
                                       {!selectedDate
@@ -756,11 +759,15 @@ export default function BookingSection({ product, onBack }) {
                                     </span>
                                   )}
                                 </span>
-                                <span className="guest-label-price">
-                                  {guestData.quantity > 0 &&
-                                    `AED ${
-                                      variantData?.gross * guestData.quantity
-                                    }`}
+                                <span
+                                  className="guest-label-price"
+                                  style={
+                                    guestData?.quantity > 0
+                                      ? { opacity: "1" }
+                                      : { opacity: "0" }
+                                  }
+                                >
+                                  AED {variantData?.gross * guestData.quantity}
                                 </span>
                               </div>
                               <div className="counter-controls">

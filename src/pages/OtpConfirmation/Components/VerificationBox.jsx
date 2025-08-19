@@ -150,7 +150,7 @@ export default function VerificationBox({ email }) {
       dispatch(setCheckoutEmail(email));
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
-      toast.error(t("toastMessages.otpIncorrect"));
+      toast.error(t("toastMessages.otpIncorrect"), { position: "top-center" });
     }
   };
 
