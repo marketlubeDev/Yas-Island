@@ -117,6 +117,7 @@ const FormSelectWithSearch = ({
             alignItems: "center",
             width: "100%",
             justifyContent: "space-between",
+            color: "var(--color-email-form-label)",
           }}
           onClick={() => {
             setIsOpen(!isOpen);
@@ -145,13 +146,16 @@ const FormSelectWithSearch = ({
                   whiteSpace: "nowrap",
                   lineHeight: "1.2",
                   fontSize: "14px",
+                  color: "var(--color-email-form-label)",
                 }}
               >
                 {selectedOption.label}
               </span>
             </div>
           ) : (
-            <span style={{ color: "var(--color-base-text-secondary)" }}>
+            <span
+              style={{ color: "var(--color-base-text-secondary)", opacity: 1 }}
+            >
               Select a country
             </span>
           )}
@@ -199,26 +203,23 @@ const FormSelectWithSearch = ({
                   cursor: "pointer",
                   backgroundColor:
                     option.value === value
-                      ? "var(--color-base-primary)"
+                      ? "var(--color-base-hover)"
                       : "transparent",
-                  color:
-                    option.value === value
-                      ? "white"
-                      : "var(--color-base-text-secondary)",
+                  color: "var(--color-email-form-label)",
                 }}
                 onClick={() => {
                   handleSelect(option);
                   if (onClearError) onClearError();
                 }}
                 onMouseEnter={(e) => {
-                  if (option.value !== value) {
-                    e.target.style.backgroundColor = "var(--color-base-hover)";
-                  }
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-base-hover)";
                 }}
                 onMouseLeave={(e) => {
-                  if (option.value !== value) {
-                    e.target.style.backgroundColor = "transparent";
-                  }
+                  e.currentTarget.style.backgroundColor =
+                    option.value === value
+                      ? "var(--color-base-hover)"
+                      : "transparent";
                 }}
               >
                 <ReactCountryFlag
@@ -226,7 +227,9 @@ const FormSelectWithSearch = ({
                   svg
                   style={{ width: "20px", height: "15px" }}
                 />
-                <span>{option.label}</span>
+                <span style={{ color: "var(--color-email-form-label)" }}>
+                  {option.label}
+                </span>
               </div>
             ))}
           </div>
@@ -241,59 +244,56 @@ const PhoneInputComponent = ({
   phoneNumber,
   onPhoneNumberChange,
   hasError = false,
+  countryIso = "ae",
+  isRTL = false,
   onFocus,
-}) => {
-  const { i18n } = useTranslation();
-  const isRTL = i18n.language === "ar";
-  return (
-    <label className="email-checkout__label" id="phoneNumber">
-      {label}
-      <PhoneInput
-        country={"ae"}
-        value={phoneNumber || ""}
-        onChange={onPhoneNumberChange}
-        inputClass={`email-checkout__phone-input${hasError ? " error" : ""}`}
-        containerClass="email-checkout__phone-container"
-        buttonClass="email-checkout__phone-button"
-        dropdownClass="email-checkout__phone-dropdown"
-        enableSearch={false}
-        disableDropdown={true}
-        countryCodeEditable={false}
-        onlyCountries={["ae"]}
-        inputProps={{ onFocus }}
-        containerStyle={{
-          width: "100%",
-        }}
-        inputStyle={{
-          width: "100%",
-          height: "40px",
-          fontSize: "1rem",
-          border: "none",
-          borderBottom: "1px solid var(--ip-bodr-btm)",
-          borderRadius: "0",
-          background: "transparent",
-          color: "var(--color-base-text-secondary)",
-          padding: "8px 0",
-          paddingLeft: isRTL ? "8px" : "44px",
-          paddingRight: isRTL ? "42px" : "8px",
-          direction: "ltr",
-          textAlign: isRTL ? "right" : "left",
-        }}
-        buttonStyle={{
-          border: "none",
-          borderBottom: "1px solid var(--ip-bodr-btm)",
-          borderRadius: "0",
-          background: "transparent",
-          height: "40px",
-          padding: "8px 2px",
-          width: "36px",
-          position: isRTL ? "absolute" : undefined,
-          right: isRTL ? 0 : undefined,
-        }}
-      />
-    </label>
-  );
-};
+}) => (
+  <label className="email-checkout__label" id="phoneNumber">
+    {label}
+    <PhoneInput
+      country={countryIso || "ae"}
+      value={phoneNumber || ""}
+      onChange={onPhoneNumberChange}
+      inputClass={`email-checkout__phone-input${hasError ? " error" : ""}`}
+      containerClass="email-checkout__phone-container"
+      buttonClass="email-checkout__phone-button"
+      dropdownClass="email-checkout__phone-dropdown"
+      enableSearch={false}
+      disableDropdown={true}
+      countryCodeEditable={false}
+      inputProps={{ onFocus }}
+      containerStyle={{
+        width: "100%",
+      }}
+      inputStyle={{
+        width: "100%",
+        height: "40px",
+        fontSize: "1rem",
+        border: "none",
+        borderBottom: "1px solid var(--ip-bodr-btm)",
+        borderRadius: "0",
+        background: "transparent",
+        color: "var(--color-base-text-secondary)",
+        padding: "8px 0",
+        paddingLeft: isRTL ? "8px" : "44px",
+        paddingRight: isRTL ? "42px" : "8px",
+        direction: "ltr",
+        textAlign: isRTL ? "right" : "left",
+      }}
+      buttonStyle={{
+        border: "none",
+        borderBottom: "1px solid var(--ip-bodr-btm)",
+        borderRadius: "0",
+        background: "transparent",
+        height: "40px",
+        padding: "8px 2px",
+        width: "36px",
+        position: isRTL ? "absolute" : undefined,
+        right: isRTL ? 0 : undefined,
+      }}
+    />
+  </label>
+);
 
 function InputFieldsMbl() {
   const { t, i18n } = useTranslation();
@@ -353,8 +353,36 @@ function InputFieldsMbl() {
     return next;
   };
 
+  // Normalize ISO for react-phone-input-2 to avoid missing dial code mappings
+  const normalizeIsoForDialCode = (iso) => {
+    const m = {
+      ax: "fi",
+      gg: "gb",
+      je: "gb",
+      im: "gb",
+      sj: "no",
+      bq: "nl",
+      gf: "fr",
+      gp: "fr",
+      mq: "fr",
+      yt: "fr",
+      re: "fr",
+      pm: "fr",
+      bl: "fr",
+      mf: "fr",
+      fo: "dk",
+      gi: "gb",
+    };
+    return m[iso] || iso || "ae";
+  };
+
   const handleInputChange = (field) => (value) => {
     const updatedFormData = { ...formData, [field]: value };
+
+    // When country of residence changes, clear phone so new dial code shows
+    if (field === "country") {
+      updatedFormData.phoneNumber = "";
+    }
     setFormData(updatedFormData);
 
     // Update Redux state
@@ -493,15 +521,25 @@ function InputFieldsMbl() {
         }
       />
 
-      <PhoneInputComponent
-        label={t("payment.personalDetails.phoneNumber")}
-        phoneNumber={formData.phoneNumber}
-        onPhoneNumberChange={handleInputChange("phoneNumber")}
-        hasError={fieldErrors.phoneNumber}
-        onFocus={() =>
-          setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
-        }
-      />
+      {(() => {
+        const selectedIso = normalizeIsoForDialCode(
+          (formData.country || "AE").toLowerCase()
+        );
+        return (
+          <PhoneInputComponent
+            key={selectedIso}
+            label={t("payment.personalDetails.phoneNumber")}
+            phoneNumber={formData.phoneNumber}
+            onPhoneNumberChange={handleInputChange("phoneNumber")}
+            hasError={fieldErrors.phoneNumber}
+            countryIso={selectedIso}
+            isRTL={isRTL}
+            onFocus={() =>
+              setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
+            }
+          />
+        );
+      })()}
     </div>
   );
 }

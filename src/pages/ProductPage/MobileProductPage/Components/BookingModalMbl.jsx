@@ -792,6 +792,9 @@ function BookingModalMbl({
   }, []);
 
   const hasManyGuests = Object.keys(guests || {}).length >= 2;
+  const isCurrentMonthView =
+    currentDate.getFullYear() === new Date().getFullYear() &&
+    currentDate.getMonth() === new Date().getMonth();
 
   return (
     <div
@@ -825,15 +828,19 @@ function BookingModalMbl({
             ) : (
               <>
                 <div className="booking-modal__calendar-header">
-                  <button onClick={handlePrevMonth}>
-                    <img
-                      src={leftIcon}
-                      alt="Previous"
-                      style={{
-                        transform: isRTL ? "scaleX(-1)" : "none",
-                      }}
-                    />
-                  </button>
+                  {isCurrentMonthView ? (
+                    <span style={{ width: 36 }}></span>
+                  ) : (
+                    <button onClick={handlePrevMonth}>
+                      <img
+                        src={leftIcon}
+                        alt="Previous"
+                        style={{
+                          transform: isRTL ? "scaleX(-1)" : "none",
+                        }}
+                      />
+                    </button>
+                  )}
                   <span className="booking-modal__calendar-month">
                     {formatMonthYear(currentDate)}
                   </span>
