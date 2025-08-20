@@ -232,10 +232,21 @@
 .scroll-section {
   flex: 1 1 auto;
   margin-top: var(--mobile-content-top-offset, 104px); // JS sets exact offset
-  margin-bottom: 56px; // bottomnav height
+  // Ensure content (including footer) isn't hidden behind the fixed bottom nav and device safe-area
+  margin-bottom: calc(
+    60px + env(safe-area-inset-bottom, 0px)
+  ); // bottomnav height + safe area
   padding-top: 0; // handled by sticky spacer below for persistent gap
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  .footer {
+    // Extra bottom margin so the footer remains fully visible above the bottom nav and safe-area
+    margin: 8px 8px calc(72px + env(safe-area-inset-bottom, 0px));
+    border-radius: 8px;
+    border: 1px solid var(--separator-color);
+    background: var(--color-base-bg);
+  }
 
   &::before {
     content: "";

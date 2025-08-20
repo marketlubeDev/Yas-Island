@@ -337,7 +337,6 @@ html {
 }
 
 #root,
-.home,
 .main {
   min-height: 100vh;
   background-color: var(--color-base-bg);
@@ -358,26 +357,28 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Hide all scrollbars globally while keeping content scrollable */
-html,
-body,
+/* Global scrollbar styling (applies to all scrollable containers) */
 * {
   /* Firefox */
-  scrollbar-width: none !important;
-  /* IE/Edge legacy */
-  -ms-overflow-style: none !important;
+  scrollbar-width: thin;
+  /* thumb color | track color (Firefox doesn't support gradients) */
+  scrollbar-color: #68abe7 transparent;
 }
 
 *::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
 }
 
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-thumb,
-*::-webkit-scrollbar-corner {
-  display: none !important;
+*::-webkit-scrollbar-track {
   background: transparent !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar) !important;
+  border-radius: 4px !important;
+  /* Using border for separation; some browsers may ignore gradient borders */
+  border: 2px solid var(--color-base-product-card-scroll-bar-border) !important;
 }
 
 .normal-title-txt {
@@ -730,6 +731,26 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   left: -15%;
 }
 
+.footer {
+  background: var(--color-base-bg);
+  color: var(--color-base-text-secondary);
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__text {
+  font-size: 12px;
+}
+
 .btn {
   border: none;
   cursor: pointer;
@@ -827,6 +848,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border-radius: 5rem;
   color: var(--color-base-text);
   width: 23rem;
+}
+
+.home {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .landing-page {
@@ -4147,7 +4174,7 @@ html[lang=ar] .guest-label {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
-  min-height: 88vh;
+  min-height: 84.7vh;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
@@ -7339,10 +7366,16 @@ html[dir=rtl] .back-button {
 .scroll-section {
   flex: 1 1 auto;
   margin-top: var(--mobile-content-top-offset, 104px);
-  margin-bottom: 56px;
+  margin-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   padding-top: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+.scroll-section .footer {
+  margin: 8px 8px calc(72px + env(safe-area-inset-bottom, 0px));
+  border-radius: 8px;
+  border: 1px solid var(--separator-color);
+  background: var(--color-base-bg);
 }
 .scroll-section::before {
   content: "";
