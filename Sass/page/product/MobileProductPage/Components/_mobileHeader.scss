@@ -91,12 +91,14 @@
 
   &__lang-dropdown {
     position: absolute;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-width: 160px;
+    background: var(--color-search-dropdown-bg);
+    border-radius: 2rem !important; // match filter dropdowns exactly
+    box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
+    min-width: 165px;
     padding: 8px 0;
-    z-index: 350; // ensure dropdown overlays any route content
+    z-index: 10000; // match other filter dropdowns
+    border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
+    overflow: hidden; // ensure corners render identically
   }
 
   &__lang-dropdown--ar {
@@ -111,21 +113,28 @@
   }
 
   &__lang-option {
-    padding: 10px 16px;
+    padding: 10px 10px;
+    gap: 0rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     transition: background-color 0.2s;
+    border-bottom: 1px solid
+      var(--color-base-mobile-header-lang-dropdown-border);
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: var(--color-search-dropdown-option);
+    }
+
+    &:last-child {
+      border-bottom: none;
     }
   }
 
   &__lang-text {
     font-size: 14px;
-    color: #333;
+    color: var(--color-search-dropdown-option-text);
   }
 
   &__lang-check {
