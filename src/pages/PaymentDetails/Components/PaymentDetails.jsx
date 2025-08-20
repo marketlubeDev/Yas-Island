@@ -28,6 +28,18 @@ export default function PaymentDetails({ isCheckout }) {
   // Ensure products are loaded for the current language
   useGetProductList();
 
+  // Hide Yas Chat on payment details to avoid intercepting taps
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.body.classList.add("page-payment-details");
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.classList.remove("page-payment-details");
+      }
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",

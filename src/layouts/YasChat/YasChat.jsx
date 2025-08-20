@@ -345,6 +345,17 @@ export default function YasChat() {
           z-index: 900 !important;
         }
 
+        /* Completely hide chat on Payment Details page */
+        body.page-payment-details .spr-chat__launcher,
+        body.page-payment-details [class*="spr-chat__launcher"],
+        body.page-payment-details .spr-chat__box,
+        body.page-payment-details .spr-chat__notification,
+        body.page-payment-details .spr-chat__overlay,
+        body.page-payment-details .spr-chat__backdrop {
+          display: none !important;
+          pointer-events: none !important;
+        }
+
         /* When chat is open on target devices: hide launcher, show close button */
         @media (max-width: 768px), (min-width: 810px) and (max-width: 830px), (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1134px) and (max-height: 834px), (hover: none) and (pointer: coarse) and (min-width: 1080px) and (max-width: 1180px) and (max-height: 920px) {
           .yas-chat-open .spr-chat__launcher,
