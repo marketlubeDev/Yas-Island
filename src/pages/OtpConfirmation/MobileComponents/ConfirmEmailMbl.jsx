@@ -69,6 +69,9 @@ function ConfirmEmailMbl({ onBack }) {
         setTimer(120);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
+        toast.success(t("toastMessages.otpResent"), {
+          position: "top-center",
+        });
       },
       onError: (error) => {
         toast.error(

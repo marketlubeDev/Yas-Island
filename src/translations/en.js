@@ -346,6 +346,7 @@ export const en = {
     noPerformance: "No performance available for this date",
     checkoutFailed: "Checkout failed. Please try again.",
     failedToAddToCart: "Failed to add to cart. Please try again.",
+    otpResent: "OTP has been sent to your email.",
   },
   mobile: {
     swipeToChange: "Swipe to change",

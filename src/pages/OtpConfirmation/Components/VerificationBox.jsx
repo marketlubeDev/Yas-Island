@@ -66,6 +66,9 @@ export default function VerificationBox({ email }) {
         setCanResend(false);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
+        toast.success(t("toastMessages.otpResent"), {
+          position: "top-center",
+        });
       },
       onError: (error) => {
         console.log(error, "error>>");
