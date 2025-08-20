@@ -24,6 +24,27 @@ const QRCodeDetector = () => {
     isError: cartError,
   } = useRetriveCart(cartQrCode);
 
+  // Hide QR-related query params from URL once detected
+  useEffect(() => {
+    if (!hasQRCode) return;
+    try {
+      const currentUrl = new URL(window.location.href);
+      if (currentUrl.search) {
+        // Remove only the 'qrlocation' param to avoid affecting other flows
+        if (currentUrl.searchParams.has("qrlocation")) {
+          currentUrl.searchParams.delete("qrlocation");
+          const remainingSearch = currentUrl.searchParams.toString();
+          const cleanedPath = `${currentUrl.pathname}${
+            remainingSearch ? `?${remainingSearch}` : ""
+          }${currentUrl.hash}`;
+          window.history.replaceState({}, "", cleanedPath);
+        }
+      }
+    } catch (err) {
+      // no-op: if URL parsing fails, skip silently
+    }
+  }, [hasQRCode]);
+
   useEffect(() => {
     if (!hasQRCode) return;
     dispatch(setIsCartLoading(isCartLoading));
