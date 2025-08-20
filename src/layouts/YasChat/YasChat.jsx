@@ -317,7 +317,7 @@ export default function YasChat() {
         /* Close button base (hidden by default; shown via MQ + open state) */
         #yas-chat-close-btn {
           position: fixed;
-          z-index: 2147483647;
+          z-index: 900;
           bottom: 24px;
           left: 50%;
           transform: translateX(-50%);
@@ -332,6 +332,17 @@ export default function YasChat() {
           justify-content: center;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           cursor: pointer;
+        }
+
+        /* Ensure chat stays below app drawers/modals */
+        .spr-chat__box,
+        .spr-chat__notification,
+        .spr-chat__overlay,
+        .spr-chat__backdrop,
+        .spr-chat__launcher,
+        [class*="spr-chat__overlay"],
+        [class*="spr-chat__container"] {
+          z-index: 900 !important;
         }
 
         /* When chat is open on target devices: hide launcher, show close button */
