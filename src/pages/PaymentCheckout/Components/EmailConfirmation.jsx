@@ -17,7 +17,9 @@ export default function EmailConfirmation() {
   const handleConfirmEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailValue)) {
-      toast.error(t("toastMessages.invalidEmail"));
+      toast.error(t("toastMessages.invalidEmail"), {
+        position: "top-center",
+      });
       return;
     }
     verification(emailValue, {
@@ -29,7 +31,10 @@ export default function EmailConfirmation() {
         console.log(error, "error>>");
         toast.error(
           error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong")
+            t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
         );
       },
     });

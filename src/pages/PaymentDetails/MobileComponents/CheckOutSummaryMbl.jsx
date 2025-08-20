@@ -143,7 +143,9 @@ function CheckOutSummaryMbl({
             (!hasDiscount || (newGross === prevGross && newNet === prevNet))
           ) {
             setPromoCodeApplying(false);
-            toast.error(t("toastMessages.invalidPromoCode"));
+            toast.error(t("toastMessages.invalidPromoCode"), {
+              position: "top-center",
+            });
             return;
           }
 
@@ -171,14 +173,20 @@ function CheckOutSummaryMbl({
           );
 
           if (promoCode) {
-            toast.success(t("orderSummary.couponApplied"));
+            toast.success(t("orderSummary.couponApplied"), {
+              position: "top-center",
+            });
             // Clear the promo code input since it's now applied
             setPromoCode("");
             // Force component re-render to ensure totals update
           } else if (message) {
-            toast.error(message || t("toastMessages.invalidPromoCode"));
+            toast.error(message || t("toastMessages.invalidPromoCode"), {
+              position: "top-center",
+            });
           } else if (isRemoveOperation) {
-            toast.success(t("orderSummary.promoCodeRemoved"), {});
+            toast.success(t("orderSummary.promoCodeRemoved"), {
+              position: "top-center",
+            });
             setRemovingPromoCode(false);
           }
 
@@ -216,7 +224,9 @@ function CheckOutSummaryMbl({
     try {
       setPromoCodeApplying(true);
       if (!promoCode) {
-        toast.error(t("toastMessages.invalidPromoCode"));
+        toast.error(t("toastMessages.invalidPromoCode"), {
+          position: "top-center",
+        });
         setPromoCodeApplying(false);
         setPromoCodeStatus("invalid");
         return;
@@ -236,7 +246,9 @@ function CheckOutSummaryMbl({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || t("toastMessages.invalidPromoCode"));
+      toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
+        position: "top-center",
+      });
       setPromoCodeStatus("invalid");
     }
   };

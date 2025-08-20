@@ -94,7 +94,9 @@ function PromoCodeMbl({ onClose }) {
             })
           );
 
-          toast.success(t("orderSummary.promoCodeRemoved"), {});
+          toast.success(t("orderSummary.promoCodeRemoved"), {
+            position: "top-center",
+          });
           onClose(); // Close the popup after removing
         }
       },

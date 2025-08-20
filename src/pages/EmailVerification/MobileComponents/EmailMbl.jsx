@@ -18,7 +18,9 @@ function EmailMbl() {
   const handleConfirmEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailValue)) {
-      toast.error(t("toastMessages.invalidEmail"));
+      toast.error(t("toastMessages.invalidEmail"), {
+        position: "top-center",
+      });
       return;
     }
     verification(emailValue, {
@@ -37,7 +39,10 @@ function EmailMbl() {
       onError: (error) => {
         toast.error(
           error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong")
+            t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
         );
       },
     });

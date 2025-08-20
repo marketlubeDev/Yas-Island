@@ -161,7 +161,9 @@ export default function PaymentDetails({ isCheckout }) {
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => {
-        toast.error(error || t("toastMessages.somethingWentWrong"));
+        toast.error(error || t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       });
       // trigger red placeholders in the form via a custom event
       try {
@@ -178,7 +180,10 @@ export default function PaymentDetails({ isCheckout }) {
       onError: (error) => {
         toast.error(
           error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong")
+            t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
         );
       },
     });
