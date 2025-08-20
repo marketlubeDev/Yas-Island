@@ -348,23 +348,35 @@ export default function YasChat() {
         /* Completely hide chat on Payment Details page */
         body.page-payment-details .spr-chat__launcher,
         body.page-payment-details [class*="spr-chat__launcher"],
+        body.page-payment-details .spr-chat__launcher-container,
+        body.page-payment-details [class*="spr-chat__launcher-container"],
+        body.page-payment-details .ezg1tqb0,
+        body.page-payment-details .css-15gnlaj,
         body.page-payment-details .spr-chat__box,
         body.page-payment-details .spr-chat__notification,
         body.page-payment-details .spr-chat__overlay,
         body.page-payment-details .spr-chat__backdrop {
           display: none !important;
           pointer-events: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
         }
 
         /* Completely hide chat on Payment Checkout/Email Verification page */
         body.page-payment-checkout .spr-chat__launcher,
         body.page-payment-checkout [class*="spr-chat__launcher"],
+        body.page-payment-checkout .spr-chat__launcher-container,
+        body.page-payment-checkout [class*="spr-chat__launcher-container"],
+        body.page-payment-checkout .ezg1tqb0,
+        body.page-payment-checkout .css-15gnlaj,
         body.page-payment-checkout .spr-chat__box,
         body.page-payment-checkout .spr-chat__notification,
         body.page-payment-checkout .spr-chat__overlay,
         body.page-payment-checkout .spr-chat__backdrop {
           display: none !important;
           pointer-events: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
         }
 
         /* When chat is open on target devices: hide launcher, show close button */
@@ -421,17 +433,21 @@ export default function YasChat() {
         document.body.classList.contains("page-payment-details") ||
         document.body.classList.contains("page-payment-checkout");
       const targets = document.querySelectorAll(
-        '.spr-chat__launcher, [class*="spr-chat__launcher"], .spr-chat__box, .spr-chat__notification, .spr-chat__overlay, .spr-chat__backdrop, [class^="spr-chat"], [class*=" spr-chat"]'
+        '.spr-chat__launcher, [class*="spr-chat__launcher"], .spr-chat__launcher-container, [class*="spr-chat__launcher-container"], .ezg1tqb0, .css-15gnlaj, .spr-chat__box, .spr-chat__notification, .spr-chat__overlay, .spr-chat__backdrop, [class^="spr-chat"], [class*=" spr-chat"]'
       );
       targets.forEach((el) => {
         if (!(el && el.style)) return;
         if (isPaymentPage) {
           el.style.setProperty("display", "none", "important");
           el.style.setProperty("pointer-events", "none", "important");
+          el.style.setProperty("visibility", "hidden", "important");
+          el.style.setProperty("opacity", "0", "important");
         } else {
           // Restore interactivity but keep lowered z-index
           el.style.removeProperty("display");
           el.style.removeProperty("pointer-events");
+          el.style.removeProperty("visibility");
+          el.style.removeProperty("opacity");
           el.style.setProperty("z-index", "900", "important");
         }
       });
