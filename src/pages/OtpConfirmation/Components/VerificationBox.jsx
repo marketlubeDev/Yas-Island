@@ -130,17 +130,23 @@ export default function VerificationBox({ email }) {
 
   const handleConfirmEmail = async () => {
     if (email === "") {
-      toast.error(t("toastMessages.invalidEmail"));
+      toast.error(t("toastMessages.invalidEmail"), {
+        position: "top-center",
+      });
       navigate("/email-verification");
       return;
     }
     if (isExpired) {
-      toast.error(t("toastMessages.otpExpired"));
+      toast.error(t("toastMessages.otpExpired"), {
+        position: "top-center",
+      });
       return;
     }
     const otpString = otp.join("");
     if (otpString.length !== 6) {
-      toast.error(t("toastMessages.invalidOTP"));
+      toast.error(t("toastMessages.invalidOTP"), {
+        position: "top-center",
+      });
       return;
     }
     const isValid = await validateOTP(otpString, OTP);
@@ -150,7 +156,9 @@ export default function VerificationBox({ email }) {
       dispatch(setCheckoutEmail(email));
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
-      toast.error(t("toastMessages.otpIncorrect"), { position: "top-center" });
+      toast.error(t("toastMessages.otpIncorrect"), {
+        position: "top-center",
+      });
     }
   };
 

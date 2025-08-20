@@ -184,7 +184,10 @@ function BookingModalMbl({
         sanitizeText(
           error?.response?.data?.message ||
             t("toastMessages.somethingWentWrong")
-        )
+        ),
+        {
+          position: "top-center",
+        }
       );
       onBack();
     } finally {

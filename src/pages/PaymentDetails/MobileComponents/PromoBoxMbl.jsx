@@ -15,7 +15,9 @@ function PromoBoxMbl() {
       if (!code) {
         setStatus("invalid");
         setLoading(false);
-        toast.error(t("toastMessages.invalidPromoCode"));
+        toast.error(t("toastMessages.invalidPromoCode"), {
+          position: "top-center",
+        });
         return;
       }
       const response = await validatePromocode(code);
@@ -23,15 +25,22 @@ function PromoBoxMbl() {
         setStatus("invalid");
         toast.error(
           response?.data?.coupondetails?.error?.text ||
-            t("toastMessages.invalidPromoCode")
+            t("toastMessages.invalidPromoCode"),
+          {
+            position: "top-center",
+          }
         );
       } else {
         setStatus("valid");
-        toast.success(t("orderSummary.promoCodeApplied"));
+        toast.success(t("orderSummary.promoCodeApplied"), {
+          position: "top-center",
+        });
       }
     } catch (e) {
       setStatus("invalid");
-      toast.error(t("toastMessages.invalidPromoCode"));
+      toast.error(t("toastMessages.invalidPromoCode"), {
+        position: "top-center",
+      });
     } finally {
       setLoading(false);
     }

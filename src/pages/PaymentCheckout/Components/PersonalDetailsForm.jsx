@@ -426,7 +426,9 @@ export default function PersonalDetailsForm({
       setIsTermsModalOpen(true);
     } catch (error) {
       console.error("Error fetching terms and conditions:", error);
-      toast.error(t("toastMessages.failedToLoadTermsAndConditions"));
+      toast.error(t("toastMessages.failedToLoadTermsAndConditions"), {
+        position: "top-center",
+      });
     }
   };
 
