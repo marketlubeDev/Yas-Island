@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 12px 0;
+  padding: 8px 0; // small buffer so first card never touches top
   // background-color: white;
   background-color: var(--color-base-mobile-product-page-bg);
   flex: 1;
@@ -209,30 +209,44 @@
   position: fixed;
   left: 0;
   width: 100%;
-  z-index: 100;
 }
 
 .mobile-header {
   top: 0;
-  height: 56px; // adjust as needed
+  height: var(--mobile-header-height, 64px); // reflect computed height
+  z-index: 300; // ensure header and its dropdown sit above topnav
 }
 
 .mobile-topnav {
-  top: 56px; // adjust based on header height
-  height: 48px; // adjust as needed
+  top: var(--mobile-header-height, 56px); // align directly under header
+  height: auto; // allow natural height
+  z-index: 200; // sits below header dropdowns
 }
 
 .mobile-bottomnav {
   bottom: 0;
   height: 56px; // adjust as needed
+  z-index: 150;
 }
 
 .scroll-section {
   flex: 1 1 auto;
-  // margin-top: 104px; // 56px header + 48px topnav
+  margin-top: var(--mobile-content-top-offset, 104px); // JS sets exact offset
   margin-bottom: 56px; // bottomnav height
+  padding-top: 0; // handled by sticky spacer below for persistent gap
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  &::before {
+    content: "";
+    display: block;
+    height: 16px; // clearer persistent gap below header/filters
+    position: sticky;
+    top: 0; // sticks to top of scroll container (which starts below fixed header)
+    background: var(--color-base-mobile-product-page-bg);
+    z-index: 2;
+    pointer-events: none;
+  }
 
   &::-webkit-scrollbar {
     width: 8px;

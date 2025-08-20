@@ -443,6 +443,13 @@ export default function PersonalDetailsForm({
     nationality: false,
   });
 
+  // Ensure default nationality is UAE if missing
+  useEffect(() => {
+    if (!checkout.nationality || checkout.nationality.trim() === "") {
+      dispatch(updatePersonalDetails({ nationality: "AE" }));
+    }
+  }, [checkout.nationality, dispatch]);
+
   const validateFieldsForPlaceholders = () => {
     const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
     const next = {
@@ -518,7 +525,7 @@ export default function PersonalDetailsForm({
         />
         <FormSelectWithSearch
           label={t("payment.personalDetails.nationality")}
-          value={checkout.nationality || ""}
+          value={checkout.nationality || "AE"}
           onChange={handleInputChange("nationality")}
           options={ALL_COUNTRIES}
           hasError={fieldErrors.nationality}
@@ -600,6 +607,17 @@ export default function PersonalDetailsForm({
                 // avoid label click triggering checkbox toggle before click fires
                 e.preventDefault();
                 e.stopPropagation();
+              }}
+              onTouchStart={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === " " || e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleTermsClick(e);
+                }
               }}
               onClick={handleTermsClick}
             >

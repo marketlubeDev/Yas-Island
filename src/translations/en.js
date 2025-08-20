@@ -44,7 +44,7 @@ export const en = {
     zoomMode: "Zoom mode",
     continue: "Continue",
     close: "close",
-    invertColors: "Invert Colors",
+    invertColors: "Invert",
     highContrast: "High Contrast",
     default: "Default",
   },

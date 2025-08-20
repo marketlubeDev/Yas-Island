@@ -144,72 +144,68 @@ function AccessibilityPopUpMbl() {
           {getSwipeText()}
         </div>
         <div
-          className="color-mode-dots"
+          className="mode-switch"
           style={{
-            display: "flex",
-            gap: "8px",
-            marginTop: "8px",
-            justifyContent: "center",
+            display: "inline-flex",
             alignItems: "center",
+            gap: "6px",
+            marginTop: "10px",
+            padding: "4px 6px",
+            borderRadius: "999px",
+            border:
+              "1px solid var(--color-base-accessibility-modal-card-border)",
+            backgroundColor: "var(--color-base-product-card-card-item-bg)",
           }}
         >
-          {[
-            { mode: "normal", label: t("accessibility.default") || "Default" },
-            {
-              mode: "invert",
-              label: t("accessibility.invertColors") || "Invert Colors",
-            },
-          ].map((option) => (
-            <div
-              key={option.mode}
-              onClick={() => {
-                const newMode = option.mode === "normal" ? "normal" : "invert";
-                dispatch(setColorMode(newMode));
-              }}
-              style={{
-                width: "10px",
-                height: "10px",
-                borderRadius: "50%",
-                backgroundColor:
-                  (option.mode === "normal" && !isDarkMode) ||
-                  (option.mode === "invert" && isDarkMode)
-                    ? "var(--color-base-accessibility-modal-btn-text)"
-                    : "#e0e0e0",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                transform:
-                  (option.mode === "normal" && !isDarkMode) ||
-                  (option.mode === "invert" && isDarkMode)
-                    ? "scale(1.2)"
-                    : "scale(1)",
-                boxShadow:
-                  (option.mode === "normal" && !isDarkMode) ||
-                  (option.mode === "invert" && isDarkMode)
-                    ? "0 2px 8px rgba(108, 99, 255, 0.3)"
-                    : "none",
-              }}
-              title={option.label}
-            />
-          ))}
-        </div>
-        <div
-          style={{
-            marginTop: "6px",
-            textAlign: "center",
-            fontSize: "10px",
-            color: "var(--color-base-accessibility-modal-btn-text)",
-            fontWeight: "600",
-            padding: "2px 6px",
-            backgroundColor:
-              "var(--color-base-product-card-card-item-bg) !important",
-            borderRadius: "8px",
-            display: "inline-block",
-            margin: "6px auto 0",
-          }}
-        >
-          {isDarkMode
-            ? t("accessibility.invertColors") || "Invert Colors"
-            : t("accessibility.default") || "Default"}
+          <button
+            type="button"
+            className={`switch-option ${!isDarkMode ? "active" : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(setColorMode("normal"));
+            }}
+            style={{
+              border: "none",
+              padding: "4px 10px",
+              borderRadius: "999px",
+              cursor: "pointer",
+              fontSize: "10px",
+              fontWeight: 600,
+              backgroundColor: !isDarkMode
+                ? "var(--color-base-accessibility-modal-btn-text)"
+                : "transparent",
+              color: !isDarkMode
+                ? "#fff"
+                : "var(--color-base-accessibility-modal-btn-text)",
+            }}
+          >
+            {t("accessibility.default") || "Default"}
+          </button>
+          <span className="vertical-divider-card" />
+          <button
+            type="button"
+            className={`switch-option ${isDarkMode ? "active" : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(setColorMode("invert"));
+            }}
+            style={{
+              border: "none",
+              padding: "4px 10px",
+              borderRadius: "999px",
+              cursor: "pointer",
+              fontSize: "10px",
+              fontWeight: 600,
+              backgroundColor: isDarkMode
+                ? "var(--color-base-accessibility-modal-btn-text)"
+                : "transparent",
+              color: isDarkMode
+                ? "#fff"
+                : "var(--color-base-accessibility-modal-btn-text)",
+            }}
+          >
+            {t("accessibility.invertColors") || "Invert Colors"}
+          </button>
         </div>
       </div>
       <div

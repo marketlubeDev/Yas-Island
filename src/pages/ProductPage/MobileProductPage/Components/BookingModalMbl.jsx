@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import closeIcon from "../../../../assets/icons/close.svg"; // Use your close icon
 import leftIcon from "../../../../assets/icons/left.svg";
+import leftIconDark from "../../../../assets/icons/invertLeft.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
@@ -41,6 +42,7 @@ function BookingModalMbl({
   const navigate = useNavigate();
 
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
+  const calendarArrowSrc = isDarkMode ? leftIconDark : leftIcon;
   const { t, i18n } = useTranslation();
   const { language } = useLanguage();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -835,7 +837,7 @@ function BookingModalMbl({
                   ) : (
                     <button onClick={handlePrevMonth}>
                       <img
-                        src={leftIcon}
+                        src={calendarArrowSrc}
                         alt="Previous"
                         style={{
                           transform: isRTL ? "scaleX(-1)" : "none",
@@ -848,7 +850,7 @@ function BookingModalMbl({
                   </span>
                   <button onClick={handleNextMonth}>
                     <img
-                      src={leftIcon}
+                      src={calendarArrowSrc}
                       alt="Next"
                       className="booking-modal__calendar-arrow--rotated"
                       style={{

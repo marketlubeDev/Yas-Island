@@ -494,7 +494,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-mobile-header-lang-dropdown-border",
-      isDarkMode ? "#483686" : "#e3dff1"
+      isDarkMode ? "#FFAD33" : "#e3dff1"
     );
     document.documentElement.style.setProperty(
       "--color-base-mobile-header-lang-dropdown-item-text",

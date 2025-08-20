@@ -77,62 +77,76 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             </div>
             <p>{t("accessibility.colorBlindness")}</p>
             <div
-              className="mode-dots"
+              className="mode-switch"
               style={{
-                display: "flex",
-                gap: "10px",
-                marginTop: "15px",
-                justifyContent: "center",
+                display: "inline-flex",
                 alignItems: "center",
+                gap: "8px",
+                marginTop: "16px",
+                padding: "6px 8px",
+                borderRadius: "999px",
+                border:
+                  "1px solid var(--color-base-accessibility-modal-card-border)",
+                backgroundColor: "var(--color-base-product-card-card-item-bg)",
               }}
             >
-              {colorModeOptions.map((option) => (
-                <div
-                  key={option.mode}
-                  onClick={() => handleColorModeClick(option.mode)}
-                  style={{
-                    width: "12px",
-                    height: "12px",
-                    borderRadius: "50%",
-                    backgroundColor:
-                      getCurrentColorMode() === option.mode
-                        ? "var(--color-base-accessibility-modal-btn-text)"
-                        : "#e0e0e0",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    transform:
-                      getCurrentColorMode() === option.mode
-                        ? "scale(1.2)"
-                        : "scale(1)",
-                    boxShadow:
-                      getCurrentColorMode() === option.mode
-                        ? "0 2px 8px rgba(108, 99, 255, 0.3)"
-                        : "none",
-                  }}
-                  title={option.label}
-                />
-              ))}
-            </div>
-            <div
-              style={{
-                marginTop: "8px",
-                textAlign: "center",
-                fontSize: "12px",
-                color: "var(--color-base-accessibility-modal-btn-text)",
-                fontWeight: "600",
-                padding: "2px 8px",
-                backgroundColor:
-                  "var(--color-base-product-card-card-item-bg) !important",
-                borderRadius: "10px",
-                display: "inline-block",
-                margin: "8px auto 0",
-              }}
-            >
-              {
-                colorModeOptions.find(
-                  (option) => option.mode === getCurrentColorMode()
-                )?.label
-              }
+              <button
+                type="button"
+                className={`switch-option ${
+                  getCurrentColorMode() === "normal" ? "active" : ""
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleColorModeClick("normal");
+                }}
+                style={{
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  backgroundColor:
+                    getCurrentColorMode() === "normal"
+                      ? "var(--color-base-accessibility-modal-btn-text)"
+                      : "transparent",
+                  color:
+                    getCurrentColorMode() === "normal"
+                      ? "#fff"
+                      : "var(--color-base-accessibility-modal-btn-text)",
+                }}
+              >
+                {t("accessibility.default")}
+              </button>
+              <span className="vertical-divider-card" />
+              <button
+                type="button"
+                className={`switch-option ${
+                  getCurrentColorMode() === "invert" ? "active" : ""
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleColorModeClick("invert");
+                }}
+                style={{
+                  border: "none",
+                  padding: "6px 12px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  backgroundColor:
+                    getCurrentColorMode() === "invert"
+                      ? "var(--color-base-accessibility-modal-btn-text)"
+                      : "transparent",
+                  color:
+                    getCurrentColorMode() === "invert"
+                      ? "#fff"
+                      : "var(--color-base-accessibility-modal-btn-text)",
+                }}
+              >
+                {t("accessibility.invertColors")}
+              </button>
             </div>
           </div>
 

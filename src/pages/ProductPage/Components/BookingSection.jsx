@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import LeftArrow from "../../../assets/icons/left.svg";
 import RightArrow from "../../../assets/icons/right.svg";
+import InvertLeftArrow from "../../../assets/icons/invertLeft.svg";
+import InvertRightArrow from "../../../assets/icons/invertedright.svg";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
@@ -677,7 +679,7 @@ export default function BookingSection({ product, onBack }) {
                   style={isAtCurrentMonth ? { visibility: "hidden" } : {}}
                 >
                   <img
-                    src={LeftArrow}
+                    src={isDarkMode ? InvertLeftArrow : LeftArrow}
                     alt="Left Arrow"
                     className={currentLanguage === "ar" ? "rtl-arrow" : ""}
                   />
@@ -685,7 +687,7 @@ export default function BookingSection({ product, onBack }) {
                 <h3>{formatMonthYear(currentDate)}</h3>
                 <button onClick={handleNextMonth}>
                   <img
-                    src={RightArrow}
+                    src={isDarkMode ? InvertRightArrow : RightArrow}
                     alt="Right Arrow"
                     className={currentLanguage === "ar" ? "rtl-arrow" : ""}
                   />
