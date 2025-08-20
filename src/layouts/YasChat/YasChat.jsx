@@ -317,7 +317,7 @@ export default function YasChat() {
         /* Close button base (hidden by default; shown via MQ + open state) */
         #yas-chat-close-btn {
           position: fixed;
-          z-index: 2147483647;
+          z-index: 900;
           bottom: 24px;
           left: 50%;
           transform: translateX(-50%);
@@ -332,6 +332,51 @@ export default function YasChat() {
           justify-content: center;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           cursor: pointer;
+        }
+
+        /* Ensure chat stays below app drawers/modals */
+        .spr-chat__box,
+        .spr-chat__notification,
+        .spr-chat__overlay,
+        .spr-chat__backdrop,
+        .spr-chat__launcher,
+        [class*="spr-chat__overlay"],
+        [class*="spr-chat__container"] {
+          z-index: 900 !important;
+        }
+
+        /* Completely hide chat on Payment Details page */
+        body.page-payment-details .spr-chat__launcher,
+        body.page-payment-details [class*="spr-chat__launcher"],
+        body.page-payment-details .spr-chat__launcher-container,
+        body.page-payment-details [class*="spr-chat__launcher-container"],
+        body.page-payment-details .ezg1tqb0,
+        body.page-payment-details .css-15gnlaj,
+        body.page-payment-details .spr-chat__box,
+        body.page-payment-details .spr-chat__notification,
+        body.page-payment-details .spr-chat__overlay,
+        body.page-payment-details .spr-chat__backdrop {
+          display: none !important;
+          pointer-events: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+        }
+
+        /* Completely hide chat on Payment Checkout/Email Verification page */
+        body.page-payment-checkout .spr-chat__launcher,
+        body.page-payment-checkout [class*="spr-chat__launcher"],
+        body.page-payment-checkout .spr-chat__launcher-container,
+        body.page-payment-checkout [class*="spr-chat__launcher-container"],
+        body.page-payment-checkout .ezg1tqb0,
+        body.page-payment-checkout .css-15gnlaj,
+        body.page-payment-checkout .spr-chat__box,
+        body.page-payment-checkout .spr-chat__notification,
+        body.page-payment-checkout .spr-chat__overlay,
+        body.page-payment-checkout .spr-chat__backdrop {
+          display: none !important;
+          pointer-events: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
         }
 
         /* When chat is open on target devices: hide launcher, show close button */
@@ -383,7 +428,35 @@ export default function YasChat() {
       document.body.classList.toggle("yas-chat-open", isIpadTarget() && isOpen);
     };
 
-    const observer = new MutationObserver(() => updateOpenState());
+    const enforcePageOverrides = () => {
+      const isPaymentPage =
+        document.body.classList.contains("page-payment-details") ||
+        document.body.classList.contains("page-payment-checkout");
+      const targets = document.querySelectorAll(
+        '.spr-chat__launcher, [class*="spr-chat__launcher"], .spr-chat__launcher-container, [class*="spr-chat__launcher-container"], .ezg1tqb0, .css-15gnlaj, .spr-chat__box, .spr-chat__notification, .spr-chat__overlay, .spr-chat__backdrop, [class^="spr-chat"], [class*=" spr-chat"]'
+      );
+      targets.forEach((el) => {
+        if (!(el && el.style)) return;
+        if (isPaymentPage) {
+          el.style.setProperty("display", "none", "important");
+          el.style.setProperty("pointer-events", "none", "important");
+          el.style.setProperty("visibility", "hidden", "important");
+          el.style.setProperty("opacity", "0", "important");
+        } else {
+          // Restore interactivity but keep lowered z-index
+          el.style.removeProperty("display");
+          el.style.removeProperty("pointer-events");
+          el.style.removeProperty("visibility");
+          el.style.removeProperty("opacity");
+          el.style.setProperty("z-index", "900", "important");
+        }
+      });
+    };
+
+    const observer = new MutationObserver(() => {
+      updateOpenState();
+      enforcePageOverrides();
+    });
     observer.observe(document.body, {
       subtree: true,
       childList: true,
@@ -394,7 +467,10 @@ export default function YasChat() {
     window.addEventListener("orientationchange", updateOpenState);
 
     // Initial state evaluation (after small delay to allow widget to render if already loaded)
-    setTimeout(updateOpenState, 300);
+    setTimeout(() => {
+      updateOpenState();
+      enforcePageOverrides();
+    }, 300);
 
     return () => {
       observer.disconnect();

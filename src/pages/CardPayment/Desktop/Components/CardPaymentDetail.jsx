@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
 import { useSelector } from "react-redux";
@@ -12,9 +14,10 @@ const spinnerStyle = `
   }
 `;
 
-export default function CardPaymentDetail({ orderData }) {
+export default function CardPaymentDetail({ orderData, onBack }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [failureMessage, setFailureMessage] = useState("");
@@ -129,16 +132,17 @@ export default function CardPaymentDetail({ orderData }) {
     }
   }, [orderData, paymentStatus, retryCounter]);
 
+  // Note: We intentionally do not show fallback controls by default
+  // to avoid confusing users before any payment action occurs.
+
   const handleRetry = () => {
-    setFailureMessage("");
-    setPaymentStatus("loading");
-    setIsIframeLoading(true);
-    // Remove any lingering form before retry
-    const existingForm = document.getElementById("payfort-form");
-    if (existingForm && document.body.contains(existingForm)) {
-      document.body.removeChild(existingForm);
-    }
-    setRetryCounter((prev) => prev + 1);
+    toast.error(
+      t("payment.cardPayment.errorToast", {
+        defaultValue: "Payment processing failed. Please try again.",
+      }),
+      { position: "top-center" }
+    );
+    navigate("/");
   };
 
   return (
@@ -154,6 +158,7 @@ export default function CardPaymentDetail({ orderData }) {
             minHeight: "450px",
             height: "350px",
             position: "relative",
+            overflow: "hidden",
           }}
         >
           {/* <Payfort /> */}
@@ -195,59 +200,131 @@ export default function CardPaymentDetail({ orderData }) {
               borderRadius: "8px",
               boxShadow: "none",
               background: "transparent",
-              opacity: isIframeLoading ? 0 : 1,
+              opacity:
+                paymentStatus === "failed" ? 0.15 : isIframeLoading ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}
             key={retryCounter}
             onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
           />
-        </div>
 
-        {paymentStatus === "failed" && (
-          <div
-            style={{
-              marginTop: "1rem",
-              padding: "1rem",
-              borderRadius: "8px",
-              background: "#fff5f5",
-              border: "1px solid #ffd6d6",
-              color: "#c53030",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "1rem",
-            }}
-          >
-            <div style={{ flex: 1 }}>
-              <strong style={{ display: "block", marginBottom: ".25rem" }}>
-                {t("payment.cardPayment.errorTitle", {
-                  defaultValue: "Payment was rejected",
-                })}
-              </strong>
-              <span>
-                {failureMessage ||
-                  t("payment.cardPayment.errorMessage", {
-                    defaultValue: "Please review your details and try again.",
-                  })}
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={handleRetry}
+          {paymentStatus === "failed" && (
+            <div
+              role="alert"
+              aria-live="assertive"
               style={{
-                background: "#3182ce",
-                color: "#fff",
-                border: "none",
-                borderRadius: "6px",
-                padding: ".6rem 1rem",
-                cursor: "pointer",
-                whiteSpace: "nowrap",
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "16px",
+                background:
+                  "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
+                zIndex: 2,
+                backdropFilter: "blur(2px)",
               }}
             >
-              {t("payment.cardPayment.retry", { defaultValue: "Retry" })}
-            </button>
-          </div>
-        )}
+              <div
+                style={{
+                  width: "100%",
+                  maxWidth: 560,
+                  borderRadius: 12,
+                  background: "#fff",
+                  border: "1px solid #ffd6d6",
+                  boxShadow: "0 10px 24px rgba(0,0,0,.08)",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    padding: "12px 16px",
+                    background: "#fff5f5",
+                    borderBottom: "1px solid #ffd6d6",
+                  }}
+                >
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 9999,
+                      background: "#ffe3e3",
+                      display: "grid",
+                      placeItems: "center",
+                      color: "#c53030",
+                      fontWeight: 800,
+                      fontSize: 18,
+                    }}
+                  >
+                    !
+                  </div>
+                  <div style={{ fontWeight: 700, color: "#1a1a1a" }}>
+                    {t("payment.cardPayment.errorTitle", {
+                      defaultValue: "Payment was rejected",
+                    })}
+                  </div>
+                </div>
+                <div style={{ padding: "14px 16px", color: "#4a5568" }}>
+                  {failureMessage ||
+                    t("payment.cardPayment.errorMessage", {
+                      defaultValue:
+                        "We couldn’t complete your payment. Please review your details and try again.",
+                    })}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 8,
+                    justifyContent: "flex-end",
+                    padding: "12px 16px",
+                    background: "#fafafa",
+                    borderTop: "1px solid #eee",
+                  }}
+                >
+                  {typeof onBack === "function" && (
+                    <button
+                      type="button"
+                      onClick={onBack}
+                      style={{
+                        background: "#fff",
+                        color: "#1a1a1a",
+                        border: "1px solid #ddd",
+                        borderRadius: 8,
+                        padding: ".55rem 1rem",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {t("payment.cardPayment.backToDetails", {
+                        defaultValue: "Back to details",
+                      })}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={handleRetry}
+                    style={{
+                      background: "#3182ce",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: 8,
+                      padding: ".55rem 1rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {t("payment.cardPayment.retry", { defaultValue: "Retry" })}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Fallback controls removed to prevent showing by default. */}
       </div>
     </div>
   );

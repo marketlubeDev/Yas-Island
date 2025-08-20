@@ -83,6 +83,8 @@ const FormSelectWithSearch = ({
   onClearError,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { t } = useTranslation();
   const selectedOption =
     value && value !== ""
       ? options.find((option) => option.value === value)
@@ -92,6 +94,18 @@ const FormSelectWithSearch = ({
     onChange(option.value);
     setIsOpen(false);
   };
+
+  const filteredOptions = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return options;
+    return options.filter((option) => {
+      return (
+        option.label.toLowerCase().includes(query) ||
+        String(option.value).toLowerCase().includes(query) ||
+        String(option.code).toLowerCase().includes(query)
+      );
+    });
+  }, [options, searchTerm]);
 
   return (
     <label
@@ -187,51 +201,99 @@ const FormSelectWithSearch = ({
               borderRadius: "4px",
               boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
               zIndex: 9999,
-              maxHeight: "200px",
-              overflowY: "auto",
+              maxHeight: "260px",
+              overflow: "hidden",
             }}
           >
-            {options.map((option) => (
-              <div
-                key={option.value}
-                className="custom-select-option"
+            <div
+              style={{
+                padding: "8px 8px 4px 8px",
+                borderBottom: "1px solid var(--ip-bodr-btm)",
+                backgroundColor: "var(--color-base-bg)",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                autoFocus
+                placeholder={
+                  typeof t === "function"
+                    ? t("payment.searchCountries", {
+                        defaultValue: "Search countries...",
+                      })
+                    : "Search countries..."
+                }
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  backgroundColor:
-                    option.value === value
-                      ? "var(--color-base-hover)"
-                      : "transparent",
+                  width: "100%",
+                  height: "36px",
+                  padding: "0 10px",
+                  border: "1px solid var(--ip-bodr-btm)",
+                  borderRadius: "4px",
+                  backgroundColor: "transparent",
                   color: "var(--color-email-form-label)",
                 }}
-                onClick={() => {
-                  handleSelect(option);
-                  if (onClearError) onClearError();
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor =
-                    "var(--color-base-hover)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor =
-                    option.value === value
-                      ? "var(--color-base-hover)"
-                      : "transparent";
-                }}
-              >
-                <ReactCountryFlag
-                  countryCode={option.code}
-                  svg
-                  style={{ width: "20px", height: "15px" }}
-                />
-                <span style={{ color: "var(--color-email-form-label)" }}>
-                  {option.label}
-                </span>
-              </div>
-            ))}
+              />
+            </div>
+            <div style={{ maxHeight: "220px", overflowY: "auto" }}>
+              {filteredOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className="custom-select-option"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                    backgroundColor:
+                      option.value === value
+                        ? "var(--color-base-hover)"
+                        : "transparent",
+                    color: "var(--color-email-form-label)",
+                  }}
+                  onClick={() => {
+                    handleSelect(option);
+                    if (onClearError) onClearError();
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      "var(--color-base-hover)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      option.value === value
+                        ? "var(--color-base-hover)"
+                        : "transparent";
+                  }}
+                >
+                  <ReactCountryFlag
+                    countryCode={option.code}
+                    svg
+                    style={{ width: "20px", height: "15px" }}
+                  />
+                  <span style={{ color: "var(--color-email-form-label)" }}>
+                    {option.label}
+                  </span>
+                </div>
+              ))}
+              {filteredOptions.length === 0 && (
+                <div
+                  style={{
+                    padding: "10px 12px",
+                    color: "var(--color-base-text-secondary)",
+                  }}
+                >
+                  {(t && t("common.noResults")) ||
+                    t("payment.noResults", { defaultValue: "No results" }) ||
+                    "No results"}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

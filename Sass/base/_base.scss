@@ -56,3 +56,25 @@ select:-webkit-autofill:focus {
   box-shadow: 0 0 0px 1000px var(--color-base-bg) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* Hide all scrollbars globally while keeping content scrollable */
+html,
+body,
+* {
+  /* Firefox */
+  scrollbar-width: none !important;
+  /* IE/Edge legacy */
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-corner {
+  display: none !important;
+  background: transparent !important;
+}

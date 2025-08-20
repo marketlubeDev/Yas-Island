@@ -192,6 +192,26 @@
     font-weight: 500;
     line-height: normal;
     margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  // Center align the payment title on mobile devices
+  @include respond(tablets) {
+    .payment-title {
+      text-align: center;
+    }
+  }
+
+  @include respond(phone) {
+    .payment-title {
+      text-align: center;
+    }
+  }
+
+  @include respond(smallPhone) {
+    .payment-title {
+      text-align: center;
+    }
   }
 
   .custom-payfort-container {

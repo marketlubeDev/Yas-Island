@@ -213,8 +213,8 @@
 
 .mobile-header {
   top: 0;
-  height: var(--mobile-header-height, 64px); // reflect computed height
-  z-index: 300; // ensure header and its dropdown sit above topnav
+  height: var(--mobile-header-height, 64px);
+  z-index: 300;
 }
 
 .mobile-topnav {

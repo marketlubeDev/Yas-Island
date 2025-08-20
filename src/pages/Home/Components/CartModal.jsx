@@ -15,7 +15,6 @@ import useGetProductList from "../../../apiHooks/product/product";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
-import { basketService } from "../../../serivces/basket/checkBasket";
 
 // Helper function to check if a date is expired
 const isDateExpired = (validToDate) => {
@@ -432,6 +431,7 @@ const CartModal = ({ isOpen, onClose }) => {
       placement={isRTL ? "left" : "right"}
       onClose={onClose}
       open={isOpen}
+      zIndex={1200}
       width={isBigTablets ? "60%" : isDesktop ? "45%" : "35%"}
       className="cart-drawer"
       closeIcon={null}
@@ -601,9 +601,6 @@ const CartModal = ({ isOpen, onClose }) => {
               </div>
 
               <div className="cart-actions">
-                {/* <button className="save-cart-btn" onClick={handleSaveCart}>
-                  {t("cart.saveCartAndPayLater")}
-                </button> */}
                 <button
                   className="checkout-btn"
                   onClick={() => handleBasketCheck(handleCheckout)}

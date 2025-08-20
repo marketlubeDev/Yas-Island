@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import InputFieldsMbl from "./MobileComponents/InputFieldsMbl";
@@ -32,6 +32,17 @@ function PaymentDetailsMobile() {
   const dispatch = useDispatch();
   const { isCheckout } = useLocation().state || {};
   const { mutate: createOrder, isPending } = usePayment();
+  // Hide Yas Chat on payment details (mobile) to avoid intercepting taps
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.body.classList.add("page-payment-details");
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.classList.remove("page-payment-details");
+      }
+    };
+  }, []);
 
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
@@ -168,10 +179,9 @@ function PaymentDetailsMobile() {
     createOrder(data, {
       onSuccess: (responseData) => {
         dispatch(setOrderData(responseData));
-        navigate("/card-payment");
+        navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {
-        console.log(error, "error>>");
         toast.error(
           // error?.response?.data?.message ||
           t("toastMessages.somethingWentWrong"),
