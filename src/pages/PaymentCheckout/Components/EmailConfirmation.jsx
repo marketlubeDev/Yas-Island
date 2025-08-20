@@ -25,7 +25,9 @@ export default function EmailConfirmation() {
     verification(emailValue, {
       onSuccess: (res) => {
         dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
-        navigate("/otp-confirmation");
+        navigate("/otp-confirmation", {
+          state: { fromEmailVerification: true },
+        });
       },
       onError: (error) => {
         console.log(error, "error>>");
@@ -52,7 +54,7 @@ export default function EmailConfirmation() {
           onChange={(e) => setEmailValue(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !isPending) {
-              handleConfirmEmail(); 
+              handleConfirmEmail();
             }
           }}
         />

@@ -56,26 +56,24 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Global scrollbar styling (applies to all scrollable containers) */
+/* Hide all scrollbars globally while keeping content scrollable */
+html,
+body,
 * {
   /* Firefox */
-  scrollbar-width: thin;
-  /* thumb color | track color (Firefox doesn't support gradients) */
-  scrollbar-color: #68abe7 transparent;
+  scrollbar-width: none !important;
+  /* IE/Edge legacy */
+  -ms-overflow-style: none !important;
 }
 
 *::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-*::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-corner {
+  display: none !important;
   background: transparent !important;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--color-base-product-card-scroll-bar) !important;
-  border-radius: 4px !important;
-  /* Using border for separation; some browsers may ignore gradient borders */
-  border: 2px solid var(--color-base-product-card-scroll-bar-border) !important;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import InputFieldsMbl from "./MobileComponents/InputFieldsMbl";
@@ -32,6 +32,17 @@ function PaymentDetailsMobile() {
   const dispatch = useDispatch();
   const { isCheckout } = useLocation().state || {};
   const { mutate: createOrder, isPending } = usePayment();
+  // Hide Yas Chat on payment details (mobile) to avoid intercepting taps
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.body.classList.add("page-payment-details");
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.classList.remove("page-payment-details");
+      }
+    };
+  }, []);
 
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
@@ -171,7 +182,6 @@ function PaymentDetailsMobile() {
         navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {
-        console.log(error, "error>>");
         toast.error(
           // error?.response?.data?.message ||
           t("toastMessages.somethingWentWrong"),
@@ -236,10 +246,7 @@ function PaymentDetailsMobile() {
     <>
       <MobileHeader />
       <div className="email-checkout__overlay">
-        <PaymentHeaderMbl
-          step={2}
-          onBack={() => navigate("/otp-confirmation")}
-        />
+        <PaymentHeaderMbl step={2} />
         <div className="email-checkout__container">
           <div className="email-checkout__form-container">
             <form
