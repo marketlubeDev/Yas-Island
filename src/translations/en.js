@@ -351,4 +351,7 @@ export const en = {
   mobile: {
     swipeToChange: "Swipe To Change",
   },
+  footer: {
+    copyright: "© {{year}} Yas Island. All rights reserved.",
+  },
 };

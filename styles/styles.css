@@ -337,7 +337,6 @@ html {
 }
 
 #root,
-.home,
 .main {
   min-height: 100vh;
   background-color: var(--color-base-bg);
@@ -356,6 +355,30 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--color-base-bg) inset;
   box-shadow: 0 0 0px 1000px var(--color-base-bg) inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Global scrollbar styling (applies to all scrollable containers) */
+* {
+  /* Firefox */
+  scrollbar-width: thin;
+  /* thumb color | track color (Firefox doesn't support gradients) */
+  scrollbar-color: #68abe7 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar) !important;
+  border-radius: 4px !important;
+  /* Using border for separation; some browsers may ignore gradient borders */
+  border: 2px solid var(--color-base-product-card-scroll-bar-border) !important;
 }
 
 .normal-title-txt {
@@ -642,6 +665,10 @@ select:-webkit-autofill:focus {
 .ar-side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
+  top: -39.5%;
+  left: -10.5%;
+  width: 30px;
+  height: 25px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-left-radius: 15px;
   box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
@@ -672,6 +699,26 @@ select:-webkit-autofill:focus {
 html[dir=rtl] .side-bar-item-hidden-bg {
   right: auto;
   left: -15%;
+}
+
+.footer {
+  background: var(--color-base-bg);
+  color: var(--color-base-text-secondary);
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__text {
+  font-size: 12px;
 }
 
 .btn {
@@ -771,6 +818,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border-radius: 5rem;
   color: var(--color-base-text);
   width: 23rem;
+}
+
+.home {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .landing-page {
@@ -4091,7 +4144,7 @@ html[lang=ar] .guest-label {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
-  min-height: 88vh;
+  min-height: 84.7vh;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
@@ -4385,6 +4438,14 @@ html[lang=ar] .guest-label {
     border-radius: 1.25rem;
     box-shadow: none;
   }
+  .payment-checkout__contentnew .order-summary-container {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .payment-checkout__contentnew .payment-container {
+    order: 2;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .payment-checkout__contentnew {
@@ -4396,6 +4457,14 @@ html[lang=ar] .guest-label {
     padding: 20px;
     border-radius: 1rem;
     box-shadow: none;
+  }
+  .payment-checkout__contentnew .order-summary-container {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .payment-checkout__contentnew .payment-container {
+    order: 2;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
@@ -4409,6 +4478,14 @@ html[lang=ar] .guest-label {
     border-radius: 0.75rem;
     box-shadow: none;
   }
+  .payment-checkout__contentnew .order-summary-container {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 0.875rem;
+  }
+  .payment-checkout__contentnew .payment-container {
+    order: 2;
+  }
 }
 @media only screen and (max-width: 575.98px) {
   .payment-checkout__contentnew {
@@ -4420,6 +4497,14 @@ html[lang=ar] .guest-label {
     padding: 0;
     border-radius: 0.5rem;
     box-shadow: none;
+  }
+  .payment-checkout__contentnew .order-summary-container {
+    order: 1;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+  .payment-checkout__contentnew .payment-container {
+    order: 2;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -6203,6 +6288,22 @@ html[dir=rtl] .back-button {
   font-weight: 500;
   line-height: normal;
   margin-bottom: 2rem;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-container .payment-title {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .payment-container .payment-title {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .payment-container .payment-title {
+    text-align: center;
+  }
 }
 .payment-container .custom-payfort-container {
   width: 100%;
@@ -7235,10 +7336,16 @@ html[dir=rtl] .back-button {
 .scroll-section {
   flex: 1 1 auto;
   margin-top: var(--mobile-content-top-offset, 104px);
-  margin-bottom: 56px;
+  margin-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   padding-top: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+.scroll-section .footer {
+  margin: 8px 8px calc(72px + env(safe-area-inset-bottom, 0px));
+  border-radius: 8px;
+  border: 1px solid var(--separator-color);
+  background: var(--color-base-bg);
 }
 .scroll-section::before {
   content: "";
@@ -7420,7 +7527,7 @@ html[dir=rtl] .back-button {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: var(--color-base-mobile-top-bg);
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
@@ -7429,6 +7536,15 @@ html[dir=rtl] .back-button {
   min-height: 65px;
   flex-shrink: 0;
   text-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  gap: 0;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.mobile-top::-webkit-scrollbar {
+  display: none;
 }
 @media only screen and (max-width: 380px) {
   .mobile-top {
@@ -7437,12 +7553,12 @@ html[dir=rtl] .back-button {
   }
 }
 .mobile-top__item {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 0 0 0;
+  padding: 12px 10px 0 10px;
   color: var(--color-base-mobile-top-item-text);
   font-size: 14px;
   font-weight: 500;
@@ -7451,6 +7567,8 @@ html[dir=rtl] .back-button {
   background: transparent;
   border: none;
   transition: color 0.2s;
+  scroll-snap-align: center;
+  min-width: 72px;
 }
 .mobile-top__item span {
   opacity: 0.4;
