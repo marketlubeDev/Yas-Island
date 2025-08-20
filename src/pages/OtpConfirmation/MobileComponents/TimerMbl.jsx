@@ -9,6 +9,8 @@ function TimerMbl({ setIsExpired, handleResendOTP, timer, setTimer }) {
   useEffect(() => {
     let interval;
     if (timer > 0) {
+      // When timer is running, ensure resend is disabled
+      if (canResend) setCanResend(false);
       interval = setInterval(() => {
         setTimer((prev) => {
           if (prev <= 1) {
@@ -21,7 +23,7 @@ function TimerMbl({ setIsExpired, handleResendOTP, timer, setTimer }) {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [timer, setTimer, setIsExpired]);
+  }, [timer, setTimer, setIsExpired, canResend]);
 
   // Format timer as MM:SS
   const formatTime = (seconds) => {
