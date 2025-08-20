@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: var(--color-base-mobile-top-bg);
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
@@ -12,6 +12,17 @@
   min-height: 65px;
   flex-shrink: 0;
   text-wrap: nowrap;
+  overflow-x: auto; // enable horizontal scroll when tabs overflow
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  gap: 0;
+
+  // hide scrollbar but keep scrollability
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
@@ -20,12 +31,12 @@
   }
 
   &__item {
-    flex: 1 1 0;
+    flex: 0 0 auto; // prevent squish; allow horizontal scroll
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 12px 0 0 0;
+    padding: 12px 10px 0 10px;
     color: var(--color-base-mobile-top-item-text);
     font-size: 14px;
     font-weight: 500;
@@ -34,6 +45,8 @@
     background: transparent;
     border: none;
     transition: color 0.2s;
+    scroll-snap-align: center;
+    min-width: 72px;
 
     span {
       opacity: 0.4;

@@ -325,6 +325,15 @@
     padding: 24px;
     border-radius: 1.25rem;
     box-shadow: none;
+    // Reorder for mobile/tablets: summary on top, payment below
+    .order-summary-container {
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .payment-container {
+      order: 2;
+    }
   }
 
   @include respond(tablets) {
@@ -336,6 +345,15 @@
     padding: 20px;
     border-radius: 1rem;
     box-shadow: none;
+    // Reorder for tablets
+    .order-summary-container {
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .payment-container {
+      order: 2;
+    }
   }
 
   @include respond(phone) {
@@ -347,6 +365,15 @@
     padding: 0;
     border-radius: 0.75rem;
     box-shadow: none;
+    // Reorder for phones
+    .order-summary-container {
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 0.875rem;
+    }
+    .payment-container {
+      order: 2;
+    }
   }
 
   @include respond(smallPhone) {
@@ -358,6 +385,15 @@
     padding: 0;
     border-radius: 0.5rem;
     box-shadow: none;
+    // Reorder for small phones
+    .order-summary-container {
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+    .payment-container {
+      order: 2;
+    }
   }
 
   // Ensure children take full width when stacked

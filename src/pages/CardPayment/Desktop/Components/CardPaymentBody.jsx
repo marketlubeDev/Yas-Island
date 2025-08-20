@@ -32,22 +32,22 @@ export default function CardPaymentBody({ isCheckout }) {
 
   return (
     <div className="payment-checkout payfort">
-      {/* <div className="payment-checkout__contentnew"> */}
-      <CardPaymentDetail
-        onBack={handleBackClick}
-        onPaymentComplete={handlePaymentComplete}
-        orderData={orderData}
-      />
-      <div className="order-summary-container">
-        <OrderSummary
-          formData={formData}
-          setFormData={setFormData}
-          checkout={checkout}
-          showPromoCode={false}
-          isCheckout={isCheckout}
+      <div className="payment-checkout__contentnew">
+        <CardPaymentDetail
+          onBack={handleBackClick}
+          onPaymentComplete={handlePaymentComplete}
+          orderData={orderData}
         />
+        <div className="order-summary-container">
+          <OrderSummary
+            formData={formData}
+            setFormData={setFormData}
+            checkout={checkout}
+            showPromoCode={false}
+            isCheckout={isCheckout}
+          />
+        </div>
       </div>
-      {/* </div> */}
     </div>
   );
 }
