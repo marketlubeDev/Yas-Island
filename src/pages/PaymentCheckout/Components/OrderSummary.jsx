@@ -168,7 +168,9 @@ export default function OrderSummary({
           ) {
             setPromoCodeApplying(false);
             setIsModalVisible(false);
-            toast.error(t("toastMessages.invalidPromoCode"));
+            toast.error(t("toastMessages.invalidPromoCode"), {
+              position: "top-center",
+            });
             return;
           }
 
@@ -201,9 +203,13 @@ export default function OrderSummary({
             // Clear the promo code input since it's now applied
             setPromoCode("");
           } else if (message) {
-            toast.error(message || t("toastMessages.invalidPromoCode"));
+            toast.error(message || t("toastMessages.invalidPromoCode"), {
+              position: "top-center",
+            });
           } else if (isRemoveOperation) {
-            toast.success(t("orderSummary.promoCodeRemoved"), {});
+            toast.success(t("orderSummary.promoCodeRemoved"), {
+              position: "top-center",
+            });
           }
         }
       },
@@ -232,7 +238,9 @@ export default function OrderSummary({
       setPromoCodeApplying(true);
       if (!promoCode) {
         setPromoCodeApplying(false);
-        toast.error(t("toastMessages.invalidPromoCode"));
+        toast.error(t("toastMessages.invalidPromoCode"), {
+          position: "top-center",
+        });
         setPromoCodeStatus("invalid");
         return;
       }
@@ -253,7 +261,9 @@ export default function OrderSummary({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || t("toastMessages.invalidPromoCode"));
+        toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
+        position: "top-center",
+      });
       setPromoCodeStatus("invalid");
     }
   };

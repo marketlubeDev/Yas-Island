@@ -235,7 +235,7 @@ export const en = {
       vatAndTax: "vat & tax :",
       total: "Total :",
       qty: "Qty:",
-      promoCodeSavings: "promo code savings :",
+      promoCodeSavings: "Promo Code Savings :",
       promoCode: {
         label: "ENTER YOUR PROMO CODE ",
         label2: "TO GET DISCOUNT",
@@ -298,7 +298,7 @@ export const en = {
   promo: {
     applied: "Promo Code Applied",
     saved: "Saved! that feels amazing, right?",
-    savings: "promo code savings :",
+    savings: "Promo Code Savings :",
     amount: "AED",
     redirecting: "You will be redirected to the home page in 3 seconds",
   },
@@ -318,7 +318,7 @@ export const en = {
     enterPromoCode: "Enter promo code",
     apply: "Apply",
     securePayment: "Secure Payment",
-    promoCodeSavings: "promo code savings :",
+    promoCodeSavings: "Promo Code Savings :",
     removePromoCode: "Remove promo code",
     promoCodeRemoved: "Promo code removed successfully",
     couponApplied: "Remove Coupon",
@@ -346,6 +346,7 @@ export const en = {
     noPerformance: "No performance available for this date",
     checkoutFailed: "Checkout failed. Please try again.",
     failedToAddToCart: "Failed to add to cart. Please try again.",
+    otpResent: "OTP has been sent to your email.",
   },
   mobile: {
     swipeToChange: "Swipe to change",

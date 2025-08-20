@@ -58,7 +58,9 @@ function PaymentDetailsMobile() {
 
     // Validate personal details
     if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      errors.push(t("toastMessages.invalidEmail"));
+      errors.push(t("toastMessages.invalidEmail"), {
+        position: "top-center",
+      });
     }
     if (
       !data.firstName ||
@@ -67,7 +69,10 @@ function PaymentDetailsMobile() {
     ) {
       errors.push(
         t("toastMessages.invalidFirstName") ||
-          t("toastMessages.somethingWentWrong")
+          t("toastMessages.somethingWentWrong"),
+        {
+          position: "top-center",
+        }
       );
     }
     if (
@@ -77,7 +82,10 @@ function PaymentDetailsMobile() {
     ) {
       errors.push(
         t("toastMessages.invalidLastName") ||
-          t("toastMessages.somethingWentWrong")
+          t("toastMessages.somethingWentWrong"),
+        {
+          position: "top-center",
+        }
       );
     }
     const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
@@ -107,7 +115,9 @@ function PaymentDetailsMobile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!checkout.isTnCAgrred) {
-      toast.error(t("toastMessages.acceptTermsAndConditions"));
+      toast.error(t("toastMessages.acceptTermsAndConditions"), {
+        position: "top-center",
+      });
       return;
     }
 
@@ -144,7 +154,9 @@ function PaymentDetailsMobile() {
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => {
-        toast.error(error || t("toastMessages.somethingWentWrong"));
+        toast.error(error || t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       });
       // trigger red placeholders in the mobile inputs
       try {
@@ -162,7 +174,10 @@ function PaymentDetailsMobile() {
         console.log(error, "error>>");
         toast.error(
           // error?.response?.data?.message ||
-          t("toastMessages.somethingWentWrong")
+          t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
         );
       },
     });
@@ -207,7 +222,9 @@ function PaymentDetailsMobile() {
       setIsTermsModalOpen(true);
     } catch (error) {
       console.error("Error fetching terms and conditions:", error);
-      toast.error(t("toastMessages.failedToLoadTermsAndConditions"));
+      toast.error(t("toastMessages.failedToLoadTermsAndConditions"), {
+        position: "top-center",
+      });
     }
   };
 

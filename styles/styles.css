@@ -1667,6 +1667,10 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   line-height: normal;
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
+  transition: all 0.3s ease;
+}
+.AddtoCartbtn__button:hover {
+  background: var(--color-base-side-bar-border);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .AddtoCartbtn__button {
@@ -1714,6 +1718,18 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .product-modal .ant-modal-content {
+    padding: 3rem;
+    padding-top: 3.2rem;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-modal .ant-modal-content {
+    padding: 4rem;
+    padding-top: 3.7rem;
+  }
 }
 
 .product-modal.booking-active .ant-modal-content {
@@ -1892,24 +1908,27 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .product-description-api {
-  max-height: 32vh;
+  max-height: 48vh;
   height: fit-content;
-  min-height: 20vh;
+  min-height: 28vh;
+  padding: 1rem;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-description-api {
-    max-height: 28vh;
+    max-height: 44vh;
     height: fit-content;
-    min-height: 24vh;
+    min-height: 32vh;
+    padding: 1rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .product-description-api {
-    max-height: 30vh;
+    max-height: 50vh;
     height: fit-content;
-    min-height: 24vh;
+    min-height: 34vh;
+    padding: 1.25rem;
   }
 }
 .product-description-api .product-description {
@@ -2551,12 +2570,14 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 .guest-label {
   color: var(--color-base-text);
   font-size: 0.9rem;
-  font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
   text-align: left;
   font-family: "YAS Font", sans-serif;
+}
+.guest-label-desc {
+  font-weight: 500;
 }
 
 html[lang=ar] .guest-label {
@@ -7006,7 +7027,7 @@ html[dir=rtl] .back-button {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 12px 0;
+  padding: 8px 0;
   background-color: var(--color-base-mobile-product-page-bg);
   flex: 1;
   overflow-y: auto;
@@ -7191,29 +7212,43 @@ html[dir=rtl] .back-button {
   position: fixed;
   left: 0;
   width: 100%;
-  z-index: 100;
 }
 
 .mobile-header {
   top: 0;
-  height: 56px;
+  height: var(--mobile-header-height, 64px);
+  z-index: 300;
 }
 
 .mobile-topnav {
-  top: 56px;
-  height: 48px;
+  top: var(--mobile-header-height, 56px);
+  height: auto;
+  z-index: 200;
 }
 
 .mobile-bottomnav {
   bottom: 0;
   height: 56px;
+  z-index: 150;
 }
 
 .scroll-section {
   flex: 1 1 auto;
+  margin-top: var(--mobile-content-top-offset, 104px);
   margin-bottom: 56px;
+  padding-top: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+.scroll-section::before {
+  content: "";
+  display: block;
+  height: 16px;
+  position: sticky;
+  top: 0;
+  background: var(--color-base-mobile-product-page-bg);
+  z-index: 2;
+  pointer-events: none;
 }
 .scroll-section::-webkit-scrollbar {
   width: 8px;
@@ -7228,21 +7263,21 @@ html[dir=rtl] .back-button {
 }
 
 .mobile-header {
-  min-height: 80px;
+  min-height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--color-base-mobile-header-bg);
-  padding: 20px 26px;
+  padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  z-index: 10;
+  z-index: 300;
   flex-shrink: 0;
 }
 @media only screen and (max-width: 380px) {
   .mobile-header {
-    min-height: 70px;
-    padding: 16px 20px;
+    min-height: 60px;
+    padding: 10px 14px;
   }
 }
 .mobile-header.animate-mobile-header {
@@ -7254,13 +7289,13 @@ html[dir=rtl] .back-button {
   gap: 8px;
 }
 .mobile-header__logo {
-  height: 54px;
+  height: 44px;
   width: auto;
   display: block;
 }
 @media only screen and (max-width: 380px) {
   .mobile-header__logo {
-    height: 45px;
+    height: 38px;
   }
 }
 .mobile-header__logo.animate-mobile-logo {
@@ -7308,12 +7343,14 @@ html[dir=rtl] .back-button {
 }
 .mobile-header__lang-dropdown {
   position: absolute;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 160px;
+  background: var(--color-search-dropdown-bg);
+  border-radius: 2rem !important;
+  box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
+  min-width: 165px;
   padding: 8px 0;
-  z-index: 1000;
+  z-index: 10000;
+  border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
+  overflow: hidden;
 }
 .mobile-header__lang-dropdown--ar {
   left: 0;
@@ -7325,19 +7362,24 @@ html[dir=rtl] .back-button {
   top: calc(100% + 8px);
 }
 .mobile-header__lang-option {
-  padding: 10px 16px;
+  padding: 10px 10px;
+  gap: 0rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s;
+  border-bottom: 1px solid var(--color-base-mobile-header-lang-dropdown-border);
 }
 .mobile-header__lang-option:hover {
-  background-color: #f5f5f5;
+  background-color: var(--color-search-dropdown-option);
+}
+.mobile-header__lang-option:last-child {
+  border-bottom: none;
 }
 .mobile-header__lang-text {
   font-size: 14px;
-  color: #333;
+  color: var(--color-search-dropdown-option-text);
 }
 .mobile-header__lang-check {
   color: #007bff;
@@ -7374,7 +7416,7 @@ html[dir=rtl] .back-button {
   }
 }
 .mobile-top {
-  margin-top: 5rem;
+  margin-top: 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -7390,7 +7432,7 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (max-width: 380px) {
   .mobile-top {
-    margin-top: 4.5rem;
+    margin-top: 0;
     min-height: 60px;
   }
 }
@@ -7490,7 +7532,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   border-radius: 2rem;
   padding: 0 16px;
   height: 40px;
-  margin: 0 auto 24px auto;
+  margin: 0 auto 12px auto;
   max-width: 95%;
   box-sizing: border-box;
 }
@@ -7530,7 +7572,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   gap: 12px;
   justify-content: center;
   margin-top: -4px;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   padding: 0 16px;
 }
 .mobile-top-search-section__filter-btn {
@@ -7575,12 +7617,12 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   top: calc(100% + 8px);
   left: 0;
   background: var(--color-search-dropdown-bg);
-  border-radius: 8px;
+  border-radius: 2rem;
   box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
   min-width: 165px;
   padding: 8px 0;
   z-index: 10000;
-  border: 1px solid var(--color-base-mobile-top-item-text-active);
+  border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
 }
 .mobile-top-search-section__dropdown--ar {
   left: 0;
@@ -7595,6 +7637,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s;
+  border-bottom: 1px solid var(--color-base-mobile-header-lang-dropdown-border);
 }
 .mobile-top-search-section__dropdown-option:hover {
   background-color: var(--color-search-dropdown-option);
@@ -7602,6 +7645,9 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
 .mobile-top-search-section__dropdown-option span {
   font-size: 14px;
   color: var(--color-search-dropdown-option-text);
+}
+.mobile-top-search-section__dropdown-option:last-child {
+  border-bottom: none;
 }
 .mobile-top-search-section__check {
   color: #007bff;
@@ -10459,7 +10505,7 @@ html[lang=ar] .make-payment__summary-top {
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 20000;
+  z-index: 2147483602; /* highest to ensure on top */
   background: rgba(245, 245, 245, 0.39) !important;
   backdrop-filter: blur(8px);
   display: flex;
@@ -10849,7 +10895,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .attraction-detail-modal.ant-modal-wrap {
-  background-color: red !important;
+  z-index: 2147483600 !important;
 }
 
 .attraction-detail-modal .ant-modal-body {
@@ -10892,12 +10938,13 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--color-search-dropdown-bg);
+  border-radius: 2rem;
+  box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
   min-width: 200px;
   padding: 8px 0;
   z-index: 1000;
+  border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
 }
 
 .product-head__dropdown-option {
@@ -10907,13 +10954,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s;
+  border-bottom: 1px solid var(--color-base-mobile-header-lang-dropdown-border);
 }
 .product-head__dropdown-option:hover {
-  background-color: #f5f5f5;
+  background-color: var(--color-selector-option-hover-bg);
+}
+.product-head__dropdown-option:last-child {
+  border-bottom: none;
 }
 .product-head__dropdown-option span {
   font-size: 14px;
-  color: #333;
+  color: var(--color-selector-option-text, var(--color-base-text));
 }
 
 .product-head__check {
@@ -10925,7 +10976,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .booking-modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2147483601; /* above any other overlay */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10968,7 +11019,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: stretch;
   gap: 12px;
   background: var(--color-bkg-body-bg);
-  overflow: hidden; /* delegate scroll to inner sections */
+  overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
 }
@@ -11056,8 +11107,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
+  overflow-y: auto; /* default: only guests section scrolls */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
+.booking-modal.booking-modal--scroll-all .booking-modal__body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+.booking-modal.booking-modal--scroll-all .booking-modal__guests-section {
+  overflow-y: visible;
 }
 
 /* Mobile guest section scrollbar to match desktop theme */
@@ -11676,8 +11736,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   top: calc(100% + 5px);
   left: 0;
   width: 100%;
-  background: var(--color-base-mobile-header-lang-dropdown-bg);
-  border: 3px solid #e3daf2;
+  background: var(--color-search-dropdown-bg);
+  border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
   border-radius: 2rem;
   box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
   z-index: 20;
@@ -11688,8 +11748,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   padding: 12px 14px;
   font-family: "YAS Font", sans-serif;
   font-size: 15px;
-  color: var(--color-base-text);
-  border-bottom: 1px solid #e3daf2;
+  color: var(--color-selector-option-text, var(--color-base-text));
+  border-bottom: 1px solid var(--color-base-mobile-header-lang-dropdown-border);
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -11698,7 +11758,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 .selector.custom-select .selector-option:hover,
 .selector.custom-select .selector-option.is-focused {
-  background: var(--color-selector-option-hover);
+  background: var(--color-selector-option-hover-bg);
 }
 .selector.custom-select .selector-option.is-selected {
   background: var(--color-base-product-card-bg);
@@ -12023,6 +12083,14 @@ html[lang=ar] .attraction-detail-modal__add-btn {
     height: 22px;
     line-height: 22px;
   }
+}
+
+/* Ensure all Ant Design modals and their masks are always the top-most layers */
+.ant-modal-root,
+.ant-modal-root .ant-modal-wrap,
+.ant-modal-root .ant-modal,
+.ant-modal-root .ant-modal-mask {
+  z-index: 1000 !important;
 }
 
 .terms-modal-content {

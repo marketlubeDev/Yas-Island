@@ -57,7 +57,10 @@ export default function PaymentResponse() {
     } catch (error) {
       console.log(error);
       toast.error(
-        error?.response?.data || t("toastMessages.somethingWentWrong")
+        error?.response?.data || t("toastMessages.somethingWentWrong"),
+        {
+          position: "top-center",
+        }
       );
     } finally {
       setIsSubmitting(false);

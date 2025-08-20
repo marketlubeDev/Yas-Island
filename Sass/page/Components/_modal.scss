@@ -79,7 +79,7 @@
 .ant-modal-root .ant-modal-wrap,
 .ant-modal-root .ant-modal,
 .ant-modal-root .ant-modal-mask {
-  z-index: 2147483600 !important;
+  z-index: 1000 !important;
 }
 
 .terms-modal-content {

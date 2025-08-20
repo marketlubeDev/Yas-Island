@@ -28,17 +28,23 @@ function ConfirmEmailMbl({ onBack }) {
 
   const handleConfirmEmail = async () => {
     if (email === "") {
-      toast.error(t("toastMessages.invalidEmail"));
+      toast.error(t("toastMessages.invalidEmail"), {
+        position: "top-center",
+      });
       navigate("/email-verification");
       return;
     }
     if (isExpired) {
-      toast.error(t("toastMessages.otpExpired"));
+      toast.error(t("toastMessages.otpExpired"), {
+        position: "top-center",
+      });
       return;
     }
     const otpString = otp.join("");
     if (otpString.length !== 6) {
-      toast.error(t("toastMessages.invalidOTP"));
+      toast.error(t("toastMessages.invalidOTP"), {
+        position: "top-center",
+      });
       return;
     }
 
@@ -50,7 +56,9 @@ function ConfirmEmailMbl({ onBack }) {
 
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
-      toast.error(t("toastMessages.otpIncorrect"));
+      toast.error(t("toastMessages.otpIncorrect"), {
+        position: "top-center",
+      });
     }
   };
 
@@ -61,11 +69,17 @@ function ConfirmEmailMbl({ onBack }) {
         setTimer(120);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));
+        toast.success(t("toastMessages.otpResent"), {
+          position: "top-center",
+        });
       },
       onError: (error) => {
         toast.error(
           error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong")
+            t("toastMessages.somethingWentWrong"),
+          {
+            position: "top-center",
+          }
         );
       },
     });
