@@ -34,7 +34,9 @@ function EmailMbl() {
           console.log("Failed to store email backup in sessionStorage:", e);
         }
 
-        navigate("/otp-confirmation");
+        navigate("/otp-confirmation", {
+          state: { fromEmailVerification: true },
+        });
       },
       onError: (error) => {
         toast.error(

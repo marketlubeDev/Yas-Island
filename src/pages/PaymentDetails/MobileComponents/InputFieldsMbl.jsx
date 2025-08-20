@@ -481,6 +481,7 @@ function InputFieldsMbl() {
         onFocus={() => setFieldErrors((prev) => ({ ...prev, email: false }))}
         button={
           <button
+            type="button"
             onClick={() => navigate("/email-verification")}
             style={{
               background: "none",

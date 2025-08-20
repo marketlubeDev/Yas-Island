@@ -236,10 +236,7 @@ function PaymentDetailsMobile() {
     <>
       <MobileHeader />
       <div className="email-checkout__overlay">
-        <PaymentHeaderMbl
-          step={2}
-          onBack={() => navigate("/otp-confirmation")}
-        />
+        <PaymentHeaderMbl step={2} />
         <div className="email-checkout__container">
           <div className="email-checkout__form-container">
             <form
