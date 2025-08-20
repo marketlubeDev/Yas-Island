@@ -145,7 +145,7 @@ export const ar = {
     validFrom: "صالح من",
     to: "إلى",
     children: "الأطفال",
-    vat: "ضريبة القيمة المضافة",
+    vat: "ضريبة القيمة المضافة :",
     vatUnit: "ضريبة القيمة المضافة",
     maxQuantityExceeded: "تم تجاوز الحد الأقصى للكمية {{maxQuantity}}",
     minQuantityRequired: "الحد الأدنى المطلوب للكمية {{minQuantity}}",
