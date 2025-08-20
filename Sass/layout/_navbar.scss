@@ -293,10 +293,10 @@
     &::before {
       content: "";
       position: absolute;
-      // top: -39.5%;
-      // left: -10.5%;
-      // width: 30px;
-      // height: 25px;
+      top: -39.5%;
+      left: -10.5%;
+      width: 30px;
+      height: 25px;
       background-color: var(--color-base-product-card-card-item-bg);
       border-bottom-left-radius: 15px;
       box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
