@@ -416,7 +416,31 @@ export default function YasChat() {
       document.body.classList.toggle("yas-chat-open", isIpadTarget() && isOpen);
     };
 
-    const observer = new MutationObserver(() => updateOpenState());
+    const enforcePageOverrides = () => {
+      const isPaymentPage =
+        document.body.classList.contains("page-payment-details") ||
+        document.body.classList.contains("page-payment-checkout");
+      const targets = document.querySelectorAll(
+        '.spr-chat__launcher, [class*="spr-chat__launcher"], .spr-chat__box, .spr-chat__notification, .spr-chat__overlay, .spr-chat__backdrop, [class^="spr-chat"], [class*=" spr-chat"]'
+      );
+      targets.forEach((el) => {
+        if (!(el && el.style)) return;
+        if (isPaymentPage) {
+          el.style.setProperty("display", "none", "important");
+          el.style.setProperty("pointer-events", "none", "important");
+        } else {
+          // Restore interactivity but keep lowered z-index
+          el.style.removeProperty("display");
+          el.style.removeProperty("pointer-events");
+          el.style.setProperty("z-index", "900", "important");
+        }
+      });
+    };
+
+    const observer = new MutationObserver(() => {
+      updateOpenState();
+      enforcePageOverrides();
+    });
     observer.observe(document.body, {
       subtree: true,
       childList: true,
@@ -427,7 +451,10 @@ export default function YasChat() {
     window.addEventListener("orientationchange", updateOpenState);
 
     // Initial state evaluation (after small delay to allow widget to render if already loaded)
-    setTimeout(updateOpenState, 300);
+    setTimeout(() => {
+      updateOpenState();
+      enforcePageOverrides();
+    }, 300);
 
     return () => {
       observer.disconnect();

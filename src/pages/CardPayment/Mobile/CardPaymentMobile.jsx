@@ -44,6 +44,18 @@ function CardPaymentMobile() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Hide Yas Chat fully on the card payment screen
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.body.classList.add("page-payment-details");
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.classList.remove("page-payment-details");
+      }
+    };
+  }, []);
+
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
       const form = document.createElement("form");
