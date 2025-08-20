@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "./Components/ProductCard";
 import SideBar from "../../layouts/SideBar/SideBar";
@@ -6,6 +6,7 @@ import AccessibilityModal from "./Components/AccessibilityModal";
 import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 import Header from "../../layouts/Header/Header";
+import Footer from "../../layouts/Footer/Footer";
 
 export default function ProductPage() {
   const productList = useSelector((state) => state.product.allProducts);
@@ -15,6 +16,7 @@ export default function ProductPage() {
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
+  const [showFooter, setShowFooter] = useState(false);
   const { isLoading, isError } = useGetProductList();
 
   // Filter and sort products based on search, selected park and sort option
@@ -78,6 +80,35 @@ export default function ProductPage() {
     return filtered || [];
   }, [productList, currentPark, currentSort, searchQuery]);
 
+  // Show footer only when user reaches bottom of scrollable product list
+  useEffect(() => {
+    const container = document.querySelector(".ProductCard");
+    if (!container) {
+      setShowFooter(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      const isAtBottom =
+        Math.ceil(container.scrollTop + container.clientHeight) >=
+        container.scrollHeight - 1;
+      setShowFooter(isAtBottom);
+    };
+
+    // Recalculate on resize as well
+    const handleResize = () => handleScroll();
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+    // Initial check
+    handleScroll();
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isLoading, filteredProducts]);
+
   if (isError) {
     return <div>Error loading products...</div>;
   }
@@ -93,7 +124,7 @@ export default function ProductPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              height: "calc(100vh - 11rem)",
+              height: "calc(100vh - 12rem)",
             }}
           >
             <Loader />
@@ -101,6 +132,8 @@ export default function ProductPage() {
         ) : (
           <ProductCard productList={filteredProducts} />
         )}
+        {showFooter && <Footer />}
+
         <AccessibilityModal
           isOpen={isAccessibilityModalOpen}
           onClose={() => setIsAccessibilityModalOpen(false)}

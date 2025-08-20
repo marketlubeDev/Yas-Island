@@ -353,4 +353,7 @@ export const ar = {
   mobile: {
     swipeToChange: "اسحب لتغيير",
   },
+  footer: {
+    copyright: "© {{year}} Yas Island. جميع الحقوق محفوظة.",
+  },
 };

@@ -1,5 +1,10 @@
 @use "../../abstract/variables" as *;
 
+.home {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 .landing-page {
   height: calc(100vh - $header-size);
   background-color: lightgray;
