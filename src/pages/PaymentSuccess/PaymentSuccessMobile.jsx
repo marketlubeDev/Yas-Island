@@ -21,7 +21,7 @@ function PaymentSuccessMobile() {
 
   return (
     <>
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <div className="payment-success-modal-container">
         <div className="payment-success-modal">
           <div className="payment-success-icon">

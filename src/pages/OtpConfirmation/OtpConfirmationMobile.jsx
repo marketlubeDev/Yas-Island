@@ -24,7 +24,7 @@ function OtpConfirmationMobile() {
   }, [navigationType, navigate]);
   return (
     <>
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <ConfirmEmailMbl
       // onConfirm={handleConfirmOTP}
       />

@@ -244,7 +244,7 @@ function PaymentDetailsMobile() {
 
   return (
     <>
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <div className="email-checkout__overlay">
         <PaymentHeaderMbl step={2} />
         <div className="email-checkout__container">

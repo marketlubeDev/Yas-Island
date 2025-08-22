@@ -10,7 +10,7 @@ function PaymentResponseMobile() {
 
   return (
     <>
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <div className="experience-outer-bg">
         <div className="experience-content-container">
           <div className="experience-content">
