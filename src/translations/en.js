@@ -35,6 +35,12 @@ export const en = {
     clearFilters: "Clear Filters",
     exploreAll: "Explore All Attractions",
   },
+  upcoming: {
+    title: "We'll be adding products soon",
+    subtitle: "Check out our",
+    topAttractions: "Top Attractions",
+    subtitleEnd: "for adventures available right now.",
+  },
   accessibility: {
     title: "Accessibility",
     subtitle: "Choose Options",

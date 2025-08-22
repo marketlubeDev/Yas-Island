@@ -33,13 +33,15 @@ export default function HeaderLogo() {
   const location = useLocation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
+  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
+    useState(false);
 
   const handleLogoClick = () => {
     navigate("/");
   };
 
-  const isPaymentRoute = location.pathname === "/";
+  const isPaymentRoute =
+    location.pathname === "/" || location.pathname === "/upcoming";
 
   // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();

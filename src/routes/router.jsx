@@ -15,6 +15,7 @@ import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
 import CardPaymentMobile from "../pages/CardPayment/Mobile/CardPaymentMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
+import UpcomingPages from "../pages/Upcoming/UpcomingPages";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,15 @@ export const router = createBrowserRouter([
           <ResponsiveWrapper
             MobileComponent={PaymentResponseMobile}
             DesktopComponent={PaymentResponsePage}
+          />
+        ),
+      },
+      {
+        path: "upcoming",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
           />
         ),
       },

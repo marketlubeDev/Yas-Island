@@ -114,31 +114,27 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="product">
-      <SideBar />
-      <div className="product-content">
-        <Header />
-        {isLoading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "calc(100vh - 12rem)",
-            }}
-          >
-            <Loader />
-          </div>
-        ) : (
-          <ProductCard productList={filteredProducts} />
-        )}
-        {showFooter && <Footer />}
+    <div>
+      {isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "calc(100vh - 12rem)",
+          }}
+        >
+          <Loader />
+        </div>
+      ) : (
+        <ProductCard productList={filteredProducts} />
+      )}
+      {showFooter && <Footer />}
 
-        <AccessibilityModal
-          isOpen={isAccessibilityModalOpen}
-          onClose={() => setIsAccessibilityModalOpen(false)}
-        />
-      </div>
+      <AccessibilityModal
+        isOpen={isAccessibilityModalOpen}
+        onClose={() => setIsAccessibilityModalOpen(false)}
+      />
     </div>
   );
 }

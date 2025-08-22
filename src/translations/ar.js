@@ -35,6 +35,12 @@ export const ar = {
     clearFilters: "مسح المرشحات",
     exploreAll: "استكشف جميع المعالم",
   },
+  upcoming: {
+    title: "سنضيف المنتجات قريباً",
+    subtitle: "تحقق من",
+    topAttractions: "أفضل المعالم",
+    subtitleEnd: "للمغامرات المتاحة الآن.",
+  },
   accessibility: {
     title: "إمكانية الوصول",
     subtitle: "اختر الخيارات",
