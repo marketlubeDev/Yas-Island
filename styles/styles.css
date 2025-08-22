@@ -7141,6 +7141,8 @@ html[dir=rtl] .back-button {
 .mobile-topnav {
   flex-shrink: 0;
   z-index: 100;
+  position: sticky;
+  top: 0;
 }
 
 .mobile-content {
@@ -7149,7 +7151,6 @@ html[dir=rtl] .back-button {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 70px;
-  margin-top: 0;
 }
 
 .mobile-bottomnav {
@@ -7166,13 +7167,13 @@ html[dir=rtl] .back-button {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 8px 8px 8px 8px;
+  padding: 16px 8px 8px 8px;
   background: var(--color-base-mobile-product-page-bg);
 }
 @media only screen and (max-width: 380px) {
   .attractions-list {
     gap: 12px;
-    padding: 6px 6px 6px 6px;
+    padding: 4px 6px 6px 6px;
   }
 }
 .attractions-list__loading {
