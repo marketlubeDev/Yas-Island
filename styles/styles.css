@@ -7141,8 +7141,6 @@ html[dir=rtl] .back-button {
 .mobile-topnav {
   flex-shrink: 0;
   z-index: 100;
-  position: sticky;
-  top: 0;
 }
 
 .mobile-content {
@@ -7151,6 +7149,7 @@ html[dir=rtl] .back-button {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 70px;
+  margin-top: 0;
 }
 
 .mobile-bottomnav {
@@ -7167,13 +7166,13 @@ html[dir=rtl] .back-button {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
   background: var(--color-base-mobile-product-page-bg);
 }
 @media only screen and (max-width: 380px) {
   .attractions-list {
     gap: 12px;
-    padding: 4px 6px 6px 6px;
+    padding: 6px 6px 6px 6px;
   }
 }
 .attractions-list__loading {
@@ -7315,9 +7314,6 @@ html[dir=rtl] .back-button {
   padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 @media only screen and (min-width: 992px) {
   .mobile-header {
@@ -7477,7 +7473,7 @@ html[dir=rtl] .back-button {
   min-height: 65px;
   flex-shrink: 0;
   text-wrap: nowrap;
-  overflow-x: hidden;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   gap: 0;
@@ -7494,34 +7490,18 @@ html[dir=rtl] .back-button {
 @media only screen and (max-width: 380px) {
   .mobile-top {
     margin-top: 0;
-    min-height: 55px;
-  }
-}
-@media only screen and (max-width: 320px) {
-  .mobile-top {
-    min-height: 50px;
-  }
-  .mobile-top__item {
-    padding: 6px 2px 0 2px;
-    font-size: 11px;
-  }
-  .mobile-top__item span {
-    font-size: 10px;
-  }
-  .mobile-top__item__icon {
-    width: 16px;
-    height: 18px;
+    min-height: 60px;
   }
 }
 .mobile-top__item {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 4px 0 4px;
+  padding: 12px 10px 0 10px;
   color: var(--color-base-mobile-top-item-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   position: relative;
@@ -7529,16 +7509,11 @@ html[dir=rtl] .back-button {
   border: none;
   transition: color 0.2s;
   scroll-snap-align: center;
-  min-width: 0;
+  min-width: 72px;
 }
 .mobile-top__item span {
   opacity: 0.4;
-  font-size: 11px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
+  font-size: 13px;
 }
 .mobile-top__item:hover {
   color: #1976d2;
@@ -7558,8 +7533,8 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
   left: 0;
 }
 .mobile-top__icon {
-  width: 18px;
-  height: 20px;
+  width: 20px;
+  height: 23px;
   object-fit: contain;
   margin-bottom: 2px;
   display: block;
