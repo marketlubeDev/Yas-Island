@@ -502,7 +502,7 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   background-color: var(--color-base-side-bar-item-bg);
   transition: all 0.3s ease;
 }
@@ -948,7 +948,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-head {
     gap: 1rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
     padding-top: 1.2rem;
   }
 }
@@ -1495,7 +1495,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card {
     width: 100%;
-    min-width: 15.156rem;
+    min-width: 14.156rem;
     max-width: 16.156rem;
     height: 22.882rem;
   }
@@ -11859,6 +11859,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .has-value {
+    font-size: 15.5px;
+  }
 }
 
 .language-selector {

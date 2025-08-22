@@ -39,11 +39,6 @@
       }
     }
 
-    // .selector-value.is-placeholder {
-    //   color: var(--color-muted, #6b7280);
-    //   font-weight: 500;
-    // }
-
     .selector-chevron {
       width: 10px;
       height: 10px;
@@ -124,4 +119,10 @@
   //   font-size: 15px;
   //   padding-left: 6px;
   // }
+}
+
+.has-value {
+  @include respond(bigTablets) {
+    font-size: 15.5px;
+  }
 }
