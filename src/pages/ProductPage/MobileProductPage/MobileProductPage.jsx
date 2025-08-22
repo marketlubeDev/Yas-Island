@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useMemo } from "react";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
@@ -75,51 +75,17 @@ function MobileProductPage() {
     return filtered || [];
   }, [productList, currentPark, currentSort, searchQuery]);
 
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const computeAndSetOffsets = () => {
-      const headerEl = document.querySelector(".mobile-header");
-      const topEl = document.querySelector(".mobile-topnav");
-      const headerH = headerEl ? headerEl.offsetHeight : 0;
-      const topH = topEl ? topEl.offsetHeight : 0;
-      const total = headerH + topH;
-      if (containerRef.current) {
-        containerRef.current.style.setProperty(
-          "--mobile-content-top-offset",
-          `${total}px`
-        );
-        containerRef.current.style.setProperty(
-          "--mobile-header-height",
-          `${headerH}px`
-        );
-        containerRef.current.style.setProperty(
-          "--mobile-topnav-height",
-          `${topH}px`
-        );
-      }
-    };
-
-    computeAndSetOffsets();
-    window.addEventListener("resize", computeAndSetOffsets);
-    window.addEventListener("orientationchange", computeAndSetOffsets);
-    return () => {
-      window.removeEventListener("resize", computeAndSetOffsets);
-      window.removeEventListener("orientationchange", computeAndSetOffsets);
-    };
-  }, []);
-
   return (
-    <div ref={containerRef} className="mobile-product-page">
-      <MobileHeader className="mobile-header" />
+    <div className="mobile-product-page">
+      <MobileHeader />
       <MobileTop className="mobile-topnav" />
-      <MobileBottomNav className="mobile-bottomnav" />
-      <div className="scroll-section">
+      <div className="mobile-content">
         <AttractionsListMbl
           productList={filteredProducts}
           isLoading={isLoading}
         />
       </div>
+      <MobileBottomNav />
     </div>
   );
 }

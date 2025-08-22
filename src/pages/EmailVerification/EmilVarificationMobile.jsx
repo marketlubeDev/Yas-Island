@@ -6,7 +6,6 @@ import MobileHeader from "../Home/MobileComponents/MobileHeader";
 function EmailVerificationMobile() {
   return (
     <>
-      <MobileHeader />
       <div className="outer-modal-bg">
         <PaymentHeaderMbl step={1} />
         <EmailMbl />

@@ -1,23 +1,54 @@
 @use "../../../base/responive" as *;
 
+// Main container - simple flexbox layout
+.mobile-product-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh; // dynamic viewport height for mobile browsers
+  overflow: hidden;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+// Fixed header and top navigation
+.mobile-header,
+.mobile-topnav {
+  flex-shrink: 0; // prevent shrinking
+  z-index: 100;
+}
+
+// Scrollable content area
+.mobile-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 70px; // space for bottom nav
+}
+
+// Fixed bottom navigation
+.mobile-bottomnav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 100;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+// Attractions list styles
 .attractions-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 8px 0; // small buffer so first card never touches top
-  // background-color: white;
-  background-color: var(--color-base-mobile-product-page-bg);
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
-  padding-bottom: 70px; // Space for bottom nav
+  padding: 16px 8px 8px 8px;
+  background: var(--color-base-mobile-product-page-bg);
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
     gap: 12px;
-    padding: 10px 0;
-    padding-bottom: 65px;
+    padding: 12px 6px 6px 6px;
   }
 
   &__loading {
@@ -29,26 +60,20 @@
   }
 }
 
+// Individual attraction card
 .attraction-card {
   display: flex;
-  // background: #fff;
-  background-color: var(--color-base-mobile-product-page-card-bg);
+  background: var(--color-base-mobile-product-page-card-bg);
   border-radius: 10px;
-  // box-shadow: 0 2px 8px white;
-  overflow: hidden;
-  // border: 1.5px solid #f2f2f2;
   border: 1.5px solid var(--color-base-mobile-product-page-card-border);
-  padding: 5px 2px 5px 4px;
-  align-items: flex-start;
+  padding: 8px;
   gap: 12px;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  margin-bottom: -0.5rem;
+  align-items: flex-start;
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
     gap: 8px;
-    padding: 4px 2px 4px 3px;
+    padding: 6px;
   }
 
   &__img {
@@ -83,7 +108,6 @@
   &__title {
     font-size: 15px;
     font-weight: 600;
-    // color: #231942;
     color: var(--color-base-mobile-product-page-title);
     margin-bottom: 2px;
     white-space: nowrap;
@@ -95,12 +119,6 @@
     @media only screen and (max-width: 380px) {
       font-size: 14px;
       max-width: 120px;
-    }
-
-    @include respond(tablets) {
-      font-size: 1.1rem;
-      white-space: wrap;
-      max-width: 500px;
     }
   }
 
@@ -119,36 +137,20 @@
       font-size: 13px;
       max-width: 120px;
     }
-
-    @include respond(tablets) {
-      font-size: 1.1rem;
-      white-space: wrap;
-      max-width: 500px;
-    }
-
-    @include respond(bigTablets) {
-      font-size: 1.5rem;
-    }
   }
 
   &__action {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     gap: 4px;
     width: 120px;
   }
 
   &__add-btn {
-    // background: #fff8a5;
-    background-color: var(--color-base-mobile-product-page-btn-bg);
-
+    background: var(--color-base-mobile-product-page-btn-bg);
     color: var(--color-base-mobile-product-page-btn-text);
-    // color: #231942;
-
-    // border: 1px solid #f7d148;
     border: 1px solid var(--color-base-mobile-product-page-btn-border);
-
     border-radius: 2rem;
     padding: 4px 20px;
     font-size: 15px;
@@ -156,12 +158,7 @@
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
     transition: background 0.2s;
-    // margin-left: 8px;
     white-space: nowrap;
-
-    @include respond(tablets) {
-      font-size: 1.1rem;
-    }
   }
 
   &__price {
@@ -171,105 +168,26 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--color-base-mobile-product-page-price);
-    // margin-top: 4px;
-
-    @include respond(tablets) {
-      font-size: 1.1rem;
-    }
   }
 
   &__vat {
     font-size: 10px;
-    // color: #bdbdc6;
     color: var(--color-base-mobile-product-page-vat-text);
     font-weight: 400;
-    // margin-top: 2px;
     text-align: left;
   }
 }
 
-.mobile-product-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; // full viewport height
-  height: 100dvh; // dynamic viewport height for mobile browsers
-  overflow: hidden;
-  position: relative;
-
-  // Samsung S8 and similar small devices
-  @media only screen and (max-width: 380px) {
-    height: 100vh;
-    height: -webkit-fill-available; // iOS Safari
-  }
+// Scrollbar styling
+.mobile-content::-webkit-scrollbar {
+  width: 4px;
 }
 
-.mobile-header,
-.mobile-topnav,
-.mobile-bottomnav {
-  position: fixed;
-  left: 0;
-  width: 100%;
+.mobile-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.mobile-header {
-  top: 0;
-  height: var(--mobile-header-height, 64px);
-  z-index: 300;
-}
-
-.mobile-topnav {
-  top: var(--mobile-header-height, 56px); // align directly under header
-  height: auto; // allow natural height
-  z-index: 200; // sits below header dropdowns
-}
-
-.mobile-bottomnav {
-  bottom: 0;
-  height: 56px; // adjust as needed
-  z-index: 150;
-}
-
-.scroll-section {
-  flex: 1 1 auto;
-  margin-top: var(--mobile-content-top-offset, 104px); // JS sets exact offset
-  // Ensure content (including footer) isn't hidden behind the fixed bottom nav and device safe-area
-  margin-bottom: calc(
-    60px + env(safe-area-inset-bottom, 0px)
-  ); // bottomnav height + safe area
-  padding-top: 0; // handled by sticky spacer below for persistent gap
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-
-  .footer {
-    // Extra bottom margin so the footer remains fully visible above the bottom nav and safe-area
-    margin: 8px 8px calc(72px + env(safe-area-inset-bottom, 0px));
-    border-radius: 8px;
-    border: 1px solid var(--separator-color);
-    background: var(--color-base-bg);
-  }
-
-  &::before {
-    content: "";
-    display: block;
-    height: 16px; // clearer persistent gap below header/filters
-    position: sticky;
-    top: 0; // sticks to top of scroll container (which starts below fixed header)
-    background: var(--color-base-mobile-product-page-bg);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-base-product-card-scroll-bar);
-    border-radius: 4px;
-    border: 2px solid var(--color-base-product-card-scroll-bar-border);
-  }
+.mobile-content::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 2px;
 }
