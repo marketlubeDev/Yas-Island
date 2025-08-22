@@ -238,13 +238,13 @@
     border-right: none;
     border-radius: 126.103px;
     background-color: var(--color-base-product-card-bg);
-    width: 90%;
+    width: 90.1%;
 
     // Curved notch at top right (inward curve)
     &::before {
       content: "";
       position: absolute;
-      top: -39.5%;
+      top: -40%;
       right: -10.5%;
       width: 30px;
       height: 25px;
@@ -341,7 +341,7 @@
     &::after {
       content: "";
       position: absolute;
-      bottom: -39.5%;
+      bottom: -40%;
       left: -10.5%;
       width: 30px;
       height: 25px;

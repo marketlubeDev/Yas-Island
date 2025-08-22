@@ -7,6 +7,7 @@ import GlobalZoomEffect from "./components/GlobalZoomEffect";
 import GlobalInvertColor from "./components/GlobalInvertColor";
 import { useLanguage } from "./context/LanguageContext";
 import { useI18nSync } from "./hooks/useI18nSync";
+import { useDynamicTitle } from "./hooks/useDynamicTitle";
 import QRCodeDetector from "./components/QRCodeDetector";
 import { cleanExpiredItems } from "./global/cartSlice";
 import YasChat from "./layouts/YasChat/YasChat";
@@ -15,6 +16,7 @@ export default function App() {
   const dispatch = useDispatch();
   useResponsive();
   useI18nSync();
+  useDynamicTitle();
   const { isRTL } = useLanguage();
 
   // Clean expired cart items when app loads
