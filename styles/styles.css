@@ -566,6 +566,7 @@ body,
   justify-content: center;
   background-color: var(--color-base-side-bar-item-bg);
   transition: all 0.3s ease;
+  margin-left: 1rem;
 }
 .ar-side-bar-list-item .item-icon.active {
   background: var(--color-base-side-bar-item-icon-bg);
