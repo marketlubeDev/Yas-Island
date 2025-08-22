@@ -122,14 +122,14 @@
 }
 
 .mobile-top-search-section {
-  padding: 5px 0 0 0;
+  padding: 5px 0 4px 0;
   text-align: center;
   flex: 1;
   overflow: visible;
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
-    padding: 3px 0 0 0;
+    padding: 3px 0 3px 0;
   }
 
   &__title {

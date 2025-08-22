@@ -263,11 +263,13 @@
         @include respond(desktop) {
           font-size: 17px;
           font-weight: 600;
+          max-width: 210px;
         }
 
         @include respond(bigDesktop) {
           font-size: 18px;
           font-weight: 600;
+          max-width: 240px;
         }
 
         @include respond(extraBigDesktop) {
