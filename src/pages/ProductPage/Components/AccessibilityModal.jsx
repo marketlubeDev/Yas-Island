@@ -24,6 +24,16 @@ export default function AccessibilityModal({ isOpen, onClose }) {
     dispatch(setZoomLevel(level));
   };
 
+  const handleZoomCardClick = () => {
+    // Find current zoom level index
+    const currentIndex = zoomOptions.findIndex(
+      (option) => option.level === zoomLevel
+    );
+    // Move to next zoom level, or back to first if at the end
+    const nextIndex = (currentIndex + 1) % zoomOptions.length;
+    dispatch(setZoomLevel(zoomOptions[nextIndex].level));
+  };
+
   const zoomOptions = [
     { level: 1, label: "1x" },
     { level: 1.12, label: "1.25x" },
@@ -150,7 +160,11 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             </div>
           </div>
 
-          <div className={`option-card ${zoomLevel !== 1 ? "active" : ""}`}>
+          <div
+            className={`option-card ${zoomLevel !== 1 ? "active" : ""}`}
+            onClick={handleZoomCardClick}
+            style={{ cursor: "pointer" }}
+          >
             <div className="option-icon">
               <img src={Zoom} alt={t("accessibility.zoomMode")} />
             </div>
@@ -169,7 +183,10 @@ export default function AccessibilityModal({ isOpen, onClose }) {
               {zoomOptions.map((option) => (
                 <button
                   key={option.level}
-                  onClick={() => handleZoomClick(option.level)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoomClick(option.level);
+                  }}
                   style={{
                     padding: "6px 12px",
                     borderRadius: "16px",

@@ -8,6 +8,7 @@ import dropbox from "../../assets/icons/dropbox.svg";
 import house from "../../assets/icons/house.svg";
 import chef from "../../assets/icons/chef.svg";
 import camera from "../../assets/icons/cam.svg";
+import shop from "../../assets/icons/shop.svg";
 import { useSelector } from "react-redux";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -33,7 +34,7 @@ export default function SideBar() {
     { name: "hotels", icon: house, translationKey: "sidebar.hotels" },
     { name: "dining", icon: chef, translationKey: "sidebar.dining" },
     { name: "live", icon: camera, translationKey: "sidebar.live" },
-    // { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
+    { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
   ];
 
   return (

@@ -91,8 +91,7 @@
 
   // text-transform: capitalize;
 
-  &:hover {
-  }
+
 
   @include respond(desktop) {
     margin-left: 1rem;
@@ -716,7 +715,7 @@
 
 .email {
   color: var(--email-text);
-  font-family: Inter;
+  font-family: "YAS Font", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
