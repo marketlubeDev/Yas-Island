@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 import AttractionDetailModalMbl from "./AttractionDetailModalMbl";
 import BookingModalMbl from "./BookingModalMbl";
 import { Modal } from "antd";
-import Mycart from "../../../Home/MobileComponents/MycartMbl";
-import closeIcon from "../../../../assets/icons/close.svg";
-import closeIconInverter from "../../../../assets/icons/closeinverter.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { setCheckout } from "../../../../global/checkoutSlice";
 import {

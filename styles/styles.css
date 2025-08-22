@@ -428,7 +428,7 @@ body,
   overflow: hidden;
 }
 .side-bar-ar {
-  padding: 2rem 1rem 3rem 1rem;
+  padding: 2rem 1rem 3rem 0rem;
   padding-bottom: 1rem;
 }
 .side-bar-list {
@@ -650,36 +650,6 @@ body,
   border-radius: 126.103px;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
-}
-.ar-side-bar-list-item-container:hover {
-  border-top: 4px solid var(--color-base-side-bar-border);
-  border-bottom: 4px solid var(--color-base-side-bar-border);
-  border-right: 4px solid var(--color-base-side-bar-border);
-  background-color: var(--color-base-product-card-bg);
-}
-.ar-side-bar-list-item-container:hover::before {
-  content: "";
-  position: absolute;
-  top: -39.5%;
-  left: -10.5%;
-  width: 30px;
-  height: 25px;
-  background-color: var(--color-base-product-card-card-item-bg);
-  border-bottom-left-radius: 15px;
-  box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
-  z-index: 100;
-}
-.ar-side-bar-list-item-container:hover::after {
-  content: "";
-  position: absolute;
-  bottom: -39.5%;
-  left: -10.5%;
-  width: 30px;
-  height: 25px;
-  background-color: var(--color-base-product-card-card-item-bg);
-  border-top-left-radius: 15px;
-  box-shadow: -2px -4px 0 0px var(--color-base-side-bar-border);
-  z-index: 100;
 }
 .ar-side-bar-list-item-container.active {
   border-top: 4px solid var(--color-base-side-bar-border);
@@ -3087,10 +3057,10 @@ html[lang=ar] .guest-label {
 
 .cart-content {
   height: 100vh;
-  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .empty-cart {
@@ -3314,6 +3284,11 @@ html[lang=ar] .guest-label {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.cart-items {
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .cart-summary {
@@ -7350,7 +7325,7 @@ html[dir=rtl] .back-button {
 }
 
 .mobile-topnav {
-  top: var(--mobile-header-height, 56px);
+  top: var(--mobile-header-height, 55px);
   height: auto;
   z-index: 200;
 }
@@ -7364,7 +7339,7 @@ html[dir=rtl] .back-button {
 .scroll-section {
   flex: 1 1 auto;
   margin-top: var(--mobile-content-top-offset, 104px);
-  margin-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  margin-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
   padding-top: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -7559,7 +7534,7 @@ html[dir=rtl] .back-button {
   background: var(--color-base-mobile-top-bg);
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
-  padding: 0 0;
+  padding: 0;
   position: relative;
   min-height: 65px;
   flex-shrink: 0;
@@ -7568,6 +7543,10 @@ html[dir=rtl] .back-button {
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   gap: 0;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

@@ -77,13 +77,30 @@ function MobileProductPage() {
 
   const containerRef = useRef(null);
 
+  // Scroll to top on component mount (page refresh)
+  useEffect(() => {
+    // Disable scroll restoration to prevent browser from restoring scroll position
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
+    // Also scroll the scroll-section to top if it exists
+    const scrollSection = document.querySelector(".scroll-section");
+    if (scrollSection) {
+      scrollSection.scrollTop = 0;
+    }
+  }, []);
+
   useEffect(() => {
     const computeAndSetOffsets = () => {
       const headerEl = document.querySelector(".mobile-header");
       const topEl = document.querySelector(".mobile-topnav");
       const headerH = headerEl ? headerEl.offsetHeight : 0;
       const topH = topEl ? topEl.offsetHeight : 0;
-      const total = headerH + topH;
+      const total = headerH + topH - 24;
       if (containerRef.current) {
         containerRef.current.style.setProperty(
           "--mobile-content-top-offset",
@@ -113,13 +130,13 @@ function MobileProductPage() {
     <div ref={containerRef} className="mobile-product-page">
       <MobileHeader className="mobile-header" />
       <MobileTop className="mobile-topnav" />
-      <MobileBottomNav className="mobile-bottomnav" />
       <div className="scroll-section">
         <AttractionsListMbl
           productList={filteredProducts}
           isLoading={isLoading}
         />
       </div>
+      <MobileBottomNav className="mobile-bottomnav" />
     </div>
   );
 }
