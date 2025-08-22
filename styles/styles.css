@@ -2889,7 +2889,7 @@ html[lang=ar] .guest-label {
 
 .accessibility-web-modal .ant-modal-close {
   position: absolute;
-  top: -14%;
+  top: -10%;
   right: 5px;
   border-radius: 50%;
   height: 50px;

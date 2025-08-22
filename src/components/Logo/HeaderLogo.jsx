@@ -33,8 +33,7 @@ export default function HeaderLogo() {
   const location = useLocation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
 
-  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
-    useState(false);
+  const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] = useState(false);
 
   const handleLogoClick = () => {
     navigate("/");
