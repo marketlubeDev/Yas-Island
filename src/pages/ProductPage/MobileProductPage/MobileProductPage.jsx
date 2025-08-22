@@ -77,7 +77,7 @@ function MobileProductPage() {
 
   return (
     <div className="mobile-product-page">
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <MobileTop className="mobile-topnav" />
       <div className="mobile-content">
         <AttractionsListMbl
