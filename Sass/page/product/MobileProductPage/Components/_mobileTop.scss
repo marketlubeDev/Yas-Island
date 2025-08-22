@@ -7,7 +7,7 @@
   background: var(--color-base-mobile-top-bg);
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
-  padding: 0 0;
+  padding: 0;
   position: relative;
   min-height: 65px;
   flex-shrink: 0;
@@ -16,6 +16,12 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   gap: 0;
+
+  // Fix border rendering issues in Chrome
+  transform: translateZ(0); // Force hardware acceleration
+  backface-visibility: hidden; // Prevent rendering artifacts
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 
   // hide scrollbar but keep scrollability
   &::-webkit-scrollbar {

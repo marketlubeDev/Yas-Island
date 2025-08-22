@@ -218,7 +218,7 @@
 }
 
 .mobile-topnav {
-  top: var(--mobile-header-height, 56px); // align directly under header
+  top: var(--mobile-header-height, 55px); // align directly under header
   height: auto; // allow natural height
   z-index: 200; // sits below header dropdowns
 }
@@ -234,7 +234,7 @@
   margin-top: var(--mobile-content-top-offset, 104px); // JS sets exact offset
   // Ensure content (including footer) isn't hidden behind the fixed bottom nav and device safe-area
   margin-bottom: calc(
-    60px + env(safe-area-inset-bottom, 0px)
+    30px + env(safe-area-inset-bottom, 0px)
   ); // bottomnav height + safe area
   padding-top: 0; // handled by sticky spacer below for persistent gap
   overflow-y: auto;
