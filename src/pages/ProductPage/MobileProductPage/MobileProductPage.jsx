@@ -59,12 +59,15 @@ function MobileProductPage() {
 
         if (
           currentSort === "Price (High to Low)" ||
+          currentSort === "Price (High To Low)" ||
           currentSort === "السعر (من الأعلى إلى الأقل)"
         ) {
           return priceB - priceA; // High to Low
         } else if (
           currentSort === "Price (Low to High)" ||
-          currentSort === "السعر (من الأقل إلى الأعلى)"
+          currentSort === "Price (Low To High)" ||
+          currentSort === "السعر (من الأقل إلى الأعلى)" ||
+          currentSort === "السعر (من الأقل الى الأعلى)"
         ) {
           return priceA - priceB; // Low to High
         }
