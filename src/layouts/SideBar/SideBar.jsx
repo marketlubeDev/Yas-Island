@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Logo from "../../components/Logo/Logo";
 import ChatWithUsButton from "../../components/buttons/ChatWithUsButton";
@@ -11,31 +11,77 @@ import camera from "../../assets/icons/cam.svg";
 import shop from "../../assets/icons/shop.svg";
 import { useSelector } from "react-redux";
 import { useLanguage } from "../../context/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
   const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { language } = useLanguage();
-
-  const handleClick = (item) => {
-    setActiveItem(item);
-  };
+  const navigate = useNavigate();
 
   // Define the sidebar items with translation keys
   const sideBarItems = [
-    { name: "all", icon: dash, translationKey: "sidebar.all" },
+    {
+      name: "all",
+      icon: dash,
+      translationKey: "sidebar.all",
+      link: "/upcoming",
+    },
     {
       name: "topAttractions",
       icon: beach,
       translationKey: "sidebar.topAttractions",
+      link: "/",
     },
-    { name: "packages", icon: dropbox, translationKey: "sidebar.packages" },
-    { name: "hotels", icon: house, translationKey: "sidebar.hotels" },
-    { name: "dining", icon: chef, translationKey: "sidebar.dining" },
-    { name: "live", icon: camera, translationKey: "sidebar.live" },
-    { name: "shopping", icon: shop, translationKey: "sidebar.shopping" },
+    {
+      name: "packages",
+      icon: dropbox,
+      translationKey: "sidebar.packages",
+      link: "/packages",
+    },
+    {
+      name: "hotels",
+      icon: house,
+      translationKey: "sidebar.hotels",
+      link: "/hotels",
+    },
+    {
+      name: "dining",
+      icon: chef,
+      translationKey: "sidebar.dining",
+      link: "/dining",
+    },
+    {
+      name: "live",
+      icon: camera,
+      translationKey: "sidebar.live",
+      link: "/live",
+    },
+    {
+      name: "shopping",
+      icon: shop,
+      translationKey: "sidebar.shopping",
+      link: "/shopping",
+    },
   ];
+
+  const handleClick = (item) => {
+    console.log(item.name, "item.name", item.link, "item.link");
+    setActiveItem(item.name);
+    navigate(item.link);
+  };
+
+  // Set initial active item based on current path
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    const currentItem = sideBarItems.find((item) => item.link === currentPath);
+    if (currentItem) {
+      setActiveItem(currentItem.name);
+    } else {
+      setActiveItem("topAttractions");
+    }
+  }, [sideBarItems]);
 
   return (
     <nav
@@ -57,7 +103,7 @@ export default function SideBar() {
                     activeItem === item.name ? "active" : ""
                   }`
             }
-            onClick={() => handleClick(item.name)}
+            onClick={() => handleClick(item)}
             style={{
               cursor: "pointer",
               opacity: 1,

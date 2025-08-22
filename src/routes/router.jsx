@@ -15,6 +15,7 @@ import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
 import CardPaymentMobile from "../pages/CardPayment/Mobile/CardPaymentMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
+import UpcomingPages from "../pages/Upcoming/UpcomingPages";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,61 @@ export const router = createBrowserRouter([
           />
         ),
       },
+      {
+        path: "upcoming",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+      {
+        path: "packages",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+      {
+        path: "hotels",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+      {
+        path: "dining",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+      {
+        path: "live",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+      {
+        path: "shopping",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={UpcomingPages}
+            DesktopComponent={UpcomingPages}
+          />
+        ),
+      },
+
       {
         path: "*",
         element: <Navigate to="/" replace />,
