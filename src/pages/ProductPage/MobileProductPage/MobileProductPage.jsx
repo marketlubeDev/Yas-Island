@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useMemo } from "react";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
@@ -75,68 +75,17 @@ function MobileProductPage() {
     return filtered || [];
   }, [productList, currentPark, currentSort, searchQuery]);
 
-  const containerRef = useRef(null);
-
-  // Scroll to top on component mount (page refresh)
-  useEffect(() => {
-    // Disable scroll restoration to prevent browser from restoring scroll position
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-
-    // Also scroll the scroll-section to top if it exists
-    const scrollSection = document.querySelector(".scroll-section");
-    if (scrollSection) {
-      scrollSection.scrollTop = 0;
-    }
-  }, []);
-
-  useEffect(() => {
-    const computeAndSetOffsets = () => {
-      const headerEl = document.querySelector(".mobile-header");
-      const topEl = document.querySelector(".mobile-topnav");
-      const headerH = headerEl ? headerEl.offsetHeight : 0;
-      const topH = topEl ? topEl.offsetHeight : 0;
-      const total = headerH + topH - 24;
-      if (containerRef.current) {
-        containerRef.current.style.setProperty(
-          "--mobile-content-top-offset",
-          `${total}px`
-        );
-        containerRef.current.style.setProperty(
-          "--mobile-header-height",
-          `${headerH}px`
-        );
-        containerRef.current.style.setProperty(
-          "--mobile-topnav-height",
-          `${topH}px`
-        );
-      }
-    };
-
-    computeAndSetOffsets();
-    window.addEventListener("resize", computeAndSetOffsets);
-    window.addEventListener("orientationchange", computeAndSetOffsets);
-    return () => {
-      window.removeEventListener("resize", computeAndSetOffsets);
-      window.removeEventListener("orientationchange", computeAndSetOffsets);
-    };
-  }, []);
-
   return (
-    <div ref={containerRef} className="mobile-product-page">
-      <MobileHeader className="mobile-header" />
+    <div className="mobile-product-page">
+      {/* <MobileHeader /> */}
       <MobileTop className="mobile-topnav" />
-      <div className="scroll-section">
+      <div className="mobile-content">
         <AttractionsListMbl
           productList={filteredProducts}
           isLoading={isLoading}
         />
       </div>
-      <MobileBottomNav className="mobile-bottomnav" />
+      <MobileBottomNav />
     </div>
   );
 }

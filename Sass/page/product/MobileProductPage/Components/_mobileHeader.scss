@@ -1,5 +1,5 @@
 .mobile-header {
-  min-height: 64px; // tighter header to reduce vertical gap
+  min-height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,8 +7,10 @@
   background: var(--color-base-mobile-header-bg);
   padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  z-index: 300; // keep above route content and top navigation
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {

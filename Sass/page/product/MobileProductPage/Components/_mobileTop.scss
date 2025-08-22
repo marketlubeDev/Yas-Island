@@ -1,5 +1,4 @@
 .mobile-top {
-  margin-top: 0; // fixed header above; avoid unintended gap
   width: 100%;
   display: flex;
   align-items: center;
@@ -8,11 +7,10 @@
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
   padding: 0;
-  position: relative;
   min-height: 65px;
   flex-shrink: 0;
   text-wrap: nowrap;
-  overflow-x: auto; // enable horizontal scroll when tabs overflow
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   gap: 0;

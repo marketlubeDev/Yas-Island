@@ -7128,23 +7128,50 @@ html[dir=rtl] .back-button {
     min-height: 80px;
   }
 }
-.attractions-list {
+.mobile-product-page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 8px 0;
-  background-color: var(--color-base-mobile-product-page-bg);
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+.mobile-header,
+.mobile-topnav {
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.mobile-content {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 70px;
 }
+
+.mobile-bottomnav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 100;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+.attractions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 8px 8px 8px;
+  background: var(--color-base-mobile-product-page-bg);
+}
 @media only screen and (max-width: 380px) {
   .attractions-list {
     gap: 12px;
-    padding: 10px 0;
-    padding-bottom: 65px;
+    padding: 4px 6px 6px 6px;
   }
 }
 .attractions-list__loading {
@@ -7157,21 +7184,17 @@ html[dir=rtl] .back-button {
 
 .attraction-card {
   display: flex;
-  background-color: var(--color-base-mobile-product-page-card-bg);
+  background: var(--color-base-mobile-product-page-card-bg);
   border-radius: 10px;
-  overflow: hidden;
   border: 1.5px solid var(--color-base-mobile-product-page-card-border);
-  padding: 5px 2px 5px 4px;
-  align-items: flex-start;
+  padding: 8px;
   gap: 12px;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  margin-bottom: -0.5rem;
+  align-items: flex-start;
 }
 @media only screen and (max-width: 380px) {
   .attraction-card {
     gap: 8px;
-    padding: 4px 2px 4px 3px;
+    padding: 6px;
   }
 }
 .attraction-card__img {
@@ -7216,13 +7239,6 @@ html[dir=rtl] .back-button {
     max-width: 120px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .attraction-card__title {
-    font-size: 1.1rem;
-    white-space: wrap;
-    max-width: 500px;
-  }
-}
 .attraction-card__desc {
   font-size: 14px;
   font-weight: 400;
@@ -7239,27 +7255,15 @@ html[dir=rtl] .back-button {
     max-width: 120px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .attraction-card__desc {
-    font-size: 1.1rem;
-    white-space: wrap;
-    max-width: 500px;
-  }
-}
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .attraction-card__desc {
-    font-size: 1.5rem;
-  }
-}
 .attraction-card__action {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   gap: 4px;
   width: 120px;
 }
 .attraction-card__add-btn {
-  background-color: var(--color-base-mobile-product-page-btn-bg);
+  background: var(--color-base-mobile-product-page-btn-bg);
   color: var(--color-base-mobile-product-page-btn-text);
   border: 1px solid var(--color-base-mobile-product-page-btn-border);
   border-radius: 2rem;
@@ -7271,11 +7275,6 @@ html[dir=rtl] .back-button {
   transition: background 0.2s;
   white-space: nowrap;
 }
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .attraction-card__add-btn {
-    font-size: 1.1rem;
-  }
-}
 .attraction-card__price {
   display: flex;
   align-items: center;
@@ -7284,11 +7283,6 @@ html[dir=rtl] .back-button {
   font-weight: 500;
   color: var(--color-base-mobile-product-page-price);
 }
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .attraction-card__price {
-    font-size: 1.1rem;
-  }
-}
 .attraction-card__vat {
   font-size: 10px;
   color: var(--color-base-mobile-product-page-vat-text);
@@ -7296,81 +7290,17 @@ html[dir=rtl] .back-button {
   text-align: left;
 }
 
-.mobile-product-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  position: relative;
-}
-@media only screen and (max-width: 380px) {
-  .mobile-product-page {
-    height: 100vh;
-    height: -webkit-fill-available;
-  }
+.mobile-content::-webkit-scrollbar {
+  width: 4px;
 }
 
-.mobile-header,
-.mobile-topnav,
-.mobile-bottomnav {
-  position: fixed;
-  left: 0;
-  width: 100%;
-}
-
-.mobile-header {
-  top: 0;
-  height: var(--mobile-header-height, 64px);
-  z-index: 300;
-}
-
-.mobile-topnav {
-  top: var(--mobile-header-height, 55px);
-  height: auto;
-  z-index: 200;
-}
-
-.mobile-bottomnav {
-  bottom: 0;
-  height: 56px;
-  z-index: 150;
-}
-
-.scroll-section {
-  flex: 1 1 auto;
-  margin-top: var(--mobile-content-top-offset, 104px);
-  margin-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-  padding-top: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.scroll-section .footer {
-  margin: 8px 8px calc(72px + env(safe-area-inset-bottom, 0px));
-  border-radius: 8px;
-  border: 1px solid var(--separator-color);
-  background: var(--color-base-bg);
-}
-.scroll-section::before {
-  content: "";
-  display: block;
-  height: 16px;
-  position: sticky;
-  top: 0;
-  background: var(--color-base-mobile-product-page-bg);
-  z-index: 2;
-  pointer-events: none;
-}
-.scroll-section::-webkit-scrollbar {
-  width: 8px;
-}
-.scroll-section::-webkit-scrollbar-track {
+.mobile-content::-webkit-scrollbar-track {
   background: transparent;
 }
-.scroll-section::-webkit-scrollbar-thumb {
+
+.mobile-content::-webkit-scrollbar-thumb {
   background: var(--color-base-product-card-scroll-bar);
-  border-radius: 4px;
-  border: 2px solid var(--color-base-product-card-scroll-bar-border);
+  border-radius: 2px;
 }
 
 .mobile-header {
@@ -7382,8 +7312,10 @@ html[dir=rtl] .back-button {
   background: var(--color-base-mobile-header-bg);
   padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  z-index: 300;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 @media only screen and (max-width: 380px) {
   .mobile-header {
@@ -7527,7 +7459,6 @@ html[dir=rtl] .back-button {
   }
 }
 .mobile-top {
-  margin-top: 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -7536,7 +7467,6 @@ html[dir=rtl] .back-button {
   border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
   border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
   padding: 0;
-  position: relative;
   min-height: 65px;
   flex-shrink: 0;
   text-wrap: nowrap;
@@ -11687,7 +11617,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   font-weight: 600;
   color: var(--color-pymnt-title-clr);
   text-align: center;
-  margin-top: 100px;
+  margin-top: 10px;
 }
 .payment-header__back-button {
   background: none;
