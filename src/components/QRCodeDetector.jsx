@@ -24,21 +24,35 @@ const QRCodeDetector = () => {
     isError: cartError,
   } = useRetriveCart(cartQrCode);
 
-  // Hide QR-related query params from URL once detected
+  // Hide QR-related query params and clean product path from URL once detected
   useEffect(() => {
     if (!hasQRCode) return;
     try {
       const currentUrl = new URL(window.location.href);
-      if (currentUrl.search) {
-        // Remove only the 'qrlocation' param to avoid affecting other flows
-        if (currentUrl.searchParams.has("qrlocation")) {
-          currentUrl.searchParams.delete("qrlocation");
-          const remainingSearch = currentUrl.searchParams.toString();
-          const cleanedPath = `${currentUrl.pathname}${
-            remainingSearch ? `?${remainingSearch}` : ""
-          }${currentUrl.hash}`;
-          window.history.replaceState({}, "", cleanedPath);
-        }
+      let didChange = false;
+
+      // Remove only the 'qrlocation' param to avoid affecting other flows
+      if (currentUrl.searchParams.has("qrlocation")) {
+        currentUrl.searchParams.delete("qrlocation");
+        didChange = true;
+      }
+
+      // If the path is /product/{id}, strip the 'product' segment and keep only '/{id}'
+      const productMatch = currentUrl.pathname.match(/^\/product\/([^/?#]+)/i);
+      if (productMatch) {
+        const onlyIdPath = `/${productMatch[1]}`;
+        const remainingSearch = currentUrl.searchParams.toString();
+        const cleanedPath = `${onlyIdPath}${
+          remainingSearch ? `?${remainingSearch}` : ""
+        }${currentUrl.hash}`;
+        window.history.replaceState({}, "", cleanedPath);
+        didChange = false; // already replaced above with full path
+      } else if (didChange) {
+        const remainingSearch = currentUrl.searchParams.toString();
+        const cleanedPath = `${currentUrl.pathname}${
+          remainingSearch ? `?${remainingSearch}` : ""
+        }${currentUrl.hash}`;
+        window.history.replaceState({}, "", cleanedPath);
       }
     } catch (err) {
       // no-op: if URL parsing fails, skip silently
