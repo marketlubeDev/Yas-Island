@@ -7141,6 +7141,8 @@ html[dir=rtl] .back-button {
 .mobile-topnav {
   flex-shrink: 0;
   z-index: 100;
+  position: sticky;
+  top: 0;
 }
 
 .mobile-content {
@@ -7304,7 +7306,7 @@ html[dir=rtl] .back-button {
 }
 
 .mobile-header {
-  min-height: 64px;
+  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
