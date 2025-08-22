@@ -149,6 +149,7 @@
 // Mobile Responsive Styles
 @media (max-width: 768px) {
   .upcoming-page {
+    height: calc(100vh - 18rem);
     padding: 1rem;
 
     .upcoming-container {
