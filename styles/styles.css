@@ -7143,7 +7143,6 @@ html[dir=rtl] .back-button {
   z-index: 100;
   position: sticky;
   top: 0;
-  background: var(--color-base-mobile-top-bg);
 }
 
 .mobile-content {
