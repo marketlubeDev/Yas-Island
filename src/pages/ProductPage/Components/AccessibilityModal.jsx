@@ -73,7 +73,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
       className="accessibility-web-modal"
       // width="40%"
     >
-      <div className="modal-content" style={{ background: "red" }}>
+      <div className="modal-content">
         <h2>{t("accessibility.title")}</h2>
         <p className="subtitle">{t("accessibility.subtitle")}</p>
 
