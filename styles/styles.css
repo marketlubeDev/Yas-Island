@@ -7700,6 +7700,7 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
 }
 .mobile-top-search-section__searchbar ::placeholder {
   color: var(--color-base-mobile-search-section-input-placeholder);
+  opacity: 0.6;
 }
 .mobile-top-search-section__searchbar button {
   background: none;
