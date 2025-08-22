@@ -121,6 +121,24 @@
   }
 }
 
+// Fixed mobile top navigation container
+#mobile-topnav-fixed {
+  position: fixed;
+  top: 64px; // Position below the fixed header
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--color-base-mobile-top-bg);
+  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    top: 60px; // Adjust for smaller header height
+  }
+}
+
 .mobile-top-search-section {
   padding: 5px 0 0 0;
   text-align: center;

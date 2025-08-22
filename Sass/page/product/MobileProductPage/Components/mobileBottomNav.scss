@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 0;
   left: 0;
+  right: 0;
   min-height: 60px;
-  width: 100vw;
   width: 100%;
   background: var(--color-base-mobile-bottom-nav-bg);
   display: flex;
@@ -11,7 +11,10 @@
   align-items: center;
   box-shadow: 0 -2px 8px rgba(44, 44, 84, 0.06);
   border-top: 1px solid var(--color-base-bottom-nav-border-top);
-  z-index: 100;
+  z-index: 1000;
+  /* Ensure it stays on top of other elements */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {

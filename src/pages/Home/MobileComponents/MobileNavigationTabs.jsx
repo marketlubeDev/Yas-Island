@@ -13,9 +13,11 @@ import hotelsIcon from "../../../assets/icons/house.svg";
 import hotelsIconInverter from "../../../assets/icons/invertedhouse.svg";
 import diningIcon from "../../../assets/icons/chef.svg";
 import diningIconInverter from "../../../assets/icons/invertedchef.svg";
+import { useNavigate } from "react-router-dom";
 
 function MobileNavigationTabs() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const isHighContrast = useSelector(
     (state) => state.accessibility.isHighContrast
@@ -37,7 +39,7 @@ function MobileNavigationTabs() {
       icon: allIconSrc,
       label: t("sidebar.all"),
       alt: t("sidebar.all"),
-      isActive: false,
+      link: "/upcoming",
     },
     {
       key: "attractions",
@@ -45,27 +47,29 @@ function MobileNavigationTabs() {
       label: t("sidebar.attractions"),
       alt: t("sidebar.attractions"),
       isActive: true,
+      link: "/",
     },
     {
       key: "packages",
       icon: packagesIconSrc,
       label: t("sidebar.packages"),
       alt: t("sidebar.packages"),
-      isActive: false,
+      link: "/upcoming",
     },
     {
       key: "hotels",
       icon: hotelsIconSrc,
       label: t("sidebar.hotels"),
       alt: t("sidebar.hotels"),
-      isActive: false,
+      link: "/upcoming",
     },
     {
       key: "dining",
       icon: diningIconSrc,
       label: t("sidebar.dining"),
       alt: t("sidebar.dining"),
-      isActive: false,
+
+      link: "/upcoming",
     },
   ];
 
@@ -79,6 +83,9 @@ function MobileNavigationTabs() {
           className={`mobile-top__item ${
             item.isActive ? "mobile-top__item--active" : ""
           }`}
+          onClick={() => {
+            navigate(item.link);
+          }}
         >
           <img
             src={

@@ -78,14 +78,14 @@ function MobileProductPage() {
   return (
     <div className="mobile-product-page">
       {/* <MobileHeader /> */}
-      <MobileTop className="mobile-topnav" />
+      {/* <MobileTop className="mobile-topnav" /> */}
       <div className="mobile-content">
         <AttractionsListMbl
           productList={filteredProducts}
           isLoading={isLoading}
         />
       </div>
-      <MobileBottomNav />
+      {/* <MobileBottomNav /> */}
     </div>
   );
 }

@@ -4,6 +4,13 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  position: relative;
+
+  // Ensure mobile bottom nav is properly positioned
+  @media (max-width: 768px) {
+    padding-bottom: 60px; // Add padding to account for fixed bottom nav
+    padding-top: 230px; // Add padding to account for fixed top nav (header + navigation + search)
+  }
 }
 .landing-page {
   height: calc(100vh - $header-size);

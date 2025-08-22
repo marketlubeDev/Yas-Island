@@ -6,6 +6,8 @@ import MobileHeader from "./MobileComponents/MobileHeader";
 import Header from "../../layouts/Header/Header";
 import SideBar from "../../layouts/SideBar/SideBar";
 import { useResponsive } from "../../hooks/responsiveHook/useResponsive";
+import MobileTop from "./MobileComponents/MobileTop";
+import MobileBottomNav from "./MobileComponents/MobilebottomNav";
 
 export default function Home({ children }) {
   const location = useLocation();
@@ -13,13 +15,15 @@ export default function Home({ children }) {
     location.pathname !== "/" && location.pathname !== "/upcoming";
   const { isSmallPhone, isPhone, isTablets } = useResponsive();
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     setIsMobile(isSmallPhone || isPhone || isTablets);
   }, [isSmallPhone, isPhone, isTablets]);
 
   return (
-    <div className="home" style={{ height: "100vh" }}>
+    <div className="home">
       {isMobile && <MobileHeader />}
+      {isMobile && <MobileTop />}
 
       <div className={` ${isMobile ? "" : "product"}`}>
         {!isMobile && <SideBar />}
@@ -30,6 +34,7 @@ export default function Home({ children }) {
         </div>
       </div>
       {shouldRenderGlobalFooter && <Footer />}
+      {isMobile && <MobileBottomNav />}
     </div>
   );
 }
