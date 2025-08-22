@@ -7148,6 +7148,8 @@ html[dir=rtl] .back-button {
 .mobile-topnav {
   flex-shrink: 0;
   z-index: 100;
+  position: sticky;
+  top: 0;
 }
 
 .mobile-content {
@@ -7310,7 +7312,7 @@ html[dir=rtl] .back-button {
 }
 
 .mobile-header {
-  min-height: 64px;
+  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -7319,13 +7321,6 @@ html[dir=rtl] .back-button {
   padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   flex-shrink: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1001;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 @media only screen and (min-width: 992px) {
   .mobile-header {
