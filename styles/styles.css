@@ -4733,13 +4733,13 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .order-summary-container {
     margin-top: 0.875rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .order-summary-container {
     margin-top: 0.75rem;
-    width: 80%;
+    width: 100%;
   }
 }
 .form-container {

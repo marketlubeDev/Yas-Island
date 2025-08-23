@@ -569,13 +569,13 @@
 @include respond(phone) {
   .order-summary-container {
     margin-top: 0.875rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @include respond(smallPhone) {
   .order-summary-container {
     margin-top: 0.75rem;
-    width: 80%;
+    width: 100%;
   }
 }
 
