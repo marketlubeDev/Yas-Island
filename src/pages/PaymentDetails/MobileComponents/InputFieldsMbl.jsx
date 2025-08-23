@@ -81,8 +81,9 @@ const FormSelectWithSearch = ({
   options,
   hasError = false,
   onClearError,
+  isOpen,
+  onOpenChange,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { t } = useTranslation();
   const selectedOption =
@@ -92,7 +93,7 @@ const FormSelectWithSearch = ({
 
   const handleSelect = (option) => {
     onChange(option.value);
-    setIsOpen(false);
+    onOpenChange(false);
   };
 
   const filteredOptions = useMemo(() => {
@@ -106,6 +107,31 @@ const FormSelectWithSearch = ({
       );
     });
   }, [options, searchTerm]);
+
+  // Reset search term when dropdown closes
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchTerm("");
+    }
+  }, [isOpen]);
+
+  // Handle clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const dropdownElement = document.getElementById(
+        label.toLowerCase().replace(/\s+/g, "")
+      );
+      if (dropdownElement && !dropdownElement.contains(e.target)) {
+        onOpenChange(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen, label, onOpenChange]);
 
   return (
     <label
@@ -134,7 +160,7 @@ const FormSelectWithSearch = ({
             color: "var(--color-email-form-label)",
           }}
           onClick={() => {
-            setIsOpen(!isOpen);
+            onOpenChange(!isOpen);
             if (onClearError) onClearError();
           }}
         >
@@ -400,6 +426,9 @@ function InputFieldsMbl() {
     nationality: false,
   });
 
+  // State to manage which dropdown is open
+  const [openDropdown, setOpenDropdown] = useState(null);
+
   const validateFieldsForPlaceholders = () => {
     const next = {
       firstName: !formData.firstName || formData.firstName.trim().length < 2,
@@ -572,6 +601,8 @@ function InputFieldsMbl() {
         onClearError={() =>
           setFieldErrors((prev) => ({ ...prev, country: false }))
         }
+        isOpen={openDropdown === "country"}
+        onOpenChange={(open) => setOpenDropdown(open ? "country" : null)}
       />
       <FormSelectWithSearch
         label={t("payment.personalDetails.nationality")}
@@ -582,6 +613,8 @@ function InputFieldsMbl() {
         onClearError={() =>
           setFieldErrors((prev) => ({ ...prev, nationality: false }))
         }
+        isOpen={openDropdown === "nationality"}
+        onOpenChange={(open) => setOpenDropdown(open ? "nationality" : null)}
       />
 
       {(() => {
