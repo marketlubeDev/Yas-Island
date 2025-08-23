@@ -3867,6 +3867,38 @@ html[lang=ar] .guest-label {
   margin-top: auto;
   z-index: 10;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .order-summary-new .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .order-summary-new .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .order-summary-new .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 6px;
+    margin-top: 6px;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .order-summary-new .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 4px;
+    margin-top: 4px;
+  }
+}
 .order-summary-new .email-checkout__summary-promoCode-input-container-inputBox.invalid,
 .order-summary-new .email-checkout__promo-input.invalid {
   border-color: #ff4d4f !important;
@@ -4176,6 +4208,16 @@ html[lang=ar] .guest-label {
   .payment-checkout-body {
     padding: 30px;
     min-height: calc(100vh - 6rem);
+  }
+}
+@media (max-width: 1024px) {
+  .payment-checkout-body {
+    padding: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .payment-checkout-body {
+    padding: 0.5rem;
   }
 }
 
@@ -4664,25 +4706,40 @@ html[lang=ar] .guest-label {
   align-items: start;
   font-family: "YAS Font", sans-serif;
 }
+@media (max-width: 1024px) {
+  .payment-checkout__contentnew_cardpayment {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+}
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .order-summary-container {
     margin-top: 1rem;
+    width: 80%;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .order-summary-container {
     margin-top: 1rem;
+    width: 80%;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .order-summary-container {
     margin-top: 0.875rem;
+    width: 80%;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .order-summary-container {
     margin-top: 0.75rem;
+    width: 80%;
   }
 }
 .form-container {
@@ -6195,11 +6252,12 @@ html[dir=rtl] .back-button {
   max-width: 800px;
   background-color: var(--color-resend-btn-bg);
   padding: 2rem 0 2rem 2rem;
+  border-radius: 12px;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (max-width: 575.98px) {
   .payment-container {
-    padding: 1.5rem;
+    padding: 0%;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
@@ -6328,7 +6386,7 @@ html[dir=rtl] .back-button {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 2rem;
+  margin: 1rem 0;
   text-align: center;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -9493,6 +9551,50 @@ html[lang=ar] .confirm-email__otp-actions button {
   padding-right: 16px;
   padding-bottom: 16px;
   z-index: 10;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .email-checkout__summary .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 8px;
+    margin: 8px 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 8px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .email-checkout__summary .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 8px;
+    margin: 8px 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 8px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .email-checkout__summary .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 6px;
+    margin: 6px 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 6px;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .email-checkout__summary .order-summary-sticky-bottom {
+    position: static;
+    border-top: none;
+    padding-top: 4px;
+    margin: 4px 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 4px;
+  }
 }
 .email-checkout__summary-title {
   color: var(--color-email-form-label);
