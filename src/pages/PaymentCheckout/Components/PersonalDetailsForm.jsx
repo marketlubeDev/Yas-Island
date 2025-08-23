@@ -88,6 +88,14 @@ const FormSelectWithSearch = ({
     value && value !== ""
       ? options.find((option) => option.value === value)
       : null;
+
+  const handleInputChange = (inputValue, { action }) => {
+    if (action === "input-change") {
+      return inputValue.replace(/[0-9]/g, ""); // remove digits
+    }
+    return inputValue;
+  };
+
   const customOption = ({ data, ...props }) => (
     <div {...props.innerProps} className="country-option">
       <ReactCountryFlag countryCode={data.code} svg className="country-flag" />
@@ -193,6 +201,7 @@ const FormSelectWithSearch = ({
           if (onClearError) onClearError();
         }}
         options={options}
+        onInputChange={handleInputChange}
         components={{
           Option: customOption,
           SingleValue: customSingleValue,
@@ -618,6 +627,15 @@ export default function PersonalDetailsForm({
           className={`checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
+          onClick={(e) => {
+            if (
+              e.target.type === "checkbox" ||
+              e.target.className.includes("checkbox-custom")
+            ) {
+              return;
+            }
+            e.preventDefault();
+          }}
         >
           <input
             type="checkbox"
@@ -660,6 +678,15 @@ export default function PersonalDetailsForm({
           className={`checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
+          onClick={(e) => {
+            if (
+              e.target.type === "checkbox" ||
+              e.target.className.includes("checkbox-custom")
+            ) {
+              return;
+            }
+            e.preventDefault();
+          }}
         >
           <input
             type="checkbox"

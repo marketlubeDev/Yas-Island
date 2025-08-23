@@ -362,7 +362,7 @@ export default function OrderSummary({
                   className="promo-Value"
                   style={{ display: "flex", alignItems: "center", gap: "8px" }}
                 >
-                  {`- AED`}{" "}
+                  {`- ${t("common.aed")}`}{" "}
                   {checkout?.promotions[0]?.discount?.replace("-", "")}
                 </span>
               </div>
