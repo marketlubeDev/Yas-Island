@@ -309,7 +309,7 @@ function MycartMbl({ onClose, visible }) {
                         </span>
                         <span className="mycart-modal__item-vat">
                           +
-                          <span className="text-xs text-gray-500">
+                          <span className="text-[13px] font-semibold text-[var(--color-email-form-label)]">
                             {" "}
                             {productData?.selectedVariant?.price?.tax}{" "}
                             {t("common.netAndTax")}
@@ -394,13 +394,14 @@ function MycartMbl({ onClose, visible }) {
                     {t("common.aed")} {total.toFixed(2)}
                   </span>
                 </div>
-              </div>
-              <button
+                  <button
                 className="mycart-modal__checkout"
                 onClick={() => handleBasketCheck(handleCheckout)}
               >
                 {isPending ? <Loading /> : t("cart.checkOut")}
               </button>
+              </div>
+            
             </div>
           </>
         )}

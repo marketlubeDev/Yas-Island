@@ -134,7 +134,7 @@ export const en = {
     adults: "Adults",
     children: "Children",
     subTotal: "Sub Total :",
-    vatAndTax: "VAT & Tax :",
+    vatAndTax: "VAT :",
     total: "Total :",
     saveCartAndPayLater: "Save Cart & Pay Later",
     checkOut: "Check Out",

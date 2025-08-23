@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import mobLogo from "../../../assets/images/moblogo.svg";
 import invertedLogo from "../../../assets/icons/invertedlogo.svg";
 import accessibilityIcon from "../../../assets/icons/assess.svg";
-import dropdownIcon from "../../../assets/icons/DownOutlined.svg";
-import dropdownIconInverter from "../../../assets/icons/invertdown.svg";
+
 import globeIcon from "../../../assets/icons/globe.svg";
 import { useNavigate } from "react-router-dom";
 import AccessibilityMbl from "./AccessibilityMbl";
@@ -30,7 +29,7 @@ function MobileHeader() {
     ? accessibilityIconInverter
     : accessibilityIcon;
   const globeIconSrc = isDarkMode ? globeIconInverter : globeIcon;
-  const dropdownIconSrc = isDarkMode ? dropdownIconInverter : dropdownIcon;
+
   const dispatch = useDispatch();
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -103,12 +102,22 @@ function MobileHeader() {
             >
               <img src={globeIconSrc} alt="Language" />
               <span>{currentLanguage === "ar" ? "Ar" : "En"}</span>
-              <img
-                src={dropdownIconSrc}
-                alt="down arrow"
-                className="chevron"
-                style={{ width: 12, height: 12, marginLeft: 4, marginTop: 4 }}
-              />
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={isDarkMode ? "#FFFFFF" : "#000000"}
+                strokeWidth="2"
+                style={{
+                  transform: showLangDropdown ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s",
+                  marginLeft: 4,
+                  marginTop: 4,
+                }}
+              >
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
             </button>
             {showLangDropdown && (
               <div
