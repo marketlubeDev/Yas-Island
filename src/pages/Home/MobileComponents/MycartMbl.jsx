@@ -376,6 +376,9 @@ function MycartMbl({ onClose, visible }) {
 
             <div className="mycart-modal__footer">
               <div className="mycart-modal__summary">
+                
+
+                <div className="mycart-modal__summary-row-container">
                 <div className="mycart-modal__summary-row">
                   <span>{t("cart.subTotal")}</span>
                   <span>
@@ -394,6 +397,10 @@ function MycartMbl({ onClose, visible }) {
                     {t("common.aed")} {total.toFixed(2)}
                   </span>
                 </div>
+</div>
+
+
+
                   <button
                 className="mycart-modal__checkout"
                 onClick={() => handleBasketCheck(handleCheckout)}
