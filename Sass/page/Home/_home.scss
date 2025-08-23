@@ -1,9 +1,27 @@
 @use "../../abstract/variables" as *;
+@use "../../base/responive" as *;
 
 .home {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  // Fix mobile viewport height issues
+  @include respond(tablet) {
+    min-height: 100vh;
+    min-height: 100dvh; // Dynamic viewport height for mobile
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  @include respond(mobile) {
+    min-height: 100vh;
+    min-height: 100dvh; // Dynamic viewport height for mobile
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
 }
 .landing-page {
   height: calc(100vh - $header-size);

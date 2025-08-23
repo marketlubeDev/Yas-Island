@@ -38,6 +38,13 @@ html {
 .main {
   min-height: 100vh;
   background-color: var(--color-base-bg);
+
+  // Prevent scrolling on mobile
+  @media only screen and (max-width: 768px) {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+  }
 }
 
 // Normalize browser autofill styles to avoid weird background on autocomplete
