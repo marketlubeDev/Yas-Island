@@ -179,6 +179,9 @@ function PaymentDetailsMobile() {
     createOrder(data, {
       onSuccess: (responseData) => {
         dispatch(setOrderData(responseData));
+        // Set session flag and timestamp before navigation
+        sessionStorage.setItem("paymentPageValid", "true");
+        sessionStorage.setItem("paymentNavigationTime", Date.now().toString());
         navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {

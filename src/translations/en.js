@@ -357,6 +357,15 @@ export const en = {
   pageTitle: {
     title:
       "YAS ISLAND | Yas Island, one of the most popular tourist attractions in the world, presents a family-friendly entertainment hub like no other. Book your holiday today.",
+    home: "YAS ISLAND | Book Your Adventure Today",
+    emailVerification: "YAS ISLAND | Email Verification",
+    otpConfirmation: "YAS ISLAND | OTP Confirmation",
+    paymentDetails: "YAS ISLAND | Guest Details & Payment",
+    cardPayment: "YAS ISLAND | Card Payment",
+    paymentSuccess: "YAS ISLAND | Payment Successful",
+    paymentResponse: "YAS ISLAND | Payment Response",
+    upcoming: "YAS ISLAND | Coming Soon",
+    packages: "YAS ISLAND | Packages",
   },
   upcoming: {
     title: "We'll be adding products soon",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
@@ -18,6 +18,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [failureMessage, setFailureMessage] = useState("");
