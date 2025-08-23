@@ -3555,7 +3555,6 @@ html[lang=ar] .guest-label {
 .order-summary-new {
   background: var(--color-base-bg);
   border-radius: 16px;
-  box-shadow: 0 4px 20px var(--card-box-shadow);
   padding: 20px;
   max-height: 90vh;
   display: flex;
@@ -4710,8 +4709,8 @@ html[lang=ar] .guest-label {
   width: 100%;
   max-width: 1300px;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
   font-family: "YAS Font", sans-serif;
 }
 @media (max-width: 1024px) {
@@ -9566,8 +9565,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   position: sticky;
   bottom: -16px;
   background: var(--color-base-bg);
-  border-top: 1px solid var(--color-base-product-card-divider);
-  padding-top: 16px;
   margin: 0 -16px -16px -16px;
   padding-left: 16px;
   padding-right: 16px;
@@ -9578,7 +9575,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   .email-checkout__summary .order-summary-sticky-bottom {
     position: static;
     border-top: none;
-    padding-top: 8px;
     margin: 8px 0 0 0;
     padding-left: 0;
     padding-right: 0;
@@ -9589,7 +9585,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   .email-checkout__summary .order-summary-sticky-bottom {
     position: static;
     border-top: none;
-    padding-top: 8px;
     margin: 8px 0 0 0;
     padding-left: 0;
     padding-right: 0;
@@ -9706,7 +9701,6 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary-viewItems-content-item-price-details {
   padding-top: 8px;
-  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount {
   display: flex;
@@ -9798,7 +9792,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
-  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-grandTotal-Content {
   font-weight: bold;
