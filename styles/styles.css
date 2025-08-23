@@ -5221,7 +5221,7 @@ html[dir=rtl] .back-button {
   margin-left: 8px;
   border-radius: 2px;
   flex-shrink: 0;
-  border: 1px solid var(--ip-bodr-btm);
+  border: none;
   background-color: transparent;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -5263,7 +5263,7 @@ html[dir=rtl] .back-button {
   margin-left: 8px;
   border-radius: 2px;
   flex-shrink: 0;
-  border: 1px solid var(--ip-bodr-btm);
+  border: none;
   background-color: transparent;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -5499,7 +5499,7 @@ html[dir=rtl] .back-button {
     height: 16px;
     margin-right: 6px;
     margin-left: 6px;
-    border: 1px solid var(--ip-bodr-btm);
+    border: none;
   }
   .payment-form__left .country-option .country-name {
     font-size: 0.85rem;
@@ -5514,7 +5514,7 @@ html[dir=rtl] .back-button {
     height: 16px;
     margin-right: 6px;
     margin-left: 6px;
-    border: 1px solid var(--ip-bodr-btm);
+    border: none;
   }
   .payment-form__left .country-single-value .country-name {
     font-size: 0.85rem;
