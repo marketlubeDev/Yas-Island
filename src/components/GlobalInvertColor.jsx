@@ -17,6 +17,10 @@ export default function GlobalInvertColor() {
       "--color-selector-option-text",
       isDarkMode ? "#ffffff" : "#222"
     );
+    document.documentElement.style.setProperty(
+      "--color-selector-option-hover-bg",
+      isDarkMode? "#313030" : "#f5f5f5"
+    )
 
     // secure payment
     document.documentElement.style.setProperty(

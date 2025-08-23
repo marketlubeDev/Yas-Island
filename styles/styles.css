@@ -3199,7 +3199,7 @@ html[lang=ar] .guest-label {
 
 .item-details h4 {
   margin: 0;
-  color: var(--cart-item-name);
+  color: var(--color-base-text);
   font-size: 0.95225rem;
   font-style: normal;
   font-weight: 700;
@@ -3238,7 +3238,7 @@ html[lang=ar] .guest-label {
   }
 }
 .quantity-controls span {
-  color: var(--cart-item-var);
+  color: var(--color-base-text);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 600;
@@ -3396,7 +3396,7 @@ html[lang=ar] .guest-label {
   text-transform: lowercase;
 }
 .validity-date span {
-  color: var(--cart-item-day);
+  color: var(--color-base-text);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
