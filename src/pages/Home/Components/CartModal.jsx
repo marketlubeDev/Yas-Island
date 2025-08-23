@@ -504,7 +504,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         {productData?.selectedVariant?.net_amount} +
                         <span
                           className="text-[0.7rem] font-normal"
-                          style={{ color: "var(--cart-item-date)" }}
+                          style={{ color: "var(--color-base-text)" }}
                         >
                           {" "}
                           {productData?.selectedVariant?.vat}{" "}

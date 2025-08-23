@@ -3193,7 +3193,7 @@ html[lang=ar] .guest-label {
 
 .item-details h4 {
   margin: 0;
-  color: var(--cart-item-name);
+  color: var(--color-base-text);
   font-size: 0.95225rem;
   font-style: normal;
   font-weight: 700;
@@ -3232,7 +3232,7 @@ html[lang=ar] .guest-label {
   }
 }
 .quantity-controls span {
-  color: var(--cart-item-var);
+  color: var(--color-base-text);
   font-size: 0.85225rem;
   font-style: normal;
   font-weight: 600;
@@ -3390,7 +3390,7 @@ html[lang=ar] .guest-label {
   text-transform: lowercase;
 }
 .validity-date span {
-  color: var(--cart-item-day);
+  color: var(--color-base-text);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -12837,4 +12837,176 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: var(--bg-skeleton);
   background: linear-gradient(110deg, var(--border-skeleton-one) 8%, var(--border-skeleton-two) 18%, var(--border-skeleton-one) 33%);
   border: 1px solid #ececec;
+}
+
+.upcoming-page {
+  height: calc(100vh - 12rem);
+  background-color: var(--color-base-product-card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: "YASfont-Regular", sans-serif;
+}
+.upcoming-page .upcoming-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+.upcoming-page .upcoming-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+.upcoming-page .upcoming-content .upcoming-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin: 0;
+  line-height: 1.2;
+}
+.upcoming-page .upcoming-content .upcoming-subtitle {
+  font-size: 1.1rem;
+  color: #6b6b6b;
+  margin: 0;
+  line-height: 1.5;
+}
+.upcoming-page .upcoming-content .upcoming-subtitle .highlight {
+  color: #4a4a4a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.upcoming-page .upcoming-content .upcoming-subtitle .highlight:hover {
+  color: #2a2a2a;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .upcoming-page {
+    height: calc(100vh - 18rem);
+    padding: 1rem;
+  }
+  .upcoming-page .upcoming-container {
+    gap: 2rem;
+  }
+  .upcoming-page .upcoming-illustration {
+    width: 150px;
+    height: 120px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass {
+    top: 15px;
+    left: 20px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .lens {
+    width: 45px;
+    height: 45px;
+    border-width: 3px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .lens::after {
+    width: 30px;
+    height: 30px;
+    border-width: 1.5px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .handle {
+    top: 35px;
+    left: 55px;
+    width: 30px;
+    height: 6px;
+  }
+  .upcoming-page .upcoming-illustration .document {
+    top: 25px;
+    left: 45px;
+    width: 60px;
+    height: 80px;
+  }
+  .upcoming-page .upcoming-illustration .document .document-lines {
+    padding: 12px 8px;
+    gap: 6px;
+  }
+  .upcoming-page .upcoming-illustration .document .document-lines .line {
+    height: 2px;
+  }
+  .upcoming-page .upcoming-content .upcoming-title {
+    font-size: 1.5rem;
+  }
+  .upcoming-page .upcoming-content .upcoming-subtitle {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .upcoming-page .upcoming-illustration {
+    width: 120px;
+    height: 100px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass {
+    top: 10px;
+    left: 15px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .lens {
+    width: 35px;
+    height: 35px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .lens::after {
+    width: 25px;
+    height: 25px;
+  }
+  .upcoming-page .upcoming-illustration .magnifying-glass .handle {
+    top: 25px;
+    left: 40px;
+    width: 25px;
+    height: 5px;
+  }
+  .upcoming-page .upcoming-illustration .document {
+    top: 20px;
+    left: 35px;
+    width: 50px;
+    height: 65px;
+  }
+  .upcoming-page .upcoming-illustration .document .document-lines {
+    padding: 10px 6px;
+    gap: 5px;
+  }
+  .upcoming-page .upcoming-illustration .document .document-lines .line {
+    height: 2px;
+  }
+  .upcoming-page .upcoming-content .upcoming-title {
+    font-size: 1.25rem;
+  }
+  .upcoming-page .upcoming-content .upcoming-subtitle {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .upcoming-page .upcoming-illustration {
+    width: 180px;
+    height: 135px;
+  }
+  .upcoming-page .upcoming-content .upcoming-title {
+    font-size: 1.75rem;
+  }
+  .upcoming-page .upcoming-content .upcoming-subtitle {
+    font-size: 1.05rem;
+  }
+}
+@media (min-width: 1025px) {
+  .upcoming-page .upcoming-container {
+    max-width: 700px;
+    gap: 4rem;
+  }
+  .upcoming-page .upcoming-illustration {
+    width: 220px;
+    height: 165px;
+  }
+  .upcoming-page .upcoming-content .upcoming-title {
+    font-size: 2.25rem;
+  }
+  .upcoming-page .upcoming-content .upcoming-subtitle {
+    font-size: 1.2rem;
+  }
 }
