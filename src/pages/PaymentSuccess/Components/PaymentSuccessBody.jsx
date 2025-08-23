@@ -22,7 +22,6 @@ export default function PaymentSuccessBody() {
           onLottieClick={handleLottieClick}
         />
       </div>
-    
     </div>
   );
 }

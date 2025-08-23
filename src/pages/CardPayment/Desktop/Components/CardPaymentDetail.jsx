@@ -25,8 +25,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
 
-  console.log(theme, "theme");
-
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
     dispatch(clearCart());

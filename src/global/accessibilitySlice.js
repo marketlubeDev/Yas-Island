@@ -25,10 +25,10 @@ const accessibilitySlice = createSlice({
       const mode = action.payload;
       if (mode === "normal") {
         state.isDarkMode = false;
-        state.theme = "theme-dark";
+        state.theme = "theme-light";
       } else if (mode === "invert") {
         state.isDarkMode = true;
-        state.theme = "theme-light";
+        state.theme = "theme-dark";
       }
     },
   },

@@ -49,6 +49,8 @@ export default function HeaderLogo() {
     location.pathname === "/live" ||
     location.pathname === "/shopping";
 
+  const isCardPaymentPage = location.pathname === "/card-payment";
+
   // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
@@ -112,36 +114,40 @@ export default function HeaderLogo() {
         )}{" "}
       </div>
       <div className="header-actions-right animate-fade-in">
-        <button
-          className="accessibility-button"
-          aria-label={t("common.accessibility")}
-          onClick={onAccessibilityOpen}
-          style={{
-            ...(!isPaymentRoute && {}),
-          }}
-        >
-          <span className="product-header__icon">
-            <img
-              src={isDarkMode ? invertAccessibility : accessibility}
-              alt={t("common.accessibility")}
+        {!isCardPaymentPage && (
+          <button
+            className="accessibility-button"
+            aria-label={t("common.accessibility")}
+            onClick={onAccessibilityOpen}
+            style={{
+              ...(!isPaymentRoute && {}),
+            }}
+          >
+            <span className="product-header__icon">
+              <img
+                src={isDarkMode ? invertAccessibility : accessibility}
+                alt={t("common.accessibility")}
+              />
+            </span>
+          </button>
+        )}
+        {!isCardPaymentPage && (
+          <div
+            className="language-selector"
+            style={{ display: "flex", alignItems: "center", gap: "8px" }}
+          >
+            <Selector
+              id="header-language"
+              options={["English", "العربية"]}
+              value={language}
+              onChange={(e) =>
+                changeLanguage(e.target.value === "English" ? "en" : "ar")
+              }
+              style={{ minWidth: "140px" }}
+              leftIcon={<img src={isDarkMode ? invertGlobe : globe} alt="" />}
             />
-          </span>
-        </button>
-        <div
-          className="language-selector"
-          style={{ display: "flex", alignItems: "center", gap: "8px" }}
-        >
-          <Selector
-            id="header-language"
-            options={["English", "العربية"]}
-            value={language}
-            onChange={(e) =>
-              changeLanguage(e.target.value === "English" ? "en" : "ar")
-            }
-            style={{ minWidth: "140px" }}
-            leftIcon={<img src={isDarkMode ? invertGlobe : globe} alt="" />}
-          />
-        </div>
+          </div>
+        )}
         <button
           className={`${
             language === "العربية" ? "ar-cart-button" : "cart-button"

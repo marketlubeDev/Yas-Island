@@ -4,7 +4,7 @@ import invertedLogo from "../../../assets/icons/invertedlogo.svg";
 import accessibilityIcon from "../../../assets/icons/assess.svg";
 
 import globeIcon from "../../../assets/icons/globe.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AccessibilityMbl from "./AccessibilityMbl";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,10 +21,13 @@ import {
 function MobileHeader() {
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const navigate = useNavigate();
+  const location = useLocation();
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(false);
   const langBtnRef = useRef(null);
   const { toggleLanguage } = useLanguage();
+
+  const isCardPaymentPage = location.pathname === "/card-payment";
   const accessibilityIconSrc = isDarkMode
     ? accessibilityIconInverter
     : accessibilityIcon;
@@ -82,79 +85,85 @@ function MobileHeader() {
           />
         </div>
         <div className="mobile-header__right animate-mobile-actions">
-          <button
-            className="mobile-header__icon-btn"
-            aria-label="Accessibility"
-            onClick={() => {
-              setShowAccessibility(!showAccessibility);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <img src={accessibilityIconSrc} alt="Accessibility" />
-          </button>
-
-          <div style={{ position: "relative" }} ref={langBtnRef}>
+          {!isCardPaymentPage && (
             <button
-              className="mobile-header__lang-btn"
-              aria-label="Language"
-              onClick={() => setShowLangDropdown((v) => !v)}
-              type="button"
+              className="mobile-header__icon-btn"
+              aria-label="Accessibility"
+              onClick={() => {
+                setShowAccessibility(!showAccessibility);
+                window.scrollTo(0, 0);
+              }}
             >
-              <img src={globeIconSrc} alt="Language" />
-              <span>{currentLanguage === "ar" ? "Ar" : "En"}</span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={isDarkMode ? "#FFFFFF" : "#000000"}
-                strokeWidth="2"
-                style={{
-                  transform: showLangDropdown ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "transform 0.2s",
-                  marginLeft: 4,
-                  marginTop: 4,
-                }}
-              >
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
+              <img src={accessibilityIconSrc} alt="Accessibility" />
             </button>
-            {showLangDropdown && (
-              <div
-                className={
-                  "mobile-header__lang-dropdown" +
-                  (currentLanguage === "ar"
-                    ? " mobile-header__lang-dropdown--ar"
-                    : " mobile-header__lang-dropdown--en")
-                }
+          )}
+
+          {!isCardPaymentPage && (
+            <div style={{ position: "relative" }} ref={langBtnRef}>
+              <button
+                className="mobile-header__lang-btn"
+                aria-label="Language"
+                onClick={() => setShowLangDropdown((v) => !v)}
+                type="button"
               >
-                <div
-                  className="mobile-header__lang-option"
-                  onClick={() => {
-                    changeLanguage("en");
-                    setShowLangDropdown(false);
+                <img src={globeIconSrc} alt="Language" />
+                <span>{currentLanguage === "ar" ? "Ar" : "En"}</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={isDarkMode ? "#FFFFFF" : "#000000"}
+                  strokeWidth="2"
+                  style={{
+                    transform: showLangDropdown
+                      ? "rotate(180deg)"
+                      : "rotate(0deg)",
+                    transition: "transform 0.2s",
+                    marginLeft: 4,
+                    marginTop: 4,
                   }}
                 >
-                  <span className="mobile-header__lang-text">English</span>
-                  {currentLanguage === "en" && (
-                    <span className="mobile-header__lang-check">✓</span>
-                  )}
-                </div>
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </button>
+              {showLangDropdown && (
                 <div
-                  className="mobile-header__lang-option"
-                  onClick={() => {
-                    changeLanguage("ar");
-                    setShowLangDropdown(false);
-                  }}
+                  className={
+                    "mobile-header__lang-dropdown" +
+                    (currentLanguage === "ar"
+                      ? " mobile-header__lang-dropdown--ar"
+                      : " mobile-header__lang-dropdown--en")
+                  }
                 >
-                  <span className="mobile-header__lang-text">Arabic</span>
-                  {currentLanguage === "ar" && (
-                    <span className="mobile-header__lang-check">✓</span>
-                  )}
+                  <div
+                    className="mobile-header__lang-option"
+                    onClick={() => {
+                      changeLanguage("en");
+                      setShowLangDropdown(false);
+                    }}
+                  >
+                    <span className="mobile-header__lang-text">English</span>
+                    {currentLanguage === "en" && (
+                      <span className="mobile-header__lang-check">✓</span>
+                    )}
+                  </div>
+                  <div
+                    className="mobile-header__lang-option"
+                    onClick={() => {
+                      changeLanguage("ar");
+                      setShowLangDropdown(false);
+                    }}
+                  >
+                    <span className="mobile-header__lang-text">Arabic</span>
+                    {currentLanguage === "ar" && (
+                      <span className="mobile-header__lang-check">✓</span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

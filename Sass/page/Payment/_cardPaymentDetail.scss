@@ -1,5 +1,18 @@
 @use "../../base/responive" as *;
 
+// Theme-specific iframe color scheme
+.theme-light {
+  .iframe-container iframe {
+    color-scheme: light;
+  }
+}
+
+.theme-dark {
+  .iframe-container iframe {
+    color-scheme: dark;
+  }
+}
+
 .payfort {
   width: 100%;
   height: 100%;
@@ -7,14 +20,6 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-
-  .theme-light iframe {
-    color-scheme: light;
-  }
-
-  .theme-dark iframe {
-    color-scheme: dark;
-  }
 
   @include respond(phone) {
     flex-direction: column;
