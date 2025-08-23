@@ -93,6 +93,8 @@
   gap: 0;
   background-color: var(--color-base-product-card-bg);
   animation: fadeIn 0.8s ease-out;
+  height: 100vh;
+  overflow: hidden;
 
   &-description {
     color: var(--text-colort);
@@ -470,6 +472,11 @@
 // Product page animation classes
 .product-content {
   animation: slideInRight 0.8s ease-out 0.3s both;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 .product-header {

@@ -59,16 +59,16 @@
   width: 100%;
   background-color: var(--color-base-product-card-bg);
   padding: 0 2rem 2rem 2rem;
-  overflow-y: scroll;
-  height: calc(100vh - 12rem);
+  overflow-y: auto;
+  flex: 1;
   scroll-behavior: smooth;
 
   @include respond(desktop) {
-    height: calc(100vh - 0rem);
+    flex: 1;
   }
 
   @include respond(bigDesktop) {
-    height: calc(100vh - 0rem);
+    flex: 1;
   }
 
   &::-webkit-scrollbar {

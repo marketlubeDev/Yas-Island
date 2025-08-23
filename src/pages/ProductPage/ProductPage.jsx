@@ -127,15 +127,17 @@ export default function ProductPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              height: "calc(100vh - 12rem)",
+              flex: 1,
             }}
           >
             <Loader />
           </div>
         ) : (
-          <ProductCard productList={filteredProducts} />
+          <>
+            <ProductCard productList={filteredProducts} />
+            {showFooter && <Footer />}
+          </>
         )}
-        {showFooter && <Footer />}
 
         <AccessibilityModal
           isOpen={isAccessibilityModalOpen}
