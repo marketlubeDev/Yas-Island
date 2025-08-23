@@ -7,7 +7,13 @@ import MobileHeader from "./MobileComponents/MobileHeader";
 export default function Home({ children }) {
   const location = useLocation();
   const shouldRenderGlobalFooter =
-    location.pathname !== "/" && location.pathname !== "/upcoming";
+    location.pathname !== "/" &&
+    location.pathname !== "/upcoming" &&
+    location.pathname !== "/packages" &&
+    location.pathname !== "/hotels" &&
+    location.pathname !== "/dining" &&
+    location.pathname !== "/live" &&
+    location.pathname !== "/shopping";
 
   return (
     <div className="home" style={{ height: "100vh" }}>

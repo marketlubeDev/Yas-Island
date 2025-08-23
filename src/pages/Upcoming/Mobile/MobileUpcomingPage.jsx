@@ -1,0 +1,51 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import Footer from "../../../layouts/Footer/Footer";
+import SideBar from "../../../layouts/SideBar/SideBar";
+import Header from "../../../layouts/Header/Header";
+import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
+import MobileTop from "../../Home/MobileComponents/MobileTop";
+const UpcomingPages = () => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <MobileTop className="mobile-topnav" />
+      <div className="upcoming-page ">
+        <div className="upcoming-container">
+          {/* <div className="upcoming-illustration">
+            <div className="magnifying-glass">
+                <div className="lens"></div>
+                <div className="handle"></div>
+            </div>
+            <div className="document">
+                <div className="document-lines">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                </div>
+            </div>
+            <div className="base-line"></div>
+            </div> */}
+
+          <div className="upcoming-content">
+            <h1 className="upcoming-title">{t("upcoming.title")}</h1>
+            <p className="upcoming-subtitle">
+              {t("upcoming.subtitle")}
+              <span className="highlight">
+                {" "}
+                {t("upcoming.topAttractions")}{" "}
+              </span>
+              {t("upcoming.subtitleEnd")}
+            </p>
+          </div>
+        </div>
+        {/* <Footer /> */} <MobileBottomNav />
+      </div>
+    </>
+  );
+};
+
+export default UpcomingPages;
