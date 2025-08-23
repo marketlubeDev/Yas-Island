@@ -372,6 +372,35 @@
     padding-top: 16px;
     margin-top: auto;
     z-index: 10;
+
+    // Remove sticky positioning on mobile devices
+    @include respond(bigTablets) {
+      position: static;
+      border-top: none;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    @include respond(tablets) {
+      position: static;
+      border-top: none;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    @include respond(phone) {
+      position: static;
+      border-top: none;
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    @include respond(smallPhone) {
+      position: static;
+      border-top: none;
+      padding-top: 4px;
+      margin-top: 4px;
+    }
   }
 
   /* Mobile/desktop promo input validity styles reused */

@@ -272,6 +272,47 @@
     padding-right: 16px;
     padding-bottom: 16px;
     z-index: 10;
+
+    // Remove sticky positioning on mobile devices
+    @include respond(bigTablets) {
+      position: static;
+      border-top: none;
+      padding-top: 8px;
+      margin: 8px 0 0 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 8px;
+    }
+
+    @include respond(tablets) {
+      position: static;
+      border-top: none;
+      padding-top: 8px;
+      margin: 8px 0 0 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 8px;
+    }
+
+    @include respond(phone) {
+      position: static;
+      border-top: none;
+      padding-top: 6px;
+      margin: 6px 0 0 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 6px;
+    }
+
+    @include respond(smallPhone) {
+      position: static;
+      border-top: none;
+      padding-top: 4px;
+      margin: 4px 0 0 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 4px;
+    }
   }
 
   &-title {

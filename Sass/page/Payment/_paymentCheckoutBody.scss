@@ -72,6 +72,14 @@
     padding: 30px;
     min-height: calc(100vh - 6rem);
   }
+
+  @media (max-width: 1024px) {
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
 }
 
 .payment-checkout-page {
@@ -533,27 +541,41 @@
   // width: 100%;
   // max-width: 1300px;
   // height: auto;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
 }
 
 // Spacing for Order Summary when stacked under iframe
 @include respond(bigTablets) {
   .order-summary-container {
     margin-top: 1rem;
+    width: 80%;
   }
 }
 @include respond(tablets) {
   .order-summary-container {
     margin-top: 1rem;
+    width: 80%;
   }
 }
 @include respond(phone) {
   .order-summary-container {
     margin-top: 0.875rem;
+    width: 100%;
   }
 }
 @include respond(smallPhone) {
   .order-summary-container {
     margin-top: 0.75rem;
+    width: 100%;
   }
 }
 
