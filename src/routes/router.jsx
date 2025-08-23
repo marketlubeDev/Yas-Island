@@ -15,7 +15,8 @@ import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
 import CardPaymentMobile from "../pages/CardPayment/Mobile/CardPaymentMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
-import UpcomingPages from "../pages/Upcoming/UpcomingPages";
+import UpcomingPages from "../pages/Upcoming/Desktop/UpcomingPages";
+import MobileUpcomingPage from "../pages/Upcoming/Mobile/MobileUpcomingPage";
 
 export const router = createBrowserRouter([
   {
@@ -84,7 +85,7 @@ export const router = createBrowserRouter([
         path: "upcoming",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),
@@ -93,7 +94,7 @@ export const router = createBrowserRouter([
         path: "packages",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),
@@ -102,7 +103,7 @@ export const router = createBrowserRouter([
         path: "hotels",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),
@@ -111,7 +112,7 @@ export const router = createBrowserRouter([
         path: "dining",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),
@@ -120,7 +121,7 @@ export const router = createBrowserRouter([
         path: "live",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),
@@ -129,7 +130,7 @@ export const router = createBrowserRouter([
         path: "shopping",
         element: (
           <ResponsiveWrapper
-            MobileComponent={UpcomingPages}
+            MobileComponent={MobileUpcomingPage}
             DesktopComponent={UpcomingPages}
           />
         ),

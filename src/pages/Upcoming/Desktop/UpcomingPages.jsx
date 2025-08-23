@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import Footer from "../../layouts/Footer/Footer";
-import SideBar from "../../layouts/SideBar/SideBar";
-import Header from "../../layouts/Header/Header";
+import Footer from "../../../layouts/Footer/Footer";
+import SideBar from "../../../layouts/SideBar/SideBar";
+import Header from "../../../layouts/Header/Header";
 const UpcomingPages = () => {
   const { t } = useTranslation();
 
@@ -31,19 +31,14 @@ const UpcomingPages = () => {
             </div> */}
 
             <div className="upcoming-content">
-              <h1 className="upcoming-title">
-                {t("upcoming.title", "We'll be adding products soon")}
-              </h1>
+              <h1 className="upcoming-title">{t("upcoming.title")}</h1>
               <p className="upcoming-subtitle">
-                {t("upcoming.subtitle", "Check out our")}
+                {t("upcoming.subtitle")}
                 <span className="highlight">
                   {" "}
-                  {t("upcoming.topAttractions", "Top Attractions")}{" "}
+                  {t("upcoming.topAttractions")}{" "}
                 </span>
-                {t(
-                  "upcoming.subtitleEnd",
-                  "for adventures available right now."
-                )}
+                {t("upcoming.subtitleEnd")}
               </p>
             </div>
           </div>
