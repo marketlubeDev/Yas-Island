@@ -10,7 +10,7 @@ export default function CardPaymentPage() {
     if (!isCheckout) {
       navigate("/");
     }
-  }, [isCheckout]);
+  }, [isCheckout, navigate]);
   return (
     <div className="payment-checkout-page">
       <Header />

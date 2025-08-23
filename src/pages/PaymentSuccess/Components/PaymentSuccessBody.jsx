@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 export default function PaymentSuccessBody() {
   const navigate = useNavigate();
   const handleBackClick = () => {
-    // Navigate back to card payment
-    navigate("/card-payment");
+    // Navigate back to home page
+    navigate("/");
   };
 
   const handleLottieClick = () => {

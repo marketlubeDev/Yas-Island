@@ -32,7 +32,7 @@ function CardPaymentMobile() {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(countdownInterval);
-          window.location.href = "/payment-success";
+          window.location.replace("/payment-success");
           return 0;
         }
         return prev - 1;

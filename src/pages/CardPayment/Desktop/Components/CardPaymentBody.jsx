@@ -27,7 +27,7 @@ export default function CardPaymentBody({ isCheckout }) {
 
   const handlePaymentComplete = () => {
     // Navigate to payment success
-    navigate("/payment-success");
+    navigate("/payment-success", { replace: true });
   };
 
   return (

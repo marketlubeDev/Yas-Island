@@ -4,7 +4,7 @@ import PaymentResponse from "./PaymentResponse";
 export default function PaymentResponseBody() {
   const handleBackClick = () => {
     // Navigate back to payment success
-    window.location.href = "/payment-success";
+    window.location.replace("/payment-success");
   };
 
   return (

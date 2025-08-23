@@ -61,7 +61,7 @@ function PaymentMethodMbl() {
       <button
         className="make-payment__pay-btn"
         onClick={() => {
-          navigate("/payment-success");
+          navigate("/payment-success", { replace: true });
         }}
       >
         {t("payment.cardPayment.makePayment")}

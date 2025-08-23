@@ -28,7 +28,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
     dispatch(clearCart());
-    window.location.replace("/payment-success");
+    navigate("/payment-success", { replace: true });
   };
 
   useEffect(() => {
