@@ -680,7 +680,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-bg",
-      isDarkMode ? "#000000" : isHighContrast ? "#0759DD" : "#FFEA00"
+      isDarkMode ? "#000000" : isHighContrast ? "#0759DD" : "#fff"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-checkout-btn-clr",
@@ -702,7 +702,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-bkg-save-btn-bg",
-      isDarkMode ? "#F8A622" : "#fff"
+      isDarkMode ? "#F8A622" : "#ffea00"
     );
     document.documentElement.style.setProperty(
       "--color-bkg-save-btn-clr",

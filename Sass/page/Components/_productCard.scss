@@ -970,16 +970,26 @@
     &.selected {
       background-color: var(--color-date-selected-bg);
       color: var(--color-date-selected-text);
-      border-radius: 50%;
+      border-radius: 50% !important;
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
 
       &:first-child {
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
+        border-top-left-radius: 50% !important;
+        border-bottom-left-radius: 50% !important;
       }
 
       &:last-child {
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50% !important;
+        border-bottom-right-radius: 50% !important;
       }
     }
   }
@@ -1092,20 +1102,22 @@
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px; // allow larger circles
+  gap: 1px; // further reduced gap between calendar days
   grid-template-rows: repeat(6, minmax(0, 1fr)); // ensure rows don't overflow
   flex: 1 1 auto; // fill remaining space under header + weekdays
   place-items: center; // center day circles within their cells
   height: 100%;
+  padding: 8px; // add some padding to reduce overall size
 
   // keep cells square so inner circle remains perfect
   .day {
-    width: min(48px, 92%);
-    height: min(48px, 92%);
+    width: min(40px, 85%); // reduced size
+    height: min(40px, 85%); // reduced size
   }
 
   @include respond(desktop) {
-    gap: 6px;
+    gap: 1px; // further reduced gap for desktop too
+    padding: 6px; // smaller padding for desktop
   }
 }
 

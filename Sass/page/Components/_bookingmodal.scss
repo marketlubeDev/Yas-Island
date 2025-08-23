@@ -95,8 +95,8 @@
 .booking-modal__calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  padding: 0 12px;
+  gap: 0px; // minimal gap between calendar days
+  padding: 0 8px; // reduced padding
   text-align: center;
 }
 
@@ -113,9 +113,9 @@
   background: none;
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 15px;
+  width: 28px; // reduced size
+  height: 28px; // reduced size
+  font-size: 13px; // reduced font size
   color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
@@ -124,6 +124,17 @@
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
+  border-radius: 50% !important;
+  width: 28px !important; // reduced size
+  height: 28px !important; // reduced size
+  min-width: 28px !important; // reduced size
+  min-height: 28px !important; // reduced size
+  max-width: 28px !important; // reduced size
+  max-height: 28px !important; // reduced size
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
 }
 
 .booking-modal__calendar-date.disabled {

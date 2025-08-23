@@ -2292,15 +2292,25 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 .calendar-container .day.selected {
   background-color: var(--color-date-selected-bg);
   color: var(--color-date-selected-text);
-  border-radius: 50%;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
 }
 .calendar-container .day.selected:first-child {
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
 }
 .calendar-container .day.selected:last-child {
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
 }
 
 .calendar-wrapper {
@@ -2416,19 +2426,21 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
+  gap: 1px;
   grid-template-rows: repeat(6, minmax(0, 1fr));
   flex: 1 1 auto;
   place-items: center;
   height: 100%;
+  padding: 8px;
 }
 .calendar-days .day {
-  width: min(48px, 92%);
-  height: min(48px, 92%);
+  width: min(40px, 85%);
+  height: min(40px, 85%);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-days {
-    gap: 6px;
+    gap: 1px;
+    padding: 6px;
   }
 }
 
@@ -8379,7 +8391,7 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 .mycart-modal__items {
   flex: 1;
   overflow-y: auto;
-  padding: 0 1px;
+  padding: 5px 1px;
   margin-bottom: 0;
   border-top: 1px solid var(--color-pymnt-step-divider-before);
 }
@@ -8551,6 +8563,10 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   padding: 10px 50px 10px 50px;
   font-size: 13px;
   color: var(--color-email-form-label);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 0;
 }
 @media (min-width: 340px) and (max-width: 369px) {
   .mycart-modal__summary {
@@ -8566,7 +8582,7 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 .mycart-modal__summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 @media (min-width: 360px) and (max-width: 369px) {
   .mycart-modal__summary-row {
@@ -8593,7 +8609,7 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   left: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   padding: 18px;
   box-shadow: 0 -4px 12px rgba(44, 44, 84, 0.08);
   background: var(--color-email-form-box);
@@ -11184,8 +11200,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .booking-modal__calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  padding: 0 12px;
+  gap: 0px;
+  padding: 0 8px;
   text-align: center;
 }
 
@@ -11202,9 +11218,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: none;
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 15px;
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
   color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
@@ -11214,6 +11230,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
+  border-radius: 50% !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
 }
 
 .booking-modal__calendar-date.disabled {
