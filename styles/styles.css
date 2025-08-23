@@ -5085,7 +5085,7 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-form {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 .payment-form__left {
@@ -5371,7 +5371,6 @@ html[dir=rtl] .back-button {
   display: flex;
   align-items: flex-start;
   margin-bottom: 1rem;
-  cursor: pointer;
   position: relative;
   padding-left: 30px;
 }
@@ -5384,7 +5383,6 @@ html[dir=rtl] .back-button {
 .payment-form__left .terms .checkbox-container .checkbox-input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -5397,6 +5395,7 @@ html[dir=rtl] .back-button {
   background-color: var(--color-base-checkbox-bg);
   border: 2px solid var(--color-base-checkbox-border);
   border-radius: 3px;
+  cursor: pointer;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .terms .checkbox-container .checkbox-custom {
@@ -5462,6 +5461,7 @@ html[dir=rtl] .back-button {
 .payment-form__left .terms .checkbox-container.rtl .checkbox-custom {
   left: auto;
   right: 0;
+  cursor: pointer;
 }
 .payment-form__left .proceedbtn {
   width: 100%;
@@ -5952,14 +5952,12 @@ html[dir=rtl] .back-button {
   display: flex;
   align-items: flex-start;
   margin-bottom: 1rem;
-  cursor: pointer;
   position: relative;
   padding-left: 35px;
 }
 .payment-form__right .terms .checkbox-container .checkbox-input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -5972,6 +5970,7 @@ html[dir=rtl] .back-button {
   border: 2px solid var(--color-checkbox-bdr);
   border-radius: 4px;
   background-color: white;
+  cursor: pointer;
 }
 .payment-form__right .terms .checkbox-container .checkbox-custom:after {
   content: "";
@@ -9909,7 +9908,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
-  cursor: pointer;
   font-size: 14px;
   user-select: none;
   color: var(--color-base-text-secondary);
@@ -9931,7 +9929,6 @@ html[lang=ar] .confirm-email__otp-actions button {
 .checkbox-input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -9945,6 +9942,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   background-color: var(--color-base-checkbox-bg);
   border: 1px solid var(--color-base-checkbox-border);
   border-radius: 4px;
+  cursor: pointer;
 }
 .checkbox-custom:after {
   content: "";

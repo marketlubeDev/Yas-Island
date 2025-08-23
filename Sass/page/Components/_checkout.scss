@@ -746,7 +746,6 @@
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
-  cursor: pointer;
   font-size: 14px;
   user-select: none;
   color: var(--color-base-text-secondary);
@@ -771,7 +770,6 @@
 .checkbox-input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -785,6 +783,7 @@
   background-color: var(--color-base-checkbox-bg);
   border: 1px solid var(--color-base-checkbox-border);
   border-radius: 4px;
+  cursor: pointer;
 
   &:after {
     content: "";

@@ -323,6 +323,7 @@ export default function PersonalDetailsForm({
   // Exclude territories that don't reliably map to dial codes in react-phone-input-2
   const EXCLUDED_RESIDENCE_ISOS = new Set([
     "AX", // Åland Islands
+    "CC", // Cocos (Keeling) Islands
     "GG", // Guernsey
     "JE", // Jersey
     "IM", // Isle of Man
