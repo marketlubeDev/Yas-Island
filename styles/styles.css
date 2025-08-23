@@ -341,6 +341,14 @@ html {
   min-height: 100vh;
   background-color: var(--color-base-bg);
 }
+@media only screen and (max-width: 768px) {
+  #root,
+  .main {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+  }
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -11420,10 +11428,6 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: center;
   justify-content: center;
   transform: translateY(0%);
-}
-
-.guests-box-container {
-  padding: 0 20px;
 }
 
 .guests-box {

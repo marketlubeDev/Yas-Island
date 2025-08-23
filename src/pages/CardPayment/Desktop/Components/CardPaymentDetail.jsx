@@ -23,6 +23,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const [failureMessage, setFailureMessage] = useState("");
   const [retryCounter, setRetryCounter] = useState(0);
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
+  const { currentLanguage } = useSelector((state) => state.language);
 
   console.log(theme, "theme");
 
@@ -47,9 +48,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       form.style.display = "none";
       form.id = "payfort-form";
 
-      Object.entries(
-        orderData.tokenizationResponse.formParameters || {}
-      ).forEach(([key, value]) => {
+      const parameters = {
+        ...orderData.tokenizationResponse.formParameters,
+        language: currentLanguage,
+      };
+
+      Object.entries(parameters || {}).forEach(([key, value]) => {
         const input = document.createElement("input");
         input.type = "hidden";
         input.name = key;
