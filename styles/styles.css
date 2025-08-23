@@ -11422,10 +11422,6 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   transform: translateY(0%);
 }
 
-.guests-box-container {
-  padding: 0 20px;
-}
-
 .guests-box {
   background: var(--color-bkg-body-bg);
   border: 1px solid var(--color-bkg-modal-border);

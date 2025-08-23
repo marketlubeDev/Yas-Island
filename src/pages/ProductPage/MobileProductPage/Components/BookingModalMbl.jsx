@@ -926,8 +926,14 @@ function BookingModalMbl({
                                     </span>
                                   )}
                                 </span>
-                                <span className="guest-label-price">
-                                  {guestData.quantity > 0 &&
+                                <span className="guest-label-price"
+                                 style={
+                                    guestData?.quantity > 0
+                                      ? { opacity: "1" }
+                                      : { opacity: "0" }
+                                  }>
+                                  
+                                  {guestData.quantity &&
                                     `AED ${
                                       variantData?.gross * guestData.quantity
                                     }`}
