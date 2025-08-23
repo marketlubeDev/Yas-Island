@@ -4703,7 +4703,7 @@ html[lang=ar] .guest-label {
 .payment-checkout__contentnew_cardpayment {
   border-radius: 16px;
   padding: 35px;
-  border-radius: 2.5rem;
+  border-radius: 12px;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: 100%;
@@ -4723,6 +4723,22 @@ html[lang=ar] .guest-label {
     max-width: 100%;
     padding: 0;
     margin-bottom: 2rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .payment-checkout__contentnew_cardpayment .order-summary-container {
+    order: -1;
+  }
+  .payment-checkout__contentnew_cardpayment .payment-container {
+    order: 1;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .payment-checkout__contentnew_cardpayment .order-summary-container {
+    order: -1;
+  }
+  .payment-checkout__contentnew_cardpayment .payment-container {
+    order: 1;
   }
 }
 
@@ -4746,7 +4762,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (max-width: 575.98px) {
   .order-summary-container {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
     width: 100%;
   }
 }
@@ -6405,11 +6421,13 @@ html[dir=rtl] .back-button {
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .payment-container .payment-title {
     text-align: center;
+    display: none;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .payment-container .payment-title {
     text-align: center;
+    display: none;
   }
 }
 .payment-container .custom-payfort-container {

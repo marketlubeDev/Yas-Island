@@ -200,18 +200,21 @@
   @include respond(tablets) {
     .payment-title {
       text-align: center;
+      // display: none;
     }
   }
 
   @include respond(phone) {
     .payment-title {
       text-align: center;
+      display: none;
     }
   }
 
   @include respond(smallPhone) {
     .payment-title {
       text-align: center;
+      display: none;
     }
   }
 
