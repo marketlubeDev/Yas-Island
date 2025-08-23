@@ -54,6 +54,20 @@
   height: auto;
   min-height: 0;
   // border: 1px solid var(--color-bkg-modal-border);
+
+  /* On mobile devices, always allow scrolling of entire body */
+  @include respond(smallPhone) {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  @include respond(phone) {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  @include respond(tablets) {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .booking-modal__calendar {
@@ -155,6 +169,20 @@
   min-height: 0;
   overflow-y: auto; /* default: only guests section scrolls */
   -webkit-overflow-scrolling: touch;
+
+  /* On mobile devices, disable individual section scrolling */
+  @include respond(smallPhone) {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
+  @include respond(phone) {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
+  @include respond(tablets) {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
 }
 
 /* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
@@ -176,6 +204,18 @@
   background: transparent;
 }
 .booking-modal__guests-section::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 4px;
+}
+
+/* Mobile body scrollbar when scrolling entire content */
+.booking-modal__body::-webkit-scrollbar {
+  width: 8px;
+}
+.booking-modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.booking-modal__body::-webkit-scrollbar-thumb {
   background: var(--color-base-product-card-scroll-bar);
   border-radius: 4px;
 }
@@ -297,7 +337,7 @@
 .booking-modal__save {
   background: var(--color-bkg-checkout-btn-bg);
   color: var(--color-bkg-checkout-btn-clr);
-  
+
   border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
   padding: 7px 0;
@@ -382,8 +422,6 @@
   justify-content: center;
   transform: translateY(0%);
 }
-
-
 
 .guests-box {
   background: var(--color-bkg-body-bg);

@@ -12,7 +12,6 @@ import ResponsiveWrapper from "../components/ResponsiveWrapper";
 import EmailVerificationMobile from "../pages/EmailVerification/EmilVarificationMobile";
 import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobile";
 import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
-import CardPaymentMobile from "../pages/CardPayment/Mobile/CardPaymentMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
 import UpcomingPages from "../pages/Upcoming/Desktop/UpcomingPages";
