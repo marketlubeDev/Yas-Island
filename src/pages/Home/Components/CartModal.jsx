@@ -224,8 +224,8 @@ const CartModal = ({ isOpen, onClose }) => {
               // lastName: "",
               // phoneNumber: "",
               countryCode: "",
-              isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
-              isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
+              isTnCAgrred: false,
+              isConsentAgreed: false,
               promoCode: "",
               promotions: [],
             })

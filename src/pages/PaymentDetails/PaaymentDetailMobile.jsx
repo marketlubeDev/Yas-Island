@@ -19,12 +19,6 @@ import TermsAndConditionsModal from "../PaymentCheckout/Components/TermsAndCondi
 
 function PaymentDetailsMobile() {
   const { t } = useTranslation();
-  const [acceptTerms, setAcceptTerms] = useState(false);
-  const [receiveComms, setReceiveComms] = useState(false);
-  const [showPromoPopup, setShowPromoPopup] = useState(false);
-  const [formData, setFormData] = useState({});
-  const [termsAndConditions, setTermsAndConditions] = useState(null);
-  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const navigate = useNavigate();
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -32,6 +26,20 @@ function PaymentDetailsMobile() {
   const dispatch = useDispatch();
   const { isCheckout } = useLocation().state || {};
   const { mutate: createOrder, isPending } = usePayment();
+
+  // Get checkout data from Redux
+  const checkout = useSelector((state) => state.checkout);
+
+  // Initialize local state with Redux values
+  const [acceptTerms, setAcceptTerms] = useState(checkout.isTnCAgrred || false);
+  const [receiveComms, setReceiveComms] = useState(
+    checkout.isConsentAgreed || false
+  );
+  const [showPromoPopup, setShowPromoPopup] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [termsAndConditions, setTermsAndConditions] = useState(null);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+
   // Hide Yas Chat on payment details (mobile) to avoid intercepting taps
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -44,8 +52,11 @@ function PaymentDetailsMobile() {
     };
   }, []);
 
-  // Get checkout data from Redux
-  const checkout = useSelector((state) => state.checkout);
+  // Sync local state with Redux state when it changes
+  useEffect(() => {
+    setAcceptTerms(checkout.isTnCAgrred || false);
+    setReceiveComms(checkout.isConsentAgreed || false);
+  }, [checkout.isTnCAgrred, checkout.isConsentAgreed]);
 
   const validateData = (data) => {
     const errors = [];
@@ -295,7 +306,7 @@ function PaymentDetailsMobile() {
                       ? "not-allowed"
                       : "pointer",
                 }}
-                disabled={isPending}
+                disabled={isPending || !checkout.isTnCAgrred}
               >
                 {isPending ? (
                   <ButtonLoading />

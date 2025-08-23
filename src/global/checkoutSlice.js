@@ -81,6 +81,12 @@ const checkoutSlice = createSlice({
       state.isConsentAgreed = isConsentAgreed;
     },
 
+    // Reset terms acceptance only
+    resetTermsAcceptance: (state) => {
+      state.isTnCAgrred = false;
+      state.isConsentAgreed = false;
+    },
+
     // Clear checkout
     clearCheckout: () => {
       return initialState;
@@ -120,6 +126,7 @@ export const {
   setCheckoutEmail,
   clearCheckout,
   updateTermsAcceptance,
+  resetTermsAcceptance,
 } = checkoutSlice.actions;
 
 const persistedCheckoutReducer = persistReducer(

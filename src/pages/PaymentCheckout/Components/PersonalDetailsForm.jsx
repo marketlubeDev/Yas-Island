@@ -717,7 +717,7 @@ export default function PersonalDetailsForm({
           }
           handleProceedToPayment();
         }}
-        disabled={isPending}
+        disabled={isPending || !checkout.isTnCAgrred}
         style={{
           opacity: isPending || !checkout.isTnCAgrred ? 0.5 : 1,
           cursor:

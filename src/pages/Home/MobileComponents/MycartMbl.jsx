@@ -161,8 +161,8 @@ function MycartMbl({ onClose, visible }) {
                 taxAmount: 0,
                 originalNetAmount: 0,
                 countryCode: "",
-                isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
-                isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
+                isTnCAgrred: false,
+                isConsentAgreed: false,
                 promoCode: "",
                 promotions: [],
               })
@@ -185,8 +185,8 @@ function MycartMbl({ onClose, visible }) {
                 taxAmount: orderDetails?.total?.tax,
                 originalNetAmount: orderDetails?.total?.gross,
                 countryCode: "",
-                isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
-                isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
+                isTnCAgrred: false,
+                isConsentAgreed: false,
                 promoCode: "",
                 promotions: [],
               })
@@ -376,39 +376,34 @@ function MycartMbl({ onClose, visible }) {
 
             <div className="mycart-modal__footer">
               <div className="mycart-modal__summary">
-                
-
                 <div className="mycart-modal__summary-row-container">
-                <div className="mycart-modal__summary-row">
-                  <span>{t("cart.subTotal")}</span>
-                  <span>
-                    {t("common.aed")} {subtotal.toFixed(2)}
-                  </span>
+                  <div className="mycart-modal__summary-row">
+                    <span>{t("cart.subTotal")}</span>
+                    <span>
+                      {t("common.aed")} {subtotal.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="mycart-modal__summary-row">
+                    <span>{t("cart.vatAndTax")}</span>
+                    <span>
+                      + {t("common.aed")} {vatAndTax.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
+                    <span>{t("cart.total")}</span>
+                    <span>
+                      {t("common.aed")} {total.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
-                <div className="mycart-modal__summary-row">
-                  <span>{t("cart.vatAndTax")}</span>
-                  <span>
-                    + {t("common.aed")} {vatAndTax.toFixed(2)}
-                  </span>
-                </div>
-                <div className="mycart-modal__summary-row mycart-modal__summary-row--total">
-                  <span>{t("cart.total")}</span>
-                  <span>
-                    {t("common.aed")} {total.toFixed(2)}
-                  </span>
-                </div>
-</div>
 
-
-
-                  <button
-                className="mycart-modal__checkout"
-                onClick={() => handleBasketCheck(handleCheckout)}
-              >
-                {isPending ? <Loading /> : t("cart.checkOut")}
-              </button>
+                <button
+                  className="mycart-modal__checkout"
+                  onClick={() => handleBasketCheck(handleCheckout)}
+                >
+                  {isPending ? <Loading /> : t("cart.checkOut")}
+                </button>
               </div>
-            
             </div>
           </>
         )}
