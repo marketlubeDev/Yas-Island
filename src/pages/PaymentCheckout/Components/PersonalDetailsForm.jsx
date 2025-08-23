@@ -88,6 +88,14 @@ const FormSelectWithSearch = ({
     value && value !== ""
       ? options.find((option) => option.value === value)
       : null;
+
+  const handleInputChange = (inputValue, { action }) => {
+    if (action === "input-change") {
+      return inputValue.replace(/[0-9]/g, ""); // remove digits
+    }
+    return inputValue;
+  };
+
   const customOption = ({ data, ...props }) => (
     <div {...props.innerProps} className="country-option">
       <ReactCountryFlag countryCode={data.code} svg className="country-flag" />
@@ -193,6 +201,7 @@ const FormSelectWithSearch = ({
           if (onClearError) onClearError();
         }}
         options={options}
+        onInputChange={handleInputChange}
         components={{
           Option: customOption,
           SingleValue: customSingleValue,
