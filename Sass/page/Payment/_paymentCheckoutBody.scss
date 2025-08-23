@@ -524,15 +524,15 @@
 .payment-checkout__contentnew_cardpayment {
   border-radius: 16px;
   padding: 35px;
-  border-radius: 2.5rem;
+  border-radius: 12px;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: 100%;
   width: 100%;
   max-width: 1300px;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
   font-family: "YAS Font", sans-serif;
   // display: flex;
   // justify-content: center;
@@ -550,6 +550,27 @@
     max-width: 100%;
     padding: 0;
     margin-bottom: 2rem;
+  }
+
+  // Reorder elements on mobile - Order Summary first, then Payment Form
+  @include respond(phone) {
+    .order-summary-container {
+      order: -1; // Move order summary to the top
+    }
+
+    .payment-container {
+      order: 1; // Move payment form below order summary
+    }
+  }
+
+  @include respond(smallPhone) {
+    .order-summary-container {
+      order: -1; // Move order summary to the top
+    }
+
+    .payment-container {
+      order: 1; // Move payment form below order summary
+    }
   }
 }
 
@@ -574,7 +595,7 @@
 }
 @include respond(smallPhone) {
   .order-summary-container {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
     width: 100%;
   }
 }

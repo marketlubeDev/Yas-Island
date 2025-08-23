@@ -344,9 +344,9 @@ html {
 @media only screen and (max-width: 768px) {
   #root,
   .main {
-    overflow: hidden;
-    height: 100vh;
-    height: 100dvh;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
   }
 }
 
@@ -3567,7 +3567,6 @@ html[lang=ar] .guest-label {
 .order-summary-new {
   background: var(--color-base-bg);
   border-radius: 16px;
-  box-shadow: 0 4px 20px var(--card-box-shadow);
   padding: 20px;
   max-height: 90vh;
   display: flex;
@@ -4715,15 +4714,15 @@ html[lang=ar] .guest-label {
 .payment-checkout__contentnew_cardpayment {
   border-radius: 16px;
   padding: 35px;
-  border-radius: 2.5rem;
+  border-radius: 12px;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: 100%;
   width: 100%;
   max-width: 1300px;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
   font-family: "YAS Font", sans-serif;
 }
 @media (max-width: 1024px) {
@@ -4735,6 +4734,22 @@ html[lang=ar] .guest-label {
     max-width: 100%;
     padding: 0;
     margin-bottom: 2rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .payment-checkout__contentnew_cardpayment .order-summary-container {
+    order: -1;
+  }
+  .payment-checkout__contentnew_cardpayment .payment-container {
+    order: 1;
+  }
+}
+@media only screen and (max-width: 575.98px) {
+  .payment-checkout__contentnew_cardpayment .order-summary-container {
+    order: -1;
+  }
+  .payment-checkout__contentnew_cardpayment .payment-container {
+    order: 1;
   }
 }
 
@@ -4758,7 +4773,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (max-width: 575.98px) {
   .order-summary-container {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
     width: 100%;
   }
 }
@@ -6416,11 +6431,13 @@ html[dir=rtl] .back-button {
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .payment-container .payment-title {
     text-align: center;
+    display: none;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .payment-container .payment-title {
     text-align: center;
+    display: none;
   }
 }
 .payment-container .custom-payfort-container {
@@ -9563,8 +9580,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   position: sticky;
   bottom: -16px;
   background: var(--color-base-bg);
-  border-top: 1px solid var(--color-base-product-card-divider);
-  padding-top: 16px;
   margin: 0 -16px -16px -16px;
   padding-left: 16px;
   padding-right: 16px;
@@ -9575,7 +9590,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   .email-checkout__summary .order-summary-sticky-bottom {
     position: static;
     border-top: none;
-    padding-top: 8px;
     margin: 8px 0 0 0;
     padding-left: 0;
     padding-right: 0;
@@ -9586,7 +9600,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   .email-checkout__summary .order-summary-sticky-bottom {
     position: static;
     border-top: none;
-    padding-top: 8px;
     margin: 8px 0 0 0;
     padding-left: 0;
     padding-right: 0;
@@ -9703,7 +9716,6 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary-viewItems-content-item-price-details {
   padding-top: 8px;
-  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount {
   display: flex;
@@ -9795,7 +9807,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
-  border-top: 1px solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-grandTotal-Content {
   font-weight: bold;
