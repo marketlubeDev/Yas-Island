@@ -292,23 +292,30 @@ export default function PersonalDetailsForm({
   // Provide sensible fallbacks so dial codes render instead of defaulting to US.
   const normalizeIsoForDialCode = (iso) => {
     const m = {
-      ax: "fi", // Åland Islands → Finland (+358)
-      gg: "gb", // Guernsey → United Kingdom (+44)
-      je: "gb", // Jersey → United Kingdom (+44)
-      im: "gb", // Isle of Man → United Kingdom (+44)
-      sj: "no", // Svalbard and Jan Mayen → Norway (+47)
-      bq: "nl", // Caribbean Netherlands → Netherlands (+31)
-      gf: "fr", // French Guiana → France (+33)
-      gp: "fr", // Guadeloupe → France (+33)
-      mq: "fr", // Martinique → France (+33)
-      yt: "fr", // Mayotte → France (+33)
-      re: "fr", // Réunion → France (+33)
-      pm: "fr", // Saint Pierre and Miquelon → France (+33)
-      bl: "fr", // Saint Barthélemy → France (+33)
-      mf: "fr", // Saint Martin → France (+33)
-      fo: "dk", // Faroe Islands → Denmark (+45)
-      gi: "gb", // Gibraltar → UK dialing plan (+350 handled, fallback gb)
-      axa: "fi",
+      ax: "fi", // Åland → Finland
+      gg: "gb", // Guernsey → UK
+      je: "gb", // Jersey → UK
+      im: "gb", // Isle of Man → UK
+      sj: "no", // Svalbard → Norway
+      bq: "nl", // Caribbean Netherlands → Netherlands
+      gf: "fr", // French Guiana → France
+      gp: "fr", // Guadeloupe → France
+      mq: "fr", // Martinique → France
+      yt: "fr", // Mayotte → France
+      re: "fr", // Réunion → France
+      pm: "fr", // Saint Pierre & Miquelon → France
+      bl: "fr", // Saint Barthélemy → France
+      mf: "fr", // Saint Martin → France
+      fo: "dk", // Faroe Islands → Denmark
+      gi: "gb", // Gibraltar → UK
+      as: "us", // American Samoa → US (+1 684)
+      ai: "gb", // Anguilla → UK plan (+1 264)
+      vi: "us", // US Virgin Islands → US (+1 340)
+      pr: "us", // Puerto Rico → US (+1 787 / 939)
+      ms: "gb", // Montserrat → UK plan (+1 664)
+      ky: "gb", // Cayman Islands → UK plan (+1 345)
+      bm: "gb", // Bermuda → UK plan (+1 441)
+      // etc — all NANP (North American Numbering Plan) territories can map to "us" or "gb"
     };
     return m[iso] || iso || "ae";
   };
@@ -329,8 +336,18 @@ export default function PersonalDetailsForm({
     "PM", // Saint Pierre and Miquelon
     "BL", // Saint Barthélemy
     "MF", // Saint Martin
+    "AS", // American Samoa
+    "AI", // Anguilla
+    "VI", // US Virgin Islands
+    "PR", // Puerto Rico
+    "MS", // Montserrat
+    "KY", // Cayman Islands
+    "BM", // Bermuda
+    "AQ", // Antarctica
   ]);
 
+  // Name must be 2-50 characters, only letters, spaces, apostrophes, hyphens
+  const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
   // Inputs below bind directly to Redux `checkout` state
 
   // Generate countries list based on current language
@@ -350,26 +367,30 @@ export default function PersonalDetailsForm({
   const handleInputChange = (field) => (value) => {
     const updateData = {};
     switch (field) {
+      case "firstName":
+      case "lastName":
+        // Strip out invalid characters while typing
+        const cleaned = value.replace(/[^a-zA-Z\s'-]/g, "");
+        updateData[field] = cleaned;
+        break;
+
       case "email":
         updateData.emailId = value;
         break;
+
       case "phoneNumber":
         updateData.phoneNumber = value;
         break;
-      case "firstName":
-        updateData.firstName = value;
-        break;
-      case "lastName":
-        updateData.lastName = value;
-        break;
+
       case "country":
         updateData.country = value;
-        // Clear phone so react-phone-input-2 pre-fills new dial code
         updateData.phoneNumber = "";
         break;
+
       case "nationality":
         updateData.nationality = value;
         break;
+
       default:
         updateData[field] = value;
     }
@@ -455,8 +476,14 @@ export default function PersonalDetailsForm({
   const validateFieldsForPlaceholders = () => {
     const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
     const next = {
-      firstName: !checkout.firstName || checkout.firstName.trim().length < 2,
-      lastName: !checkout.lastName || checkout.lastName.trim().length < 1,
+      firstName:
+        !checkout.firstName ||
+        checkout.firstName.trim().length < 2 ||
+        !nameRegex.test(checkout.firstName),
+      lastName:
+        !checkout.lastName ||
+        checkout.lastName.trim().length < 1 ||
+        !nameRegex.test(checkout.lastName),
       email:
         !checkout.emailId ||
         !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),

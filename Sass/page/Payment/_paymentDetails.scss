@@ -192,7 +192,8 @@
           margin-left: 8px;
           border-radius: 2px;
           flex-shrink: 0;
-          border: 1px solid var(--ip-bodr-btm);
+          // border: 1px solid var(--ip-bodr-btm);
+          border: none;
           background-color: transparent;
 
           @include respond(desktop) {
@@ -235,7 +236,8 @@
 
           border-radius: 2px;
           flex-shrink: 0;
-          border: 1px solid var(--ip-bodr-btm);
+          // border: 1px solid var(--ip-bodr-btm);
+          border: none;
           background-color: transparent;
 
           @include respond(desktop) {
@@ -508,7 +510,8 @@
           height: 16px;
           margin-right: 6px;
           margin-left: 6px;
-          border: 1px solid var(--ip-bodr-btm);
+          // border: 1px solid var(--ip-bodr-btm);
+          border: none;
         }
 
         .country-name {
@@ -526,7 +529,8 @@
           height: 16px;
           margin-right: 6px;
           margin-left: 6px;
-          border: 1px solid var(--ip-bodr-btm);
+          // border: 1px solid var(--ip-bodr-btm);
+          border: none;
         }
 
         .country-name {
