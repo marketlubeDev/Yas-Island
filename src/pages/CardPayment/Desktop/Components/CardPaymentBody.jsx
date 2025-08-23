@@ -31,8 +31,8 @@ export default function CardPaymentBody({ isCheckout }) {
   };
 
   return (
-    <div className="payment-checkout payfort">
-      <div className="payment-checkout__contentnew">
+    <div className="payment-checkout-body">
+      <div className="payment-checkout__contentnew_cardpayment">
         <CardPaymentDetail
           onBack={handleBackClick}
           onPaymentComplete={handlePaymentComplete}

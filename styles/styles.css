@@ -712,16 +712,14 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background: var(--color-base-bg);
   color: var(--color-base-text-secondary);
   width: 100%;
-  margin-top: auto;
-}
-
-.footer__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 16px;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footer__text {
@@ -4164,7 +4162,7 @@ html[lang=ar] .guest-label {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
-  min-height: 84.7vh;
+  min-height: calc(100vh - 8rem);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
@@ -4173,13 +4171,29 @@ html[lang=ar] .guest-label {
   }
 }
 
+.payment-checkout-body {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px 10px 20px;
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout-body {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
+}
+
 .payment-checkout-page {
   background: var(--color-email-form-bg);
+  min-height: calc(100vh - 8rem);
 }
 
 .payment-checkout-page-details {
   background: var(--color-email-form-bg);
-  min-height: calc(100vh - 6rem);
 }
 
 .payment-checkout__header {
@@ -4642,6 +4656,21 @@ html[lang=ar] .guest-label {
   .payment-checkout__contentnew--no-header {
     min-height: 80vh;
   }
+}
+
+.payment-checkout__contentnew_cardpayment {
+  border-radius: 16px;
+  padding: 35px;
+  border-radius: 2.5rem;
+  background: var(--color-email-form-box);
+  box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
+  height: 100%;
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-family: "YAS Font", sans-serif;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
