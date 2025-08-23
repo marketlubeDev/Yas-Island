@@ -627,6 +627,15 @@ export default function PersonalDetailsForm({
           className={`checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
+          onClick={(e) => {
+            if (
+              e.target.type === "checkbox" ||
+              e.target.className.includes("checkbox-custom")
+            ) {
+              return;
+            }
+            e.preventDefault();
+          }}
         >
           <input
             type="checkbox"
@@ -669,6 +678,15 @@ export default function PersonalDetailsForm({
           className={`checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
+          onClick={(e) => {
+            if (
+              e.target.type === "checkbox" ||
+              e.target.className.includes("checkbox-custom")
+            ) {
+              return;
+            }
+            e.preventDefault();
+          }}
         >
           <input
             type="checkbox"
