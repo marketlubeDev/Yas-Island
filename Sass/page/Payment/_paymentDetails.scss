@@ -10,11 +10,11 @@
   justify-content: space-between;
 
   @include respond(bigTablets) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   &__left {
-    padding: 2rem 2rem 0 2rem;
+    padding: 0rem 2rem 0 2rem;
     width: 65%;
     font-family: "YAS Font", sans-serif;
 
@@ -324,7 +324,6 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 1rem;
-        cursor: pointer;
         position: relative;
         padding-left: 30px;
 
@@ -336,7 +335,6 @@
         .checkbox-input {
           position: absolute;
           opacity: 0;
-          cursor: pointer;
           height: 0;
           width: 0;
         }
@@ -350,6 +348,7 @@
           background-color: var(--color-base-checkbox-bg);
           border: 2px solid var(--color-base-checkbox-border);
           border-radius: 3px;
+          cursor: pointer;
 
           @include respond(desktop) {
             height: 18px;
@@ -419,6 +418,7 @@
           .checkbox-custom {
             left: auto;
             right: 0;
+            cursor: pointer;
           }
         }
       }
@@ -1033,14 +1033,12 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 1rem;
-        cursor: pointer;
         position: relative;
         padding-left: 35px;
 
         .checkbox-input {
           position: absolute;
           opacity: 0;
-          cursor: pointer;
           height: 0;
           width: 0;
         }
@@ -1054,6 +1052,7 @@
           border: 2px solid var(--color-checkbox-bdr);
           border-radius: 4px;
           background-color: white;
+          cursor: pointer;
 
           &:after {
             content: "";

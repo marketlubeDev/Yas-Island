@@ -14,6 +14,7 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
+import { useResponsive } from "../../../hooks/responsiveHook/useResponsive";
 
 export default function OrderSummary({
   formData,
@@ -24,6 +25,7 @@ export default function OrderSummary({
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { isBigTablets } = useResponsive();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [promoCode, setPromoCode] = useState(
     checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
@@ -261,7 +263,7 @@ export default function OrderSummary({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-        toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
+      toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
         position: "top-center",
       });
       setPromoCodeStatus("invalid");
@@ -488,7 +490,10 @@ export default function OrderSummary({
           footer={null}
           centered
           className="promo-modal"
-          width="40%"
+          // width={isBigTablets ? "60%" : "40%"}
+          style={{
+            width: isBigTablets ? "60%" : "40%",
+          }}
           closeIcon={
             <span className="custom-modal-close">
               <img src={closeIcon} alt="close" />
