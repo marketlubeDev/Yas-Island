@@ -1050,7 +1050,7 @@ function BookingModalMbl({
               <>
                 {t("booking.checkOut")}{" "}
                 <span
-                  style={{ color: "var(--color-bkg-checkout-btn-clr-span)" }}
+                  style={{ color: "var(--color-text-price-red)" }}
                 >
                   {t("common.aed")} {totalPrice}
                 </span>

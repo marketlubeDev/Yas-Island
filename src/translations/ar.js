@@ -130,7 +130,7 @@ export const ar = {
     bookingFor: "الحجز لـ",
     adults: "البالغين",
     subTotal: "المجموع الفرعي :",
-    vatAndTax: "ضريبة القيمة المضافة :",
+    vat: "ضريبة القيمة المضافة",
     total: "المجموع :",
     saveCartAndPayLater: "حفظ السلة والدفع لاحقاً",
     checkOut: "إتمام الشراء",

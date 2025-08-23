@@ -900,7 +900,7 @@ export default function BookingSection({ product, onBack }) {
               <>
                 {t("booking.checkOut")}{" "}
                 <span
-                  style={{ color: "red", opacity: isLoadingDates ? 0.5 : 1 }}
+                  style={{ color: "var(--color-text-price-red)", opacity: isLoadingDates ? 0.5 : 1 }}
                 >
                   {t("common.aed")} {totalPrice}
                 </span>

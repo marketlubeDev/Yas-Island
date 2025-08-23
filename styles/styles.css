@@ -7401,7 +7401,7 @@ html[dir=rtl] .back-button {
   color: #333;
 }
 .mobile-header .chevron {
-  font-size: 12px;
+  font-size: 35px;
   margin-left: 2px;
   color: var(--color-text-primary-chevron);
 }
@@ -7674,10 +7674,6 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
     font-size: 13px;
     gap: 4px;
   }
-}
-.mobile-top-search-section__filter-btn .chevron {
-  font-size: 14px;
-  color: var(--color-text-primary-chevron);
 }
 @media (max-width: 360px) and (max-height: 740px) {
   html[lang=ar] .mobile-top-search-section__filter-btn {
@@ -11324,9 +11320,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .booking-modal__checkout {
-  background: var(--color-bkg-checkout-btn-bg);
+  background: var(--color-bkg-save-btn-bg);
   border: 3px solid var(--color-bkg-checkout-btn-border);
-  color: var(--color-bkg-checkout-btn-clr);
+  color: var(--color-bkg-save-btn-clr);
   border-radius: 2rem;
   padding: 7px 0;
   font-size: 16px;
@@ -11337,8 +11333,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .booking-modal__save {
-  background: var(--color-bkg-save-btn-bg);
-  color: var(--color-bkg-save-btn-clr);
+  background: var(--color-bkg-checkout-btn-bg);
+  color: var(--color-bkg-checkout-btn-clr);
   border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
   padding: 7px 0;
@@ -11426,7 +11422,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: var(--color-bkg-body-bg);
   border: 1px solid var(--color-bkg-modal-border);
   border-radius: 16px;
-  padding: 18px 0 10px 0;
+  padding: 18px 0 18px 0;
   text-align: center;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
 }

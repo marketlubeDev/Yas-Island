@@ -209,7 +209,7 @@ export default function GlobalInvertColor() {
     );
     document.documentElement.style.setProperty(
       "--color-base-product-card-divider",
-      isDarkMode ? "#262626" : "#d9d9d9"
+      isDarkMode ? "#6b6a6aff" : "#d9d9d9"
     );
 
     document.documentElement.style.setProperty(
@@ -779,6 +779,11 @@ export default function GlobalInvertColor() {
     document.documentElement.style.setProperty(
       "--color-text-primary-chevron",
       isHighContrast ? "#000" : "#bdbdc6"
+    );
+
+      document.documentElement.style.setProperty(
+      "--color-text-price-red",
+      isDarkMode ? "#800080" : "#FF0000"
     );
 
     //confirm email
@@ -1935,6 +1940,10 @@ export default function GlobalInvertColor() {
         "--card-box-shadow",
         "#00000014"
       );
+        document.documentElement.style.setProperty(
+        "--color-text-price-red",
+        "#FF0000"
+      );
 
       document.documentElement.style.setProperty("--ip-bodr-btm", "#6F677C");
 
@@ -1958,6 +1967,8 @@ export default function GlobalInvertColor() {
         "--summary-header-bg",
         "#fafafa"
       );
+
+
     };
   }, [isDarkMode, isHighContrast]);
 

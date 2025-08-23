@@ -10,8 +10,6 @@ import {
 
 import searchIcon from "../../../assets/icons/lens.svg";
 import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
-import downArrow from "../../../assets/icons/down.svg";
-import invertedDownArrow from "../../../assets/icons/invertdown.svg";
 
 function MobileSearchSection() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -25,7 +23,6 @@ function MobileSearchSection() {
     (state) => state.product
   );
   const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
-  const downArrowSrc = isDarkMode ? invertedDownArrow : downArrow;
   const { language } = useLanguage();
 
   const sortOptions = [
@@ -158,23 +155,39 @@ function MobileSearchSection() {
             >
               {language === "العربية" ? (
                 <>
-                  <img
-                    src={downArrowSrc}
-                    alt="down arrow"
-                    className="chevron"
-                    style={{ width: 12, height: 12, marginTop: 5 }}
-                  />
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    style={{
+                      transform: button.isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.2s",
+                    }}
+                  >
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
                   <span>{button.label}</span>
                 </>
               ) : (
                 <>
                   <span>{button.label}</span>
-                  <img
-                    src={downArrowSrc}
-                    alt="down arrow"
-                    className="chevron"
-                    style={{ width: 12, height: 12, marginTop: 5 }}
-                  />
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    style={{
+                      transform: button.isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.2s",
+                    }}
+                  >
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
                 </>
               )}
             </button>

@@ -269,9 +269,9 @@
 }
 
 .booking-modal__checkout {
-  background: var(--color-bkg-checkout-btn-bg);
+  background: var(--color-bkg-save-btn-bg);
   border: 3px solid var(--color-bkg-checkout-btn-border);
-  color: var(--color-bkg-checkout-btn-clr);
+  color: var(--color-bkg-save-btn-clr);
   // border: none;
   border-radius: 2rem;
   padding: 7px 0;
@@ -284,8 +284,9 @@
 }
 
 .booking-modal__save {
-  background: var(--color-bkg-save-btn-bg);
-  color: var(--color-bkg-save-btn-clr);
+  background: var(--color-bkg-checkout-btn-bg);
+  color: var(--color-bkg-checkout-btn-clr);
+  
   border: 3px solid var(--color-bkg-save-btn-border);
   border-radius: 2rem;
   padding: 7px 0;
@@ -377,7 +378,7 @@
   background: var(--color-bkg-body-bg);
   border: 1px solid var(--color-bkg-modal-border);
   border-radius: 16px;
-  padding: 18px 0 10px 0;
+  padding: 18px 0 18px 0;
   // max-width: 320px;
   // margin: 0 auto 16px auto;
   text-align: center;
