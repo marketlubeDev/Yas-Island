@@ -47,8 +47,7 @@ export default function HeaderLogo() {
     location.pathname === "/hotels" ||
     location.pathname === "/dining" ||
     location.pathname === "/live" ||
-    location.pathname === "/shopping" ||
-    console.log(isPaymentRoute, "isPaymentRoute");
+    location.pathname === "/shopping";
 
   // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();
