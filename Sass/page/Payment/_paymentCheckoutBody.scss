@@ -53,7 +53,21 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
-  min-height: calc(100vh - 15.3vh);
+  min-height: calc(100vh - 8rem);
+  @include respond(bigTablets) {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
+}
+
+.payment-checkout-body {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px 10px 20px;
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include respond(bigTablets) {
     padding: 30px;
     min-height: calc(100vh - 6rem);
@@ -62,11 +76,12 @@
 
 .payment-checkout-page {
   background: var(--color-email-form-bg);
+  min-height: calc(100vh - 8rem);
 }
 
 .payment-checkout-page-details {
   background: var(--color-email-form-bg);
-  min-height: calc(100vh - 6rem);
+  // min-height: calc(100vh - 6rem);
 }
 
 .payment-checkout__header {
@@ -90,8 +105,6 @@
   font-family: "YAS Font", sans-serif;
 
   // text-transform: capitalize;
-
-
 
   @include respond(desktop) {
     margin-left: 1rem;
@@ -499,6 +512,27 @@
       min-height: 80vh;
     }
   }
+}
+.payment-checkout__contentnew_cardpayment {
+  border-radius: 16px;
+  padding: 35px;
+  border-radius: 2.5rem;
+  background: var(--color-email-form-box);
+  box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
+  height: 100%;
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-family: "YAS Font", sans-serif;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 1rem;
+  // width: 100%;
+  // max-width: 1300px;
+  // height: auto;
 }
 
 // Spacing for Order Summary when stacked under iframe

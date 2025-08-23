@@ -155,8 +155,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           className={`iframe-container ${theme}`}
           style={{
             borderRadius: "1rem",
-            minHeight: "450px",
-            height: "350px",
+            minHeight: "34rem",
+            height: "34rem",
             position: "relative",
             overflow: "hidden",
           }}
@@ -193,7 +193,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             name="payfort-iframe"
             title="PayFort Payment"
             width="100%"
-            height="470"
+            height="100%"
             frameBorder="0"
             style={{
               border: "none",

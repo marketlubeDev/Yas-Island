@@ -3,18 +3,24 @@
 .footer {
   // border-top: 1px solid var(--separator-color);
   background: var(--color-base-bg);
+  // background: red;
   color: var(--color-base-text-secondary);
   width: 100%;
-  margin-top: auto;
-}
-
-.footer__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 16px;
+  // margin-top: auto;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer__inner {
+  // max-width: 1200px;
+  // margin: 0 auto;
+  // padding: 12px 16px;
 }
 
 .footer__text {
