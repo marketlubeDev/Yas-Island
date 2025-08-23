@@ -9621,9 +9621,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   justify-content: space-between;
   margin-bottom: 8px;
 }
-.email-checkout__summary-costBreakdown-subTotal-Content {
-  color: var(--cart-total-price);
-}
 .email-checkout__summary-costBreakdown-subTotal-Value {
   color: var(--cart-total-price);
 }
