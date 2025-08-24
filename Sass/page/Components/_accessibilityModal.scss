@@ -6,6 +6,16 @@
     width: 70% !important;
   }
 
+  @media (min-width: 1600px) and (max-width: 1748px) {
+    width: 45% !important;
+  }
+  @media (min-width: 1400px) and (max-width: 1599px) {
+    width: 54% !important;
+  }
+  @media (min-width: 1000px) and (max-width: 1399px) {
+    width: 58% !important;
+  }
+
   .ant-modal-content {
     background: var(--color-pymnt-container-bg);
     border: 2.353px solid var(--color-base-product-card-card-item-border);

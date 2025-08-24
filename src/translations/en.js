@@ -370,7 +370,7 @@ export const en = {
     packages: "YAS ISLAND | Packages",
   },
   upcoming: {
-    title: "We'll be adding products soon",
+    title: "We'll be adding products soon .",
     subtitle: "Check out our",
     topAttractions: "Top Attractions",
     subtitleEnd: "for adventures available right now.",

@@ -2999,6 +2999,21 @@ html[lang=ar] .guest-label {
     width: 70% !important;
   }
 }
+@media (min-width: 1600px) and (max-width: 1748px) {
+  .accessibility-web-modal {
+    width: 45% !important;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .accessibility-web-modal {
+    width: 54% !important;
+  }
+}
+@media (min-width: 1000px) and (max-width: 1399px) {
+  .accessibility-web-modal {
+    width: 58% !important;
+  }
+}
 .accessibility-web-modal .ant-modal-content {
   background: var(--color-pymnt-container-bg);
   border: 2.353px solid var(--color-base-product-card-card-item-border);
@@ -7692,7 +7707,7 @@ html[dir=rtl] .back-button {
   flex-shrink: 0;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 800;
 }
 @media only screen and (min-width: 992px) {
   .mobile-header {
@@ -8083,6 +8098,8 @@ html[lang=ar] .mobile-top__item:not(:last-child)::after {
 }
 .mobile-top-search-section__dropdown-option:last-child {
   border-bottom: none;
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
 }
 .mobile-top-search-section__check {
   color: #007bff;

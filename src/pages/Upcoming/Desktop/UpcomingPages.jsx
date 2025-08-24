@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../../layouts/Footer/Footer";
 import SideBar from "../../../layouts/SideBar/SideBar";
 import Header from "../../../layouts/Header/Header";
 const UpcomingPages = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="product">
@@ -34,7 +36,11 @@ const UpcomingPages = () => {
               <h1 className="upcoming-title">{t("upcoming.title")}</h1>
               <p className="upcoming-subtitle">
                 {t("upcoming.subtitle")}
-                <span className="highlight">
+                <span
+                  className="highlight"
+                  onClick={() => navigate("/")}
+                  style={{ cursor: "pointer" }}
+                >
                   {" "}
                   {t("upcoming.topAttractions")}{" "}
                 </span>
