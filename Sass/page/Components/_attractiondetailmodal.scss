@@ -342,7 +342,7 @@ body.modal-open {
   inset: 0 !important;
   height: 100vh !important;
   max-height: 100vh !important;
-  touch-action: none; // Prevent touch scrolling through to body
+  touch-action: none; // Block outer page scroll
 }
 
 // Ensure the modal mask also prevents scrolling
@@ -365,6 +365,11 @@ body.modal-open {
   padding: 0 !important;
   max-height: 100vh !important;
   overflow: hidden !important;
+}
+
+// Allow vertical panning on modal content so child scroll containers work on iOS
+.attraction-detail-modal .ant-modal-content {
+  touch-action: pan-y;
 }
 
 // iOS viewport fallback to prevent 100vh issues on Safari (home bar etc.)
