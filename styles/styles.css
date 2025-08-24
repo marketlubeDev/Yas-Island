@@ -10950,7 +10950,12 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
-    height: calc(99dvh - 12rem);
+    height: calc(99dvh - 9rem) !important;
+  }
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__body {
+    height: calc(99dvh - 8.5rem) !important;
   }
 }
 .attraction-detail-modal__image {
@@ -10997,7 +11002,12 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
-    top: 35px;
+    top: -5px;
+  }
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__footer {
+    top: 0px;
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
