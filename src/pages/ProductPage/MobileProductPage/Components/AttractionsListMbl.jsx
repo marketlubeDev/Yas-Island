@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import AttractionDetailModalMbl from "./AttractionDetailModalMbl";
@@ -96,6 +96,21 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     dispatch(setCurrentPark(""));
     dispatch(setCurrentSort(""));
   };
+
+  // Lock body scroll when any modal is open
+  useEffect(() => {
+    if (modalType !== null) {
+      document.body.classList.add("modal-open");
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.classList.remove("modal-open");
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+      document.body.style.overflow = "";
+    };
+  }, [modalType]);
 
   const renderModalContent = () => {
     switch (modalType) {
@@ -197,7 +212,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
         onCancel={handleCloseModal}
         footer={null}
         closable={false}
-        style={{ maxHeight: "100vh", overflow: "hidden" }}
+        style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}
         // closeIcon={
         //   <span className="custom-modal-close">
         //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
