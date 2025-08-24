@@ -770,7 +770,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 0.14706rem solid var(--color-base-product-card-divider);
+  // border-top: 0.14706rem solid var(--color-base-product-card-divider);
 
   @include respond(desktop) {
     padding-top: 1.5rem;

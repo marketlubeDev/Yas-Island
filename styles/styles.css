@@ -2121,7 +2121,6 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   flex-direction: row;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 0.14706rem solid var(--color-base-product-card-divider);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .price-section {
@@ -5032,8 +5031,6 @@ html[lang=ar] .guest-label {
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 80%;
-    margin: 8px 0px 0 40px;
   }
 }
 
