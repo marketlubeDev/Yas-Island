@@ -1886,7 +1886,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: -8%;
+  top: -3rem;
   right: 0.5rem;
   height: 40px;
   width: 40px;
@@ -1904,7 +1904,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal .ant-modal-close {
-    top: -4%;
+    top: -3rem;
     right: 0.5rem;
     height: 35px;
     width: 35px;
@@ -2008,7 +2008,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 }
@@ -2108,7 +2108,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding-top: 1rem;
   border-top: 0.14706rem solid var(--color-base-product-card-divider);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
