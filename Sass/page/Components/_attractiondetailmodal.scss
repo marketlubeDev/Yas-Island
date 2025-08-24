@@ -11,8 +11,7 @@ body.modal-open {
 .attraction-detail-modal {
   max-width: 420px;
   width: 98vw;
-  max-height: 100vh; // hard cap at viewport height
-  height: 100vh; // ensure full viewport height
+  max-height: 99vh;
   overflow: hidden; // Prevent any overflow on the modal
 
   @include respond(tablets) {
@@ -56,25 +55,19 @@ body.modal-open {
   &__body {
     padding: 0px 6px 24px 6px;
     background-color: var(--color-dtl-body-bg);
-    height: calc(100vh - 11.5rem); // match viewport height minus header/footer
-    max-height: calc(100vh - 11.5rem);
-    overflow-y: auto; // allow inner content to scroll
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch; // smooth iOS scroll
-    overscroll-behavior: contain; // prevent scroll chaining to body
+    height: calc(99dvh - 11.5rem);
+    overflow-y: auto;
 
     .product-heading {
       color: var(--color-base-text) !important;
     }
 
     @include respond(smallPhone) {
-      height: calc(100vh - 9rem) !important;
-      max-height: calc(100vh - 9rem) !important;
+      height: calc(99dvh - 9rem) !important;
     }
 
     @media (max-width: 375px) {
-      height: calc(100vh - 8.5rem) !important;
-      max-height: calc(100vh - 8.5rem) !important;
+      height: calc(99dvh - 8.5rem) !important;
     }
   }
 
@@ -216,18 +209,18 @@ body.modal-open {
 .attraction-detail-modal .ant-modal {
   max-width: 420px;
   width: 98vw;
-  height: 100vh; // force to viewport height
-  max-height: 100vh;
+  max-height: 90vh;
+  // height: 98vh;
+  // top: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden; // block internal scroll
 }
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
-  height: 100vh; // exact viewport height
-  max-height: 100vh;
+  height: 99dvh;
+  max-height: 99dvh; // Ensure it doesn't exceed viewport
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -340,9 +333,8 @@ body.modal-open {
   overflow: hidden !important; // Prevent scrolling on the modal wrapper
   position: fixed !important;
   inset: 0 !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-  touch-action: none; // Block outer page scroll
+  -webkit-overflow-scrolling: touch; // Disable momentum scrolling on iOS
+  touch-action: none; // Prevent touch scrolling
 }
 
 // Ensure the modal mask also prevents scrolling
@@ -365,23 +357,4 @@ body.modal-open {
   padding: 0 !important;
   max-height: 100vh !important;
   overflow: hidden !important;
-}
-
-// Allow vertical panning on modal content so child scroll containers work on iOS
-.attraction-detail-modal .ant-modal-content {
-  touch-action: pan-y;
-}
-
-// iOS viewport fallback to prevent 100vh issues on Safari (home bar etc.)
-@supports (-webkit-touch-callout: none) {
-  .attraction-detail-modal,
-  .attraction-detail-modal .ant-modal,
-  .attraction-detail-modal .ant-modal-content {
-    height: 100svh; // small viewport height accounts for iOS UI
-    max-height: 100svh;
-  }
-  .attraction-detail-modal__body {
-    height: calc(100svh - 11.5rem);
-    max-height: calc(100svh - 11.5rem);
-  }
 }

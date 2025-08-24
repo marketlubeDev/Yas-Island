@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import AttractionDetailModalMbl from "./AttractionDetailModalMbl";
@@ -96,49 +96,6 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     dispatch(setCurrentPark(""));
     dispatch(setCurrentSort(""));
   };
-
-  // Lock page scroll when modal is open, allow only inner modal body to scroll
-  useEffect(() => {
-    if (modalType !== null) {
-      document.body.classList.add("modal-open");
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-
-      // iOS-safe body lock: fix body position and restore on close
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-
-      // Prevent touchmove outside inner scroll area
-      const allowWithinSelector = ".attraction-detail-modal__body";
-      const onTouchMove = (e) => {
-        const allowed = e.target.closest(allowWithinSelector);
-        if (!allowed) {
-          e.preventDefault();
-        }
-      };
-      document.addEventListener("touchmove", onTouchMove, { passive: false });
-
-      return () => {
-        document.body.classList.remove("modal-open");
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        document.removeEventListener("touchmove", onTouchMove);
-        window.scrollTo(0, scrollY);
-      };
-    } else {
-      document.body.classList.remove("modal-open");
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-    }
-  }, [modalType]);
 
   const renderModalContent = () => {
     switch (modalType) {
@@ -240,9 +197,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
         onCancel={handleCloseModal}
         footer={null}
         closable={false}
-        style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}
-        bodyStyle={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}
-        keyboard={false}
+        style={{ maxHeight: "100vh", overflow: "hidden" }}
         // closeIcon={
         //   <span className="custom-modal-close">
         //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
