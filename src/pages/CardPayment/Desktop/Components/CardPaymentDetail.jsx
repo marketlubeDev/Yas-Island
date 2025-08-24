@@ -25,8 +25,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
 
-  console.log(theme, "theme")
-
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
     dispatch(clearCart());
@@ -163,6 +161,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height: "34rem",
             position: "relative",
             overflow: "hidden",
+            backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
           }}
         >
           {/* <Payfort /> */}
@@ -181,14 +180,16 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 style={{
                   width: "40px",
                   height: "40px",
-                  border: "3px solid #f3f3f3",
+                  border: isDarkMode
+                    ? "3px solid #404040"
+                    : "3px solid #f3f3f3",
                   borderTop: "3px solid #3498db",
                   borderRadius: "50%",
                   animation: "spin 1s linear infinite",
                   margin: "0 auto 1rem",
                 }}
               />
-              <p style={{ color: "#666", margin: 0 }}>
+              <p style={{ color: isDarkMode ? "#b3b3b3" : "#666", margin: 0 }}>
                 Loading secure payment form...
               </p>
             </div>
@@ -200,7 +201,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height="100%"
             frameBorder="0"
             key={retryCounter}
-            onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
+            onLoad={() => setIsIframeLoading(false)}
+            style={{
+              backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+              opacity: isIframeLoading ? "0" : "1",
+              transition: "opacity 0.2s ease-in-out",
+            }}
           />
 
           {paymentStatus === "failed" && (
@@ -214,8 +220,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "16px",
-                background:
-                  "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
+                background: isDarkMode
+                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,.96))"
+                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",
               }}
@@ -225,9 +232,13 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   width: "100%",
                   maxWidth: 560,
                   borderRadius: 12,
-                  background: "#fff",
-                  border: "1px solid #ffd6d6",
-                  boxShadow: "0 10px 24px rgba(0,0,0,.08)",
+                  background: isDarkMode ? "#1f1f1f" : "#fff",
+                  border: isDarkMode
+                    ? "1px solid #4a2c2c"
+                    : "1px solid #ffd6d6",
+                  boxShadow: isDarkMode
+                    ? "0 10px 24px rgba(0,0,0,.3)"
+                    : "0 10px 24px rgba(0,0,0,.08)",
                   overflow: "hidden",
                 }}
               >
@@ -237,8 +248,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                     alignItems: "center",
                     gap: 12,
                     padding: "12px 16px",
-                    background: "#fff5f5",
-                    borderBottom: "1px solid #ffd6d6",
+                    background: isDarkMode ? "#2d1b1b" : "#fff5f5",
+                    borderBottom: isDarkMode
+                      ? "1px solid #4a2c2c"
+                      : "1px solid #ffd6d6",
                   }}
                 >
                   <div
@@ -247,7 +260,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                       width: 36,
                       height: 36,
                       borderRadius: 9999,
-                      background: "#ffe3e3",
+                      background: isDarkMode ? "#4a2c2c" : "#ffe3e3",
                       display: "grid",
                       placeItems: "center",
                       color: "#c53030",
@@ -257,17 +270,27 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   >
                     !
                   </div>
-                  <div style={{ fontWeight: 700, color: "#1a1a1a" }}>
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                    }}
+                  >
                     {t("payment.cardPayment.errorTitle", {
                       defaultValue: "Payment was rejected",
                     })}
                   </div>
                 </div>
-                <div style={{ padding: "14px 16px", color: "#4a5568" }}>
+                <div
+                  style={{
+                    padding: "14px 16px",
+                    color: isDarkMode ? "#b3b3b3" : "#4a5568",
+                  }}
+                >
                   {failureMessage ||
                     t("payment.cardPayment.errorMessage", {
                       defaultValue:
-                        "We couldn’t complete your payment. Please review your details and try again.",
+                        "We couldn't complete your payment. Please review your details and try again.",
                     })}
                 </div>
                 <div
@@ -277,8 +300,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                     gap: 8,
                     justifyContent: "flex-end",
                     padding: "12px 16px",
-                    background: "#fafafa",
-                    borderTop: "1px solid #eee",
+                    background: isDarkMode ? "#262626" : "#fafafa",
+                    borderTop: isDarkMode
+                      ? "1px solid #404040"
+                      : "1px solid #eee",
                   }}
                 >
                   {typeof onBack === "function" && (
@@ -286,9 +311,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                       type="button"
                       onClick={onBack}
                       style={{
-                        background: "#fff",
-                        color: "#1a1a1a",
-                        border: "1px solid #ddd",
+                        background: isDarkMode ? "#404040" : "#fff",
+                        color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                        border: isDarkMode
+                          ? "1px solid #525252"
+                          : "1px solid #ddd",
                         borderRadius: 8,
                         padding: ".55rem 1rem",
                         cursor: "pointer",
