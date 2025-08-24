@@ -56,6 +56,7 @@ export const en = {
     attractions: "Attractions",
     selectPark: "All",
     selectSort: "Recommended",
+    SortByPrice: "Sort By Price",
   },
   sidebar: {
     all: "All",
@@ -347,6 +348,7 @@ export const en = {
     checkoutFailed: "Checkout Failed. Please Try Again.",
     failedToAddToCart: "Failed To Add To Cart. Please Try Again.",
     otpResent: "OTP Has Been Sent To Your Email.",
+    tooManyRequests: "Too many requests please try again later",
   },
   mobile: {
     swipeToChange: "Swipe To Change",
