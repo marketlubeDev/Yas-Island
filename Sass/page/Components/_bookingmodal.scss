@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Prevent any overflow on overlay */
+  touch-action: none; /* Prevent touch scrolling on overlay */
 }
 
 .booking-modal {
@@ -21,6 +23,9 @@
   overflow: hidden;
   border-radius: 20px;
   border: 2px solid var(--color-base-product-card-card-item-border);
+  position: relative; /* Ensure proper stacking context */
+  touch-action: pan-y; /* Allow vertical scrolling inside modal */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .booking-modal__header {
@@ -53,20 +58,27 @@
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
+  position: relative; /* Create stacking context */
   // border: 1px solid var(--color-bkg-modal-border);
 
   /* On mobile devices, always allow scrolling of entire body */
   @include respond(smallPhone) {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
   @include respond(phone) {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
   @include respond(tablets) {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 
@@ -189,10 +201,13 @@
 .booking-modal.booking-modal--scroll-all {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
   .booking-modal__guests-section {
     overflow-y: visible;
+    overflow-x: hidden;
   }
 }
 
