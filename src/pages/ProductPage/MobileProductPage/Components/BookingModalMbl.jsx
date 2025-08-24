@@ -202,6 +202,35 @@ function BookingModalMbl({
     }
   }, [product]);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    // Store original body styles
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
+
+    // Get current scroll position
+    const scrollY = window.scrollY;
+
+    // Lock body scroll
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    // Cleanup function to restore body scroll
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
+
+      // Restore scroll position
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
   useEffect(() => {
     setGuests(getVariants());
   }, [product]);
@@ -804,11 +833,19 @@ function BookingModalMbl({
     <div
       className="booking-modal-overlay"
       style={{ background: "var(--color-bkg-body-bg)" }}
+      onScroll={(e) => e.preventDefault()}
+      onTouchMove={(e) => {
+        // Allow touch move inside modal content, prevent on overlay
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
     >
       <div
         className={`booking-modal ${
           hasManyGuests ? "booking-modal--scroll-all" : ""
         }`}
+        onScroll={(e) => e.stopPropagation()}
       >
         <div className="booking-modal__header">
           <img

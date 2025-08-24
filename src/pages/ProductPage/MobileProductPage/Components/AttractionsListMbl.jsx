@@ -197,6 +197,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
         onCancel={handleCloseModal}
         footer={null}
         closable={false}
+        style={{ maxHeight: "100vh", overflow: "hidden" }}
         // closeIcon={
         //   <span className="custom-modal-close">
         //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />

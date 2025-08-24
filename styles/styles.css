@@ -307,7 +307,7 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html {
@@ -732,6 +732,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
 }
 
 .product-content .footer {
@@ -2738,10 +2739,16 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: start;
   justify-content: center;
   padding: 10px 0px;
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 250px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-label-container {
     padding-left: 0.8rem;
+    max-width: 200px;
   }
 }
 
@@ -2762,13 +2769,24 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   color: var(--color-base-text);
   font-size: 0.9rem;
   font-weight: 700;
-  line-height: normal;
+  line-height: 1.2;
   text-transform: capitalize;
   text-align: left;
   font-family: "YAS Font", sans-serif;
+  display: inline;
 }
 .guest-label-desc {
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--color-base-text-secondary);
+  display: inline;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .guest-label-desc {
+    font-size: 0.75rem;
+  }
 }
 
 html[lang=ar] .guest-label {
@@ -3788,6 +3806,7 @@ html[lang=ar] .guest-label {
   min-height: 0;
   margin-bottom: 16px;
   padding-right: 8px;
+  max-height: 25vh;
   /* Custom scrollbar for better UX */
 }
 .order-summary-new .order-summary-scrollable::-webkit-scrollbar {
@@ -4350,6 +4369,13 @@ html[lang=ar] .guest-label {
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
   min-height: calc(100vh - 8rem);
+  overflow: hidden;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-checkout {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
@@ -4538,7 +4564,6 @@ html[lang=ar] .guest-label {
   padding: 35px;
   border-radius: 2.5rem;
   background: var(--color-email-form-box);
-  box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
   width: 100%;
   max-width: 1400px;
@@ -8865,6 +8890,7 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  color: var(--color-email-form-label);
 }
 @media (min-width: 360px) and (max-width: 369px) {
   .mycart-modal__summary-row {
@@ -8877,7 +8903,6 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid var(--color-base-product-card-divider);
-  color: var(--color-email-form-label);
 }
 @media (min-width: 360px) and (max-width: 369px) {
   .mycart-modal__summary-row--total {
@@ -11064,10 +11089,19 @@ html[lang=ar] .make-payment__summary-top {
   height: 25px;
 }
 
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .attraction-detail-modal {
   max-width: 420px;
   width: 98vw;
-  max-height: 99vh;
+  max-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .attraction-detail-modal {
@@ -11113,20 +11147,23 @@ html[lang=ar] .make-payment__summary-top {
 .attraction-detail-modal__body {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
-  height: calc(99dvh - 11.5rem);
-  overflow-y: auto;
+  height: calc(100vh - 11.5rem);
+  max-height: calc(100vh - 11.5rem);
+  overflow: hidden;
 }
 .attraction-detail-modal__body .product-heading {
   color: var(--color-base-text) !important;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
-    height: calc(99dvh - 9rem) !important;
+    height: calc(100vh - 9rem) !important;
+    max-height: calc(100vh - 9rem) !important;
   }
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__body {
-    height: calc(99dvh - 8.5rem) !important;
+    height: calc(100vh - 8.5rem) !important;
+    max-height: calc(100vh - 8.5rem) !important;
   }
 }
 .attraction-detail-modal__image {
@@ -11257,14 +11294,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .attraction-detail-modal .ant-modal {
   max-width: 420px;
   width: 98vw;
-  max-height: 90vh;
+  height: 100vh;
+  max-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .attraction-detail-modal .ant-modal-content {
-  height: 99dvh;
+  height: 100vh;
+  max-height: 100vh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -11274,6 +11314,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   justify-content: space-between;
   background-color: var(--color-dtl-content-bg);
   border: 1px solid var(--color-dtl-content-border);
+  overflow: hidden !important;
+  position: relative;
 }
 
 .accessibility-modal .ant-modal-close {
@@ -11370,16 +11412,47 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .attraction-detail-modal.ant-modal-wrap {
   z-index: 2147483600 !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  touch-action: none;
+}
+
+.ant-modal-mask {
+  position: fixed !important;
+  overflow: hidden !important;
+  touch-action: none !important;
 }
 
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 .attraction-detail-modal .ant-modal {
   top: 0 !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .attraction-detail-modal,
+  .attraction-detail-modal .ant-modal,
+  .attraction-detail-modal .ant-modal-content {
+    height: 100svh;
+    max-height: 100svh;
+  }
+  .attraction-detail-modal__body {
+    height: calc(100svh - 11.5rem);
+    max-height: calc(100svh - 11.5rem);
+  }
+}
 .product-head__filters {
   display: flex;
   gap: 16px;
@@ -11454,6 +11527,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Prevent any overflow on overlay */
+  touch-action: none; /* Prevent touch scrolling on overlay */
 }
 
 .booking-modal {
@@ -11467,6 +11542,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden;
   border-radius: 0px;
   border: 2px solid var(--color-base-product-card-card-item-border);
+  position: relative; /* Ensure proper stacking context */
+  touch-action: pan-y; /* Allow vertical scrolling inside modal */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .booking-modal__header {
@@ -11496,24 +11574,31 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
+  position: relative; /* Create stacking context */
   /* On mobile devices, always allow scrolling of entire body */
 }
 @media only screen and (max-width: 575.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 
@@ -11637,10 +11722,13 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 /* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
 .booking-modal.booking-modal--scroll-all .booking-modal__body {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; /* Prevent scroll chaining */
 }
 .booking-modal.booking-modal--scroll-all .booking-modal__guests-section {
   overflow-y: visible;
+  overflow-x: hidden;
 }
 
 /* Mobile guest section scrollbar to match desktop theme */

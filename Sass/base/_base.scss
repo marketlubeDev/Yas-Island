@@ -4,7 +4,7 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html {
@@ -83,4 +83,7 @@ body,
 *::-webkit-scrollbar-corner {
   display: none !important;
   background: transparent !important;
+}
+.ant-modal-wrap {
+  overflow: hidden !important;
 }
