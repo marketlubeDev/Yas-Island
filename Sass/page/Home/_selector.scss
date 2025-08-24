@@ -2,13 +2,14 @@
 @use "../../base/responive" as *;
 
 .selector {
-  width: 13rem;
+  min-width: 13rem;
+  width: fit-content;
   display: flex;
   align-items: center;
   position: relative;
 
   @include respond(bigTablets) {
-    width: 12rem;
+    min-width: 12rem;
   }
 
   // Custom select
@@ -57,7 +58,8 @@
       position: absolute;
       top: calc(100% + 5px);
       left: 0;
-      width: 100%;
+      min-width: 100%;
+      width: max-content;
       background: var(--color-search-dropdown-bg);
       border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
       border-radius: 2rem;
