@@ -18,13 +18,14 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const [paymentStatus, setPaymentStatus] = useState("loading");
   const [isIframeLoading, setIsIframeLoading] = useState(true);
   const [failureMessage, setFailureMessage] = useState("");
   const [retryCounter, setRetryCounter] = useState(0);
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
+
+  console.log(theme, "theme")
 
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
@@ -198,15 +199,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             width="100%"
             height="100%"
             frameBorder="0"
-            style={{
-              border: "none",
-              borderRadius: "8px",
-              boxShadow: "none",
-              background: "transparent",
-              opacity:
-                paymentStatus === "failed" ? 0.15 : isIframeLoading ? 0 : 1,
-              transition: "opacity 0.3s ease",
-            }}
             key={retryCounter}
             onLoad={() => setTimeout(() => setIsIframeLoading(false), 1500)}
           />
