@@ -1921,7 +1921,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-content {
-    max-height: 80vh !important;
+    max-height: 90vh !important;
     overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
@@ -1947,7 +1947,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-image {
-    max-width: 80% !important;
+    max-width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1997,7 +1997,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 }
@@ -2027,7 +2027,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal-details h2 {
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   color: var(--color-base-text);
   font-size: 2.125rem;
   font-style: normal;

@@ -586,7 +586,7 @@
   overflow: hidden; // prevent content overflow; inner sections handle scroll if needed
 
   @include respond(bigTablets) {
-    max-height: 80vh !important;
+    max-height: 90vh !important;
     overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
@@ -614,11 +614,13 @@
   border-radius: 1.47rem;
 
   @include respond(bigTablets) {
-    max-width: 80% !important;
+    max-width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    // height: 250px;
+    // max-height: 250px;
   }
 
   @include respond(desktop) {
@@ -660,7 +662,7 @@
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 
@@ -689,7 +691,7 @@
 
 .product-modal-details h2 {
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   color: var(--color-base-text);
   font-size: 2.125rem;
   font-style: normal;
