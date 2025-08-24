@@ -11038,7 +11038,7 @@ html[lang=ar] .make-payment__summary-top {
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  top: 60px;
+  top: 45px;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
@@ -11091,6 +11091,11 @@ html[lang=ar] .attraction-detail-modal__footer {
   font-size: 13px;
   color: var(--color-base-mobile-product-page-vat-text);
   font-weight: 400;
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__vat {
+    font-size: 10px !important;
+  }
 }
 .attraction-detail-modal__add-btn {
   background: var(--color-dtl-add-btn-bg);
