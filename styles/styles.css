@@ -339,7 +339,7 @@ html {
 #root,
 .main {
   min-height: 100vh;
-  background-color: var(--color-base-bg);
+  background-color: var(--main-body);
 }
 @media only screen and (max-width: 768px) {
   #root,
@@ -722,6 +722,14 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   right: 0;
 }
 
+.product-content .footer {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  flex-shrink: 0;
+}
+
 .footer__text {
   font-size: 12px;
 }
@@ -939,6 +947,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 0;
   background-color: var(--color-base-product-card-bg);
   animation: fadeIn 0.8s ease-out;
+  height: 100vh;
+  overflow: hidden;
 }
 .product-description {
   color: var(--text-colort);
@@ -1263,6 +1273,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-content {
   animation: slideInRight 0.8s ease-out 0.3s both;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 .product-header {
@@ -1320,6 +1335,10 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   justify-content: space-between;
   align-items: center;
   padding: 0rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
 }
 
 .header-actions {
@@ -1392,18 +1411,18 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   width: 100%;
   background-color: var(--color-base-product-card-bg);
   padding: 0 2rem 2rem 2rem;
-  overflow-y: scroll;
-  height: calc(100vh - 12rem);
+  overflow-y: auto;
+  flex: 1;
   scroll-behavior: smooth;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard {
-    height: calc(100vh - 0rem);
+    flex: 1;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ProductCard {
-    height: calc(100vh - 0rem);
+    flex: 1;
   }
 }
 .ProductCard::-webkit-scrollbar {
@@ -2502,6 +2521,17 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 
+.guest-section-header-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.guest-section-header-container .section-title {
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
 .calendar-title {
   color: var(--color-base-text);
   font-size: 1.8rem !important;
@@ -2557,9 +2587,42 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   margin-bottom: 0;
+  flex: 1;
+  min-height: 0;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .guest-section-scollable-container.multiple-guests {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    max-height: calc(70vh - 12rem);
+  }
+  .guest-section-scollable-container.multiple-guests::-webkit-scrollbar {
+    width: 6px;
+  }
+  .guest-section-scollable-container.multiple-guests::-webkit-scrollbar-track {
+    background: var(--color-base-product-card-card-item-border);
+    border-radius: 3px;
+  }
+  .guest-section-scollable-container.multiple-guests::-webkit-scrollbar-thumb {
+    background: var(--color-base-text);
+    border-radius: 3px;
+    opacity: 0.5;
+  }
+  .guest-section-scollable-container.multiple-guests::-webkit-scrollbar-thumb:hover {
+    opacity: 0.8;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .guest-section-scollable-container.multiple-guests {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    max-height: calc(70vh - 12rem);
+  }
 }
 
 .guest-container {
@@ -2570,7 +2633,17 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border: 1px solid var(--color-base-product-card-card-item-border-calendar);
   width: 80%;
   height: fit-content;
-  flex-shrink: 1;
+  flex-shrink: 0;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .multiple-guests .guest-container {
+    width: calc(80% - 10px);
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .multiple-guests .guest-container {
+    width: calc(80% - 10px);
+  }
 }
 
 .guest-summary {
@@ -2747,12 +2820,13 @@ html[lang=ar] .guest-label {
 
 .booking-actions {
   width: 100%;
-  height: 10rem;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-top: 20px;
   margin-top: auto;
+  flex-shrink: 0;
   position: relative;
   bottom: 0;
   left: 0;
@@ -2771,7 +2845,9 @@ html[lang=ar] .guest-label {
 }
 
 .ar-booking-actions {
-  margin-top: 24px;
+  width: 100%;
+  height: auto;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -2779,6 +2855,7 @@ html[lang=ar] .guest-label {
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0);
   justify-content: center;
   align-items: end;
+  flex-shrink: 0;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ar-booking-actions {
@@ -6248,6 +6325,14 @@ html[dir=rtl] .back-button {
     margin: 0.8rem 0;
   }
 }
+.theme-light .iframe-container iframe {
+  color-scheme: light;
+}
+
+.theme-dark .iframe-container iframe {
+  color-scheme: dark;
+}
+
 .payfort {
   width: 100%;
   height: 100%;
@@ -6255,12 +6340,6 @@ html[dir=rtl] .back-button {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-}
-.payfort .theme-light iframe {
-  color-scheme: light !important;
-}
-.payfort .theme-dark iframe {
-  color-scheme: dark !important;
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .payfort {
@@ -11270,6 +11349,25 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
+  /* On mobile devices, always allow scrolling of entire body */
+}
+@media only screen and (max-width: 575.98px) {
+  .booking-modal__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .booking-modal__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .booking-modal__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .booking-modal__calendar {
@@ -11368,6 +11466,25 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   min-height: 0;
   overflow-y: auto; /* default: only guests section scrolls */
   -webkit-overflow-scrolling: touch;
+  /* On mobile devices, disable individual section scrolling */
+}
+@media only screen and (max-width: 575.98px) {
+  .booking-modal__guests-section {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .booking-modal__guests-section {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .booking-modal__guests-section {
+    overflow-y: visible;
+    flex: 0 0 auto;
+  }
 }
 
 /* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
@@ -11389,6 +11506,20 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .booking-modal__guests-section::-webkit-scrollbar-thumb {
+  background: var(--color-base-product-card-scroll-bar);
+  border-radius: 4px;
+}
+
+/* Mobile body scrollbar when scrolling entire content */
+.booking-modal__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.booking-modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.booking-modal__body::-webkit-scrollbar-thumb {
   background: var(--color-base-product-card-scroll-bar);
   border-radius: 4px;
 }
