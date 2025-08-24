@@ -2981,6 +2981,21 @@ html[lang=ar] .guest-label {
     width: 70% !important;
   }
 }
+@media (min-width: 1600px) and (max-width: 1748px) {
+  .accessibility-web-modal {
+    width: 45% !important;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .accessibility-web-modal {
+    width: 54% !important;
+  }
+}
+@media (min-width: 1000px) and (max-width: 1399px) {
+  .accessibility-web-modal {
+    width: 58% !important;
+  }
+}
 .accessibility-web-modal .ant-modal-content {
   background: var(--color-pymnt-container-bg);
   border: 2.353px solid var(--color-base-product-card-card-item-border);
