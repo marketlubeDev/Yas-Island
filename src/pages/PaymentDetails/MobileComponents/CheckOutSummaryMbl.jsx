@@ -60,7 +60,8 @@ function CheckOutSummaryMbl({
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     try {
-      return new Date(dateString).toLocaleDateString("en-US", {
+      const locale = currentLanguage === "ar" ? "ar-AE" : "en-US";
+      return new Date(dateString).toLocaleDateString(locale, {
         weekday: "short",
         day: "numeric",
         month: "short",
