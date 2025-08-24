@@ -7129,6 +7129,15 @@ html[dir=rtl] .back-button {
     font-size: 1rem;
   }
 }
+.payment-response .ticket-section img {
+  height: 14rem;
+  object-fit: contain;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-response .ticket-section img {
+    height: 12rem;
+  }
+}
 .payment-response .divider {
   width: 98%;
   margin: 20px 0 20px 0;
@@ -10745,15 +10754,22 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 5rem;
 }
 
 .experience-ticket-img {
-  width: 90px;
-  height: 140px;
+  height: 15rem;
   object-fit: contain;
   margin-bottom: 18px;
-  margin-top: -3rem;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .experience-ticket-img {
+    height: 12rem;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .experience-ticket-img {
+    height: 8rem;
+  }
 }
 
 .experience-message {
@@ -10788,7 +10804,6 @@ html[lang=ar] .make-payment__summary-top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
 }
 .experience-rate-option img {
@@ -10826,8 +10841,8 @@ html[lang=ar] .make-payment__summary-top {
 }
 
 .smile-circle {
-  width: 72px;
-  height: 72px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: var(--color-feedback-circle-bg);
   border: 2.5px solid var(--color-feedback-circle-border);
@@ -10927,12 +10942,23 @@ html[lang=ar] .make-payment__summary-top {
 
 .experience-outer-bg {
   background: var(--color-checkout-summary-bg);
-  min-height: 100vh;
   width: 100vw;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .experience-outer-bg {
+    padding: 10px 10px;
+    height: calc(100vh - 6rem);
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .experience-outer-bg {
+    padding: 10px 10px;
+    height: calc(100vh - 4rem);
+  }
 }
 
 .experience-content-container {
@@ -10943,7 +10969,6 @@ html[lang=ar] .make-payment__summary-top {
   max-width: 420px;
   width: 100%;
   height: 84vh;
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

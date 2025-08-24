@@ -33,18 +33,28 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 5rem;
+  // margin-top: 5rem;
 
   // margin-left: 1rem;
   // padding: 10px 0 10px 0;
 }
 
 .experience-ticket-img {
-  width: 90px;
-  height: 140px;
+  height: 15rem;
   object-fit: contain;
   margin-bottom: 18px;
-  margin-top: -3rem;
+
+  @include respond(tablets) {
+    height: 12rem;
+  }
+
+  @include respond(phone) {
+    height: 8rem;
+  }
+
+  @include respond(small-phone) {
+    height: 6rem;
+  }
 }
 
 .experience-message {
@@ -80,7 +90,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  // gap: 8px;
   cursor: pointer;
   img {
     width: 48px;
@@ -120,8 +130,8 @@
 }
 
 .smile-circle {
-  width: 72px;
-  height: 72px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: var(--color-feedback-circle-bg);
   border: 2.5px solid var(--color-feedback-circle-border);
@@ -225,12 +235,22 @@
 
 .experience-outer-bg {
   background: var(--color-checkout-summary-bg);
-  min-height: 100vh;
+  // min-height: 100vh;
   width: 100vw;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include respond(tablets) {
+    padding: 10px 10px;
+    height: calc(100vh - 6rem);
+  }
+
+  @include respond(phone) {
+    padding: 10px 10px;
+    height: calc(100vh - 4rem);
+  }
 }
 
 .experience-content-container {
@@ -241,7 +261,7 @@
   max-width: 420px;
   width: 100%;
   height: 84vh;
-  margin-top: 5rem;
+  // margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

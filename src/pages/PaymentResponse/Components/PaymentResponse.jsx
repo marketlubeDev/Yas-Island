@@ -73,7 +73,7 @@ export default function PaymentResponse() {
       {!showThankYou && (
         <>
           <div className="ticket-section">
-            <img src={Ticket} alt="Ticket" />
+            <img src={Ticket} alt="Ticket"  />
             <div className="ticket-message">
               {t("payment.response.ticketSent")}
             </div>

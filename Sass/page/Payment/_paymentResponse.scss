@@ -38,6 +38,15 @@
         font-size: 1rem;
       }
     }
+
+    img {
+      height: 14rem;
+      object-fit: contain;
+
+      @include respond(tablets) {
+        height: 12rem;
+      }
+    }
   }
 
   .divider {

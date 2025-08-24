@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ticketImg from "../../assets/images/ticket.svg";
+import ticketImg from "../../assets/icons/ticket.svg";
 import SmileSection from "./MobileComponents/SmileSectionMbl";
 import { useTranslation } from "react-i18next";
 import MobileHeader from "../Home/MobileComponents/MobileHeader";
