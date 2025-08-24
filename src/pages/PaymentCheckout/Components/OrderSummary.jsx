@@ -66,7 +66,6 @@ export default function OrderSummary({
   };
 
   const formatDate = (dateString) => {
-    console.log(dateString, "dateString");
 
     // Use the appropriate locale based on current language
     const locale = currentLanguage === "ar" ? "ar-AE" : "en-US";
@@ -78,7 +77,6 @@ export default function OrderSummary({
       year: "numeric",
     });
 
-    console.log(date, "date");
 
     return date;
   };
