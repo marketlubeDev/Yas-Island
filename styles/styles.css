@@ -3352,6 +3352,18 @@ html[lang=ar] .guest-label {
   }
 }
 
+.ant-btn.minus-btn-web:hover, .ant-btn.minus-btn-web:focus, .ant-btn.minus-btn-web:active,
+.ant-btn.plus-btn-web:hover,
+.ant-btn.plus-btn-web:focus,
+.ant-btn.plus-btn-web:active,
+.ant-btn.delete-btn:hover,
+.ant-btn.delete-btn:focus,
+.ant-btn.delete-btn:active {
+  background-color: var(--color-cart-item-bg) !important;
+  border-color: var(--color-cart-item-minus-border) !important;
+  color: inherit !important;
+}
+
 .minus-btn-web {
   background-color: var(--color-cart-item-bg);
   border: 2px solid var(--color-cart-item-minus-border);
