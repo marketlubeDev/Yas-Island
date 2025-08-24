@@ -37,7 +37,7 @@ html {
 #root,
 .main {
   min-height: 100vh;
-  background-color: var(--color-base-bg);
+  background-color: var(--main-body);
 
   // Allow scrolling on mobile for payment pages
   @media only screen and (max-width: 768px) {

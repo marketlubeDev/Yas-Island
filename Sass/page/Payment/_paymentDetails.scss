@@ -436,6 +436,7 @@
       cursor: pointer;
       transition: background-color 0.2s;
       margin-top: 1rem;
+      color: #18142b !important;
 
       @include respond(desktop) {
         padding: 0.8rem;

@@ -173,14 +173,23 @@ export default function ProductModal({
               ></div>
 
               <div className="price-section">
-                <div className="price-details">
+                <div
+                  className="price-details"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "start",
+                    // gap: "10px",
+                  }}
+                >
                   <h3>
                     {selectedProduct.currency || "AED"}{" "}
                     {defaultVariant(selectedProduct)?.gross}
                   </h3>
                   <p className="tax">
                     {defaultVariant(selectedProduct)?.net_amount} +
-                    {defaultVariant(selectedProduct)?.vat}
+                    {defaultVariant(selectedProduct)?.vat}{" "}
                     {t("common.netAndTax")}
                   </p>
                 </div>

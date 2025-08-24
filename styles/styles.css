@@ -339,7 +339,7 @@ html {
 #root,
 .main {
   min-height: 100vh;
-  background-color: var(--color-base-bg);
+  background-color: var(--main-body);
 }
 @media only screen and (max-width: 768px) {
   #root,
@@ -951,7 +951,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   overflow: hidden;
 }
 .product-description {
-  color: var(--text-colort);
+  color: var(--text-colort) !important;
 }
 .product-head {
   display: flex;
@@ -1803,6 +1803,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
+  overflow: visible !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-content {
@@ -1885,25 +1886,35 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -3rem;
+  right: 0.5rem;
   height: 40px;
   width: 40px;
   font-size: 28px;
   line-height: 1;
   border-radius: 50%;
-  border: 2px solid #dcd6e5;
+  border: 2px solid var(--color-base-product-card-card-item-border);
   cursor: pointer;
-  background: #ffffff;
+  background: var(--color-base-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 10001;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-modal .ant-modal-close {
+    top: -3rem;
+    right: 0.5rem;
+    height: 35px;
+    width: 35px;
+    font-size: 24px;
+    padding: 6px;
+  }
+}
 .product-modal .ant-modal-close:hover {
-  background: #f6f6f6;
-  border-color: #cfcbd8;
+  background: var(--color-base-bg);
+  border-color: var(--color-base-product-card-card-item-border);
   transform: scale(1.06);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
@@ -1921,7 +1932,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-content {
-    max-height: 80vh !important;
+    max-height: 90vh !important;
     overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
@@ -1947,7 +1958,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-image {
-    max-width: 80% !important;
+    max-width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1993,10 +2004,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .product-description-api {
+  color: var(--text-color) !important;
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
-  padding: 1rem;
+  padding: 0;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
 }
@@ -2018,6 +2030,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 .product-description-api .product-description {
   font-size: 18px !important;
+  color: var(--text-color) !important;
 }
 .product-description-api .product-list-item {
   font-size: 18px !important;
@@ -2025,7 +2038,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal-details h2 {
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   color: var(--color-base-text);
   font-size: 2.125rem;
   font-style: normal;
@@ -2095,7 +2108,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding-top: 1rem;
   border-top: 0.14706rem solid var(--color-base-product-card-divider);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -2125,7 +2138,6 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 16px;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
@@ -5647,6 +5659,7 @@ html[dir=rtl] .back-button {
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 1rem;
+  color: #18142b !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .proceedbtn {
@@ -11025,6 +11038,9 @@ html[lang=ar] .make-payment__summary-top {
   height: calc(99dvh - 11.5rem);
   overflow-y: auto;
 }
+.attraction-detail-modal__body .product-heading {
+  color: var(--color-base-text) !important;
+}
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
     height: calc(99dvh - 12rem);
@@ -11070,7 +11086,7 @@ html[lang=ar] .make-payment__summary-top {
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  top: 60px;
+  top: 45px;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
@@ -11123,6 +11139,11 @@ html[lang=ar] .attraction-detail-modal__footer {
   font-size: 13px;
   color: var(--color-base-mobile-product-page-vat-text);
   font-weight: 400;
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__vat {
+    font-size: 10px !important;
+  }
 }
 .attraction-detail-modal__add-btn {
   background: var(--color-dtl-add-btn-bg);
