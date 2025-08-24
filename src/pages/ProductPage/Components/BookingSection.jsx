@@ -759,7 +759,7 @@ export default function BookingSection({ product, onBack }) {
                                   {guestData.name}{" "}
                                   {variantData?.productvariantdesc && (
                                     <span className="guest-label-desc">
-                                      `(${variantData.productvariantdesc})`
+                                      ({variantData.productvariantdesc})
                                     </span>
                                   )}
                                   {!isAvailable && (
