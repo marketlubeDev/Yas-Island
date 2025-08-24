@@ -37,75 +37,7 @@ function MobileBottomNav({ isVisible = true }) {
   }, []);
 
   const handleChatClick = useCallback(() => {
-    console.log("Chat click - current state:", isChatOpen);
-
-    const closeChat = () => {
-      let closed = false;
-      console.log("Attempting to close chat");
-
-      if (window.sprChat) {
-        try {
-          window.sprChat("close");
-          closed = true;
-          console.log("Closed via window.sprChat");
-        } catch (error) {
-          console.log("Error closing via sprChat:", error);
-        }
-      }
-
-      if (!closed) {
-        const candidates = [
-          '.spr-chat__box [aria-label="Close"]',
-          '.spr-chat__box [aria-label*="close" i]',
-          ".spr-chat__box .spr-chat__close",
-          '.spr-chat__box [data-testid*="close"]',
-          '.spr-chat__box button[title*="close" i]',
-        ];
-        for (const sel of candidates) {
-          const el = document.querySelector(sel);
-          if (el) {
-            console.log("Found close button:", sel);
-            el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-            closed = true;
-            break;
-          }
-        }
-      }
-
-      return closed;
-    };
-
-    const openChat = () => {
-      let opened = false;
-      console.log("Attempting to open chat");
-
-      if (window.sprChat) {
-        try {
-          window.sprChat("open");
-          opened = true;
-          console.log("Opened via window.sprChat");
-        } catch (error) {
-          console.log("Error opening via sprChat:", error);
-        }
-      }
-
-      if (!opened) {
-        const launcher = document.querySelector(
-          '.spr-chat__launcher, [class*="spr-chat__launcher"], .ezg1tqb0'
-        );
-        if (launcher) {
-          console.log("Found chat launcher, clicking it");
-          launcher.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-          opened = true;
-        } else {
-          console.log("No chat launcher found");
-        }
-      }
-
-      return opened;
-    };
-
-    // Use same logic as desktop ChatWithUsButton
+    // Use same simple logic as desktop ChatWithUsButton
     if (window.sprChat) {
       if (isChatOpen) {
         window.sprChat("close");
@@ -113,7 +45,7 @@ function MobileBottomNav({ isVisible = true }) {
         window.sprChat("open");
       }
     }
-    // State will be updated by the observer (same as desktop)
+    // State will be updated by the observer
   }, [isChatOpen]);
 
   useEffect(() => {
@@ -147,13 +79,7 @@ function MobileBottomNav({ isVisible = true }) {
         isOpen = chatWidget.style.display !== "none";
       }
 
-      console.log("Chat state detected:", isOpen, {
-        chatBox: !!chatBox,
-        chatWidget: !!chatWidget,
-        boxDisplay: chatBox?.style.display,
-        boxMinimized: chatBox?.classList.contains("spr-chat--minimized"),
-        widgetDisplay: chatWidget?.style.display,
-      });
+      console.log("Chat state detected:", isOpen);
 
       setIsChatOpen(isOpen);
     };
@@ -188,7 +114,6 @@ function MobileBottomNav({ isVisible = true }) {
       const chatElements = document.querySelector(".spr-chat__box, .ezg1tqb1");
       if (chatElements || window.sprChat) {
         clearInterval(waitForSprinklr);
-        console.log("Sprinklr detected, setting up monitoring");
 
         // Observe the entire body for Sprinklr changes
         observer.observe(document.body, {
@@ -204,11 +129,9 @@ function MobileBottomNav({ isVisible = true }) {
         // Also listen for Sprinklr events if available
         if (window.sprChat && window.sprChat.on) {
           window.sprChat.on("open", () => {
-            console.log("Sprinklr chat opened via event");
             setIsChatOpen(true);
           });
           window.sprChat.on("close", () => {
-            console.log("Sprinklr chat closed via event");
             setIsChatOpen(false);
           });
         }
@@ -250,34 +173,14 @@ function MobileBottomNav({ isVisible = true }) {
         </div>
         <div
           className="mobile-bottom-nav__item"
-          onClick={(e) => {
-            console.log("Chat button clicked:", e.target);
-            handleChatClick();
-          }}
+          onClick={handleChatClick}
           style={{ cursor: "pointer" }}
         >
           <img
             src={isChatOpen ? crossIconSrc : chatIconSrc}
             alt={isChatOpen ? t("common.close") : t("common.chatWithUs")}
-            onClick={(e) => {
-              console.log("Image clicked:", e.target);
-              e.stopPropagation();
-              handleChatClick();
-            }}
-            style={{ cursor: "pointer", pointerEvents: "auto" }}
           />
-          {!isChatOpen && (
-            <span
-              onClick={(e) => {
-                console.log("Text clicked:", e.target);
-                e.stopPropagation();
-                handleChatClick();
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              {t("common.chatWithUs")}
-            </span>
-          )}
+          {!isChatOpen && <span>{t("common.chatWithUs")}</span>}
         </div>
         <div
           className="mobile-bottom-nav__item"
