@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
@@ -148,7 +148,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   };
 
   return (
-    <div className="payment-container">
+    <div className="payment-container" style={{ backgroundColor: "black" }}>
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
