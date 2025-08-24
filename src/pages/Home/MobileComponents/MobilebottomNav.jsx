@@ -142,14 +142,34 @@ function MobileBottomNav({ isVisible = true }) {
         </div>
         <div
           className="mobile-bottom-nav__item"
-          onClick={handleChatClick}
+          onClick={(e) => {
+            console.log("Chat button clicked:", e.target);
+            handleChatClick();
+          }}
           style={{ cursor: "pointer" }}
         >
           <img
             src={isChatOpen ? crossIconSrc : chatIconSrc}
             alt={isChatOpen ? t("common.close") : t("common.chatWithUs")}
+            onClick={(e) => {
+              console.log("Image clicked:", e.target);
+              e.stopPropagation();
+              handleChatClick();
+            }}
+            style={{ cursor: "pointer", pointerEvents: "auto" }}
           />
-          {!isChatOpen && <span>{t("common.chatWithUs")}</span>}
+          {!isChatOpen && (
+            <span
+              onClick={(e) => {
+                console.log("Text clicked:", e.target);
+                e.stopPropagation();
+                handleChatClick();
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              {t("common.chatWithUs")}
+            </span>
+          )}
         </div>
         <div
           className="mobile-bottom-nav__item"
