@@ -80,9 +80,7 @@ function PaymentDetailsMobile() {
 
     // Validate personal details
     if (!data.emailId || !data.emailId.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      errors.push(t("toastMessages.invalidEmail"), {
-        position: "top-center",
-      });
+      errors.push(t("toastMessages.invalidEmail"));
     }
     if (
       !data.firstName ||
@@ -91,10 +89,7 @@ function PaymentDetailsMobile() {
     ) {
       errors.push(
         t("toastMessages.invalidFirstName") ||
-          t("toastMessages.somethingWentWrong"),
-        {
-          position: "top-center",
-        }
+          t("toastMessages.somethingWentWrong")
       );
     }
     if (
@@ -104,10 +99,7 @@ function PaymentDetailsMobile() {
     ) {
       errors.push(
         t("toastMessages.invalidLastName") ||
-          t("toastMessages.somethingWentWrong"),
-        {
-          position: "top-center",
-        }
+          t("toastMessages.somethingWentWrong")
       );
     }
     const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
@@ -136,6 +128,7 @@ function PaymentDetailsMobile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (!checkout.isTnCAgrred) {
       toast.error(t("toastMessages.acceptTermsAndConditions"), {
         position: "top-center",
