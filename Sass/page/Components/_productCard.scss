@@ -464,6 +464,7 @@
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
+  overflow: visible !important;
 
   // Increase padding for product modal on desktop and larger screens only
   @include respond(desktop) {
@@ -548,8 +549,8 @@
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -8%;
+  right: 0.5rem;
   height: 40px;
   width: 40px;
   font-size: 28px;
@@ -561,9 +562,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 10001;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease,
     border-color 0.2s ease;
+
+  @include respond(bigTablets) {
+    top: -4%;
+    right: 0.5rem;
+    height: 35px;
+    width: 35px;
+    font-size: 24px;
+    padding: 6px;
+  }
 
   &:hover {
     background: #f6f6f6;

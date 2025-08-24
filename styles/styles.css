@@ -1803,6 +1803,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
+  overflow: visible !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-content {
@@ -1885,8 +1886,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -8%;
+  right: 0.5rem;
   height: 40px;
   width: 40px;
   font-size: 28px;
@@ -1898,8 +1899,18 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 10001;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-modal .ant-modal-close {
+    top: -4%;
+    right: 0.5rem;
+    height: 35px;
+    width: 35px;
+    font-size: 24px;
+    padding: 6px;
+  }
 }
 .product-modal .ant-modal-close:hover {
   background: #f6f6f6;
