@@ -107,10 +107,10 @@ function AttractionDetailModalMbl({
           alt={attraction?.product_title}
           className="attraction-detail-modal__image"
         />
-
+        {/* 
         <div
           dangerouslySetInnerHTML={{ __html: attraction?.productdesc }}
-        ></div>
+        ></div> */}
       </div>
 
       <div className="attraction-detail-modal__footer">
