@@ -486,6 +486,11 @@
     overflow: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
+
+    @media (orientation: landscape) {
+      padding: 2rem !important;
+      padding-top: 2.7rem !important;
+    }
   }
 }
 .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
@@ -945,6 +950,11 @@
   @include respond(bigTablets) {
     gap: 1rem;
     flex-direction: column;
+
+    // Keep row direction for landscape tablets
+    @media (orientation: landscape) {
+      flex-direction: row;
+    }
   }
 }
 

@@ -1843,6 +1843,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     -ms-overflow-style: none; /* IE and Edge */
   }
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+  .product-modal.booking-active .ant-modal-content {
+    padding: 2rem !important;
+    padding-top: 2.7rem !important;
+  }
+}
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
@@ -2300,6 +2306,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   .booking-section {
     gap: 1rem;
     flex-direction: column;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+  .booking-section {
+    flex-direction: row;
   }
 }
 
