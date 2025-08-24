@@ -802,8 +802,7 @@
     }
 
     .checkbox-input:checked ~ .checkbox-custom:after {
-      left: auto;
-      right: 6px;
+      // No need for positioning since flexbox centers it
     }
   }
 }
@@ -825,18 +824,19 @@
   border: 1px solid var(--color-base-checkbox-border);
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:after {
     content: "";
-    position: absolute;
     display: none;
-    left: 6px;
-    top: 2px;
     width: 5px;
     height: 10px;
     border: solid var(--color-base-checkbox-check);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+    margin-top: -2px; // Fine-tune vertical alignment
   }
 }
 
