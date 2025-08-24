@@ -105,59 +105,15 @@ function MobileBottomNav({ isVisible = true }) {
       return opened;
     };
 
-    // Check if we're in a production environment with actual Sprinklr
-    const hasRealChat = !!(
-      window.sprChat || document.querySelector(".spr-chat__launcher, .ezg1tqb0")
-    );
-
-    if (hasRealChat) {
-      console.log("Real chat detected, using Sprinklr integration");
-      // In production with real Sprinklr, let the chat widget manage its own state
-      // We'll update our state based on the actual chat state detection
+    // Use same logic as desktop ChatWithUsButton
+    if (window.sprChat) {
       if (isChatOpen) {
-        const closed = closeChat();
-        if (closed) {
-          // Let the mutation observer or periodic check update the state
-          setTimeout(() => {
-            // Fallback state update if observer doesn't catch it
-            const box = document.querySelector(".spr-chat__box");
-            const isStillOpen = !!(
-              box &&
-              box.offsetParent !== null &&
-              getComputedStyle(box).visibility !== "hidden" &&
-              getComputedStyle(box).opacity !== "0" &&
-              !box.classList.contains("spr-chat--minimized")
-            );
-            if (!isStillOpen) {
-              setIsChatOpen(false);
-            }
-          }, 500);
-        }
+        window.sprChat("close");
       } else {
-        const opened = openChat();
-        if (opened) {
-          // Let the mutation observer or periodic check update the state
-          setTimeout(() => {
-            // Fallback state update if observer doesn't catch it
-            const box = document.querySelector(".spr-chat__box");
-            const isNowOpen = !!(
-              box &&
-              box.offsetParent !== null &&
-              getComputedStyle(box).visibility !== "hidden" &&
-              getComputedStyle(box).opacity !== "0" &&
-              !box.classList.contains("spr-chat--minimized")
-            );
-            if (isNowOpen) {
-              setIsChatOpen(true);
-            }
-          }, 500);
-        }
+        window.sprChat("open");
       }
-    } else {
-      console.log("No real chat detected, using simple toggle");
-      // In development or when Sprinklr isn't available, use simple toggle
-      setIsChatOpen(!isChatOpen);
     }
+    // State will be updated by the observer (same as desktop)
   }, [isChatOpen]);
 
   useEffect(() => {
@@ -176,26 +132,30 @@ function MobileBottomNav({ isVisible = true }) {
     };
 
     const updateChatOpenState = () => {
-      // Only run state detection if we have real Sprinklr chat
-      const hasRealChat = !!(
-        window.sprChat ||
-        document.querySelector(".spr-chat__launcher, .ezg1tqb0")
-      );
+      // Use the same logic as desktop ChatWithUsButton
+      const chatBox = document.querySelector(".spr-chat__box");
+      const chatWidget = document.querySelector(".ezg1tqb1"); // Sprinklr chat container
 
-      if (hasRealChat) {
-        const box = document.querySelector(".spr-chat__box");
-        const isOpen = !!(
-          box &&
-          box.offsetParent !== null &&
-          getComputedStyle(box).visibility !== "hidden" &&
-          getComputedStyle(box).opacity !== "0" &&
-          !box.classList.contains("spr-chat--minimized")
-        );
+      let isOpen = false;
 
-        console.log("Real chat state detected:", isOpen);
-        setIsChatOpen(isOpen);
+      // Check various indicators of chat being open (same as desktop)
+      if (chatBox) {
+        isOpen =
+          !chatBox.classList.contains("spr-chat--minimized") &&
+          chatBox.style.display !== "none";
+      } else if (chatWidget) {
+        isOpen = chatWidget.style.display !== "none";
       }
-      // In development, don't auto-detect state, let manual toggle handle it
+
+      console.log("Chat state detected:", isOpen, {
+        chatBox: !!chatBox,
+        chatWidget: !!chatWidget,
+        boxDisplay: chatBox?.style.display,
+        boxMinimized: chatBox?.classList.contains("spr-chat--minimized"),
+        widgetDisplay: chatWidget?.style.display,
+      });
+
+      setIsChatOpen(isOpen);
     };
 
     setIsIpadTarget(computeIsIpadTarget());
@@ -207,46 +167,59 @@ function MobileBottomNav({ isVisible = true }) {
     window.addEventListener("resize", onResize);
     window.addEventListener("orientationchange", onResize);
 
-    // Set up mutation observer for production chat state detection
-    const hasRealChat = !!(
-      window.sprChat || document.querySelector(".spr-chat__launcher, .ezg1tqb0")
-    );
-    let observer = null;
-    let intervalCheck = null;
-
-    if (hasRealChat) {
-      console.log("Setting up real chat monitoring");
-      observer = new MutationObserver(() => updateChatOpenState());
-      observer.observe(document.body, {
-        subtree: true,
-        childList: true,
-        attributes: true,
-        attributeFilter: ["style", "class"],
-      });
-
-      // Periodic check for production
-      intervalCheck = setInterval(updateChatOpenState, 2000);
-
-      // Listen for Sprinklr events if available
-      if (window.sprChat && window.sprChat.on) {
-        window.sprChat.on("open", () => {
-          console.log("Sprinklr chat opened via event");
-          setIsChatOpen(true);
-        });
-        window.sprChat.on("close", () => {
-          console.log("Sprinklr chat closed via event");
-          setIsChatOpen(false);
-        });
+    // Set up observer to watch for Sprinklr chat state changes (same as desktop)
+    let currentState = false;
+    const observer = new MutationObserver(() => {
+      updateChatOpenState();
+      // Update current state after check (same as desktop)
+      const chatBox = document.querySelector(".spr-chat__box");
+      const chatWidget = document.querySelector(".ezg1tqb1");
+      if (chatBox) {
+        currentState =
+          !chatBox.classList.contains("spr-chat--minimized") &&
+          chatBox.style.display !== "none";
+      } else if (chatWidget) {
+        currentState = chatWidget.style.display !== "none";
       }
-    } else {
-      console.log("No real chat detected, skipping monitoring setup");
-    }
+    });
+
+    // Start observing when Sprinklr is loaded (same as desktop)
+    const waitForSprinklr = setInterval(() => {
+      const chatElements = document.querySelector(".spr-chat__box, .ezg1tqb1");
+      if (chatElements || window.sprChat) {
+        clearInterval(waitForSprinklr);
+        console.log("Sprinklr detected, setting up monitoring");
+
+        // Observe the entire body for Sprinklr changes
+        observer.observe(document.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+          attributeFilter: ["class", "style"],
+        });
+
+        // Initial check
+        updateChatOpenState();
+
+        // Also listen for Sprinklr events if available
+        if (window.sprChat && window.sprChat.on) {
+          window.sprChat.on("open", () => {
+            console.log("Sprinklr chat opened via event");
+            setIsChatOpen(true);
+          });
+          window.sprChat.on("close", () => {
+            console.log("Sprinklr chat closed via event");
+            setIsChatOpen(false);
+          });
+        }
+      }
+    }, 100);
 
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
-      if (observer) observer.disconnect();
-      if (intervalCheck) clearInterval(intervalCheck);
+      clearInterval(waitForSprinklr);
+      observer.disconnect();
     };
   }, []);
 
