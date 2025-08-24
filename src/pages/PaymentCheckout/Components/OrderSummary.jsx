@@ -66,12 +66,21 @@ export default function OrderSummary({
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
+    console.log(dateString, "dateString");
+
+    // Use the appropriate locale based on current language
+    const locale = currentLanguage === "ar" ? "ar-AE" : "en-US";
+
+    const date = new Date(dateString).toLocaleDateString(locale, {
       weekday: "short",
       day: "numeric",
       month: "short",
       year: "numeric",
     });
+
+    console.log(date, "date");
+
+    return date;
   };
 
   const roundToTwoDecimals = (value) => {
