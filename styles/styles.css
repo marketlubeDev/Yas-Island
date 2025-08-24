@@ -307,7 +307,7 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html {
@@ -623,30 +623,36 @@ body,
   border-radius: 126.103px;
   background-color: var(--color-base-product-card-bg);
   width: 90.1%;
+  /* Extend background slightly to prevent hairline cracks */
+  box-shadow: inset 0 0 0 1px var(--color-base-product-card-bg);
 }
 .side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -40%;
-  right: -10.5%;
-  width: 30px;
-  height: 25px;
+  top: -39%;
+  right: -10%;
+  width: 32px;
+  height: 26px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-right-radius: 15px;
   box-shadow: 1px 4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  /* Add a small overlap to prevent cracks */
+  transform: translateX(-0.5px) translateY(-0.5px);
 }
 .side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
-  bottom: -40%;
-  right: -10.5%;
-  width: 30px;
-  height: 25px;
+  bottom: -39%;
+  right: -10%;
+  width: 32px;
+  height: 26px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-top-right-radius: 15px;
   box-shadow: 1px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  /* Add a small overlap to prevent cracks */
+  transform: translateX(-0.5px) translateY(0.5px);
 }
 
 .ar-side-bar-list-item-container {
@@ -668,30 +674,36 @@ body,
   border-radius: 126.103px;
   background-color: var(--color-base-product-card-bg);
   width: 90%;
+  /* Extend background slightly to prevent hairline cracks */
+  box-shadow: inset 0 0 0 1px var(--color-base-product-card-bg);
 }
 .ar-side-bar-list-item-container.active::before {
   content: "";
   position: absolute;
-  top: -39.5%;
-  left: -10.5%;
-  width: 30px;
-  height: 25px;
+  top: -39%;
+  left: -10%;
+  width: 32px;
+  height: 26px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-left-radius: 15px;
   box-shadow: -2px 4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  /* Add a small overlap to prevent cracks */
+  transform: translateX(0.5px) translateY(-0.5px);
 }
 .ar-side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
-  bottom: -40%;
-  left: -10.5%;
-  width: 30px;
-  height: 25px;
+  bottom: -39%;
+  left: -10%;
+  width: 32px;
+  height: 26px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-top-left-radius: 15px;
   box-shadow: -2px -4px 0 0px var(--color-base-side-bar-border);
   z-index: 100;
+  /* Add a small overlap to prevent cracks */
+  transform: translateX(0.5px) translateY(0.5px);
 }
 
 .side-bar-item-hidden-bg {
@@ -9515,6 +9527,15 @@ html[lang=ar] .confirm-email__otp-actions button {
   background: #dcdcdc;
 }
 
+.email-checkout__overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
 .email-checkout__container {
   height: 100%;
   display: flex;
@@ -9681,6 +9702,14 @@ html[lang=ar] .confirm-email__otp-actions button {
 .email-checkout__phone-input.error::placeholder {
   color: var(--color-error-text, #ff4d4f);
   opacity: 1;
+}
+
+.custom-select-control.error {
+  border-bottom: 1px solid var(--color-error-text, #ff4d4f) !important;
+}
+
+.custom-select-control.error span {
+  color: var(--color-error-text, #ff4d4f) !important;
 }
 
 .email-checkout__btn {
@@ -11017,10 +11046,18 @@ html[lang=ar] .make-payment__summary-top {
   height: 25px;
 }
 
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .attraction-detail-modal {
   max-width: 420px;
   width: 98vw;
   max-height: 99vh;
+  overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .attraction-detail-modal {
@@ -11218,6 +11255,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .attraction-detail-modal .ant-modal-content {
   height: 99dvh;
+  max-height: 99dvh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -11227,6 +11265,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   justify-content: space-between;
   background-color: var(--color-dtl-content-bg);
   border: 1px solid var(--color-dtl-content-border);
+  overflow: hidden !important;
+  position: relative;
 }
 
 .accessibility-modal .ant-modal-close {
@@ -11323,14 +11363,32 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .attraction-detail-modal.ant-modal-wrap {
   z-index: 2147483600 !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  inset: 0 !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
+}
+
+.ant-modal-mask {
+  position: fixed !important;
+  overflow: hidden !important;
+  touch-action: none !important;
 }
 
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 .attraction-detail-modal .ant-modal {
   top: 0 !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
 }
 
 .product-head__filters {
@@ -11407,6 +11465,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Prevent any overflow on overlay */
+  touch-action: none; /* Prevent touch scrolling on overlay */
 }
 
 .booking-modal {
@@ -11420,6 +11480,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden;
   border-radius: 0px;
   border: 2px solid var(--color-base-product-card-card-item-border);
+  position: relative; /* Ensure proper stacking context */
+  touch-action: pan-y; /* Allow vertical scrolling inside modal */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .booking-modal__header {
@@ -11449,24 +11512,31 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
   min-height: 0;
+  position: relative; /* Create stacking context */
   /* On mobile devices, always allow scrolling of entire body */
 }
 @media only screen and (max-width: 575.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .booking-modal__body {
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
   }
 }
 
@@ -11590,10 +11660,13 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 /* When there are 2+ guest rows, make the entire body scroll instead of just the guest section */
 .booking-modal.booking-modal--scroll-all .booking-modal__body {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; /* Prevent scroll chaining */
 }
 .booking-modal.booking-modal--scroll-all .booking-modal__guests-section {
   overflow-y: visible;
+  overflow-x: hidden;
 }
 
 /* Mobile guest section scrollbar to match desktop theme */
@@ -12171,14 +12244,15 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .selector {
-  width: 13rem;
+  min-width: 13rem;
+  width: fit-content;
   display: flex;
   align-items: center;
   position: relative;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .selector {
-    width: 12rem;
+    min-width: 12rem;
   }
 }
 .selector.custom-select .selector-trigger {
@@ -12221,7 +12295,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
-  width: 100%;
+  min-width: 100%;
+  width: max-content;
   background: var(--color-search-dropdown-bg);
   border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
   border-radius: 2rem;

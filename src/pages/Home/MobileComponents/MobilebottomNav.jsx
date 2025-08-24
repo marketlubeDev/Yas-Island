@@ -78,12 +78,12 @@ function MobileBottomNav({ isVisible = true }) {
       }
     };
 
-    if (isIpadTarget && isChatOpen) {
+    if (isChatOpen) {
       closeChat();
     } else {
       openChat();
     }
-  }, [isIpadTarget, isChatOpen]);
+  }, [isChatOpen]);
 
   useEffect(() => {
     const computeIsIpadTarget = () => {
@@ -164,10 +164,10 @@ function MobileBottomNav({ isVisible = true }) {
           style={{ cursor: "pointer" }}
         >
           <img
-            src={isIpadTarget && isChatOpen ? crossIconSrc : chatIconSrc}
-            alt={t("common.chatWithUs")}
+            src={isChatOpen ? crossIconSrc : chatIconSrc}
+            alt={isChatOpen ? t("common.close") : t("common.chatWithUs")}
           />
-          <span>{t("common.chatWithUs")}</span>
+          <span>{isChatOpen ? t("common.close") : t("common.chatWithUs")}</span>
         </div>
         <div
           className="mobile-bottom-nav__item"
