@@ -87,7 +87,7 @@ function AttractionDetailModalMbl({
 
   return (
     <div style={{ maxHeight: "50vh", overflow: "hidden" }}>
-      <div className="attraction-detail-modal__header">
+      {/* <div className="attraction-detail-modal__header">
         <img
           src={backIconSrc}
           alt="Back"
@@ -100,21 +100,21 @@ function AttractionDetailModalMbl({
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
         </span>
-      </div>
-      <div className="attraction-detail-modal__body">
+      </div> */}
+      {/* <div className="attraction-detail-modal__body">
         <img
           src={attraction?.product_images?.image_urls[0]}
           alt={attraction?.product_title}
           className="attraction-detail-modal__image"
         />
-        {/* 
+
         <div
           dangerouslySetInnerHTML={{ __html: attraction?.productdesc }}
-        ></div> */}
-      </div>
-
+        ></div>
+      </div> */}
+      {/* 
       <div className="attraction-detail-modal__footer">
-        {/* <div className="attraction-detail-modal__footer-divider"></div> */}
+        <div className="attraction-detail-modal__footer-divider"></div>
         <div className="attraction-detail-modal__footer-left">
           <div className="attraction-detail-modal__price">
             {attraction.currency || "AED"} {defaultVariant(attraction)?.gross}
@@ -133,7 +133,7 @@ function AttractionDetailModalMbl({
             + {t("common.addToCart")}
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
