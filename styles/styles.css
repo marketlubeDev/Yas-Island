@@ -9242,16 +9242,20 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 .code-input.blinking {
   animation: blink 1s infinite;
   border-color: rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+  border: 1px solid rgba(0, 102, 204, 0.4117647059);
 }
 
 @keyframes blink {
   0%, 100% {
     border-color: rgba(0, 102, 204, 0.4117647059);
-    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+    border-width: 2px;
+    border: 1px solid rgba(0, 102, 204, 0.4117647059);
   }
   50% {
     border-color: transparent;
     box-shadow: none;
+    border: 1px solid rgba(0, 102, 204, 0.4117647059);
   }
 }
 .confirm-button {
@@ -9413,7 +9417,21 @@ html[lang=ar] .confirm-email__input-underline {
 .confirm-email__otp-input:focus {
   border-color: var(--color-email-form-input-border);
 }
+.confirm-email__otp-input.blinking {
+  animation: blink 1s infinite;
+  border-color: rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+  border: 1px solid rgba(0, 102, 204, 0.4117647059);
+}
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 .confirm-email__otp-info {
   font-size: 13px;
   color: var(--color-email-form-otp-info);
