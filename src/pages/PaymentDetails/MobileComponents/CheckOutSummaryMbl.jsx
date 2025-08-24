@@ -234,9 +234,15 @@ function CheckOutSummaryMbl({
       const response = await validatePromocode(promoCode);
 
       if (!response?.data?.coupondetails?.coupon) {
-        let message =
-          response?.coupondetails?.error?.text ||
-          t("toastMessages.invalidPromoCode");
+        let message = "";
+
+        if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
+          setPromoCodeStatus("invalid");
+          message = t("toastMessages.tooManyRequests");
+          handleBasketCheck("", message);
+          return;
+        }
+        message = t("toastMessages.invalidPromoCode");
         setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
       } else {

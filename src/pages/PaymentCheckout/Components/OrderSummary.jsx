@@ -247,12 +247,18 @@ export default function OrderSummary({
         return;
       }
       const response = await validatePromocode(promoCode);
+      let message = "";
       if (!response?.data?.coupondetails?.coupon) {
         setIsModalVisible(false);
-        // toast.error(response?.coupondetails?.error?.text || "Invalid promo code");
-        let message =
-          response?.coupondetails?.error?.text ||
-          t("toastMessages.invalidPromoCode");
+
+        if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
+          setPromoCodeStatus("invalid");
+          message = t("toastMessages.tooManyRequests");
+          handleBasketCheck("", message);
+          return;
+        }
+
+        message = t("toastMessages.invalidPromoCode");
 
         setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
