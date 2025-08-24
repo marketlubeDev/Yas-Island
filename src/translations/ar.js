@@ -56,6 +56,7 @@ export const ar = {
     attractions: "المعالم",
     selectPark: "الكل",
     selectSort: "اختر الترتيب",
+    SortByPrice: "فرز حسب السعر",
   },
   sidebar: {
     all: "الكل",

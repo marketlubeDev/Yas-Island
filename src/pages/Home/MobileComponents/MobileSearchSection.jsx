@@ -58,7 +58,7 @@ function MobileSearchSection() {
 
   const filterButtons = [
     {
-      label: currentSort || t("productHead.selectSort"),
+      label: currentSort || t("productHead.SortByPrice"),
       isOpen: showSortDropdown,
       onClick: () => setShowSortDropdown(!showSortDropdown),
       ref: sortBtnRef,
@@ -163,7 +163,9 @@ function MobileSearchSection() {
                     stroke="currentColor"
                     strokeWidth="2"
                     style={{
-                      transform: button.isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transform: button.isOpen
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
                       transition: "transform 0.2s",
                     }}
                   >
@@ -182,7 +184,9 @@ function MobileSearchSection() {
                     stroke="currentColor"
                     strokeWidth="2"
                     style={{
-                      transform: button.isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transform: button.isOpen
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
                       transition: "transform 0.2s",
                     }}
                   >

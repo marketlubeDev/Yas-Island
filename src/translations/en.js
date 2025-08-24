@@ -56,6 +56,7 @@ export const en = {
     attractions: "Attractions",
     selectPark: "All",
     selectSort: "Recommended",
+    SortByPrice: "Sort By Price",
   },
   sidebar: {
     all: "All",
