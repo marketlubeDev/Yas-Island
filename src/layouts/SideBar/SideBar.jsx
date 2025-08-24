@@ -67,7 +67,6 @@ export default function SideBar() {
   ];
 
   const handleClick = (item) => {
-    console.log(item.name, "item.name", item.link, "item.link");
     setActiveItem(item.name);
     navigate(item.link);
   };
@@ -82,6 +81,26 @@ export default function SideBar() {
       setActiveItem("topAttractions");
     }
   }, [sideBarItems]);
+
+  // Scroll active item into view when activeItem changes
+  useEffect(() => {
+    const scrollToActive = () => {
+      const activeElement = document.querySelector(
+        ".side-bar-list-item-container.active"
+      );
+      if (activeElement) {
+        activeElement.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      }
+    };
+
+    // Small delay to ensure DOM is fully rendered
+    const timer = setTimeout(scrollToActive, 200);
+    return () => clearTimeout(timer);
+  }, [activeItem]);
 
   return (
     <nav
