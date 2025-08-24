@@ -2285,6 +2285,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 3rem;
   align-items: stretch;
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .booking-section {
+    gap: 1rem;
+    flex-direction: column;
+  }
+}
 
 /* Calendar container */
 .calendar-container {
@@ -2541,7 +2547,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 .guest-section-header-container .section-title {
   flex-shrink: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .calendar-title {
@@ -2586,7 +2592,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background: var(--color-base-bg);
   margin-top: 0;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 /* Match calendar heading background to its card */
@@ -2601,7 +2607,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   flex: 1;
   min-height: 0;
 }
@@ -11043,7 +11049,12 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
-    height: calc(99dvh - 12rem);
+    height: calc(99dvh - 9rem) !important;
+  }
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__body {
+    height: calc(99dvh - 8.5rem) !important;
   }
 }
 .attraction-detail-modal__image {
@@ -11080,7 +11091,7 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  gap: 18px;
+  gap: 10px;
   background: var(--color-dtl-footer-bg);
   border-radius: 0 0 24px 24px;
   position: relative;
@@ -11090,7 +11101,12 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
-    top: 35px;
+    top: -5px;
+  }
+}
+@media (max-width: 375px) {
+  .attraction-detail-modal__footer {
+    top: 0px;
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
@@ -11377,7 +11393,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 0px;
   border: 2px solid var(--color-base-product-card-card-item-border);
 }
 
@@ -11399,7 +11415,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .booking-modal__body {
   flex: 1 1 auto;
-  padding: 0 18px 0 18px;
+  padding: 0 18px 18px 18px;
   display: flex;
   flex-direction: column;
   align-items: stretch;

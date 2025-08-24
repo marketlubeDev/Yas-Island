@@ -54,7 +54,11 @@
     }
 
     @include respond(smallPhone) {
-      height: calc(99dvh - 12rem);
+      height: calc(99dvh - 9rem) !important;
+    }
+
+    @media (max-width: 375px) {
+      height: calc(99dvh - 8.5rem) !important;
     }
   }
 
@@ -95,7 +99,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    gap: 18px;
+    gap: 10px;
     background: var(--color-dtl-footer-bg);
     border-radius: 0 0 24px 24px;
     position: relative;
@@ -104,7 +108,11 @@
     top: 45px;
 
     @include respond(smallPhone) {
-      top: 35px;
+      top: -5px;
+    }
+
+    @media (max-width: 375px) {
+      top: 0px;
     }
 
     // Arabic language specific styling

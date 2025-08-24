@@ -585,10 +585,7 @@ function BookingModalMbl({
         setActiveAction("");
         console.log(err);
         toast.error(
-          sanitizeText(
-            err?.response?.data?.message ||
-              t("toastMessages.somethingWentWrong")
-          ),
+          sanitizeText(t("toastMessages.thisProductIsCurrentlyNotAvailable")),
           {
             position: "top-center",
           }

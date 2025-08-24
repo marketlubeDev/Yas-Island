@@ -759,7 +759,7 @@ export default function BookingSection({ product, onBack }) {
                                   {guestData.name}{" "}
                                   {variantData?.productvariantdesc && (
                                     <span className="guest-label-desc">
-                                      `(${variantData.productvariantdesc})`
+                                      {`(${variantData.productvariantdesc})`}
                                     </span>
                                   )}
                                   {!isAvailable && (
@@ -778,7 +778,8 @@ export default function BookingSection({ product, onBack }) {
                                       : { opacity: "0" }
                                   }
                                 >
-                                  AED {variantData?.gross * guestData.quantity}
+                                  {t("common.aed")}{" "}
+                                  {variantData?.gross * guestData.quantity}
                                 </span>
                               </div>
                               <div className="counter-controls">
