@@ -13,7 +13,7 @@ import MycartMbl from "./MycartMbl";
 import { useSelector } from "react-redux";
 // import MobileLanding from "./MobileLanding";
 
-function MobileBottomNav() {
+function MobileBottomNav({ isVisible = true }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -135,7 +135,13 @@ function MobileBottomNav() {
 
   return (
     <>
-      <div className="mobile-bottom-nav">
+      <div
+        className="mobile-bottom-nav"
+        style={{
+          transform: isVisible ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 0.3s ease-in-out",
+        }}
+      >
         <div
           className={`mobile-bottom-nav__item${
             location.pathname === "/" ? " mobile-bottom-nav__item--active" : ""
