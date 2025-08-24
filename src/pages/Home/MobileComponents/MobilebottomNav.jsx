@@ -78,10 +78,13 @@ function MobileBottomNav({ isVisible = true }) {
       }
     };
 
+    // Simple toggle: if chat appears to be open, close it; otherwise open it
     if (isChatOpen) {
       closeChat();
+      setIsChatOpen(false); // Immediately update state
     } else {
       openChat();
+      setIsChatOpen(true); // Immediately update state
     }
   }, [isChatOpen]);
 
@@ -100,128 +103,17 @@ function MobileBottomNav({ isVisible = true }) {
       return mqAirPortrait || mqMiniLandscape || mqAirLandscape; // do NOT include phones here
     };
 
-    const updateChatOpenState = () => {
-      let isOpen = false;
-
-      // Primary check: Look for Sprinklr chat box
-      const sprinklrBox = document.querySelector(".spr-chat__box");
-      if (sprinklrBox) {
-        const computedStyle = getComputedStyle(sprinklrBox);
-        const isVisible =
-          sprinklrBox.offsetParent !== null &&
-          computedStyle.visibility !== "hidden" &&
-          computedStyle.opacity !== "0" &&
-          computedStyle.display !== "none";
-
-        const isMinimized = sprinklrBox.classList.contains(
-          "spr-chat--minimized"
-        );
-
-        if (isVisible && !isMinimized) {
-          isOpen = true;
-        }
-      }
-
-      // Secondary check: Look for other Sprinklr containers
-      if (!isOpen) {
-        const sprinklrContainer = document.querySelector(".ezg1tqb1");
-        if (sprinklrContainer) {
-          const computedStyle = getComputedStyle(sprinklrContainer);
-          const isVisible =
-            sprinklrContainer.offsetParent !== null &&
-            computedStyle.visibility !== "hidden" &&
-            computedStyle.opacity !== "0" &&
-            computedStyle.display !== "none";
-
-          if (isVisible) {
-            // Check if it contains actual chat content (not just the launcher)
-            const hasContent = sprinklrContainer.querySelector(
-              '[class*="chat"], [class*="conversation"], [class*="message"]'
-            );
-            if (hasContent) {
-              isOpen = true;
-            }
-          }
-        }
-      }
-
-      // Tertiary check: Look for specific chat modal patterns
-      if (!isOpen) {
-        // Look for modals that specifically contain "New Conversation" button or chat-like content
-        const modals = document.querySelectorAll('[role="dialog"]');
-        for (const modal of modals) {
-          const computedStyle = getComputedStyle(modal);
-          if (
-            computedStyle.display !== "none" &&
-            computedStyle.visibility !== "hidden" &&
-            computedStyle.opacity !== "0" &&
-            modal.offsetParent !== null
-          ) {
-            // More specific check for chat content
-            const hasNewConversation =
-              modal.textContent?.includes("New Conversation");
-            const hasYasIsland = modal.textContent?.includes("Yas Island");
-            const hasChatElements = modal.querySelector(
-              'button[class*="conversation"], button[class*="chat"]'
-            );
-
-            if (hasNewConversation || (hasYasIsland && hasChatElements)) {
-              isOpen = true;
-              break;
-            }
-          }
-        }
-      }
-
-      console.log("Chat state detected:", isOpen, {
-        sprinklrBox: !!document.querySelector(".spr-chat__box"),
-        sprinklrContainer: !!document.querySelector(".ezg1tqb1"),
-        modals: document.querySelectorAll('[role="dialog"]').length,
-      }); // Enhanced debug log
-
-      setIsChatOpen(isOpen);
-    };
-
     setIsIpadTarget(computeIsIpadTarget());
-    updateChatOpenState();
 
     const onResize = () => setIsIpadTarget(computeIsIpadTarget());
     window.addEventListener("resize", onResize);
     window.addEventListener("orientationchange", onResize);
 
-    observerRef.current = new MutationObserver(() => updateChatOpenState());
-    observerRef.current.observe(document.body, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["style", "class"],
-    });
-
-    // Also set up a periodic check as fallback (less frequent)
-    const intervalCheck = setInterval(updateChatOpenState, 2000);
-
-    // Listen for Sprinklr events if available
-    if (window.sprChat && window.sprChat.on) {
-      window.sprChat.on("open", () => {
-        console.log("Sprinklr chat opened");
-        setIsChatOpen(true);
-      });
-      window.sprChat.on("close", () => {
-        console.log("Sprinklr chat closed");
-        setIsChatOpen(false);
-      });
-    }
-
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
-      if (observerRef.current) observerRef.current.disconnect();
-      clearInterval(intervalCheck);
     };
   }, []);
-
-  // Debug log to see current state
-  console.log("MobileBottomNav render - isChatOpen:", isChatOpen);
 
   return (
     <>
