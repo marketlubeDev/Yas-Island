@@ -56,6 +56,7 @@ export const ar = {
     attractions: "المعالم",
     selectPark: "الكل",
     selectSort: "اختر الترتيب",
+    SortByPrice: "فرز حسب السعر",
   },
   sidebar: {
     all: "الكل",
@@ -349,6 +350,7 @@ export const ar = {
     checkoutFailed: "فشل إتمام الشراء. يرجى المحاولة مرة أخرى.",
     failedToAddToCart: "فشل إضافة المنتج إلى السلة. يرجى المحاولة مرة أخرى.",
     otpResent: "تم إرسال رمز التحقق إلى البريد الإلكتروني المسجل.",
+    tooManyRequests: "عدد كبير جدًا من الطلبات، يرجى المحاولة مرة أخرى لاحقًا",
   },
   mobile: {
     swipeToChange: "اسحب لتغيير",

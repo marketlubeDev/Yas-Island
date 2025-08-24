@@ -70,7 +70,7 @@ const languagePersistConfig = {
 const accessibilityPersistConfig = {
   key: "yasIslandAccessibility",
   storage,
-  whitelist: ["zoomLevel", "isDarkMode", "isHighContrast"], // persist accessibility settings
+  whitelist: ["zoomLevel", "isDarkMode", "theme"], // persist accessibility settings including theme
 };
 
 const otpPersistConfig = {

@@ -148,29 +148,31 @@ export default function HeaderLogo() {
             />
           </div>
         )}
-        <button
-          className={`${
-            language === "العربية" ? "ar-cart-button" : "cart-button"
-          } animate-slide-in`}
-          style={{
-            borderWidth: isDarkMode ? "2px" : "1px",
-            ...(!isPaymentRoute && {
-              left: language === "العربية" ? "auto" : undefined,
-            }),
-          }}
-          onClick={onCartOpen}
-        >
-          <span className="cart-icon">
-            <img
-              src={isDarkMode ? invertCart : cart}
-              alt={t("common.viewCart")}
-            />
-            {cartItems && cartItems.length > 0 && (
-              <span className="cart-notification">{cartItems.length}</span>
-            )}
-          </span>
-          {t("common.viewCart")}
-        </button>
+        {!isCardPaymentPage && (
+          <button
+            className={`${
+              language === "العربية" ? "ar-cart-button" : "cart-button"
+            } animate-slide-in`}
+            style={{
+              borderWidth: isDarkMode ? "2px" : "1px",
+              ...(!isPaymentRoute && {
+                left: language === "العربية" ? "auto" : undefined,
+              }),
+            }}
+            onClick={onCartOpen}
+          >
+            <span className="cart-icon">
+              <img
+                src={isDarkMode ? invertCart : cart}
+                alt={t("common.viewCart")}
+              />
+              {cartItems && cartItems.length > 0 && (
+                <span className="cart-notification">{cartItems.length}</span>
+              )}
+            </span>
+            {t("common.viewCart")}
+          </button>
+        )}
       </div>
     </div>
   );
