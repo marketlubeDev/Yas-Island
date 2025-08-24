@@ -656,6 +656,7 @@
 }
 
 .product-description-api {
+  color: var(--text-color) !important;
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
@@ -679,6 +680,7 @@
 
   .product-description {
     font-size: 18px !important;
+    color: var(--text-color) !important;
   }
   .product-list-item {
     font-size: 18px !important;

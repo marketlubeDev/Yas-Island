@@ -97,7 +97,7 @@
   overflow: hidden;
 
   &-description {
-    color: var(--text-colort);
+    color: var(--text-colort) !important;
   }
 
   &-head {

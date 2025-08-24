@@ -49,6 +49,10 @@
     height: calc(99dvh - 11.5rem);
     overflow-y: auto;
 
+    .product-heading {
+      color: var(--color-base-text) !important;
+    }
+
     @include respond(smallPhone) {
       height: calc(99dvh - 12rem);
     }

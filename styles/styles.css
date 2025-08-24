@@ -951,7 +951,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   overflow: hidden;
 }
 .product-description {
-  color: var(--text-colort);
+  color: var(--text-colort) !important;
 }
 .product-head {
   display: flex;
@@ -1993,6 +1993,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .product-description-api {
+  color: var(--text-color) !important;
   max-height: 48vh;
   height: fit-content;
   min-height: 28vh;
@@ -2018,6 +2019,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 .product-description-api .product-description {
   font-size: 18px !important;
+  color: var(--text-color) !important;
 }
 .product-description-api .product-list-item {
   font-size: 18px !important;
@@ -5635,6 +5637,7 @@ html[dir=rtl] .back-button {
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 1rem;
+  color: #18142b !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .proceedbtn {
@@ -10986,6 +10989,9 @@ html[lang=ar] .make-payment__summary-top {
   background-color: var(--color-dtl-body-bg);
   height: calc(99dvh - 11.5rem);
   overflow-y: auto;
+}
+.attraction-detail-modal__body .product-heading {
+  color: var(--color-base-text) !important;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
