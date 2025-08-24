@@ -331,7 +331,7 @@ function CheckOutSummaryMbl({
                     </span>
                     <span className="item-separator">•</span>
                     <span className="item-quantity">
-                      {t("payment.orderSummary.qty")} : {item.quantity || 0}
+                      {t("payment.orderSummary.qty")} {item.quantity || 0}
                     </span>
                   </div>
                 </div>

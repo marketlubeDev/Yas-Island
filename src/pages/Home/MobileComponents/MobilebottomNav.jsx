@@ -37,53 +37,16 @@ function MobileBottomNav({ isVisible = true }) {
   }, []);
 
   const handleChatClick = useCallback(() => {
-    const closeChat = () => {
-      let closed = false;
-      if (window.sprChat) {
-        try {
-          window.sprChat("close");
-          closed = true;
-        } catch {}
+    // Use same simple logic as desktop ChatWithUsButton
+    if (window.sprChat) {
+      if (isChatOpen) {
+        window.sprChat("close");
+      } else {
+        window.sprChat("open");
       }
-      if (!closed) {
-        const candidates = [
-          '.spr-chat__box [aria-label="Close"]',
-          '.spr-chat__box [aria-label*="close" i]',
-          ".spr-chat__box .spr-chat__close",
-          '.spr-chat__box [data-testid*="close"]',
-          '.spr-chat__box button[title*="close" i]',
-        ];
-        for (const sel of candidates) {
-          const el = document.querySelector(sel);
-          if (el) {
-            el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-            break;
-          }
-        }
-      }
-    };
-
-    const openChat = () => {
-      if (window.sprChat) {
-        try {
-          window.sprChat("open");
-          return;
-        } catch {}
-      }
-      const launcher = document.querySelector(
-        '.spr-chat__launcher, [class*="spr-chat__launcher"], .ezg1tqb0'
-      );
-      if (launcher) {
-        launcher.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-      }
-    };
-
-    if (isIpadTarget && isChatOpen) {
-      closeChat();
-    } else {
-      openChat();
     }
-  }, [isIpadTarget, isChatOpen]);
+    // State will be updated by the observer
+  }, [isChatOpen]);
 
   useEffect(() => {
     const computeIsIpadTarget = () => {
@@ -101,35 +64,85 @@ function MobileBottomNav({ isVisible = true }) {
     };
 
     const updateChatOpenState = () => {
-      const box = document.querySelector(".spr-chat__box");
-      const isOpen = !!(
-        box &&
-        box.offsetParent !== null &&
-        getComputedStyle(box).visibility !== "hidden" &&
-        getComputedStyle(box).opacity !== "0"
-      );
+      // Use the same logic as desktop ChatWithUsButton
+      const chatBox = document.querySelector(".spr-chat__box");
+      const chatWidget = document.querySelector(".ezg1tqb1"); // Sprinklr chat container
+
+      let isOpen = false;
+
+      // Check various indicators of chat being open (same as desktop)
+      if (chatBox) {
+        isOpen =
+          !chatBox.classList.contains("spr-chat--minimized") &&
+          chatBox.style.display !== "none";
+      } else if (chatWidget) {
+        isOpen = chatWidget.style.display !== "none";
+      }
+
+      console.log("Chat state detected:", isOpen);
+
       setIsChatOpen(isOpen);
     };
 
     setIsIpadTarget(computeIsIpadTarget());
+
+    // Initial chat state check
     updateChatOpenState();
 
     const onResize = () => setIsIpadTarget(computeIsIpadTarget());
     window.addEventListener("resize", onResize);
     window.addEventListener("orientationchange", onResize);
 
-    observerRef.current = new MutationObserver(() => updateChatOpenState());
-    observerRef.current.observe(document.body, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["style", "class"],
+    // Set up observer to watch for Sprinklr chat state changes (same as desktop)
+    let currentState = false;
+    const observer = new MutationObserver(() => {
+      updateChatOpenState();
+      // Update current state after check (same as desktop)
+      const chatBox = document.querySelector(".spr-chat__box");
+      const chatWidget = document.querySelector(".ezg1tqb1");
+      if (chatBox) {
+        currentState =
+          !chatBox.classList.contains("spr-chat--minimized") &&
+          chatBox.style.display !== "none";
+      } else if (chatWidget) {
+        currentState = chatWidget.style.display !== "none";
+      }
     });
+
+    // Start observing when Sprinklr is loaded (same as desktop)
+    const waitForSprinklr = setInterval(() => {
+      const chatElements = document.querySelector(".spr-chat__box, .ezg1tqb1");
+      if (chatElements || window.sprChat) {
+        clearInterval(waitForSprinklr);
+
+        // Observe the entire body for Sprinklr changes
+        observer.observe(document.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+          attributeFilter: ["class", "style"],
+        });
+
+        // Initial check
+        updateChatOpenState();
+
+        // Also listen for Sprinklr events if available
+        if (window.sprChat && window.sprChat.on) {
+          window.sprChat.on("open", () => {
+            setIsChatOpen(true);
+          });
+          window.sprChat.on("close", () => {
+            setIsChatOpen(false);
+          });
+        }
+      }
+    }, 100);
 
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
-      if (observerRef.current) observerRef.current.disconnect();
+      clearInterval(waitForSprinklr);
+      observer.disconnect();
     };
   }, []);
 
@@ -164,10 +177,10 @@ function MobileBottomNav({ isVisible = true }) {
           style={{ cursor: "pointer" }}
         >
           <img
-            src={isIpadTarget && isChatOpen ? crossIconSrc : chatIconSrc}
-            alt={t("common.chatWithUs")}
+            src={isChatOpen ? crossIconSrc : chatIconSrc}
+            alt={isChatOpen ? t("common.close") : t("common.chatWithUs")}
           />
-          <span>{t("common.chatWithUs")}</span>
+          {!isChatOpen && <span>{t("common.chatWithUs")}</span>}
         </div>
         <div
           className="mobile-bottom-nav__item"

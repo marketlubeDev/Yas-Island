@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import AttractionDetailModalMbl from "./AttractionDetailModalMbl";
@@ -96,6 +96,71 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     dispatch(setCurrentPark(""));
     dispatch(setCurrentSort(""));
   };
+
+  // Lock body scroll when any modal is open
+  useEffect(() => {
+    if (modalType !== null) {
+      document.body.classList.add("modal-open");
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+
+      // Prevent any scroll interactions within the modal wrapper/content
+      const preventDefault = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      };
+
+      const wrapper = document.querySelector(
+        ".attraction-detail-modal.ant-modal-wrap"
+      );
+      const content = document.querySelector(
+        ".attraction-detail-modal .ant-modal-content"
+      );
+
+      const targets = [wrapper, content, document];
+      targets.forEach((el) => {
+        if (!el) return;
+        el.addEventListener("wheel", preventDefault, { passive: false });
+        el.addEventListener("touchmove", preventDefault, { passive: false });
+        el.addEventListener("scroll", preventDefault, { passive: false });
+      });
+
+      const keyPrevent = (e) => {
+        const keys = [
+          "ArrowUp",
+          "ArrowDown",
+          "PageUp",
+          "PageDown",
+          "Home",
+          "End",
+          "Space",
+        ];
+        if (keys.includes(e.code) || keys.includes(e.key)) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      };
+      window.addEventListener("keydown", keyPrevent, { passive: false });
+
+      return () => {
+        document.body.classList.remove("modal-open");
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+        targets.forEach((el) => {
+          if (!el) return;
+          el.removeEventListener("wheel", preventDefault);
+          el.removeEventListener("touchmove", preventDefault);
+          el.removeEventListener("scroll", preventDefault);
+        });
+        window.removeEventListener("keydown", keyPrevent);
+      };
+    } else {
+      document.body.classList.remove("modal-open");
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+  }, [modalType]);
 
   const renderModalContent = () => {
     switch (modalType) {
@@ -197,6 +262,9 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
         onCancel={handleCloseModal}
         footer={null}
         closable={false}
+        style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}
+        bodyStyle={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}
+        keyboard={false}
         // closeIcon={
         //   <span className="custom-modal-close">
         //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
