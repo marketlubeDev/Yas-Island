@@ -25,9 +25,24 @@ function AttractionDetailModalMbl({
   useEffect(() => {
     // When modal is open, prevent background scroll
     document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
+
+    // Lock the body position to prevent any scrolling
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
     return () => {
       // Restore scroll when modal closes
       document.body.style.overflow = "";
+      document.body.classList.remove("modal-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      // Restore scroll position
+      window.scrollTo(0, scrollY);
     };
   }, []);
 
