@@ -101,13 +101,73 @@ function MobileBottomNav({ isVisible = true }) {
     };
 
     const updateChatOpenState = () => {
-      const box = document.querySelector(".spr-chat__box");
-      const isOpen = !!(
-        box &&
-        box.offsetParent !== null &&
-        getComputedStyle(box).visibility !== "hidden" &&
-        getComputedStyle(box).opacity !== "0"
-      );
+      // Check multiple possible chat widget selectors
+      const chatSelectors = [
+        ".spr-chat__box",
+        ".ezg1tqb1", // Sprinklr chat container
+        "[class*='spr-chat']",
+        "[class*='sprinklr']",
+        "[data-testid*='chat']",
+        ".chat-widget",
+        ".chat-modal",
+        ".chat-container",
+      ];
+
+      let isOpen = false;
+
+      for (const selector of chatSelectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+          const computedStyle = getComputedStyle(element);
+          const isVisible =
+            element.offsetParent !== null &&
+            computedStyle.visibility !== "hidden" &&
+            computedStyle.opacity !== "0" &&
+            computedStyle.display !== "none";
+
+          if (isVisible) {
+            // Additional check for minimized state
+            const isMinimized =
+              element.classList.contains("spr-chat--minimized") ||
+              element.classList.contains("minimized") ||
+              element.classList.contains("closed");
+
+            if (!isMinimized) {
+              isOpen = true;
+              break;
+            }
+          }
+        }
+      }
+
+      // Fallback: Check if any modal-like element is visible
+      if (!isOpen) {
+        const modals = document.querySelectorAll(
+          '[role="dialog"], .modal, [class*="modal"]'
+        );
+        for (const modal of modals) {
+          const computedStyle = getComputedStyle(modal);
+          if (
+            computedStyle.display !== "none" &&
+            computedStyle.visibility !== "hidden" &&
+            computedStyle.opacity !== "0" &&
+            modal.offsetParent !== null
+          ) {
+            // Check if it's likely a chat modal
+            const modalContent = modal.textContent || modal.innerHTML;
+            if (
+              modalContent.toLowerCase().includes("chat") ||
+              modalContent.toLowerCase().includes("conversation") ||
+              modalContent.toLowerCase().includes("message")
+            ) {
+              isOpen = true;
+              break;
+            }
+          }
+        }
+      }
+
+      console.log("Chat state detected:", isOpen); // Debug log
       setIsChatOpen(isOpen);
     };
 
@@ -126,12 +186,31 @@ function MobileBottomNav({ isVisible = true }) {
       attributeFilter: ["style", "class"],
     });
 
+    // Also set up a periodic check as fallback
+    const intervalCheck = setInterval(updateChatOpenState, 1000);
+
+    // Listen for Sprinklr events if available
+    if (window.sprChat && window.sprChat.on) {
+      window.sprChat.on("open", () => {
+        console.log("Sprinklr chat opened");
+        setIsChatOpen(true);
+      });
+      window.sprChat.on("close", () => {
+        console.log("Sprinklr chat closed");
+        setIsChatOpen(false);
+      });
+    }
+
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
       if (observerRef.current) observerRef.current.disconnect();
+      clearInterval(intervalCheck);
     };
   }, []);
+
+  // Debug log to see current state
+  console.log("MobileBottomNav render - isChatOpen:", isChatOpen);
 
   return (
     <>
