@@ -97,63 +97,16 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     dispatch(setCurrentSort(""));
   };
 
-  // Lock body scroll when any modal is open
+  // Lock body/html scroll when any modal is open, but allow inner modal body to scroll
   useEffect(() => {
     if (modalType !== null) {
       document.body.classList.add("modal-open");
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
-
-      // Prevent any scroll interactions within the modal wrapper/content
-      const preventDefault = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      };
-
-      const wrapper = document.querySelector(
-        ".attraction-detail-modal.ant-modal-wrap"
-      );
-      const content = document.querySelector(
-        ".attraction-detail-modal .ant-modal-content"
-      );
-
-      const targets = [wrapper, content, document];
-      targets.forEach((el) => {
-        if (!el) return;
-        el.addEventListener("wheel", preventDefault, { passive: false });
-        el.addEventListener("touchmove", preventDefault, { passive: false });
-        el.addEventListener("scroll", preventDefault, { passive: false });
-      });
-
-      const keyPrevent = (e) => {
-        const keys = [
-          "ArrowUp",
-          "ArrowDown",
-          "PageUp",
-          "PageDown",
-          "Home",
-          "End",
-          "Space",
-        ];
-        if (keys.includes(e.code) || keys.includes(e.key)) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      };
-      window.addEventListener("keydown", keyPrevent, { passive: false });
-
       return () => {
         document.body.classList.remove("modal-open");
         document.body.style.overflow = "";
         document.documentElement.style.overflow = "";
-        targets.forEach((el) => {
-          if (!el) return;
-          el.removeEventListener("wheel", preventDefault);
-          el.removeEventListener("touchmove", preventDefault);
-          el.removeEventListener("scroll", preventDefault);
-        });
-        window.removeEventListener("keydown", keyPrevent);
       };
     } else {
       document.body.classList.remove("modal-open");

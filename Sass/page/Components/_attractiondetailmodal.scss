@@ -58,7 +58,10 @@ body.modal-open {
     background-color: var(--color-dtl-body-bg);
     height: calc(100vh - 11.5rem); // match viewport height minus header/footer
     max-height: calc(100vh - 11.5rem);
-    overflow: hidden; // no internal scroll
+    overflow-y: auto; // allow inner content to scroll
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; // smooth iOS scroll
+    overscroll-behavior: contain; // prevent scroll chaining to body
 
     .product-heading {
       color: var(--color-base-text) !important;
