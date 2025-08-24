@@ -624,13 +624,13 @@ export default function PersonalDetailsForm({
 
       <div className="terms">
         <label
-          className={`checkbox-container ${
+          className={`desktop-checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
           onClick={(e) => {
             if (
               e.target.type === "checkbox" ||
-              e.target.className.includes("checkbox-custom")
+              e.target.className.includes("desktop-checkbox-custom")
             ) {
               return;
             }
@@ -639,12 +639,12 @@ export default function PersonalDetailsForm({
         >
           <input
             type="checkbox"
-            className="checkbox-input"
+            className="desktop-checkbox-input"
             checked={checkout.isTnCAgrred}
             onChange={(e) => handleTermsChange("terms", e.target.checked)}
           />
-          <span className="checkbox-custom"></span>
-          <span className="checkbox-text">
+          <span className="desktop-checkbox-custom"></span>
+          <span className="desktop-checkbox-text">
             {t("payment.orderSummary.terms.acceptTerms")}{" "}
             <a
               href="#"
@@ -675,13 +675,13 @@ export default function PersonalDetailsForm({
         </label>
 
         <label
-          className={`checkbox-container ${
+          className={`desktop-checkbox-container ${
             currentLanguage === "ar" ? "rtl" : ""
           }`}
           onClick={(e) => {
             if (
               e.target.type === "checkbox" ||
-              e.target.className.includes("checkbox-custom")
+              e.target.className.includes("desktop-checkbox-custom")
             ) {
               return;
             }
@@ -690,12 +690,12 @@ export default function PersonalDetailsForm({
         >
           <input
             type="checkbox"
-            className="checkbox-input"
+            className="desktop-checkbox-input"
             checked={checkout.isConsentAgreed}
             onChange={(e) => handleTermsChange("consent", e.target.checked)}
           />
-          <span className="checkbox-custom"></span>
-          <span className="checkbox-text">
+          <span className="desktop-checkbox-custom"></span>
+          <span className="desktop-checkbox-text">
             {t("payment.orderSummary.terms.receiveCommunications")}
           </span>
         </label>
