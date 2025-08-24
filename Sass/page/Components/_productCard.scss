@@ -1604,7 +1604,7 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -1612,7 +1612,7 @@ html[lang="ar"] {
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -1627,14 +1627,14 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;

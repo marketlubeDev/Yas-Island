@@ -2973,7 +2973,7 @@ html[lang=ar] .guest-label {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -2982,7 +2982,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .checkout-btnn {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -2997,7 +2997,7 @@ html[lang=ar] .guest-label {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
@@ -3005,7 +3005,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-btn {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
