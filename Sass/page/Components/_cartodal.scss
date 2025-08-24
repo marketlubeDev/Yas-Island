@@ -214,6 +214,19 @@
   }
 }
 
+// Override Ant Design button hover styles for cart buttons
+.ant-btn.minus-btn-web,
+.ant-btn.plus-btn-web,
+.ant-btn.delete-btn {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--color-cart-item-bg) !important;
+    border-color: var(--color-cart-item-minus-border) !important;
+    color: inherit !important;
+  }
+}
+
 .minus-btn-web {
   background-color: var(--color-cart-item-bg);
   border: 2px solid var(--color-cart-item-minus-border);
