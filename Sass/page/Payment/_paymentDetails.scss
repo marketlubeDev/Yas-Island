@@ -624,8 +624,6 @@
             width: 18px;
 
             &:after {
-              left: 5px;
-              top: 1px;
               width: 4px;
               height: 9px;
             }
@@ -635,6 +633,109 @@
             font-size: 0.8rem;
           }
         }
+      }
+    }
+  }
+
+  // Desktop-specific checkbox styles with flexbox centering
+  .desktop-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 30px;
+
+    @include respond(desktop) {
+      margin-bottom: 0.8rem;
+      padding-left: 25px;
+    }
+
+    .desktop-checkbox-input {
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+
+    .desktop-checkbox-custom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 18px;
+      width: 18px;
+      background-color: var(--color-base-checkbox-bg);
+      border: 2px solid var(--color-base-checkbox-border);
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include respond(desktop) {
+        height: 18px;
+        width: 18px;
+      }
+
+      &:after {
+        content: "";
+        display: none;
+        width: 5px;
+        height: 10px;
+        border: solid var(--color-base-checkbox-check);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        margin-top: -2px; // Fine-tune vertical alignment
+
+        @include respond(desktop) {
+          width: 4px;
+          height: 9px;
+        }
+      }
+    }
+
+    .desktop-checkbox-input:checked ~ .desktop-checkbox-custom {
+      background-color: var(--color-base-checkbox-bg);
+      border-color: var(--color-base-checkbox-check);
+    }
+
+    .desktop-checkbox-input:checked ~ .desktop-checkbox-custom:after {
+      display: block;
+    }
+
+    // Add hover state for better UX
+    &:hover .desktop-checkbox-input:not(:checked) ~ .desktop-checkbox-custom {
+      border-color: var(--color-base-checkbox-check);
+      opacity: 0.8;
+    }
+
+    .desktop-checkbox-text {
+      font-size: 0.9rem;
+      color: var(--color-base-text-secondary);
+      line-height: 1.4;
+
+      @include respond(desktop) {
+        font-size: 0.8rem;
+      }
+
+      a {
+        color: var(--color-base-text-secondary);
+        text-decoration: underline;
+        font-weight: 500;
+      }
+    }
+
+    &.rtl {
+      padding-left: 0;
+      padding-right: 30px;
+
+      @include respond(desktop) {
+        padding-right: 25px;
+      }
+
+      .desktop-checkbox-custom {
+        left: auto;
+        right: 0;
+        cursor: pointer;
       }
     }
   }
@@ -1192,8 +1293,6 @@
             width: 18px;
 
             &:after {
-              left: 5px;
-              top: 1px;
               width: 4px;
               height: 9px;
             }

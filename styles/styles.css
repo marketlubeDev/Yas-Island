@@ -3370,6 +3370,18 @@ html[lang=ar] .guest-label {
   }
 }
 
+.ant-btn.minus-btn-web:hover, .ant-btn.minus-btn-web:focus, .ant-btn.minus-btn-web:active,
+.ant-btn.plus-btn-web:hover,
+.ant-btn.plus-btn-web:focus,
+.ant-btn.plus-btn-web:active,
+.ant-btn.delete-btn:hover,
+.ant-btn.delete-btn:focus,
+.ant-btn.delete-btn:active {
+  background-color: var(--color-cart-item-bg) !important;
+  border-color: var(--color-cart-item-minus-border) !important;
+  color: inherit !important;
+}
+
 .minus-btn-web {
   background-color: var(--color-cart-item-bg);
   border: 2px solid var(--color-cart-item-minus-border);
@@ -5803,14 +5815,107 @@ html[dir=rtl] .back-button {
     width: 18px;
   }
   .payment-form__right .terms .checkbox-container .checkbox-custom:after {
-    left: 5px;
-    top: 1px;
     width: 4px;
     height: 9px;
   }
   .payment-form__right .terms .checkbox-container .checkbox-text {
     font-size: 0.8rem;
   }
+}
+.payment-form .desktop-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 30px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form .desktop-checkbox-container {
+    margin-bottom: 0.8rem;
+    padding-left: 25px;
+  }
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: var(--color-base-checkbox-bg);
+  border: 2px solid var(--color-base-checkbox-border);
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form .desktop-checkbox-container .desktop-checkbox-custom {
+    height: 18px;
+    width: 18px;
+  }
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-custom:after {
+  content: "";
+  display: none;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-base-checkbox-check);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form .desktop-checkbox-container .desktop-checkbox-custom:after {
+    width: 4px;
+    height: 9px;
+  }
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-input:checked ~ .desktop-checkbox-custom {
+  background-color: var(--color-base-checkbox-bg);
+  border-color: var(--color-base-checkbox-check);
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-input:checked ~ .desktop-checkbox-custom:after {
+  display: block;
+}
+.payment-form .desktop-checkbox-container:hover .desktop-checkbox-input:not(:checked) ~ .desktop-checkbox-custom {
+  border-color: var(--color-base-checkbox-check);
+  opacity: 0.8;
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-text {
+  font-size: 0.9rem;
+  color: var(--color-base-text-secondary);
+  line-height: 1.4;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form .desktop-checkbox-container .desktop-checkbox-text {
+    font-size: 0.8rem;
+  }
+}
+.payment-form .desktop-checkbox-container .desktop-checkbox-text a {
+  color: var(--color-base-text-secondary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.payment-form .desktop-checkbox-container.rtl {
+  padding-left: 0;
+  padding-right: 30px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-form .desktop-checkbox-container.rtl {
+    padding-right: 25px;
+  }
+}
+.payment-form .desktop-checkbox-container.rtl .desktop-checkbox-custom {
+  left: auto;
+  right: 0;
+  cursor: pointer;
 }
 .payment-form__right {
   width: 35%;
@@ -6260,8 +6365,6 @@ html[dir=rtl] .back-button {
     width: 18px;
   }
   .payment-form__right .terms .checkbox-container .checkbox-custom:after {
-    left: 5px;
-    top: 1px;
     width: 4px;
     height: 9px;
   }
@@ -10084,11 +10187,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   left: auto;
   right: 0;
 }
-.checkbox-container.rtl .checkbox-input:checked ~ .checkbox-custom:after {
-  left: auto;
-  right: 6px;
-}
-
 .checkbox-input {
   position: absolute;
   opacity: 0;
@@ -10106,18 +10204,19 @@ html[lang=ar] .confirm-email__otp-actions button {
   border: 1px solid var(--color-base-checkbox-border);
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .checkbox-custom:after {
   content: "";
-  position: absolute;
   display: none;
-  left: 6px;
-  top: 2px;
   width: 5px;
   height: 10px;
   border: solid var(--color-base-checkbox-check);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+  margin-top: -2px;
 }
 
 .checkbox-input:checked ~ .checkbox-custom {

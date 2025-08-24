@@ -18,23 +18,7 @@ function PaymentHeaderMbl({ step }) {
         <div className="payment-header__title">
           {t("payment.steps.guestDetails")}
         </div>
-        {/* <button
-          className={`payment-header__back-button ${
-            isRTL ? "payment-header__back-button--rtl" : ""
-          }`}
-          onClick={() => navigate(-1)}
-          type="button"
-        >
-          <img
-            src={backIconSrc}
-            alt={t("payment.back")}
-            style={{
-              width: 24,
-              height: 24,
-              transform: isRTL ? "scaleX(-1)" : "none",
-            }}
-          />
-        </button> */}
+
         <div className="payment-header__steps-container">
           <div
             style={{

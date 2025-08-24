@@ -18,6 +18,7 @@ export default function App() {
   useResponsive();
   useI18nSync();
   useDynamicTitle();
+
   const { isRTL } = useLanguage();
 
   // Clean expired cart items when app loads

@@ -913,8 +913,11 @@ function BookingModalMbl({
                               <div className="guest-label-container">
                                 <span className="guest-label">
                                   {guestData.name}{" "}
-                                  {variantData?.productvariantdesc &&
-                                    `(${variantData.productvariantdesc})`}
+                                  {variantData?.productvariantdesc && (
+                                    <span className="guest-label-price">
+                                      {`(${variantData.productvariantdesc})`}
+                                    </span>
+                                  )}
                                   {!isAvailable && (
                                     <span className="unavailable-notice">
                                       {!selectedDate

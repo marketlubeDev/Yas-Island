@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
@@ -13,6 +13,11 @@ function MobileProductPage() {
   const searchQuery = useSelector((state) => state.product.searchQuery);
 
   const { isLoading, isError } = useGetProductList();
+
+  // State for bottom nav visibility
+  const [showBottomNav, setShowBottomNav] = useState(true);
+  const scrollPositionRef = useRef(0);
+  const scrollContainerRef = useRef(null);
 
   // Filter and sort products based on search, selected park and sort option
   const filteredProducts = useMemo(() => {
@@ -78,17 +83,50 @@ function MobileProductPage() {
     return filtered || [];
   }, [productList, currentPark, currentSort, searchQuery]);
 
+  // Handle scroll direction detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const currentScrollTop = container.scrollTop;
+      const scrollDifference = currentScrollTop - scrollPositionRef.current;
+
+      // Add threshold to prevent jittery behavior
+      const threshold = 5;
+
+      if (Math.abs(scrollDifference) > threshold) {
+        // Scrolling up (going back up) - show bottom nav
+        if (scrollDifference < 0) {
+          setShowBottomNav(true);
+        }
+        // Scrolling down (viewing more content) - hide bottom nav
+        else if (scrollDifference > 0) {
+          setShowBottomNav(false);
+        }
+
+        scrollPositionRef.current = currentScrollTop;
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll, { passive: true });
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
   return (
     <div className="mobile-product-page">
       {/* <MobileHeader /> */}
       <MobileTop className="mobile-topnav" />
-      <div className="mobile-content">
+      <div className="mobile-content" ref={scrollContainerRef}>
         <AttractionsListMbl
           productList={filteredProducts}
           isLoading={isLoading}
         />
       </div>
-      <MobileBottomNav />
+      <MobileBottomNav isVisible={showBottomNav} />
     </div>
   );
 }
