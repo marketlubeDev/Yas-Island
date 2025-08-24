@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useMemo, useEffect, useRef } from "react";
+import { useSelector, shallowEqual } from "react-redux";
 import ProductCard from "./Components/ProductCard";
 import SideBar from "../../layouts/SideBar/SideBar";
 import AccessibilityModal from "./Components/AccessibilityModal";
@@ -9,133 +9,151 @@ import Header from "../../layouts/Header/Header";
 import Footer from "../../layouts/Footer/Footer";
 
 export default function ProductPage() {
-  const productList = useSelector((state) => state.product.allProducts);
-  const currentPark = useSelector((state) => state.product.currentPark);
-  const currentSort = useSelector((state) => state.product.currentSort);
-  const searchQuery = useSelector((state) => state.product.searchQuery);
+  const { productList, currentPark, currentSort, searchQuery } = useSelector(
+    (s) => ({
+      productList: s.product.allProducts,
+      currentPark: s.product.currentPark,
+      currentSort: s.product.currentSort,
+      searchQuery: s.product.searchQuery,
+    }),
+    shallowEqual
+  );
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
-  const [showFooter, setShowFooter] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
   const { isLoading, isError } = useGetProductList();
 
-  // Filter and sort products based on search, selected park and sort option
+  const containerRef = useRef(null);
+  const sentinelRef = useRef(null);
+
+  const getProductPrice = (p) => {
+    const vs = p?.product_variants;
+    if (!Array.isArray(vs) || vs.length === 0) return 0;
+    const v = vs.find((x) => x?.isdefault) ?? vs[0];
+    const n = Number(v?.gross);
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  const normalizeSort = (label) => {
+    if (!label) return null;
+    const l = String(label).toLowerCase().trim();
+    if (l.includes("high") && l.includes("low"))
+      return l.includes("high to low") ? "desc" : "asc";
+    if (l.includes("الأعلى")) return "desc";
+    if (l.includes("الأقل")) return "asc";
+    return null;
+  };
+
   const filteredProducts = useMemo(() => {
-    let filtered = productList;
+    const list = Array.isArray(productList) ? productList : [];
+    const q = searchQuery ? String(searchQuery).toLowerCase().trim() : "";
+    const sortDir = normalizeSort(currentSort);
 
-    // Filter by search query if provided
-    if (searchQuery) {
-      filtered = filtered?.filter((product) => {
-        const searchLower = searchQuery.toLowerCase();
-        return (
-          product?.product_title?.toLowerCase().includes(searchLower) ||
-          product?.productshortdesc?.toLowerCase().includes(searchLower) ||
-          product?.parks?.some((park) =>
-            park.parkname_localized?.toLowerCase().includes(searchLower)
-          )
+    let out = list;
+
+    if (q) {
+      out = out.filter((p) => {
+        if ((p?.product_title ?? "").toLowerCase().includes(q)) return true;
+        if ((p?.productshortdesc ?? "").toLowerCase().includes(q)) return true;
+        const parks = Array.isArray(p?.parks) ? p.parks : [];
+        return parks.some((pk) =>
+          (pk?.parkname_localized ?? "").toLowerCase().includes(q)
         );
       });
     }
 
-    // Filter by park if selected
     if (currentPark) {
-      filtered = filtered?.filter((product) => {
-        // Check if the product belongs to the selected park
-        return product?.parks?.some(
-          (park) => park.parkname_localized === currentPark
-        );
+      const name = String(currentPark);
+      out = out.filter(
+        (p) =>
+          Array.isArray(p?.parks) &&
+          p.parks.some((pk) => pk?.parkname_localized === name)
+      );
+    }
+
+    if (sortDir) {
+      out = [...out].sort((a, b) => {
+        const pa = getProductPrice(a);
+        const pb = getProductPrice(b);
+        return sortDir === "desc" ? pb - pa : pa - pb;
       });
     }
 
-    // Sort products if sort option is selected
-    if (currentSort && filtered) {
-      const getProductPrice = (product) => {
-        const defaultVariant = product?.product_variants?.find(
-          (variant) => variant.isdefault
-        );
-        // If no default variant found, use the first variant
-        const variantToUse = defaultVariant || product?.product_variants?.[0];
-        return variantToUse?.gross || 0;
-      };
-
-      filtered = [...filtered].sort((a, b) => {
-        const priceA = getProductPrice(a);
-        const priceB = getProductPrice(b);
-
-        if (
-          currentSort === "Price (High to Low)" ||
-          currentSort === "Price (High To Low)" ||
-          currentSort === "السعر (من الأعلى إلى الأقل)"
-        ) {
-          return priceB - priceA; // High to Low
-        } else if (
-          currentSort === "Price (Low to High)" ||
-          currentSort === "Price (Low To High)" ||
-          currentSort === "السعر (من الأقل إلى الأعلى)" ||
-          currentSort === "السعر (من الأقل الى الأعلى)"
-        ) {
-          return priceA - priceB; // Low to High
-        }
-        return 0;
-      });
-    }
-
-    return filtered || [];
+    return out;
   }, [productList, currentPark, currentSort, searchQuery]);
 
-  // Show footer only when user reaches bottom of scrollable product list
   useEffect(() => {
-    const container = document.querySelector(".ProductCard");
-    if (!container) {
-      setShowFooter(false);
-      return;
-    }
+    const root = containerRef.current;
+    const target = sentinelRef.current;
+    if (!root || !target) return;
 
-    const handleScroll = () => {
-      const isAtBottom =
-        Math.ceil(container.scrollTop + container.clientHeight) >=
-        container.scrollHeight - 1;
-      setShowFooter(isAtBottom);
-    };
+    const obs = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { root, threshold: 0.99 }
+    );
 
-    // Recalculate on resize as well
-    const handleResize = () => handleScroll();
+    obs.observe(target);
+    return () => obs.disconnect();
+  }, [isLoading, filteredProducts.length]);
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize, { passive: true });
-    // Initial check
-    handleScroll();
+  if (isError) return <div>Error loading products...</div>;
 
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isLoading, filteredProducts]);
-
-  if (isError) {
-    return <div>Error loading products...</div>;
-  }
+  const styles = {
+    productContent: {
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100%",
+    },
+    centerPane: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flex: 1,
+    },
+    scroll: {
+      position: "relative",
+      overflow: "auto",
+      flex: 1,
+      WebkitOverflowScrolling: "touch",
+    },
+    footerOverlay: (visible) => ({
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      transform: visible ? "translateY(0%)" : "translateY(100%)",
+      opacity: visible ? 1 : 0,
+      pointerEvents: visible ? "auto" : "none",
+      transition: "transform 160ms ease, opacity 160ms ease",
+      willChange: "transform, opacity",
+    }),
+  };
 
   return (
     <div className="product">
       <SideBar />
-      <div className="product-content">
+      <div className="product-content" style={styles.productContent}>
         <Header />
+
         {isLoading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flex: 1,
-            }}
-          >
+          <div style={styles.centerPane}>
             <Loader />
           </div>
         ) : (
           <>
-            <ProductCard productList={filteredProducts} />
-            {showFooter && <Footer />}
+            <div
+              className="product-scroll"
+              ref={containerRef}
+              style={styles.scroll}
+            >
+              <ProductCard productList={filteredProducts} />
+              <div ref={sentinelRef} style={{ height: 1 }} />
+            </div>
+            <div style={styles.footerOverlay(footerVisible)}>
+              <Footer />
+            </div>
           </>
         )}
 
