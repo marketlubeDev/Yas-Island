@@ -129,8 +129,7 @@ function AttractionDetailModalMbl({
           </div>
           <div className="attraction-detail-modal__vat">
             {defaultVariant(attraction)?.net_amount} +
-            {defaultVariant(attraction)?.vat}
-            {t("common.netAndTax")}
+            {defaultVariant(attraction)?.vat} {t("common.netAndTax")}
           </div>
         </div>
         <div className="attraction-detail-modal__footer-vertical-divider"></div>

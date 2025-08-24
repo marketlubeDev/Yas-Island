@@ -10987,7 +10987,7 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  gap: 18px;
+  gap: 10px;
   background: var(--color-dtl-footer-bg);
   border-radius: 0 0 24px 24px;
   position: relative;
@@ -11284,7 +11284,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 0px;
   border: 2px solid var(--color-base-product-card-card-item-border);
 }
 
