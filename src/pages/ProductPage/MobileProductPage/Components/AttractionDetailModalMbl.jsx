@@ -86,11 +86,8 @@ function AttractionDetailModalMbl({
   };
 
   return (
-    <>
-      <div
-        className="attraction-detail-modal__header"
-        style={{ maxHeight: "100vh" }}
-      >
+    <div style={{ maxHeight: "100vh", overflow: "hidden" }}>
+      <div className="attraction-detail-modal__header">
         <img
           src={backIconSrc}
           alt="Back"
@@ -137,7 +134,7 @@ function AttractionDetailModalMbl({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
