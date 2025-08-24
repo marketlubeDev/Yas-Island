@@ -372,7 +372,7 @@ export const ar = {
     packages: "جزيرة ياس | الباقات",
   },
   upcoming: {
-    title: "سنقوم بإضافة المنتجات قريباً",
+    title: "سنقوم بإضافة المنتجات قريباً .",
     subtitle: "تحقق من",
     topAttractions: "المعالم الأفضل",
     subtitleEnd: "للمغامرات المتاحة الآن.",
