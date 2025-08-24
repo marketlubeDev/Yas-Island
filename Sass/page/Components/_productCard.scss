@@ -941,6 +941,11 @@
   display: flex;
   gap: 3rem; // reduce to fit on lower-res desktops
   align-items: stretch;
+
+  @include respond(bigTablets) {
+    gap: 1rem;
+    flex-direction: column;
+  }
 }
 
 /* Calendar container */
@@ -1200,7 +1205,7 @@
 
   .section-title {
     flex-shrink: 0; // Prevent shrinking
-    margin-bottom: 1rem; // Add some space between title and content
+    margin-bottom: 0rem; // Add some space between title and content
   }
 }
 
@@ -1246,7 +1251,7 @@
   background: var(--color-base-bg);
   margin-top: 0;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 /* Match calendar heading background to its card */
@@ -1260,7 +1265,7 @@
   align-items: center;
   justify-content: flex-start; // Change from center to flex-start
   width: 100%;
-  margin-bottom: 0; // remove extra gap at bottom of sections
+  margin-bottom: 1rem; // remove extra gap at bottom of sections
   flex: 1; // Take remaining space
   min-height: 0; // Important for flexbox overflow
 

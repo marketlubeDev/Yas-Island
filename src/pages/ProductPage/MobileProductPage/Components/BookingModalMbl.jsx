@@ -926,13 +926,14 @@ function BookingModalMbl({
                                     </span>
                                   )}
                                 </span>
-                                <span className="guest-label-price"
-                                 style={
+                                <span
+                                  className="guest-label-price"
+                                  style={
                                     guestData?.quantity > 0
                                       ? { opacity: "1" }
                                       : { opacity: "0" }
-                                  }>
-                                  
+                                  }
+                                >
                                   {guestData.quantity &&
                                     `AED ${
                                       variantData?.gross * guestData.quantity
@@ -1049,9 +1050,7 @@ function BookingModalMbl({
             ) : (
               <>
                 {t("booking.checkOut")}{" "}
-                <span
-                  style={{ color: "var(--color-text-price-red)" }}
-                >
+                <span style={{ color: "var(--color-text-price-red)" }}>
                   {t("common.aed")} {totalPrice}
                 </span>
               </>
