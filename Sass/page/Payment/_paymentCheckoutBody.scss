@@ -56,6 +56,10 @@
   min-height: calc(100vh - 8rem);
   overflow: hidden;
 
+  @include respond(desktop) {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
   @include respond(bigTablets) {
     padding: 30px;
     min-height: calc(100vh - 6rem);

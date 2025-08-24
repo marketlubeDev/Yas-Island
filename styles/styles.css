@@ -4316,6 +4316,12 @@ html[lang=ar] .guest-label {
   min-height: calc(100vh - 8rem);
   overflow: hidden;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-checkout {
+    padding: 30px;
+    min-height: calc(100vh - 6rem);
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
     padding: 30px;
