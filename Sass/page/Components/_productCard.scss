@@ -465,6 +465,7 @@
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
   overflow: visible !important;
+  padding: 60px 24px !important;
 
   // Increase padding for product modal on desktop and larger screens only
   @include respond(desktop) {
@@ -513,6 +514,7 @@
       transform: none !important;
       margin: 0 auto !important;
       max-width: 1100px; // slightly narrower to preserve perfect circles
+      padding: 0 !important;
     }
   }
 }

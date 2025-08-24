@@ -387,6 +387,10 @@ body,
   background: transparent !important;
 }
 
+.ant-modal-wrap {
+  overflow: hidden !important;
+}
+
 .normal-title-txt {
   font-family: "Bebas Neue";
   font-size: 1.2rem;
@@ -1817,6 +1821,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
   overflow: visible !important;
+  padding: 60px 24px !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-content {
@@ -1869,6 +1874,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   transform: none !important;
   margin: 0 auto !important;
   max-width: 1100px;
+  padding: 0 !important;
 }
 
 .product-modal .ant-modal-wrap {
@@ -11099,8 +11105,7 @@ body.modal-open {
 .attraction-detail-modal {
   max-width: 420px;
   width: 98vw;
-  max-height: 100vh;
-  height: 100vh;
+  max-height: 99vh;
   overflow: hidden;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -11147,23 +11152,20 @@ body.modal-open {
 .attraction-detail-modal__body {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
-  height: calc(100vh - 11.5rem);
-  max-height: calc(100vh - 11.5rem);
-  overflow: hidden;
+  height: calc(99dvh - 11.5rem);
+  overflow-y: auto;
 }
 .attraction-detail-modal__body .product-heading {
   color: var(--color-base-text) !important;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
-    height: calc(100vh - 9rem) !important;
-    max-height: calc(100vh - 9rem) !important;
+    height: calc(99dvh - 9rem) !important;
   }
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__body {
-    height: calc(100vh - 8.5rem) !important;
-    max-height: calc(100vh - 8.5rem) !important;
+    height: calc(99dvh - 8.5rem) !important;
   }
 }
 .attraction-detail-modal__image {
@@ -11294,17 +11296,15 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .attraction-detail-modal .ant-modal {
   max-width: 420px;
   width: 98vw;
-  height: 100vh;
-  max-height: 100vh;
+  max-height: 90vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .attraction-detail-modal .ant-modal-content {
-  height: 100vh;
-  max-height: 100vh;
+  height: 99dvh;
+  max-height: 99dvh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -11415,8 +11415,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden !important;
   position: fixed !important;
   inset: 0 !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
+  -webkit-overflow-scrolling: touch;
   touch-action: none;
 }
 
@@ -11441,18 +11440,6 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   overflow: hidden !important;
 }
 
-@supports (-webkit-touch-callout: none) {
-  .attraction-detail-modal,
-  .attraction-detail-modal .ant-modal,
-  .attraction-detail-modal .ant-modal-content {
-    height: 100svh;
-    max-height: 100svh;
-  }
-  .attraction-detail-modal__body {
-    height: calc(100svh - 11.5rem);
-    max-height: calc(100svh - 11.5rem);
-  }
-}
 .product-head__filters {
   display: flex;
   gap: 16px;
