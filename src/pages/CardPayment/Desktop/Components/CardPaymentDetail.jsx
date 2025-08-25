@@ -25,14 +25,61 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
   const [themes, setThemes] = useState(null);
+  const isIOS =
+    typeof navigator !== "undefined" &&
+    /iP(hone|od|ad)/.test(navigator.userAgent);
+  const isSafari =
+    typeof navigator !== "undefined" &&
+    /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (isDarkMode) {
-      setThemes("theme-dark");
-    } else {
+    // Force light theme on iOS Safari to avoid APS HPP forcing dark styling
+    if (isIOS && isSafari) {
       setThemes("theme-light");
+      return;
     }
-  }, [isDarkMode]);
+    setThemes(isDarkMode ? "theme-dark" : "theme-light");
+  }, [isDarkMode, isIOS, isSafari]);
+
+  // Temporarily force color-scheme=light at document level while this view is mounted (helps iOS Safari)
+  useEffect(() => {
+    if (!(isIOS && isSafari)) return;
+
+    const htmlEl = document.documentElement;
+    const prevInlineColorScheme = htmlEl.style.colorScheme;
+    htmlEl.style.colorScheme = "light";
+
+    const ensureMeta = (name) => {
+      let m = document.querySelector(`meta[name="${name}"]`);
+      if (!m) {
+        m = document.createElement("meta");
+        m.setAttribute("name", name);
+        document.head.appendChild(m);
+      }
+      return m;
+    };
+
+    const colorSchemeMeta = ensureMeta("color-scheme");
+    const supportedMeta = ensureMeta("supported-color-schemes");
+    const themeColorMeta = ensureMeta("theme-color");
+
+    const prevColorScheme = colorSchemeMeta.getAttribute("content");
+    const prevSupported = supportedMeta.getAttribute("content");
+    const prevThemeColor = themeColorMeta.getAttribute("content");
+
+    colorSchemeMeta.setAttribute("content", "light");
+    supportedMeta.setAttribute("content", "light");
+    themeColorMeta.setAttribute("content", "#ffffff");
+
+    return () => {
+      htmlEl.style.colorScheme = prevInlineColorScheme || "";
+      if (prevColorScheme)
+        colorSchemeMeta.setAttribute("content", prevColorScheme);
+      if (prevSupported) supportedMeta.setAttribute("content", prevSupported);
+      if (prevThemeColor)
+        themeColorMeta.setAttribute("content", prevThemeColor);
+    };
+  }, [isIOS, isSafari]);
 
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
@@ -170,7 +217,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height: "34rem",
             position: "relative",
             overflow: "hidden",
-            backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+            backgroundColor:
+              isDarkMode && !(isIOS && isSafari) ? "#1f1f1f" : "#ffffff",
+            colorScheme: isIOS && isSafari ? "light" : undefined,
           }}
         >
           {/* <Payfort /> */}
@@ -212,9 +261,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             key={retryCounter}
             onLoad={() => setIsIframeLoading(false)}
             style={{
-              backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+              backgroundColor:
+                isDarkMode && !(isIOS && isSafari) ? "#1f1f1f" : "#ffffff",
               opacity: isIframeLoading ? "0" : "1",
               transition: "opacity 0.2s ease-in-out",
+              colorScheme: isIOS && isSafari ? "light" : undefined,
             }}
           />
 
