@@ -539,3 +539,35 @@
 .product-content-container {
   background-color: var(--color-base-bg) !important;
 }
+
+/* Product page: show custom scrollbar only inside the product scroll container */
+.product {
+  .product-scroll {
+    /* Re-enable scrollbars for this element only (global styles hide them) */
+    scrollbar-width: thin !important; /* Firefox */
+    scrollbar-color: var(--color-base-text)
+      var(--color-base-product-card-card-item-border) !important; /* Firefox */
+    -ms-overflow-style: auto !important; /* IE/Edge legacy */
+
+    /* WebKit-based browsers */
+    &::-webkit-scrollbar {
+      width: 6px !important;
+      height: 6px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-base-product-card-card-item-border) !important;
+      border-radius: 3px !important;
+      display: initial !important; /* override global display:none */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-base-text) !important;
+      border-radius: 3px !important;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      opacity: 0.8;
+    }
+  }
+}

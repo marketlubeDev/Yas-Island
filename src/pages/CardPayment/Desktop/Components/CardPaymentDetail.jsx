@@ -28,9 +28,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
   useEffect(() => {
     if (isDarkMode) {
-      setThemes("theme-light");
-    } else {
       setThemes("theme-dark");
+    } else {
+      setThemes("theme-light");
     }
   }, [isDarkMode]);
 
@@ -161,9 +161,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      <div className="payfort-container">
+      <div className={`payfort-container ${themes || ""}`}>
         <div
-          className={`iframe-container ${themes}`}
+          className={`iframe-container ${themes || ""}`}
           style={{
             borderRadius: "1rem",
             minHeight: "34rem",

@@ -1,16 +1,16 @@
 @use "../../base/responive" as *;
 
-// Theme-specific iframe color scheme
-.theme-light {
-  .iframe-container iframe {
-    color-scheme: light;
-  }
+// Theme-specific iframe color scheme (robust selectors for iOS Safari)
+.theme-light .iframe-container iframe,
+.iframe-container.theme-light iframe,
+.payfort-container.theme-light .iframe-container iframe {
+  color-scheme: light;
 }
 
-.theme-dark {
-  .iframe-container iframe {
-    color-scheme: dark;
-  }
+.theme-dark .iframe-container iframe,
+.iframe-container.theme-dark iframe,
+.payfort-container.theme-dark .iframe-container iframe {
+  color-scheme: dark;
 }
 
 .payfort {
