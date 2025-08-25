@@ -883,6 +883,28 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   gap: 1rem;
 }
 
+.common-btn-yas {
+  background: var(--color-base-accessibility-modal-btn-bg);
+  color: var(--btn-clr);
+  border: none;
+  border-radius: 30px;
+  padding: 16px;
+  cursor: pointer;
+  width: min(32.875rem, 90%);
+  text-align: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: "YAS Font", sans-serif;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1821,6 +1843,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
   overflow: visible !important;
+  padding: 60px 24px !important;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .product-modal .ant-modal-content {
@@ -1848,6 +1871,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     -ms-overflow-style: none; /* IE and Edge */
   }
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+  .product-modal.booking-active .ant-modal-content {
+    padding: 2rem !important;
+    padding-top: 2.7rem !important;
+  }
+}
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
@@ -1867,6 +1896,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   transform: none !important;
   margin: 0 auto !important;
   max-width: 1100px;
+  padding: 0 !important;
 }
 
 .product-modal .ant-modal-wrap {
@@ -1903,16 +1933,16 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: -3rem;
+  top: -3.5rem;
   right: 0.5rem;
-  height: 40px;
-  width: 40px;
-  font-size: 28px;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
   line-height: 1;
   border-radius: 50%;
-  border: 2px solid var(--color-base-product-card-card-item-border);
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: var(--color-base-bg);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1930,13 +1960,14 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 .product-modal .ant-modal-close:hover {
-  background: var(--color-base-bg);
-  border-color: var(--color-base-product-card-card-item-border);
-  transform: scale(1.06);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  background: var(--color-pymnt-container-bg);
 }
 .product-modal .ant-modal-close:active {
   transform: scale(0.98);
+}
+.product-modal .ant-modal-close img {
+  width: 28px;
+  height: 28px;
 }
 
 .product-modal-content {
@@ -2126,7 +2157,6 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   flex-direction: row;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 0.14706rem solid var(--color-base-product-card-divider);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .price-section {
@@ -2174,8 +2204,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-size: 1rem;
   display: flex;
   width: 31.25rem;
-  height: 4.625rem;
-  padding: 1.875rem 2.5rem;
+  height: fit-content;
+  padding: 1rem;
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
@@ -2306,6 +2336,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   .booking-section {
     gap: 1rem;
     flex-direction: column;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+  .booking-section {
+    flex-direction: row;
   }
 }
 
@@ -2938,7 +2973,7 @@ html[lang=ar] .guest-label {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -2947,7 +2982,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .checkout-btnn {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -2962,7 +2997,7 @@ html[lang=ar] .guest-label {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
@@ -2970,7 +3005,7 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-btn {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -3030,7 +3065,7 @@ html[lang=ar] .guest-label {
 
 .accessibility-web-modal .ant-modal-close {
   position: absolute;
-  top: -10%;
+  top: -11%;
   right: 5px;
   border-radius: 50%;
   height: 50px;
@@ -3048,7 +3083,7 @@ html[lang=ar] .guest-label {
   transition: background 0.2s;
 }
 .accessibility-web-modal .ant-modal-close:hover {
-  background: #fff;
+  background: var(--color-pymnt-container-bg);
 }
 .accessibility-web-modal .ant-modal-close img {
   width: 28px;
@@ -5061,8 +5096,6 @@ html[lang=ar] .guest-label {
     padding: 12px;
     font-size: 14px;
     border-radius: 3rem;
-    width: 80%;
-    margin: 8px 0px 0 40px;
   }
 }
 
@@ -9280,16 +9313,20 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 .code-input.blinking {
   animation: blink 1s infinite;
   border-color: rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+  border: 1px solid rgba(0, 102, 204, 0.4117647059);
 }
 
 @keyframes blink {
   0%, 100% {
     border-color: rgba(0, 102, 204, 0.4117647059);
-    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+    border-width: 2px;
+    border: 1px solid rgba(0, 102, 204, 0.4117647059);
   }
   50% {
     border-color: transparent;
     box-shadow: none;
+    border: 1px solid rgba(0, 102, 204, 0.4117647059);
   }
 }
 .confirm-button {
@@ -9451,7 +9488,21 @@ html[lang=ar] .confirm-email__input-underline {
 .confirm-email__otp-input:focus {
   border-color: var(--color-email-form-input-border);
 }
+.confirm-email__otp-input.blinking {
+  animation: blink 1s infinite;
+  border-color: rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+  border: 1px solid rgba(0, 102, 204, 0.4117647059);
+}
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 .confirm-email__otp-info {
   font-size: 13px;
   color: var(--color-email-form-otp-info);

@@ -1,8 +1,8 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-function OtpSectionMbl({ onOtpComplete , otp , setOtp  , isExpired }) {
-  const { t } = useTranslation(); 
+function OtpSectionMbl({ onOtpComplete, otp, setOtp, isExpired }) {
+  const { t } = useTranslation();
   const inputRefs = useRef([]);
 
   const handleOtpChange = (value, currentIndex) => {
@@ -70,7 +70,6 @@ function OtpSectionMbl({ onOtpComplete , otp , setOtp  , isExpired }) {
     }
   };
 
-
   return (
     <div className="confirm-email__otp-section-bg">
       <div className="confirm-email__otp-label">
@@ -85,12 +84,14 @@ function OtpSectionMbl({ onOtpComplete , otp , setOtp  , isExpired }) {
             type="text"
             inputMode="numeric"
             maxLength={1}
-            className="confirm-email__otp-input"
+            className={`confirm-email__otp-input ${
+              idx === 0 && !otp.some((digit) => digit) ? "blinking" : ""
+            }`}
             value={digit}
             onChange={(e) => handleOtpChange(e.target.value, idx)}
             onKeyDown={(e) => handleKeyDown(e, idx)}
             onPaste={handlePaste}
-            autoComplete="off"  
+            autoComplete="off"
             disabled={isExpired}
           />
         ))}

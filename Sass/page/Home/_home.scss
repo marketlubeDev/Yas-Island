@@ -52,3 +52,25 @@
     gap: 1rem;
   }
 }
+
+.common-btn-yas {
+  background: var(--color-base-accessibility-modal-btn-bg);
+  color: var(--btn-clr);
+  border: none;
+  border-radius: 30px;
+  padding: 16px;
+  cursor: pointer;
+  width: min(32.875rem, 90%);
+  text-align: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  font-family: "YAS Font", sans-serif;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: "YAS Font", sans-serif;
+}

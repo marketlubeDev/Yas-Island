@@ -465,6 +465,7 @@
   background: var(--color-base-bg) !important;
   box-sizing: border-box;
   overflow: visible !important;
+  padding: 60px 24px !important;
 
   // Increase padding for product modal on desktop and larger screens only
   @include respond(desktop) {
@@ -486,6 +487,11 @@
     overflow: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
+
+    @media (orientation: landscape) {
+      padding: 2rem !important;
+      padding-top: 2.7rem !important;
+    }
   }
 }
 .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
@@ -508,6 +514,7 @@
       transform: none !important;
       margin: 0 auto !important;
       max-width: 1100px; // slightly narrower to preserve perfect circles
+      padding: 0 !important;
     }
   }
 }
@@ -549,16 +556,16 @@
 
 .product-modal .ant-modal-close {
   position: absolute;
-  top: -3rem;
+  top: -3.5rem;
   right: 0.5rem;
-  height: 40px;
-  width: 40px;
-  font-size: 28px;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
   line-height: 1;
   border-radius: 50%;
-  border: 2px solid var(--color-base-product-card-card-item-border);
+  border: 2px solid #dcd6e5;
   cursor: pointer;
-  background: var(--color-base-bg);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -575,15 +582,22 @@
     padding: 6px;
   }
 
+  // &:hover {
+  //   background: var(--color-base-bg);
+  //   border-color: var(--color-base-product-card-card-item-border);
+  //   transform: scale(1.06);
+  //   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  // }
   &:hover {
-    background: var(--color-base-bg);
-    border-color: var(--color-base-product-card-card-item-border);
-    transform: scale(1.06);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    background: var(--color-pymnt-container-bg);
   }
 
   &:active {
     transform: scale(0.98);
+  }
+  img {
+    width: 28px;
+    height: 28px;
   }
 }
 
@@ -770,7 +784,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 0.14706rem solid var(--color-base-product-card-divider);
+  // border-top: 0.14706rem solid var(--color-base-product-card-divider);
 
   @include respond(desktop) {
     padding-top: 1.5rem;
@@ -815,8 +829,8 @@
   font-size: 1rem;
   display: flex;
   width: 31.25rem;
-  height: 4.625rem;
-  padding: 1.875rem 2.5rem;
+  height: fit-content;
+  padding: 1rem;
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
@@ -945,6 +959,11 @@
   @include respond(bigTablets) {
     gap: 1rem;
     flex-direction: column;
+
+    // Keep row direction for landscape tablets
+    @media (orientation: landscape) {
+      flex-direction: row;
+    }
   }
 }
 
@@ -1585,7 +1604,7 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -1593,7 +1612,7 @@ html[lang="ar"] {
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;
@@ -1608,14 +1627,14 @@ html[lang="ar"] {
   padding: 16px;
   font-weight: 500;
   cursor: pointer;
-  width: min(32.875rem, 90%);
+  width: min(32.875rem, 80%);
   margin-left: 50%;
   transform: translateX(-50%);
   font-size: 1rem;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
-    width: min(22rem, 90%);
+    width: min(22rem, 80%);
     padding: 12px;
     font-size: 0.9rem;
     border-radius: 24px;

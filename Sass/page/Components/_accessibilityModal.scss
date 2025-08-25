@@ -29,7 +29,7 @@
 
 .accessibility-web-modal .ant-modal-close {
   position: absolute;
-  top: -10%;
+  top: -11%;
   right: 5px;
   border-radius: 50%;
   height: 50px;
@@ -47,7 +47,7 @@
   transition: background 0.2s;
 
   &:hover {
-    background: #fff;
+    background: var(--color-pymnt-container-bg);
   }
 
   img {
