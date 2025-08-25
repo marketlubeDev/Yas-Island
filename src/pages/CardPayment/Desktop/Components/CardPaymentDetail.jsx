@@ -24,6 +24,15 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const [retryCounter, setRetryCounter] = useState(0);
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
+  const [themes, setThemes] = useState(null);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      setThemes("theme-light");
+    } else {
+      setThemes("theme-dark");
+    }
+  }, [isDarkMode]);
 
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
@@ -154,7 +163,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
       <div className="payfort-container">
         <div
-          className={`iframe-container ${theme}`}
+          className={`iframe-container ${themes}`}
           style={{
             borderRadius: "1rem",
             minHeight: "34rem",
