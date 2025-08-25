@@ -56,6 +56,8 @@ body.modal-open {
     padding: 0px 6px 24px 6px;
     background-color: var(--color-dtl-body-bg);
     height: calc(99dvh - 11.5rem);
+    height: calc(99svh - 11.5rem);
+    height: calc(99dvh - 11.5rem);
     overflow-y: auto;
 
     .product-heading {
@@ -64,10 +66,12 @@ body.modal-open {
 
     @include respond(smallPhone) {
       height: calc(99dvh - 9rem) !important;
+      height: calc(99svh - 9rem) !important;
     }
 
     @media (max-width: 375px) {
       height: calc(99dvh - 8.5rem) !important;
+      height: calc(99svh - 8.5rem) !important;
     }
   }
 
@@ -114,22 +118,22 @@ body.modal-open {
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
-    top: 45px;
+    top: 0; // avoid pushing footer out of view on tablets
 
     @include respond(smallPhone) {
-      top: -5px;
+      top: 0;
     }
 
     @media (max-width: 375px) {
-      top: 0px;
+      top: 0;
     }
 
     // Arabic language specific styling
     html[lang="ar"] & {
-      top: 20px !important;
+      top: 0 !important;
 
       @include respond(smallPhone) {
-        top: 20px !important;
+        top: 0 !important;
       }
     }
 
@@ -220,7 +224,9 @@ body.modal-open {
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
   height: 99dvh;
+  height: 99svh;
   max-height: 99dvh; // Ensure it doesn't exceed viewport
+  max-height: 99svh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -356,5 +362,7 @@ body.modal-open {
   margin: 0 !important;
   padding: 0 !important;
   max-height: 100vh !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
   overflow: hidden !important;
 }

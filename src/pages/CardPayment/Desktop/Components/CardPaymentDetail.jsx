@@ -221,8 +221,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 justifyContent: "center",
                 padding: "16px",
                 background: isDarkMode
-                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,.96))"
-                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
+                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,1))"
+                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,1))",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",
               }}

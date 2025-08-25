@@ -483,6 +483,17 @@
   padding-top: 3.7rem;
   max-height: calc(100vh - 48px);
   overflow: hidden;
+  // iPad mini/tablets: allow inner scroll and adjust padding
+  @include respond(tablets) {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    @media (orientation: landscape) {
+      padding: 2rem !important;
+      padding-top: 2.7rem !important;
+    }
+  }
   @include respond(bigTablets) {
     overflow: auto;
     scrollbar-width: none; /* Firefox */
@@ -495,6 +506,9 @@
   }
 }
 .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
+  @include respond(tablets) {
+    display: none; /* Chrome, Safari, Opera */
+  }
   @include respond(bigTablets) {
     display: none; /* Chrome, Safari, Opera */
   }
@@ -525,11 +539,15 @@
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  height: 100dvh !important;
+  height: 100svh !important;
   padding: 24px; // breathing room around modal on very wide screens
 }
 
@@ -607,10 +625,23 @@
   width: 100%;
   align-content: start;
   max-height: calc(100vh - 48px - 8rem); // viewport minus modal paddings
+  max-height: calc(100dvh - 48px - 8rem);
+  max-height: calc(100svh - 48px - 8rem);
   overflow: hidden; // prevent content overflow; inner sections handle scroll if needed
 
+  @include respond(tablets) {
+    max-height: 90vh !important;
+    max-height: 90dvh !important;
+    max-height: 90svh !important;
+    overflow: auto !important;
+    gap: 16px;
+    flex-direction: column !important;
+    align-content: center !important;
+  }
   @include respond(bigTablets) {
     max-height: 90vh !important;
+    max-height: 90dvh !important;
+    max-height: 90svh !important;
     overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
@@ -637,6 +668,13 @@
   max-width: 38%;
   border-radius: 1.47rem;
 
+  @include respond(tablets) {
+    max-width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
   @include respond(bigTablets) {
     max-width: 100% !important;
     display: flex;
