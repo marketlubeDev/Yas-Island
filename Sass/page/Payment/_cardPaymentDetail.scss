@@ -4,13 +4,15 @@
 .theme-light .iframe-container iframe,
 .iframe-container.theme-light iframe,
 .payfort-container.theme-light .iframe-container iframe {
-  color-scheme: light;
+  color-scheme: light !important;
+  background-color: black !important;
 }
 
 .theme-dark .iframe-container iframe,
 .iframe-container.theme-dark iframe,
 .payfort-container.theme-dark .iframe-container iframe {
-  color-scheme: dark;
+  color-scheme: dark !important;
+  background-color: black !important;
 }
 
 .payfort {

@@ -96,7 +96,18 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
       const form = document.createElement("form");
       form.method = "POST";
-      form.action = orderData.tokenizationResponse.actionUrl;
+      // Append possible theme hints to action URL; APS will ignore if unsupported
+      const scheme = isDarkMode ? "dark" : "light";
+      try {
+        const url = new URL(orderData.tokenizationResponse.actionUrl);
+        url.searchParams.set("color_scheme", scheme);
+        url.searchParams.set("theme", scheme);
+        url.searchParams.set("ui_mode", scheme);
+        url.searchParams.set("uiTheme", scheme);
+        form.action = url.toString();
+      } catch (_) {
+        form.action = orderData.tokenizationResponse.actionUrl;
+      }
       form.target = "payfort-iframe";
       form.style.display = "none";
       form.id = "payfort-form";
@@ -105,6 +116,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         ...orderData.tokenizationResponse.formParameters,
         language: currentLanguage,
       };
+
+      // Provide additional common theme keys as hidden inputs (safe if ignored)
+      parameters["color_scheme"] = scheme;
+      parameters["theme"] = scheme;
+      parameters["ui_mode"] = scheme;
+      parameters["uiTheme"] = scheme;
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
         const input = document.createElement("input");
