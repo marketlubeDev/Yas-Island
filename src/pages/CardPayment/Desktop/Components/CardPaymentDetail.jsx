@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../../../global/cartSlice";
@@ -24,61 +24,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const [retryCounter, setRetryCounter] = useState(0);
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
-  const [themes, setThemes] = useState(null);
-  const isIOS =
-    typeof navigator !== "undefined" &&
-    /iP(hone|od|ad)/.test(navigator.userAgent);
-  const isSafari =
-    typeof navigator !== "undefined" &&
-    /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-  useEffect(() => {
-    setThemes(isDarkMode ? "theme-dark" : "theme-light");
-  }, [isDarkMode]);
-
-  // Temporarily set document color-scheme to match app theme on iOS Safari
-  useEffect(() => {
-    if (!(isIOS && isSafari)) return;
-
-    const desired = isDarkMode ? "dark" : "light";
-    const htmlEl = document.documentElement;
-    const prevInlineColorScheme = htmlEl.style.colorScheme;
-    htmlEl.style.colorScheme = desired;
-
-    const ensureMeta = (name) => {
-      let m = document.querySelector(`meta[name="${name}"]`);
-      if (!m) {
-        m = document.createElement("meta");
-        m.setAttribute("name", name);
-        document.head.appendChild(m);
-      }
-      return m;
-    };
-
-    const colorSchemeMeta = ensureMeta("color-scheme");
-    const supportedMeta = ensureMeta("supported-color-schemes");
-    const themeColorMeta = ensureMeta("theme-color");
-
-    const prevColorScheme = colorSchemeMeta.getAttribute("content");
-    const prevSupported = supportedMeta.getAttribute("content");
-    const prevThemeColor = themeColorMeta.getAttribute("content");
-
-    colorSchemeMeta.setAttribute("content", desired);
-    supportedMeta.setAttribute("content", desired);
-    themeColorMeta.setAttribute(
-      "content",
-      desired === "dark" ? "#111111" : "#ffffff"
-    );
-
-    return () => {
-      htmlEl.style.colorScheme = prevInlineColorScheme || "";
-      if (prevColorScheme)
-        colorSchemeMeta.setAttribute("content", prevColorScheme);
-      if (prevSupported) supportedMeta.setAttribute("content", prevSupported);
-      if (prevThemeColor)
-        themeColorMeta.setAttribute("content", prevThemeColor);
-    };
-  }, [isIOS, isSafari, isDarkMode]);
 
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
@@ -96,18 +41,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
       const form = document.createElement("form");
       form.method = "POST";
-      // Append possible theme hints to action URL; APS will ignore if unsupported
-      const scheme = isDarkMode ? "dark" : "light";
-      try {
-        const url = new URL(orderData.tokenizationResponse.actionUrl);
-        url.searchParams.set("color_scheme", scheme);
-        url.searchParams.set("theme", scheme);
-        url.searchParams.set("ui_mode", scheme);
-        url.searchParams.set("uiTheme", scheme);
-        form.action = url.toString();
-      } catch (_) {
-        form.action = orderData.tokenizationResponse.actionUrl;
-      }
+      form.action = orderData.tokenizationResponse.actionUrl;
       form.target = "payfort-iframe";
       form.style.display = "none";
       form.id = "payfort-form";
@@ -116,12 +50,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         ...orderData.tokenizationResponse.formParameters,
         language: currentLanguage,
       };
-
-      // Provide additional common theme keys as hidden inputs (safe if ignored)
-      parameters["color_scheme"] = scheme;
-      parameters["theme"] = scheme;
-      parameters["ui_mode"] = scheme;
-      parameters["uiTheme"] = scheme;
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
         const input = document.createElement("input");
@@ -224,9 +152,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       <style>{spinnerStyle}</style>
       <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
-      <div className={`payfort-container ${themes || ""}`}>
+      <div className="payfort-container">
         <div
-          className={`iframe-container ${themes || ""}`}
+          className={`iframe-container ${theme}`}
           style={{
             borderRadius: "1rem",
             minHeight: "34rem",
@@ -234,8 +162,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             position: "relative",
             overflow: "hidden",
             backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
-            colorScheme:
-              isIOS && isSafari ? (isDarkMode ? "dark" : "light") : undefined,
           }}
         >
           {/* <Payfort /> */}
@@ -280,8 +206,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
               backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
               opacity: isIframeLoading ? "0" : "1",
               transition: "opacity 0.2s ease-in-out",
-              colorScheme:
-                isIOS && isSafari ? (isDarkMode ? "dark" : "light") : undefined,
             }}
           />
 
@@ -297,8 +221,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 justifyContent: "center",
                 padding: "16px",
                 background: isDarkMode
-                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,1))"
-                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,1))",
+                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,.96))"
+                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",
               }}
