@@ -33,21 +33,17 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   useEffect(() => {
-    // Force light theme on iOS Safari to avoid APS HPP forcing dark styling
-    if (isIOS && isSafari) {
-      setThemes("theme-light");
-      return;
-    }
     setThemes(isDarkMode ? "theme-dark" : "theme-light");
-  }, [isDarkMode, isIOS, isSafari]);
+  }, [isDarkMode]);
 
-  // Temporarily force color-scheme=light at document level while this view is mounted (helps iOS Safari)
+  // Temporarily set document color-scheme to match app theme on iOS Safari
   useEffect(() => {
     if (!(isIOS && isSafari)) return;
 
+    const desired = isDarkMode ? "dark" : "light";
     const htmlEl = document.documentElement;
     const prevInlineColorScheme = htmlEl.style.colorScheme;
-    htmlEl.style.colorScheme = "light";
+    htmlEl.style.colorScheme = desired;
 
     const ensureMeta = (name) => {
       let m = document.querySelector(`meta[name="${name}"]`);
@@ -67,9 +63,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     const prevSupported = supportedMeta.getAttribute("content");
     const prevThemeColor = themeColorMeta.getAttribute("content");
 
-    colorSchemeMeta.setAttribute("content", "light");
-    supportedMeta.setAttribute("content", "light");
-    themeColorMeta.setAttribute("content", "#ffffff");
+    colorSchemeMeta.setAttribute("content", desired);
+    supportedMeta.setAttribute("content", desired);
+    themeColorMeta.setAttribute(
+      "content",
+      desired === "dark" ? "#111111" : "#ffffff"
+    );
 
     return () => {
       htmlEl.style.colorScheme = prevInlineColorScheme || "";
@@ -79,7 +78,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       if (prevThemeColor)
         themeColorMeta.setAttribute("content", prevThemeColor);
     };
-  }, [isIOS, isSafari]);
+  }, [isIOS, isSafari, isDarkMode]);
 
   const handlePaymentSuccess = () => {
     setPaymentStatus("success");
@@ -217,9 +216,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height: "34rem",
             position: "relative",
             overflow: "hidden",
-            backgroundColor:
-              isDarkMode && !(isIOS && isSafari) ? "#1f1f1f" : "#ffffff",
-            colorScheme: isIOS && isSafari ? "light" : undefined,
+            backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+            colorScheme:
+              isIOS && isSafari ? (isDarkMode ? "dark" : "light") : undefined,
           }}
         >
           {/* <Payfort /> */}
@@ -261,11 +260,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             key={retryCounter}
             onLoad={() => setIsIframeLoading(false)}
             style={{
-              backgroundColor:
-                isDarkMode && !(isIOS && isSafari) ? "#1f1f1f" : "#ffffff",
+              backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
               opacity: isIframeLoading ? "0" : "1",
               transition: "opacity 0.2s ease-in-out",
-              colorScheme: isIOS && isSafari ? "light" : undefined,
+              colorScheme:
+                isIOS && isSafari ? (isDarkMode ? "dark" : "light") : undefined,
             }}
           />
 
