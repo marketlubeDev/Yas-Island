@@ -13,7 +13,7 @@
 
 @keyframes slideInLeft {
   from {
-    transform: translateX(-50px);
+    transform: translateX(0px);
     opacity: 0;
   }
   to {
@@ -24,7 +24,7 @@
 
 @keyframes slideInRight {
   from {
-    transform: translateX(50px);
+    transform: translateX(0px);
     opacity: 0;
   }
   to {
@@ -35,7 +35,7 @@
 
 @keyframes slideDown {
   from {
-    transform: translateY(-30px);
+    transform: translateY(0px);
     opacity: 0;
   }
   to {
@@ -46,7 +46,7 @@
 
 @keyframes fadeInUp {
   from {
-    transform: translateY(30px);
+    transform: translateY(0px);
     opacity: 0;
   }
   to {
@@ -73,7 +73,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(0px);
   }
 }
 
@@ -92,7 +92,8 @@
   grid-template-columns: 13.5rem 1fr;
   gap: 0;
   background-color: var(--color-base-product-card-bg);
-  animation: fadeIn 0.8s ease-out;
+  /* Remove page fade-in to avoid animating the sidebar grid */
+  animation: none;
   height: 100vh;
   overflow: hidden;
 

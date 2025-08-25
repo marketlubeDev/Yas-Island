@@ -1367,6 +1367,31 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background-color: var(--color-base-bg) !important;
 }
 
+/* Product page: show custom scrollbar only inside the product scroll container */
+.product .product-scroll {
+  /* Re-enable scrollbars for this element only (global styles hide them) */
+  scrollbar-width: thin !important; /* Firefox */
+  scrollbar-color: var(--color-base-text) var(--color-base-product-card-card-item-border) !important; /* Firefox */
+  -ms-overflow-style: auto !important; /* IE/Edge legacy */
+  /* WebKit-based browsers */
+}
+.product .product-scroll::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+.product .product-scroll::-webkit-scrollbar-track {
+  background: var(--color-base-product-card-card-item-border) !important;
+  border-radius: 3px !important;
+  display: initial !important; /* override global display:none */
+}
+.product .product-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-base-text) !important;
+  border-radius: 3px !important;
+}
+.product .product-scroll::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
 .header {
   width: 100%;
   background-color: var(--color-base-product-card-bg);
@@ -1864,6 +1889,19 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   max-height: calc(100vh - 48px);
   overflow: hidden;
 }
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .product-modal.booking-active .ant-modal-content {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) and (orientation: landscape) {
+  .product-modal.booking-active .ant-modal-content {
+    padding: 2rem !important;
+    padding-top: 2.7rem !important;
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal.booking-active .ant-modal-content {
     overflow: auto;
@@ -1878,6 +1916,11 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal.booking-active .ant-modal-content::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -1904,11 +1947,15 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  height: 100dvh !important;
+  height: 100svh !important;
   padding: 24px;
 }
 
@@ -1976,11 +2023,26 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   width: 100%;
   align-content: start;
   max-height: calc(100vh - 48px - 8rem);
+  max-height: calc(100dvh - 48px - 8rem);
+  max-height: calc(100svh - 48px - 8rem);
   overflow: hidden;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .product-modal-content {
+    max-height: 90vh !important;
+    max-height: 90dvh !important;
+    max-height: 90svh !important;
+    overflow: auto !important;
+    gap: 16px;
+    flex-direction: column !important;
+    align-content: center !important;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-content {
     max-height: 90vh !important;
+    max-height: 90dvh !important;
+    max-height: 90svh !important;
     overflow: auto !important;
     gap: 16px;
     flex-direction: column !important;
@@ -2003,6 +2065,15 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   flex: 1;
   max-width: 38%;
   border-radius: 1.47rem;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .product-modal-image {
+    max-width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .product-modal-image {
@@ -6536,12 +6607,18 @@ html[dir=rtl] .back-button {
     margin: 0.8rem 0;
   }
 }
-.theme-light .iframe-container iframe {
-  color-scheme: light;
+.theme-light .iframe-container iframe,
+.iframe-container.theme-light iframe,
+.payfort-container.theme-light .iframe-container iframe {
+  color-scheme: light !important;
+  background-color: white !important;
 }
 
-.theme-dark .iframe-container iframe {
-  color-scheme: dark;
+.theme-dark .iframe-container iframe,
+.iframe-container.theme-dark iframe,
+.payfort-container.theme-dark .iframe-container iframe {
+  color-scheme: dark !important;
+  background-color: black !important;
 }
 
 .payfort {
@@ -11201,6 +11278,8 @@ body.modal-open {
   padding: 0px 6px 24px 6px;
   background-color: var(--color-dtl-body-bg);
   height: calc(99dvh - 11.5rem);
+  height: calc(99svh - 11.5rem);
+  height: calc(99dvh - 11.5rem);
   overflow-y: auto;
 }
 .attraction-detail-modal__body .product-heading {
@@ -11209,11 +11288,13 @@ body.modal-open {
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__body {
     height: calc(99dvh - 9rem) !important;
+    height: calc(99svh - 9rem) !important;
   }
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__body {
     height: calc(99dvh - 8.5rem) !important;
+    height: calc(99svh - 8.5rem) !important;
   }
 }
 .attraction-detail-modal__image {
@@ -11256,24 +11337,24 @@ body.modal-open {
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  top: 45px;
+  top: 0;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
-    top: -5px;
+    top: 0;
   }
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__footer {
-    top: 0px;
+    top: 0;
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
-  top: 20px !important;
+  top: 0 !important;
 }
 @media only screen and (max-width: 575.98px) {
   html[lang=ar] .attraction-detail-modal__footer {
-    top: 20px !important;
+    top: 0 !important;
   }
 }
 .attraction-detail-modal__footer .attraction-detail-modal__footer-divider {
@@ -11352,7 +11433,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .attraction-detail-modal .ant-modal-content {
   height: 99dvh;
+  height: 99svh;
   max-height: 99dvh;
+  max-height: 99svh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -11485,6 +11568,8 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   margin: 0 !important;
   padding: 0 !important;
   max-height: 100vh !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
   overflow: hidden !important;
 }
 

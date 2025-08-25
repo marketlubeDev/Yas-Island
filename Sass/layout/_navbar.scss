@@ -16,6 +16,10 @@
   top: 0;
   overflow: hidden;
 
+  /* Ensure no animations/transitions ever apply to the sidebar container */
+  animation: none !important;
+  transition: none !important;
+
   &-ar {
     padding: 2rem 1rem 3rem 0rem;
     padding-bottom: 1rem;
@@ -76,8 +80,7 @@
   color: rgb(189, 189, 189);
 
   background: var(--color-base-side-bar-item-right-bg);
-  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease,
-    color 0.3s ease;
+
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -248,7 +251,7 @@
       position: absolute;
       top: -40.2%;
       right: -10%;
-      width: 38px;
+      width: 42px;
       height: 26px;
       background-color: var(--color-base-product-card-card-item-bg);
       border-bottom-right-radius: 15px;

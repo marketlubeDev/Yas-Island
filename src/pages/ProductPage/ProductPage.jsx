@@ -126,7 +126,7 @@ export default function ProductPage() {
       transform: visible ? "translateY(0%)" : "translateY(100%)",
       opacity: visible ? 1 : 0,
       pointerEvents: visible ? "auto" : "none",
-      transition: "transform 160ms ease, opacity 160ms ease",
+      // transition: "transform 160ms ease, opacity 160ms ease",
       willChange: "transform, opacity",
     }),
   };
