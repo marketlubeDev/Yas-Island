@@ -44,7 +44,7 @@ export default function PaymentDetails({ isCheckout }) {
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",
     country: checkout?.country || "AE",
-    nationality: checkout?.nationality || "",
+    nationality: checkout?.nationality || "AE",
     email: verificationEmail,
     phoneCode: "+971",
     phoneNumber: checkout?.phoneNumber || "971",

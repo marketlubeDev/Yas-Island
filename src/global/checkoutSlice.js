@@ -5,8 +5,8 @@ import storage from "redux-persist/lib/storage";
 const initialState = {
   firstName: "",
   lastName: "",
-  country: "",
-  nationality: "",
+  country: "AE",
+  nationality: "AE",
   emailId: "",
   phoneNumber: "",
   countryCode: "",

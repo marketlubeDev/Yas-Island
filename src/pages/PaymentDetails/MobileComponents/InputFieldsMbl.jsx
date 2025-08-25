@@ -412,8 +412,8 @@ function InputFieldsMbl() {
     firstName: checkout.firstName || "",
     lastName: checkout.lastName || "",
     email: checkout.emailId || "",
-    country: checkout.country || "",
-    nationality: checkout.nationality || "",
+    country: checkout.country || "AE",
+    nationality: checkout.nationality || "AE",
     phoneNumber: checkout.phoneNumber || "",
   });
 
@@ -513,11 +513,18 @@ function InputFieldsMbl() {
       firstName: checkout.firstName || "",
       lastName: checkout.lastName || "",
       email: checkout.emailId || "",
-      country: checkout.country || "",
+      country: checkout.country || "AE",
       nationality: checkout.nationality || "",
       phoneNumber: checkout.phoneNumber || "",
     });
   }, [checkout]);
+
+  // Ensure default country is UAE if missing (first-time visitors)
+  useEffect(() => {
+    if (!checkout.country || String(checkout.country).trim() === "") {
+      dispatch(updatePersonalDetails({ country: "AE" }));
+    }
+  }, [checkout.country, dispatch]);
 
   const isRTL = i18n.language === "ar";
 

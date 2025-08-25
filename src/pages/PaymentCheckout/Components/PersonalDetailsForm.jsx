@@ -483,6 +483,13 @@ export default function PersonalDetailsForm({
     }
   }, [checkout.nationality, dispatch]);
 
+  // Ensure default country is UAE if missing (so validation passes on first visit)
+  useEffect(() => {
+    if (!checkout.country || String(checkout.country).trim() === "") {
+      dispatch(updatePersonalDetails({ country: "AE" }));
+    }
+  }, [checkout.country, dispatch]);
+
   const validateFieldsForPlaceholders = () => {
     const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
     const next = {
