@@ -3853,6 +3853,7 @@ html[lang=ar] .guest-label {
   min-width: 370px;
   font-family: "YAS Font", sans-serif;
   /* Header */
+  /* Scrollable content area wrapper for fadeout effect */
   /* Scrollable content area */
   /* View All Items Section */
   /* Animation for dropdown */
@@ -3915,13 +3916,29 @@ html[lang=ar] .guest-label {
   color: var(--color-base-product-card-price);
   font-weight: 400;
 }
-.order-summary-new .order-summary-scrollable {
+.order-summary-new .order-summary-scrollable-wrapper {
+  position: relative;
   flex: 1;
-  overflow-y: auto;
   min-height: 0;
-  margin-bottom: 16px;
-  padding-right: 8px;
+  /* Fadeout effect at the bottom */
+}
+.order-summary-new .order-summary-scrollable-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, var(--color-base-bg) 0%, var(--color-base-bg) 15%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+.order-summary-new .order-summary-scrollable {
+  height: 100%;
   max-height: 25vh;
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
   /* Custom scrollbar for better UX */
 }
 .order-summary-new .order-summary-scrollable::-webkit-scrollbar {
@@ -4484,44 +4501,56 @@ html[lang=ar] .guest-label {
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
   min-height: calc(100vh - 8rem);
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 88px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout {
-    padding: 30px;
+    padding: 30px 30px 88px 30px;
     min-height: calc(100vh - 6rem);
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout {
-    padding: 30px;
+    padding: 30px 30px 88px 30px;
     min-height: calc(100vh - 6rem);
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .payment-checkout {
+    padding-bottom: 84px;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .payment-checkout {
+    padding-bottom: 96px;
   }
 }
 
 .payment-checkout-body {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 88px 20px;
   min-height: calc(100vh - 7rem);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout-body {
-    padding: 30px;
+    padding: 30px 30px 88px 30px;
     min-height: calc(100vh - 6rem);
   }
 }
 @media (max-width: 1024px) {
   .payment-checkout-body {
-    padding: 1rem;
+    padding: 1rem 1rem 88px 1rem;
   }
 }
 @media (max-width: 768px) {
   .payment-checkout-body {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 88px 0.5rem;
   }
 }
 
@@ -4536,6 +4565,206 @@ html[lang=ar] .guest-label {
 
 .payment-checkout__header {
   margin-bottom: 20px;
+}
+
+.payment-checkout__header-with-back {
+  display: none;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-checkout__header-with-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__header-with-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-checkout__header-with-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .payment-checkout__header-with-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .payment-checkout__header-with-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+.checkout-back-button-circular {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 2px solid var(--color-close-btn-border);
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+  padding: 2px;
+}
+.checkout-back-button-circular:hover {
+  background: var(--color-pymnt-container-bg);
+}
+.checkout-back-button-circular:focus {
+  outline: 2px solid var(--color-base-mobile-header-lang-dropdown-item-lang-check);
+  outline-offset: 2px;
+}
+.checkout-back-button-circular:active {
+  background: var(--color-pymnt-container-bg);
+  opacity: 0.8;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .checkout-back-button-circular {
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .checkout-back-button-circular {
+    height: 36px;
+    width: 36px;
+    padding: 4px;
+  }
+}
+
+.checkout-back-button-circular__icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .checkout-back-button-circular__icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .checkout-back-button-circular__icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+.checkout-back-button-circular__icon--rtl {
+  transform: scaleX(-1);
+}
+
+.payment-checkout__title {
+  color: var(--color-base-text);
+  font-size: 2.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
+  margin: 0;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-checkout__title {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__title {
+    font-size: 1.9rem;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-checkout__title {
+    font-size: 2rem;
+  }
+}
+
+.payment-checkout__header-mobile {
+  display: block;
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-checkout__header-mobile {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-checkout__header-mobile {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .payment-checkout__header-mobile {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .payment-checkout__header-mobile {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .payment-checkout__header-mobile {
+    display: none;
+  }
 }
 
 .back-button {
@@ -4572,19 +4801,25 @@ html[lang=ar] .guest-label {
   justify-content: center;
   margin-bottom: 25px;
   position: relative;
-  padding: 0px;
+  padding: 8px 0px;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout__steps {
     margin-bottom: 40px;
-    padding: 8px 0px;
+    padding: 10px 0px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__steps {
     margin-bottom: 25px;
-    padding: 8px 0px;
+    padding: 9px 0px;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .payment-checkout__steps {
+    padding: 10px 0px;
   }
 }
 
@@ -4593,40 +4828,45 @@ html[lang=ar] .guest-label {
   position: relative;
   min-width: 500px;
   font-family: "YAS Font", sans-serif;
+  padding: 4px 0px;
+  box-sizing: border-box;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step {
     min-width: 450px;
+    padding: 3px 0px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .step {
     min-width: 400px;
+    padding: 4px 0px;
   }
 }
 
 .step span {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--color-pymnt-step-clr);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2;
   text-transform: capitalize;
-  font-family: "YAS Font", sans-serif;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step span {
     font-size: 0.9rem;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
+    line-height: 1.2;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .step span {
     font-size: 0.85rem;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
+    line-height: 1.2;
   }
 }
 
@@ -4636,18 +4876,20 @@ html[lang=ar] .guest-label {
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.3;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step h2 {
     font-size: 1.1rem;
+    line-height: 1.3;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .step h2 {
     font-size: 1rem;
+    line-height: 1.3;
   }
 }
 
@@ -4657,7 +4899,7 @@ html[lang=ar] .guest-label {
 
 .step-line {
   position: absolute;
-  bottom: -15px;
+  bottom: -12px;
   left: 0;
   width: 100%;
   height: 3px;
@@ -4665,8 +4907,13 @@ html[lang=ar] .guest-label {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .step-line {
-    bottom: -15px;
+    bottom: -10px;
     height: 2.5px;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .step-line {
+    bottom: -12px;
   }
 }
 
@@ -4675,9 +4922,8 @@ html[lang=ar] .guest-label {
 }
 
 .payment-checkout__content {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 2.5rem;
+  padding: 32px;
   background: var(--color-email-form-box);
   height: auto;
   width: 100%;
@@ -4686,6 +4932,7 @@ html[lang=ar] .guest-label {
   justify-content: center;
   align-items: center;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-checkout__content {
@@ -4785,9 +5032,8 @@ html[lang=ar] .guest-label {
 }
 
 .payment-checkout__contentnew {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 2.5rem;
+  padding: 32px;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
@@ -4797,6 +5043,7 @@ html[lang=ar] .guest-label {
   justify-content: space-between;
   align-items: start;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .payment-checkout__contentnew {
@@ -4996,9 +5243,8 @@ html[lang=ar] .guest-label {
 }
 
 .payment-checkout__contentnew_cardpayment {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 12px;
+  padding: 32px;
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: 100%;
@@ -5008,6 +5254,7 @@ html[lang=ar] .guest-label {
   justify-content: center;
   align-items: center;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box;
 }
 @media (max-width: 1024px) {
   .payment-checkout__contentnew_cardpayment {

@@ -150,7 +150,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   return (
     <div className="payment-container">
       <style>{spinnerStyle}</style>
-      <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
+      {/* <h2 className="payment-title">{t("payment.cardPayment.title")}</h2> */}
 
       <div className="payfort-container">
         <div

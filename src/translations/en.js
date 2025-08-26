@@ -184,9 +184,11 @@ export const en = {
     steps: {
       step1: "Step 1",
       step2: "Step 2",
+      step3: "Step 3",
       emailVerification: "Email Verification",
       checkout: "Checkout",
-      guestDetails: "Guest Details And Payment",
+      guestDetails: "Guest Details",
+      payment: "Payment",
     },
     emailConfirmation: {
       emailLabel: "Email Address *",
