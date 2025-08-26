@@ -68,7 +68,6 @@ export default function OrderSummary({
   };
 
   const formatDate = (dateString) => {
-
     // Use the appropriate locale based on current language
     const locale = currentLanguage === "ar" ? "ar-AE" : "en-US";
 
@@ -78,7 +77,6 @@ export default function OrderSummary({
       month: "short",
       year: "numeric",
     });
-
 
     return date;
   };
@@ -294,63 +292,67 @@ export default function OrderSummary({
           {checkout?.items?.length || 1} {t("orderSummary.items")}
         </span>
       </div>
-      {/* Scrollable content wrapper */}
-      <div className="order-summary-scrollable">
-        {/* Items are always visible; removed toggle button */}
+      {/* Scrollable content wrapper with fadeout effect */}
+      <div className="order-summary-scrollable-wrapper">
+        <div className="order-summary-scrollable">
+          {/* Items are always visible; removed toggle button */}
 
-        {/* Item Details Section - Mobile Style */}
-        <div className="items-container">
-          {checkout?.items && checkout.items.length > 0 ? (
-            checkout.items.map((item, index) => (
-              <div key={index} className="order-item-minimal">
-                <div className="item-content">
-                  <div className="item-main">
-                    <h4 className="item-title">
-                      {getProduct(item.productId)?.product?.product_title ||
-                        "Product"}
-                    </h4>
-                    <div className="item-meta">
-                      <span className="item-variant">
-                        {getProduct(item.productId)?.productVariant
-                          ?.productvariantname || "Variant"}
-                      </span>
-                      <span className="item-separator">•</span>
-                      <span className="item-date">
-                        {formatDate(item.validFrom)}
-                      </span>
-                      <span className="item-separator">•</span>
-                      <span className="item-quantity">
-                        {t("payment.orderSummary.qty")} {item.quantity || 0}
+          {/* Item Details Section - Mobile Style */}
+          <div className="items-container">
+            {checkout?.items && checkout.items.length > 0 ? (
+              checkout.items.map((item, index) => (
+                <div key={index} className="order-item-minimal">
+                  <div className="item-content">
+                    <div className="item-main">
+                      <h4 className="item-title">
+                        {getProduct(item.productId)?.product?.product_title ||
+                          "Product"}
+                      </h4>
+                      <div className="item-meta">
+                        <span className="item-variant">
+                          {getProduct(item.productId)?.productVariant
+                            ?.productvariantname || "Variant"}
+                        </span>
+                        <span className="item-separator">•</span>
+                        <span className="item-date">
+                          {formatDate(item.validFrom)}
+                        </span>
+                        <span className="item-separator">•</span>
+                        <span className="item-quantity">
+                          {t("payment.orderSummary.qty")} {item.quantity || 0}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="item-price">
+                      <span className="price-amount">
+                        {t("common.aed")}{" "}
+                        {(
+                          (getProduct(item.productId)?.productVariant
+                            ?.net_amount || 0) *
+                            (item.quantity || 0) +
+                          (getProduct(item.productId)?.productVariant?.vat ||
+                            0) *
+                            (item.quantity || 0)
+                        ).toFixed(2)}
                       </span>
                     </div>
                   </div>
-                  <div className="item-price">
-                    <span className="price-amount">
-                      {t("common.aed")}{" "}
-                      {(
-                        (getProduct(item.productId)?.productVariant
-                          ?.net_amount || 0) *
-                          (item.quantity || 0) +
-                        (getProduct(item.productId)?.productVariant?.vat || 0) *
-                          (item.quantity || 0)
-                      ).toFixed(2)}
-                    </span>
+                </div>
+              ))
+            ) : (
+              <div className="order-item-minimal">
+                <div className="item-content">
+                  <div className="item-main">
+                    <h4 className="item-title">No items in cart</h4>
                   </div>
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="order-item-minimal">
-              <div className="item-content">
-                <div className="item-main">
-                  <h4 className="item-title">No items in cart</h4>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </div>{" "}
+        {/* End of scrollable content */}
       </div>{" "}
-      {/* End of scrollable content */}
+      {/* End of scrollable wrapper */}
       {/* Sticky bottom section */}
       <div className="order-summary-sticky-bottom">
         {/* Cost Breakdown - Mobile Style */}

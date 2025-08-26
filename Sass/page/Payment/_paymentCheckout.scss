@@ -65,14 +65,42 @@
     }
   }
 
+  /* Scrollable content area wrapper for fadeout effect */
+  .order-summary-scrollable-wrapper {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    // margin-bottom: 16px;
+
+    /* Fadeout effect at the bottom */
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(
+        to top,
+        var(--color-base-bg) 0%,
+        var(--color-base-bg) 15%,
+        rgba(255, 255, 255, 0.95) 30%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+  }
+
   /* Scrollable content area */
   .order-summary-scrollable {
-    flex: 1;
-    overflow-y: auto;
-    min-height: 0;
-    margin-bottom: 16px;
-    padding-right: 8px;
+    height: 100%;
     max-height: 25vh;
+    overflow-y: auto;
+    padding-right: 8px;
+    padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
 
     /* Custom scrollbar for better UX */
     &::-webkit-scrollbar {
