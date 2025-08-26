@@ -17,6 +17,20 @@
   z-index: 100;
   position: sticky;
   top: 0;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+// Ensure the mobile-topnav-fixed ID also has sticky positioning
+#mobile-topnav-fixed {
+  position: sticky;
+  top: 64px; // Position below fixed mobile-header
+  z-index: 100;
+  background: var(--color-base-mobile-product-page-bg);
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    top: 60px; // Adjust for smaller header height
+  }
 }
 
 // Scrollable content area
@@ -59,6 +73,16 @@
     align-items: center;
     min-height: 200px;
     scale: 0.5;
+  }
+}
+
+// When attractions list has products, add top padding for fixed header
+.attractions-list--with-products {
+  padding-top: 80px; // Account for fixed header + navigation tabs
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    padding-top: 76px; // Adjust for smaller header height
   }
 }
 

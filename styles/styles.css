@@ -3853,6 +3853,7 @@ html[lang=ar] .guest-label {
   min-width: 370px;
   font-family: "YAS Font", sans-serif;
   /* Header */
+  /* Scrollable content area wrapper for fadeout effect */
   /* Scrollable content area */
   /* View All Items Section */
   /* Animation for dropdown */
@@ -3915,13 +3916,29 @@ html[lang=ar] .guest-label {
   color: var(--color-base-product-card-price);
   font-weight: 400;
 }
-.order-summary-new .order-summary-scrollable {
+.order-summary-new .order-summary-scrollable-wrapper {
+  position: relative;
   flex: 1;
-  overflow-y: auto;
   min-height: 0;
-  margin-bottom: 16px;
-  padding-right: 8px;
+  /* Fadeout effect at the bottom */
+}
+.order-summary-new .order-summary-scrollable-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, var(--color-base-bg) 0%, var(--color-base-bg) 15%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+.order-summary-new .order-summary-scrollable {
+  height: 100%;
   max-height: 25vh;
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
   /* Custom scrollbar for better UX */
 }
 .order-summary-new .order-summary-scrollable::-webkit-scrollbar {

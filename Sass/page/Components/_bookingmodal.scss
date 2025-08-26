@@ -15,13 +15,14 @@
 .booking-modal {
   width: 100%;
   max-width: 420px;
-  height: 100dvh;
+  // height: 100dvh;
   max-height: 100dvh;
+
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 0px;
+  border-radius: 1.2rem;
   border: 2px solid var(--color-base-product-card-card-item-border);
   position: relative; /* Ensure proper stacking context */
   touch-action: pan-y; /* Allow vertical scrolling inside modal */
@@ -166,11 +167,11 @@
 .booking-modal__calendar-date.muted {
   opacity: 0.4;
   color: var(--color-bkg-clndr-date-clr);
-  
+
   &:hover:not(.disabled) {
     opacity: 0.7;
   }
-  
+
   &.selected {
     opacity: 1;
   }

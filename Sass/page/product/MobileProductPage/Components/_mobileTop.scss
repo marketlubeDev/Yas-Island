@@ -14,6 +14,14 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   gap: 0;
+  position: sticky;
+  top: 64px; // Position below fixed mobile-header
+  z-index: 100;
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    top: 60px; // Adjust for smaller header height
+  }
 
   // Fix border rendering issues in Chrome
   transform: translateZ(0); // Force hardware acceleration
@@ -25,6 +33,7 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
@@ -126,6 +135,9 @@
   text-align: center;
   flex: 1;
   overflow: visible;
+  background: var(--color-base-mobile-top-bg);
+  position: relative;
+  z-index: 99;
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
@@ -224,9 +236,9 @@
     //   color: var(--color-text-primary-chevron);
     // }
 
-    html[lang="ar"] & {
-      // flex-direction: row-reverse !important;
-    }
+    // html[lang="ar"] & {
+    //   flex-direction: row-reverse !important;
+    // }
   }
 
   @media (max-width: 360px) and (max-height: 740px) {

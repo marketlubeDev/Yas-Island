@@ -183,9 +183,11 @@ export const ar = {
     steps: {
       step1: "الخطوة ١",
       step2: "الخطوة ٢",
+      step3: "الخطوة ٣",
       emailVerification: "التحقق من البريد الإلكتروني",
       checkout: "إتمام الشراء",
-      guestDetails: "تفاصيل الضيف والدفع",
+      guestDetails: "تفاصيل الضيف",
+      payment: "الدفع",
     },
     emailConfirmation: {
       emailLabel: "البريد الإلكتروني *",

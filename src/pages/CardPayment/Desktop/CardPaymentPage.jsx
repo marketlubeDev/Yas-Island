@@ -41,7 +41,7 @@ export default function CardPaymentPage() {
     };
   }, []); // Empty dependency array - run only on mount
   return (
-    <div className="payment-checkout-page">
+    <div className="payment-checkout-page-details">
       <Header />
       <CardPaymentBody isCheckout={isCheckout} />
     </div>

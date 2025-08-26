@@ -134,7 +134,13 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
 
   return (
     <>
-      <div className="attractions-list">
+      <div
+        className={`attractions-list ${
+          productList && productList.length > 0
+            ? "attractions-list--with-products"
+            : ""
+        }`}
+      >
         {isLoading ? (
           <div className="attractions-list__loading">
             <Loader />
