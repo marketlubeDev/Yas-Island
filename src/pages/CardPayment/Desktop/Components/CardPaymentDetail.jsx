@@ -35,6 +35,94 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     dispatch(setIsCartOpen(false));
   }, [orderData]);
 
+  // Theme communication function
+  const communicateThemeToPayFort = () => {
+    const iframe = document.querySelector('iframe[name="payfort-iframe"]');
+    if (iframe && iframe.contentWindow) {
+      try {
+        // Send theme information to PayFort iframe
+        const themeData = {
+          type: "theme_update",
+          isDarkMode: isDarkMode,
+          theme: theme,
+          timestamp: Date.now(),
+        };
+
+        iframe.contentWindow.postMessage(themeData, "*");
+
+        // Also try to access the iframe document directly (if same-origin)
+        try {
+          const iframeDoc =
+            iframe.contentDocument || iframe.contentWindow.document;
+          if (iframeDoc) {
+            // Apply theme class to iframe document
+            const htmlElement = iframeDoc.documentElement;
+            const bodyElement = iframeDoc.body;
+
+            if (htmlElement && bodyElement) {
+              // Remove existing theme classes
+              htmlElement.classList.remove(
+                "pf-theme-light",
+                "pf-theme-dark",
+                "pf-theme-auto"
+              );
+              bodyElement.classList.remove(
+                "pf-theme-light",
+                "pf-theme-dark",
+                "pf-theme-auto"
+              );
+
+              // Apply current theme
+              const themeClass = isDarkMode
+                ? "pf-theme-dark"
+                : "pf-theme-light";
+              htmlElement.classList.add(themeClass);
+              bodyElement.classList.add(themeClass);
+
+              // Also set data attribute for additional targeting
+              htmlElement.setAttribute(
+                "data-theme",
+                isDarkMode ? "dark" : "light"
+              );
+              bodyElement.setAttribute(
+                "data-theme",
+                isDarkMode ? "dark" : "light"
+              );
+            }
+          }
+        } catch (crossOriginError) {
+          // Cross-origin restriction - this is expected for PayFort iframe
+          console.log(
+            "Theme will be applied via postMessage (cross-origin iframe)"
+          );
+        }
+      } catch (error) {
+        console.warn("Could not communicate theme to PayFort iframe:", error);
+      }
+    }
+  };
+
+  // Enhanced iframe load handler
+  const handleIframeLoad = () => {
+    setIsIframeLoading(false);
+
+    // Communicate theme after iframe loads
+    setTimeout(() => {
+      communicateThemeToPayFort();
+    }, 100);
+  };
+
+  // Watch for theme changes and update PayFort
+  useEffect(() => {
+    if (!isIframeLoading) {
+      const timeoutId = setTimeout(() => {
+        communicateThemeToPayFort();
+      }, 200);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isDarkMode, theme, isIframeLoading]);
+
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
       // Remove any existing form before creating a new one
@@ -53,6 +141,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       const parameters = {
         ...orderData.tokenizationResponse.formParameters,
         language: currentLanguage,
+        // Add theme information to the form parameters
+        theme_mode: isDarkMode ? "dark" : "light",
+        ui_theme: theme,
       };
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
@@ -66,17 +157,20 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       document.body.appendChild(form);
       form.submit();
 
-      // Keep the form in DOM to maintain iframe functionality
-      // Form will only be removed on component unmount or payment completion
-
-      // Listen for messages from the iframe
+      // Enhanced message handler with theme support
       const handleMessage = (event) => {
         const data = event?.data;
         console.log("Received message from iframe:", data);
 
         if (!data) return;
 
-        // Preferred explicit provider payload
+        // Handle theme acknowledgment from PayFort
+        if (data.type === "theme_applied") {
+          console.log("PayFort theme updated successfully");
+          return;
+        }
+
+        // Existing payment result handling
         if (data.type === "payment_result") {
           if (data.success === true) {
             handlePaymentSuccess();
@@ -136,10 +230,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         }
       };
     }
-  }, [orderData, paymentStatus, retryCounter]);
-
-  // Note: We intentionally do not show fallback controls by default
-  // to avoid confusing users before any payment action occurs.
+  }, [orderData, paymentStatus, retryCounter, isDarkMode, theme]);
 
   const handleRetry = () => {
     toast.error(
@@ -154,9 +245,41 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   return (
     <div className="payment-container">
       <style>{spinnerStyle}</style>
-      {/* <h2 className="payment-title">{t("payment.cardPayment.title")}</h2> */}
 
-      <div className="payfort-container">
+      {/* Inject theme-aware styles for the iframe container */}
+      <style>{`
+        .payfort-container .iframe-container {
+          background: ${isDarkMode ? "#1f1f1f" : "#ffffff"} !important;
+          border: ${
+            isDarkMode ? "1px solid #404040" : "1px solid #e0e0e0"
+          } !important;
+        }
+        
+        .payfort-container iframe {
+          background: ${isDarkMode ? "#1f1f1f" : "#ffffff"} !important;
+        }
+        
+        /* Custom scrollbar for dark mode */
+        .payfort-container.dark ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .payfort-container.dark ::-webkit-scrollbar-track {
+          background: #2d2d2d;
+          border-radius: 4px;
+        }
+        
+        .payfort-container.dark ::-webkit-scrollbar-thumb {
+          background: #555;
+          border-radius: 4px;
+        }
+        
+        .payfort-container.dark ::-webkit-scrollbar-thumb:hover {
+          background: #666;
+        }
+      `}</style>
+
+      <div className={`payfort-container ${isDarkMode ? "dark" : "light"}`}>
         <div
           className={`iframe-container ${theme}`}
           style={{
@@ -166,9 +289,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             position: "relative",
             overflow: "hidden",
             background: isDarkMode ? "#1f1f1f" : "#ffffff",
+            transition: "background-color 0.3s ease, border-color 0.3s ease",
+            border: isDarkMode ? "1px solid #404040" : "1px solid #e0e0e0",
           }}
         >
-          {/* <Payfort /> */}
           {isIframeLoading && (
             <div
               style={{
@@ -177,6 +301,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 textAlign: "center",
+                zIndex: 10,
               }}
             >
               <div
@@ -193,24 +318,39 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   margin: "0 auto 1rem",
                 }}
               />
-              <p style={{ color: isDarkMode ? "#b3b3b3" : "#666", margin: 0 }}>
-                Loading secure payment form...
+              <p
+                style={{
+                  color: isDarkMode ? "#b3b3b3" : "#666",
+                  margin: 0,
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                {t("payment.cardPayment.loadingText", {
+                  defaultValue: "Loading secure payment form...",
+                })}
               </p>
             </div>
           )}
+
           <iframe
             name="payfort-iframe"
             title="PayFort Payment"
             width="100%"
             height="100%"
             frameBorder="0"
-            key={retryCounter}
-            onLoad={() => setIsIframeLoading(false)}
+            key={`${retryCounter}-${isDarkMode}`} // Force reload on theme change
+            onLoad={handleIframeLoad}
             style={{
               backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
               opacity: isIframeLoading ? "0" : "1",
-              transition: "opacity 0.2s ease-in-out",
+              transition:
+                "opacity 0.3s ease-in-out, background-color 0.3s ease",
+              borderRadius: "1rem",
             }}
+            // Add data attributes for theme detection
+            data-theme={isDarkMode ? "dark" : "light"}
+            data-ui-theme={theme}
           />
 
           {paymentStatus === "failed" && (
@@ -225,24 +365,25 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 justifyContent: "center",
                 padding: "16px",
                 background: isDarkMode
-                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,.96))"
-                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
-                zIndex: 2,
-                backdropFilter: "blur(2px)",
+                  ? "linear-gradient(rgba(26,26,26,.95), rgba(26,26,26,.98))"
+                  : "linear-gradient(rgba(255,255,255,.95), rgba(255,255,255,.98))",
+                zIndex: 20,
+                backdropFilter: "blur(4px)",
+                borderRadius: "1rem",
               }}
             >
               <div
                 style={{
                   width: "100%",
-                  maxWidth: 560,
-                  borderRadius: 12,
+                  maxWidth: 400,
+                  borderRadius: 16,
                   background: isDarkMode ? "#1f1f1f" : "#fff",
                   border: isDarkMode
                     ? "1px solid #4a2c2c"
                     : "1px solid #ffd6d6",
                   boxShadow: isDarkMode
-                    ? "0 10px 24px rgba(0,0,0,.3)"
-                    : "0 10px 24px rgba(0,0,0,.08)",
+                    ? "0 20px 32px rgba(0,0,0,.4)"
+                    : "0 20px 32px rgba(0,0,0,.12)",
                   overflow: "hidden",
                 }}
               >
@@ -250,8 +391,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 12,
-                    padding: "12px 16px",
+                    gap: 16,
+                    padding: "16px 20px",
                     background: isDarkMode ? "#2d1b1b" : "#fff5f5",
                     borderBottom: isDarkMode
                       ? "1px solid #4a2c2c"
@@ -261,22 +402,23 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   <div
                     aria-hidden="true"
                     style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 9999,
+                      width: 40,
+                      height: 40,
+                      borderRadius: 12,
                       background: isDarkMode ? "#4a2c2c" : "#ffe3e3",
                       display: "grid",
                       placeItems: "center",
-                      color: "#c53030",
+                      color: "#dc3545",
                       fontWeight: 800,
-                      fontSize: 18,
+                      fontSize: 20,
                     }}
                   >
-                    !
+                    ⚠
                   </div>
                   <div
                     style={{
                       fontWeight: 700,
+                      fontSize: "16px",
                       color: isDarkMode ? "#ffffff" : "#1a1a1a",
                     }}
                   >
@@ -285,10 +427,13 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                     })}
                   </div>
                 </div>
+
                 <div
                   style={{
-                    padding: "14px 16px",
+                    padding: "16px 20px",
                     color: isDarkMode ? "#b3b3b3" : "#4a5568",
+                    fontSize: "14px",
+                    lineHeight: "1.5",
                   }}
                 >
                   {failureMessage ||
@@ -297,13 +442,14 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                         "We couldn't complete your payment. Please review your details and try again.",
                     })}
                 </div>
+
                 <div
                   style={{
                     display: "flex",
                     flexWrap: "wrap",
-                    gap: 8,
+                    gap: 12,
                     justifyContent: "flex-end",
-                    padding: "12px 16px",
+                    padding: "16px 20px",
                     background: isDarkMode ? "#262626" : "#fafafa",
                     borderTop: isDarkMode
                       ? "1px solid #404040"
@@ -321,8 +467,21 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                           ? "1px solid #525252"
                           : "1px solid #ddd",
                         borderRadius: 8,
-                        padding: ".55rem 1rem",
+                        padding: "8px 16px",
                         cursor: "pointer",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        transition: "all 0.2s ease",
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.background = isDarkMode
+                          ? "#4a4a4a"
+                          : "#f5f5f5";
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.background = isDarkMode
+                          ? "#404040"
+                          : "#fff";
                       }}
                     >
                       {t("payment.cardPayment.backToDetails", {
@@ -330,6 +489,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                       })}
                     </button>
                   )}
+
                   <button
                     type="button"
                     onClick={handleRetry}
@@ -338,8 +498,17 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                       color: "#fff",
                       border: "none",
                       borderRadius: 8,
-                      padding: ".55rem 1rem",
+                      padding: "8px 16px",
                       cursor: "pointer",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.background = "#2c5aa0";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.background = "#3182ce";
                     }}
                   >
                     {t("payment.cardPayment.retry", { defaultValue: "Retry" })}
@@ -349,8 +518,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             </div>
           )}
         </div>
-
-        {/* Fallback controls removed to prevent showing by default. */}
       </div>
     </div>
   );
