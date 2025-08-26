@@ -494,6 +494,7 @@ export default function OrderSummary({
           footer={null}
           centered
           className="promo-modal"
+          destroyOnClose
           // width={isBigTablets ? "60%" : "40%"}
           style={{
             width: isBigTablets ? "60%" : "40%",
