@@ -151,7 +151,7 @@ function CardPaymentMobile() {
     <>
       <style>{spinnerStyle}</style>
       <MobileHeader />
-      <div className="payment-container" style={{ padding: "1rem" }}>
+      <div className="payment-container" style={{ padding: "1.2rem" }}>
         <h2 className="payment-title">{t("payment.cardPayment.title")}</h2>
 
         <div className="payfort-container">

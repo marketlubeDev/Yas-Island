@@ -28,7 +28,7 @@
 .email-verification__form {
   background: var(--color-email-form-bg);
   height: 74.7vh;
-  padding: 32px 14px;
+  padding: 32px 1.2rem; // Consistent 1.2rem horizontal padding
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
@@ -58,7 +58,7 @@
   background: var(--color-email-form-box);
   border-radius: 18px;
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 38px 40px 34px 40px;
+  padding: 38px 1.2rem 34px 1.2rem; // Consistent 1.2rem horizontal padding
   margin-top: 24px;
   height: 100%;
   width: 100%;
@@ -66,6 +66,12 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
+  // Samsung Galaxy Fold 5 specific styling (344px width)
+  @media only screen and (max-width: 344px) {
+    padding: 20px 1.2rem 2.4rem 1.2rem; // Reduced top padding, increased bottom padding
+    border-radius: 16px;
+  }
 
   @media (min-width: 414px) and (max-width: 429px) {
     padding: 85px 40px 34px 40px;
