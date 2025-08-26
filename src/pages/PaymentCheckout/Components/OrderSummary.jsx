@@ -176,6 +176,7 @@ export default function OrderSummary({
             (!hasDiscount || (newGross === prevGross && newNet === prevNet))
           ) {
             setPromoCodeApplying(false);
+            setPromoCodeStatus("invalid");
             setIsModalVisible(false);
             toast.error(t("toastMessages.invalidPromoCode"), {
               position: "top-center",
@@ -207,7 +208,7 @@ export default function OrderSummary({
             })
           );
           setPromoCodeApplying(false);
-          if (promoCodeInput.rawValue) {
+          if (attemptingToApplyCoupon) {
             setIsModalVisible(true);
             // Clear the promo code input since it's now applied
             promoCodeInput.reset();
