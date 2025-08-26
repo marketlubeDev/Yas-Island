@@ -172,10 +172,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
                     >
                       {t("common.add")}
                     </button>
-                    <div
-                      className="attraction-card__price"
-                      style={{ marginRight: "0.5rem" }}
-                    >
+                    <div className="attraction-card__price">
                       <span>
                         {t("common.aed")} {defaultVariant(item)?.gross}
                       </span>
