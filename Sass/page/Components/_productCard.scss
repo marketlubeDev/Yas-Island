@@ -165,7 +165,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       border-color: var(
         --color-base-product-card-card-item-border-hover,
-        #007bff
+        var(--color-base-btn-border)
       );
     }
 
@@ -1232,11 +1232,11 @@
 .day.muted {
   opacity: 0.4;
   color: var(--color-base-date-clr);
-  
+
   &:hover:not(.disabled) {
     opacity: 0.7;
   }
-  
+
   &.selected {
     opacity: 1;
   }

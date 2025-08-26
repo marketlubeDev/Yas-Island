@@ -1226,7 +1226,7 @@ function BookingModalMbl({
             ) : (
               <>
                 {t("booking.checkOut")}{" "}
-                <span style={{ color: "var(--color-text-price-red)" }}>
+                <span style={{ color: "purple" }}>
                   {t("common.aed")} {totalPrice}
                 </span>
               </>

@@ -12,6 +12,24 @@ $color-black: #000;
 $color-yellow: #ffea00;
 
 :root {
+  // Accessibility zoom variables
+  --accessibility-zoom-level: 1;
+  --zoom-scale: 1; // Default to 1 for no scaling
+  
+  // Base mobile dimensions (DO NOT scale at 1x)
+  --mobile-padding-base: 1.2rem;
+  --mobile-gap-base: 16px;
+  --mobile-font-size-base: 14px;
+  --mobile-header-height-base: 64px;
+  --mobile-bottom-nav-height-base: 56px;
+  
+  // Mobile dimensions - at 1x these will be same as base
+  --mobile-padding: var(--mobile-padding-base);
+  --mobile-gap: var(--mobile-gap-base);
+  --mobile-font-size: var(--mobile-font-size-base);
+  --mobile-header-height: var(--mobile-header-height-base);
+  --mobile-bottom-nav-height: var(--mobile-bottom-nav-height-base);
+  
   --text-color: #18142b;
   --color-base-bg: #fff;
   --color-base-text: #231942;
@@ -315,6 +333,37 @@ $color-yellow: #ffea00;
   --color-base-checkbox-bg: #ffffff;
   --color-base-checkbox-border: #d9d9d9;
   --color-base-checkbox-check: #231942;
+
+  // Zoom level overrides
+  &.zoom-1x {
+    // At 1x, keep everything as is - NO scaling
+    --zoom-scale: 1;
+    --mobile-padding: var(--mobile-padding-base);
+    --mobile-gap: var(--mobile-gap-base);
+    --mobile-font-size: var(--mobile-font-size-base);
+    --mobile-header-height: var(--mobile-header-height-base);
+    --mobile-bottom-nav-height: var(--mobile-bottom-nav-height-base);
+  }
+  
+  &.zoom-1-25x {
+    // Only at 1.25x do we apply scaling
+    --zoom-scale: 1.12; // 1.25x in UI
+    --mobile-padding: calc(var(--mobile-padding-base) * 1.12);
+    --mobile-gap: calc(var(--mobile-gap-base) * 1.12);
+    --mobile-font-size: calc(var(--mobile-font-size-base) * 1.12);
+    --mobile-header-height: calc(var(--mobile-header-height-base) * 1.12);
+    --mobile-bottom-nav-height: calc(var(--mobile-bottom-nav-height-base) * 1.12);
+  }
+  
+  &.zoom-1-5x {
+    // Only at 1.5x do we apply scaling
+    --zoom-scale: 1.25; // 1.5x in UI
+    --mobile-padding: calc(var(--mobile-padding-base) * 1.25);
+    --mobile-gap: calc(var(--mobile-gap-base) * 1.25);
+    --mobile-font-size: calc(var(--mobile-font-size-base) * 1.25);
+    --mobile-header-height: calc(var(--mobile-header-height-base) * 1.25);
+    --mobile-bottom-nav-height: calc(var(--mobile-bottom-nav-height-base) * 1.25);
+  }
 
   // Dark mode overrides
   [data-theme="dark"] {
