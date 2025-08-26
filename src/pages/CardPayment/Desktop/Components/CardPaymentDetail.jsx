@@ -165,7 +165,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height: "34rem",
             position: "relative",
             overflow: "hidden",
-            backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+            background: isDarkMode ? "#1f1f1f" : "#ffffff",
           }}
         >
           {/* <Payfort /> */}

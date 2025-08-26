@@ -5,6 +5,7 @@
   justify-content: center;
   width: 12rem;
   overflow: hidden;
+  position: relative;
 }
 .header-logo {
   display: flex;
@@ -79,3 +80,27 @@
 }
 
 /* Mobile */
+
+// Skeleton styles for logo
+.logo-skeleton {
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.08) 25%,
+    rgba(0, 0, 0, 0.14) 37%,
+    rgba(0, 0, 0, 0.08) 63%
+  );
+  background-size: 400% 100%;
+  animation: logoShimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes logoShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

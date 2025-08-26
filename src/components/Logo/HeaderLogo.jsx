@@ -35,6 +35,8 @@ export default function HeaderLogo() {
 
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [descLoaded, setDescLoaded] = useState(false);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -94,6 +96,12 @@ export default function HeaderLogo() {
             }`}
             onClick={handleLogoClick}
           >
+            {!logoLoaded && (
+              <div
+                className="logo-skeleton"
+                style={{ width: "5.5rem", height: "2rem" }}
+              />
+            )}
             <img
               src={logo}
               alt="logo"
@@ -101,6 +109,10 @@ export default function HeaderLogo() {
               style={{
                 width: "5.5rem",
               }}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              onLoad={() => setLogoLoaded(true)}
             />
             <img
               src={isDarkMode ? invertDesc : desc}
@@ -109,6 +121,10 @@ export default function HeaderLogo() {
               style={{
                 width: "6.5rem",
               }}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              onLoad={() => setDescLoaded(true)}
             />
           </div>
         )}{" "}
