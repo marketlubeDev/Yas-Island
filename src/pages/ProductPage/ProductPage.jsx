@@ -38,10 +38,28 @@ export default function ProductPage() {
   const normalizeSort = (label) => {
     if (!label) return null;
     const l = String(label).toLowerCase().trim();
+    
+    // Handle English sorting options
     if (l.includes("high") && l.includes("low"))
       return l.includes("high to low") ? "desc" : "asc";
-    if (l.includes("الأعلى")) return "desc";
-    if (l.includes("الأقل")) return "asc";
+    
+    // Handle Arabic sorting options - match the exact patterns used in mobile
+    if (
+      label === "السعر (من الأعلى إلى الأقل)" ||
+      l.includes("الأعلى إلى الأقل")
+    ) {
+      return "desc"; // High to Low
+    }
+    
+    if (
+      label === "السعر (من الأقل إلى الأعلى)" ||
+      label === "السعر (من الأقل الى الأعلى)" ||
+      l.includes("الأقل إلى الأعلى") ||
+      l.includes("الأقل الى الأعلى")
+    ) {
+      return "asc"; // Low to High
+    }
+    
     return null;
   };
 

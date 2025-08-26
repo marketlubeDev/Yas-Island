@@ -9,59 +9,38 @@ function CheckBoxMbl({
 }) {
   const { t } = useTranslation();
   return (
-    <div className="email-checkout__checkboxes">
-      <div
-        id="acceptTerms"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          whiteSpace: "nowrap",
-        }}
-      >
+    <div className="email-checkout__checkboxes-compact">
+      <div className="checkbox-row">
         <input
           id="acceptTerms"
           type="checkbox"
           checked={acceptTerms}
           onChange={() => handleTermsChange("terms", !acceptTerms)}
           required
-          style={{
-            minWidth: "18px",
-            minHeight: "18px",
-            accentColor: "var(--color-base-checkbox-check)",
-          }}
+          className="checkbox-input-compact"
         />
-        {t("payment.orderSummary.terms.acceptTerms")}{" "}
-        <a
-          href="#"
-          onClick={handleTermsClick}
-          style={{
-            textDecoration: "underline",
-          }}
-        >
-          {t("payment.orderSummary.terms.termsAndConditions")}
-        </a>
+        <label htmlFor="acceptTerms" className="checkbox-label-compact">
+          {t("payment.orderSummary.terms.acceptTerms")}{" "}
+          <a
+            href="#"
+            onClick={handleTermsClick}
+            className="terms-link"
+          >
+            {t("payment.orderSummary.terms.termsAndConditions")}
+          </a>
+        </label>
       </div>
-      <div
-        id="receiveComms"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-        }}
-      >
+      <div className="checkbox-row">
         <input
           id="receiveComms"
           type="checkbox"
           checked={receiveComms}
           onChange={() => handleTermsChange("consent", !receiveComms)}
-          style={{
-            minWidth: "18px",
-            minHeight: "18px",
-            accentColor: "var(--color-base-checkbox-check)",
-          }}
+          className="checkbox-input-compact"
         />
-        {t("payment.orderSummary.terms.receiveCommunications")}
+        <label htmlFor="receiveComms" className="checkbox-label-compact">
+          {t("payment.orderSummary.terms.receiveCommunications")}
+        </label>
       </div>
     </div>
   );

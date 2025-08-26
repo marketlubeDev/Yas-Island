@@ -273,127 +273,133 @@ function CheckOutSummaryMbl({
           {checkout?.items?.length || 1} {t("orderSummary.items")}
         </span>
       </div>
-      {/* View Items Button */}
-      {/* <button
-        onClick={() => setShowItems(!showItems)}
-        className="email-checkout__summary-viewItems"
-        type="button"
-      >
-        <div className="email-checkout__summary-viewItems-icon">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
+
+      {/* Optimized Item Details Section - Two-line layout with inline styles for reliability */}
+      {checkout?.items && checkout.items.length > 0 ? (
+        checkout.items.map((item, index) => (
+          <div 
+            key={index} 
+            className="order-item-compact"
+            style={{
+              border: '1px solid var(--color-base-product-card-divider)',
+              borderRadius: '8px',
+              marginBottom: '10px',
+              padding: '12px',
+              transition: 'all 0.2s ease'
+            }}
           >
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span className="email-checkout__summary-viewItems-icon-text">
-            {t("orderSummary.viewItems")}
-          </span>
-        </div>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          style={{
-            transform: showItems ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.2s",
-          }}
-        >
-          <polyline points="6,9 12,15 18,9"></polyline>
-        </svg>
-      </button> */}
-      {/* Item Details Section */}
-      {/* {showItems && ( */}
-      <div className="items-container">
-        {checkout?.items && checkout.items.length > 0 ? (
-          checkout.items.map((item, index) => (
-            <div key={index} className="order-item-minimal">
-              <div className="item-content">
-                <div className="item-main">
-                  <h4 className="item-title">
-                    {getProduct(item.productId)?.product?.product_title ||
-                      "Product"}
-                  </h4>
-                  <div className="item-meta">
-                    <span className="item-variant">
-                      {getProduct(item.productId)?.productVariant
-                        ?.productvariantname || "Variant"}
-                    </span>
-                    <span className="item-separator">•</span>
-                    <span className="item-date">
-                      {formatDate(item.validFrom)}
-                    </span>
-                    <span className="item-separator">•</span>
-                    <span className="item-quantity">
-                      {t("payment.orderSummary.qty")} {item.quantity || 0}
-                    </span>
-                  </div>
-                </div>
-                <div className="item-price">
-                  <span className="price-amount">
-                    {t("common.aed")}{" "}
-                    {(
-                      (getProduct(item.productId)?.productVariant?.net_amount ||
-                        0) *
-                        (item.quantity || 0) +
-                      (getProduct(item.productId)?.productVariant?.vat || 0) *
-                        (item.quantity || 0)
-                    ).toFixed(2)}
-                  </span>
-                </div>
-              </div>
+            <div 
+              className="item-header"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '6px',
+                gap: '8px'
+              }}
+            >
+              <span 
+                className="item-title"
+                style={{
+                  flex: '1',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: 'var(--color-summary-title)',
+                  margin: '0',
+                  lineHeight: '1.3',
+                  fontFamily: '"YAS Font", sans-serif',
+                  minWidth: '0',
+                  display: 'block'
+                }}
+              >
+                {getProduct(item.productId)?.product?.product_title ||
+                  "Product"}
+              </span>
+              <span 
+                className="item-price"
+                style={{
+                  flexShrink: '0',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: 'var(--color-summary-title)',
+                  fontFamily: '"YAS Font", sans-serif',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {t("common.aed")}{" "}
+                {(
+                  (getProduct(item.productId)?.productVariant?.net_amount ||
+                    0) *
+                    (item.quantity || 0) +
+                  (getProduct(item.productId)?.productVariant?.vat || 0) *
+                    (item.quantity || 0)
+                ).toFixed(2)}
+              </span>
             </div>
-          ))
-        ) : (
-          <div className="order-item-minimal">
-            <div className="item-content">
-              <div className="item-main">
-                <h4 className="item-title">No items in cart</h4>
-              </div>
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'nowrap',
+                gap: '4px',
+                fontSize: '12px',
+                color: '#666',
+                lineHeight: '1.2',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <span style={{ fontWeight: '500', color: 'var(--color-base-product-card-price)' }}>
+                {getProduct(item.productId)?.productVariant?.productvariantname || "Adult"}
+              </span>
+              <span style={{ color: '#ccc', margin: '0 2px' }}>•</span>
+              <span style={{ color: '#888' }}>
+                {formatDate(item.validFrom)}
+              </span>
+              <span style={{ color: '#ccc', margin: '0 2px' }}>•</span>
+              <span style={{ color: '#888', fontWeight: '500' }}>
+                Qty: {item.quantity || 0}
+              </span>
             </div>
           </div>
-        )}
-      </div>
+        ))
+      ) : (
+        <div 
+          className="order-item-compact"
+          style={{
+            border: '1px solid var(--color-base-product-card-divider)',
+            borderRadius: '8px',
+            marginBottom: '10px',
+            padding: '12px'
+          }}
+        >
+          <div className="item-header">
+            <h4 className="item-title">No items in cart</h4>
+          </div>
+        </div>
+      )}
 
-      {/* Cost Breakdown */}
-      <div className="email-checkout__summary-costBreakdown">
-        {checkout?.promotions?.[0]?.discount && (
-          <>
-            <div className="email-checkout__summary-costBreakdown-subTotal">
-              <span className="subTotal-Content">
-                {t("payment.orderSummary.subTotal")}
-              </span>
-              <span className="subTotal-Value">
-                {t("common.aed")} {checkout?.originalNetAmount}
-              </span>
-            </div>
+      {/* Simplified Cost Breakdown - Remove unnecessary wrapper */}
+      {checkout?.promotions?.[0]?.discount && (
+        <>
+          <div className="email-checkout__summary-costBreakdown-subTotal">
+            <span className="subTotal-Content">
+              {t("payment.orderSummary.subTotal")}
+            </span>
+            <span className="subTotal-Value">
+              {t("common.aed")} {checkout?.originalNetAmount}
+            </span>
+          </div>
 
-            <div
-              className="email-checkout__summary-costBreakdown-promo"
-              style={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <span className="promo-Content">
-                {t("orderSummary.promoCodeSavings")}
-              </span>
-              <span
-                className="promo-Value"
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
-              >
-                {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
-              </span>
-            </div>
-          </>
-        )}
-      </div>
+          <div className="email-checkout__summary-costBreakdown-promo">
+            <span className="promo-Content">
+              {t("orderSummary.promoCodeSavings")}
+            </span>
+            <span className="promo-Value">
+              {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
+            </span>
+          </div>
+        </>
+      )}
       {/* Promo Code Section - Only show if no coupon is applied */}
       {showPromoCode && !checkout?.promotions?.[0]?.discount && (
         <div className="email-checkout__summary-promoCode">
