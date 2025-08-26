@@ -94,6 +94,19 @@
     }
   }
 
+  /* Dark mode override for fadeout overlay */
+  .theme-dark & .order-summary-scrollable-wrapper::after {
+    background: linear-gradient(
+      to top,
+      var(--color-base-bg) 0%,
+      var(--color-base-bg) 15%,
+      rgba(0, 0, 0, 0.95) 30%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.4) 75%,
+      transparent 100%
+    );
+  }
+
   /* Scrollable content area */
   .order-summary-scrollable {
     height: 100%;
