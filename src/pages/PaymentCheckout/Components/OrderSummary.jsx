@@ -15,6 +15,7 @@ import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
 import { useResponsive } from "../../../hooks/responsiveHook/useResponsive";
+import { useUppercaseInput } from "../../../hooks/useUppercaseInput";
 
 export default function OrderSummary({
   formData,
@@ -27,7 +28,8 @@ export default function OrderSummary({
   const dispatch = useDispatch();
   const { isBigTablets } = useResponsive();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [promoCode, setPromoCode] = useState(
+  // Use uppercase input hook for promo code with display transformation
+  const promoCodeInput = useUppercaseInput(
     checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
@@ -207,10 +209,10 @@ export default function OrderSummary({
             })
           );
           setPromoCodeApplying(false);
-          if (promoCode) {
+          if (promoCodeInput.rawValue) {
             setIsModalVisible(true);
             // Clear the promo code input since it's now applied
-            setPromoCode("");
+            promoCodeInput.reset();
           } else if (message) {
             toast.error(message || t("toastMessages.invalidPromoCode"), {
               position: "top-center",
@@ -237,7 +239,7 @@ export default function OrderSummary({
 
   const handleRemovePromoCode = () => {
     setPromoCodeApplying(true);
-    setPromoCode("");
+    promoCodeInput.reset();
     setPromoCodeStatus(null);
     handleBasketCheck("", "", true);
   };
@@ -245,7 +247,7 @@ export default function OrderSummary({
   const handlePromoCode = async () => {
     try {
       setPromoCodeApplying(true);
-      if (!promoCode) {
+      if (!promoCodeInput.rawValue) {
         setPromoCodeApplying(false);
         toast.error(t("toastMessages.invalidPromoCode"), {
           position: "top-center",
@@ -253,7 +255,7 @@ export default function OrderSummary({
         setPromoCodeStatus("invalid");
         return;
       }
-      const response = await validatePromocode(promoCode);
+      const response = await validatePromocode(promoCodeInput.rawValue);
       let message = "";
       if (!response?.data?.coupondetails?.coupon) {
         setIsModalVisible(false);
@@ -270,7 +272,7 @@ export default function OrderSummary({
         setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
       } else {
-        setFormData({ ...formData, promoCode: promoCode });
+        setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
         setPromoCodeStatus("valid");
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
       }
@@ -400,11 +402,13 @@ export default function OrderSummary({
                     ? "invalid"
                     : ""
                 }`}
-                value={promoCode}
+                value={promoCodeInput.displayValue}
                 onChange={(e) => {
-                  setPromoCode(e.target.value);
+                  promoCodeInput.onChange(e);
                   setPromoCodeStatus(null);
                 }}
+                onCompositionStart={promoCodeInput.onCompositionStart}
+                onCompositionEnd={promoCodeInput.onCompositionEnd}
                 onFocus={() => setPromoCodeStatus(null)}
                 disabled={promoCodeApplying}
               />

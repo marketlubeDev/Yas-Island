@@ -54,37 +54,51 @@
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
   min-height: calc(100vh - 8rem);
-  overflow: hidden;
+  overflow: visible; // Prevent clipping of rounded corners
+  // Add footer clearance: footer height (2rem) + border-radius (2.5rem) + 24px = ~88px
+  padding-bottom: 88px;
 
   @include respond(desktop) {
-    padding: 30px;
+    padding: 30px 30px 88px 30px; // Maintain footer clearance
     min-height: calc(100vh - 6rem);
   }
   @include respond(bigTablets) {
-    padding: 30px;
+    padding: 30px 30px 88px 30px; // Maintain footer clearance
     min-height: calc(100vh - 6rem);
+  }
+  
+  @include respond(bigDesktop) {
+    // Larger radius (1.8rem) + footer (2rem) + 24px = ~84px
+    padding-bottom: 84px;
+  }
+  
+  @include respond(extraBigDesktop) {
+    // Largest radius (2.5rem) + footer (2rem) + 24px = ~96px
+    padding-bottom: 96px;
   }
 }
 
 .payment-checkout-body {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 88px 20px; // Add footer clearance
   min-height: calc(100vh - 7rem);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible; // Prevent clipping of rounded corners
+  
   @include respond(bigTablets) {
-    padding: 30px;
+    padding: 30px 30px 88px 30px; // Maintain footer clearance
     min-height: calc(100vh - 6rem);
   }
 
   @media (max-width: 1024px) {
-    padding: 1rem;
+    padding: 1rem 1rem 88px 1rem; // Maintain footer clearance
   }
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 88px 0.5rem; // Maintain footer clearance
   }
 }
 
@@ -100,6 +114,205 @@
 
 .payment-checkout__header {
   margin-bottom: 20px;
+}
+
+// Header with Back Button and Title (Desktop/Tablet only)
+.payment-checkout__header-with-back {
+  display: none; // Hidden on mobile by default
+  
+  // Show only on tablet and above (≥768px)
+  @include respond(tablets) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 35px; // Match container padding
+    padding-right: 35px;
+  }
+  
+  @include respond(bigTablets) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  @include respond(desktop) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  @include respond(bigDesktop) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
+  @include respond(extraBigDesktop) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+// Circular Back Button (reduced size)
+.checkout-back-button-circular {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 2px solid var(--color-close-btn-border);
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+  // Maintain 44px hit target for accessibility
+  padding: 2px;
+  
+  &:hover {
+    background: var(--color-pymnt-container-bg);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--color-base-mobile-header-lang-dropdown-item-lang-check);
+    outline-offset: 2px;
+  }
+  
+  &:active {
+    background: var(--color-pymnt-container-bg);
+    opacity: 0.8;
+  }
+  
+  // Smaller on tablets
+  @include respond(tablets) {
+    height: 32px;
+    width: 32px;
+    padding: 6px; // Maintain 44px hit target (32 + 12 = 44)
+  }
+  
+  @include respond(bigTablets) {
+    height: 36px;
+    width: 36px;
+    padding: 4px; // Maintain 44px hit target (36 + 8 = 44)
+  }
+}
+
+.checkout-back-button-circular__icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+  
+  @include respond(tablets) {
+    width: 14px;
+    height: 14px;
+  }
+  
+  @include respond(bigTablets) {
+    width: 16px;
+    height: 16px;
+  }
+  
+  &--rtl {
+    transform: scaleX(-1);
+  }
+}
+
+.checkout-back-button-circular--rtl {
+  // RTL: button stays on left, only icon flips
+}
+
+// Title styling (centered)
+.payment-checkout__title {
+  color: var(--color-base-text);
+  font-size: 2.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  font-family: "YAS Font", sans-serif;
+  margin: 0;
+  text-align: center;
+  
+  @include respond(tablets) {
+    font-size: 1.8rem;
+  }
+  
+  @include respond(bigTablets) {
+    font-size: 1.9rem;
+  }
+  
+  @include respond(desktop) {
+    font-size: 2rem;
+  }
+}
+
+// Mobile Header (show only on mobile)
+.payment-checkout__header-mobile {
+  display: block; // Show on mobile by default
+  
+  // Hide on tablet and above (≥768px)
+  @include respond(tablets) {
+    display: none;
+  }
+  
+  @include respond(bigTablets) {
+    display: none;
+  }
+  
+  @include respond(desktop) {
+    display: none;
+  }
+  
+  @include respond(bigDesktop) {
+    display: none;
+  }
+  
+  @include respond(extraBigDesktop) {
+    display: none;
+  }
 }
 
 .back-button {
@@ -136,17 +349,22 @@
   justify-content: center;
   margin-bottom: 25px;
   position: relative;
-  padding: 0px;
+  padding: 8px 0px; // Equal top/bottom padding (16px total, same as original)
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box; // Ensure consistent height calculation
 
   @include respond(bigTablets) {
     margin-bottom: 40px;
-    padding: 8px 0px;
+    padding: 10px 0px; // Equal top/bottom padding (20px total, same as original)
   }
 
   @include respond(desktop) {
     margin-bottom: 25px;
-    padding: 8px 0px;
+    padding: 9px 0px; // Equal top/bottom padding (18px total, same as original)
+  }
+
+  @include respond(bigDesktop) {
+    padding: 10px 0px; // Equal top/bottom padding (20px total, same as original)
   }
 }
 
@@ -155,35 +373,41 @@
   position: relative;
   min-width: 500px;
   font-family: "YAS Font", sans-serif;
+  padding: 4px 0px; // Equal top/bottom padding for step items
+  box-sizing: border-box; // Ensure consistent height calculation
+  
   @include respond(desktop) {
     min-width: 450px;
+    padding: 3px 0px; // Equal top/bottom padding
   }
 
   @include respond(bigDesktop) {
     min-width: 400px;
+    padding: 4px 0px; // Equal top/bottom padding
   }
 }
 
 .step span {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px; // Normalized margin for consistent spacing
   color: var(--color-pymnt-step-clr);
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2; // Consistent line height
   text-transform: capitalize;
-  font-family: "YAS Font", sans-serif;
   font-family: "YAS Font", sans-serif;
 
   @include respond(desktop) {
     font-size: 0.9rem;
-    margin-bottom: 7px;
+    margin-bottom: 5px; // Normalized margin
+    line-height: 1.2;
   }
 
   @include respond(bigDesktop) {
     font-size: 0.85rem;
-    margin-bottom: 6px;
+    margin-bottom: 5px; // Normalized margin
+    line-height: 1.2;
   }
 }
 
@@ -193,15 +417,18 @@
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.3; // Consistent line height
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
+  
   @include respond(desktop) {
     font-size: 1.1rem;
+    line-height: 1.3;
   }
 
   @include respond(bigDesktop) {
     font-size: 1rem;
+    line-height: 1.3;
   }
 }
 
@@ -211,15 +438,19 @@
 
 .step-line {
   position: absolute;
-  bottom: -15px;
+  bottom: -12px; // Adjusted to maintain visual balance with new padding
   left: 0;
   width: 100%;
   height: 3px;
   background-color: #ddd;
 
   @include respond(desktop) {
-    bottom: -15px;
+    bottom: -10px; // Adjusted for desktop
     height: 2.5px;
+  }
+
+  @include respond(bigDesktop) {
+    bottom: -12px; // Adjusted for big desktop
   }
 }
 
@@ -230,9 +461,8 @@
 }
 
 .payment-checkout__content {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 2.5rem;
+  padding: 32px; // Equal padding all sides (normalized from 35px)
   background: var(--color-email-form-box);
   // box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
@@ -242,9 +472,10 @@
   justify-content: center;
   align-items: center;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box; // Ensure consistent sizing
 
   @include respond(desktop) {
-    padding: 20px;
+    padding: 20px; // Equal padding all sides
     border-radius: 1.5rem;
     width: 93%;
     max-width: 1200px;
@@ -252,7 +483,7 @@
   }
 
   @include respond(bigDesktop) {
-    padding: 24px;
+    padding: 24px; // Equal padding all sides
     border-radius: 1.8rem;
     width: 90%;
     max-width: 1150px;
@@ -328,9 +559,8 @@
 }
 
 .payment-checkout__contentnew {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 2.5rem;
+  padding: 32px; // Equal padding all sides (normalized from 35px)
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: auto;
@@ -340,6 +570,7 @@
   justify-content: space-between;
   align-items: start;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box; // Ensure consistent sizing
 
   // Stack layout and remove heavy visuals on small devices
   @include respond(bigTablets) {
@@ -528,9 +759,8 @@
   }
 }
 .payment-checkout__contentnew_cardpayment {
-  border-radius: 16px;
-  padding: 35px;
   border-radius: 12px;
+  padding: 32px; // Equal padding all sides (normalized from 35px)
   background: var(--color-email-form-box);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   height: 100%;
@@ -540,6 +770,7 @@
   justify-content: center;
   align-items: center;
   font-family: "YAS Font", sans-serif;
+  box-sizing: border-box; // Ensure consistent sizing
   // display: flex;
   // justify-content: center;
   // align-items: center;

@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import validatePromocode from "../../../serivces/promocode/promocode";
 import { toast } from "sonner";
+import { useUppercaseInput } from "../../../hooks/useUppercaseInput";
 
 function PromoBoxMbl() {
   const { t } = useTranslation();
-  const [code, setCode] = useState("");
+  // Use uppercase input hook for promo code with display transformation
+  const promoCodeInput = useUppercaseInput("");
   const [status, setStatus] = useState(null); // null | 'valid' | 'invalid'
   const [loading, setLoading] = useState(false);
 
   const handleApply = async () => {
     try {
       setLoading(true);
-      if (!code) {
+      if (!promoCodeInput.rawValue) {
         setStatus("invalid");
         setLoading(false);
         toast.error(t("toastMessages.invalidPromoCode"), {
@@ -20,7 +22,7 @@ function PromoBoxMbl() {
         });
         return;
       }
-      const response = await validatePromocode(code);
+      const response = await validatePromocode(promoCodeInput.rawValue);
       if (!response?.data?.coupondetails?.coupon) {
         setStatus("invalid");
         toast.error(
@@ -72,11 +74,13 @@ function PromoBoxMbl() {
                 : ""
             }`}
             placeholder="f0981902"
-            value={code}
+            value={promoCodeInput.displayValue}
             onChange={(e) => {
-              setCode(e.target.value);
+              promoCodeInput.onChange(e);
               setStatus(null);
             }}
+            onCompositionStart={promoCodeInput.onCompositionStart}
+            onCompositionEnd={promoCodeInput.onCompositionEnd}
             onFocus={() => setStatus(null)}
           />
           <button

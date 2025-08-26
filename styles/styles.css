@@ -438,6 +438,9 @@ body,
   position: sticky;
   top: 0;
   overflow: hidden;
+  /* Ensure no animations/transitions ever apply to the sidebar container */
+  animation: none !important;
+  transition: none !important;
 }
 .side-bar-ar {
   padding: 2rem 1rem 3rem 0rem;
@@ -493,7 +496,6 @@ body,
   padding: 0rem;
   color: rgb(189, 189, 189);
   background: var(--color-base-side-bar-item-right-bg);
-  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   z-index: 1000;
@@ -635,7 +637,7 @@ body,
   position: absolute;
   top: -40.2%;
   right: -10%;
-  width: 38px;
+  width: 42px;
   height: 26px;
   background-color: var(--color-base-product-card-card-item-bg);
   border-bottom-right-radius: 15px;
@@ -915,7 +917,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @keyframes slideInLeft {
   from {
-    transform: translateX(-50px);
+    transform: translateX(0px);
     opacity: 0;
   }
   to {
@@ -925,7 +927,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @keyframes slideInRight {
   from {
-    transform: translateX(50px);
+    transform: translateX(0px);
     opacity: 0;
   }
   to {
@@ -935,7 +937,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @keyframes slideDown {
   from {
-    transform: translateY(-30px);
+    transform: translateY(0px);
     opacity: 0;
   }
   to {
@@ -945,7 +947,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @keyframes fadeInUp {
   from {
-    transform: translateY(30px);
+    transform: translateY(0px);
     opacity: 0;
   }
   to {
@@ -968,7 +970,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(0px);
   }
 }
 @keyframes shimmer {
@@ -985,7 +987,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   grid-template-columns: 13.5rem 1fr;
   gap: 0;
   background-color: var(--color-base-product-card-bg);
-  animation: fadeIn 0.8s ease-out;
+  /* Remove page fade-in to avoid animating the sidebar grid */
+  animation: none;
   height: 100vh;
   overflow: hidden;
 }
@@ -2633,6 +2636,18 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   background-color: var(--color-today-bg);
   color: var(--color-base-date-clr);
   border: 1px solid var(--color-today-border);
+}
+
+/* Muted dates (adjacent months) */
+.day.muted {
+  opacity: 0.4;
+  color: var(--color-base-date-clr);
+}
+.day.muted:hover:not(.disabled) {
+  opacity: 0.7;
+}
+.day.muted.selected {
+  opacity: 1;
 }
 
 /* Disabled dates (previous month) */
@@ -11799,6 +11814,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+}
+
+.booking-modal__calendar-date.muted {
+  opacity: 0.4;
+  color: var(--color-bkg-clndr-date-clr);
+}
+.booking-modal__calendar-date.muted:hover:not(.disabled) {
+  opacity: 0.7;
+}
+.booking-modal__calendar-date.muted.selected {
+  opacity: 1;
 }
 
 .booking-modal__calendar-date.disabled {

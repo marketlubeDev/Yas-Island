@@ -8,6 +8,7 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
+import { useUppercaseInput } from "../../../hooks/useUppercaseInput";
 
 function CheckOutSummaryMbl({
   formData,
@@ -20,7 +21,8 @@ function CheckOutSummaryMbl({
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showItems, setShowItems] = useState(false);
-  const [promoCode, setPromoCode] = useState(
+  // Use uppercase input hook for promo code with display transformation
+  const promoCodeInput = useUppercaseInput(
     checkout?.coupons?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
@@ -111,7 +113,7 @@ function CheckOutSummaryMbl({
           setPromoCodeApplying(false);
         } else {
           const orderDetails = res?.orderdetails?.order;
-          const attemptingToApplyCoupon = Boolean(promoCode);
+          const attemptingToApplyCoupon = Boolean(promoCodeInput.rawValue);
 
           const items = orderDetails?.items?.map((item) => ({
             productId: item?.productId,
@@ -173,12 +175,12 @@ function CheckOutSummaryMbl({
             })
           );
 
-          if (promoCode) {
+          if (promoCodeInput.rawValue) {
             toast.success(t("orderSummary.couponApplied"), {
               position: "top-center",
             });
             // Clear the promo code input since it's now applied
-            setPromoCode("");
+            promoCodeInput.reset();
             // Force component re-render to ensure totals update
           } else if (message) {
             toast.error(message || t("toastMessages.invalidPromoCode"), {
@@ -212,7 +214,7 @@ function CheckOutSummaryMbl({
 
   const handleRemovePromoCode = async () => {
     setRemovingPromoCode(true);
-    setPromoCode("");
+    promoCodeInput.reset();
     setPromoCodeStatus(null);
     handleBasketCheck("", "", true);
     if (setShowPromoPopup) {
@@ -224,7 +226,7 @@ function CheckOutSummaryMbl({
   const handlePromoCode = async () => {
     try {
       setPromoCodeApplying(true);
-      if (!promoCode) {
+      if (!promoCodeInput.rawValue) {
         toast.error(t("toastMessages.invalidPromoCode"), {
           position: "top-center",
         });
@@ -232,7 +234,7 @@ function CheckOutSummaryMbl({
         setPromoCodeStatus("invalid");
         return;
       }
-      const response = await validatePromocode(promoCode);
+      const response = await validatePromocode(promoCodeInput.rawValue);
 
       if (!response?.data?.coupondetails?.coupon) {
         let message = "";
@@ -247,7 +249,7 @@ function CheckOutSummaryMbl({
         setPromoCodeStatus("invalid");
         handleBasketCheck("", message);
       } else {
-        setFormData({ ...formData, promoCode: promoCode });
+        setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
         setPromoCodeStatus("valid");
         handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
       }
@@ -409,11 +411,13 @@ function CheckOutSummaryMbl({
                   ? "invalid"
                   : ""
               }`}
-              value={promoCode}
+              value={promoCodeInput.displayValue}
               onChange={(e) => {
-                setPromoCode(e.target.value);
+                promoCodeInput.onChange(e);
                 setPromoCodeStatus(null);
               }}
+              onCompositionStart={promoCodeInput.onCompositionStart}
+              onCompositionEnd={promoCodeInput.onCompositionEnd}
               onFocus={() => setPromoCodeStatus(null)}
             />
             <button

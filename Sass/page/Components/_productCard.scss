@@ -1228,6 +1228,20 @@
   border: 1px solid var(--color-today-border);
 }
 
+/* Muted dates (adjacent months) */
+.day.muted {
+  opacity: 0.4;
+  color: var(--color-base-date-clr);
+  
+  &:hover:not(.disabled) {
+    opacity: 0.7;
+  }
+  
+  &.selected {
+    opacity: 1;
+  }
+}
+
 /* Disabled dates (previous month) */
 .day.disabled {
   color: #ccc;

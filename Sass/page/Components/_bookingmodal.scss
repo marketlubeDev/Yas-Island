@@ -163,6 +163,19 @@
   flex-shrink: 0 !important;
 }
 
+.booking-modal__calendar-date.muted {
+  opacity: 0.4;
+  color: var(--color-bkg-clndr-date-clr);
+  
+  &:hover:not(.disabled) {
+    opacity: 0.7;
+  }
+  
+  &.selected {
+    opacity: 1;
+  }
+}
+
 .booking-modal__calendar-date.disabled {
   color: #ccc;
   cursor: not-allowed;
