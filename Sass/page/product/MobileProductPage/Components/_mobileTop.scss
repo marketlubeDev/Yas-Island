@@ -15,8 +15,13 @@
   scroll-snap-type: x proximity;
   gap: 0;
   position: sticky;
-  top: 0;
+  top: 64px; // Position below fixed mobile-header
   z-index: 100;
+
+  // Samsung S8 and similar small devices
+  @media only screen and (max-width: 380px) {
+    top: 60px; // Adjust for smaller header height
+  }
 
   // Fix border rendering issues in Chrome
   transform: translateZ(0); // Force hardware acceleration
@@ -28,6 +33,7 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 

@@ -37,7 +37,6 @@ function AccessibilityPopUpMbl() {
     { level: 1, label: "1x" },
     { level: 1.12, label: "1.25x" },
     { level: 1.25, label: "1.5x" },
-    { level: 1.5, label: "2x" },
   ];
 
   const handleZoomClick = (level) => {
