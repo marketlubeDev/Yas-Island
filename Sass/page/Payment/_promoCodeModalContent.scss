@@ -81,6 +81,12 @@
     border-radius: 40px;
     background: var(--color-base-bg);
     box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
+    position: relative;
+    overflow: visible;
+  }
+  .ant-modal-body {
+    position: relative;
+    overflow: visible;
   }
 }
 /* Add this to your CSS file */

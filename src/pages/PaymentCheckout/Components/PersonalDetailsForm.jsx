@@ -242,8 +242,8 @@ const PhoneInputComponent = ({
       buttonClass="form-group__phone-button"
       dropdownClass="form-group__phone-dropdown"
       enableSearch={false}
-      disableDropdown={true}
-      countryCodeEditable={false}
+      disableDropdown={false}
+      countryCodeEditable={true}
       inputProps={{ onFocus }}
       /* allow full dataset so library can resolve dial codes reliably */
       containerStyle={{

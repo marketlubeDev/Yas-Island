@@ -275,19 +275,23 @@ function BookingModalMbl({
     // Normalize today to local midnight to avoid timezone issues
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     // Calculate min date based on product constraints
     const offset = product?.sale_date_offset || 0;
     const minDate = new Date(today);
     minDate.setDate(today.getDate() + offset);
-    
+
     // Calculate max date based on product constraints
     let maxDate;
     if (product?.calendar_range_days && product?.calendar_end_date) {
       const rangeEndDate = new Date(minDate);
-      rangeEndDate.setDate(minDate.getDate() + product?.calendar_range_days - 1);
+      rangeEndDate.setDate(
+        minDate.getDate() + product?.calendar_range_days - 1
+      );
       const calendarEndDate = new Date(product?.calendar_end_date);
-      maxDate = new Date(Math.min(calendarEndDate.getTime(), rangeEndDate.getTime()));
+      maxDate = new Date(
+        Math.min(calendarEndDate.getTime(), rangeEndDate.getTime())
+      );
     } else if (product?.calendar_range_days) {
       maxDate = new Date(minDate);
       maxDate.setDate(minDate.getDate() + product?.calendar_range_days - 1);
@@ -296,22 +300,22 @@ function BookingModalMbl({
     } else {
       maxDate = new Date(today.getFullYear(), 11, 31);
     }
-    
+
     // Check if today's month is within the allowed range
     const todayMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     const minMonth = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
     const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
-    
+
     // If today's month is before the minimum allowed month, use the minimum month
     if (todayMonth < minMonth) {
       return minMonth;
     }
-    
+
     // If today's month is after the maximum allowed month, use the maximum month
     if (todayMonth > maxMonth) {
       return maxMonth;
     }
-    
+
     // Otherwise, use today's month
     return todayMonth;
   };
@@ -326,20 +330,24 @@ function BookingModalMbl({
 
   const handleDateClick = (date) => {
     // Normalize the date to local midnight to avoid timezone issues
-    const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const normalizedDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
     const formattedDate = formatDateToYYYYMMDD(normalizedDate);
-    
+
     // Check if the clicked date is from a different month than currently displayed
     const clickedMonth = normalizedDate.getMonth();
     const clickedYear = normalizedDate.getFullYear();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
-    
+
     // If cross-month selection, update the view month
     if (clickedMonth !== currentMonth || clickedYear !== currentYear) {
       setCurrentDate(new Date(clickedYear, clickedMonth, 1));
     }
-    
+
     // Set the selected date (this will trigger the selection callback)
     setSelectedDate(formattedDate);
   };
@@ -697,16 +705,15 @@ function BookingModalMbl({
     const days = [];
 
     // Add leading days from previous month
-    const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+    const prevMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1
+    );
     const daysInPrevMonth = getDaysInMonth(prevMonth);
-    
+
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       const day = daysInPrevMonth - i;
-      const date = new Date(
-        prevMonth.getFullYear(),
-        prevMonth.getMonth(),
-        day
-      );
+      const date = new Date(prevMonth.getFullYear(), prevMonth.getMonth(), day);
 
       const formattedDateString = formatDateToYYYYMMDD(date);
       const isSelected = isDateSelected(date);
@@ -759,14 +766,13 @@ function BookingModalMbl({
     // Add trailing days from next month to complete the grid (42 cells = 6 weeks)
     const totalCells = 42;
     const remainingCells = totalCells - days.length;
-    const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    const nextMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1
+    );
 
     for (let day = 1; day <= remainingCells; day++) {
-      const date = new Date(
-        nextMonth.getFullYear(),
-        nextMonth.getMonth(),
-        day
-      );
+      const date = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), day);
 
       const formattedDateString = formatDateToYYYYMMDD(date);
       const isSelected = isDateSelected(date);
@@ -902,10 +908,14 @@ function BookingModalMbl({
     100% { background-position: -200% 0; }
   }
 
-  .calendar-skeleton {
+  .calendar-skeleton,
+  .guest-section-skeleton {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 16px;
     height: fit-content;
+    overflow: hidden;
   }
 
   .calendar-header-skeleton {
@@ -925,16 +935,21 @@ function BookingModalMbl({
     border-radius: 4px;
   }
 
-  .guest-section-skeleton {
-    padding: 16px;
-    height: fit-content;
-  }
-
   .guest-controls-skeleton {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
+  }
+  
+  @media (max-width: 360px) {
+    .calendar-skeleton,
+    .guest-section-skeleton {
+      padding: 8px;
+    }
+    .calendar-days-skeleton {
+      gap: 4px;
+    }
   }
   `;
 
