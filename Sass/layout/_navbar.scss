@@ -259,6 +259,35 @@
       z-index: 100;
       /* Add a small overlap to prevent cracks */
       transform: translateX(-0.5px) translateY(-0.5px);
+
+      // @include respond(d1366) {
+      //   /* fine-tune for old 1366×768 laptops */
+      //   display: none;
+      // }
+      // @include respond(d1440) {
+      //   /* common desktop sweet spot */
+      //   display: none;
+      // }
+      // @include respond(d1728) {
+      //   /* MacBook Air 13/15 scaled logical */
+      //   display: none;
+      // }
+      // @include respond(d1920) {
+      //   /* 1080p wide */
+      //   display: none;
+      // }
+      // @include respond(d2560) {
+      //   /* 27” 1440p / Retina logicals */
+      //   display: none;
+      // }
+      // @include respond(d3440) {
+      //   /* ultrawide monitors */
+      //   display: none;
+      // }
+      // @include respond(d3840) {
+      //   /* 4K and above */
+      //   display: none;
+      // }
     }
 
     // Curved notch at bottom right (inward curve)
