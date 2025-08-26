@@ -30,6 +30,7 @@
     .form-group-row {
       display: flex;
       gap: 2rem;
+      align-items: flex-end;
       margin-bottom: 2rem;
       // margin-left: -2rem;
 
@@ -459,6 +460,7 @@
 
       .form-group-row {
         gap: 1.5rem;
+        align-items: flex-end;
         margin-bottom: 1.5rem;
         // margin-left: -1.5rem;
       }
