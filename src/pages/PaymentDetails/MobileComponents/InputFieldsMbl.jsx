@@ -347,8 +347,8 @@ const PhoneInputComponent = ({
       buttonClass="email-checkout__phone-button"
       dropdownClass="email-checkout__phone-dropdown"
       enableSearch={false}
-      disableDropdown={true}
-      countryCodeEditable={false}
+      disableDropdown={false}
+      countryCodeEditable={true}
       inputProps={{ onFocus }}
       containerStyle={{
         width: "100%",
