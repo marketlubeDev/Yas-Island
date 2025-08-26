@@ -17,6 +17,15 @@
   z-index: 100;
   position: sticky;
   top: 0;
+  background: var(--color-base-mobile-product-page-bg);
+}
+
+// Ensure the mobile-topnav-fixed ID also has sticky positioning
+#mobile-topnav-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-base-mobile-product-page-bg);
 }
 
 // Scrollable content area
