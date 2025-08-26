@@ -369,6 +369,13 @@
   }
 }
 
+// Hide the steps header on mobile screens
+@media (max-width: 767.98px) {
+  .payment-checkout__steps {
+    display: none;
+  }
+}
+
 .step {
   text-align: center;
   position: relative;
@@ -498,14 +505,20 @@
 
     @include respond(smallPhone) {
       min-height: 50vh;
+      flex-direction: column;
+      padding: 0rem;
     }
 
     @include respond(phone) {
       min-height: 55vh;
+      flex-direction: column;
+      padding: 0rem;
     }
 
     @include respond(tablets) {
       min-height: 58vh;
+      flex-direction: column;
+      padding: 0rem;
     }
 
     @include respond(bigTablets) {
