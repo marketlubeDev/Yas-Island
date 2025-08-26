@@ -22,7 +22,7 @@
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   border: 2px solid var(--color-base-product-card-card-item-border);
   position: relative; /* Ensure proper stacking context */
   touch-action: pan-y; /* Allow vertical scrolling inside modal */
