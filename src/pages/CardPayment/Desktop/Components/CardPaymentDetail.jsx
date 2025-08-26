@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
-import { clearCart } from "../../../../global/cartSlice";
+import { clearCart, setIsCartOpen } from "../../../../global/cartSlice";
 import { useSelector } from "react-redux";
 
 // Add keyframe animation
@@ -30,6 +30,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     dispatch(clearCart());
     navigate("/payment-success", { replace: true });
   };
+
+  useEffect(() => {
+    dispatch(setIsCartOpen(false));
+  }, [orderData]);
 
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
