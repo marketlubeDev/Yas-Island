@@ -675,7 +675,8 @@
       min-height: 16px;
       width: 16px;
       height: 16px;
-      margin: 2px 0 0 0; // Slight top margin to align with text
+      margin-top: 0; // Remove any top margin for perfect alignment with text
+
       accent-color: var(--color-base-checkbox-check);
       cursor: pointer;
       flex-shrink: 0;

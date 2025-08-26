@@ -342,7 +342,7 @@
   background: var(--color-bkg-footer-bg);
   align-items: center;
   width: 100%;
-  box-shadow: 1px -2px 3px rgba(0, 0, 255, 0.08);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.03), 0 -2px 8px rgba(0, 0, 0, 0.04); /* Very soft, gentle shadow matching reference */
   position: sticky;
   bottom: 0;
   margin: 0 auto;
@@ -460,7 +460,7 @@
   // max-width: 320px;
   // margin: 0 auto 16px auto;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.04);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06); /* Soft, subtle shadow matching footer */
 
   .guests-summary {
     position: relative;
