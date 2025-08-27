@@ -3707,6 +3707,7 @@ html[lang=ar] .guest-label {
   flex-shrink: 0;
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
+  height: 3.25rem;
 }
 
 .delete-btn {
@@ -6933,20 +6934,6 @@ html[dir=rtl] .back-button {
     margin: 0.8rem 0;
   }
 }
-.theme-light .iframe-container iframe,
-.iframe-container.theme-light iframe,
-.payfort-container.theme-light .iframe-container iframe {
-  color-scheme: light !important;
-  background-color: white !important;
-}
-
-.theme-dark .iframe-container iframe,
-.iframe-container.theme-dark iframe,
-.payfort-container.theme-dark .iframe-container iframe {
-  color-scheme: dark !important;
-  background-color: black !important;
-}
-
 .payfort {
   width: 100%;
   height: 100%;
@@ -8005,6 +7992,26 @@ html[dir=rtl] .back-button {
     overflow-x: hidden;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .mobile-content {
+    padding-bottom: 72.8px;
+    overflow-x: hidden;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .mobile-content {
+    padding-bottom: 70px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .mobile-content {
+    padding-bottom: 89.6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
 
 .mobile-bottomnav {
   position: fixed;
@@ -8028,30 +8035,6 @@ html[dir=rtl] .back-button {
   padding: 1.2rem 1.2rem 8px 1.2rem;
   background: var(--color-base-mobile-product-page-bg);
 }
-@media only screen and (max-width: 380px) {
-  .attractions-list {
-    gap: 12px;
-    padding: 1.2rem 1.2rem 6px 1.2rem;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attractions-list {
-    gap: 17.92px;
-    padding: 0.896rem 0.896rem 8.96px 0.896rem;
-    min-width: 375px;
-    max-width: 375px;
-    box-sizing: border-box;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attractions-list {
-    gap: 17.92px;
-    padding: 1.008rem 1.008rem 8.96px 1.008rem;
-    min-width: 414px;
-    max-width: 414px;
-    box-sizing: border-box;
-  }
-}
 .attractions-list__loading {
   display: flex;
   justify-content: center;
@@ -8070,34 +8053,6 @@ html[dir=rtl] .back-button {
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
-}
-@media only screen and (max-width: 350px) {
-  .attraction-card {
-    gap: 8px;
-    padding: 6px;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card {
-    border-radius: 11.2px;
-    border-width: 1.68px;
-    padding: 11.2px;
-    gap: 13.44px;
-    min-width: 100%;
-    overflow: visible;
-    position: relative;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card {
-    border-radius: 11.2px;
-    border-width: 1.68px;
-    padding: 13.44px;
-    gap: 13.44px;
-    min-width: 100%;
-    overflow: visible;
-    position: relative;
-  }
 }
 .attraction-card__img {
   width: 120px;
@@ -8131,11 +8086,50 @@ html[dir=rtl] .back-button {
     border-radius: 4.48px;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 95.2px;
+    height: 67.2px;
+    border-radius: 3.36px;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__img {
     width: 112px;
     height: 78.4px;
     border-radius: 4.48px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 112px;
+    height: 78.4px;
+    border-radius: 4.48px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 123.2px;
+    height: 84px;
+    border-radius: 5.6px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__img {
+    width: 120px;
+    height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 156.8px;
+    height: 100.8px;
+    border-radius: 6.72px;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 }
 .attraction-card__content {
@@ -8148,65 +8142,73 @@ html[dir=rtl] .back-button {
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__content {
     flex: 1 1 auto;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 6.72px;
   }
 }
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__content {
     flex: 1 1 auto;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 11.2px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    max-width: none;
+    overflow: visible;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    gap: 13.44px;
+    min-width: 0;
+    max-width: none;
+    overflow: visible;
   }
 }
 .attraction-card__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  min-height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card__header {
-    gap: 0 !important;
-    justify-content: flex-start !important;
-    min-height: 67.2px !important;
-    align-items: center !important;
-  }
-  .zoom-1-25x .attraction-card__header > div:first-child {
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .zoom-1-25x .attraction-card__header > div:last-child {
-    margin-left: -35px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card__header {
-    gap: 0 !important;
-    justify-content: flex-start !important;
-    min-height: 67.2px !important;
-    align-items: center !important;
-  }
-  .zoom-1-25x .attraction-card__header > div:first-child {
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .zoom-1-25x .attraction-card__header > div:last-child {
-    margin-left: -30px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+.attraction-card__header > div:first-child {
+  flex: 1;
+  min-width: 0;
+  margin-right: 1rem;
 }
 .attraction-card__title {
   font-size: 15px;
@@ -8216,38 +8218,74 @@ html[dir=rtl] .back-button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
+  flex: 1;
+  min-width: 0;
 }
 @media only screen and (max-width: 430px) and (min-width: 376px) {
   .attraction-card__title {
     font-size: 14px;
-    max-width: 120px;
   }
 }
 @media only screen and (max-width: 375px) and (min-width: 351px) {
   .attraction-card__title {
     font-size: 13px;
-    max-width: 110px;
   }
 }
 @media only screen and (max-width: 350px) {
   .attraction-card__title {
     font-size: 13px;
-    max-width: 100px;
   }
 }
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__title {
     font-size: 14.56px;
     margin-bottom: 2.24px;
-    max-width: 123.2px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 13.44px;
+    margin-bottom: 2.24px;
   }
 }
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__title {
     font-size: 15.68px;
     margin-bottom: 2.24px;
-    max-width: 134.4px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 15.68px;
+    margin-bottom: 2.24px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 16.8px;
+    margin-bottom: 2.24px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-base-mobile-product-page-title);
+    margin-bottom: 2px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 20.16px;
+    margin-bottom: 3.36px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
   }
 }
 .attraction-card__desc {
@@ -8255,56 +8293,25 @@ html[dir=rtl] .back-button {
   font-weight: 400;
   color: var(--color-base-mobile-product-page-subtitle);
   margin-bottom: 4px;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
-}
-@media only screen and (max-width: 430px) and (min-width: 376px) {
-  .attraction-card__desc {
-    font-size: 13px;
-    max-width: 120px;
-  }
-}
-@media only screen and (max-width: 375px) and (min-width: 351px) {
-  .attraction-card__desc {
-    font-size: 12px;
-    max-width: 110px;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .attraction-card__desc {
-    font-size: 12px;
-    max-width: 100px;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-  .attraction-card__desc {
-    white-space: wrap;
-    max-width: 100%;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card__desc {
-    font-size: 13.44px;
-    margin-bottom: 4.48px;
-    max-width: 123.2px;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card__desc {
-    font-size: 14.56px;
-    margin-bottom: 4.48px;
-    max-width: 134.4px;
-  }
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
 }
 .attraction-card__action {
-  display: flex;
+  flex: 0;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: center;
   gap: 4px;
   width: 120px;
   flex-shrink: 0;
+  height: 100%;
+  padding: 0;
 }
 html[lang=ar] .attraction-card__action {
   align-items: flex-start;
@@ -8330,7 +8337,7 @@ html[lang=ar] .attraction-card__action {
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__action {
     width: 106.4px;
-    gap: 4.48px;
+    gap: 2.24px;
     flex-shrink: 0;
     margin-right: 8.96px;
     margin-left: 0;
@@ -8339,10 +8346,51 @@ html[lang=ar] .attraction-card__action {
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__action {
     width: 112px;
-    gap: 4.48px;
+    gap: 3.36px;
     flex-shrink: 0;
     margin-right: 11.2px;
     margin-left: 0;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 109.76px;
+    gap: 3.36px;
+    flex-shrink: 0;
+    margin-right: 10.08px;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 134.4px;
+    gap: 4.48px;
+    flex-shrink: 0;
+    margin-right: 13.44px;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    width: 120px;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 168px;
+    gap: 6.72px;
+    flex-shrink: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
   }
 }
 .attraction-card__add-btn {
@@ -8388,6 +8436,42 @@ html[lang=ar] .attraction-card__action {
   .zoom-1-25x .attraction-card__add-btn {
     padding: 4.48px 22.4px;
     font-size: 15.68px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 4.48px 21.28px;
+    font-size: 15.68px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 5.6px 26.88px;
+    font-size: 16.8px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__add-btn {
+    background: var(--color-base-mobile-product-page-btn-bg);
+    color: var(--color-base-mobile-product-page-btn-text);
+    border: 1px solid var(--color-base-mobile-product-page-btn-border);
+    padding: 6px 20px;
+    font-size: 14px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 8.96px 31.36px;
+    font-size: 17.92px;
     border-radius: 2.24rem;
     border-width: 1.12px;
   }
@@ -8460,6 +8544,54 @@ html[lang=ar] .attraction-card__price {
     margin-left: 0;
   }
 }
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 14.56px;
+    margin-right: 0;
+    gap: 6.72px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 17.92px;
+    margin-right: 0;
+    gap: 11.2px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-base-mobile-product-page-price);
+    margin-right: 0;
+  }
+  html[lang=ar] .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 20.16px;
+    margin-right: 0;
+    gap: 13.44px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 .attraction-card__vat {
   font-size: 10px;
   color: var(--color-base-mobile-product-page-vat-text);
@@ -8474,6 +8606,28 @@ html[lang=ar] .attraction-card__price {
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__vat {
     font-size: 11.2px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 11.2px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 12.32px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__vat {
+    font-size: 10px;
+    color: var(--color-base-mobile-product-page-vat-text);
+    font-weight: 400;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 13.44px;
   }
 }
 
