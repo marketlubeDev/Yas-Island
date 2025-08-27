@@ -207,7 +207,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             key={retryCounter}
             onLoad={() => setIsIframeLoading(false)}
             style={{
-              backgroundColor: isDarkMode ? "#ffffff" : "#1f1f1f",
+              backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
               // opacity: isIframeLoading ? "0" : "1",
               // transition: "opacity 0.2s ease-in-out",
               // display: "none",
