@@ -85,8 +85,9 @@ export default function SideBar() {
   // Scroll active item into view when activeItem changes
   useEffect(() => {
     const scrollToActive = () => {
+      // Look for both English and Arabic active elements
       const activeElement = document.querySelector(
-        ".side-bar-list-item-container.active"
+        ".side-bar-list-item-container.active, .ar-side-bar-list-item-container.active"
       );
       if (activeElement) {
         activeElement.scrollIntoView({
@@ -100,7 +101,7 @@ export default function SideBar() {
     // Small delay to ensure DOM is fully rendered
     const timer = setTimeout(scrollToActive, 200);
     return () => clearTimeout(timer);
-  }, [activeItem]);
+  }, [activeItem, language]); // Added language dependency
 
   return (
     <nav
