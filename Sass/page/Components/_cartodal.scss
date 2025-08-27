@@ -268,6 +268,19 @@
 .cart-items {
   flex: 1 1 auto;
   overflow-y: auto;
+  /* Custom scrollbar for better UX */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
+    border-radius: 3px;
+  }
 }
 
 .cart-summary {

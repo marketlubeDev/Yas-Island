@@ -79,7 +79,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 100px;
+      height: 50px;
       background: linear-gradient(
         to top,
         var(--color-base-bg) 0%,
@@ -111,6 +111,7 @@
   .order-summary-scrollable {
     height: 100%;
     max-height: 25vh;
+    min-height: 24vh;
     overflow-y: auto;
     padding-right: 8px;
     padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
@@ -125,7 +126,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--color-base-product-card-divider);
+      background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
       border-radius: 3px;
     }
   }

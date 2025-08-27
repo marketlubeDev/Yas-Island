@@ -404,21 +404,20 @@ select:-webkit-autofill:focus {
 /* Hide all scrollbars globally while keeping content scrollable */
 html,
 body,
-* {
-  /* Firefox */
+*:not(.order-summary-scrollable):not(.cart-items) {
   scrollbar-width: none !important;
-  /* IE/Edge legacy */
   -ms-overflow-style: none !important;
 }
 
-*::-webkit-scrollbar {
+*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar {
   width: 0 !important;
   height: 0 !important;
 }
 
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-thumb,
-*::-webkit-scrollbar-corner {
+*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-track,
+*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-corner {
   display: none !important;
   background: transparent !important;
 }
@@ -3636,6 +3635,17 @@ html[lang=ar] .guest-label {
 .cart-items {
   flex: 1 1 auto;
   overflow-y: auto;
+  /* Custom scrollbar for better UX */
+}
+.cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+.cart-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cart-items::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
+  border-radius: 3px;
 }
 
 .cart-summary {
@@ -3973,7 +3983,7 @@ html[lang=ar] .guest-label {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 50px;
   background: linear-gradient(to top, var(--color-base-bg) 0%, var(--color-base-bg) 15%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 100%);
   pointer-events: none;
   z-index: 10;
@@ -3984,6 +3994,7 @@ html[lang=ar] .guest-label {
 .order-summary-new .order-summary-scrollable {
   height: 100%;
   max-height: 25vh;
+  min-height: 24vh;
   overflow-y: auto;
   padding-right: 8px;
   padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
@@ -3996,7 +4007,7 @@ html[lang=ar] .guest-label {
   background: transparent;
 }
 .order-summary-new .order-summary-scrollable::-webkit-scrollbar-thumb {
-  background: var(--color-base-product-card-divider);
+  background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
   border-radius: 3px;
 }
 .order-summary-new .view-items-section {
@@ -11260,17 +11271,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   min-height: 0;
   margin-bottom: 16px;
   padding-right: 8px;
-  /* Custom scrollbar for better UX */
-}
-.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar {
-  width: 6px;
-}
-.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-track {
-  background: transparent;
-}
-.email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-thumb {
-  background: var(--color-base-product-card-divider);
-  border-radius: 3px;
 }
 .email-checkout__summary .order-summary-sticky-bottom {
   position: sticky;

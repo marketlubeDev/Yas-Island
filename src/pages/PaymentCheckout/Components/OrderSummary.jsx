@@ -295,9 +295,8 @@ export default function OrderSummary({
       </div>
       {/* Scrollable content wrapper with fadeout effect */}
       <div className="order-summary-scrollable-wrapper">
-        <div className="order-summary-scrollable">
+        <div className="order-summary-scrollable ">
           {/* Items are always visible; removed toggle button */}
-
           {/* Item Details Section - Mobile Style */}
           <div className="items-container">
             {checkout?.items && checkout.items.length > 0 ? (

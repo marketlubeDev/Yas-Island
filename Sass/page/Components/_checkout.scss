@@ -273,20 +273,6 @@
     min-height: 0;
     margin-bottom: 16px;
     padding-right: 8px;
-
-    /* Custom scrollbar for better UX */
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--color-base-product-card-divider);
-      border-radius: 3px;
-    }
   }
 
   // Sticky bottom section
@@ -574,7 +560,7 @@
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        
+
         // Ensure button doesn't overflow on small screens
         @media only screen and (max-width: 380px) {
           padding: 8px 12px;
@@ -699,13 +685,13 @@
       color: var(--color-checkbox-clr);
       cursor: pointer;
       line-height: 1.4;
-      
+
       .terms-link {
         color: var(--color-checkbox-a-clr);
         text-decoration: underline;
         font-weight: 600;
         cursor: pointer;
-        
+
         &:hover {
           opacity: 0.8;
         }
