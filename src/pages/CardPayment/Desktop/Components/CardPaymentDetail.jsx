@@ -150,6 +150,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     );
     navigate("/");
   };
+  console.log(isDarkMode, "style");
 
   return (
     <div className="payment-container">
@@ -207,7 +208,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             key={retryCounter}
             onLoad={() => setIsIframeLoading(false)}
             style={{
-              backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
+              backgroundColor: isDarkMode
+                ? "#1f1f1f !important"
+                : "#ffffff !important",
+              background: isDarkMode
+                ? "#1f1f1f !important"
+                : "#ffffff !important",
               // opacity: isIframeLoading ? "0" : "1",
               // transition: "opacity 0.2s ease-in-out",
               // display: "none",
