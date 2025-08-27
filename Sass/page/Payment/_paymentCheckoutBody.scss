@@ -397,6 +397,11 @@
     min-width: 400px;
     padding: 4px 0px; // Equal top/bottom padding
   }
+
+  @include respond(bigTablets) {
+    min-width: 320px;
+    padding: 4px 0px; // Equal top/bottom padding
+  }
 }
 
 .step span {

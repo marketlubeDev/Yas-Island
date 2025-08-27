@@ -547,7 +547,11 @@
     /* Re-enable scrollbars for this element only (global styles hide them) */
     scrollbar-width: auto !important; /* Firefox: wider than 'thin' */
     /* Approximate the gradient in Firefox with a solid thumb color */
-    scrollbar-color: #68abe7 var(--color-base-product-card-card-item-border) !important; /* Firefox */
+    scrollbar-color: linear-gradient(
+      180deg,
+      #d1b8ff 0%,
+      #68abe7 100%
+    ) !important; /* Firefox */
     -ms-overflow-style: auto !important; /* IE/Edge legacy */
 
     /* WebKit-based browsers */
@@ -557,7 +561,7 @@
     }
 
     &::-webkit-scrollbar-track {
-      background: var(--color-base-product-card-card-item-border) !important;
+      background: transparent !important;
       border-radius: 3px !important;
       display: initial !important; /* override global display:none */
     }

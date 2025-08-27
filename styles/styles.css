@@ -1411,7 +1411,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   /* Re-enable scrollbars for this element only (global styles hide them) */
   scrollbar-width: auto !important; /* Firefox: wider than 'thin' */
   /* Approximate the gradient in Firefox with a solid thumb color */
-  scrollbar-color: #68abe7 var(--color-base-product-card-card-item-border) !important; /* Firefox */
+  scrollbar-color: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%) !important; /* Firefox */
   -ms-overflow-style: auto !important; /* IE/Edge legacy */
   /* WebKit-based browsers */
 }
@@ -1420,7 +1420,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   height: 10px !important; /* Increased height for horizontal bars */
 }
 .product .product-scroll::-webkit-scrollbar-track {
-  background: var(--color-base-product-card-card-item-border) !important;
+  background: transparent !important;
   border-radius: 3px !important;
   display: initial !important; /* override global display:none */
 }
@@ -3707,6 +3707,7 @@ html[lang=ar] .guest-label {
   flex-shrink: 0;
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
+  height: 3.25rem;
 }
 
 .delete-btn {
@@ -4896,6 +4897,12 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .step {
     min-width: 400px;
+    padding: 4px 0px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .step {
+    min-width: 320px;
     padding: 4px 0px;
   }
 }
@@ -6933,20 +6940,6 @@ html[dir=rtl] .back-button {
     margin: 0.8rem 0;
   }
 }
-.theme-light .iframe-container iframe,
-.iframe-container.theme-light iframe,
-.payfort-container.theme-light .iframe-container iframe {
-  color-scheme: light !important;
-  background-color: white !important;
-}
-
-.theme-dark .iframe-container iframe,
-.iframe-container.theme-dark iframe,
-.payfort-container.theme-dark .iframe-container iframe {
-  color-scheme: dark !important;
-  background-color: black !important;
-}
-
 .payfort {
   width: 100%;
   height: 100%;
@@ -8005,6 +7998,26 @@ html[dir=rtl] .back-button {
     overflow-x: hidden;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .mobile-content {
+    padding-bottom: 72.8px;
+    overflow-x: hidden;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .mobile-content {
+    padding-bottom: 70px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .mobile-content {
+    padding-bottom: 89.6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
 
 .mobile-bottomnav {
   position: fixed;
@@ -8043,12 +8056,56 @@ html[dir=rtl] .back-button {
     box-sizing: border-box;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attractions-list {
+    gap: 15.68px;
+    padding: 0.784rem 0.784rem 8.96px 0.784rem;
+    min-width: 360px;
+    max-width: 360px;
+    box-sizing: border-box;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attractions-list {
     gap: 17.92px;
     padding: 1.008rem 1.008rem 8.96px 1.008rem;
     min-width: 414px;
     max-width: 414px;
+    box-sizing: border-box;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attractions-list {
+    gap: 17.92px;
+    padding: 0.952rem 0.952rem 8.96px 0.952rem;
+    min-width: 390px;
+    max-width: 390px;
+    box-sizing: border-box;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attractions-list {
+    gap: 20.16px;
+    padding: 1.12rem 1.12rem 8.96px 1.12rem;
+    min-width: 430px;
+    max-width: 430px;
+    box-sizing: border-box;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attractions-list {
+    gap: 16px;
+    padding: 1.2rem 1.2rem 8px 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attractions-list {
+    gap: 22.4px;
+    padding: 1.68rem 1.68rem 11.2px 1.68rem;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
   }
 }
@@ -8088,12 +8145,72 @@ html[dir=rtl] .back-button {
     position: relative;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card {
+    border-radius: 8.96px;
+    border-width: 1.68px;
+    padding: 8.96px;
+    gap: 11.2px;
+    min-width: 100%;
+    overflow: visible;
+    position: relative;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card {
     border-radius: 11.2px;
     border-width: 1.68px;
     padding: 13.44px;
     gap: 13.44px;
+    min-width: 100%;
+    overflow: visible;
+    position: relative;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card {
+    border-radius: 11.2px;
+    border-width: 1.68px;
+    padding: 12.32px;
+    gap: 13.44px;
+    min-width: 100%;
+    overflow: visible;
+    position: relative;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card {
+    border-radius: 13.44px;
+    border-width: 1.68px;
+    padding: 15.68px;
+    gap: 15.68px;
+    min-width: 100%;
+    overflow: visible;
+    position: relative;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card {
+    border-radius: 10px;
+    border-width: 1.5px;
+    padding: 8px;
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card {
+    border-radius: 13.44px;
+    border-width: 1.68px;
+    padding: 17.92px;
+    gap: 17.92px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     min-width: 100%;
     overflow: visible;
     position: relative;
@@ -8131,11 +8248,50 @@ html[dir=rtl] .back-button {
     border-radius: 4.48px;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 95.2px;
+    height: 67.2px;
+    border-radius: 3.36px;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__img {
     width: 112px;
     height: 78.4px;
     border-radius: 4.48px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 112px;
+    height: 78.4px;
+    border-radius: 4.48px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 123.2px;
+    height: 84px;
+    border-radius: 5.6px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__img {
+    width: 120px;
+    height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__img {
+    width: 156.8px;
+    height: 100.8px;
+    border-radius: 6.72px;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 }
 .attraction-card__content {
@@ -8148,64 +8304,184 @@ html[dir=rtl] .back-button {
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__content {
     flex: 1 1 auto;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 6.72px;
   }
 }
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__content {
     flex: 1 1 auto;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 8.96px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    justify-content: flex-start !important;
+    gap: 11.2px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    max-width: none;
+    overflow: visible;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    gap: 13.44px;
+    min-width: 0;
+    max-width: none;
+    overflow: visible;
   }
 }
 .attraction-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
+  position: relative;
   min-height: 60px;
+}
+.attraction-card__header > div:first-child {
+  max-width: 200px;
+  padding-right: 110px;
+}
+.attraction-card__header > div:last-child {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
+@media only screen and (max-width: 430px) and (min-width: 376px) {
+  .attraction-card__header {
+    min-height: 55px;
+  }
+  .attraction-card__header > div:first-child {
+    max-width: 180px;
+    padding-right: 100px;
+  }
+}
+@media only screen and (max-width: 375px) and (min-width: 351px) {
+  .attraction-card__header {
+    min-height: 50px;
+  }
+  .attraction-card__header > div:first-child {
+    max-width: 160px;
+    padding-right: 90px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .attraction-card__header {
+    min-height: 50px;
+  }
+  .attraction-card__header > div:first-child {
+    max-width: 140px;
+    padding-right: 85px;
+  }
 }
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__header {
-    gap: 0 !important;
-    justify-content: flex-start !important;
-    min-height: 67.2px !important;
-    align-items: center !important;
+    min-height: 56px !important;
   }
   .zoom-1-25x .attraction-card__header > div:first-child {
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 179.2px !important;
+    padding-right: 100.8px !important;
   }
-  .zoom-1-25x .attraction-card__header > div:last-child {
-    margin-left: -35px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+}
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__header {
+    min-height: 53.76px !important;
+  }
+  .zoom-1-25x .attraction-card__header > div:first-child {
+    max-width: 168px !important;
+    padding-right: 95.2px !important;
   }
 }
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__header {
-    gap: 0 !important;
-    justify-content: flex-start !important;
-    min-height: 67.2px !important;
-    align-items: center !important;
+    min-height: 61.6px !important;
   }
   .zoom-1-25x .attraction-card__header > div:first-child {
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 1;
+    max-width: 201.6px !important;
+    padding-right: 112px !important;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__header {
+    min-height: 61.6px !important;
+  }
+  .zoom-1-25x .attraction-card__header > div:first-child {
+    max-width: 196px !important;
+    padding-right: 109.76px !important;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__header {
+    min-height: 67.2px !important;
+  }
+  .zoom-1-25x .attraction-card__header > div:first-child {
+    max-width: 224px !important;
+    padding-right: 123.2px !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 60px;
+  }
+  .attraction-card__header > div:first-child {
+    flex: 1;
+    max-width: none;
+    overflow: visible;
+    padding-right: 120px;
+  }
+  .attraction-card__header > div:last-child {
+    flex-shrink: 0;
+    width: 120px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__header {
+    position: relative !important;
+    min-height: 78.4px !important;
+  }
+  .zoom-1-25x .attraction-card__header > div:first-child {
+    max-width: none !important;
+    padding-right: 168px !important;
+    flex: 1;
+    overflow: visible;
   }
   .zoom-1-25x .attraction-card__header > div:last-child {
-    margin-left: -30px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
   }
 }
 .attraction-card__title {
@@ -8243,11 +8519,54 @@ html[dir=rtl] .back-button {
     max-width: 123.2px;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 13.44px;
+    margin-bottom: 2.24px;
+    max-width: 112px;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__title {
     font-size: 15.68px;
     margin-bottom: 2.24px;
     max-width: 134.4px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 15.68px;
+    margin-bottom: 2.24px;
+    max-width: 132.16px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 16.8px;
+    margin-bottom: 2.24px;
+    max-width: 156.8px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-base-mobile-product-page-title);
+    margin-bottom: 2px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__title {
+    font-size: 20.16px;
+    margin-bottom: 3.36px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
   }
 }
 .attraction-card__desc {
@@ -8291,6 +8610,13 @@ html[dir=rtl] .back-button {
     max-width: 123.2px;
   }
 }
+@media only screen and (max-width: 360px) {
+  .zoom-1-25x .attraction-card__desc {
+    font-size: 12.32px;
+    margin-bottom: 3.36px;
+    max-width: 112px;
+  }
+}
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__desc {
     font-size: 14.56px;
@@ -8298,13 +8624,52 @@ html[dir=rtl] .back-button {
     max-width: 134.4px;
   }
 }
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__desc {
+    font-size: 14.56px;
+    margin-bottom: 4.48px;
+    max-width: 132.16px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__desc {
+    font-size: 15.68px;
+    margin-bottom: 4.48px;
+    max-width: 156.8px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-base-mobile-product-page-subtitle);
+    margin-bottom: 4px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__desc {
+    font-size: 17.92px;
+    margin-bottom: 5.6px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
+}
 .attraction-card__action {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: center;
   gap: 4px;
   width: 120px;
   flex-shrink: 0;
+  height: 100%;
+  padding: 0;
 }
 html[lang=ar] .attraction-card__action {
   align-items: flex-start;
@@ -8330,7 +8695,7 @@ html[lang=ar] .attraction-card__action {
 @media only screen and (max-width: 375px) {
   .zoom-1-25x .attraction-card__action {
     width: 106.4px;
-    gap: 4.48px;
+    gap: 2.24px;
     flex-shrink: 0;
     margin-right: 8.96px;
     margin-left: 0;
@@ -8339,10 +8704,51 @@ html[lang=ar] .attraction-card__action {
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__action {
     width: 112px;
-    gap: 4.48px;
+    gap: 3.36px;
     flex-shrink: 0;
     margin-right: 11.2px;
     margin-left: 0;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 109.76px;
+    gap: 3.36px;
+    flex-shrink: 0;
+    margin-right: 10.08px;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 134.4px;
+    gap: 4.48px;
+    flex-shrink: 0;
+    margin-right: 13.44px;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    width: 120px;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__action {
+    width: 168px;
+    gap: 6.72px;
+    flex-shrink: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
   }
 }
 .attraction-card__add-btn {
@@ -8388,6 +8794,42 @@ html[lang=ar] .attraction-card__action {
   .zoom-1-25x .attraction-card__add-btn {
     padding: 4.48px 22.4px;
     font-size: 15.68px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 4.48px 21.28px;
+    font-size: 15.68px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 5.6px 26.88px;
+    font-size: 16.8px;
+    border-radius: 2.24rem;
+    border-width: 1.12px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__add-btn {
+    background: var(--color-base-mobile-product-page-btn-bg);
+    color: var(--color-base-mobile-product-page-btn-text);
+    border: 1px solid var(--color-base-mobile-product-page-btn-border);
+    padding: 6px 20px;
+    font-size: 14px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__add-btn {
+    padding: 8.96px 31.36px;
+    font-size: 17.92px;
     border-radius: 2.24rem;
     border-width: 1.12px;
   }
@@ -8460,6 +8902,54 @@ html[lang=ar] .attraction-card__price {
     margin-left: 0;
   }
 }
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 14.56px;
+    margin-right: 0;
+    gap: 6.72px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 17.92px;
+    margin-right: 0;
+    gap: 11.2px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-base-mobile-product-page-price);
+    margin-right: 0;
+  }
+  html[lang=ar] .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__price {
+    font-size: 20.16px;
+    margin-right: 0;
+    gap: 13.44px;
+  }
+  html[lang=ar] .zoom-1-25x .attraction-card__price {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
 .attraction-card__vat {
   font-size: 10px;
   color: var(--color-base-mobile-product-page-vat-text);
@@ -8474,6 +8964,28 @@ html[lang=ar] .attraction-card__price {
 @media only screen and (min-width: 376px) and (max-width: 414px) {
   .zoom-1-25x .attraction-card__vat {
     font-size: 11.2px;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 390px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 11.2px;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 430px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 12.32px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .attraction-card__vat {
+    font-size: 10px;
+    color: var(--color-base-mobile-product-page-vat-text);
+    font-weight: 400;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .zoom-1-25x .attraction-card__vat {
+    font-size: 13.44px;
   }
 }
 
