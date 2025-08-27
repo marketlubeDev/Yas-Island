@@ -208,8 +208,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             onLoad={() => setIsIframeLoading(false)}
             style={{
               backgroundColor: isDarkMode ? "#1f1f1f" : "#ffffff",
-              opacity: isIframeLoading ? "0" : "1",
-              transition: "opacity 0.2s ease-in-out",
+              // opacity: isIframeLoading ? "0" : "1",
+              // transition: "opacity 0.2s ease-in-out",
+              // display: "none",
+              // backgroundColor: "red !important",
+              // background: "yellow !important",
             }}
           />
 
