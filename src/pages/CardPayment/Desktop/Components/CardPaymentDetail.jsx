@@ -35,6 +35,87 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     dispatch(setIsCartOpen(false));
   }, [orderData]);
 
+  // useEffect to handle theme changes on existing iframe
+  useEffect(() => {
+    const iframe = document.querySelector('iframe[name="payfort-iframe"]');
+
+    if (!iframe) return;
+
+    // Function to safely apply theme
+    const applyTheme = () => {
+      try {
+        const iframeDoc =
+          iframe.contentDocument || iframe.contentWindow.document;
+
+        if (!iframeDoc) {
+          console.log(
+            "Cannot access iframe document - likely cross-origin restriction"
+          );
+          return;
+        }
+
+        const html = iframeDoc.documentElement;
+        const body = iframeDoc.body;
+
+        console.log("Applying theme:", isDarkMode ? "dark" : "light");
+
+        if (html) {
+          // Remove existing theme classes and attributes
+          html.classList.remove("dark-theme", "light-theme");
+          html.removeAttribute("data-theme");
+
+          // Apply new theme
+          if (isDarkMode) {
+            html.classList.add("dark-theme");
+            html.setAttribute("data-theme", "dark");
+          } else {
+            html.classList.add("light-theme");
+            html.setAttribute("data-theme", "light");
+          }
+
+          console.log("HTML classes after update:", html.classList.toString());
+        }
+
+        if (body) {
+          // Also apply to body for extra compatibility
+          body.classList.remove("dark-theme", "light-theme");
+          body.removeAttribute("data-theme");
+
+          if (isDarkMode) {
+            body.classList.add("dark-theme");
+            body.setAttribute("data-theme", "dark");
+          } else {
+            body.classList.add("light-theme");
+            body.setAttribute("data-theme", "light");
+          }
+
+          console.log("Body classes after update:", body.classList.toString());
+        }
+
+        // Force a repaint
+        if (body) {
+          body.style.display = "none";
+          body.offsetHeight; // Trigger reflow
+          body.style.display = "";
+        }
+      } catch (error) {
+        console.log("Error applying theme to iframe:", error.message);
+      }
+    };
+
+    // Try to apply theme immediately
+    applyTheme();
+
+    // Also try after delays in case iframe is still loading
+    const timeoutId1 = setTimeout(applyTheme, 100);
+    const timeoutId2 = setTimeout(applyTheme, 500);
+
+    return () => {
+      clearTimeout(timeoutId1);
+      clearTimeout(timeoutId2);
+    };
+  }, [isDarkMode]);
+
   useEffect(() => {
     if (orderData?.tokenizationResponse) {
       // Remove any existing form before creating a new one
@@ -166,7 +247,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             height: "34rem",
             position: "relative",
             overflow: "hidden",
-            background: isDarkMode ? "#1f1f1f" : "#ffffff",
+            backgroundColor: isDarkMode
+              ? "#1f1f1f !important"
+              : "#ffffff !important",
+            background: isDarkMode
+              ? "#1f1f1f !important"
+              : "#ffffff !important",
           }}
         >
           {/* <Payfort /> */}
@@ -204,6 +290,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             title="PayFort Payment"
             width="100%"
             height="100%"
+            data-theme="dark"
             frameBorder="0"
             key={retryCounter}
             onLoad={() => setIsIframeLoading(false)}
@@ -214,11 +301,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
               background: isDarkMode
                 ? "#1f1f1f !important"
                 : "#ffffff !important",
-              // opacity: isIframeLoading ? "0" : "1",
-              // transition: "opacity 0.2s ease-in-out",
-              // display: "none",
-              // backgroundColor: "red !important",
-              // background: "yellow !important",
+              opacity: isIframeLoading ? "0" : "1",
+              transition: "opacity 0.2s ease-in-out",
             }}
           />
 
