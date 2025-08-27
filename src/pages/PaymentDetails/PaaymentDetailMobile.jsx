@@ -40,6 +40,11 @@ function PaymentDetailsMobile() {
   const [termsAndConditions, setTermsAndConditions] = useState(null);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Hide Yas Chat on payment details (mobile) to avoid intercepting taps
   useEffect(() => {
     if (typeof document !== "undefined") {

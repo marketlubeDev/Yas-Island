@@ -143,8 +143,12 @@ function AttractionDetailModalMbl({
             {attraction.currency || "AED"} {defaultVariant(attraction)?.gross}
           </div>
           <div className="attraction-detail-modal__vat">
-            {defaultVariant(attraction)?.net_amount} +
-            {defaultVariant(attraction)?.vat} {t("common.netAndTax")}
+            <div className="attraction-detail-modal__vat-amount">
+              {defaultVariant(attraction)?.net_amount} + {defaultVariant(attraction)?.vat}
+            </div>
+            <div className="attraction-detail-modal__vat-text">
+              {t("common.netAndTax")}
+            </div>
           </div>
         </div>
         <div className="attraction-detail-modal__footer-vertical-divider"></div>

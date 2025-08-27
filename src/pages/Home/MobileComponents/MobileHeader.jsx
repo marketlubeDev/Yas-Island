@@ -107,7 +107,7 @@ function MobileHeader() {
                 type="button"
               >
                 <img src={globeIconSrc} alt="Language" />
-                <span>{currentLanguage === "ar" ? "Ar" : "En"}</span>
+                <span>{currentLanguage === "ar" ? "ع" : "En"}</span>
                 <svg
                   width="20"
                   height="20"
@@ -155,7 +155,7 @@ function MobileHeader() {
                       setShowLangDropdown(false);
                     }}
                   >
-                    <span className="mobile-header__lang-text">Arabic</span>
+                    <span className="mobile-header__lang-text">العربية</span>
                     {currentLanguage === "ar" && (
                       <span className="mobile-header__lang-check">✓</span>
                     )}

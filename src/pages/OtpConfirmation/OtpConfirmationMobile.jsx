@@ -8,6 +8,11 @@ function OtpConfirmationMobile() {
   const navigate = useNavigate();
   const navigationType = useNavigationType();
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Guard: if accessed directly or via browser back without proper state, redirect
   useEffect(() => {
     const cameFromEmail = location?.state?.fromEmailVerification === true;

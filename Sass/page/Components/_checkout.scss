@@ -523,6 +523,17 @@
       text-transform: uppercase;
       margin-bottom: 8px;
       text-align: left;
+
+      // Hide promo code title text on mobile devices
+      @include respond(tablets) {
+        display: none;
+      }
+      @include respond(phone) {
+        display: none;
+      }
+      @include respond(smallPhone) {
+        display: none;
+      }
     }
 
     &-input-container {
@@ -675,7 +686,8 @@
       min-height: 16px;
       width: 16px;
       height: 16px;
-      margin: 2px 0 0 0; // Slight top margin to align with text
+      margin-top: 0; // Remove any top margin for perfect alignment with text
+
       accent-color: var(--color-base-checkbox-check);
       cursor: pointer;
       flex-shrink: 0;

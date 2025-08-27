@@ -5,9 +5,33 @@ export default function GlobalZoomEffect() {
   const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
 
   useEffect(() => {
-    document.body.style.zoom = zoomLevel;
+    const root = document.documentElement;
+    
+    // Set zoom level as CSS custom property
+    root.style.setProperty('--accessibility-zoom-level', zoomLevel);
+    
+    // Add zoom level class for conditional styling
+    root.classList.remove('zoom-1x', 'zoom-1-25x', 'zoom-1-5x');
+    
+    if (zoomLevel === 1) {
+      root.classList.add('zoom-1x');
+      // For 1x, ensure NO zoom scaling is applied
+      root.style.setProperty('--zoom-scale', '1');
+    } else if (zoomLevel === 1.12) { // 1.25x in UI
+      root.classList.add('zoom-1-25x');
+      // Only apply zoom for non-1x levels
+      root.style.setProperty('--zoom-scale', '1.12');
+    } else if (zoomLevel === 1.25) { // 1.5x in UI
+      root.classList.add('zoom-1-5x');
+      // Only apply zoom for non-1x levels
+      root.style.setProperty('--zoom-scale', '1.25');
+    }
+    
     return () => {
-      document.body.style.zoom = 1;
+      // Cleanup
+      root.style.removeProperty('--accessibility-zoom-level');
+      root.style.removeProperty('--zoom-scale');
+      root.classList.remove('zoom-1x', 'zoom-1-25x', 'zoom-1-5x');
     };
   }, [zoomLevel]);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ticketImg from "../../assets/icons/ticket.svg";
 import SmileSection from "./MobileComponents/SmileSectionMbl";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,11 @@ import MobileHeader from "../Home/MobileComponents/MobileHeader";
 function PaymentResponseMobile() {
   const [selected, setSelected] = useState(null); // 'excellent', 'average', 'poor'
   const { t } = useTranslation();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

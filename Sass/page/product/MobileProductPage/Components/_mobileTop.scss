@@ -4,10 +4,10 @@
   align-items: center;
   justify-content: center;
   background: var(--color-base-mobile-top-bg);
-  border-top: 1px solid var(--color-base-mobile-top-item-bordertop);
-  border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom);
+  border-top: 1px solid var(--color-base-mobile-top-item-bordertop); // Original for 1x
+  border-bottom: 1px solid var(--color-base-mobile-top-item-borderbottom); // Original for 1x
   padding: 0;
-  min-height: 65px;
+  min-height: 65px; // Original for 1x
   flex-shrink: 0;
   text-wrap: nowrap;
   overflow-x: auto;
@@ -15,6 +15,58 @@
   scroll-snap-type: x proximity;
   gap: 0;
   z-index: 100;
+  
+  // General zoom handling for 1.25x - smart distribution and centering
+  .zoom-1-25x & {
+    // Distribute items evenly with proper spacing
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    // Add container padding to create breathing room
+    padding: 0 8px;
+    // Make navbar sticky/fixed to top for all devices at 1.25x zoom
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  // Device-specific zoom handling for 1.25x
+  
+  // iPhone SE (375px and below)
+  @media only screen and (max-width: 375px) {
+    .zoom-1-25x & {
+      min-height: calc(65px * 1.12);
+      border-top-width: calc(1px * 1.12);
+      border-bottom-width: calc(1px * 1.12);
+    }
+  }
+  
+  // iPhone 12 Pro (376px to 390px)
+  @media only screen and (min-width: 376px) and (max-width: 390px) {
+    .zoom-1-25x & {
+      min-height: calc(65px * 1.12);
+      border-top-width: calc(1px * 1.12);
+      border-bottom-width: calc(1px * 1.12);
+    }
+  }
+  
+  // iPhone XR (391px to 414px)
+  @media only screen and (min-width: 391px) and (max-width: 414px) {
+    .zoom-1-25x & {
+      min-height: calc(65px * 1.12);
+      border-top-width: calc(1px * 1.12);
+      border-bottom-width: calc(1px * 1.12);
+    }
+  }
+  
+  // iPhone 14 Pro Max (415px to 430px)
+  @media only screen and (min-width: 415px) and (max-width: 430px) {
+    .zoom-1-25x & {
+      min-height: calc(65px * 1.12);
+      border-top-width: calc(1px * 1.12);
+      border-bottom-width: calc(1px * 1.12);
+    }
+  }
 
   // Fix border rendering issues in Chrome
   transform: translateZ(0); // Force hardware acceleration
@@ -33,7 +85,7 @@
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
     margin-top: 0;
-    min-height: 60px;
+    min-height: 60px; // Original for 1x
   }
 
   &__item {
@@ -42,9 +94,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 12px 10px 0 10px;
+    padding: 12px 10px 0 10px; // Original for 1x
     color: var(--color-base-mobile-top-item-text);
-    font-size: 14px;
+    font-size: 14px; // Original for 1x
     font-weight: 500;
     cursor: pointer;
     position: relative;
@@ -52,11 +104,108 @@
     border: none;
     transition: color 0.2s;
     scroll-snap-align: center;
-    min-width: 72px;
+    min-width: 72px; // Original for 1x
+    
+    // General zoom handling for 1.25x - intelligent item centering with proper spacing
+    .zoom-1-25x & {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      // Allow items to grow and distribute evenly when space permits
+      flex: 1 1 0;
+      min-width: calc(72px * 1.12);
+      // Add horizontal padding to prevent text from touching borders
+      padding-left: calc(10px * 1.12);
+      padding-right: calc(10px * 1.12);
+      // Ensure proper spacing from divider lines
+      margin: 0 2px;
+    }
+    
+    // Device-specific zoom handling for 1.25x items
+    
+    // iPhone SE (375px and below)
+    @media only screen and (max-width: 375px) {
+      .zoom-1-25x & {
+        padding-top: calc(12px * 1.12);
+        padding-bottom: 0;
+        font-size: calc(14px * 1.12);
+      }
+    }
+    
+    // iPhone 12 Pro (376px to 390px)
+    @media only screen and (min-width: 376px) and (max-width: 390px) {
+      .zoom-1-25x & {
+        padding-top: calc(12px * 1.12);
+        padding-bottom: 0;
+        font-size: calc(14px * 1.12);
+      }
+    }
+    
+    // iPhone XR (391px to 414px)
+    @media only screen and (min-width: 391px) and (max-width: 414px) {
+      .zoom-1-25x & {
+        padding-top: calc(12px * 1.12);
+        padding-bottom: 0;
+        font-size: calc(14px * 1.12);
+      }
+    }
+    
+    // iPhone 14 Pro Max (415px to 430px)
+    @media only screen and (min-width: 415px) and (max-width: 430px) {
+      .zoom-1-25x & {
+        padding-top: calc(12px * 1.12);
+        padding-bottom: 0;
+        font-size: calc(14px * 1.12);
+      }
+    }
 
     span {
       opacity: 0.4;
-      font-size: 13px;
+      font-size: 13px; // Original for 1x
+      
+      // General zoom handling for 1.25x - ensure center alignment with proper spacing
+      .zoom-1-25x & {
+        text-align: center;
+        display: block;
+        width: 100%;
+        // Add small horizontal padding to prevent text from touching edges
+        padding: 0 4px;
+        box-sizing: border-box;
+        // Ensure text doesn't overflow
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      // Device-specific zoom handling for 1.25x span text
+      
+      // iPhone SE (375px and below)
+      @media only screen and (max-width: 375px) {
+        .zoom-1-25x & {
+          font-size: calc(13px * 1.12);
+        }
+      }
+      
+      // iPhone 12 Pro (376px to 390px)
+      @media only screen and (min-width: 376px) and (max-width: 390px) {
+        .zoom-1-25x & {
+          font-size: calc(13px * 1.12);
+        }
+      }
+      
+      // iPhone XR (391px to 414px)
+      @media only screen and (min-width: 391px) and (max-width: 414px) {
+        .zoom-1-25x & {
+          font-size: calc(13px * 1.12);
+        }
+      }
+      
+      // iPhone 14 Pro Max (415px to 430px)
+      @media only screen and (min-width: 415px) and (max-width: 430px) {
+        .zoom-1-25x & {
+          font-size: calc(13px * 1.12);
+        }
+      }
     }
 
     &:hover {
