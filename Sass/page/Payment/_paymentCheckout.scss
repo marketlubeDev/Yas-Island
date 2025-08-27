@@ -126,7 +126,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%);
+      background: var(--color-base-product-card-scroll-bar);
       border-radius: 3px;
     }
   }

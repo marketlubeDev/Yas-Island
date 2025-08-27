@@ -88,9 +88,6 @@ body,
   ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
 *:not(.order-summary-scrollable):not(.cart-items):not(
     .product-description-api
-  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
-*:not(.order-summary-scrollable):not(.cart-items):not(
-    .product-description-api
   ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-corner {
   display: none !important;
   background: transparent !important;
