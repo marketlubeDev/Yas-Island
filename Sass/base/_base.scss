@@ -66,20 +66,32 @@ select:-webkit-autofill:focus {
 /* Hide all scrollbars globally while keeping content scrollable */
 html,
 body,
-*:not(.order-summary-scrollable):not(.cart-items) {
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll) {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
 }
 
-*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar {
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar {
   width: 0 !important;
   height: 0 !important;
 }
 
-*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-track,
-*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-thumb,
-*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-thumb,
-*:not(.order-summary-scrollable):not(.cart-items)::-webkit-scrollbar-corner {
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-track,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-corner {
   display: none !important;
   background: transparent !important;
 }

@@ -71,20 +71,6 @@
     flex: 1;
   }
 
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-base-product-card-scroll-bar);
-    border-radius: 4px;
-    border: 2px solid var(--color-base-product-card-scroll-bar-border);
-  }
-
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -727,6 +713,19 @@
   padding: 0;
   overflow-y: auto;
   font-family: "YAS Font", sans-serif;
+
+  &::-webkit-scrollbar {
+    width: 6px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%) !important;
+    border-radius: 3px !important;
+  }
 
   @include respond(desktop) {
     max-height: 44vh;
@@ -1402,6 +1401,21 @@
     @include respond(bigDesktop) {
       width: calc(80% - 10px); // Account for scrollbar padding
     }
+  }
+}
+
+.multiple-guests {
+  &::-webkit-scrollbar {
+    width: 6px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d1b8ff 0%, #68abe7 100%) !important;
+    border-radius: 3px !important;
   }
 }
 
