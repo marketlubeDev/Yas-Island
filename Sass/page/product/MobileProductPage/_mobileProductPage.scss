@@ -35,41 +35,18 @@
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 70px; // Original for 1x
+  padding-bottom: calc(70px * var(--zoom-scale));
 
-  // iPhone SE specific zoom handling for 1.25x
-  @media only screen and (max-width: 375px) {
-    .zoom-1-25x & {
-      padding-bottom: calc(70px * 1.12);
-      overflow-x: hidden; // Disable horizontal scroll - content should fit within viewport
-    }
-  }
-
-  // Samsung Galaxy S8 Plus specific zoom handling for 1.25x
+  // Samsung Galaxy S8 Plus - smaller padding
   @media only screen and (max-width: 360px) {
-    .zoom-1-25x & {
-      padding-bottom: calc(
-        65px * 1.12
-      ); // Slightly less padding for smaller screen
-      overflow-x: hidden; // Disable horizontal scroll - content should fit within viewport
-    }
+    padding-bottom: calc(65px * var(--zoom-scale));
   }
 
-  // iPad devices (Mini, Air, Surface Pro 7) - ensure original mobile behavior for 1x
+  // iPad devices - more padding
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    // Keep original mobile behavior for 1x
-    padding-bottom: 70px; // Original for 1x
+    padding-bottom: calc(80px * var(--zoom-scale));
     overflow-x: hidden;
     overflow-y: auto;
-  }
-
-  // iPad devices zoom handling for 1.25x
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .zoom-1-25x & {
-      padding-bottom: calc(80px * 1.12); // More padding for larger screen
-      overflow-x: hidden; // Disable horizontal scroll
-      overflow-y: auto;
-    }
   }
 }
 
@@ -79,24 +56,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 56px; // Original for 1x
+  height: calc(56px * var(--zoom-scale));
   z-index: 100;
   background: var(--color-base-mobile-product-page-bg);
-
-  // iPhone SE specific zoom handling for 1.25x
-  @media only screen and (max-width: 375px) {
-    .zoom-1-25x & {
-      height: calc(56px * 1.12);
-    }
-  }
 }
 
 // Attractions list styles
 .attractions-list {
   display: flex;
   flex-direction: column;
-  gap: 16px; // Original gap for 1x
-  padding: 1.2rem 1.2rem 8px 1.2rem; // Original padding for 1x
+  gap: var(--mobile-gap);
+  padding: var(--mobile-padding) var(--mobile-padding)
+    calc(8px * var(--zoom-scale)) var(--mobile-padding);
   background: var(--color-base-mobile-product-page-bg);
 
   // // Samsung Galaxy Fold 5 (344px) and similar small devices
@@ -206,10 +177,11 @@
 .attraction-card {
   display: flex;
   background: var(--color-base-mobile-product-page-card-bg);
-  border-radius: 10px; // Original for 1x
-  border: 1.5px solid var(--color-base-mobile-product-page-card-border); // Original for 1x
-  padding: 8px; // Original for 1x
-  gap: 12px; // Original for 1x
+  border-radius: calc(10px * var(--zoom-scale));
+  border: calc(1.5px * var(--zoom-scale)) solid
+    var(--color-base-mobile-product-page-card-border);
+  padding: calc(8px * var(--zoom-scale));
+  gap: calc(12px * var(--zoom-scale));
   align-items: flex-start;
   width: 100%; // Ensure full width
   box-sizing: border-box; // Include padding in width calculation
@@ -334,94 +306,37 @@
   // }
 
   &__img {
-    width: 120px; // Original for 1x
-    height: 80px; // Original for 1x
-    border-radius: 4px; // Original for 1x
+    width: calc(120px * var(--zoom-scale));
+    height: calc(80px * var(--zoom-scale));
+    border-radius: calc(4px * var(--zoom-scale));
     object-fit: cover;
     flex-shrink: 0;
 
     // Medium phones: iPhone 12 Pro, XR, 14 Pro Max
     @media only screen and (max-width: 430px) and (min-width: 376px) {
-      width: 100px;
-      height: 70px;
+      width: calc(100px * var(--zoom-scale));
+      height: calc(70px * var(--zoom-scale));
     }
 
     // Small phones: iPhone SE, Samsung S8+
     @media only screen and (max-width: 375px) and (min-width: 351px) {
-      width: 90px;
-      height: 65px;
+      width: calc(90px * var(--zoom-scale));
+      height: calc(65px * var(--zoom-scale));
     }
 
     // Ultra-narrow: Samsung Galaxy Fold 5
     @media only screen and (max-width: 350px) {
-      width: 80px;
-      height: 60px;
+      width: calc(80px * var(--zoom-scale));
+      height: calc(60px * var(--zoom-scale));
     }
 
-    // iPhone SE specific zoom handling for 1.25x
-    @media only screen and (max-width: 375px) {
-      .zoom-1-25x & {
-        width: calc(90px * 1.12); // Scale from iPhone SE size
-        height: calc(65px * 1.12);
-        border-radius: calc(4px * 1.12);
-      }
-    }
-
-    // Samsung Galaxy S8 Plus specific zoom handling for 1.25x
-    @media only screen and (max-width: 360px) {
-      .zoom-1-25x & {
-        width: calc(85px * 1.12); // Compact size for S8 Plus
-        height: calc(60px * 1.12);
-        border-radius: calc(3px * 1.12);
-      }
-    }
-
-    // iPhone XR specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 414px) {
-      .zoom-1-25x & {
-        width: calc(100px * 1.12); // Scale from iPhone XR base size
-        height: calc(70px * 1.12);
-        border-radius: calc(4px * 1.12);
-      }
-    }
-
-    // iPhone 12 Pro specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 390px) {
-      .zoom-1-25x & {
-        width: calc(100px * 1.12); // Scale from iPhone 12 Pro base size
-        height: calc(70px * 1.12);
-        border-radius: calc(4px * 1.12);
-      }
-    }
-
-    // iPhone 14 Pro Max specific zoom handling for 1.25x
-    @media only screen and (min-width: 415px) and (max-width: 430px) {
-      .zoom-1-25x & {
-        width: calc(110px * 1.12); // Larger image for Pro Max
-        height: calc(75px * 1.12);
-        border-radius: calc(5px * 1.12); // Slightly larger border radius
-      }
-    }
-
-    // iPad devices (Mini, Air, Surface Pro 7) - ensure original mobile behavior for 1x
+    // iPad devices - larger images
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      // Keep original mobile image sizing for 1x
-      width: 120px; // Original for 1x
-      height: 80px; // Original for 1x
-      border-radius: 4px; // Original for 1x
+      width: calc(140px * var(--zoom-scale));
+      height: calc(90px * var(--zoom-scale));
+      border-radius: calc(6px * var(--zoom-scale));
       object-fit: cover;
       flex-shrink: 0;
-    }
-
-    // iPad devices zoom handling for 1.25x
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      .zoom-1-25x & {
-        width: calc(140px * 1.12); // Larger image for iPad
-        height: calc(90px * 1.12);
-        border-radius: calc(6px * 1.12); // Larger border radius
-        object-fit: cover;
-        flex-shrink: 0;
-      }
     }
   }
 
@@ -432,86 +347,27 @@
     justify-content: space-between;
     min-width: 0;
 
-    // iPhone SE specific zoom handling for 1.25x
-    @media only screen and (max-width: 375px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly
-        flex: 1 1 auto;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(8px * 1.12); // Add consistent gap between header sections
+    // Zoom-aware layout adjustments
+    :root:not(.zoom-1x) & {
+      flex: 1 1 auto;
+      justify-content: flex-start !important;
+      gap: calc(8px * var(--zoom-scale));
+
+      // Smaller gap for compact screens
+      @media only screen and (max-width: 360px) {
+        gap: calc(6px * var(--zoom-scale));
       }
-    }
 
-    // Samsung Galaxy S8 Plus specific zoom handling for 1.25x
-    @media only screen and (max-width: 360px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly
-        flex: 1 1 auto;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(6px * 1.12); // Smaller gap for compact screen
+      // Larger gap for bigger screens
+      @media only screen and (min-width: 415px) and (max-width: 430px) {
+        gap: calc(10px * var(--zoom-scale));
       }
-    }
 
-    // iPhone XR specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 414px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly
-        flex: 1 1 auto;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(8px * 1.12); // Add consistent gap between header sections
-      }
-    }
-
-    // iPhone 12 Pro specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 390px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly
-        flex: 1 1 auto;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(8px * 1.12); // Add consistent gap between header sections
-      }
-    }
-
-    // iPhone 14 Pro Max specific zoom handling for 1.25x
-    @media only screen and (min-width: 415px) and (max-width: 430px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly
-        flex: 1 1 auto;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(10px * 1.12); // Slightly larger gap for Pro Max
-      }
-    }
-
-    // iPad devices (Mini, Air, Surface Pro 7) - ensure original mobile behavior for 1x
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      // Keep original mobile content behavior for 1x but allow full text flow
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; // Original for 1x
-      min-width: 0; // Allow flexibility
-      max-width: none; // No width restrictions for full text flow
-      overflow: visible; // Allow text to extend
-    }
-
-    // iPad devices zoom handling for 1.25x
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      .zoom-1-25x & {
-        // Ensure content section expands properly for full text flow
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        // Fix alignment issue by ensuring consistent positioning
-        justify-content: flex-start !important;
-        gap: calc(12px * 1.12); // Larger gap for iPad
-        min-width: 0; // Allow flexibility
-        max-width: none; // No width restrictions for full text flow
-        overflow: visible; // Allow text to extend
+      // iPad devices - larger gap
+      @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        gap: calc(12px * var(--zoom-scale));
+        max-width: none;
+        overflow: visible;
       }
     }
   }
@@ -663,10 +519,10 @@
   }
 
   &__title {
-    font-size: 15px; // Original for 1x
+    font-size: calc(15px * var(--zoom-scale));
     font-weight: 600;
     color: var(--color-base-mobile-product-page-title);
-    margin-bottom: 2px; // Original for 1x
+    margin-bottom: calc(2px * var(--zoom-scale));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -675,66 +531,21 @@
 
     // Medium phones: iPhone 12 Pro, XR, 14 Pro Max
     @media only screen and (max-width: 430px) and (min-width: 376px) {
-      font-size: 14px;
+      font-size: calc(14px * var(--zoom-scale));
     }
 
     // Small phones: iPhone SE, Samsung S8+
     @media only screen and (max-width: 375px) and (min-width: 351px) {
-      font-size: 13px;
+      font-size: calc(13px * var(--zoom-scale));
     }
 
     // Ultra-narrow: Samsung Galaxy Fold 5
     @media only screen and (max-width: 350px) {
-      font-size: 13px;
+      font-size: calc(13px * var(--zoom-scale));
     }
 
-    // iPhone SE specific zoom handling for 1.25x
-    @media only screen and (max-width: 375px) {
-      .zoom-1-25x & {
-        font-size: calc(13px * 1.12); // Scale from iPhone SE size
-        margin-bottom: calc(2px * 1.12);
-      }
-    }
-
-    // Samsung Galaxy S8 Plus specific zoom handling for 1.25x
-    @media only screen and (max-width: 360px) {
-      .zoom-1-25x & {
-        font-size: calc(12px * 1.12); // Compact font for S8 Plus
-        margin-bottom: calc(2px * 1.12);
-      }
-    }
-
-    // iPhone XR specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 414px) {
-      .zoom-1-25x & {
-        font-size: calc(14px * 1.12); // Scale from iPhone XR base size
-        margin-bottom: calc(2px * 1.12);
-      }
-    }
-
-    // iPhone 12 Pro specific zoom handling for 1.25x
-    @media only screen and (min-width: 376px) and (max-width: 390px) {
-      .zoom-1-25x & {
-        font-size: calc(14px * 1.12); // Scale from iPhone 12 Pro base size
-        margin-bottom: calc(2px * 1.12);
-      }
-    }
-
-    // iPhone 14 Pro Max specific zoom handling for 1.25x
-    @media only screen and (min-width: 415px) and (max-width: 430px) {
-      .zoom-1-25x & {
-        font-size: calc(15px * 1.12); // Larger font for Pro Max, scaled
-        margin-bottom: calc(2px * 1.12);
-      }
-    }
-
-    // iPad devices (Mini, Air, Surface Pro 7) - ensure original mobile behavior for 1x
+    // iPad devices - allow text to flow horizontally
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
-      // Keep original mobile title styling for 1x with full horizontal text flow
-      font-size: 15px; // Original for 1x
-      font-weight: 600;
-      color: var(--color-base-mobile-product-page-title);
-      margin-bottom: 2px; // Original for 1x
       white-space: normal; // Allow text to flow horizontally
       overflow: visible; // Show all text
       text-overflow: unset; // No truncation

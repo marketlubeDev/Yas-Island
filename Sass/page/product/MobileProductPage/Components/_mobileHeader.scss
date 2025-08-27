@@ -1,24 +1,16 @@
 .mobile-header {
-  height: 64px; // Original for 1x
+  height: var(--mobile-header-height);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--color-base-mobile-header-bg);
-  padding: 12px 16px; // Original for 1x
+  padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   flex-shrink: 0;
   position: sticky;
   top: 0;
   z-index: 800;
-  
-  // iPhone SE specific zoom handling for 1.25x
-  @media only screen and (max-width: 375px) {
-    .zoom-1-25x & {
-      height: calc(64px * 1.12);
-      padding: calc(12px * 1.12) calc(16px * 1.12);
-    }
-  }
 
   @media only screen and (min-width: 992px) {
     display: none;
@@ -26,14 +18,8 @@
 
   // Samsung S8 and similar small devices
   @media only screen and (max-width: 380px) {
-    min-height: 60px; // Original for 1x
-    padding: 10px 14px; // Original for 1x
-    
-    // iPhone SE specific zoom handling for 1.25x
-    &.zoom-1-25x {
-      min-height: calc(60px * 1.12);
-      padding: calc(10px * 1.12) calc(14px * 1.12);
-    }
+    min-height: calc(60px * var(--zoom-scale));
+    padding: calc(10px * var(--zoom-scale)) calc(14px * var(--zoom-scale));
   }
 
   &.animate-mobile-header {
@@ -43,17 +29,17 @@
   &__left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: calc(8px * var(--zoom-scale));
   }
 
   &__logo {
-    height: 44px;
+    height: calc(44px * var(--zoom-scale));
     width: auto;
     display: block;
 
     // Samsung S8 and similar small devices
     @media only screen and (max-width: 380px) {
-      height: 38px;
+      height: calc(38px * var(--zoom-scale));
     }
 
     &.animate-mobile-logo {
@@ -64,7 +50,7 @@
   &__right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: calc(12px * var(--zoom-scale));
 
     &.animate-mobile-actions {
       animation: fadeInRight 0.8s ease-out 0.3s both;
@@ -74,38 +60,39 @@
   &__icon-btn,
   &__lang-btn {
     background: var(--color-base-mobile-header-icon-btn-bg);
-    border: 2px solid var(--color-base-mobile-header-icon-btn-border);
+    border: calc(2px * var(--zoom-scale)) solid
+      var(--color-base-mobile-header-icon-btn-border);
     border-radius: 12rem;
-    padding: 4.5px 4px;
+    padding: calc(4.5px * var(--zoom-scale)) calc(4px * var(--zoom-scale));
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 16px;
+    gap: calc(6px * var(--zoom-scale));
+    font-size: calc(16px * var(--zoom-scale));
     cursor: pointer;
     transition: background 0.2s;
 
     // Samsung S8 and similar small devices
     @media only screen and (max-width: 380px) {
-      padding: 3px 3px;
-      gap: 4px;
+      padding: calc(3px * var(--zoom-scale)) calc(3px * var(--zoom-scale));
+      gap: calc(4px * var(--zoom-scale));
     }
   }
 
   &__icon-btn img,
   &__lang-btn img {
-    height: 18px;
-    width: 18px;
+    height: calc(18px * var(--zoom-scale));
+    width: calc(18px * var(--zoom-scale));
     display: block;
   }
 
   &__lang-btn span {
-    font-size: 14px;
+    font-size: calc(14px * var(--zoom-scale));
     color: #333;
   }
 
   .chevron {
-    font-size: 35px;
-    margin-left: 2px;
+    font-size: calc(35px * var(--zoom-scale));
+    margin-left: calc(2px * var(--zoom-scale));
     color: var(--color-text-primary-chevron);
   }
 
@@ -114,33 +101,34 @@
     background: var(--color-search-dropdown-bg);
     border-radius: 2rem !important; // match filter dropdowns exactly
     box-shadow: var(--color-base-mobile-header-lang-dropdown-boxshadow);
-    min-width: 165px;
-    padding: 8px 0;
+    min-width: calc(165px * var(--zoom-scale));
+    padding: calc(8px * var(--zoom-scale)) 0;
     z-index: 10000; // match other filter dropdowns
-    border: 3px solid var(--color-base-mobile-header-lang-dropdown-border);
+    border: calc(3px * var(--zoom-scale)) solid
+      var(--color-base-mobile-header-lang-dropdown-border);
     overflow: hidden; // ensure corners render identically
   }
 
   &__lang-dropdown--ar {
     left: 0;
     right: auto;
-    top: calc(100% + 8px);
+    top: calc(100% + calc(8px * var(--zoom-scale)));
   }
 
   &__lang-dropdown--en {
     right: 0;
-    top: calc(100% + 8px);
+    top: calc(100% + calc(8px * var(--zoom-scale)));
   }
 
   &__lang-option {
-    padding: 10px 10px;
+    padding: calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
     gap: 0rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     transition: background-color 0.2s;
-    border-bottom: 1px solid
+    border-bottom: calc(1px * var(--zoom-scale)) solid
       var(--color-base-mobile-header-lang-dropdown-border);
 
     &:hover {
@@ -153,13 +141,13 @@
   }
 
   &__lang-text {
-    font-size: 14px;
+    font-size: calc(14px * var(--zoom-scale));
     color: var(--color-search-dropdown-option-text);
   }
 
   &__lang-check {
     color: #007bff;
-    font-size: 14px;
+    font-size: calc(14px * var(--zoom-scale));
     font-weight: bold;
   }
 }
