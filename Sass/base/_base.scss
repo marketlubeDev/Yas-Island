@@ -66,21 +66,32 @@ select:-webkit-autofill:focus {
 /* Hide all scrollbars globally while keeping content scrollable */
 html,
 body,
-* {
-  /* Firefox */
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll) {
   scrollbar-width: none !important;
-  /* IE/Edge legacy */
   -ms-overflow-style: none !important;
 }
 
-*::-webkit-scrollbar {
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar {
   width: 0 !important;
   height: 0 !important;
 }
 
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-thumb,
-*::-webkit-scrollbar-corner {
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-track,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-thumb,
+*:not(.order-summary-scrollable):not(.cart-items):not(
+    .product-description-api
+  ):not(.multiple-guests):not(.product-scroll)::-webkit-scrollbar-corner {
   display: none !important;
   background: transparent !important;
 }
