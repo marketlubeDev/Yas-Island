@@ -97,6 +97,11 @@ export default function CardPaymentBody({ isCheckout }) {
           {t("payment.cardPayment.title")}
         </h1>
       </div>
+      <div className="payment-checkout__back-button-mbl">
+        <button className="back-button-mbl" onClick={handleCheckoutBackClick}>
+          <img src={backIconSrc} alt={t("payment.arrow")} />
+        </button>
+      </div>
       <div className="payment-checkout__content payment-checkout__content--with-header">
         <CardPaymentDetail
           onBack={handleBackClick}
