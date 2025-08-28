@@ -1593,9 +1593,21 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   .ProductCard__grid {
     grid-template-columns: repeat(4, 1fr);
   }
+  .zoom-1-25x .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .zoom-1-5x .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ProductCard__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .zoom-1-25x .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .zoom-1-5x .ProductCard__grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
