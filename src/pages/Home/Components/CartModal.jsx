@@ -503,7 +503,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         {t("common.aed")}{" "}
                         {productData?.selectedVariant?.net_amount} +
                         <span
-                          className="text-[0.7rem] font-normal"
+                          className="font-normal"
                           style={{ color: "var(--color-base-text)" }}
                         >
                           {" "}

@@ -9,7 +9,7 @@
 .chat-with-us {
   color: #fff;
   border-radius: 5rem;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   padding: 0.8rem 1.2rem;
   background: var(--color-base-chat-btn-bg);
   display: flex;
@@ -34,8 +34,8 @@
 
   .chat-icon {
     filter: brightness(0) invert(1);
-    width: 20px;
-    height: 20px;
+    width: calc(20px * var(--zoom-scale));
+    height: calc(20px * var(--zoom-scale));
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
   }

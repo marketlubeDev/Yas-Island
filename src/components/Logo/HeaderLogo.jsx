@@ -159,7 +159,7 @@ export default function HeaderLogo() {
               onChange={(e) =>
                 changeLanguage(e.target.value === "English" ? "en" : "ar")
               }
-              style={{ minWidth: "140px" }}
+              style={{ minWidth: "calc(140px * var(--zoom-scale))" }}
               leftIcon={<img src={isDarkMode ? invertGlobe : globe} alt="" />}
             />
           </div>

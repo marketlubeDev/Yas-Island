@@ -89,6 +89,14 @@
 
     @include respond(extraBigDesktop) {
       grid-template-columns: repeat(5, 1fr);
+
+      .zoom-1-5x & {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .zoom-1-25x & {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     @include respond(bigTablets) {
@@ -102,9 +110,9 @@
 
   &__card {
     width: 100%;
-    min-width: 14rem;
-    max-width: 19.156rem;
-    height: 25.882rem;
+    min-width: calc(14rem * var(--zoom-scale));
+    max-width: calc(19.156rem * var(--zoom-scale));
+    height: calc(25.882rem * var(--zoom-scale));
     flex-shrink: 0;
     background-color: var(--color-base-product-card-card-item-bg);
     padding: 0.5rem;
@@ -164,7 +172,7 @@
 
     &__image {
       width: 100%;
-      height: 201.573px;
+      height: calc(201.573px * var(--zoom-scale));
       flex-shrink: 0;
       background-color: #f0f0f0;
       border-radius: 0.8rem;
@@ -177,7 +185,7 @@
 
       & img {
         width: 100%;
-        height: 201.573px;
+        height: calc(201.573px * var(--zoom-scale));
         object-fit: cover;
         border-radius: 0.8rem;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -230,62 +238,62 @@
       &__title {
         color: var(--color-base-text);
         text-align: left;
-        font-size: 23px;
+        font-size: calc(23px * var(--zoom-scale));
         font-style: normal;
         font-weight: 700;
         line-height: normal;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 280px;
+        max-width: calc(280px * var(--zoom-scale));
         font-family: "YAS Font", sans-serif;
 
         @include respond(bigTablets) {
-          font-size: 18px;
+          font-size: calc(18px * var(--zoom-scale));
           font-weight: 600;
-          max-width: 220px;
+          max-width: calc(220px * var(--zoom-scale));
         }
 
         @include respond(desktop) {
-          font-size: 17px;
+          font-size: calc(17px * var(--zoom-scale));
           font-weight: 600;
-          max-width: 210px;
+          max-width: calc(210px * var(--zoom-scale));
         }
 
         @include respond(bigDesktop) {
-          font-size: 18px;
+          font-size: calc(18px * var(--zoom-scale));
           font-weight: 600;
-          max-width: 240px;
+          max-width: calc(240px * var(--zoom-scale));
         }
 
         @include respond(extraBigDesktop) {
-          font-size: 20px;
+          font-size: calc(20px * var(--zoom-scale));
           font-weight: 600;
-          max-width: 250px;
+          max-width: calc(250px * var(--zoom-scale));
         }
         @media screen and (min-width: 1750px) {
-          max-width: 280px !important;
+          max-width: calc(280px * var(--zoom-scale)) !important;
         }
       }
 
       &__description {
         color: var(--color-base-text-secondary);
-        font-size: 18px;
+        font-size: calc(18px * var(--zoom-scale));
         font-style: normal;
         font-weight: 400;
-        line-height: 28.8px;
+        line-height: calc(28.8px * var(--zoom-scale));
         margin-top: 0.8rem;
         font-family: "YAS Font", sans-serif;
         @include respond(bigTablets) {
-          font-size: 16px;
+          font-size: calc(16px * var(--zoom-scale));
         }
 
         @include respond(desktop) {
-          font-size: 16px;
+          font-size: calc(16px * var(--zoom-scale));
         }
 
         @include respond(bigDesktop) {
-          font-size: 16px;
+          font-size: calc(16px * var(--zoom-scale));
         }
 
         // @include respond(extraBigDesktop) {
@@ -298,9 +306,9 @@
 
       &__divider {
         width: 100%;
-        height: 0.826px;
+        height: calc(0.826px * var(--zoom-scale));
         background: var(--color-base-product-card-divider);
-        margin-top: 0.3rem;
+        margin-top: calc(0.3rem * var(--zoom-scale));
       }
     }
 
@@ -324,53 +332,53 @@
 
         &__text {
           color: var(--color-base-text);
-          font-size: 18px;
+          font-size: calc(18px * var(--zoom-scale));
           font-style: normal;
           font-weight: 600;
           line-height: normal;
           text-transform: capitalize;
 
           @include respond(bigTablets) {
-            font-size: 16px;
+            font-size: calc(16px * var(--zoom-scale));
             font-weight: 600;
           }
 
           @include respond(desktop) {
-            font-size: 14px;
+            font-size: calc(14px * var(--zoom-scale));
             font-weight: 500;
           }
 
           @include respond(bigDesktop) {
-            font-size: 15px;
+            font-size: calc(15px * var(--zoom-scale));
             font-weight: 500;
           }
 
           @include respond(extraBigDesktop) {
-            font-size: 16px;
+            font-size: calc(16px * var(--zoom-scale));
             font-weight: 500;
           }
         }
 
         &__tax {
           color: var(--color-base-product-card-price);
-          font-size: 14px;
+          font-size: calc(14px * var(--zoom-scale));
           font-style: normal;
           font-weight: 500;
           line-height: normal;
           text-transform: capitalize;
 
           @include respond(desktop) {
-            font-size: 11px;
+            font-size: calc(11px * var(--zoom-scale));
             font-weight: 400;
           }
 
           @include respond(bigDesktop) {
-            font-size: 12px;
+            font-size: calc(12px * var(--zoom-scale));
             font-weight: 400;
           }
 
           @include respond(extraBigDesktop) {
-            font-size: 13px;
+            font-size: calc(13px * var(--zoom-scale));
             font-weight: 400;
           }
         }
@@ -382,8 +390,8 @@
 .AddtoCartbtn {
   &__button {
     display: flex;
-    width: 123px;
-    height: 54px;
+    width: calc(123px * var(--zoom-scale));
+    height: calc(54px * var(--zoom-scale));
     justify-content: center;
     align-items: center;
     gap: 8.261px;
@@ -392,7 +400,7 @@
     border: 3.304px solid var(--color-base-side-bar-border);
     background: var(--color-base-product-card-add-cart-btn-bg);
     color: var(--color-base-text);
-    font-size: 18px;
+    font-size: calc(18px * var(--zoom-scale));
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -406,17 +414,17 @@
     }
 
     @include respond(bigTablets) {
-      width: 100px;
-      height: 45px;
-      font-size: 14px;
+      width: calc(100px * var(--zoom-scale));
+      height: calc(45px * var(--zoom-scale));
+      font-size: calc(14px * var(--zoom-scale));
       font-weight: 600;
       gap: 6px;
     }
 
     @include respond(desktop) {
-      width: 100px;
-      height: 45px;
-      font-size: 14px;
+      width: calc(100px * var(--zoom-scale));
+      height: calc(45px * var(--zoom-scale));
+      font-size: calc(14px * var(--zoom-scale));
       font-weight: 600;
       gap: 6px;
       border-radius: 45px;
@@ -424,17 +432,17 @@
     }
 
     @include respond(bigDesktop) {
-      width: 110px;
-      height: 52px;
-      font-size: 14px;
+      width: calc(110px * var(--zoom-scale));
+      height: calc(52px * var(--zoom-scale));
+      font-size: calc(14px * var(--zoom-scale));
       font-weight: 600;
       gap: 6px;
     }
 
     @include respond(extraBigDesktop) {
-      width: 115px;
-      height: 52px;
-      font-size: 16px;
+      width: calc(115px * var(--zoom-scale));
+      height: calc(52px * var(--zoom-scale));
+      font-size: calc(16px * var(--zoom-scale));
       font-weight: 600;
       gap: 7px;
       border-radius: 50px;
