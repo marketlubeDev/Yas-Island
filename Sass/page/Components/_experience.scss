@@ -72,14 +72,14 @@
   font-size: calc(16px * var(--zoom-scale));
   color: var(--color-email-form-label);
   text-align: center;
-  margin-bottom: calc(18px * var(--zoom-scale));
+  margin-bottom: calc(10px * var(--zoom-scale));
 }
 
 .experience-divider {
   border: none;
   border-top: calc(1px * var(--zoom-scale)) solid #e3e3e3;
   width: 80%;
-  margin: calc(18px * var(--zoom-scale)) 0;
+  margin: calc(10px * var(--zoom-scale)) 0;
 }
 
 .experience-rate-title {
@@ -87,7 +87,7 @@
   font-weight: 600;
   color: var(--color-email-form-label);
   text-align: center;
-  margin-bottom: calc(18px * var(--zoom-scale));
+  margin-bottom: calc(10px * var(--zoom-scale));
   // margin-top: 3rem;
 }
 
@@ -306,7 +306,7 @@
   }
 
   @media screen and (max-width: 375px) {
-    padding: calc(20px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+    padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
   }
 }
 
