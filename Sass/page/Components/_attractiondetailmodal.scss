@@ -109,7 +109,7 @@ body.modal-open {
     justify-content: space-between;
     padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale)); // Increased padding for better spacing
     gap: calc(12px * var(--zoom-scale)); // Increased gap for better separation
-    background: var(--color-dtl-footer-bg);
+    // background: var(--color-dtl-footer-bg);
     border-radius: 0 0 calc(24px * var(--zoom-scale))
       calc(24px * var(--zoom-scale));
     position: relative;
