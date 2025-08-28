@@ -12167,11 +12167,11 @@ body.modal-open {
     gap: calc(8px * var(--zoom-scale));
   }
 }
-@media (max-width: 375px) {
-  .attraction-detail-modal__footer {
-    padding: calc(8px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
-    gap: calc(6px * var(--zoom-scale));
-    min-height: calc(55px * var(--zoom-scale));
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
@@ -12193,11 +12193,24 @@ html[lang=ar] .attraction-detail-modal__footer {
   align-items: flex-start;
   min-width: calc(110px * var(--zoom-scale));
 }
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__footer-left {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
 .attraction-detail-modal__footer-right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__footer-right {
+    width: 100%;
+  }
 }
 .attraction-detail-modal__footer-vertical-divider {
   width: calc(1.5px * var(--zoom-scale));
@@ -12206,6 +12219,11 @@ html[lang=ar] .attraction-detail-modal__footer {
   border-radius: calc(2px * var(--zoom-scale));
   margin: 0 calc(1px * var(--zoom-scale)) 0 0rem;
   flex-shrink: 0;
+}
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__footer-vertical-divider {
+    display: none;
+  }
 }
 .attraction-detail-modal__price {
   font-size: calc(16px * var(--zoom-scale));
@@ -12220,6 +12238,13 @@ html[lang=ar] .attraction-detail-modal__footer {
 }
 .zoom-1-5x .attraction-detail-modal__vat {
   line-height: 1;
+}
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__vat {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .attraction-detail-modal__vat-amount {
   font-size: calc(13px * var(--zoom-scale));
@@ -12282,6 +12307,11 @@ html[lang=ar] .attraction-detail-modal__add-btn {
     font-size: calc(15px * var(--zoom-scale));
     min-width: calc(120px * var(--zoom-scale));
     height: calc(40px * var(--zoom-scale));
+  }
+}
+@media screen and (max-width: 425px) {
+  .zoom-1-5x .attraction-detail-modal__add-btn {
+    width: 100%;
   }
 }
 

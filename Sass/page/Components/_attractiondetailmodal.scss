@@ -127,10 +127,18 @@ body.modal-open {
       gap: calc(8px * var(--zoom-scale));
     }
 
-    @media (max-width: 375px) {
-      padding: calc(8px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
-      gap: calc(6px * var(--zoom-scale));
-      min-height: calc(55px * var(--zoom-scale));
+    // @media (max-width: 375px) {
+    //   padding: calc(8px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
+    //   gap: calc(6px * var(--zoom-scale));
+    //   min-height: calc(55px * var(--zoom-scale));
+    // }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     // Arabic language specific styling
@@ -155,6 +163,15 @@ body.modal-open {
     flex-direction: column;
     align-items: flex-start;
     min-width: calc(110px * var(--zoom-scale));
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
   }
 
   &__footer-right {
@@ -162,6 +179,12 @@ body.modal-open {
     display: flex;
     justify-content: center; // Center align the button
     align-items: center;
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        width: 100%;
+      }
+    }
   }
 
   &__footer-vertical-divider {
@@ -171,6 +194,12 @@ body.modal-open {
     border-radius: calc(2px * var(--zoom-scale));
     margin: 0 calc(1px * var(--zoom-scale)) 0 0rem;
     flex-shrink: 0;
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        display: none;
+      }
+    }
   }
 
   &__price {
@@ -187,6 +216,14 @@ body.modal-open {
 
     .zoom-1-5x & {
       line-height: 1;
+    }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     &-amount {
@@ -266,6 +303,12 @@ body.modal-open {
       font-size: calc(15px * var(--zoom-scale));
       min-width: calc(120px * var(--zoom-scale));
       height: calc(40px * var(--zoom-scale));
+    }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        width: 100%;
+      }
     }
   }
 }
