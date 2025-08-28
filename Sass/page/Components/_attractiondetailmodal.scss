@@ -9,53 +9,46 @@ body.modal-open {
 }
 
 .attraction-detail-modal {
+  width: 100%;
   max-width: calc(420px * var(--zoom-scale));
-  width: 98vw;
-  // Fallback for browsers that don't support dvh
-  max-height: 100vh;
-  height: 100vh;
-  // Use dynamic viewport height for actual visible area (mobile browsers)
-  max-height: 100dvh;
-  height: 100dvh;
-  overflow: visible; // Allow footer to be visible
+  max-height: 100dvh; // Use dynamic viewport height like booking modal
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: calc(1.2rem * var(--zoom-scale));
+  border: calc(2px * var(--zoom-scale)) solid var(--color-dtl-content-border);
+  position: relative; // Ensure proper stacking context
+  touch-action: pan-y; // Allow vertical scrolling inside modal
+  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
   @include respond(tablets) {
     width: 90vw !important;
     max-width: 80vw !important;
-    max-height: 100vh !important;
-    height: 100vh !important;
-    max-height: 100dvh !important;
-    height: 100dvh !important;
   }
 
   @include respond(bigTablets) {
     width: 90vw !important;
     max-width: 80vw !important;
-    max-height: 100vh !important;
-    height: 100vh !important;
-    max-height: 100dvh !important;
-    height: 100dvh !important;
   }
 
   &__container {
     display: flex;
     flex-direction: column;
     height: 100%;
-    // Fallback for browsers that don't support dvh
-    max-height: 100vh;
-    min-height: 100vh;
-    // Use dynamic viewport height for actual visible area
     max-height: 100dvh;
-    min-height: 100dvh;
+    overflow: hidden; // Prevent container overflow
   }
 
   &__header {
-    position: relative;
     display: flex;
     align-items: center;
-    padding: calc(16px * var(--zoom-scale));
+    justify-content: space-between;
+    padding: calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+    background: var(--color-dtl-content-bg);
+    flex-shrink: 0; // Prevent header from shrinking
     @include respond(smallPhone) {
-      padding: calc(16px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
+      padding: calc(16px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
     }
   }
 
@@ -78,13 +71,24 @@ body.modal-open {
   }
 
   &__body {
-    padding: 0px calc(6px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
-      calc(6px * var(--zoom-scale));
+    flex: 1 1 auto;
+    padding: 0 calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale))
+      calc(18px * var(--zoom-scale));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(12px * var(--zoom-scale));
     background-color: var(--color-dtl-body-bg);
-    flex: 1; // Take up remaining space
-    overflow-y: auto;
-    min-height: 0; // Allow flex item to shrink below content size
-    // Remove fixed height calculations - let flex handle the space
+    overflow-y: auto; // Allow scrolling when content is too long
+    overflow-x: hidden; // Prevent horizontal scroll
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; // Prevent scroll chaining
+    min-height: 0; // Allow flex item to shrink
+
+    @include respond(smallPhone) {
+      padding: 0 calc(12px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+        calc(12px * var(--zoom-scale));
+    }
 
     .product-heading {
       color: var(--color-base-text) !important;
@@ -124,32 +128,27 @@ body.modal-open {
 
   &__footer {
     display: flex;
+    flex-direction: column;
+    gap: calc(10px * var(--zoom-scale));
+    padding: calc(12px * var(--zoom-scale)) calc(18px * var(--zoom-scale))
+      calc(12px * var(--zoom-scale) + env(safe-area-inset-bottom))
+      calc(18px * var(--zoom-scale));
+    background: var(--color-dtl-content-bg);
     align-items: center;
-    justify-content: space-between;
-    padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale)); // Increased padding for better spacing
-    gap: calc(12px * var(--zoom-scale)); // Increased gap for better separation
-    // background: var(--color-dtl-footer-bg);
-    border-radius: 0 0 calc(24px * var(--zoom-scale))
-      calc(24px * var(--zoom-scale));
-    position: relative;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    width: 100%;
+    box-shadow: 0 calc(-8px * var(--zoom-scale)) calc(32px * var(--zoom-scale))
+        rgba(0, 0, 0, 0.03),
+      0 calc(-2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+        rgba(0, 0, 0, 0.04); // Soft shadow like booking modal
+    position: sticky;
+    bottom: 0;
+    margin: 0 auto;
     flex-shrink: 0; // Prevent footer from shrinking
-    min-height: calc(
-      70px * var(--zoom-scale)
-    ); // Increased min-height for better proportions
-    margin-top: auto; // Push footer to bottom
-    padding-bottom: calc(
-      max(12px * var(--zoom-scale), env(safe-area-inset-bottom))
-    ); // Safe area for devices with notches
 
     @include respond(smallPhone) {
-      padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
-      padding-bottom: calc(
-        max(10px * var(--zoom-scale), env(safe-area-inset-bottom))
-      );
-      min-height: calc(60px * var(--zoom-scale));
-      gap: calc(8px * var(--zoom-scale));
+      padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+        calc(10px * var(--zoom-scale) + env(safe-area-inset-bottom))
+        calc(12px * var(--zoom-scale));
     }
 
     // @media (max-width: 375px) {
@@ -173,23 +172,40 @@ body.modal-open {
       margin-top: auto !important;
     }
 
-    .attraction-detail-modal__footer-divider {
-      position: absolute;
-      top: 0;
-      left: 2.5%;
-      width: 95%;
-      height: calc(2px * var(--zoom-scale));
-      background: var(--color-dtl-footer-divider);
-      content: "";
-      z-index: 1;
+    // .attraction-detail-modal__footer-divider {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 2.5%;
+    //   width: 95%;
+    //   height: calc(2px * var(--zoom-scale));
+    //   background: var(--color-dtl-footer-divider);
+    //   content: "";
+    //   z-index: 1;
+    // }
+  }
+
+  &__price-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: calc(12px * var(--zoom-scale));
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 
-  &__footer-left {
+  &__price-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: calc(110px * var(--zoom-scale));
+    flex: 1;
 
     @media screen and (max-width: 425px) {
       .zoom-1-5x & {
@@ -201,30 +217,15 @@ body.modal-open {
     }
   }
 
-  &__footer-right {
-    flex: 1;
+  &__button-section {
     display: flex;
-    justify-content: center; // Center align the button
+    justify-content: center;
     align-items: center;
+    flex: 1;
 
     @media screen and (max-width: 425px) {
       .zoom-1-5x & {
         width: 100%;
-      }
-    }
-  }
-
-  &__footer-vertical-divider {
-    width: calc(1.5px * var(--zoom-scale));
-    height: calc(48px * var(--zoom-scale));
-    background: var(--color-dtl-footer-vrl-divider);
-    border-radius: calc(2px * var(--zoom-scale));
-    margin: 0 calc(1px * var(--zoom-scale)) 0 0rem;
-    flex-shrink: 0;
-
-    @media screen and (max-width: 425px) {
-      .zoom-1-5x & {
-        display: none;
       }
     }
   }
@@ -287,54 +288,54 @@ body.modal-open {
     }
   }
 
+  &__footer-vertical-divider {
+    width: calc(1.5px * var(--zoom-scale));
+    height: calc(48px * var(--zoom-scale));
+    background: var(--color-dtl-footer-vrl-divider);
+    border-radius: calc(2px * var(--zoom-scale));
+    margin: 0 calc(8px * var(--zoom-scale));
+    flex-shrink: 0;
+
+    @include respond(smallPhone) {
+      height: calc(40px * var(--zoom-scale));
+      margin: 0 calc(6px * var(--zoom-scale));
+    }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        display: none;
+      }
+    }
+  }
+
   &__add-btn {
     background: var(--color-dtl-add-btn-bg);
     color: var(--color-dtl-add-btn-clr);
-    border: none;
-    border-radius: 2rem;
-    padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Increased padding for better button size
+    border: calc(3px * var(--zoom-scale)) solid transparent;
+    border-radius: calc(2rem * var(--zoom-scale));
+    padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
     font-size: calc(16px * var(--zoom-scale));
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
-      rgba(44, 44, 84, 0.06);
+    width: 75%;
+    margin: 0 auto;
     transition: background 0.2s;
     white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: calc(4px * var(--zoom-scale));
-    margin: 0; // Reset all margins
-    min-width: calc(
-      140px * var(--zoom-scale)
-    ); // Increased minimum width for better proportions
-    height: calc(
-      44px * var(--zoom-scale)
-    ); // Increased height for better button size
-    flex-shrink: 0; // Prevent shrinking
 
-    // Ensure perfect center alignment
-    text-align: center;
-
-    // Ensure both ends are equally curved and visible
-    overflow: visible;
-    position: relative;
-
-    html[lang="ar"] & {
-      padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Consistent padding for Arabic
-      margin: 0;
-    }
-
-    @media (max-width: 375px) {
+    @include respond(smallPhone) {
       padding: calc(10px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
       font-size: calc(15px * var(--zoom-scale));
-      min-width: calc(120px * var(--zoom-scale));
-      height: calc(40px * var(--zoom-scale));
+      width: 80%;
     }
 
     @media screen and (max-width: 425px) {
       .zoom-1-5x & {
         width: 100%;
+        margin: 0;
       }
     }
   }
@@ -343,34 +344,31 @@ body.modal-open {
 .attraction-detail-modal .ant-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
-  max-height: 90vh;
-  // height: 98vh;
-  // top: 20px;
+  max-height: 100dvh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  top: 0 !important;
 }
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
-  // Fallback for browsers that don't support dvh
-  height: 100vh;
-  max-height: 100vh;
-  // Use dynamic viewport height for actual visible area (mobile browsers)
+  background-color: var(--color-dtl-content-bg);
+  border: calc(2px * var(--zoom-scale)) solid var(--color-dtl-content-border);
   height: 100dvh;
   max-height: 100dvh;
-  margin-top: 0;
+  overflow: hidden; // Prevent content overflow
+  scrollbar-width: thin;
+  border-radius: calc(20px * var(--zoom-scale));
+  padding: 0;
   display: flex;
   flex-direction: column;
-  padding: 0px calc(8px * var(--zoom-scale));
-  align-items: stretch; // Changed from center to stretch for better layout
-  // background-color: #231942;
-  border-radius: calc(20px * var(--zoom-scale));
-  justify-content: flex-start; // Changed from space-between to flex-start
-  background-color: var(--color-dtl-content-bg);
-  border: calc(1px * var(--zoom-scale)) solid var(--color-dtl-content-border);
-  overflow: visible !important; // Allow footer to be visible
-  position: relative;
+
+  @include respond(tablets) {
+    height: fit-content;
+    min-height: 75vh;
+    max-height: 95vh;
+  }
 }
 
 .accessibility-modal .ant-modal-close {
@@ -468,19 +466,16 @@ body.modal-open {
 }
 .attraction-detail-modal.ant-modal-wrap {
   z-index: 2147483600 !important;
-  overflow: visible !important; // Allow content to be visible
+  overflow: hidden !important;
   position: fixed !important;
   inset: 0 !important;
-  -webkit-overflow-scrolling: touch; // Disable momentum scrolling on iOS
-  touch-action: none; // Prevent touch scrolling
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 !important; // Remove padding to use full available space
-  // Fallback for browsers that don't support dvh
-  height: 100vh !important;
-  // Use dynamic viewport height for actual visible area
-  height: 100dvh !important;
+  background: rgba(245, 245, 245, 0.39) !important;
+  transform: translateY(0%);
 }
 
 // Ensure the modal mask also prevents scrolling
@@ -492,23 +487,12 @@ body.modal-open {
 
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
-  padding: 0 !important; // Remove default padding that might cause overflow
-  overflow: visible !important; // Allow footer to be visible
+  padding: 0 !important; // Remove default padding
+  overflow: hidden !important; // Prevent overflow
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex: 1;
 }
 
-.attraction-detail-modal .ant-modal {
-  top: 0 !important; // No top margin needed with full height
-  position: relative !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  // Fallback for browsers that don't support dvh
-  height: 100vh !important;
-  max-height: 100vh !important;
-  // Use full dynamic viewport height for actual visible area
-  height: 100dvh !important;
-  max-height: 100dvh !important;
-  overflow: hidden !important;
-}
+// Remove duplicate modal styles - already defined above
