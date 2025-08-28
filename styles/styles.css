@@ -12080,6 +12080,23 @@ body.modal-open {
   height: 100% !important;
 }
 
+body.android-chrome-modal .attraction-detail-modal {
+  max-height: calc(100dvh - 30px) !important;
+  height: calc(100dvh - 30px) !important;
+}
+body.android-chrome-modal .attraction-detail-modal .ant-modal-content {
+  max-height: calc(100dvh - 30px) !important;
+  height: calc(100dvh - 30px) !important;
+}
+body.android-chrome-modal .attraction-detail-modal__container {
+  max-height: calc(100dvh - 30px) !important;
+  min-height: calc(100dvh - 30px) !important;
+}
+body.android-chrome-modal .attraction-detail-modal__footer {
+  margin-bottom: calc(15px * var(--zoom-scale)) !important;
+  padding-bottom: calc(25px * var(--zoom-scale)) !important;
+}
+
 .attraction-detail-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
@@ -12089,6 +12106,18 @@ body.modal-open {
   height: 100dvh;
   overflow: visible;
 }
+@media screen and (max-height: 100dvh) {
+  .attraction-detail-modal {
+    max-height: calc(100dvh - 20px);
+    height: calc(100dvh - 20px);
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .attraction-detail-modal {
+    max-height: calc(100dvh - 25px);
+    height: calc(100dvh - 25px);
+  }
+}
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .attraction-detail-modal {
     width: 90vw !important;
@@ -12097,6 +12126,12 @@ body.modal-open {
     height: 100vh !important;
     max-height: 100dvh !important;
     height: 100dvh !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) and (max-height: 100dvh) {
+  .attraction-detail-modal {
+    max-height: calc(100dvh - 15px) !important;
+    height: calc(100dvh - 15px) !important;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -12109,6 +12144,12 @@ body.modal-open {
     height: 100dvh !important;
   }
 }
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) and (max-height: 100dvh) {
+  .attraction-detail-modal {
+    max-height: calc(100dvh - 15px) !important;
+    height: calc(100dvh - 15px) !important;
+  }
+}
 .attraction-detail-modal__container {
   display: flex;
   flex-direction: column;
@@ -12117,6 +12158,12 @@ body.modal-open {
   min-height: 100vh;
   max-height: 100dvh;
   min-height: 100dvh;
+}
+@media screen and (max-height: 100dvh) {
+  .attraction-detail-modal__container {
+    max-height: calc(100dvh - 20px);
+    min-height: calc(100dvh - 20px);
+  }
 }
 .attraction-detail-modal__header {
   position: relative;
@@ -12199,12 +12246,14 @@ body.modal-open {
   flex-shrink: 0;
   min-height: calc(70px * var(--zoom-scale));
   margin-top: auto;
-  padding-bottom: max(12px * var(--zoom-scale), env(safe-area-inset-bottom));
+  padding-bottom: max(20px * var(--zoom-scale), env(safe-area-inset-bottom));
+  margin-bottom: calc(10px * var(--zoom-scale));
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
     padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
-    padding-bottom: max(10px * var(--zoom-scale), env(safe-area-inset-bottom));
+    padding-bottom: max(18px * var(--zoom-scale), env(safe-area-inset-bottom));
+    margin-bottom: calc(8px * var(--zoom-scale));
     min-height: calc(60px * var(--zoom-scale));
     gap: calc(8px * var(--zoom-scale));
   }
@@ -12214,6 +12263,12 @@ body.modal-open {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+}
+@supports (-webkit-appearance: none) and (not (-webkit-touch-callout: default)) {
+  .attraction-detail-modal__footer {
+    margin-bottom: calc(15px * var(--zoom-scale));
+    padding-bottom: max(25px * var(--zoom-scale), env(safe-area-inset-bottom));
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
@@ -12382,6 +12437,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   border: calc(1px * var(--zoom-scale)) solid var(--color-dtl-content-border);
   overflow: visible !important;
   position: relative;
+}
+@media screen and (max-height: 100dvh) {
+  .attraction-detail-modal .ant-modal-content {
+    height: calc(100dvh - 20px);
+    max-height: calc(100dvh - 20px);
+  }
 }
 
 .accessibility-modal .ant-modal-close {
