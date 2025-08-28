@@ -223,7 +223,7 @@ body.modal-open {
     color: var(--color-dtl-add-btn-clr);
     border: none;
     border-radius: 2rem;
-    padding: calc(8px * var(--zoom-scale)) calc(18px * var(--zoom-scale)); // Further reduced padding for tighter layout
+    padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Increased padding for better button size
     font-size: calc(16px * var(--zoom-scale));
     font-weight: 500;
     cursor: pointer;
@@ -237,11 +237,11 @@ body.modal-open {
     gap: calc(4px * var(--zoom-scale));
     margin: 0; // Reset all margins
     min-width: calc(
-      120px * var(--zoom-scale)
-    ); // Reduced minimum width for better proportions
+      140px * var(--zoom-scale)
+    ); // Increased minimum width for better proportions
     height: calc(
-      36px * var(--zoom-scale)
-    ); // Further reduced height for tighter layout
+      44px * var(--zoom-scale)
+    ); // Increased height for better button size
     flex-shrink: 0; // Prevent shrinking
 
     // Ensure perfect center alignment
@@ -252,15 +252,15 @@ body.modal-open {
     position: relative;
 
     html[lang="ar"] & {
-      padding: calc(8px * var(--zoom-scale)) calc(18px * var(--zoom-scale)); // Consistent padding for Arabic
+      padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Consistent padding for Arabic
       margin: 0;
     }
 
     @media (max-width: 375px) {
-      padding: calc(6px * var(--zoom-scale)) calc(14px * var(--zoom-scale));
-      font-size: calc(14px * var(--zoom-scale));
-      min-width: calc(100px * var(--zoom-scale));
-      height: calc(32px * var(--zoom-scale));
+      padding: calc(10px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
+      font-size: calc(15px * var(--zoom-scale));
+      min-width: calc(120px * var(--zoom-scale));
+      height: calc(40px * var(--zoom-scale));
     }
   }
 }

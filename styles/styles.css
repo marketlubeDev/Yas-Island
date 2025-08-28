@@ -10552,7 +10552,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 
 .email-checkout__title {
-  font-size: 22px;
+  font-size: calc(22px * var(--zoom-scale));
   font-weight: 500;
   color: #231942;
   text-align: left;
@@ -10568,9 +10568,9 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 
 .email-checkout__form-container {
-  margin: 30px auto 24px auto;
+  margin: calc(1.2rem * var(--zoom-scale));
   background: var(--color-email-form-box);
-  border-radius: 18px;
+  border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -10581,34 +10581,34 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 @media only screen and (max-width: 344px) {
   .email-checkout__form-container {
-    margin: 20px 1.2rem 1.2rem 1.2rem;
-    border-radius: 16px;
+    margin: calc(1.2rem * var(--zoom-scale));
+    border-radius: calc(16px * var(--zoom-scale));
   }
 }
 @media only screen and (max-width: 768px) {
   .email-checkout__form-container {
-    margin-bottom: 2.4rem;
+    margin-bottom: calc(1.2rem * var(--zoom-scale));
   }
 }
 
 .email-checkout__form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(10px * var(--zoom-scale));
   background: var(--color-email-form-box);
-  padding: 4px 1.2rem 2.4rem 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(0, 0, 0, 0.25);
+  padding: calc(4px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)) calc(2.4rem * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale));
+  border-radius: calc(12px * var(--zoom-scale));
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(0, 0, 0, 0.2), 0 calc(-6px * var(--zoom-scale)) calc(12px * var(--zoom-scale)) rgba(0, 0, 0, 0.25);
 }
 
 .email-checkout__form-container-inner {
   max-width: 100%;
   margin: 0 auto;
-  gap: 1rem;
+  gap: calc(1rem * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1rem;
+  padding: calc(1rem * var(--zoom-scale));
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .email-checkout__form-container-inner {
@@ -10617,19 +10617,19 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 
 .email-checkout__label {
-  font-size: 13px;
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-email-form-label);
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: calc(8px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: calc(2px * var(--zoom-scale));
 }
 
 .email-checkout__input {
   border: none;
-  border-bottom: 2px solid var(--color-email-form-input-border);
-  font-size: 14px;
+  border-bottom: calc(2px * var(--zoom-scale)) solid var(--color-email-form-input-border);
+  font-size: calc(14px * var(--zoom-scale));
   padding: 0;
   outline: none;
   background: transparent;
@@ -10691,15 +10691,15 @@ html[lang=ar] .confirm-email__otp-actions button {
 .email-checkout__btn {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
-  border: 1px solid var(--color-email-form-confirm-btn);
-  border-radius: 2rem;
-  padding: 10px 0;
-  font-size: 14px;
+  border: calc(1px * var(--zoom-scale)) solid var(--color-email-form-confirm-btn);
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) 0;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: 600;
   cursor: pointer;
   width: 75%;
-  margin-top: 12px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  margin-top: calc(12px * var(--zoom-scale));
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
   align-self: center;
 }
@@ -10710,11 +10710,11 @@ html[lang=ar] .confirm-email__otp-actions button {
 
 .email-checkout__summary {
   background: var(--color-base-bg);
-  box-shadow: 0 4px 20px var(--card-box-shadow);
-  border-radius: 8px;
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(20px * var(--zoom-scale)) var(--card-box-shadow);
+  border-radius: calc(8px * var(--zoom-scale));
   width: 100%;
-  padding: 16px;
-  font-size: 15px;
+  padding: calc(16px * var(--zoom-scale));
+  font-size: calc(15px * var(--zoom-scale));
   color: var(--color-email-form-label);
 }
 .email-checkout__summary.order-summary-new {
@@ -10732,19 +10732,19 @@ html[lang=ar] .confirm-email__otp-actions button {
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  margin-bottom: 16px;
-  padding-right: 8px;
+  margin-bottom: calc(16px * var(--zoom-scale));
+  padding-right: calc(8px * var(--zoom-scale));
   /* Custom scrollbar for better UX */
 }
 .email-checkout__summary .order-summary-scrollable::-webkit-scrollbar {
-  width: 6px;
+  width: calc(6px * var(--zoom-scale));
 }
 .email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-track {
   background: transparent;
 }
 .email-checkout__summary .order-summary-scrollable::-webkit-scrollbar-thumb {
   background: var(--color-base-product-card-divider);
-  border-radius: 3px;
+  border-radius: calc(3px * var(--zoom-scale));
 }
 .email-checkout__summary .order-summary-sticky-bottom {
   position: sticky;
@@ -10803,18 +10803,18 @@ html[lang=ar] .confirm-email__otp-actions button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--color-base-product-card-divider);
+  margin-bottom: calc(14px * var(--zoom-scale));
+  padding-bottom: calc(8px * var(--zoom-scale));
+  border-bottom: calc(1px * var(--zoom-scale)) solid var(--color-base-product-card-divider);
 }
 .email-checkout__summary-title h3 {
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-summary-title);
   margin: 0;
 }
 .email-checkout__summary-title span {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-base-product-card-price);
   font-weight: 400;
 }
@@ -10988,7 +10988,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary-promoCode-input-container-applyButton {
   flex-shrink: 0;
-  padding: 8px 16px;
+  padding: calc(8px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
   background-color: var(--summary-header-bg);
   border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
@@ -11003,8 +11003,8 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 @media only screen and (max-width: 380px) {
   .email-checkout__summary-promoCode-input-container-applyButton {
-    padding: 8px 12px;
-    font-size: 13px;
+    padding: calc(8px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+    font-size: calc(13px * var(--zoom-scale));
   }
 }
 .email-checkout__summary-grandTotal {
@@ -11034,13 +11034,13 @@ html[lang=ar] .confirm-email__otp-actions button {
 .email-checkout__summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
-  font-size: 14px;
+  margin-bottom: calc(4px * var(--zoom-scale));
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-pymnt-step-clr);
 }
 .email-checkout__summary-row--total {
   font-weight: 600;
-  font-size: 15px;
+  font-size: calc(15px * var(--zoom-scale));
   border-top: 1.5px solid var(--color-base-product-card-divider);
   padding: 15px 10px 18px 10px;
 }
@@ -11065,13 +11065,13 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 
 .email-checkout__checkboxes {
-  padding: 15px 10px 10px 10px;
+  padding: calc(15px * var(--zoom-scale)) calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(10px * var(--zoom-scale));
 }
 .email-checkout__checkboxes div {
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: var(--color-checkbox-clr);
 }
 .email-checkout__checkboxes div a {
@@ -11081,22 +11081,22 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 
 .email-checkout__checkboxes-compact {
-  padding: 12px 0;
+  padding: calc(12px * var(--zoom-scale)) 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(8px * var(--zoom-scale));
 }
 .email-checkout__checkboxes-compact .checkbox-row {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: calc(8px * var(--zoom-scale));
   line-height: 1.4;
 }
 .email-checkout__checkboxes-compact .checkbox-row .checkbox-input-compact {
-  min-width: 16px;
-  min-height: 16px;
-  width: 16px;
-  height: 16px;
+  min-width: calc(16px * var(--zoom-scale));
+  min-height: calc(16px * var(--zoom-scale));
+  width: calc(16px * var(--zoom-scale));
+  height: calc(16px * var(--zoom-scale));
   margin-top: 0;
   accent-color: var(--color-base-checkbox-check);
   cursor: pointer;
@@ -11104,7 +11104,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__checkboxes-compact .checkbox-row .checkbox-label-compact {
   flex: 1;
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: var(--color-checkbox-clr);
   cursor: pointer;
   line-height: 1.4;
@@ -11120,7 +11120,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 @media only screen and (max-width: 320px) {
   .email-checkout__checkboxes-compact .checkbox-row .checkbox-label-compact {
-    font-size: 11px;
+    font-size: calc(11px * var(--zoom-scale));
   }
 }
 
@@ -11283,9 +11283,9 @@ html[lang=ar] .confirm-email__otp-actions button {
 .checkbox-container {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  font-size: 14px;
+  padding-left: calc(35px * var(--zoom-scale));
+  margin-bottom: calc(12px * var(--zoom-scale));
+  font-size: calc(14px * var(--zoom-scale));
   user-select: none;
   color: var(--color-base-text-secondary);
 }
@@ -11298,6 +11298,10 @@ html[lang=ar] .confirm-email__otp-actions button {
   left: auto;
   right: 0;
 }
+.checkbox-container.rtl .checkbox-input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
 .checkbox-input {
   position: absolute;
   opacity: 0;
@@ -11309,11 +11313,11 @@ html[lang=ar] .confirm-email__otp-actions button {
   position: absolute;
   top: 0;
   left: 0;
-  height: 20px;
-  width: 20px;
+  height: calc(20px * var(--zoom-scale));
+  width: calc(20px * var(--zoom-scale));
   background-color: var(--color-base-checkbox-bg);
-  border: 1px solid var(--color-base-checkbox-border);
-  border-radius: 4px;
+  border: calc(1px * var(--zoom-scale)) solid var(--color-base-checkbox-border);
+  border-radius: calc(4px * var(--zoom-scale));
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -11322,12 +11326,12 @@ html[lang=ar] .confirm-email__otp-actions button {
 .checkbox-custom:after {
   content: "";
   display: none;
-  width: 5px;
-  height: 10px;
+  width: calc(5px * var(--zoom-scale));
+  height: calc(10px * var(--zoom-scale));
   border: solid var(--color-base-checkbox-check);
-  border-width: 0 2px 2px 0;
+  border-width: 0 calc(2px * var(--zoom-scale)) calc(2px * var(--zoom-scale)) 0;
   transform: rotate(45deg);
-  margin-top: -2px;
+  margin-top: calc(-2px * var(--zoom-scale));
 }
 
 .checkbox-input:checked ~ .checkbox-custom {
@@ -11346,12 +11350,12 @@ html[lang=ar] .confirm-email__otp-actions button {
 
 .setSection-Content {
   color: #666;
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 
 .setSection-Value {
   color: var(--cart-total-price);
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 
 .email-checkout__summary .order-item-compact {
@@ -11375,7 +11379,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary .order-item-compact .item-header .item-title {
   flex: 1 !important;
-  font-size: 14px !important;
+  font-size: calc(14px * var(--zoom-scale)) !important;
   font-weight: 500 !important;
   color: var(--color-summary-title) !important;
   margin: 0 !important;
@@ -11385,7 +11389,7 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary .order-item-compact .item-header .item-price {
   flex-shrink: 0 !important;
-  font-size: 14px !important;
+  font-size: calc(14px * var(--zoom-scale)) !important;
   font-weight: 500 !important;
   color: var(--color-summary-title) !important;
   font-family: "YAS Font", sans-serif !important;
@@ -11395,8 +11399,8 @@ html[lang=ar] .confirm-email__otp-actions button {
   display: flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
-  gap: 6px !important;
-  font-size: 12px !important;
+  gap: calc(6px * var(--zoom-scale)) !important;
+  font-size: calc(12px * var(--zoom-scale)) !important;
   color: #666 !important;
   line-height: 1.2 !important;
 }
@@ -12401,7 +12405,7 @@ html[lang=ar] .attraction-detail-modal__footer {
   color: var(--color-dtl-add-btn-clr);
   border: none;
   border-radius: 2rem;
-  padding: calc(8px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+  padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
   font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
@@ -12413,23 +12417,23 @@ html[lang=ar] .attraction-detail-modal__footer {
   justify-content: center;
   gap: calc(4px * var(--zoom-scale));
   margin: 0;
-  min-width: calc(120px * var(--zoom-scale));
-  height: calc(36px * var(--zoom-scale));
+  min-width: calc(140px * var(--zoom-scale));
+  height: calc(44px * var(--zoom-scale));
   flex-shrink: 0;
   text-align: center;
   overflow: visible;
   position: relative;
 }
 html[lang=ar] .attraction-detail-modal__add-btn {
-  padding: calc(8px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
+  padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
   margin: 0;
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__add-btn {
-    padding: calc(6px * var(--zoom-scale)) calc(14px * var(--zoom-scale));
-    font-size: calc(14px * var(--zoom-scale));
-    min-width: calc(100px * var(--zoom-scale));
-    height: calc(32px * var(--zoom-scale));
+    padding: calc(10px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
+    font-size: calc(15px * var(--zoom-scale));
+    min-width: calc(120px * var(--zoom-scale));
+    height: calc(40px * var(--zoom-scale));
   }
 }
 
@@ -13305,39 +13309,39 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   position: relative;
 }
 .payment-header__title {
-  font-size: 20px;
+  font-size: calc(20px * var(--zoom-scale));
   font-weight: 600;
   color: var(--color-pymnt-title-clr);
   text-align: center;
-  margin-top: 10px;
+  margin-top: calc(10px * var(--zoom-scale));
 }
 .payment-header__back-button {
   background: none;
   border: none;
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: calc(15px * var(--zoom-scale));
+  margin-bottom: calc(8px * var(--zoom-scale));
   position: absolute;
-  top: 110px;
-  left: 12px;
+  top: calc(110px * var(--zoom-scale));
+  left: calc(12px * var(--zoom-scale));
   cursor: pointer;
   z-index: 1;
   font-family: "YAS Font", sans-serif;
 }
 .payment-header__back-button--rtl {
   left: auto;
-  right: 12px;
+  right: calc(12px * var(--zoom-scale));
 }
 .payment-header__steps-container {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  gap: 32px;
-  margin: 10px auto 0 auto;
+  gap: calc(32px * var(--zoom-scale));
+  margin: calc(10px * var(--zoom-scale)) auto 0 auto;
   position: relative;
 }
 .payment-header__step {
-  font-size: 15px;
+  font-size: calc(15px * var(--zoom-scale));
   color: var(--color-pymnt-step-clr);
   font-weight: 500;
   text-align: center;
@@ -13347,7 +13351,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 .payment-header__step--checkout {
   width: 30%;
-  margin-right: 20px;
+  margin-right: calc(20px * var(--zoom-scale));
 }
 .payment-header__step--active {
   color: var(--color-pymnt-step-active-clr);
@@ -13355,17 +13359,17 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 .payment-header__step span {
   display: block;
-  margin-top: 4px;
-  font-size: 13px;
+  margin-top: calc(4px * var(--zoom-scale));
+  font-size: calc(13px * var(--zoom-scale));
 }
 .payment-header__steps-divider {
   width: 100%;
-  height: 2.5px;
-  margin: 0 auto 18px auto;
+  height: calc(2.5px * var(--zoom-scale));
+  margin: 0 auto calc(18px * var(--zoom-scale)) auto;
   display: flex;
-  border-radius: 2px;
+  border-radius: calc(2px * var(--zoom-scale));
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
 }
 .payment-header__steps-divider::before, .payment-header__steps-divider::after {
   content: "";
