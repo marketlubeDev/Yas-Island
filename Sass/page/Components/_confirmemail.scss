@@ -265,9 +265,6 @@ html[lang="ar"] {
     background: var(--color-email-form-confirm-btn);
     // transform: translateX(16.5%) translateY(-1px);
   }
-  &:active {
-    // transform: translateX(16.5%) translateY(0);
-  }
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
