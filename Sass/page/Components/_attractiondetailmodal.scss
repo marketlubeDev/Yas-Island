@@ -17,7 +17,7 @@ body.modal-open {
   margin: 0 auto;
   overflow: hidden;
   border-radius: calc(1.2rem * var(--zoom-scale));
-  border: calc(2px * var(--zoom-scale)) solid var(--color-dtl-content-border);
+  // Remove border from container - let Ant Design modal content handle the border
   position: relative; // Ensure proper stacking context
   touch-action: pan-y; // Allow vertical scrolling inside modal
   -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
