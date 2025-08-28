@@ -242,7 +242,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         <div
           className={`iframe-container ${theme}`}
           style={{
-            borderRadius: "1rem",
+            borderRadius: "0rem",
             minHeight: "34rem",
             height: "34rem",
             position: "relative",
@@ -318,7 +318,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 justifyContent: "center",
                 padding: "16px",
                 background: isDarkMode
-                  ? "linear-gradient(rgba(26,26,26,.92), rgba(26,26,26,.96))"
+                  ? "black"
                   : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",

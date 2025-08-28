@@ -9,10 +9,10 @@ body.modal-open {
 }
 
 .attraction-detail-modal {
-  max-width: 420px;
+  max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
-  max-height: 99vh;
-  overflow: hidden; // Prevent any overflow on the modal
+  max-height: 95vh; // Reduced to ensure footer is visible
+  overflow: visible; // Allow footer to be visible
 
   @include respond(tablets) {
     width: 90vw !important;
@@ -24,19 +24,26 @@ body.modal-open {
     max-width: 80vw !important;
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 95vh;
+  }
+
   &__header {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: calc(16px * var(--zoom-scale));
     @include respond(smallPhone) {
-      padding: 1rem 0.5rem;
+      padding: calc(16px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
     }
   }
 
   &__back-icon {
-    width: 20px;
-    height: 20px;
+    width: calc(20px * var(--zoom-scale));
+    height: calc(20px * var(--zoom-scale));
     cursor: pointer;
   }
 
@@ -44,65 +51,54 @@ body.modal-open {
     flex: 1;
     text-align: center;
     margin-right: 0px;
-    font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
     font-weight: 700;
     color: var(--color-dtl-header-color);
     @include respond(smallPhone) {
-      font-size: 18px;
+      font-size: calc(18px * var(--zoom-scale));
     }
   }
 
   &__body {
-    padding: 0px 6px 24px 6px;
+    padding: 0px calc(6px * var(--zoom-scale)) calc(24px * var(--zoom-scale))
+      calc(6px * var(--zoom-scale));
     background-color: var(--color-dtl-body-bg);
-    height: calc(99dvh - 11.5rem);
-    height: calc(99svh - 11.5rem);
-    height: calc(99dvh - 11.5rem);
+    flex: 1; // Take up remaining space
     overflow-y: auto;
+    min-height: 0; // Allow flex item to shrink below content size
 
     .product-heading {
       color: var(--color-base-text) !important;
-    }
-
-    @include respond(smallPhone) {
-      height: calc(99dvh - 9rem) !important;
-      height: calc(99svh - 9rem) !important;
-    }
-
-    @media (max-width: 375px) {
-      height: calc(99dvh - 8.5rem) !important;
-      height: calc(99svh - 8.5rem) !important;
     }
   }
 
   &__image {
     // width: 100%;
-    border-radius: 16px;
+    border-radius: calc(16px * var(--zoom-scale));
     // margin: 5px 0 5px 0;
     object-fit: cover;
-    max-height: 270px;
-    height: 270px;
+    max-height: calc(270px * var(--zoom-scale));
+    height: calc(270px * var(--zoom-scale));
     display: block;
     width: 100%;
     @include respond(smallPhone) {
-      margin-bottom: 1rem;
+      margin-bottom: calc(16px * var(--zoom-scale));
     }
   }
   &__main-title {
-    font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
     font-weight: 700;
     color: var(--color-dtl-main-title);
-    margin-top: 20px;
-    margin-bottom: 8px;
+    margin-top: calc(20px * var(--zoom-scale));
+    margin-bottom: calc(8px * var(--zoom-scale));
     text-align: left;
     width: 100%;
   }
 
   &__desc {
-    font-size: 15px;
+    font-size: calc(15px * var(--zoom-scale));
     color: var(--color-dtl-desc);
-
-    margin-bottom: 18px;
+    margin-bottom: calc(18px * var(--zoom-scale));
     text-align: left;
     width: 100%;
   }
@@ -111,35 +107,43 @@ body.modal-open {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px; // Increased padding for better spacing
-    gap: 12px; // Increased gap for better separation
-    background: var(--color-dtl-footer-bg);
-    border-radius: 0 0 24px 24px;
+    padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale)); // Increased padding for better spacing
+    gap: calc(12px * var(--zoom-scale)); // Increased gap for better separation
+    // background: var(--color-dtl-footer-bg);
+    border-radius: 0 0 calc(24px * var(--zoom-scale))
+      calc(24px * var(--zoom-scale));
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
-    top: 0; // avoid pushing footer out of view on tablets
-    min-height: 68px; // Ensure consistent footer height
+    flex-shrink: 0; // Prevent footer from shrinking
+    min-height: calc(
+      70px * var(--zoom-scale)
+    ); // Increased min-height for better proportions
+    margin-top: auto; // Push footer to bottom
 
     @include respond(smallPhone) {
-      top: 0;
-      padding: 10px 12px;
-      min-height: 60px;
+      padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+      min-height: calc(60px * var(--zoom-scale));
+      gap: calc(8px * var(--zoom-scale));
     }
 
-    @media (max-width: 375px) {
-      top: 0;
-      padding: 8px 10px;
-      gap: 8px;
+    // @media (max-width: 375px) {
+    //   padding: calc(8px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
+    //   gap: calc(6px * var(--zoom-scale));
+    //   min-height: calc(55px * var(--zoom-scale));
+    // }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     // Arabic language specific styling
     html[lang="ar"] & {
-      top: 0 !important;
-
-      @include respond(smallPhone) {
-        top: 0 !important;
-      }
+      margin-top: auto !important;
     }
 
     .attraction-detail-modal__footer-divider {
@@ -147,7 +151,7 @@ body.modal-open {
       top: 0;
       left: 2.5%;
       width: 95%;
-      height: 2px;
+      height: calc(2px * var(--zoom-scale));
       background: var(--color-dtl-footer-divider);
       content: "";
       z-index: 1;
@@ -158,7 +162,16 @@ body.modal-open {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 110px;
+    min-width: calc(110px * var(--zoom-scale));
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
   }
 
   &__footer-right {
@@ -166,19 +179,31 @@ body.modal-open {
     display: flex;
     justify-content: center; // Center align the button
     align-items: center;
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        width: 100%;
+      }
+    }
   }
 
   &__footer-vertical-divider {
-    width: 1.5px;
-    height: 48px;
+    width: calc(1.5px * var(--zoom-scale));
+    height: calc(48px * var(--zoom-scale));
     background: var(--color-dtl-footer-vrl-divider);
-    border-radius: 2px;
-    margin: 0 1px 0 0rem;
+    border-radius: calc(2px * var(--zoom-scale));
+    margin: 0 calc(1px * var(--zoom-scale)) 0 0rem;
     flex-shrink: 0;
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        display: none;
+      }
+    }
   }
 
   &__price {
-    font-size: 16px;
+    font-size: calc(16px * var(--zoom-scale));
     font-weight: 500;
     color: var(--color-dtl-footer-price);
   }
@@ -186,27 +211,51 @@ body.modal-open {
   &__vat {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: calc(2px * var(--zoom-scale));
     line-height: 1.2;
 
+    .zoom-1-5x & {
+      line-height: 1;
+    }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
     &-amount {
-      font-size: 13px;
-      color: var(--color-dtl-footer-price); // Better contrast - same as main price
+      font-size: calc(13px * var(--zoom-scale));
+      color: var(
+        --color-dtl-footer-price
+      ); // Better contrast - same as main price
       font-weight: 500; // Increased weight for better visibility
-      
+
+      .zoom-1-5x & {
+        font-size: calc(12px * var(--zoom-scale)) !important;
+      }
+
       @media (max-width: 375px) {
-        font-size: 11px !important;
+        font-size: calc(10px * var(--zoom-scale)) !important;
       }
     }
 
     &-text {
-      font-size: 12px;
-      color: var(--color-dtl-footer-price); // Better contrast - same as main price
+      font-size: calc(12px * var(--zoom-scale));
+      color: var(
+        --color-dtl-footer-price
+      ); // Better contrast - same as main price
       font-weight: 400;
       opacity: 0.8; // Slightly muted but still visible
-      
+
+      .zoom-1-5x & {
+        font-size: calc(10px * var(--zoom-scale)) !important;
+      }
+
       @media (max-width: 375px) {
-        font-size: 10px !important;
+        font-size: calc(10px * var(--zoom-scale)) !important;
       }
     }
   }
@@ -216,45 +265,56 @@ body.modal-open {
     color: var(--color-dtl-add-btn-clr);
     border: none;
     border-radius: 2rem;
-    padding: 14px 28px; // Slightly increased padding for better size
-    font-size: 16px;
+    padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Increased padding for better button size
+    font-size: calc(16px * var(--zoom-scale));
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+    box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+      rgba(44, 44, 84, 0.06);
     transition: background 0.2s;
     white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: calc(4px * var(--zoom-scale));
     margin: 0; // Reset all margins
-    min-width: 130px; // Slightly increased minimum width
-    height: 48px; // Slightly increased height
+    min-width: calc(
+      140px * var(--zoom-scale)
+    ); // Increased minimum width for better proportions
+    height: calc(
+      44px * var(--zoom-scale)
+    ); // Increased height for better button size
     flex-shrink: 0; // Prevent shrinking
-    
+
     // Ensure perfect center alignment
     text-align: center;
-    
+
     // Ensure both ends are equally curved and visible
     overflow: visible;
     position: relative;
 
     html[lang="ar"] & {
-      padding: 14px 28px; // Consistent padding for Arabic
+      padding: calc(12px * var(--zoom-scale)) calc(24px * var(--zoom-scale)); // Consistent padding for Arabic
       margin: 0;
     }
 
     @media (max-width: 375px) {
-      padding: 12px 22px;
-      font-size: 14px;
-      min-width: 110px;
-      height: 42px;
+      padding: calc(10px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
+      font-size: calc(15px * var(--zoom-scale));
+      min-width: calc(120px * var(--zoom-scale));
+      height: calc(40px * var(--zoom-scale));
+    }
+
+    @media screen and (max-width: 425px) {
+      .zoom-1-5x & {
+        width: 100%;
+      }
     }
   }
 }
 
 .attraction-detail-modal .ant-modal {
-  max-width: 420px;
+  max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
   max-height: 90vh;
   // height: 98vh;
@@ -266,21 +326,19 @@ body.modal-open {
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
-  height: 99dvh;
-  height: 99svh;
-  max-height: 99dvh; // Ensure it doesn't exceed viewport
-  max-height: 99svh;
+  height: 95vh; // Reduced height to ensure footer is visible
+  max-height: 95vh; // Ensure it doesn't exceed viewport
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  padding: 0px 8px;
-  align-items: center;
+  padding: 0px calc(8px * var(--zoom-scale));
+  align-items: stretch; // Changed from center to stretch for better layout
   // background-color: #231942;
-  border-radius: 20px;
-  justify-content: space-between;
+  border-radius: calc(20px * var(--zoom-scale));
+  justify-content: flex-start; // Changed from space-between to flex-start
   background-color: var(--color-dtl-content-bg);
-  border: 1px solid var(--color-dtl-content-border);
-  overflow: hidden !important; // Prevent any overflow
+  border: calc(1px * var(--zoom-scale)) solid var(--color-dtl-content-border);
+  overflow: visible !important; // Allow footer to be visible
   position: relative;
 }
 
@@ -289,11 +347,11 @@ body.modal-open {
   top: -10%;
   right: 0;
   border-radius: 50%;
-  height: 38px;
-  width: 38px;
-  font-size: 32px;
+  height: calc(38px * var(--zoom-scale));
+  width: calc(38px * var(--zoom-scale));
+  font-size: calc(32px * var(--zoom-scale));
   line-height: 1;
-  border: 2px solid var(--color-close-btn-border);
+  border: calc(2px * var(--zoom-scale)) solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -303,8 +361,8 @@ body.modal-open {
   transition: background 0.2s;
 
   img {
-    width: 15px;
-    height: 15px;
+    width: calc(15px * var(--zoom-scale));
+    height: calc(15px * var(--zoom-scale));
   }
 }
 
@@ -313,11 +371,11 @@ body.modal-open {
   top: -8%;
   right: 1%;
   border-radius: 50%;
-  height: 38px;
-  width: 38px;
-  font-size: 32px;
+  height: calc(38px * var(--zoom-scale));
+  width: calc(38px * var(--zoom-scale));
+  font-size: calc(32px * var(--zoom-scale));
   line-height: 1;
-  border: 2px solid var(--color-close-btn-border);
+  border: calc(2px * var(--zoom-scale)) solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -327,8 +385,8 @@ body.modal-open {
   transition: background 0.2s;
 
   img {
-    width: 15px;
-    height: 15px;
+    width: calc(15px * var(--zoom-scale));
+    height: calc(15px * var(--zoom-scale));
   }
 }
 .booking-modal .ant-modal-close {
@@ -336,11 +394,11 @@ body.modal-open {
   top: -5%;
   right: 0;
   border-radius: 50%;
-  height: 38px;
-  width: 38px;
-  font-size: 32px;
+  height: calc(38px * var(--zoom-scale));
+  width: calc(38px * var(--zoom-scale));
+  font-size: calc(32px * var(--zoom-scale));
   line-height: 1;
-  border: 2px solid var(--color-close-btn-border);
+  border: calc(2px * var(--zoom-scale)) solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -350,8 +408,8 @@ body.modal-open {
   transition: background 0.2s;
 
   img {
-    width: 15px;
-    height: 15px;
+    width: calc(15px * var(--zoom-scale));
+    height: calc(15px * var(--zoom-scale));
   }
 }
 .promo-popup-custom-close {
@@ -359,11 +417,11 @@ body.modal-open {
   top: -15%;
   right: 2%;
   border-radius: 50%;
-  height: 38px;
-  width: 38px;
-  font-size: 32px;
+  height: calc(38px * var(--zoom-scale));
+  width: calc(38px * var(--zoom-scale));
+  font-size: calc(32px * var(--zoom-scale));
   line-height: 1;
-  border: 2px solid var(--color-close-btn-border);
+  border: calc(2px * var(--zoom-scale)) solid var(--color-close-btn-border);
   cursor: pointer;
   background: transparent;
   display: flex;
@@ -373,13 +431,13 @@ body.modal-open {
   transition: background 0.2s;
 
   img {
-    width: 15px;
-    height: 15px;
+    width: calc(15px * var(--zoom-scale));
+    height: calc(15px * var(--zoom-scale));
   }
 }
 .attraction-detail-modal.ant-modal-wrap {
   z-index: 2147483600 !important;
-  overflow: hidden !important; // Prevent scrolling on the modal wrapper
+  overflow: visible !important; // Allow content to be visible
   position: fixed !important;
   inset: 0 !important;
   -webkit-overflow-scrolling: touch; // Disable momentum scrolling on iOS
@@ -396,7 +454,10 @@ body.modal-open {
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
   padding: 0 !important; // Remove default padding that might cause overflow
-  overflow: hidden !important; // Prevent any scrolling on modal body
+  overflow: visible !important; // Allow footer to be visible
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .attraction-detail-modal .ant-modal {

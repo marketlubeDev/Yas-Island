@@ -109,7 +109,7 @@ function AttractionDetailModalMbl({
   };
 
   return (
-    <>
+    <div className="attraction-detail-modal__container">
       <div className="attraction-detail-modal__header">
         <img
           src={backIconSrc}
@@ -144,7 +144,8 @@ function AttractionDetailModalMbl({
           </div>
           <div className="attraction-detail-modal__vat">
             <div className="attraction-detail-modal__vat-amount">
-              {defaultVariant(attraction)?.net_amount} + {defaultVariant(attraction)?.vat}
+              {defaultVariant(attraction)?.net_amount} +{" "}
+              {defaultVariant(attraction)?.vat}
             </div>
             <div className="attraction-detail-modal__vat-text">
               {t("common.netAndTax")}
@@ -161,7 +162,7 @@ function AttractionDetailModalMbl({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

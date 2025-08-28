@@ -7,11 +7,11 @@
   border-bottom: none;
   display: flex;
   align-items: center;
-  padding: 18px 0;
+  padding: calc(18px * var(--zoom-scale)) 0;
 }
 
 .email-verification-content {
-  padding: 0 0 24px 0;
+  padding: 0 0 calc(24px * var(--zoom-scale)) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,20 +21,20 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 32px;
+  gap: calc(32px * var(--zoom-scale));
   margin-bottom: 0;
 }
 
 .email-verification__form {
   background: var(--color-email-form-bg);
   height: 74.7vh;
-  padding: 32px 1.2rem; // Consistent 1.2rem horizontal padding
-  max-width: 800px;
+  padding: calc(32px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)); // Consistent 1.2rem horizontal padding
+  max-width: calc(800px * var(--zoom-scale));
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: calc(24px * var(--zoom-scale));
 
   @include respond(tablets) {
     height: 80vh;
@@ -56,48 +56,54 @@
 
 .email-verification-form-box {
   background: var(--color-email-form-box);
-  border-radius: 18px;
+  border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 38px 1.2rem 34px 1.2rem; // Consistent 1.2rem horizontal padding
-  margin-top: 24px;
+  padding: calc(38px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale))
+    calc(34px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)); // Consistent 1.2rem horizontal padding
+  margin-top: calc(24px * var(--zoom-scale));
   height: 100%;
   width: 100%;
-  margin-top: -1rem;
+  margin-top: calc(-1rem * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
   // Samsung Galaxy Fold 5 specific styling (344px width)
   @media only screen and (max-width: 344px) {
-    padding: 20px 1.2rem 2.4rem 1.2rem; // Reduced top padding, increased bottom padding
-    border-radius: 16px;
+    padding: calc(20px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale))
+      calc(2.4rem * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)); // Reduced top padding, increased bottom padding
+    border-radius: calc(16px * var(--zoom-scale));
   }
 
   @media (min-width: 414px) and (max-width: 429px) {
-    padding: 85px 40px 34px 40px;
+    padding: calc(85px * var(--zoom-scale)) calc(40px * var(--zoom-scale))
+      calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
   @media (min-width: 430px) and (max-width: 480px) {
-    padding: 120px 40px 34px 40px;
+    padding: calc(120px * var(--zoom-scale)) calc(40px * var(--zoom-scale))
+      calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 
   @media (min-width: 375px) and (max-width: 389px) {
-    padding: 20px 40px 34px 40px;
+    padding: calc(20px * var(--zoom-scale)) calc(40px * var(--zoom-scale))
+      calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
   @media (min-width: 390px) and (max-width: 413px) {
-    padding: 80px 40px 34px 40px;
+    padding: calc(80px * var(--zoom-scale)) calc(40px * var(--zoom-scale))
+      calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 }
 
 .email-verification-label {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-email-form-label);
   font-weight: 600;
-  margin-bottom: 18px;
-  margin-top: 100px;
+  margin-bottom: calc(18px * var(--zoom-scale));
+  margin-top: calc(100px * var(--zoom-scale));
   // margin-left: -10px;
   display: block;
 }
@@ -105,11 +111,12 @@
 .email-verification-input {
   width: 100%;
   border: none;
-  border-bottom: 2px solid var(--color-email-form-input-border);
+  border-bottom: calc(2px * var(--zoom-scale)) solid
+    var(--color-email-form-input-border);
   background: transparent;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-top: 6px;
+  font-size: calc(14px * var(--zoom-scale));
+  padding: calc(8px * var(--zoom-scale)) 0;
+  margin-top: calc(6px * var(--zoom-scale));
   outline: none;
 }
 
@@ -117,15 +124,16 @@
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
-  border-radius: 2rem;
-  padding: 10px 0;
-  font-size: 14px;
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) 0;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   width: 75%;
-  margin: 80px auto 0 auto;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  margin: calc(80px * var(--zoom-scale)) auto 0 auto;
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+    rgba(44, 44, 84, 0.06);
 }
 
 .resend-btn {
@@ -150,8 +158,8 @@
   &.blinking {
     animation: blink 1s infinite;
     border-color: #0066cc69;
-    box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
-    border: 1px solid #0066cc69;
+    box-shadow: 0 0 calc(15px * var(--zoom-scale)) rgba(0, 102, 204, 0.5);
+    border: calc(1px * var(--zoom-scale)) solid #0066cc69;
   }
 }
 
@@ -159,13 +167,13 @@
   0%,
   100% {
     border-color: #0066cc69;
-    border-width: 2px;
-    border: 1px solid #0066cc69;
+    border-width: calc(2px * var(--zoom-scale));
+    border: calc(1px * var(--zoom-scale)) solid #0066cc69;
   }
   50% {
     border-color: transparent;
     box-shadow: none;
-    border: 1px solid #0066cc69;
+    border: calc(1px * var(--zoom-scale)) solid #0066cc69;
   }
 }
 

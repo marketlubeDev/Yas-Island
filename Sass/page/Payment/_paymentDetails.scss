@@ -1392,3 +1392,76 @@
     margin: 0.8rem 0;
   }
 }
+
+// Mobile Payment Details Zoom Integration
+@include respond(phone) {
+  .payment-form {
+    padding: var(--mobile-padding);
+    gap: var(--mobile-gap);
+
+    &__left {
+      padding: var(--mobile-padding);
+
+      .form-group {
+        margin-bottom: calc(20px * var(--zoom-scale));
+
+        &__label {
+          font-size: calc(12px * var(--zoom-scale));
+          margin-bottom: calc(8px * var(--zoom-scale));
+        }
+
+        &__input,
+        &__select {
+          padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+          font-size: calc(16px * var(--zoom-scale));
+          border-radius: calc(8px * var(--zoom-scale));
+          border: calc(1px * var(--zoom-scale)) solid
+            var(--color-base-btn-border);
+        }
+
+        &__phone {
+          gap: calc(12px * var(--zoom-scale));
+          margin-left: 0;
+        }
+      }
+
+      .form-group-row {
+        gap: calc(16px * var(--zoom-scale));
+        margin-bottom: calc(20px * var(--zoom-scale));
+      }
+    }
+
+    &__right {
+      padding: var(--mobile-padding);
+
+      .summary-item {
+        padding: calc(12px * var(--zoom-scale)) 0;
+        font-size: calc(14px * var(--zoom-scale));
+
+        &.total {
+          font-size: calc(18px * var(--zoom-scale));
+          padding: calc(16px * var(--zoom-scale)) 0;
+        }
+      }
+
+      .checkout-btn {
+        padding: calc(16px * var(--zoom-scale));
+        font-size: calc(16px * var(--zoom-scale));
+        border-radius: calc(8px * var(--zoom-scale));
+      }
+    }
+  }
+}
+
+@include respond(smallPhone) {
+  .payment-form {
+    &__left {
+      .form-group {
+        &__input,
+        &__select {
+          font-size: calc(16px * var(--zoom-scale)); // Prevent zoom on iOS
+        }
+      }
+    }
+  }
+}

@@ -1,159 +1,159 @@
-@use "sass:map";
-@use "sass:math";
+// @use "sass:map";
+// @use "sass:math";
 
-// Zoom-aware responsive mixins for accessibility
-// This file provides mixins that handle responsive breakpoints while considering zoom levels
+// // Zoom-aware responsive mixins for accessibility
+// // This file provides mixins that handle responsive breakpoints while considering zoom levels
 
-// Device breakpoints (physical device widths)
-$device-breakpoints: (
-  'iphone-se': 375px,
-  'iphone-xr': 414px, 
-  'iphone-12-pro': 390px,
-  'iphone-14-pro-max': 430px,
-  'samsung-fold': 344px,
-  'small-phone': 380px
-);
+// // Device breakpoints (physical device widths)
+// $device-breakpoints: (
+//   'iphone-se': 375px,
+//   'iphone-xr': 414px,
+//   'iphone-12-pro': 390px,
+//   'iphone-14-pro-max': 430px,
+//   'samsung-fold': 344px,
+//   'small-phone': 380px
+// );
 
-// Zoom levels
-$zoom-levels: (
-  'normal': 1,
-  'medium': 1.12, // 1.25x in UI
-  'large': 1.25   // 1.5x in UI
-);
+// // Zoom levels
+// $zoom-levels: (
+//   'normal': 1,
+//   'medium': 1.12, // 1.25x in UI
+//   'large': 1.25   // 1.5x in UI
+// );
 
-// Calculate effective viewport width considering zoom
-// When zoom is applied, the effective viewport becomes smaller
-@function calc-effective-width($device-width, $zoom-level) {
-  @return math.div($device-width, $zoom-level);
-}
+// // Calculate effective viewport width considering zoom
+// // When zoom is applied, the effective viewport becomes smaller
+// @function calc-effective-width($device-width, $zoom-level) {
+//   @return math.div($device-width, $zoom-level);
+// }
 
-// Zoom-aware responsive mixin
-// Usage: @include zoom-responsive('iphone-se', 'medium') { ... }
-@mixin zoom-responsive($device, $zoom: 'normal') {
-  $device-width: map.get($device-breakpoints, $device);
-  $zoom-level: map.get($zoom-levels, $zoom);
-  $effective-width: calc-effective-width($device-width, $zoom-level);
-  
-  // Create media query for the effective viewport width
-  @media only screen and (max-width: #{$effective-width}) {
-    // Apply zoom-aware scaling using CSS custom properties
-    --zoom-scale: #{$zoom-level};
-    @content;
-  }
-}
+// // Zoom-aware responsive mixin
+// // Usage: @include zoom-responsive('iphone-se', 'medium') { ... }
+// @mixin zoom-responsive($device, $zoom: 'normal') {
+//   $device-width: map.get($device-breakpoints, $device);
+//   $zoom-level: map.get($zoom-levels, $zoom);
+//   $effective-width: calc-effective-width($device-width, $zoom-level);
 
-// Multi-device zoom-aware mixin
-// Usage: @include multi-device-zoom(('iphone-se', 'iphone-12-pro'), 'medium') { ... }
-@mixin multi-device-zoom($devices, $zoom: 'normal') {
-  $zoom-level: map.get($zoom-levels, $zoom);
-  $max-width: 0px;
-  
-  // Find the largest device width to create a single media query
-  @each $device in $devices {
-    $device-width: map.get($device-breakpoints, $device);
-    $effective-width: calc-effective-width($device-width, $zoom-level);
-    @if $effective-width > $max-width {
-      $max-width: $effective-width;
-    }
-  }
-  
-  @media only screen and (max-width: #{$max-width}) {
-    --zoom-scale: #{$zoom-level};
-    @content;
-  }
-}
+//   // Create media query for the effective viewport width
+//   @media only screen and (max-width: #{$effective-width}) {
+//     // Apply zoom-aware scaling using CSS custom properties
+//     --zoom-scale: #{$zoom-level};
+//     @content;
+//   }
+// }
 
-// Zoom-aware container scaling mixin
-// This scales containers proportionally with their content
-@mixin zoom-scale-container($base-padding: 1rem, $base-margin: 1rem, $base-gap: 1rem) {
-  // Use CSS custom properties that can be overridden by zoom-responsive mixins
-  --zoom-scale: 1;
-  
-  // Scale padding, margin, and gap based on zoom level
-  padding: calc(#{$base-padding} * var(--zoom-scale));
-  margin: calc(#{$base-margin} * var(--zoom-scale));
-  gap: calc(#{$base-gap} * var(--zoom-scale));
-}
+// // Multi-device zoom-aware mixin
+// // Usage: @include multi-device-zoom(('iphone-se', 'iphone-12-pro'), 'medium') { ... }
+// @mixin multi-device-zoom($devices, $zoom: 'normal') {
+//   $zoom-level: map.get($zoom-levels, $zoom);
+//   $max-width: 0px;
 
-// Zoom-aware font scaling mixin
-@mixin zoom-scale-font($base-size: 1rem, $base-line-height: 1.5) {
-  --zoom-scale: 1;
-  
-  font-size: calc(#{$base-size} * var(--zoom-scale));
-  line-height: calc(#{$base-line-height} * var(--zoom-scale));
-}
+//   // Find the largest device width to create a single media query
+//   @each $device in $devices {
+//     $device-width: map.get($device-breakpoints, $device);
+//     $effective-width: calc-effective-width($device-width, $zoom-level);
+//     @if $effective-width > $max-width {
+//       $max-width: $effective-width;
+//     }
+//   }
 
-// Zoom-aware dimension scaling mixin
-@mixin zoom-scale-dimensions($base-width: auto, $base-height: auto) {
-  --zoom-scale: 1;
-  
-  @if $base-width != auto {
-    width: calc(#{$base-width} * var(--zoom-scale));
-  }
-  @if $base-height != auto {
-    height: calc(#{$base-height} * var(--zoom-scale));
-  }
-}
+//   @media only screen and (max-width: #{$max-width}) {
+//     --zoom-scale: #{$zoom-level};
+//     @content;
+//   }
+// }
 
-// Specific device + zoom combinations for common use cases
-@mixin iphone-se-zoom-medium {
-  @include zoom-responsive('iphone-se', 'medium') {
-    @content;
-  }
-}
+// // Zoom-aware container scaling mixin
+// // This scales containers proportionally with their content
+// @mixin zoom-scale-container($base-padding: 1rem, $base-margin: 1rem, $base-gap: 1rem) {
+//   // Use CSS custom properties that can be overridden by zoom-responsive mixins
+//   --zoom-scale: 1;
 
-@mixin iphone-se-zoom-large {
-  @include zoom-responsive('iphone-se', 'large') {
-    @content;
-  }
-}
+//   // Scale padding, margin, and gap based on zoom level
+//   padding: calc(#{$base-padding} * var(--zoom-scale));
+//   margin: calc(#{$base-margin} * var(--zoom-scale));
+//   gap: calc(#{$base-gap} * var(--zoom-scale));
+// }
 
-@mixin iphone-xr-zoom-medium {
-  @include zoom-responsive('iphone-xr', 'medium') {
-    @content;
-  }
-}
+// // Zoom-aware font scaling mixin
+// @mixin zoom-scale-font($base-size: 1rem, $base-line-height: 1.5) {
+//   --zoom-scale: 1;
 
-@mixin iphone-xr-zoom-large {
-  @include zoom-responsive('iphone-xr', 'large') {
-    @content;
-  }
-}
+//   font-size: calc(#{$base-size} * var(--zoom-scale));
+//   line-height: calc(#{$base-line-height} * var(--zoom-scale));
+// }
 
-@mixin iphone-12-pro-zoom-medium {
-  @include zoom-responsive('iphone-12-pro', 'medium') {
-    @content;
-  }
-}
+// // Zoom-aware dimension scaling mixin
+// @mixin zoom-scale-dimensions($base-width: auto, $base-height: auto) {
+//   --zoom-scale: 1;
 
-@mixin iphone-12-pro-zoom-large {
-  @include zoom-responsive('iphone-12-pro', 'large') {
-    @content;
-  }
-}
+//   @if $base-width != auto {
+//     width: calc(#{$base-width} * var(--zoom-scale));
+//   }
+//   @if $base-height != auto {
+//     height: calc(#{$base-height} * var(--zoom-scale));
+//   }
+// }
 
-@mixin iphone-14-pro-max-zoom-medium {
-  @include zoom-responsive('iphone-14-pro-max', 'medium') {
-    @content;
-  }
-}
+// // Specific device + zoom combinations for common use cases
+// @mixin iphone-se-zoom-medium {
+//   @include zoom-responsive('iphone-se', 'medium') {
+//     @content;
+//   }
+// }
 
-@mixin iphone-14-pro-max-zoom-large {
-  @include zoom-responsive('iphone-14-pro-max', 'large') {
-    @content;
-  }
-}
+// @mixin iphone-se-zoom-large {
+//   @include zoom-responsive('iphone-se', 'large') {
+//     @content;
+//   }
+// }
 
-// All target devices for 1.25x zoom
-@mixin all-devices-zoom-medium {
-  @include multi-device-zoom(('iphone-se', 'iphone-xr', 'iphone-12-pro', 'iphone-14-pro-max'), 'medium') {
-    @content;
-  }
-}
+// @mixin iphone-xr-zoom-medium {
+//   @include zoom-responsive('iphone-xr', 'medium') {
+//     @content;
+//   }
+// }
 
-// All target devices for 1.5x zoom  
-@mixin all-devices-zoom-large {
-  @include multi-device-zoom(('iphone-se', 'iphone-xr', 'iphone-12-pro', 'iphone-14-pro-max'), 'large') {
-    @content;
-  }
-}
+// @mixin iphone-xr-zoom-large {
+//   @include zoom-responsive('iphone-xr', 'large') {
+//     @content;
+//   }
+// }
+
+// @mixin iphone-12-pro-zoom-medium {
+//   @include zoom-responsive('iphone-12-pro', 'medium') {
+//     @content;
+//   }
+// }
+
+// @mixin iphone-12-pro-zoom-large {
+//   @include zoom-responsive('iphone-12-pro', 'large') {
+//     @content;
+//   }
+// }
+
+// @mixin iphone-14-pro-max-zoom-medium {
+//   @include zoom-responsive('iphone-14-pro-max', 'medium') {
+//     @content;
+//   }
+// }
+
+// @mixin iphone-14-pro-max-zoom-large {
+//   @include zoom-responsive('iphone-14-pro-max', 'large') {
+//     @content;
+//   }
+// }
+
+// // All target devices for 1.25x zoom
+// @mixin all-devices-zoom-medium {
+//   @include multi-device-zoom(('iphone-se', 'iphone-xr', 'iphone-12-pro', 'iphone-14-pro-max'), 'medium') {
+//     @content;
+//   }
+// }
+
+// // All target devices for 1.5x zoom
+// @mixin all-devices-zoom-large {
+//   @include multi-device-zoom(('iphone-se', 'iphone-xr', 'iphone-12-pro', 'iphone-14-pro-max'), 'large') {
+//     @content;
+//   }
+// }

@@ -9,29 +9,29 @@
     position: relative;
   }
   &__title {
-    font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
     font-weight: 600;
     color: var(--color-pymnt-title-clr);
     text-align: center;
-    margin-top: 10px;
+    margin-top: calc(10px * var(--zoom-scale));
     // margin-bottom: -13px;
   }
 
   &__back-button {
     background: none;
     border: none;
-    font-size: 15px;
-    margin-bottom: 8px;
+    font-size: calc(15px * var(--zoom-scale));
+    margin-bottom: calc(8px * var(--zoom-scale));
     position: absolute;
-    top: 110px;
-    left: 12px;
+    top: calc(110px * var(--zoom-scale));
+    left: calc(12px * var(--zoom-scale));
     cursor: pointer;
     z-index: 1;
     font-family: "YAS Font", sans-serif;
 
     &--rtl {
       left: auto;
-      right: 12px;
+      right: calc(12px * var(--zoom-scale));
     }
   }
 
@@ -40,13 +40,13 @@
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    gap: 32px;
-    margin: 10px auto 0 auto;
+    gap: calc(32px * var(--zoom-scale));
+    margin: calc(10px * var(--zoom-scale)) auto 0 auto;
     position: relative;
   }
 
   &__step {
-    font-size: 15px;
+    font-size: calc(15px * var(--zoom-scale));
     color: var(--color-pymnt-step-clr);
     font-weight: 500;
     text-align: center;
@@ -57,7 +57,7 @@
 
     &--checkout {
       width: 30%;
-      margin-right: 20px;
+      margin-right: calc(20px * var(--zoom-scale));
     }
 
     &--active {
@@ -67,19 +67,20 @@
 
     span {
       display: block;
-      margin-top: 4px;
-      font-size: 13px;
+      margin-top: calc(4px * var(--zoom-scale));
+      font-size: calc(13px * var(--zoom-scale));
     }
   }
 
   &__steps-divider {
     width: 100%;
-    height: 2.5px;
-    margin: 0 auto 18px auto;
+    height: calc(2.5px * var(--zoom-scale));
+    margin: 0 auto calc(18px * var(--zoom-scale)) auto;
     display: flex;
-    border-radius: 2px;
+    border-radius: calc(2px * var(--zoom-scale));
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+    box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+      rgba(44, 44, 84, 0.06);
 
     &::before,
     &::after {

@@ -1483,19 +1483,19 @@
 
 .guest-label-price {
   color: var(--color-base-text);
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 200;
   line-height: normal;
 
   @include respond(desktop) {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--zoom-scale));
   }
 }
 
 .guest-label {
   color: var(--color-base-text);
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--zoom-scale));
   font-weight: 700;
   line-height: 1.2;
   text-transform: capitalize;
@@ -1505,14 +1505,14 @@
 
   &-desc {
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
     color: var(--color-base-text-secondary);
     display: inline;
     word-wrap: break-word;
     line-height: 1.2;
 
     @include respond(desktop) {
-      font-size: 0.75rem;
+      font-size: calc(0.75rem * var(--zoom-scale));
     }
   }
 }

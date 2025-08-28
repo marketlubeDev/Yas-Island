@@ -109,16 +109,7 @@ function ConfirmEmailMbl({ onBack }) {
               <br />
               <button
                 onClick={() => navigate("/email-verification")}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "0 0 0 0",
-                  color: "#0066cc",
-                  fontSize: "12px",
-                  textDecoration: "underline",
-                  fontWeight: "500",
-                }}
+                className="confirm-email__edit-email-btn"
               >
                 {t("payment.verification.editEmail")}
               </button>
@@ -134,11 +125,10 @@ function ConfirmEmailMbl({ onBack }) {
             />
             <div style={{ textAlign: "center" }}>
               <button
-                className={`confirm-email__confirm-btn ${
+                className={`confirm-email__confirm-btn confirm-email__confirm-btn-margin ${
                   isExpired ? "disabled" : ""
                 }`}
                 type="submit"
-                style={{ marginTop: 24 }}
                 onClick={handleConfirmEmail}
                 disabled={isExpired}
               >

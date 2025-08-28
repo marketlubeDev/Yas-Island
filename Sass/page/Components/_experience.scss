@@ -33,6 +33,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow-y: auto; // Allow scrolling if content overflows
   // margin-top: 5rem;
 
   // margin-left: 1rem;
@@ -40,50 +41,69 @@
 }
 
 .experience-ticket-img {
-  height: 15rem;
+  height: calc(15rem * var(--zoom-scale));
   object-fit: contain;
-  margin-bottom: 18px;
+  margin-bottom: calc(18px * var(--zoom-scale));
+  max-height: 50vh; // Prevent image from taking too much space
 
   @include respond(tablets) {
-    height: 12rem;
+    height: calc(12rem * var(--zoom-scale));
+    max-height: 40vh;
   }
 
   @include respond(phone) {
-    height: 8rem;
+    height: calc(8rem * var(--zoom-scale));
+    max-height: 35vh;
   }
 
   @include respond(small-phone) {
-    height: 6rem;
+    height: calc(6rem * var(--zoom-scale));
+    max-height: 30vh;
+  }
+
+  // Additional constraint for high zoom levels
+  @media screen and (max-width: 420px) {
+    height: calc(12rem * var(--zoom-scale));
+    max-height: 35vh;
   }
 }
 
 .experience-message {
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   color: var(--color-email-form-label);
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: calc(10px * var(--zoom-scale));
 }
 
 .experience-divider {
   border: none;
-  border-top: 1px solid #e3e3e3;
+  border-top: calc(1px * var(--zoom-scale)) solid #e3e3e3;
   width: 80%;
-  margin: 18px 0;
+  margin: calc(10px * var(--zoom-scale)) 0;
 }
 
 .experience-rate-title {
-  font-size: 17px;
+  font-size: calc(17px * var(--zoom-scale));
   font-weight: 600;
   color: var(--color-email-form-label);
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: calc(10px * var(--zoom-scale));
   // margin-top: 3rem;
 }
 
 .experience-rate-options {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: calc(32px * var(--zoom-scale));
+
+  // Reduce gap at higher zoom levels to prevent overflow
+  @media screen and (max-width: 420px) {
+    gap: calc(24px * var(--zoom-scale));
+  }
+
+  @media screen and (max-width: 375px) {
+    gap: calc(20px * var(--zoom-scale));
+  }
 }
 
 .experience-rate-option {
@@ -93,131 +113,137 @@
   // gap: 8px;
   cursor: pointer;
   img {
-    width: 48px;
-    height: 48px;
+    width: calc(48px * var(--zoom-scale));
+    height: calc(48px * var(--zoom-scale));
     border-radius: 50%;
     background: #e1f1ff;
     // border: 2px solid transparent;
-    box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
-    margin-bottom: 4px;
+    box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+      rgba(44, 44, 84, 0.08);
+    margin-bottom: calc(4px * var(--zoom-scale));
     transition: box-shadow 0.2s, background 0.2s, border 0.2s;
     background-image: var(--color-smile-border);
     background-origin: border-box;
     background-clip: content-box, border-box;
   }
   div {
-    font-size: 14px;
+    font-size: calc(14px * var(--zoom-scale));
     color: var(--color-email-form-label);
     font-weight: 500;
-    margin-top: 2px;
+    margin-top: calc(2px * var(--zoom-scale));
   }
 }
 
 .selected-green img {
   background: var(--color-fb-happy-bg) !important;
-  box-shadow: 0 2px 12px rgba(46, 204, 113, 0.18);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+    rgba(46, 204, 113, 0.18);
   // border: 2.5px solid #2ecc71;
 }
 .selected-yellow img {
   background: var(--color-fb-smile-bg) !important;
-  box-shadow: 0 2px 12px rgba(255, 230, 0, 0.18);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+    rgba(255, 230, 0, 0.18);
   // border: 2.5px solid #ffe600;
 }
 .selected-red img {
   background: var(--color-fb-sad-bg) !important;
-  box-shadow: 0 2px 12px rgba(255, 77, 79, 0.18);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+    rgba(255, 77, 79, 0.18);
   // border: 2.5px solid #ff4d4f;
 }
 
 .smile-circle {
-  width: 50px;
-  height: 50px;
+  width: calc(50px * var(--zoom-scale));
+  height: calc(50px * var(--zoom-scale));
   border-radius: 50%;
   background: var(--color-feedback-circle-bg);
-  border: 2.5px solid var(--color-feedback-circle-border);
+  border: calc(2.5px * var(--zoom-scale)) solid
+    var(--color-feedback-circle-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4px;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.08);
+  margin-bottom: calc(4px * var(--zoom-scale));
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+    rgba(44, 44, 84, 0.08);
   transition: background 0.2s, border 0.2s;
   position: relative;
 
   .excellent-emoji {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--excellent-emoji-display, block);
   }
 
   .excellent-emoji-dark {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--excellent-emoji-dark-display, none);
   }
 
   .average-emoji {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--average-emoji-display, block);
   }
 
   .average-emoji-dark {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--average-emoji-dark-display, none);
   }
 
   .poor-emoji {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--poor-emoji-display, block);
   }
 
   .poor-emoji-dark {
-    width: 36px;
-    height: 36px;
+    width: calc(36px * var(--zoom-scale));
+    height: calc(36px * var(--zoom-scale));
     border-radius: 50%;
     transition: border 0.2s;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2px;
+    padding: calc(2px * var(--zoom-scale));
     display: var(--poor-emoji-dark-display, none);
   }
 }
@@ -237,38 +263,55 @@
   background: var(--color-checkout-summary-bg);
   // min-height: 100vh;
   width: 100vw;
-  padding: 10px;
+  padding: calc(10px * var(--zoom-scale));
   display: flex;
   align-items: center;
   justify-content: center;
 
   @include respond(tablets) {
-    padding: 10px 10px;
-    height: calc(100vh - 6rem);
+    padding: calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
+    height: calc(100vh - 6rem * var(--zoom-scale));
   }
 
   @include respond(phone) {
-    padding: 10px 10px;
-    height: calc(100vh - 4rem);
+    padding: calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
+    height: calc(100vh - 4rem * var(--zoom-scale));
   }
 }
 
 .experience-content-container {
   background: var(--color-email-form-box);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(44, 44, 84, 0.1);
-  padding: 32px 24px;
-  max-width: 420px;
+  border-radius: calc(16px * var(--zoom-scale));
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(24px * var(--zoom-scale))
+    rgba(44, 44, 84, 0.1);
+  padding: calc(32px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
+  max-width: 420px; // Keep fixed max-width, don't scale container size
   width: 100%;
   height: 84vh;
   // margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden; // Prevent content overflow
 
   @include respond(tablets) {
     width: 80vw !important;
     max-width: 100vw !important;
     height: 80vh !important;
   }
+
+  // Reduce padding at higher zoom levels to prevent overflow
+  @media screen and (max-width: 420px) {
+    padding: calc(24px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+  }
+
+  @media screen and (max-width: 375px) {
+    padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+  }
+}
+
+.experience-thank-you {
+  margin-top: calc(24px * var(--zoom-scale));
+  color: #bdbdc6;
+  font-size: calc(15px * var(--zoom-scale));
 }
