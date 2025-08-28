@@ -12083,26 +12083,40 @@ body.modal-open {
 .attraction-detail-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
-  max-height: 95vh;
+  max-height: 100vh;
+  height: 100vh;
+  max-height: 100dvh;
+  height: 100dvh;
   overflow: visible;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .attraction-detail-modal {
     width: 90vw !important;
     max-width: 80vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .attraction-detail-modal {
     width: 90vw !important;
     max-width: 80vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
   }
 }
 .attraction-detail-modal__container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 95vh;
+  max-height: 100vh;
+  min-height: 100vh;
+  max-height: 100dvh;
+  min-height: 100dvh;
 }
 .attraction-detail-modal__header {
   position: relative;
@@ -12134,7 +12148,7 @@ body.modal-open {
   }
 }
 .attraction-detail-modal__body {
-  padding: 0px calc(6px * var(--zoom-scale)) calc(24px * var(--zoom-scale)) calc(6px * var(--zoom-scale));
+  padding: 0px calc(6px * var(--zoom-scale)) calc(12px * var(--zoom-scale)) calc(6px * var(--zoom-scale));
   background-color: var(--color-dtl-body-bg);
   flex: 1;
   overflow-y: auto;
@@ -12185,10 +12199,12 @@ body.modal-open {
   flex-shrink: 0;
   min-height: calc(70px * var(--zoom-scale));
   margin-top: auto;
+  padding-bottom: max(12px * var(--zoom-scale), env(safe-area-inset-bottom));
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
     padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+    padding-bottom: max(10px * var(--zoom-scale), env(safe-area-inset-bottom));
     min-height: calc(60px * var(--zoom-scale));
     gap: calc(8px * var(--zoom-scale));
   }
@@ -12351,8 +12367,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .attraction-detail-modal .ant-modal-content {
-  height: 95vh;
-  max-height: 95vh;
+  height: 100vh;
+  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -12465,6 +12483,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   inset: 0 !important;
   -webkit-overflow-scrolling: touch;
   touch-action: none;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  height: 100vh !important;
+  height: 100dvh !important;
 }
 
 .ant-modal-mask {
@@ -12485,11 +12509,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .attraction-detail-modal .ant-modal {
   top: 0 !important;
   position: relative !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
+  height: 100vh !important;
   max-height: 100vh !important;
+  height: 100dvh !important;
   max-height: 100dvh !important;
-  max-height: 100svh !important;
   overflow: hidden !important;
 }
 
