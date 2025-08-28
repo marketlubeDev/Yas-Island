@@ -109,7 +109,7 @@ function AttractionDetailModalMbl({
   };
 
   return (
-    <>
+    <div className="attraction-detail-modal__container">
       <div className="attraction-detail-modal__header">
         <img
           src={backIconSrc}
@@ -162,7 +162,7 @@ function AttractionDetailModalMbl({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

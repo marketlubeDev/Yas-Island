@@ -12049,8 +12049,8 @@ body.modal-open {
 .attraction-detail-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
-  max-height: 99vh;
-  overflow: hidden;
+  max-height: 95vh;
+  overflow: visible;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .attraction-detail-modal {
@@ -12063,6 +12063,12 @@ body.modal-open {
     width: 90vw !important;
     max-width: 80vw !important;
   }
+}
+.attraction-detail-modal__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 95vh;
 }
 .attraction-detail-modal__header {
   position: relative;
@@ -12096,25 +12102,12 @@ body.modal-open {
 .attraction-detail-modal__body {
   padding: 0px calc(6px * var(--zoom-scale)) calc(24px * var(--zoom-scale)) calc(6px * var(--zoom-scale));
   background-color: var(--color-dtl-body-bg);
-  height: calc(99dvh - 11.5rem);
-  height: calc(99svh - 11.5rem);
-  height: calc(99dvh - 11.5rem);
+  flex: 1;
   overflow-y: auto;
+  min-height: 0;
 }
 .attraction-detail-modal__body .product-heading {
   color: var(--color-base-text) !important;
-}
-@media only screen and (max-width: 575.98px) {
-  .attraction-detail-modal__body {
-    height: calc(99dvh - 9rem) !important;
-    height: calc(99svh - 9rem) !important;
-  }
-}
-@media (max-width: 375px) {
-  .attraction-detail-modal__body {
-    height: calc(99dvh - 8.5rem) !important;
-    height: calc(99svh - 8.5rem) !important;
-  }
 }
 .attraction-detail-modal__image {
   border-radius: calc(16px * var(--zoom-scale));
@@ -12149,37 +12142,33 @@ body.modal-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: calc(6px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
-  gap: calc(8px * var(--zoom-scale));
+  padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+  gap: calc(12px * var(--zoom-scale));
   background: var(--color-dtl-footer-bg);
   border-radius: 0 0 calc(24px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  top: 0;
-  min-height: calc(50px * var(--zoom-scale));
+  flex-shrink: 0;
+  min-height: calc(70px * var(--zoom-scale));
+  margin-top: auto;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__footer {
-    top: 0;
-    padding: calc(4px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
-    min-height: calc(45px * var(--zoom-scale));
+    padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+    min-height: calc(60px * var(--zoom-scale));
+    gap: calc(8px * var(--zoom-scale));
   }
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__footer {
-    top: 0;
-    padding: calc(4px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
-    gap: calc(4px * var(--zoom-scale));
+    padding: calc(8px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
+    gap: calc(6px * var(--zoom-scale));
+    min-height: calc(55px * var(--zoom-scale));
   }
 }
 html[lang=ar] .attraction-detail-modal__footer {
-  top: 0 !important;
-}
-@media only screen and (max-width: 575.98px) {
-  html[lang=ar] .attraction-detail-modal__footer {
-    top: 0 !important;
-  }
+  margin-top: auto !important;
 }
 .attraction-detail-modal__footer .attraction-detail-modal__footer-divider {
   position: absolute;
@@ -12222,14 +12211,20 @@ html[lang=ar] .attraction-detail-modal__footer {
   gap: calc(2px * var(--zoom-scale));
   line-height: 1.2;
 }
+.zoom-1-5x .attraction-detail-modal__vat {
+  line-height: 1;
+}
 .attraction-detail-modal__vat-amount {
   font-size: calc(13px * var(--zoom-scale));
   color: var(--color-dtl-footer-price);
   font-weight: 500;
 }
+.zoom-1-5x .attraction-detail-modal__vat-amount {
+  font-size: calc(12px * var(--zoom-scale)) !important;
+}
 @media (max-width: 375px) {
   .attraction-detail-modal__vat-amount {
-    font-size: calc(11px * var(--zoom-scale)) !important;
+    font-size: calc(10px * var(--zoom-scale)) !important;
   }
 }
 .attraction-detail-modal__vat-text {
@@ -12237,6 +12232,9 @@ html[lang=ar] .attraction-detail-modal__footer {
   color: var(--color-dtl-footer-price);
   font-weight: 400;
   opacity: 0.8;
+}
+.zoom-1-5x .attraction-detail-modal__vat-text {
+  font-size: calc(10px * var(--zoom-scale)) !important;
 }
 @media (max-width: 375px) {
   .attraction-detail-modal__vat-text {
@@ -12290,20 +12288,18 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .attraction-detail-modal .ant-modal-content {
-  height: 99dvh;
-  height: 99svh;
-  max-height: 99dvh;
-  max-height: 99svh;
+  height: 95vh;
+  max-height: 95vh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
   padding: 0px calc(8px * var(--zoom-scale));
-  align-items: center;
+  align-items: stretch;
   border-radius: calc(20px * var(--zoom-scale));
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: var(--color-dtl-content-bg);
   border: calc(1px * var(--zoom-scale)) solid var(--color-dtl-content-border);
-  overflow: hidden !important;
+  overflow: visible !important;
   position: relative;
 }
 
@@ -12401,7 +12397,7 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .attraction-detail-modal.ant-modal-wrap {
   z-index: 2147483600 !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   position: fixed !important;
   inset: 0 !important;
   -webkit-overflow-scrolling: touch;
@@ -12417,7 +12413,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .attraction-detail-modal .ant-modal-body {
   width: 100%;
   padding: 0 !important;
-  overflow: hidden !important;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .attraction-detail-modal .ant-modal {
