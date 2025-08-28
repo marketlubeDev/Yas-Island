@@ -37,7 +37,7 @@ function PaymentResponseMobile() {
             <SmileSection selected={selected} setSelected={setSelected} />
 
             {selected && (
-              <div style={{ marginTop: 24, color: "#bdbdc6", fontSize: 15 }}>
+              <div className="experience-thank-you">
                 {t("payment.response.thankYou")}
               </div>
             )}
