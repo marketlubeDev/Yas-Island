@@ -1,20 +1,20 @@
 .upcoming-page {
-  height: calc(100vh - 12rem);
+  height: calc(100vh - 12rem * var(--zoom-scale));
   background-color: var(--color-base-product-card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: calc(2rem * var(--zoom-scale));
   font-family: "YASfont-Regular", sans-serif;
 
   .upcoming-container {
-    max-width: 600px;
+    max-width: calc(600px * var(--zoom-scale));
     width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: calc(3rem * var(--zoom-scale));
   }
 
   //   .upcoming-illustration {
@@ -114,11 +114,11 @@
   .upcoming-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
+    gap: calc(1rem * var(--zoom-scale));
+    max-width: calc(400px * var(--zoom-scale));
 
     .upcoming-title {
-      font-size: 2rem;
+      font-size: calc(2rem * var(--zoom-scale));
       font-weight: 600;
       color: #4a4a4a;
       margin: 0;
@@ -126,7 +126,7 @@
     }
 
     .upcoming-subtitle {
-      font-size: 1.1rem;
+      font-size: calc(1.1rem * var(--zoom-scale));
       color: #6b6b6b;
       margin: 0;
       line-height: 1.5;
@@ -149,11 +149,11 @@
 // Mobile Responsive Styles
 @media (max-width: 768px) {
   .upcoming-page {
-    height: calc(100vh - 18rem);
-    padding: 1rem;
+    height: calc(100vh - 18rem * var(--zoom-scale));
+    padding: calc(1rem * var(--zoom-scale));
 
     .upcoming-container {
-      gap: 2rem;
+      gap: calc(2rem * var(--zoom-scale));
     }
 
     .upcoming-illustration {
@@ -203,11 +203,11 @@
 
     .upcoming-content {
       .upcoming-title {
-        font-size: 1.5rem;
+        font-size: calc(1.5rem * var(--zoom-scale));
       }
 
       .upcoming-subtitle {
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
       }
     }
   }
@@ -261,11 +261,11 @@
 
     .upcoming-content {
       .upcoming-title {
-        font-size: 1.25rem;
+        font-size: calc(1.25rem * var(--zoom-scale));
       }
 
       .upcoming-subtitle {
-        font-size: 0.9rem;
+        font-size: calc(0.9rem * var(--zoom-scale));
       }
     }
   }
@@ -281,11 +281,11 @@
 
     .upcoming-content {
       .upcoming-title {
-        font-size: 1.75rem;
+        font-size: calc(1.75rem * var(--zoom-scale));
       }
 
       .upcoming-subtitle {
-        font-size: 1.05rem;
+        font-size: calc(1.05rem * var(--zoom-scale));
       }
     }
   }
@@ -295,8 +295,8 @@
 @media (min-width: 1025px) {
   .upcoming-page {
     .upcoming-container {
-      max-width: 700px;
-      gap: 4rem;
+      max-width: calc(700px * var(--zoom-scale));
+      gap: calc(4rem * var(--zoom-scale));
     }
 
     .upcoming-illustration {
@@ -306,11 +306,11 @@
 
     .upcoming-content {
       .upcoming-title {
-        font-size: 2.25rem;
+        font-size: calc(2.25rem * var(--zoom-scale));
       }
 
       .upcoming-subtitle {
-        font-size: 1.2rem;
+        font-size: calc(1.2rem * var(--zoom-scale));
       }
     }
   }

@@ -2912,20 +2912,20 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .guest-label-price {
   color: var(--color-base-text);
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 200;
   line-height: normal;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-label-price {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--zoom-scale));
   }
 }
 
 .guest-label {
   color: var(--color-base-text);
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--zoom-scale));
   font-weight: 700;
   line-height: 1.2;
   text-transform: capitalize;
@@ -2935,7 +2935,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 .guest-label-desc {
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--zoom-scale));
   color: var(--color-base-text-secondary);
   display: inline;
   word-wrap: break-word;
@@ -2943,7 +2943,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-label-desc {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--zoom-scale));
   }
 }
 
@@ -8221,9 +8221,10 @@ html[dir=rtl] .back-button {
   min-width: 0;
 }
 .attraction-card__action {
+  display: flex;
   flex: 0;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 4px;
   width: 120px;
@@ -8234,281 +8235,31 @@ html[dir=rtl] .back-button {
 html[lang=ar] .attraction-card__action {
   align-items: flex-start;
 }
-@media only screen and (max-width: 430px) and (min-width: 376px) {
-  .attraction-card__action {
-    width: 100px;
-    gap: 3px;
-  }
-}
-@media only screen and (max-width: 375px) and (min-width: 351px) {
-  .attraction-card__action {
-    width: 90px;
-    gap: 2px;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .attraction-card__action {
-    width: 85px;
-    gap: 2px;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card__action {
-    width: 106.4px;
-    gap: 2.24px;
-    flex-shrink: 0;
-    margin-right: 8.96px;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card__action {
-    width: 112px;
-    gap: 3.36px;
-    flex-shrink: 0;
-    margin-right: 11.2px;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 390px) {
-  .zoom-1-25x .attraction-card__action {
-    width: 109.76px;
-    gap: 3.36px;
-    flex-shrink: 0;
-    margin-right: 10.08px;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 415px) and (max-width: 430px) {
-  .zoom-1-25x .attraction-card__action {
-    width: 134.4px;
-    gap: 4.48px;
-    flex-shrink: 0;
-    margin-right: 13.44px;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .attraction-card__action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 4px;
-    width: 120px;
-    flex-shrink: 0;
-    height: 100%;
-    padding: 0;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .zoom-1-25x .attraction-card__action {
-    width: 168px;
-    gap: 6.72px;
-    flex-shrink: 0;
-    margin-right: 0;
-    margin-left: 0;
-    padding: 0;
-  }
-}
 .attraction-card__add-btn {
   background: var(--color-base-mobile-product-page-btn-bg);
   color: var(--color-base-mobile-product-page-btn-text);
   border: 1px solid var(--color-base-mobile-product-page-btn-border);
   border-radius: 2rem;
-  padding: 4px 20px;
-  font-size: 15px;
+  padding: calc(3px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
+  font-size: calc(13px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
   transition: background 0.2s;
   white-space: nowrap;
-}
-@media only screen and (max-width: 430px) and (min-width: 376px) {
-  .attraction-card__add-btn {
-    padding: 3px 16px;
-    font-size: 14px;
-  }
-}
-@media only screen and (max-width: 375px) and (min-width: 351px) {
-  .attraction-card__add-btn {
-    padding: 3px 14px;
-    font-size: 13px;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .attraction-card__add-btn {
-    padding: 3px 12px;
-    font-size: 13px;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card__add-btn {
-    padding: 3.36px 15.68px;
-    font-size: 14.56px;
-    border-radius: 2.24rem;
-    border-width: 1.12px;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card__add-btn {
-    padding: 4.48px 22.4px;
-    font-size: 15.68px;
-    border-radius: 2.24rem;
-    border-width: 1.12px;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 390px) {
-  .zoom-1-25x .attraction-card__add-btn {
-    padding: 4.48px 21.28px;
-    font-size: 15.68px;
-    border-radius: 2.24rem;
-    border-width: 1.12px;
-  }
-}
-@media only screen and (min-width: 415px) and (max-width: 430px) {
-  .zoom-1-25x .attraction-card__add-btn {
-    padding: 5.6px 26.88px;
-    font-size: 16.8px;
-    border-radius: 2.24rem;
-    border-width: 1.12px;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .attraction-card__add-btn {
-    background: var(--color-base-mobile-product-page-btn-bg);
-    color: var(--color-base-mobile-product-page-btn-text);
-    border: 1px solid var(--color-base-mobile-product-page-btn-border);
-    padding: 6px 20px;
-    font-size: 14px;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .zoom-1-25x .attraction-card__add-btn {
-    padding: 8.96px 31.36px;
-    font-size: 17.92px;
-    border-radius: 2.24rem;
-    border-width: 1.12px;
-  }
+  margin-top: calc(10px * var(--zoom-scale));
 }
 .attraction-card__price {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: calc(13px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-base-mobile-product-page-price);
-  margin-right: 0.5rem;
 }
 html[lang=ar] .attraction-card__price {
   margin-right: 0;
   margin-left: 0.5rem;
-}
-@media only screen and (max-width: 430px) and (min-width: 376px) {
-  .attraction-card__price {
-    font-size: 13px;
-    margin-right: 0.3rem;
-    gap: 6px;
-  }
-  html[lang=ar] .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0.3rem;
-  }
-}
-@media only screen and (max-width: 375px) and (min-width: 351px) {
-  .attraction-card__price {
-    font-size: 12px;
-    margin-right: 0.2rem;
-    gap: 4px;
-  }
-  html[lang=ar] .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0.2rem;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .attraction-card__price {
-    font-size: 12px;
-    margin-right: 0.2rem;
-    gap: 4px;
-  }
-  html[lang=ar] .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0.2rem;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .zoom-1-25x .attraction-card__price {
-    font-size: 13.44px;
-    margin-right: 0;
-    gap: 4.48px;
-  }
-  html[lang=ar] .zoom-1-25x .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 414px) {
-  .zoom-1-25x .attraction-card__price {
-    font-size: 15.68px;
-    margin-right: 0;
-    gap: 8.96px;
-  }
-  html[lang=ar] .zoom-1-25x .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 376px) and (max-width: 390px) {
-  .zoom-1-25x .attraction-card__price {
-    font-size: 14.56px;
-    margin-right: 0;
-    gap: 6.72px;
-  }
-  html[lang=ar] .zoom-1-25x .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 415px) and (max-width: 430px) {
-  .zoom-1-25x .attraction-card__price {
-    font-size: 17.92px;
-    margin-right: 0;
-    gap: 11.2px;
-  }
-  html[lang=ar] .zoom-1-25x .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .attraction-card__price {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-base-mobile-product-page-price);
-    margin-right: 0;
-  }
-  html[lang=ar] .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .zoom-1-25x .attraction-card__price {
-    font-size: 20.16px;
-    margin-right: 0;
-    gap: 13.44px;
-  }
-  html[lang=ar] .zoom-1-25x .attraction-card__price {
-    margin-right: 0;
-    margin-left: 0;
-  }
 }
 .attraction-card__vat {
   font-size: 10px;
@@ -10045,11 +9796,11 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   border-bottom: none;
   display: flex;
   align-items: center;
-  padding: 18px 0;
+  padding: calc(18px * var(--zoom-scale)) 0;
 }
 
 .email-verification-content {
-  padding: 0 0 24px 0;
+  padding: 0 0 calc(24px * var(--zoom-scale)) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10059,20 +9810,20 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 32px;
+  gap: calc(32px * var(--zoom-scale));
   margin-bottom: 0;
 }
 
 .email-verification__form {
   background: var(--color-email-form-bg);
   height: 74.7vh;
-  padding: 32px 1.2rem;
-  max-width: 800px;
+  padding: calc(32px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale));
+  max-width: calc(800px * var(--zoom-scale));
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: calc(24px * var(--zoom-scale));
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .email-verification__form {
@@ -10102,65 +9853,65 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 
 .email-verification-form-box {
   background: var(--color-email-form-box);
-  border-radius: 18px;
+  border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
-  padding: 38px 1.2rem 34px 1.2rem;
-  margin-top: 24px;
+  padding: calc(38px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)) calc(34px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale));
+  margin-top: calc(24px * var(--zoom-scale));
   height: 100%;
   width: 100%;
-  margin-top: -1rem;
+  margin-top: calc(-1rem * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 @media only screen and (max-width: 344px) {
   .email-verification-form-box {
-    padding: 20px 1.2rem 2.4rem 1.2rem;
-    border-radius: 16px;
+    padding: calc(20px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)) calc(2.4rem * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale));
+    border-radius: calc(16px * var(--zoom-scale));
   }
 }
 @media (min-width: 414px) and (max-width: 429px) {
   .email-verification-form-box {
-    padding: 85px 40px 34px 40px;
+    padding: calc(85px * var(--zoom-scale)) calc(40px * var(--zoom-scale)) calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 }
 @media (min-width: 430px) and (max-width: 480px) {
   .email-verification-form-box {
-    padding: 120px 40px 34px 40px;
+    padding: calc(120px * var(--zoom-scale)) calc(40px * var(--zoom-scale)) calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 }
 @media (min-width: 375px) and (max-width: 389px) {
   .email-verification-form-box {
-    padding: 20px 40px 34px 40px;
+    padding: calc(20px * var(--zoom-scale)) calc(40px * var(--zoom-scale)) calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 }
 @media (min-width: 390px) and (max-width: 413px) {
   .email-verification-form-box {
-    padding: 80px 40px 34px 40px;
+    padding: calc(80px * var(--zoom-scale)) calc(40px * var(--zoom-scale)) calc(34px * var(--zoom-scale)) calc(40px * var(--zoom-scale));
     height: 100vh;
   }
 }
 
 .email-verification-label {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-email-form-label);
   font-weight: 600;
-  margin-bottom: 18px;
-  margin-top: 100px;
+  margin-bottom: calc(18px * var(--zoom-scale));
+  margin-top: calc(100px * var(--zoom-scale));
   display: block;
 }
 
 .email-verification-input {
   width: 100%;
   border: none;
-  border-bottom: 2px solid var(--color-email-form-input-border);
+  border-bottom: calc(2px * var(--zoom-scale)) solid var(--color-email-form-input-border);
   background: transparent;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-top: 6px;
+  font-size: calc(14px * var(--zoom-scale));
+  padding: calc(8px * var(--zoom-scale)) 0;
+  margin-top: calc(6px * var(--zoom-scale));
   outline: none;
 }
 
@@ -10168,15 +9919,15 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
-  border-radius: 2rem;
-  padding: 10px 0;
-  font-size: 14px;
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) 0;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   width: 75%;
-  margin: 80px auto 0 auto;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  margin: calc(80px * var(--zoom-scale)) auto 0 auto;
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
 }
 
 .resend-btn {
@@ -10197,20 +9948,20 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 .code-input.blinking {
   animation: blink 1s infinite;
   border-color: rgba(0, 102, 204, 0.4117647059);
-  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
-  border: 1px solid rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 calc(15px * var(--zoom-scale)) rgba(0, 102, 204, 0.5);
+  border: calc(1px * var(--zoom-scale)) solid rgba(0, 102, 204, 0.4117647059);
 }
 
 @keyframes blink {
   0%, 100% {
     border-color: rgba(0, 102, 204, 0.4117647059);
-    border-width: 2px;
-    border: 1px solid rgba(0, 102, 204, 0.4117647059);
+    border-width: calc(2px * var(--zoom-scale));
+    border: calc(1px * var(--zoom-scale)) solid rgba(0, 102, 204, 0.4117647059);
   }
   50% {
     border-color: transparent;
     box-shadow: none;
-    border: 1px solid rgba(0, 102, 204, 0.4117647059);
+    border: calc(1px * var(--zoom-scale)) solid rgba(0, 102, 204, 0.4117647059);
   }
 }
 .confirm-button {
@@ -10224,7 +9975,7 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 }
 
 .confirm-email__modal {
-  max-width: 500px;
+  max-width: calc(500px * var(--zoom-scale));
   width: 100vw;
   height: 100%;
   display: flex;
@@ -10250,19 +10001,23 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 400px;
-  padding: 32px 0 24px 0;
+  justify-content: center;
+  min-height: calc(400px * var(--zoom-scale));
 }
 
 .confirm-email__form-container {
   width: 90%;
-  max-width: 400px;
+  max-width: calc(400px * var(--zoom-scale));
   background: var(--color-email-form-box);
-  border-radius: 18px;
+  border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
   align-items: center;
-  padding: 32px 36px;
+  padding: calc(20px * var(--zoom-scale));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(10px * var(--zoom-scale));
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .confirm-email__form-container {
@@ -10273,45 +10028,45 @@ html[lang=ar] .accessibility-popup-option .zoom-buttons {
 }
 @media (min-width: 340px) and (max-width: 374px) {
   .confirm-email__form-container {
-    padding: 88px 27px;
+    padding: calc(88px * var(--zoom-scale)) calc(27px * var(--zoom-scale));
   }
 }
 @media (min-width: 390px) and (max-width: 411px) {
   .confirm-email__form-container {
-    padding: 70px 36px;
+    padding: calc(70px * var(--zoom-scale)) calc(36px * var(--zoom-scale));
   }
 }
 @media (min-width: 412px) and (max-width: 413px) {
   .confirm-email__form-container {
-    padding: 108px 36px;
+    padding: calc(108px * var(--zoom-scale)) calc(36px * var(--zoom-scale));
   }
 }
 @media (min-width: 414px) and (max-width: 430px) {
   .confirm-email__form-container {
-    padding: 97px 36px;
+    padding: calc(97px * var(--zoom-scale)) calc(36px * var(--zoom-scale));
   }
 }
 
 .confirm-email__label {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-email-form-otp-info-b);
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: calc(8px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(8px * var(--zoom-scale));
   position: relative;
 }
 
 .confirm-email__input-underline {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-email-form-otp-info-b);
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--color-email-form-input-border);
-  margin-bottom: 16px;
+  padding-bottom: calc(4px * var(--zoom-scale));
+  border-bottom: calc(2px * var(--zoom-scale)) solid var(--color-email-form-input-border);
+  margin-bottom: calc(16px * var(--zoom-scale));
   background: none;
   text-align: left;
-  margin-top: 27px;
+  margin-top: calc(27px * var(--zoom-scale));
   width: 100%;
   display: block;
 }
@@ -10322,10 +10077,8 @@ html[lang=ar] .confirm-email__input-underline {
 
 .confirm-email__otp-section-bg {
   background: var(--color-confirm-otp-bg);
-  border-radius: 12px;
-  padding: 18px 8px 12px 8px;
-  margin-bottom: 18px;
-  margin-top: 30px;
+  border-radius: calc(12px * var(--zoom-scale));
+  padding: calc(18px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) calc(12px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10333,35 +10086,35 @@ html[lang=ar] .confirm-email__input-underline {
 
 .confirm-email__otp-section {
   background: #fff;
-  border-radius: 12px;
-  padding: 18px 8px 12px 8px;
-  margin-bottom: 18px;
+  border-radius: calc(12px * var(--zoom-scale));
+  padding: calc(18px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) calc(12px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
+  margin-bottom: calc(18px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .confirm-email__otp-label {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: bold;
   color: var(--color-email-form-otp-info-b);
-  margin-bottom: 10px;
+  margin-bottom: calc(10px * var(--zoom-scale));
   text-align: center;
 }
 
 .confirm-email__otp-inputs {
   display: flex;
-  gap: 5px;
-  margin-bottom: 10px;
+  gap: calc(5px * var(--zoom-scale));
+  margin-bottom: calc(10px * var(--zoom-scale));
   justify-content: center;
 }
 
 .confirm-email__otp-input {
-  width: 37px;
-  height: 41px;
-  border: 0.5px solid var(--color-confirm-otp-input-border);
-  border-radius: 8px;
-  font-size: 18px;
+  width: calc(37px * var(--zoom-scale));
+  height: calc(41px * var(--zoom-scale));
+  border: calc(0.5px * var(--zoom-scale)) solid var(--color-confirm-otp-input-border);
+  border-radius: calc(8px * var(--zoom-scale));
+  font-size: calc(18px * var(--zoom-scale));
   text-align: center;
   background: var(--color-email-form-box);
   font-weight: 700;
@@ -10375,8 +10128,8 @@ html[lang=ar] .confirm-email__input-underline {
 .confirm-email__otp-input.blinking {
   animation: blink 1s infinite;
   border-color: rgba(0, 102, 204, 0.4117647059);
-  box-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
-  border: 1px solid rgba(0, 102, 204, 0.4117647059);
+  box-shadow: 0 0 calc(15px * var(--zoom-scale)) rgba(0, 102, 204, 0.5);
+  border: calc(1px * var(--zoom-scale)) solid rgba(0, 102, 204, 0.4117647059);
 }
 
 @keyframes blink {
@@ -10388,10 +10141,10 @@ html[lang=ar] .confirm-email__input-underline {
   }
 }
 .confirm-email__otp-info {
-  font-size: 13px;
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-email-form-otp-info);
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: calc(4px * var(--zoom-scale));
 }
 .confirm-email__otp-info span {
   color: var(--color-email-form-otp-info-b);
@@ -10399,31 +10152,30 @@ html[lang=ar] .confirm-email__input-underline {
 
 .confirm-email__otp-warning {
   color: var(--color-email-form-otp-warning);
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   display: block;
-  margin-top: 2px;
+  margin-top: calc(2px * var(--zoom-scale));
 }
 
 .confirm-email__otp-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: calc(12px * var(--zoom-scale));
   justify-content: center;
-  margin-top: 18px;
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: var(--color-otp-action);
   flex-wrap: wrap;
 }
 .confirm-email__otp-actions button {
   background: var(--color-email-form-box);
-  border: 3px solid var(--color-otp-action-btn-border);
-  border-radius: 2rem;
-  padding: 10px 20px;
-  font-size: 14px;
+  border: calc(3px * var(--zoom-scale)) solid var(--color-otp-action-btn-border);
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) calc(20px * var(--zoom-scale));
+  font-size: calc(14px * var(--zoom-scale));
   color: var(--color-otp-action);
   font-weight: 500;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: calc(8px * var(--zoom-scale));
   transition: background 0.2s, border 0.2s;
 }
 .confirm-email__otp-actions button:disabled {
@@ -10432,7 +10184,7 @@ html[lang=ar] .confirm-email__input-underline {
 }
 @media (max-width: 600px) {
   .confirm-email__otp-actions button {
-    padding: 6px 15px;
+    padding: calc(6px * var(--zoom-scale)) calc(15px * var(--zoom-scale));
   }
 }
 
@@ -10444,7 +10196,7 @@ html[lang=ar] .confirm-email__otp-actions {
   direction: rtl;
 }
 html[lang=ar] .confirm-email__otp-actions button {
-  margin-right: 8px;
+  margin-right: calc(8px * var(--zoom-scale));
   margin-left: 0;
 }
 
@@ -10452,13 +10204,13 @@ html[lang=ar] .confirm-email__otp-actions button {
   background: var(--color-email-form-confirm-btn);
   color: var(--color-email-form-confirm-btn-clr);
   border: none;
-  border-radius: 2rem;
-  padding: 10px 0;
-  font-size: 15px;
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) 0;
+  font-size: calc(15px * var(--zoom-scale));
   font-weight: 600;
   cursor: pointer;
   width: 75%;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
 }
 .confirm-email__confirm-btn:hover {
@@ -10471,12 +10223,12 @@ html[lang=ar] .confirm-email__otp-actions button {
 
 .confirm-email__steps-underline {
   width: 100%;
-  height: 2.5px;
-  margin: 0 auto 18px auto;
+  height: calc(2.5px * var(--zoom-scale));
+  margin: 0 auto calc(18px * var(--zoom-scale)) auto;
   display: flex;
-  border-radius: 2px;
+  border-radius: calc(2px * var(--zoom-scale));
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(44, 44, 84, 0.06);
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
 }
 .confirm-email__steps-underline::before, .confirm-email__steps-underline::after {
   content: "";
@@ -10490,6 +10242,21 @@ html[lang=ar] .confirm-email__otp-actions button {
 .confirm-email__steps-underline::after {
   width: 50%;
   background: #dcdcdc;
+}
+
+.confirm-email__edit-email-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 0 0;
+  color: #0066cc;
+  font-size: calc(12px * var(--zoom-scale));
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.confirm-email__confirm-btn-margin {
+  margin-top: calc(10px * var(--zoom-scale));
 }
 
 .email-checkout__overlay {
@@ -12705,14 +12472,14 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .booking-modal {
   width: 100%;
-  max-width: 420px;
+  max-width: calc(420px * var(--zoom-scale));
   max-height: 100dvh;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 1.2rem;
-  border: 2px solid var(--color-base-product-card-card-item-border);
+  border-radius: calc(1.2rem * var(--zoom-scale));
+  border: calc(2px * var(--zoom-scale)) solid var(--color-base-product-card-card-item-border);
   position: relative; /* Ensure proper stacking context */
   touch-action: pan-y; /* Allow vertical scrolling inside modal */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -12722,12 +12489,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 18px;
+  padding: calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
   background: var(--color-bkg-header-bg);
 }
 
 .booking-modal__title {
-  font-size: 21px;
+  font-size: calc(21px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-title-clr);
   flex: 1;
@@ -12736,11 +12503,11 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .booking-modal__body {
   flex: 1 1 auto;
-  padding: 0 18px 18px 18px;
+  padding: 0 calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 12px;
+  gap: calc(12px * var(--zoom-scale));
   background: var(--color-bkg-body-bg);
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
@@ -12776,9 +12543,9 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .booking-modal__calendar {
   width: 100%;
   background: var(--color-bkg-clndr-bg);
-  border-radius: 16px 16px 16px 16px;
-  border: 1px solid var(--color-bkg-modal-border);
-  padding: 3px 0 24px 0;
+  border-radius: calc(16px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+  border: calc(1px * var(--zoom-scale)) solid var(--color-bkg-modal-border);
+  padding: calc(3px * var(--zoom-scale)) 0 calc(24px * var(--zoom-scale)) 0;
   flex: 0 0 auto;
 }
 
@@ -12787,49 +12554,48 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 8px;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--color-bkg-modal-border);
+  font-size: calc(16px * var(--zoom-scale));
+  margin-bottom: calc(8px * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+  border-bottom: calc(1px * var(--zoom-scale)) solid var(--color-bkg-modal-border);
 }
 .booking-modal__calendar-header button {
   background: none;
   border: none;
-  padding: 8px;
+  padding: calc(8px * var(--zoom-scale));
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .booking-modal__calendar-header button img {
-  width: 20px;
-  height: 20px;
+  width: calc(20px * var(--zoom-scale));
+  height: calc(20px * var(--zoom-scale));
 }
 
 .booking-modal__calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0px;
-  padding: 0 8px;
+  padding: 0 calc(8px * var(--zoom-scale));
   text-align: center;
 }
 
 .booking-modal__calendar-dayname {
-  font-size: 12px;
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-bkg-clndr-dayname-clr);
-  font-size: 13px;
   text-align: center;
   font-weight: 500;
-  margin-bottom: 2px;
+  margin-bottom: calc(2px * var(--zoom-scale));
 }
 
 .booking-modal__calendar-date {
   background: none;
   border: none;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 13px;
+  width: calc(28px * var(--zoom-scale));
+  height: calc(28px * var(--zoom-scale));
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
@@ -12840,12 +12606,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
   border-radius: 50% !important;
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  min-height: 28px !important;
-  max-width: 28px !important;
-  max-height: 28px !important;
+  width: calc(28px * var(--zoom-scale)) !important;
+  height: calc(28px * var(--zoom-scale)) !important;
+  min-width: calc(28px * var(--zoom-scale)) !important;
+  min-height: calc(28px * var(--zoom-scale)) !important;
+  max-width: calc(28px * var(--zoom-scale)) !important;
+  max-height: calc(28px * var(--zoom-scale)) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -12942,16 +12708,16 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .booking-modal__guests-title {
-  font-size: 19px;
+  font-size: calc(19px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-guest-title-clr);
-  margin-bottom: 8px;
+  margin-bottom: calc(8px * var(--zoom-scale));
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 2;
   background: var(--color-bkg-body-bg);
-  padding-top: 10px;
+  padding-top: calc(10px * var(--zoom-scale));
 }
 
 .booking-modal__guests-summary {
@@ -13028,12 +12794,12 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 .booking-modal__footer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 12px 18px calc(12px + env(safe-area-inset-bottom)) 18px;
+  gap: calc(10px * var(--zoom-scale));
+  padding: calc(12px * var(--zoom-scale)) calc(18px * var(--zoom-scale)) calc(12px * var(--zoom-scale) + env(safe-area-inset-bottom)) calc(18px * var(--zoom-scale));
   background: var(--color-bkg-footer-bg);
   align-items: center;
   width: 100%;
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.03), 0 -2px 8px rgba(0, 0, 0, 0.04); /* Very soft, gentle shadow matching reference */
+  box-shadow: 0 calc(-8px * var(--zoom-scale)) calc(32px * var(--zoom-scale)) rgba(0, 0, 0, 0.03), 0 calc(-2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(0, 0, 0, 0.04); /* Very soft, gentle shadow matching reference */
   position: sticky;
   bottom: 0;
   margin: 0 auto;
@@ -13041,31 +12807,31 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .booking-modal__checkout {
   background: var(--color-bkg-save-btn-bg);
-  border: 3px solid var(--color-bkg-checkout-btn-border);
+  border: calc(3px * var(--zoom-scale)) solid var(--color-bkg-checkout-btn-border);
   color: var(--color-bkg-save-btn-clr);
-  border-radius: 2rem;
-  padding: 7px 0;
-  font-size: 16px;
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(7px * var(--zoom-scale)) 0;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-bottom: 4px;
+  margin-bottom: calc(4px * var(--zoom-scale));
 }
 
 .booking-modal__save {
   background: var(--color-bkg-checkout-btn-bg);
   color: var(--color-bkg-checkout-btn-clr);
-  border: 3px solid var(--color-bkg-save-btn-border);
-  border-radius: 2rem;
-  padding: 7px 0;
-  font-size: 16px;
+  border: calc(3px * var(--zoom-scale)) solid var(--color-bkg-save-btn-border);
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(7px * var(--zoom-scale)) 0;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   width: 75%;
 }
 
 .booking-modal__calendar-month {
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-clndr-date-clr);
 }
@@ -13076,10 +12842,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .booking-modal__calendar-divider {
   width: 90%;
-  height: 1px;
+  height: calc(1px * var(--zoom-scale));
   background: var(--color-bkg-footer-divider);
-  margin: 11px 0 12px 15px;
-  border-radius: 1px;
+  margin: calc(11px * var(--zoom-scale)) 0 calc(12px * var(--zoom-scale)) calc(15px * var(--zoom-scale));
+  border-radius: calc(1px * var(--zoom-scale));
 }
 
 .booking-modal .ant-modal-close {
@@ -13140,15 +12906,15 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 .guests-box {
   background: var(--color-bkg-body-bg);
-  border: 1px solid var(--color-bkg-modal-border);
-  border-radius: 16px;
-  padding: 18px 0 18px 0;
+  border: calc(1px * var(--zoom-scale)) solid var(--color-bkg-modal-border);
+  border-radius: calc(16px * var(--zoom-scale));
+  padding: calc(18px * var(--zoom-scale)) 0 calc(18px * var(--zoom-scale)) 0;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06); /* Soft, subtle shadow matching footer */
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(12px * var(--zoom-scale)) rgba(0, 0, 0, 0.04), 0 calc(1px * var(--zoom-scale)) calc(3px * var(--zoom-scale)) rgba(0, 0, 0, 0.06); /* Soft, subtle shadow matching footer */
 }
 .guests-box .guests-summary {
   position: relative;
-  font-size: 15px;
+  font-size: calc(15px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-guest-summary-clr);
   margin-bottom: 0;
@@ -13158,22 +12924,22 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   content: "";
   display: block;
   width: 90%;
-  height: 1px;
+  height: calc(1px * var(--zoom-scale));
   background: var(--color-bkg-guest-summary-before);
-  margin: 8px auto 0 auto;
-  border-radius: 1px;
+  margin: calc(8px * var(--zoom-scale)) auto 0 auto;
+  border-radius: calc(1px * var(--zoom-scale));
 }
 .guests-box .guests-row {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
-  font-size: 15px;
+  padding: 0 calc(18px * var(--zoom-scale));
+  font-size: calc(15px * var(--zoom-scale));
   color: var(--color-bkg-body-text);
   font-weight: 500;
-  min-height: 44px;
-  gap: 10px;
+  min-height: calc(44px * var(--zoom-scale));
+  gap: calc(10px * var(--zoom-scale));
 }
 .guests-box .guests-row::after {
   content: "";
@@ -13182,32 +12948,33 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   left: 5%;
   bottom: 0;
   width: 90%;
-  height: 1px;
+  height: calc(1px * var(--zoom-scale));
   background: var(--color-bkg-guest-summary-before);
-  border-radius: 1px;
+  border-radius: calc(1px * var(--zoom-scale));
 }
 .guests-box .guests-row:last-child::after {
   display: none;
 }
 .guests-box .guests-divider {
   width: 90%;
-  height: 1px;
+  height: calc(1px * var(--zoom-scale));
   background: var(--color-bkg-guest-summary-before);
   margin: 0 auto;
-  border-radius: 1px;
+  border-radius: calc(1px * var(--zoom-scale));
 }
 .guests-box .guests-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: calc(10px * var(--zoom-scale));
 }
 .guests-box .guests-btn {
-  width: 28px;
-  height: 28px;
+  width: calc(28px * var(--zoom-scale));
+  height: calc(28px * var(--zoom-scale));
   border-radius: 50%;
-  border: 1.5px solid var(--color-bkg-guest-btn-border);
+  border: calc(1.5px * var(--zoom-scale)) solid var(--color-bkg-guest-btn-border);
   background: var(--color-bkg-guest-btn-bg);
   color: var(--color-bkg-guest-btn-clr);
+  font-size: calc(20px * var(--zoom-scale));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13215,18 +12982,18 @@ html[lang=ar] .attraction-detail-modal__add-btn {
   transition: background 0.2s, border-color 0.2s;
 }
 .guests-box .guests-count {
-  min-width: 18px;
+  min-width: calc(18px * var(--zoom-scale));
   display: inline-block;
   text-align: center;
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   color: var(--color-bkg-body-text);
   font-weight: 500;
 }
 .guests-box .guests-note {
-  font-size: 13px;
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-bkg-guest-note);
   text-align: center;
-  margin-top: 10px;
+  margin-top: calc(10px * var(--zoom-scale));
 }
 
 .guests-table {
@@ -14560,38 +14327,38 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 
 .upcoming-page {
-  height: calc(100vh - 12rem);
+  height: calc(100vh - 12rem * var(--zoom-scale));
   background-color: var(--color-base-product-card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: calc(2rem * var(--zoom-scale));
   font-family: "YASfont-Regular", sans-serif;
 }
 .upcoming-page .upcoming-container {
-  max-width: 600px;
+  max-width: calc(600px * var(--zoom-scale));
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: calc(3rem * var(--zoom-scale));
 }
 .upcoming-page .upcoming-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
+  gap: calc(1rem * var(--zoom-scale));
+  max-width: calc(400px * var(--zoom-scale));
 }
 .upcoming-page .upcoming-content .upcoming-title {
-  font-size: 2rem;
+  font-size: calc(2rem * var(--zoom-scale));
   font-weight: 600;
   color: #4a4a4a;
   margin: 0;
   line-height: 1.2;
 }
 .upcoming-page .upcoming-content .upcoming-subtitle {
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--zoom-scale));
   color: #6b6b6b;
   margin: 0;
   line-height: 1.5;
@@ -14609,11 +14376,11 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 
 @media (max-width: 768px) {
   .upcoming-page {
-    height: calc(100vh - 18rem);
-    padding: 1rem;
+    height: calc(100vh - 18rem * var(--zoom-scale));
+    padding: calc(1rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-container {
-    gap: 2rem;
+    gap: calc(2rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-illustration {
     width: 150px;
@@ -14653,10 +14420,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
     height: 2px;
   }
   .upcoming-page .upcoming-content .upcoming-title {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-content .upcoming-subtitle {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
   }
 }
 @media (max-width: 480px) {
@@ -14696,10 +14463,10 @@ html[lang=ar] .attraction-detail-modal__add-btn {
     height: 2px;
   }
   .upcoming-page .upcoming-content .upcoming-title {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-content .upcoming-subtitle {
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -14708,26 +14475,26 @@ html[lang=ar] .attraction-detail-modal__add-btn {
     height: 135px;
   }
   .upcoming-page .upcoming-content .upcoming-title {
-    font-size: 1.75rem;
+    font-size: calc(1.75rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-content .upcoming-subtitle {
-    font-size: 1.05rem;
+    font-size: calc(1.05rem * var(--zoom-scale));
   }
 }
 @media (min-width: 1025px) {
   .upcoming-page .upcoming-container {
-    max-width: 700px;
-    gap: 4rem;
+    max-width: calc(700px * var(--zoom-scale));
+    gap: calc(4rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-illustration {
     width: 220px;
     height: 165px;
   }
   .upcoming-page .upcoming-content .upcoming-title {
-    font-size: 2.25rem;
+    font-size: calc(2.25rem * var(--zoom-scale));
   }
   .upcoming-page .upcoming-content .upcoming-subtitle {
-    font-size: 1.2rem;
+    font-size: calc(1.2rem * var(--zoom-scale));
   }
 }
 .promo-modal-content {

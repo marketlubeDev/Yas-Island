@@ -14,7 +14,7 @@
 
 .booking-modal {
   width: 100%;
-  max-width: 420px;
+  max-width: calc(420px * var(--zoom-scale));
   // height: 100dvh;
   max-height: 100dvh;
 
@@ -22,8 +22,9 @@
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 1.2rem;
-  border: 2px solid var(--color-base-product-card-card-item-border);
+  border-radius: calc(1.2rem * var(--zoom-scale));
+  border: calc(2px * var(--zoom-scale)) solid
+    var(--color-base-product-card-card-item-border);
   position: relative; /* Ensure proper stacking context */
   touch-action: pan-y; /* Allow vertical scrolling inside modal */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -33,14 +34,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 18px;
+  padding: calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
   background: var(--color-bkg-header-bg);
   // border: 1px solid var(--color-bkg-modal-border);
   // border-radius: 24px 24px 0 0;
 }
 
 .booking-modal__title {
-  font-size: 21px;
+  font-size: calc(21px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-title-clr);
   // margin-bottom: rem;
@@ -50,11 +51,12 @@
 
 .booking-modal__body {
   flex: 1 1 auto;
-  padding: 0 18px 18px 18px;
+  padding: 0 calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale))
+    calc(18px * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 12px;
+  gap: calc(12px * var(--zoom-scale));
   background: var(--color-bkg-body-bg);
   overflow: hidden; /* delegate scroll to inner sections by default */
   height: auto;
@@ -86,9 +88,10 @@
 .booking-modal__calendar {
   width: 100%;
   background: var(--color-bkg-clndr-bg);
-  border-radius: 16px 16px 16px 16px;
-  border: 1px solid var(--color-bkg-modal-border);
-  padding: 3px 0 24px 0;
+  border-radius: calc(16px * var(--zoom-scale)) calc(16px * var(--zoom-scale))
+    calc(16px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+  border: calc(1px * var(--zoom-scale)) solid var(--color-bkg-modal-border);
+  padding: calc(3px * var(--zoom-scale)) 0 calc(24px * var(--zoom-scale)) 0;
   flex: 0 0 auto;
 }
 
@@ -98,23 +101,24 @@
   justify-content: space-between;
 
   font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 8px;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--color-bkg-modal-border);
+  font-size: calc(16px * var(--zoom-scale));
+  margin-bottom: calc(8px * var(--zoom-scale));
+  padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+  border-bottom: calc(1px * var(--zoom-scale)) solid
+    var(--color-bkg-modal-border);
 
   button {
     background: none;
     border: none;
-    padding: 8px;
+    padding: calc(8px * var(--zoom-scale));
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 
     img {
-      width: 20px;
-      height: 20px;
+      width: calc(20px * var(--zoom-scale));
+      height: calc(20px * var(--zoom-scale));
     }
   }
 }
@@ -123,26 +127,25 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0px; // minimal gap between calendar days
-  padding: 0 8px; // reduced padding
+  padding: 0 calc(8px * var(--zoom-scale)); // reduced padding
   text-align: center;
 }
 
 .booking-modal__calendar-dayname {
-  font-size: 12px;
+  font-size: calc(13px * var(--zoom-scale));
   color: var(--color-bkg-clndr-dayname-clr);
-  font-size: 13px;
   text-align: center;
   font-weight: 500;
-  margin-bottom: 2px;
+  margin-bottom: calc(2px * var(--zoom-scale));
 }
 
 .booking-modal__calendar-date {
   background: none;
   border: none;
   border-radius: 50%;
-  width: 28px; // reduced size
-  height: 28px; // reduced size
-  font-size: 13px; // reduced font size
+  width: calc(28px * var(--zoom-scale)); // reduced size
+  height: calc(28px * var(--zoom-scale)); // reduced size
+  font-size: calc(13px * var(--zoom-scale)); // reduced font size
   color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
@@ -152,12 +155,12 @@
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
   border-radius: 50% !important;
-  width: 28px !important; // reduced size
-  height: 28px !important; // reduced size
-  min-width: 28px !important; // reduced size
-  min-height: 28px !important; // reduced size
-  max-width: 28px !important; // reduced size
-  max-height: 28px !important; // reduced size
+  width: calc(28px * var(--zoom-scale)) !important; // reduced size
+  height: calc(28px * var(--zoom-scale)) !important; // reduced size
+  min-width: calc(28px * var(--zoom-scale)) !important; // reduced size
+  min-height: calc(28px * var(--zoom-scale)) !important; // reduced size
+  max-width: calc(28px * var(--zoom-scale)) !important; // reduced size
+  max-height: calc(28px * var(--zoom-scale)) !important; // reduced size
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -250,16 +253,16 @@
 }
 
 .booking-modal__guests-title {
-  font-size: 19px;
+  font-size: calc(19px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-guest-title-clr);
-  margin-bottom: 8px;
+  margin-bottom: calc(8px * var(--zoom-scale));
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 2;
   background: var(--color-bkg-body-bg);
-  padding-top: 10px;
+  padding-top: calc(10px * var(--zoom-scale));
 }
 
 .booking-modal__guests-summary {
@@ -337,12 +340,17 @@
 .booking-modal__footer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 12px 18px calc(12px + env(safe-area-inset-bottom)) 18px;
+  gap: calc(10px * var(--zoom-scale));
+  padding: calc(12px * var(--zoom-scale)) calc(18px * var(--zoom-scale))
+    calc(12px * var(--zoom-scale) + env(safe-area-inset-bottom))
+    calc(18px * var(--zoom-scale));
   background: var(--color-bkg-footer-bg);
   align-items: center;
   width: 100%;
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.03), 0 -2px 8px rgba(0, 0, 0, 0.04); /* Very soft, gentle shadow matching reference */
+  box-shadow: 0 calc(-8px * var(--zoom-scale)) calc(32px * var(--zoom-scale))
+      rgba(0, 0, 0, 0.03),
+    0 calc(-2px * var(--zoom-scale)) calc(8px * var(--zoom-scale))
+      rgba(0, 0, 0, 0.04); /* Very soft, gentle shadow matching reference */
   position: sticky;
   bottom: 0;
   margin: 0 auto;
@@ -350,16 +358,17 @@
 
 .booking-modal__checkout {
   background: var(--color-bkg-save-btn-bg);
-  border: 3px solid var(--color-bkg-checkout-btn-border);
+  border: calc(3px * var(--zoom-scale)) solid
+    var(--color-bkg-checkout-btn-border);
   color: var(--color-bkg-save-btn-clr);
   // border: none;
-  border-radius: 2rem;
-  padding: 7px 0;
-  font-size: 16px;
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(7px * var(--zoom-scale)) 0;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   width: 75%;
-  margin-bottom: 4px;
+  margin-bottom: calc(4px * var(--zoom-scale));
   // margin-left: 12.5%;
 }
 
@@ -367,10 +376,10 @@
   background: var(--color-bkg-checkout-btn-bg);
   color: var(--color-bkg-checkout-btn-clr);
 
-  border: 3px solid var(--color-bkg-save-btn-border);
-  border-radius: 2rem;
-  padding: 7px 0;
-  font-size: 16px;
+  border: calc(3px * var(--zoom-scale)) solid var(--color-bkg-save-btn-border);
+  border-radius: calc(2rem * var(--zoom-scale));
+  padding: calc(7px * var(--zoom-scale)) 0;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   width: 75%;
@@ -378,7 +387,7 @@
 }
 
 .booking-modal__calendar-month {
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-bkg-clndr-date-clr);
 }
@@ -389,10 +398,11 @@
 
 .booking-modal__calendar-divider {
   width: 90%;
-  height: 1px;
+  height: calc(1px * var(--zoom-scale));
   background: var(--color-bkg-footer-divider);
-  margin: 11px 0 12px 15px;
-  border-radius: 1px;
+  margin: calc(11px * var(--zoom-scale)) 0 calc(12px * var(--zoom-scale))
+    calc(15px * var(--zoom-scale));
+  border-radius: calc(1px * var(--zoom-scale));
 }
 
 .booking-modal .ant-modal-close {
@@ -454,17 +464,20 @@
 
 .guests-box {
   background: var(--color-bkg-body-bg);
-  border: 1px solid var(--color-bkg-modal-border);
-  border-radius: 16px;
-  padding: 18px 0 18px 0;
+  border: calc(1px * var(--zoom-scale)) solid var(--color-bkg-modal-border);
+  border-radius: calc(16px * var(--zoom-scale));
+  padding: calc(18px * var(--zoom-scale)) 0 calc(18px * var(--zoom-scale)) 0;
   // max-width: 320px;
   // margin: 0 auto 16px auto;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06); /* Soft, subtle shadow matching footer */
+  box-shadow: 0 calc(2px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
+      rgba(0, 0, 0, 0.04),
+    0 calc(1px * var(--zoom-scale)) calc(3px * var(--zoom-scale))
+      rgba(0, 0, 0, 0.06); /* Soft, subtle shadow matching footer */
 
   .guests-summary {
     position: relative;
-    font-size: 15px;
+    font-size: calc(15px * var(--zoom-scale));
     font-weight: 500;
     color: var(--color-bkg-guest-summary-clr);
     margin-bottom: 0;
@@ -474,10 +487,10 @@
       content: "";
       display: block;
       width: 90%;
-      height: 1px;
+      height: calc(1px * var(--zoom-scale));
       background: var(--color-bkg-guest-summary-before);
-      margin: 8px auto 0 auto;
-      border-radius: 1px;
+      margin: calc(8px * var(--zoom-scale)) auto 0 auto;
+      border-radius: calc(1px * var(--zoom-scale));
     }
   }
 
@@ -486,12 +499,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px;
-    font-size: 15px;
+    padding: 0 calc(18px * var(--zoom-scale));
+    font-size: calc(15px * var(--zoom-scale));
     color: var(--color-bkg-body-text);
     font-weight: 500;
-    min-height: 44px;
-    gap: 10px;
+    min-height: calc(44px * var(--zoom-scale));
+    gap: calc(10px * var(--zoom-scale));
 
     &::after {
       content: "";
@@ -500,9 +513,9 @@
       left: 5%;
       bottom: 0;
       width: 90%;
-      height: 1px;
+      height: calc(1px * var(--zoom-scale));
       background: var(--color-bkg-guest-summary-before);
-      border-radius: 1px;
+      border-radius: calc(1px * var(--zoom-scale));
     }
     &:last-child::after {
       display: none;
@@ -511,26 +524,27 @@
 
   .guests-divider {
     width: 90%;
-    height: 1px;
+    height: calc(1px * var(--zoom-scale));
     background: var(--color-bkg-guest-summary-before);
     margin: 0 auto;
-    border-radius: 1px;
+    border-radius: calc(1px * var(--zoom-scale));
   }
 
   .guests-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: calc(10px * var(--zoom-scale));
   }
 
   .guests-btn {
-    width: 28px;
-    height: 28px;
+    width: calc(28px * var(--zoom-scale));
+    height: calc(28px * var(--zoom-scale));
     border-radius: 50%;
-    border: 1.5px solid var(--color-bkg-guest-btn-border);
+    border: calc(1.5px * var(--zoom-scale)) solid
+      var(--color-bkg-guest-btn-border);
     background: var(--color-bkg-guest-btn-bg);
     color: var(--color-bkg-guest-btn-clr);
-    // font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
     // font-weight: 700;
     display: flex;
     align-items: center;
@@ -540,19 +554,19 @@
   }
 
   .guests-count {
-    min-width: 18px;
+    min-width: calc(18px * var(--zoom-scale));
     display: inline-block;
     text-align: center;
-    font-size: 16px;
+    font-size: calc(16px * var(--zoom-scale));
     color: var(--color-bkg-body-text);
     font-weight: 500;
   }
 
   .guests-note {
-    font-size: 13px;
+    font-size: calc(13px * var(--zoom-scale));
     color: var(--color-bkg-guest-note);
     text-align: center;
-    margin-top: 10px;
+    margin-top: calc(10px * var(--zoom-scale));
   }
 }
 
