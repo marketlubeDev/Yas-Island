@@ -8,29 +8,6 @@ body.modal-open {
   height: 100% !important;
 }
 
-// Android Chrome specific modal adjustments
-body.android-chrome-modal {
-  .attraction-detail-modal {
-    max-height: calc(100dvh - 30px) !important;
-    height: calc(100dvh - 30px) !important;
-
-    .ant-modal-content {
-      max-height: calc(100dvh - 30px) !important;
-      height: calc(100dvh - 30px) !important;
-    }
-
-    &__container {
-      max-height: calc(100dvh - 30px) !important;
-      min-height: calc(100dvh - 30px) !important;
-    }
-
-    &__footer {
-      margin-bottom: calc(15px * var(--zoom-scale)) !important;
-      padding-bottom: calc(25px * var(--zoom-scale)) !important;
-    }
-  }
-}
-
 .attraction-detail-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
@@ -42,18 +19,6 @@ body.android-chrome-modal {
   height: 100dvh;
   overflow: visible; // Allow footer to be visible
 
-  // Android-specific fixes for bottom spacing
-  @media screen and (max-height: 100dvh) {
-    max-height: calc(100dvh - 20px); // Reserve space for Android navigation
-    height: calc(100dvh - 20px);
-  }
-
-  // Additional Android Chrome specific fix
-  @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-    max-height: calc(100dvh - 25px);
-    height: calc(100dvh - 25px);
-  }
-
   @include respond(tablets) {
     width: 90vw !important;
     max-width: 80vw !important;
@@ -61,11 +26,6 @@ body.android-chrome-modal {
     height: 100vh !important;
     max-height: 100dvh !important;
     height: 100dvh !important;
-
-    @media screen and (max-height: 100dvh) {
-      max-height: calc(100dvh - 15px) !important;
-      height: calc(100dvh - 15px) !important;
-    }
   }
 
   @include respond(bigTablets) {
@@ -75,11 +35,6 @@ body.android-chrome-modal {
     height: 100vh !important;
     max-height: 100dvh !important;
     height: 100dvh !important;
-
-    @media screen and (max-height: 100dvh) {
-      max-height: calc(100dvh - 15px) !important;
-      height: calc(100dvh - 15px) !important;
-    }
   }
 
   &__container {
@@ -92,12 +47,6 @@ body.android-chrome-modal {
     // Use dynamic viewport height for actual visible area
     max-height: 100dvh;
     min-height: 100dvh;
-
-    // Android-specific container adjustments
-    @media screen and (max-height: 100dvh) {
-      max-height: calc(100dvh - 20px);
-      min-height: calc(100dvh - 20px);
-    }
   }
 
   &__header {
@@ -191,18 +140,14 @@ body.android-chrome-modal {
     ); // Increased min-height for better proportions
     margin-top: auto; // Push footer to bottom
     padding-bottom: calc(
-      max(20px * var(--zoom-scale), env(safe-area-inset-bottom))
-    ); // Increased safe area for Android devices
-
-    // Additional bottom margin for Android browsers
-    margin-bottom: calc(10px * var(--zoom-scale));
+      max(12px * var(--zoom-scale), env(safe-area-inset-bottom))
+    ); // Safe area for devices with notches
 
     @include respond(smallPhone) {
       padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
       padding-bottom: calc(
-        max(18px * var(--zoom-scale), env(safe-area-inset-bottom))
+        max(10px * var(--zoom-scale), env(safe-area-inset-bottom))
       );
-      margin-bottom: calc(8px * var(--zoom-scale));
       min-height: calc(60px * var(--zoom-scale));
       gap: calc(8px * var(--zoom-scale));
     }
@@ -222,15 +167,6 @@ body.android-chrome-modal {
     }
 
     // Footer will automatically adjust with dynamic viewport height
-
-    // Android browser specific bottom spacing
-    @supports (-webkit-appearance: none) and
-      (not (-webkit-touch-callout: default)) {
-      margin-bottom: calc(15px * var(--zoom-scale));
-      padding-bottom: calc(
-        max(25px * var(--zoom-scale), env(safe-area-inset-bottom))
-      );
-    }
 
     // Arabic language specific styling
     html[lang="ar"] & {
@@ -435,12 +371,6 @@ body.android-chrome-modal {
   border: calc(1px * var(--zoom-scale)) solid var(--color-dtl-content-border);
   overflow: visible !important; // Allow footer to be visible
   position: relative;
-
-  // Android-specific content adjustments
-  @media screen and (max-height: 100dvh) {
-    height: calc(100dvh - 20px);
-    max-height: calc(100dvh - 20px);
-  }
 }
 
 .accessibility-modal .ant-modal-close {
