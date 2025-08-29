@@ -1624,7 +1624,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -1684,9 +1684,9 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card {
     width: 100%;
-    min-width: 14.156rem;
-    max-width: 16.156rem;
-    height: 22.882rem;
+    min-width: calc(14.156rem * var(--zoom-scale));
+    max-width: calc(16.156rem * var(--zoom-scale));
+    height: calc(22.882rem * var(--zoom-scale));
   }
 }
 .ProductCard__card__image {
@@ -1700,7 +1700,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__image {
-    height: 151.573px;
+    height: calc(151.573px * var(--zoom-scale));
   }
 }
 .ProductCard__card__image img {
@@ -1712,7 +1712,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__image img {
-    height: 161.573px;
+    height: calc(161.573px * var(--zoom-scale));
   }
 }
 .ProductCard__card__image:hover img {
@@ -5515,11 +5515,11 @@ html[lang=ar] .guest-label {
   }
 }
 .form-container {
-  width: 500px !important;
+  width: calc(500px * var(--zoom-scale)) !important;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .form-container {
-    width: 390px !important;
+    width: calc(390px * var(--zoom-scale)) !important;
   }
 }
 

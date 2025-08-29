@@ -112,7 +112,7 @@
     }
 
     @include respond(bigTablets) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include respond(tablets) {
@@ -177,9 +177,9 @@
 
     @include respond(bigTablets) {
       width: 100%;
-      min-width: 14.156rem;
-      max-width: 16.156rem;
-      height: 22.882rem;
+      min-width: calc(14.156rem * var(--zoom-scale));
+      max-width: calc(16.156rem * var(--zoom-scale));
+      height: calc(22.882rem * var(--zoom-scale));
     }
 
     &__image {
@@ -192,7 +192,7 @@
       position: relative;
 
       @include respond(bigTablets) {
-        height: 151.573px;
+        height: calc(151.573px * var(--zoom-scale));
       }
 
       & img {
@@ -203,7 +203,7 @@
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
         @include respond(bigTablets) {
-          height: 161.573px;
+          height: calc(161.573px * var(--zoom-scale));
         }
       }
 
