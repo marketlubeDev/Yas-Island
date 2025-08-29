@@ -135,35 +135,35 @@ const CartModal = ({ isOpen, onClose }) => {
     );
   };
 
-  useEffect(() => {
-    // Keep checkout in sync on the payment-details page
-    if (location.pathname === "/payment-details") {
-      if (cartItems.length > 0) {
-        handleBasketCheck();
-      } else {
-        // When cart is emptied, clear checkout too so Order Summary updates
-        dispatch(
-          setCheckout({
-            coupons: [],
-            items: [],
-            emailId: checkoutEmail || verificationEmail || "",
-            language: language,
-            grossAmount: 0,
-            netAmount: 0,
-            taxAmount: 0,
-            originalNetAmount: 0,
-            countryCode: "",
-            isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
-            isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
-            promoCode: "",
-            promotions: [],
-          })
-        );
-        // Redirect to product page when cart becomes empty
-        navigate("/");
-      }
-    }
-  }, [cartItems, location.pathname]);
+  // useEffect(() => {
+  //   // Keep checkout in sync on the payment-details page
+  //   if (location.pathname === "/payment-details") {
+  //     if (cartItems.length > 0) {
+  //       handleBasketCheck();
+  //     } else {
+  //       // When cart is emptied, clear checkout too so Order Summary updates
+  //       dispatch(
+  //         setCheckout({
+  //           coupons: [],
+  //           items: [],
+  //           emailId: checkoutEmail || verificationEmail || "",
+  //           language: language,
+  //           grossAmount: 0,
+  //           netAmount: 0,
+  //           taxAmount: 0,
+  //           originalNetAmount: 0,
+  //           countryCode: "",
+  //           isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
+  //           isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
+  //           promoCode: "",
+  //           promotions: [],
+  //         })
+  //       );
+  //       // Redirect to product page when cart becomes empty
+  //       navigate("/");
+  //     }
+  //   }
+  // }, [cartItems, location.pathname]);
 
   const handleDeleteItem = (id, validFrom) => {
     dispatch(removeItemFromCart({ id, validFrom }));

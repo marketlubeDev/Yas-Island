@@ -11,24 +11,42 @@ body.modal-open {
 .attraction-detail-modal {
   max-width: calc(420px * var(--zoom-scale));
   width: 98vw;
-  max-height: 95vh; // Reduced to ensure footer is visible
+  // Fallback for browsers that don't support dvh
+  max-height: 100vh;
+  height: 100vh;
+  // Use dynamic viewport height for actual visible area (mobile browsers)
+  max-height: 100dvh;
+  height: 100dvh;
   overflow: visible; // Allow footer to be visible
 
   @include respond(tablets) {
     width: 90vw !important;
     max-width: 80vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
   }
 
   @include respond(bigTablets) {
     width: 90vw !important;
     max-width: 80vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
   }
 
   &__container {
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 95vh;
+    // Fallback for browsers that don't support dvh
+    max-height: 100vh;
+    min-height: 100vh;
+    // Use dynamic viewport height for actual visible area
+    max-height: 100dvh;
+    min-height: 100dvh;
   }
 
   &__header {
@@ -60,12 +78,13 @@ body.modal-open {
   }
 
   &__body {
-    padding: 0px calc(6px * var(--zoom-scale)) calc(24px * var(--zoom-scale))
+    padding: 0px calc(6px * var(--zoom-scale)) calc(12px * var(--zoom-scale))
       calc(6px * var(--zoom-scale));
     background-color: var(--color-dtl-body-bg);
     flex: 1; // Take up remaining space
     overflow-y: auto;
     min-height: 0; // Allow flex item to shrink below content size
+    // Remove fixed height calculations - let flex handle the space
 
     .product-heading {
       color: var(--color-base-text) !important;
@@ -120,9 +139,15 @@ body.modal-open {
       70px * var(--zoom-scale)
     ); // Increased min-height for better proportions
     margin-top: auto; // Push footer to bottom
+    padding-bottom: calc(
+      max(12px * var(--zoom-scale), env(safe-area-inset-bottom))
+    ); // Safe area for devices with notches
 
     @include respond(smallPhone) {
       padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+      padding-bottom: calc(
+        max(10px * var(--zoom-scale), env(safe-area-inset-bottom))
+      );
       min-height: calc(60px * var(--zoom-scale));
       gap: calc(8px * var(--zoom-scale));
     }
@@ -140,6 +165,8 @@ body.modal-open {
         justify-content: center;
       }
     }
+
+    // Footer will automatically adjust with dynamic viewport height
 
     // Arabic language specific styling
     html[lang="ar"] & {
@@ -326,8 +353,12 @@ body.modal-open {
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
-  height: 95vh; // Reduced height to ensure footer is visible
-  max-height: 95vh; // Ensure it doesn't exceed viewport
+  // Fallback for browsers that don't support dvh
+  height: 100vh;
+  max-height: 100vh;
+  // Use dynamic viewport height for actual visible area (mobile browsers)
+  height: 100dvh;
+  max-height: 100dvh;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -442,6 +473,14 @@ body.modal-open {
   inset: 0 !important;
   -webkit-overflow-scrolling: touch; // Disable momentum scrolling on iOS
   touch-action: none; // Prevent touch scrolling
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important; // Remove padding to use full available space
+  // Fallback for browsers that don't support dvh
+  height: 100vh !important;
+  // Use dynamic viewport height for actual visible area
+  height: 100dvh !important;
 }
 
 // Ensure the modal mask also prevents scrolling
@@ -461,12 +500,15 @@ body.modal-open {
 }
 
 .attraction-detail-modal .ant-modal {
-  top: 0 !important;
+  top: 0 !important; // No top margin needed with full height
   position: relative !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
+  // Fallback for browsers that don't support dvh
+  height: 100vh !important;
   max-height: 100vh !important;
+  // Use full dynamic viewport height for actual visible area
+  height: 100dvh !important;
   max-height: 100dvh !important;
-  max-height: 100svh !important;
   overflow: hidden !important;
 }
