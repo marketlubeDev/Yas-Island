@@ -189,6 +189,43 @@
   opacity: 1;
 }
 
+// Ensure react-phone-input-2 dropdown follows theme colors in mobile flow
+.email-checkout__phone-container,
+.react-tel-input {
+  .flag-dropdown {
+    .country-list {
+      background-color: var(--color-base-bg) !important;
+      border: 1px solid var(--ip-bodr-btm) !important;
+
+      .country {
+        color: var(--color-email-form-label) !important;
+        background-color: transparent !important;
+
+        &:hover,
+        &.highlight {
+          background-color: var(--color-base-hover) !important;
+        }
+
+        .dial-code,
+        .country-name {
+          color: var(--color-email-form-label) !important;
+        }
+      }
+
+      .search {
+        background-color: var(--color-base-bg) !important;
+        border-bottom: 1px solid var(--ip-bodr-btm) !important;
+        color: var(--color-email-form-label) !important;
+
+        &::placeholder {
+          color: var(--color-base-text-secondary) !important;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
+
 // Phone input error styles (desktop and mobile)
 .form-group__phone-input.error,
 .email-checkout__phone-input.error {
