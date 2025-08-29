@@ -27,12 +27,9 @@
 .email-checkout__content {
   flex: 1 1 auto;
   overflow-y: auto;
-  // padding-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // margin-top: 70px;
-  // margin-top: -30px;
   min-height: 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -111,9 +108,7 @@
 
   // Add bottom padding for mobile devices to ensure button accessibility
   @media only screen and (max-width: 768px) {
-    margin-bottom: calc(
-      1.2rem * var(--zoom-scale)
-    ); // Extra bottom margin for better button access
+    margin-bottom: calc(1.2rem * var(--zoom-scale));
   }
 
   // overflow-y: auto;

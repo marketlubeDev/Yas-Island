@@ -522,7 +522,7 @@
 // Additional centering for modal wrapper
 .product-modal .ant-modal-wrap,
 .product-modal-wrap {
-  display: flex !important;
+  display: flex; // allow AntD to hide via inline display:none when closed
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;
