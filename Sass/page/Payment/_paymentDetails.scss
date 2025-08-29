@@ -54,14 +54,14 @@
 
       &__label {
         display: block;
-        font-size: 0.75rem;
+        font-size: calc(0.75rem * var(--zoom-scale));
         font-weight: 800;
         margin-bottom: 0.25rem;
         color: var(--ip-label);
         text-transform: uppercase;
 
         @include respond(desktop) {
-          font-size: 0.67rem;
+          font-size: calc(0.67rem * var(--zoom-scale));
           margin-bottom: 0.2rem;
           margin-left: 0rem;
         }
@@ -72,14 +72,14 @@
         padding: 0.5rem 0;
         border: none;
         border-bottom: 1px solid var(--ip-bodr-btm);
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
         background: transparent;
         color: var(--color-base-text-secondary);
         font-family: "YAS Font", sans-serif;
 
         @include respond(desktop) {
           padding: 0.4rem 0;
-          font-size: 0.9rem;
+          font-size: calc(0.9rem * var(--zoom-scale));
         }
 
         &:focus {
@@ -93,7 +93,7 @@
         padding: 0.5rem 0;
         border: none;
         border-bottom: 1px solid var(--ip-bodr-btm);
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
         background: transparent;
         cursor: pointer;
         appearance: none;
@@ -101,7 +101,7 @@
 
         @include respond(desktop) {
           padding: 0.4rem 0;
-          font-size: 0.9rem;
+          font-size: calc(0.9rem * var(--zoom-scale));
           padding-right: 1.3rem;
         }
 
@@ -131,7 +131,7 @@
           padding: 0.5rem 0;
           border: none;
           border-bottom: 1px solid var(--ip-bodr-btm);
-          font-size: 1rem;
+          font-size: calc(1rem * var(--zoom-scale));
           background: transparent;
           cursor: pointer;
           appearance: none;
@@ -140,7 +140,7 @@
           @include respond(desktop) {
             width: 45px;
             padding: 0.4rem 0;
-            font-size: 0.9rem;
+            font-size: calc(0.9rem * var(--zoom-scale));
             padding-right: 1.3rem;
           }
 
@@ -155,14 +155,14 @@
           padding: 0.5rem 0;
           border: none;
           border-bottom: 1px solid var(--ip-bodr-btm);
-          font-size: 1rem;
+          font-size: calc(1rem * var(--zoom-scale));
           background: transparent;
           color: var(--color-base-text-secondary);
 
           @include respond(desktop) {
             width: 100px;
             padding: 0.4rem 0;
-            font-size: 0.9rem;
+            font-size: calc(0.9rem * var(--zoom-scale));
           }
         }
       }
@@ -208,11 +208,11 @@
           flex: 1;
           overflow: hidden;
           text-overflow: ellipsis;
-          font-size: 1rem;
+          font-size: calc(1rem * var(--zoom-scale));
           color: var(--color-base-text-secondary);
 
           @include respond(desktop) {
-            font-size: 0.9rem;
+            font-size: calc(0.9rem * var(--zoom-scale));
           }
         }
       }
@@ -432,7 +432,7 @@
       border-radius: 2.92381rem;
       background: var(--color-base-accessibility-modal-btn-bg);
       border: none;
-      font-size: 1rem;
+      font-size: calc(1rem * var(--zoom-scale));
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.2s;
@@ -441,7 +441,7 @@
 
       @include respond(desktop) {
         padding: 0.8rem;
-        font-size: 0.9rem;
+        font-size: calc(0.9rem * var(--zoom-scale));
       }
 
       &:disabled {
@@ -469,18 +469,18 @@
         margin-bottom: 1.5rem;
 
         &__label {
-          font-size: 0.7rem;
+          font-size: calc(0.7rem * var(--zoom-scale));
           margin-bottom: 0.2rem;
         }
 
         &__input {
           padding: 0.4rem 0;
-          font-size: 0.9rem;
+          font-size: calc(0.9rem * var(--zoom-scale));
         }
 
         &__select {
           padding: 0.4rem 0;
-          font-size: 0.9rem;
+          font-size: calc(0.9rem * var(--zoom-scale));
           padding-right: 1.2rem;
         }
 
@@ -491,14 +491,14 @@
           &-code {
             width: 70px;
             padding: 0.4rem 0;
-            font-size: 0.9rem;
+            font-size: calc(0.9rem * var(--zoom-scale));
             padding-right: 1.2rem;
           }
 
           &-number {
             width: 180px;
             padding: 0.4rem 0;
-            font-size: 0.9rem;
+            font-size: calc(0.9rem * var(--zoom-scale));
           }
         }
       }
@@ -518,7 +518,7 @@
         }
 
         .country-name {
-          font-size: 0.85rem;
+          font-size: calc(0.85rem * var(--zoom-scale));
           color: var(--color-base-text-secondary);
         }
       }
@@ -537,7 +537,7 @@
         }
 
         .country-name {
-          font-size: 0.85rem;
+          font-size: calc(0.85rem * var(--zoom-scale));
           color: var(--color-base-text-secondary);
         }
       }
@@ -552,7 +552,7 @@
         margin-top: 1.5rem;
 
         &__title {
-          font-size: 0.95rem;
+          font-size: calc(0.95rem * var(--zoom-scale));
           padding: 0.8rem 1.5rem;
         }
 
@@ -563,12 +563,12 @@
 
           .detail-row {
             .label {
-              font-size: 0.6rem;
+              font-size: calc(0.6rem * var(--zoom-scale));
               margin-bottom: 0.8rem;
             }
 
             .values {
-              font-size: 0.75rem;
+              font-size: calc(0.75rem * var(--zoom-scale));
               gap: 2.5rem;
             }
           }
@@ -580,10 +580,10 @@
 
           .price-row {
             margin-bottom: 0.6rem;
-            font-size: 0.8rem;
+            font-size: calc(0.8rem * var(--zoom-scale));
 
             &.total {
-              font-size: 0.9rem;
+              font-size: calc(0.9rem * var(--zoom-scale));
               margin-top: 0.8rem;
             }
           }
@@ -594,7 +594,7 @@
         padding: 0.8rem 4rem;
 
         &__label {
-          font-size: 0.7rem;
+          font-size: calc(0.7rem * var(--zoom-scale));
           margin-bottom: 0.4rem;
         }
 
@@ -603,13 +603,13 @@
 
           input {
             padding: 0.6rem;
-            font-size: 0.8rem;
+            font-size: calc(0.8rem * var(--zoom-scale));
             letter-spacing: 4px;
           }
 
           .apply-btn {
             padding: 0.6rem 1.2rem;
-            font-size: 0.8rem;
+            font-size: calc(0.8rem * var(--zoom-scale));
           }
         }
       }
@@ -632,7 +632,7 @@
           }
 
           .checkbox-text {
-            font-size: 0.8rem;
+            font-size: calc(0.8rem * var(--zoom-scale));
           }
         }
       }
@@ -711,12 +711,12 @@
     }
 
     .desktop-checkbox-text {
-      font-size: 0.9rem;
+      font-size: calc(0.9rem * var(--zoom-scale));
       color: var(--color-base-text-secondary);
       line-height: 1.4;
 
       @include respond(desktop) {
-        font-size: 0.8rem;
+        font-size: calc(0.8rem * var(--zoom-scale));
       }
 
       a {
@@ -755,7 +755,7 @@
       margin-top: 0rem;
 
       &__title {
-        font-size: 1.05rem;
+        font-size: calc(1.05rem * var(--zoom-scale));
         margin-bottom: 0rem;
         padding: 1rem 2rem;
         color: var(--color-base-text-secondary);
@@ -765,7 +765,7 @@
         background-color: var(--color-order-summary-bg);
 
         @include respond(desktop) {
-          font-size: 0.9rem;
+          font-size: calc(0.9rem * var(--zoom-scale));
           padding: 0.5rem 1.5rem;
         }
       }
@@ -824,7 +824,7 @@
 
             h4 {
               color: var(--color-base-text-secondary);
-              font-size: 0.9rem;
+              font-size: calc(0.9rem * var(--zoom-scale));
               font-weight: 600;
               margin: 0;
               text-transform: capitalize;
@@ -832,7 +832,7 @@
 
             .item-price {
               color: var(--pay-check-price);
-              font-size: 0.85rem;
+              font-size: calc(0.85rem * var(--zoom-scale));
               font-weight: 500;
             }
           }
@@ -846,7 +846,7 @@
               margin: 0.5rem 0;
 
               .label {
-                font-size: 0.65rem;
+                font-size: calc(0.65rem * var(--zoom-scale));
                 color: #ada5b7;
                 font-weight: 500;
                 text-transform: uppercase;
@@ -856,7 +856,7 @@
 
               .values {
                 color: var(--color-base-text-secondary);
-                font-size: 0.8rem;
+                font-size: calc(0.8rem * var(--zoom-scale));
                 font-weight: 600;
                 text-transform: uppercase;
                 display: flex;
@@ -883,13 +883,13 @@
                 span {
                   &:first-child {
                     color: #ada5b7;
-                    font-size: 0.75rem;
+                    font-size: calc(0.75rem * var(--zoom-scale));
                     font-weight: 500;
                   }
 
                   &:last-child {
                     color: var(--pay-check-price);
-                    font-size: 0.8rem;
+                    font-size: calc(0.8rem * var(--zoom-scale));
                     font-weight: 500;
                   }
                 }
@@ -927,13 +927,13 @@
           display: flex;
           justify-content: space-between;
           margin-bottom: 0.75rem;
-          font-size: 0.875rem;
+          font-size: calc(0.875rem * var(--zoom-scale));
           color: #666;
 
           &.total {
             font-weight: 500;
             color: #333;
-            font-size: 1rem;
+            font-size: calc(1rem * var(--zoom-scale));
             margin-top: 1rem;
             margin-bottom: 0;
           }

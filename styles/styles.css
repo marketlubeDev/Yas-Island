@@ -5948,7 +5948,7 @@ html[dir=rtl] .back-button {
 }
 .payment-form__left .form-group__label {
   display: block;
-  font-size: 0.75rem;
+  font-size: calc(0.75rem * var(--zoom-scale));
   font-weight: 800;
   margin-bottom: 0.25rem;
   color: var(--ip-label);
@@ -5956,7 +5956,7 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group__label {
-    font-size: 0.67rem;
+    font-size: calc(0.67rem * var(--zoom-scale));
     margin-bottom: 0.2rem;
     margin-left: 0rem;
   }
@@ -5966,7 +5966,7 @@ html[dir=rtl] .back-button {
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   background: transparent;
   color: var(--color-base-text-secondary);
   font-family: "YAS Font", sans-serif;
@@ -5974,7 +5974,7 @@ html[dir=rtl] .back-button {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group__input {
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 .payment-form__left .form-group__input:focus {
@@ -5986,7 +5986,7 @@ html[dir=rtl] .back-button {
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   background: transparent;
   cursor: pointer;
   appearance: none;
@@ -5999,7 +5999,7 @@ html[dir=rtl] .back-button {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group__select {
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     padding-right: 1.3rem;
   }
 }
@@ -6019,7 +6019,7 @@ html[dir=rtl] .back-button {
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   background: transparent;
   cursor: pointer;
   appearance: none;
@@ -6033,7 +6033,7 @@ html[dir=rtl] .back-button {
   .payment-form__left .form-group__phone-code {
     width: 45px;
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     padding-right: 1.3rem;
   }
 }
@@ -6042,7 +6042,7 @@ html[dir=rtl] .back-button {
   padding: 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--ip-bodr-btm);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   background: transparent;
   color: var(--color-base-text-secondary);
 }
@@ -6050,7 +6050,7 @@ html[dir=rtl] .back-button {
   .payment-form__left .form-group__phone-number {
     width: 100px;
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 .payment-form__left .form-group .country-option {
@@ -6092,12 +6092,12 @@ html[dir=rtl] .back-button {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   color: var(--color-base-text-secondary);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .form-group .country-option .country-name {
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 .payment-form__left .form-group .country-single-value {
@@ -6289,7 +6289,7 @@ html[dir=rtl] .back-button {
   border-radius: 2.92381rem;
   background: var(--color-base-accessibility-modal-btn-bg);
   border: none;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -6299,7 +6299,7 @@ html[dir=rtl] .back-button {
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__left .proceedbtn {
     padding: 0.8rem;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 .payment-form__left .proceedbtn:disabled {
@@ -6322,16 +6322,16 @@ html[dir=rtl] .back-button {
     margin-bottom: 1.5rem;
   }
   .payment-form__left .form-group__label {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--zoom-scale));
     margin-bottom: 0.2rem;
   }
   .payment-form__left .form-group__input {
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
   .payment-form__left .form-group__select {
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     padding-right: 1.2rem;
   }
   .payment-form__left .form-group__phone {
@@ -6341,13 +6341,13 @@ html[dir=rtl] .back-button {
   .payment-form__left .form-group__phone-code {
     width: 70px;
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     padding-right: 1.2rem;
   }
   .payment-form__left .form-group__phone-number {
     width: 180px;
     padding: 0.4rem 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
   .payment-form__left .country-option {
     padding: 6px 10px;
@@ -6361,7 +6361,7 @@ html[dir=rtl] .back-button {
     border: none;
   }
   .payment-form__left .country-option .country-name {
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--zoom-scale));
     color: var(--color-base-text-secondary);
   }
   .payment-form__left .country-single-value {
@@ -6376,7 +6376,7 @@ html[dir=rtl] .back-button {
     border: none;
   }
   .payment-form__left .country-single-value .country-name {
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--zoom-scale));
     color: var(--color-base-text-secondary);
   }
   .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
@@ -6386,7 +6386,7 @@ html[dir=rtl] .back-button {
     margin-top: 1.5rem;
   }
   .payment-form__right .order-summary__title {
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--zoom-scale));
     padding: 0.8rem 1.5rem;
   }
   .payment-form__right .order-summary__details {
@@ -6395,11 +6395,11 @@ html[dir=rtl] .back-button {
     gap: 0.8rem;
   }
   .payment-form__right .order-summary__details .detail-row .label {
-    font-size: 0.6rem;
+    font-size: calc(0.6rem * var(--zoom-scale));
     margin-bottom: 0.8rem;
   }
   .payment-form__right .order-summary__details .detail-row .values {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--zoom-scale));
     gap: 2.5rem;
   }
   .payment-form__right .order-summary__pricing {
@@ -6408,17 +6408,17 @@ html[dir=rtl] .back-button {
   }
   .payment-form__right .order-summary__pricing .price-row {
     margin-bottom: 0.6rem;
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
   }
   .payment-form__right .order-summary__pricing .price-row.total {
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     margin-top: 0.8rem;
   }
   .payment-form__right .promo-code {
     padding: 0.8rem 4rem;
   }
   .payment-form__right .promo-code__label {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--zoom-scale));
     margin-bottom: 0.4rem;
   }
   .payment-form__right .promo-code__input-group {
@@ -6426,12 +6426,12 @@ html[dir=rtl] .back-button {
   }
   .payment-form__right .promo-code__input-group input {
     padding: 0.6rem;
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
     letter-spacing: 4px;
   }
   .payment-form__right .promo-code__input-group .apply-btn {
     padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
   }
   .payment-form__right .terms {
     padding: 0.8rem 1.5rem;
@@ -6449,7 +6449,7 @@ html[dir=rtl] .back-button {
     height: 9px;
   }
   .payment-form__right .terms .checkbox-container .checkbox-text {
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
   }
 }
 .payment-form .desktop-checkbox-container {
@@ -6519,13 +6519,13 @@ html[dir=rtl] .back-button {
   opacity: 0.8;
 }
 .payment-form .desktop-checkbox-container .desktop-checkbox-text {
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--zoom-scale));
   color: var(--color-base-text-secondary);
   line-height: 1.4;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form .desktop-checkbox-container .desktop-checkbox-text {
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--zoom-scale));
   }
 }
 .payment-form .desktop-checkbox-container .desktop-checkbox-text a {
@@ -6561,7 +6561,7 @@ html[dir=rtl] .back-button {
   margin-top: 0rem;
 }
 .payment-form__right .order-summary__title {
-  font-size: 1.05rem;
+  font-size: calc(1.05rem * var(--zoom-scale));
   margin-bottom: 0rem;
   padding: 1rem 2rem;
   color: var(--color-base-text-secondary);
@@ -6572,7 +6572,7 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .payment-form__right .order-summary__title {
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     padding: 0.5rem 1.5rem;
   }
 }
@@ -6624,14 +6624,14 @@ html[dir=rtl] .back-button {
 }
 .payment-form__right .order-summary__items .item-accordion__title h4 {
   color: var(--color-base-text-secondary);
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--zoom-scale));
   font-weight: 600;
   margin: 0;
   text-transform: capitalize;
 }
 .payment-form__right .order-summary__items .item-accordion__title .item-price {
   color: var(--pay-check-price);
-  font-size: 0.85rem;
+  font-size: calc(0.85rem * var(--zoom-scale));
   font-weight: 500;
 }
 .payment-form__right .order-summary__items .item-accordion__content {
@@ -6643,7 +6643,7 @@ html[dir=rtl] .back-button {
   margin: 0.5rem 0;
 }
 .payment-form__right .order-summary__items .item-accordion__content .detail-row .label {
-  font-size: 0.65rem;
+  font-size: calc(0.65rem * var(--zoom-scale));
   color: #ada5b7;
   font-weight: 500;
   text-transform: uppercase;
@@ -6652,7 +6652,7 @@ html[dir=rtl] .back-button {
 }
 .payment-form__right .order-summary__items .item-accordion__content .detail-row .values {
   color: var(--color-base-text-secondary);
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--zoom-scale));
   font-weight: 600;
   text-transform: uppercase;
   display: flex;
@@ -6675,12 +6675,12 @@ html[dir=rtl] .back-button {
 }
 .payment-form__right .order-summary__items .item-accordion__content .price-details .price-row span:first-child {
   color: #ada5b7;
-  font-size: 0.75rem;
+  font-size: calc(0.75rem * var(--zoom-scale));
   font-weight: 500;
 }
 .payment-form__right .order-summary__items .item-accordion__content .price-details .price-row span:last-child {
   color: var(--pay-check-price);
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--zoom-scale));
   font-weight: 500;
 }
 .payment-form__right .order-summary__items .item-accordion__content .price-details .price-row:last-child {
@@ -6707,13 +6707,13 @@ html[dir=rtl] .back-button {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.75rem;
-  font-size: 0.875rem;
+  font-size: calc(0.875rem * var(--zoom-scale));
   color: #666;
 }
 .payment-form__right .order-summary__pricing .price-row.total {
   font-weight: 500;
   color: #333;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   margin-top: 1rem;
   margin-bottom: 0;
 }
@@ -10857,11 +10857,11 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount-Content {
   color: var(--cart-total-price);
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-viewItems-content-item-price-details-netAmount-Value {
   color: var(--cart-total-price);
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat {
   display: flex;
@@ -10870,11 +10870,11 @@ html[lang=ar] .confirm-email__otp-actions button {
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat-Content {
   color: var(--cart-total-price);
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-viewItems-content-item-price-details-vat-Value {
   color: var(--cart-total-price);
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-costBreakdown-subTotal {
   display: flex;
@@ -10905,7 +10905,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   margin-bottom: 16px;
 }
 .email-checkout__summary-promoCode-title {
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: var(--cart-total-price);
   text-transform: uppercase;
   margin-bottom: 8px;
@@ -10939,7 +10939,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   padding: 8px 12px;
   border: 1px solid var(--color-base-product-card-divider);
   border-radius: 6px;
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   background-color: var(--summary-header-bg);
   color: var(--color-base-text);
   caret-color: var(--color-base-text);
@@ -10978,10 +10978,12 @@ html[lang=ar] .confirm-email__otp-actions button {
 .email-checkout__summary-grandTotal-Content {
   font-weight: bold;
   color: var(--cart-total-price);
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-grandTotal-Value {
   font-weight: bold;
   color: var(--cart-total-price);
+  font-size: calc(14px * var(--zoom-scale));
 }
 .email-checkout__summary-securePayment {
   width: 100%;
@@ -11416,7 +11418,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   min-width: 0;
 }
 .order-item-minimal .item-content .item-main .item-title {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-summary-title);
   margin: 0 0 6px 0;
@@ -11428,7 +11430,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   align-items: center;
   flex-wrap: wrap;
   gap: 3px;
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: #666;
   line-height: 1.2;
 }
@@ -11451,7 +11453,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   flex-shrink: 0;
 }
 .order-item-minimal .item-content .item-price .price-amount {
-  font-size: 14px;
+  font-size: calc(14px * var(--zoom-scale));
   font-weight: 500;
   color: var(--color-summary-title);
   font-family: "YAS Font", sans-serif;
@@ -14064,70 +14066,70 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-body h1 {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--zoom-scale));
     margin-bottom: 0.8rem !important;
     padding: 0.5rem 0;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .terms-modal-content .terms-modal-body h1 {
-    font-size: 1.2rem;
+    font-size: calc(1.2rem * var(--zoom-scale));
     margin-bottom: 0.9rem !important;
     padding: 0.6rem 0;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .terms-modal-content .terms-modal-body h1 {
-    font-size: 1.3rem;
+    font-size: calc(1.3rem * var(--zoom-scale));
     margin-bottom: 1rem !important;
     padding: 0.7rem 0;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .terms-modal-content .terms-modal-body h1 {
-    font-size: 1.4rem;
+    font-size: calc(1.4rem * var(--zoom-scale));
     padding: 0.8rem 0;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .terms-modal-content .terms-modal-body h1 {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--zoom-scale));
     padding: 1rem 0;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-body h2 {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
     margin-bottom: 0.8rem !important;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .terms-modal-content .terms-modal-body h2 {
-    font-size: 1.1rem;
+    font-size: calc(1.1rem * var(--zoom-scale));
     margin-bottom: 0.9rem !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .terms-modal-content .terms-modal-body h2 {
-    font-size: 1.2rem;
+    font-size: calc(1.2rem * var(--zoom-scale));
     margin-bottom: 1rem !important;
   }
 }
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-body h3 {
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--zoom-scale));
     margin-bottom: 0.7rem !important;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .terms-modal-content .terms-modal-body h3 {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
     margin-bottom: 0.8rem !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .terms-modal-content .terms-modal-body h3 {
-    font-size: 1.1rem;
+    font-size: calc(1.1rem * var(--zoom-scale));
     margin-bottom: 0.9rem !important;
   }
 }
@@ -14137,19 +14139,19 @@ html[lang=ar] .attraction-detail-modal__add-btn {
 @media only screen and (max-width: 575.98px) {
   .terms-modal-content .terms-modal-body p {
     margin-bottom: 0.8rem;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .terms-modal-content .terms-modal-body p {
     margin-bottom: 0.8rem;
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .terms-modal-content .terms-modal-body p {
     margin-bottom: 1rem;
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
   }
 }
 .terms-modal-content .terms-modal-body ul,
