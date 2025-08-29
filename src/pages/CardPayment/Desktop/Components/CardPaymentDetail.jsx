@@ -156,7 +156,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             handlePaymentSuccess();
           } else {
             setFailureMessage(
-              data.error || "Payment failed. Please try again."
+              t("payment.cardPayment.errorMessage", {
+                defaultValue:
+                  "We couldn't complete your payment. Please review your details and try again.",
+              })
             );
             setPaymentStatus("failed");
           }
@@ -189,7 +192,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           status === "cancelled" ||
           status === "declined"
         ) {
-          setFailureMessage("Payment failed. Please try again.");
+          setFailureMessage(
+            t("payment.cardPayment.errorMessage", {
+              defaultValue:
+                "We couldn't complete your payment. Please review your details and try again.",
+            })
+          );
           setPaymentStatus("failed");
         }
       };

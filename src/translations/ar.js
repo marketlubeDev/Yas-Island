@@ -275,6 +275,13 @@ export const ar = {
       },
       makePayment: "إتمام الدفع",
       loadingSecurePaymentForm: "...جاري تحميل نموذج الدفع الآمن",
+      // Error UI strings
+      errorTitle: "تم رفض الدفع",
+      errorMessage:
+        "تعذر إكمال عملية الدفع. يرجى مراجعة التفاصيل والمحاولة مرة أخرى.",
+      retry: "إعادة المحاولة",
+      backToDetails: "العودة إلى التفاصيل",
+      errorToast: "فشلت معالجة الدفع. يرجى المحاولة مرة أخرى.",
     },
     success: {
       title: "تم الدفع بنجاح",
