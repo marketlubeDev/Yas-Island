@@ -2,14 +2,14 @@
 @use "../../base/responive" as *;
 
 .selector {
-  min-width: 13rem;
+  min-width: calc(13rem * var(--zoom-scale));
   width: fit-content;
   display: flex;
   align-items: center;
   position: relative;
 
   @include respond(bigTablets) {
-    min-width: 12rem;
+    min-width: calc(12rem * var(--zoom-scale));
   }
 
   // Custom select
@@ -23,7 +23,7 @@
       color: var(--color-base-text);
       cursor: pointer;
       font-weight: 400;
-      font-size: 17px;
+      font-size: calc(17px * var(--zoom-scale));
       font-family: "YAS Font", sans-serif;
       text-align: left;
       display: flex;
@@ -33,7 +33,7 @@
 
     .selector-left-icon {
       display: inline-flex;
-      margin-right: 8px;
+      margin-right: calc(8px * var(--zoom-scale));
       img,
       svg {
         display: block;
@@ -41,13 +41,13 @@
     }
 
     .selector-chevron {
-      width: 10px;
-      height: 10px;
+      width: calc(10px * var(--zoom-scale));
+      height: calc(10px * var(--zoom-scale));
       border-right: 2px solid var(--color-base-text);
       border-bottom: 2px solid var(--color-base-text);
       transform: rotate(45deg);
       transition: transform 0.2s ease;
-      margin-left: 8px;
+      margin-left: calc(8px * var(--zoom-scale));
     }
 
     [aria-expanded="true"] .selector-chevron {
@@ -56,7 +56,7 @@
 
     .selector-menu {
       position: absolute;
-      top: calc(100% + 5px);
+      top: calc(100% + 5px * var(--zoom-scale));
       left: 0;
       min-width: 100%;
       width: max-content;
@@ -70,9 +70,9 @@
     }
 
     .selector-option {
-      padding: 12px 14px;
+      padding: calc(12px * var(--zoom-scale)) calc(14px * var(--zoom-scale));
       font-family: "YAS Font", sans-serif;
-      font-size: 15px;
+      font-size: calc(15px * var(--zoom-scale));
       color: var(--color-selector-option-text, var(--color-base-text));
       border-bottom: 1px solid
         var(--color-base-mobile-header-lang-dropdown-border);
@@ -101,30 +101,22 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 5px;
+  gap: calc(5px * var(--zoom-scale));
 }
 
 .Selector-label {
-  padding-left: 8px;
+  padding-left: calc(8px * var(--zoom-scale));
   color: var(--color-base-text);
-  font-size: 17px;
+  font-size: calc(17px * var(--zoom-scale));
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
-  // @include respond(desktop) {
-  //   font-size: 14px;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   font-size: 15px;
-  //   padding-left: 6px;
-  // }
 }
 
 .has-value {
   @include respond(bigTablets) {
-    font-size: 15.5px;
+    font-size: calc(15.5px * var(--zoom-scale));
   }
 }

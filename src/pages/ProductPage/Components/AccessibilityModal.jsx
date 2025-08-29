@@ -24,6 +24,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
     dispatch(setZoomLevel(level));
   };
 
+  // Zoom Card Click
   const handleZoomCardClick = () => {
     // Find current zoom level index
     const currentIndex = zoomOptions.findIndex(
