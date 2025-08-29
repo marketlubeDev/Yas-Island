@@ -5,17 +5,19 @@
   width: 100%;
   height: 100%;
   background: transparent;
+  display: none;
   display: flex;
   flex-direction: column;
 }
 
 .email-checkout__container {
   // max-width: 500px;
-  // width: 100%;
+  width: 100%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   background: var(--color-email-form-bg);
   overflow: hidden;
@@ -30,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   // margin-top: 70px;
-  margin-top: -30px;
+  // margin-top: -30px;
   min-height: 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -88,6 +90,10 @@
 // === Form Container ===
 .email-checkout__form-container {
   margin: calc(1.2rem * var(--zoom-scale));
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--color-email-form-box);
   border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
