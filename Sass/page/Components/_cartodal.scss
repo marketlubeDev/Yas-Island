@@ -303,6 +303,7 @@
 
   span {
     color: var(--color-base-text);
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 }
 
@@ -360,6 +361,7 @@
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
   height: 3.25rem;
+  font-size: calc(1rem * var(--zoom-scale));
 }
 
 .delete-btn {

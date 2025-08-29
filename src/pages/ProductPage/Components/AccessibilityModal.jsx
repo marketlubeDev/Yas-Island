@@ -114,7 +114,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                   padding: "6px 12px",
                   borderRadius: "999px",
                   cursor: "pointer",
-                  fontSize: "12px",
+                  fontSize: "calc(12px * var(--zoom-scale))",
                   fontWeight: 600,
                   backgroundColor:
                     getCurrentColorMode() === "normal"
@@ -143,7 +143,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                   padding: "6px 12px",
                   borderRadius: "999px",
                   cursor: "pointer",
-                  fontSize: "12px",
+                  fontSize: "calc(12px * var(--zoom-scale))",
                   fontWeight: 600,
                   backgroundColor:
                     getCurrentColorMode() === "invert"
@@ -203,7 +203,7 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                         ? "white"
                         : "var(--color-base-accessibility-modal-btn-text)",
                     cursor: "pointer",
-                    fontSize: "12px",
+                    fontSize: "calc(12px * var(--zoom-scale))",
                     fontWeight: "600",
                     transition: "all 0.2s ease",
                     minWidth: "40px",
