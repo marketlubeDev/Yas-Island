@@ -185,7 +185,7 @@ const FormSelectWithSearch = ({
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                   lineHeight: "1.2",
-                  fontSize: "14px",
+                  fontSize: "calc(14px * var(--zoom-scale))",
                   color: "var(--color-email-form-label)",
                 }}
               >
@@ -358,7 +358,7 @@ const PhoneInputComponent = ({
       inputStyle={{
         width: "100%",
         height: "40px",
-        fontSize: "1rem",
+        fontSize: "calc(1rem * var(--zoom-scale))",
         border: "none",
         borderBottom: "1px solid var(--ip-bodr-btm)",
         borderRadius: "0",
