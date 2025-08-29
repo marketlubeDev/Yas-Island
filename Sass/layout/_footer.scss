@@ -1,13 +1,10 @@
 @use "../abstract/variables" as vars;
 
 .footer {
-  // border-top: 1px solid var(--separator-color);
   background: var(--color-email-form-bg);
-  // background: red;
   color: var(--color-base-text-secondary);
   width: 100%;
-  // margin-top: auto;
-  height: 2rem;
+  height: calc(2rem * var(--zoom-scale));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,5 +30,5 @@
 }
 
 .footer__text {
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
 }

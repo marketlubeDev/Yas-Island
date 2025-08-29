@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 12rem;
+  width: calc(12rem * var(--zoom-scale));
   overflow: hidden;
   position: relative;
 }

@@ -32,8 +32,8 @@ const NoResultsFound = ({
 
   // Icon styles matching website's icon patterns
   const iconStyle = {
-    width: "80px",
-    height: "80px",
+    width: "calc(80px * var(--zoom-scale))",
+    height: "calc(80px * var(--zoom-scale))",
     borderRadius: "50%",
     backgroundColor: "var(--color-base-side-bar-item-bg)",
     border: "2px solid var(--color-base-side-bar-item-box-border)",
@@ -42,13 +42,13 @@ const NoResultsFound = ({
     justifyContent: "center",
     marginBottom: "1rem",
     color: "var(--color-base-text)",
-    fontSize: "2rem",
+    fontSize: "calc(2rem * var(--zoom-scale))",
     animation: "cardHoverFloat 3s ease-in-out infinite",
   };
 
   // Title styles matching ProductCard title patterns
   const titleStyle = {
-    fontSize: "2rem",
+    fontSize: "calc(2rem * var(--zoom-scale))",
     fontWeight: "700",
     color: "var(--color-base-text)",
     marginBottom: "1rem",
@@ -59,7 +59,7 @@ const NoResultsFound = ({
 
   // Subtitle styles matching product description patterns
   const subtitleStyle = {
-    fontSize: "1.1rem",
+    fontSize: "calc(1.1rem * var(--zoom-scale))",
     color: "var(--color-base-text-secondary)",
     marginBottom: "2rem",
     maxWidth: "600px",
@@ -79,12 +79,13 @@ const NoResultsFound = ({
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
-    padding: "0.8rem 1.5rem",
+    padding:
+      "calc(0.8rem * var(--zoom-scale)) calc(1.5rem * var(--zoom-scale))",
     backgroundColor: "var(--color-base-product-card-add-cart-btn-bg)",
     border: "2px solid var(--color-base-mobile-product-page-btn-border)",
     borderRadius: "2rem",
     color: "var(--color-base-text)",
-    fontSize: "1rem",
+    fontSize: "calc(1rem * var(--zoom-scale))",
     fontWeight: "500",
     cursor: "pointer",
     fontFamily: '"YAS Font", sans-serif',

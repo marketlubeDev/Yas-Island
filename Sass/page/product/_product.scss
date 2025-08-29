@@ -240,37 +240,17 @@
   gap: 0.5rem;
   left: -2px;
   top: -2px;
-  width: 15rem;
-  height: 5rem;
+  width: calc(15rem * var(--zoom-scale));
+  height: calc(5rem * var(--zoom-scale));
   border-radius: 0rem 0rem 1.25rem 0rem;
   border: 0.83px solid var(--color-base-btn-border);
   box-shadow: 0px -16px 54px 0px rgba(27, 36, 53, 0.17);
   color: var(--color-base-text);
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   font-family: "YAS Font", sans-serif;
-  // @include respond(desktop) {
-  //   left: -2rem;
-  //   width: 17rem;
-  //   height: 4.3rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   left: -5rem;
-  //   width: 20rem;
-  //   height: 5.2rem;
-  //   font-size: 1.2rem;
-  // }
-
-  // @include respond(extraBigDesktop) {
-  //   left: 0rem;
-  //   width: 22rem;
-  //   height: 5.5rem;
-  //   font-size: 1.25rem;
-  //   gap: 1rem;
-  // }
 }
 
 .product-header__title {
@@ -303,29 +283,6 @@
   justify-content: center;
   cursor: pointer;
   padding: 10px;
-
-  // @include respond(desktop) {
-  //   width: 36px;
-  //   height: 36px;
-  //   border: 2px solid var(--color-base-btn-border);
-  //   padding: 6px;
-  //   // margin-top: -0.2rem;
-  // }
-
-  // @include respond(bigDesktop) {
-  //   width: 36px;
-  //   height: 36px;
-  //   border: 2px solid var(--color-base-btn-border);
-  //   padding: 6px;
-  //   // margin-top: -0.1rem;
-  // }
-
-  // @include respond(extraBigDesktop) {
-  //   width: 43px;
-  //   height: 43px;
-  //   border: 2px solid var(--color-base-btn-border);
-  //   padding: 6px;
-  // }
 }
 
 .language-button {
