@@ -254,7 +254,10 @@ html[lang="ar"] {
   font-size: calc(15px * var(--zoom-scale));
   font-weight: 600;
   cursor: pointer;
-  width: 75%;
+  // width: 75%;
+  text-wrap: nowrap;
+  width: 100%;
+  padding: 0.5rem 1rem;
 
   // margin-top: 12px;
   // transform: translateX(16.5%);
