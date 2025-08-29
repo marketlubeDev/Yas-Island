@@ -81,10 +81,22 @@
     // Ensure at least 4 products on desktop and larger screens
     @include respond(desktop) {
       grid-template-columns: repeat(4, 1fr);
+      .zoom-1-25x & {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .zoom-1-5x & {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @include respond(bigDesktop) {
       grid-template-columns: repeat(4, 1fr);
+      .zoom-1-25x & {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .zoom-1-5x & {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     @include respond(extraBigDesktop) {
