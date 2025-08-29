@@ -1342,7 +1342,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 @media only screen and (max-width: 575.98px) {
   .product-heading {
-    font-size: 20px !important;
+    font-size: calc(20px * var(--zoom-scale)) !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -1352,7 +1352,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 @media only screen and (max-width: 575.98px) {
   .product-description {
-    font-size: 14px !important;
+    font-size: calc(14px * var(--zoom-scale)) !important;
     font-style: normal;
     line-height: normal;
     margin-bottom: 10px !important;
@@ -3308,7 +3308,7 @@ html[lang=ar] .guest-label {
 
 .modal-content h2 {
   color: var(--color-base-accessibility-modal-title);
-  font-size: 2.125rem;
+  font-size: calc(2.125rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -3318,7 +3318,7 @@ html[lang=ar] .guest-label {
 
 .subtitle {
   color: var(--color-base-accessibility-modal-subtitle);
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -3359,8 +3359,8 @@ html[lang=ar] .guest-label {
 
 .option-icon {
   margin-bottom: 16px;
-  width: 4rem;
-  height: 4rem;
+  width: calc(4rem * var(--zoom-scale));
+  height: calc(4rem * var(--zoom-scale));
   border-radius: 3.31513rem;
   border: 3.183px solid #d3b8ff;
   background: #e1f1ff;
@@ -3378,7 +3378,7 @@ html[lang=ar] .guest-label {
 .option-card p {
   color: var(--color-base-accessibility-modal-title);
   text-align: center;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -3408,11 +3408,11 @@ html[lang=ar] .guest-label {
   border: none;
   border-radius: 24px;
   padding: 15px 58px;
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   cursor: pointer;
   transition: background-color 0.2s;
   color: var(--btn-clr);
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -3431,7 +3431,7 @@ html[lang=ar] .guest-label {
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  font-size: 32px;
+  font-size: calc(32px * var(--zoom-scale));
   line-height: 1;
   border-radius: 70.476px;
   border: 3.524px solid #dcd6e5;
