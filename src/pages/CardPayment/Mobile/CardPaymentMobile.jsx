@@ -186,7 +186,9 @@ function CardPaymentMobile() {
                   }}
                 />
                 <p style={{ color: "#666", margin: 0 }}>
-                  Loading secure payment form...
+                  {t("payment.cardPayment.loadingSecurePaymentForm", {
+                    defaultValue: "Loading secure payment form...",
+                  })}
                 </p>
               </div>
             )}

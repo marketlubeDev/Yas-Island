@@ -273,7 +273,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 }}
               />
               <p style={{ color: isDarkMode ? "#b3b3b3" : "#666", margin: 0 }}>
-                Loading secure payment form...
+                {t("payment.cardPayment.loadingSecurePaymentForm", {
+                  defaultValue: "Loading secure payment form...",
+                })}
               </p>
             </div>
           )}
