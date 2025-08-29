@@ -63,6 +63,7 @@ function MobileNavigationTabs() {
     {
       key: "attractions",
       icon: attractionsIconSrc,
+      activeIcon: attractionsIconSrcActive,
       label: t("sidebar.attractions"),
       alt: t("sidebar.attractions"),
       link: "/",
@@ -104,7 +105,11 @@ function MobileNavigationTabs() {
           }}
         >
           <img
-            src={item.key === isActive ? item.icon : item.icon}
+            src={
+              item.key === isActive && item.activeIcon
+                ? item.activeIcon
+                : item.icon
+            }
             alt={item.alt}
             className="mobile-top__icon"
           />

@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import homeIcon from "../../../assets/icons/home.svg";
-import homeIconInverter from "../../../assets/icons/homecolor.svg";
+import homeIconDefault from "../../../assets/icons/home.svg";
+import homeIconActive from "../../../assets/icons/homecolor.svg";
+import homeIconDark from "../../../assets/icons/invertedhome.svg";
 import chatIcon from "../../../assets/icons/message.svg";
 import chatIconInverter from "../../../assets/icons/chatcolor.svg";
 import closeIcon from "../../../assets/icons/close.svg";
@@ -22,7 +23,6 @@ function MobileBottomNav({ isVisible = true }) {
   const [isIpadTarget, setIsIpadTarget] = useState(false);
   const observerRef = useRef(null);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const homeIconSrc = isDarkMode ? homeIconInverter : homeIcon;
   const chatIconSrc = isDarkMode ? chatIconInverter : chatIcon;
   const crossIconSrc = isDarkMode ? closeIconInverter : closeIcon;
   const cartIconSrc = isDarkMode ? cartIconInverter : cartIcon;
@@ -144,6 +144,14 @@ function MobileBottomNav({ isVisible = true }) {
     };
   }, []);
 
+  const isHomeActive = location.pathname === "/";
+
+  const homeIconSrc = isHomeActive
+    ? homeIconActive
+    : isDarkMode
+    ? homeIconDark
+    : homeIconDefault;
+
   return (
     <>
       <div
@@ -155,7 +163,7 @@ function MobileBottomNav({ isVisible = true }) {
       >
         <div
           className={`mobile-bottom-nav__item${
-            location.pathname === "/" ? " mobile-bottom-nav__item--active" : ""
+            isHomeActive ? " mobile-bottom-nav__item--active" : ""
           }`}
           onClick={() => {
             navigate("/");
