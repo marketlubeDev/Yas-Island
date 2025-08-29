@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CardPaymentBody from "./Components/CardPaymentBody";
 import Header from "../../../layouts/Header/Header";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,6 +6,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function CardPaymentPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isDesktopViewport, setIsDesktopViewport] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth > 1024;
+  });
 
   // Check if state exists
   const isCheckout = location.state?.isCheckout || false;
@@ -45,9 +49,18 @@ export default function CardPaymentPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Show header only on desktop; update on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktopViewport(window.innerWidth > 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div className="payment-checkout-page-details">
-      <Header />
+      {isDesktopViewport && <Header />}
       <CardPaymentBody isCheckout={isCheckout} />
     </div>
   );
