@@ -2258,18 +2258,17 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 .product-description-api .product-description {
-  font-size: 18px !important;
+  font-size: calc(18px * var(--zoom-scale)) !important;
   color: var(--text-color) !important;
 }
 .product-description-api .product-list-item {
-  font-size: 18px !important;
+  font-size: calc(18px * var(--zoom-scale)) !important;
 }
 
 .product-modal-details h2 {
-  font-size: 24px;
   margin-bottom: 0px;
   color: var(--color-base-text);
-  font-size: 2.125rem;
+  font-size: calc(2.125rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -2347,7 +2346,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .price-details h3 {
   color: var(--color-base-text);
-  font-size: 1.375rem;
+  font-size: calc(1.375rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -2362,7 +2361,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .price-details .tax {
   color: var(--color-base-text-secondary);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -2382,7 +2381,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   display: flex;
   width: 31.25rem;
   height: fit-content;
@@ -2605,24 +2604,23 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .calendar-header h2 {
-  font-size: 24px;
+  font-size: calc(24px * var(--zoom-scale));
   font-weight: 600;
   margin-bottom: 8px;
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-header h2 {
-    font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
     margin-bottom: 8px;
   }
 }
 
 .calendar-header h3 {
-  font-size: 18px;
   font-weight: 500;
   color: var(--color-base-text);
   text-align: right;
-  font-size: 1.5rem;
+  font-size: calc(1.5rem * var(--zoom-scale));
   font-style: normal;
   font-weight: 700;
   font-family: "YAS Font", sans-serif;
@@ -2630,7 +2628,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-header h3 {
-    font-size: 1.3rem;
+    font-size: calc(1.3rem * var(--zoom-scale));
   }
 }
 
@@ -2681,13 +2679,13 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .calendar-weekdays span {
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   color: var(--color-bkg-clndr-dayname-clr);
   padding: 4px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-weekdays span {
-    font-size: 11px;
+    font-size: calc(11px * var(--zoom-scale));
     padding: 3px;
   }
 }
@@ -2704,8 +2702,8 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   padding: 8px;
 }
 .calendar-days .day {
-  width: min(40px, 85%);
-  height: min(40px, 85%);
+  width: min(40px * var(--zoom-scale), 85%);
+  height: min(40px * var(--zoom-scale), 85%);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .calendar-days {
@@ -2809,7 +2807,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .section-title {
   color: var(--color-base-text);
-  font-size: 1.8rem !important;
+  font-size: calc(1.8rem * var(--zoom-scale)) !important;
   font-style: normal;
   font-weight: 700;
   margin-bottom: 0;
@@ -2921,7 +2919,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 
 .guest-summary {
-  font-size: 22px;
+  font-size: calc(22px * var(--zoom-scale));
   font-weight: 500;
   margin-top: 0.2rem;
   padding-bottom: 16px;
@@ -2937,12 +2935,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-summary {
-    font-size: 20px;
+    font-size: calc(20px * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .guest-summary {
-    font-size: 22px;
+    font-size: calc(22px * var(--zoom-scale));
   }
 }
 
@@ -3084,27 +3082,27 @@ html[lang=ar] .guest-label {
 }
 
 .counter-value {
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   min-width: 20px;
   text-align: center;
   color: var(--color-base-text);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .counter-value {
-    font-size: 14px;
+    font-size: calc(14px * var(--zoom-scale));
     min-width: 18px;
   }
 }
 
 .guest-note {
   color: var(--color-base-text-secondary);
-  font-size: 12px;
+  font-size: calc(12px * var(--zoom-scale));
   text-align: center;
   margin-top: 16px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .guest-note {
-    font-size: 11px;
+    font-size: calc(11px * var(--zoom-scale));
     margin-top: 12px;
   }
 }
@@ -3181,14 +3179,14 @@ html[lang=ar] .guest-label {
   text-align: center;
   margin-left: 50%;
   transform: translateX(-50%);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .checkout-btnn {
     width: min(22rem, 80%);
     padding: 12px;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     border-radius: 24px;
   }
 }
@@ -3204,14 +3202,14 @@ html[lang=ar] .guest-label {
   width: min(32.875rem, 80%);
   margin-left: 50%;
   transform: translateX(-50%);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--zoom-scale));
   font-family: "YAS Font", sans-serif;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .cart-btn {
     width: min(22rem, 80%);
     padding: 12px;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--zoom-scale));
     border-radius: 24px;
     border: 3px solid var(--cart-btn-brd-save);
   }
