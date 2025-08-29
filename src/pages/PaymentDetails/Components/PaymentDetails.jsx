@@ -100,7 +100,7 @@ export default function PaymentDetails({ isCheckout }) {
     }
     if (
       !data.lastName ||
-      data.lastName.trim().length < 1 ||
+      data.lastName.trim().length < 2 ||
       !nameOk(data.lastName)
     ) {
       errors.push(
