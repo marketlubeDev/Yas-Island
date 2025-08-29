@@ -311,9 +311,7 @@
   }
 }
 
-.checkout-back-button-circular--rtl {
-  // RTL: button stays on left, only icon flips
-}
+
 
 .checkout-back-button-circular__icon--rtl {
   transform: scaleX(-1); // Flip the icon horizontally for RTL

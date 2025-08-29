@@ -7710,12 +7710,22 @@ html[dir=rtl] .back-button {
     font-size: 0.9rem;
   }
 }
+.payment-response-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 8rem);
+}
+
 .payment-response {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   background: var(--color-resend-btn-bg);
+  width: 90%;
+  padding: 24px;
+  border-radius: 1.8rem;
+  max-width: 1150px;
 }
 .payment-response .ticket-section {
   display: flex;
@@ -7724,8 +7734,8 @@ html[dir=rtl] .back-button {
   margin-top: 40px;
 }
 .payment-response .ticket-section .ticket-image {
-  width: 100px;
-  height: 180px;
+  width: calc(100px * var(--zoom-scale));
+  height: calc(180px * var(--zoom-scale));
   object-fit: cover;
   border: 2px dashed #b3b3ff;
   border-radius: 10px;
@@ -7738,21 +7748,21 @@ html[dir=rtl] .back-button {
   border-radius: 6px;
   padding: 6px 12px;
   color: var(--color-base-text);
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--zoom-scale));
   font-weight: 400;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-response .ticket-section .ticket-message {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
   }
 }
 .payment-response .ticket-section img {
-  height: 14rem;
+  height: calc(14rem * var(--zoom-scale));
   object-fit: contain;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .payment-response .ticket-section img {
-    height: 12rem;
+    height: calc(12rem * var(--zoom-scale));
   }
 }
 .payment-response .divider {
@@ -7767,7 +7777,7 @@ html[dir=rtl] .back-button {
   align-items: center;
 }
 .payment-response .feedback-section .feedback-title {
-  font-size: 20px;
+  font-size: calc(20px * var(--zoom-scale));
   font-weight: 500;
   margin-bottom: 18px;
   text-align: center;
@@ -7779,13 +7789,13 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-response .feedback-section .feedback-title {
-    font-size: 1.1rem;
+    font-size: calc(1.1rem * var(--zoom-scale));
   }
 }
 .payment-response .feedback-section .feedback-options {
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: calc(48px * var(--zoom-scale));
 }
 .payment-response .feedback-section .option {
   display: flex;
@@ -7793,8 +7803,8 @@ html[dir=rtl] .back-button {
   align-items: center;
 }
 .payment-response .feedback-section .emoji {
-  width: 80px;
-  height: 80px;
+  width: calc(80px * var(--zoom-scale));
+  height: calc(80px * var(--zoom-scale));
   border-radius: 50%;
   border: 2.597px solid #d3b8ff;
   display: flex;
@@ -7819,23 +7829,23 @@ html[dir=rtl] .back-button {
 }
 .payment-response .feedback-section .label {
   margin-top: 4px;
-  font-size: 16px;
+  font-size: calc(16px * var(--zoom-scale));
   text-align: center;
   font-weight: 500;
   color: var(--color-base-text);
   text-align: center;
-  font-size: 1.125rem;
+  font-size: calc(1.125rem * var(--zoom-scale));
   font-style: normal;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-response .feedback-section .label {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
   }
 }
 
 .feedback-text {
   color: #594f67;
-  font-size: 17px;
+  font-size: calc(17px * var(--zoom-scale));
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -7883,12 +7893,12 @@ html[dir=rtl] .back-button {
 }
 
 .smiley-img {
-  width: 70px;
-  height: 70px;
+  width: calc(70px * var(--zoom-scale));
+  height: calc(70px * var(--zoom-scale));
 }
 
 .feedback-text {
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--zoom-scale));
   color: #5a5363;
   font-weight: 600;
   text-align: center;
