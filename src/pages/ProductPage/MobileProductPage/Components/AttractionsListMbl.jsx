@@ -31,8 +31,6 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
-  console.log(isLoading, "dfgdfgfdgfgwfa");
-
   const handleAttractionClick = (item) => {
     setSelectedAttraction(item);
     dispatch(setSelectedProduct(item));

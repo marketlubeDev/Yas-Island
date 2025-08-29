@@ -79,8 +79,6 @@ function MobileBottomNav({ isVisible = true }) {
         isOpen = chatWidget.style.display !== "none";
       }
 
-      console.log("Chat state detected:", isOpen);
-
       setIsChatOpen(isOpen);
     };
 

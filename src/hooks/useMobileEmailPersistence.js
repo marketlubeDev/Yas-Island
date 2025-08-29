@@ -15,15 +15,10 @@ export const useMobileEmailPersistence = () => {
   // Store email whenever it changes
   useEffect(() => {
     if (email) {
-      console.log("useMobileEmailPersistence: Storing email:", email);
-
       // Store in multiple places for mobile reliability
       try {
         sessionStorage.setItem("yasIsland_backup_email", email);
         localStorage.setItem("yasIsland_mobile_email", email);
-        console.log(
-          "Stored email in both sessionStorage and localStorage backup"
-        );
       } catch (e) {
         console.log("Failed to store email backup:", e);
       }
@@ -33,8 +28,6 @@ export const useMobileEmailPersistence = () => {
   // Restore email on component mount
   useEffect(() => {
     if (!email && !checkout.emailId) {
-      console.log("useMobileEmailPersistence: Attempting to restore email");
-
       // Try multiple storage sources in order of preference
       const sources = [
         () => sessionStorage.getItem("yasIsland_backup_email"),

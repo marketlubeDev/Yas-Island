@@ -14,7 +14,9 @@ export default function CardPaymentBody({ isCheckout }) {
   const { t, i18n } = useTranslation();
   const checkout = useSelector((state) => state.checkout);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const { isSmallPhone, isPhone } = useSelector((state) => state.responsive);
+  const { isSmallPhone, isPhone, isTablets } = useSelector(
+    (state) => state.responsive
+  );
   const isRTL = i18n.language === "ar" || i18n.language === "العربية";
 
   const [formData, setFormData] = useState({
@@ -68,7 +70,7 @@ export default function CardPaymentBody({ isCheckout }) {
     }
   };
   const backIconSrc = isDarkMode ? leftIconDark : leftIcon;
-  const isMobile = isSmallPhone || isPhone;
+  const isMobile = isSmallPhone || isPhone || isTablets;
 
   return (
     <div className="payment-checkout">

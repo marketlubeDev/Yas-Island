@@ -94,7 +94,6 @@ function CardPaymentMobile() {
             event.data.status === "cancelled"
           ) {
             setPaymentStatus("failed");
-            console.log("Payment failed or cancelled");
           }
         }
       };

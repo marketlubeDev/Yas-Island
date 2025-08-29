@@ -156,7 +156,6 @@ const cartSlice = createSlice({
     updateQuantity: (state, action) => {
       // Remove expired items first
       // state.cartItems = removeExpiredItems(state.cartItems);
-      console.log("action.payload", action.payload.quantity);
 
       state.cartItems = state.cartItems
         .map((item) =>
