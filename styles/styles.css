@@ -5738,13 +5738,13 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .spam-notice {
-    font-size: 12px;
+    font-size: calc(12px * var(--zoom-scale));
     margin-bottom: 12px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .spam-notice {
-    font-size: 12px;
+    font-size: calc(12px * var(--zoom-scale));
     margin-bottom: 12px;
   }
 }
@@ -5771,19 +5771,19 @@ html[dir=rtl] .back-button {
 
 .verification-label {
   text-align: center;
-  font-size: 0.9em;
+  font-size: calc(0.9em * var(--zoom-scale));
   color: var(--color-confirm-otp-label);
   margin-bottom: 8px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .verification-label {
-    font-size: 12px;
+    font-size: calc(12px * var(--zoom-scale));
     margin-bottom: 6px;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .verification-label {
-    font-size: 0.75em;
+    font-size: calc(0.75em * var(--zoom-scale));
     margin-bottom: 6px;
   }
 }
@@ -5796,20 +5796,20 @@ html[dir=rtl] .back-button {
 }
 
 .code-input {
-  width: 40px;
-  height: 40px;
+  width: calc(40px * var(--zoom-scale));
+  height: calc(40px * var(--zoom-scale));
   border: 1px solid var(--color-otp-input-border);
   background-color: var(--color-email-form-box);
   color: var(--color-email-form-label);
   border-radius: 8px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: calc(1.2em * var(--zoom-scale));
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .code-input {
-    width: 35px;
-    height: 35px;
-    font-size: 12px;
+    width: calc(35px * var(--zoom-scale));
+    height: calc(35px * var(--zoom-scale));
+    font-size: calc(12px * var(--zoom-scale));
   }
 }
 
@@ -5824,7 +5824,7 @@ html[dir=rtl] .back-button {
 .expire-text {
   color: var(--color-resend-btn-text);
   font-family: Inter;
-  font-size: 14.663px;
+  font-size: calc(14.663px * var(--zoom-scale));
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -5832,19 +5832,19 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .expire-text {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .expire-text {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 
 .timer {
   color: var(--color-resend-btn-text);
   font-family: Inter;
-  font-size: 14.663px;
+  font-size: calc(14.663px * var(--zoom-scale));
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -5852,12 +5852,12 @@ html[dir=rtl] .back-button {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .timer {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .timer {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 
@@ -5875,12 +5875,12 @@ html[dir=rtl] .back-button {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .resend-btn {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .resend-btn {
-    font-size: 11.5px;
+    font-size: calc(11.5px * var(--zoom-scale));
   }
 }
 .verification-containerBox {
