@@ -57,8 +57,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         const html = iframeDoc.documentElement;
         const body = iframeDoc.body;
 
-        console.log("Applying theme:", isDarkMode ? "dark" : "light");
-
         if (html) {
           // Remove existing theme classes and attributes
           html.classList.remove("dark-theme", "light-theme");
@@ -72,8 +70,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             html.classList.add("light-theme");
             html.setAttribute("data-theme", "light");
           }
-
-          console.log("HTML classes after update:", html.classList.toString());
         }
 
         if (body) {
@@ -88,8 +84,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             body.classList.add("light-theme");
             body.setAttribute("data-theme", "light");
           }
-
-          console.log("Body classes after update:", body.classList.toString());
         }
 
         // Force a repaint
@@ -153,7 +147,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       // Listen for messages from the iframe
       const handleMessage = (event) => {
         const data = event?.data;
-        console.log("Received message from iframe:", data);
 
         if (!data) return;
 
@@ -163,7 +156,10 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             handlePaymentSuccess();
           } else {
             setFailureMessage(
-              data.error || "Payment failed. Please try again."
+              t("payment.cardPayment.errorMessage", {
+                defaultValue:
+                  "We couldn't complete your payment. Please review your details and try again.",
+              })
             );
             setPaymentStatus("failed");
           }
@@ -196,7 +192,12 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           status === "cancelled" ||
           status === "declined"
         ) {
-          setFailureMessage("Payment failed. Please try again.");
+          setFailureMessage(
+            t("payment.cardPayment.errorMessage", {
+              defaultValue:
+                "We couldn't complete your payment. Please review your details and try again.",
+            })
+          );
           setPaymentStatus("failed");
         }
       };
@@ -231,7 +232,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     );
     navigate("/");
   };
-  console.log(isDarkMode, "style");
 
   return (
     <div className="payment-container">
@@ -281,7 +281,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 }}
               />
               <p style={{ color: isDarkMode ? "#b3b3b3" : "#666", margin: 0 }}>
-                Loading secure payment form...
+                {t("payment.cardPayment.loadingSecurePaymentForm", {
+                  defaultValue: "Loading secure payment form...",
+                })}
               </p>
             </div>
           )}

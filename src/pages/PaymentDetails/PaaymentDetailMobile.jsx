@@ -239,7 +239,7 @@ function PaymentDetailsMobile() {
         productId,
         source
       );
-      console.log("Terms and Conditions:", response);
+
       setTermsAndConditions(response);
       setIsTermsModalOpen(true);
     } catch (error) {

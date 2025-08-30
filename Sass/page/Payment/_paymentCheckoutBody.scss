@@ -311,6 +311,8 @@
   }
 }
 
+// (Removed empty RTL modifier ruleset to satisfy linter)
+
 .checkout-back-button-circular__icon--rtl {
   transform: scaleX(-1); // Flip the icon horizontally for RTL
 }
@@ -574,6 +576,8 @@
       min-height: 58vh;
       flex-direction: column;
       padding: 0rem;
+      // Ensure children take full width when stacked on tablets
+      align-items: stretch;
     }
 
     @include respond(bigTablets) {
@@ -884,13 +888,13 @@
 @include respond(bigTablets) {
   .order-summary-container {
     margin-top: 1rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @include respond(tablets) {
   .order-summary-container {
     margin-top: 1rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @include respond(phone) {
@@ -902,6 +906,18 @@
 @include respond(smallPhone) {
   .order-summary-container {
     margin-top: 1.5rem;
+    width: 100%;
+  }
+}
+
+// Ensure payment form container spans full width on tablets
+@include respond(bigTablets) {
+  .payment-container {
+    width: 100%;
+  }
+}
+@include respond(tablets) {
+  .payment-container {
     width: 100%;
   }
 }

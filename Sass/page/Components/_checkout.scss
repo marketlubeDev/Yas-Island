@@ -5,17 +5,17 @@
   width: 100%;
   height: 100%;
   background: transparent;
+  display: none;
   display: flex;
   flex-direction: column;
 }
 
 .email-checkout__container {
-  // max-width: 500px;
-  // width: 100%;
+  width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   background: var(--color-email-form-bg);
   overflow: hidden;
@@ -25,12 +25,9 @@
 .email-checkout__content {
   flex: 1 1 auto;
   overflow-y: auto;
-  // padding-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // margin-top: 70px;
-  margin-top: -30px;
   min-height: 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -88,6 +85,10 @@
 // === Form Container ===
 .email-checkout__form-container {
   margin: calc(1.2rem * var(--zoom-scale));
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--color-email-form-box);
   border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
@@ -105,24 +106,8 @@
 
   // Add bottom padding for mobile devices to ensure button accessibility
   @media only screen and (max-width: 768px) {
-    margin-bottom: calc(
-      1.2rem * var(--zoom-scale)
-    ); // Extra bottom margin for better button access
+    margin-bottom: calc(1.2rem * var(--zoom-scale));
   }
-
-  // overflow-y: auto;
-  // -webkit-overflow-scrolling: touch;
-  // scrollbar-width: thin;
-  // &::-webkit-scrollbar {
-  //   width: 6px;
-  // }
-  // &::-webkit-scrollbar-track {
-  //   background: #fff;
-  // }
-  // &::-webkit-scrollbar-thumb {
-  //   background: #bdbdc6;
-  //   border-radius: 3px;
-  // }
 }
 
 // === Form ===
@@ -202,6 +187,43 @@
 .form-group__input.error::placeholder {
   color: var(--color-error-text, #ff4d4f);
   opacity: 1;
+}
+
+// Ensure react-phone-input-2 dropdown follows theme colors in mobile flow
+.email-checkout__phone-container,
+.react-tel-input {
+  .flag-dropdown {
+    .country-list {
+      background-color: var(--color-base-bg) !important;
+      border: 1px solid var(--ip-bodr-btm) !important;
+
+      .country {
+        color: var(--color-email-form-label) !important;
+        background-color: transparent !important;
+
+        &:hover,
+        &.highlight {
+          background-color: var(--color-base-hover) !important;
+        }
+
+        .dial-code,
+        .country-name {
+          color: var(--color-email-form-label) !important;
+        }
+      }
+
+      .search {
+        background-color: var(--color-base-bg) !important;
+        border-bottom: 1px solid var(--ip-bodr-btm) !important;
+        color: var(--color-email-form-label) !important;
+
+        &::placeholder {
+          color: var(--color-base-text-secondary) !important;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
 }
 
 // Phone input error styles (desktop and mobile)
@@ -599,7 +621,6 @@
     display: flex;
     justify-content: space-between;
     padding-top: 12px;
-    // border-top: 1px solid var(--color-base-product-card-divider);
 
     &-Content {
       font-weight: bold;

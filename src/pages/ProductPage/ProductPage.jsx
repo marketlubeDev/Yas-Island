@@ -38,11 +38,11 @@ export default function ProductPage() {
   const normalizeSort = (label) => {
     if (!label) return null;
     const l = String(label).toLowerCase().trim();
-    
+
     // Handle English sorting options
     if (l.includes("high") && l.includes("low"))
       return l.includes("high to low") ? "desc" : "asc";
-    
+
     // Handle Arabic sorting options - match the exact patterns used in mobile
     if (
       label === "السعر (من الأعلى إلى الأقل)" ||
@@ -50,7 +50,7 @@ export default function ProductPage() {
     ) {
       return "desc"; // High to Low
     }
-    
+
     if (
       label === "السعر (من الأقل إلى الأعلى)" ||
       label === "السعر (من الأقل الى الأعلى)" ||
@@ -59,7 +59,7 @@ export default function ProductPage() {
     ) {
       return "asc"; // Low to High
     }
-    
+
     return null;
   };
 

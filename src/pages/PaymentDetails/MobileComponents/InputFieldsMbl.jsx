@@ -335,6 +335,7 @@ const PhoneInputComponent = ({
   countryIso = "ae",
   isRTL = false,
   onFocus,
+  localization,
 }) => (
   <label className="email-checkout__label" id="phoneNumber">
     {label}
@@ -346,6 +347,7 @@ const PhoneInputComponent = ({
       containerClass="email-checkout__phone-container"
       buttonClass="email-checkout__phone-button"
       dropdownClass="email-checkout__phone-dropdown"
+      localization={localization}
       enableSearch={false}
       disableDropdown={false}
       countryCodeEditable={true}
@@ -405,6 +407,20 @@ function InputFieldsMbl() {
         code: code.toLowerCase(),
       }))
       .sort((a, b) => a.label.localeCompare(b.label));
+  }, [currentLanguage]);
+
+  // Localize country names in phone dropdown for Arabic using react-phone-input-2 `localization`
+  const PHONE_LOCALIZATION = useMemo(() => {
+    if (currentLanguage !== "ar") return undefined;
+    const alpha2 = countries.getAlpha2Codes();
+    const map = {};
+    Object.keys(alpha2).forEach((code) => {
+      const nameAr = countries.getName(code, "ar");
+      if (nameAr) {
+        map[code.toLowerCase()] = nameAr;
+      }
+    });
+    return map;
   }, [currentLanguage]);
 
   // Initialize form data from Redux state
@@ -630,13 +646,14 @@ function InputFieldsMbl() {
         );
         return (
           <PhoneInputComponent
-            key={selectedIso}
+            key={`${selectedIso}-${currentLanguage}`}
             label={t("payment.personalDetails.phoneNumber")}
             phoneNumber={formData.phoneNumber}
             onPhoneNumberChange={handleInputChange("phoneNumber")}
             hasError={fieldErrors.phoneNumber}
             countryIso={selectedIso}
             isRTL={isRTL}
+            localization={PHONE_LOCALIZATION}
             onFocus={() =>
               setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
             }

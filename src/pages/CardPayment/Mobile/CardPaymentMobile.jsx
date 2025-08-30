@@ -94,7 +94,6 @@ function CardPaymentMobile() {
             event.data.status === "cancelled"
           ) {
             setPaymentStatus("failed");
-            console.log("Payment failed or cancelled");
           }
         }
       };
@@ -187,7 +186,9 @@ function CardPaymentMobile() {
                   }}
                 />
                 <p style={{ color: "#666", margin: 0 }}>
-                  Loading secure payment form...
+                  {t("payment.cardPayment.loadingSecurePaymentForm", {
+                    defaultValue: "Loading secure payment form...",
+                  })}
                 </p>
               </div>
             )}

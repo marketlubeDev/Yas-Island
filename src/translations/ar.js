@@ -147,7 +147,8 @@ export const ar = {
     to: "إلى",
     children: "الأطفال",
     vat: "ضريبة القيمة المضافة :",
-    vatUnit: "ضريبة القيمة المضافة",
+    vatUnit: "ضريبة القيمة المضاف",
+    vatAndTax: "ضريبة القيمة المضافة",
     maxQuantityExceeded: "تم تجاوز الحد الأقصى للكمية {{maxQuantity}}",
     minQuantityRequired: "الحد الأدنى المطلوب للكمية {{minQuantity}}",
   },
@@ -273,6 +274,14 @@ export const ar = {
         },
       },
       makePayment: "إتمام الدفع",
+      loadingSecurePaymentForm: "...جاري تحميل نموذج الدفع الآمن",
+      // Error UI strings
+      errorTitle: "تم رفض الدفع",
+      errorMessage:
+        "تعذر إكمال عملية الدفع. يرجى مراجعة التفاصيل والمحاولة مرة أخرى.",
+      retry: "إعادة المحاولة",
+      backToDetails: "العودة إلى التفاصيل",
+      errorToast: "فشلت معالجة الدفع. يرجى المحاولة مرة أخرى.",
     },
     success: {
       title: "تم الدفع بنجاح",

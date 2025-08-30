@@ -275,6 +275,7 @@ export const en = {
         },
       },
       makePayment: "Make Payment",
+      loadingSecurePaymentForm: "Loading secure payment form...",
     },
     success: {
       title: "Payment Successful",

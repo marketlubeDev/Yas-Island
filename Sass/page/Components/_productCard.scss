@@ -529,9 +529,9 @@
 
     .ant-modal-content {
       position: relative !important;
-      top: auto !important;
-      left: auto !important;
-      transform: none !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
       margin: 0 auto !important;
       max-width: 1100px; // slightly narrower to preserve perfect circles
       padding: 0 !important;
@@ -540,8 +540,9 @@
 }
 
 // Additional centering for modal wrapper
-.product-modal .ant-modal-wrap {
-  display: flex !important;
+.product-modal .ant-modal-wrap,
+.product-modal-wrap {
+  display: flex; // allow AntD to hide via inline display:none when closed
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;

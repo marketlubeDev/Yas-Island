@@ -125,6 +125,7 @@ export default function ProductCard({ productList }) {
         footer={null}
         width={showBookingSection ? "80vw" : "82vw"}
         style={{ maxWidth: "80vw" }}
+        wrapClassName="product-modal-wrap"
         className={`product-modal ${
           showBookingSection ? "booking-active" : ""
         }`}

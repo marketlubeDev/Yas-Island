@@ -384,7 +384,7 @@ function MycartMbl({ onClose, visible }) {
                     </span>
                   </div>
                   <div className="mycart-modal__summary-row">
-                    <span>{t("cart.vatAndTax")}</span>
+                    <span>{t("cart.vatAndTax")} :</span>
                     <span>
                       + {t("common.aed")} {vatAndTax.toFixed(2)}
                     </span>

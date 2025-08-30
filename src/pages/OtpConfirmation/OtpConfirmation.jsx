@@ -10,7 +10,6 @@ export default function OtpConfirmation() {
 
   // Guard: if user lands here via direct URL or browser back without proper state, redirect
   useEffect(() => {
-    console.log(location?.state?.fromEmailVerification, "location>>");
     const cameFromEmail = location?.state?.fromEmailVerification === true;
     if (!cameFromEmail) {
       navigate("/email-verification", { replace: true });

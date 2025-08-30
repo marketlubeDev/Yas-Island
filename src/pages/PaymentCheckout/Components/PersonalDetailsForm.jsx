@@ -516,8 +516,14 @@ export default function PersonalDetailsForm({
     const showErrors = () => {
       const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
       const next = {
-        firstName: !checkout.firstName || checkout.firstName.trim().length < 2,
-        lastName: !checkout.lastName || checkout.lastName.trim().length < 1,
+        firstName:
+          !checkout.firstName ||
+          checkout.firstName.trim().length < 2 ||
+          !nameRegex.test(checkout.firstName),
+        lastName:
+          !checkout.lastName ||
+          checkout.lastName.trim().length < 2 ||
+          !nameRegex.test(checkout.lastName),
         email:
           !checkout.emailId ||
           !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
