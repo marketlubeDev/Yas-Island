@@ -14,13 +14,21 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#1a1a1a" : "#fff"
     );
     document.documentElement.style.setProperty(
+      "--color-base-checkbox-new",
+      isDarkMode ? "#fff" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
+      "--color-base-checkbox-bgn",
+      isDarkMode ? "#fff" : "#18142b"
+    );
+    document.documentElement.style.setProperty(
       "--color-selector-option-text",
       isDarkMode ? "#ffffff" : "#222"
     );
     document.documentElement.style.setProperty(
       "--color-selector-option-hover-bg",
-      isDarkMode? "#313030" : "#f5f5f5"
-    )
+      isDarkMode ? "#313030" : "#f5f5f5"
+    );
 
     // secure payment
     document.documentElement.style.setProperty(
@@ -781,7 +789,7 @@ export default function GlobalInvertColor() {
       isHighContrast ? "#000" : "#bdbdc6"
     );
 
-      document.documentElement.style.setProperty(
+    document.documentElement.style.setProperty(
       "--color-text-price-red",
       isDarkMode ? "#800080" : "#FF0000"
     );
@@ -1940,7 +1948,7 @@ export default function GlobalInvertColor() {
         "--card-box-shadow",
         "#00000014"
       );
-        document.documentElement.style.setProperty(
+      document.documentElement.style.setProperty(
         "--color-text-price-red",
         "#FF0000"
       );
@@ -1967,8 +1975,14 @@ export default function GlobalInvertColor() {
         "--summary-header-bg",
         "#fafafa"
       );
-
-
+      document.documentElement.style.setProperty(
+        "--color-base-checkbox-new",
+        "#18142b"
+      );
+      document.documentElement.style.setProperty(
+        "--color-base-checkbox-bgn",
+        "#fff"
+      );
     };
   }, [isDarkMode, isHighContrast]);
 
