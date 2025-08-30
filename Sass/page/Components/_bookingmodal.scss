@@ -85,6 +85,15 @@
   }
 }
 
+.booking-modal__calendar-title {
+  font-size: calc(19px * var(--zoom-scale));
+  font-weight: 500;
+  color: var(--color-bkg-guest-title-clr);
+  text-align: center;
+  z-index: 2;
+  background: var(--color-bkg-body-bg);
+}
+
 .booking-modal__calendar {
   width: 100%;
   background: var(--color-bkg-clndr-bg);

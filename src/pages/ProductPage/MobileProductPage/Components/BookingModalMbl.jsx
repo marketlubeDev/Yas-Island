@@ -941,7 +941,7 @@ function BookingModalMbl({
     align-items: center;
     gap: 12px;
   }
-  
+
   @media (max-width: 360px) {
     .calendar-skeleton,
     .guest-section-skeleton {
@@ -997,11 +997,15 @@ function BookingModalMbl({
             }}
           />
           <span className="booking-modal__title">
-            {t("booking.chooseDate")}
+            {/* {t("booking.chooseDate")} */}
+            {product.product_title}
           </span>
         </div>
         <div className="booking-modal__body">
           {/* Calendar */}
+          <div className="booking-modal__calendar-title">
+            {t("booking.chooseDate")}
+          </div>
           <div className="booking-modal__calendar">
             {isLoadingDates ? (
               renderCalendarSkeleton()

@@ -156,6 +156,7 @@ export const en = {
     add: "Add",
   },
   booking: {
+    productTitle: "Product Title",
     chooseDate: "Choose Your Date",
     chooseGuests: "Choose Guests",
     adults: "Adult ( 12 Yrs+ )",

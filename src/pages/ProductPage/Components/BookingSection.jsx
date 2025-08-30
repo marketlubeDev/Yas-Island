@@ -803,269 +803,280 @@ export default function BookingSection({ product, onBack }) {
 
   return (
     <div className="booking-section">
-      {/* Date Selection */}
-      <div className="calendar-container">
-        <h2 className="section-title ">{t("booking.chooseDate")}</h2>
-        <div className="calendar-wrapper">
-          {isLoadingDates ? (
-            renderCalendarSkeleton()
-          ) : (
-            <>
-              <div className="calendar-header">
-                <button
-                  onClick={!isAtCurrentMonth ? handlePrevMonth : undefined}
-                  style={isAtCurrentMonth ? { visibility: "hidden" } : {}}
-                >
-                  <img
-                    src={isDarkMode ? InvertLeftArrow : LeftArrow}
-                    alt="Left Arrow"
-                    className={currentLanguage === "ar" ? "rtl-arrow" : ""}
-                  />
-                </button>
-                <h3>{formatMonthYear(currentDate)}</h3>
-                <button onClick={handleNextMonth}>
-                  <img
-                    src={isDarkMode ? InvertRightArrow : RightArrow}
-                    alt="Right Arrow"
-                    className={currentLanguage === "ar" ? "rtl-arrow" : ""}
-                  />
-                </button>
-              </div>
-
-              <div className="calendar-body">
-                <div className="calendar-weekdays">
-                  <span>{t("booking.weekDays.sun")}</span>
-                  <span>{t("booking.weekDays.mon")}</span>
-                  <span>{t("booking.weekDays.tue")}</span>
-                  <span>{t("booking.weekDays.wed")}</span>
-                  <span>{t("booking.weekDays.thu")}</span>
-                  <span>{t("booking.weekDays.fri")}</span>
-                  <span>{t("booking.weekDays.sat")}</span>
-                </div>
-                <div className="calendar-days">{generateCalendarDays()}</div>
-              </div>
-            </>
-          )}
-        </div>
+      {/* Product Title */}
+      <div className="product-title-container">
+        <h1 className="product-title">
+          {product.product_title || t("booking.productTitle")}
+        </h1>
       </div>
-      <div className="booking-section-divider"></div>
-      {/* Guest Selection */}
-      <div className="guest-section">
-        <div className="guest-section-header-container">
-          <h2 className="section-title">
-            {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
-          </h2>
-          <div
-            className={`guest-section-scollable-container ${
-              Object.entries(guests).length > 1 ? "multiple-guests" : ""
-            }`}
-          >
-            <div className="guest-container">
-              {isLoadingDates ? (
-                renderGuestSectionSkeleton()
-              ) : (
-                <>
-                  <h3 className="guest-summary">
-                    {Object.entries(guests).map(
-                      ([productId, guestData], idx, arr) => (
-                        <span className="" key={productId}>
-                          {guestData.name}: {guestData.quantity}
-                          {idx < arr.length - 1 ? " / " : ""}
-                        </span>
-                      )
-                    )}
-                  </h3>
-                  <div className="guest-controls">
-                    {Object.entries(guests)?.map(
-                      ([productId, guestData], idx) => {
-                        const variantData = guestData.variant;
-                        const isAvailable = variantData?.hasperformance
-                          ? isVariantAvailableForDate(productId)
-                          : true;
-                        return (
-                          <div key={productId}>
-                            <div
-                              className={`guest-row ${
-                                !isAvailable ? "unavailable-variant" : ""
-                              }`}
-                            >
-                              <div className="guest-label-container">
-                                <span className="guest-label">
-                                  {guestData.name}{" "}
-                                  {variantData?.productvariantdesc && (
-                                    <span className="guest-label-desc">
-                                      ({variantData.productvariantdesc})
-                                    </span>
-                                  )}
-                                  {!isAvailable && (
-                                    <span className="unavailable-notice">
-                                      {!selectedDate
-                                        ? "- Please select a date first"
-                                        : "- Not available on selected date"}
-                                    </span>
-                                  )}
-                                </span>
-                                <span
-                                  className="guest-label-price"
-                                  style={
-                                    guestData?.quantity > 0
-                                      ? { opacity: "1" }
-                                      : { opacity: "0" }
-                                  }
-                                >
-                                  {t("common.aed")}{" "}
-                                  {variantData?.gross * guestData.quantity}
-                                </span>
-                              </div>
-                              <div className="counter-controls">
-                                <button
-                                  className="counter-btn minus-btn"
-                                  onClick={() =>
-                                    setGuests((prev) => {
-                                      const currentValue =
-                                        prev[productId].quantity;
-                                      const newValue = Math.max(
-                                        variantData?.min_quantity || 0,
-                                        currentValue -
-                                          (variantData?.increment_number || 1)
-                                      );
-                                      return {
-                                        ...prev,
-                                        [productId]: {
-                                          ...prev[productId],
-                                          quantity: newValue,
-                                        },
-                                      };
-                                    })
-                                  }
-                                  disabled={
-                                    !isAvailable ||
-                                    guestData.quantity <=
-                                      (variantData?.min_quantity || 0)
-                                  }
-                                  style={{
-                                    opacity: !isAvailable ? 0.5 : 1,
-                                    cursor: !isAvailable
-                                      ? "not-allowed"
-                                      : "pointer",
-                                  }}
-                                >
-                                  <img
-                                    src={
-                                      isDarkMode ? InvertMinusIcon : MinusIcon
-                                    }
-                                    alt="minus"
-                                  />
-                                </button>
-                                <span
-                                  className="counter-value"
-                                  style={{
-                                    opacity: !isAvailable ? 0.5 : 1,
-                                  }}
-                                >
-                                  {guestData.quantity}
-                                </span>
-                                <button
-                                  className="counter-btn plus-btn"
-                                  onClick={() =>
-                                    setGuests((prev) => {
-                                      const currentValue =
-                                        prev[productId].quantity;
-                                      const newValue = Math.min(
-                                        variantData?.max_quantity || 100,
-                                        currentValue +
-                                          (variantData?.increment_number || 1)
-                                      );
-                                      return {
-                                        ...prev,
-                                        [productId]: {
-                                          ...prev[productId],
-                                          quantity: newValue,
-                                        },
-                                      };
-                                    })
-                                  }
-                                  disabled={
-                                    !isAvailable ||
-                                    guestData.quantity >=
-                                      (variantData?.max_quantity || 100)
-                                  }
-                                  style={{
-                                    opacity: !isAvailable ? 0.5 : 1,
-                                    cursor: !isAvailable
-                                      ? "not-allowed"
-                                      : "pointer",
-                                  }}
-                                >
-                                  <img
-                                    src={isDarkMode ? InvertPlusIcon : PlusIcon}
-                                    alt="plus"
-                                  />
-                                </button>
-                              </div>
-                            </div>
 
-                            <div className="guest-row-divider"></div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-
-                  <p className="guest-note"></p>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={
-            language === "العربية" ? "ar-booking-actions" : "booking-actions"
-          }
-        >
-          <button
-            className="checkout-btnn"
-            onClick={handleCheckout}
-            disabled={isLoadingDates || isPending}
-            style={
-              isLoadingDates || isPending
-                ? { opacity: 0.5, pointerEvents: "none" }
-                : {}
-            }
-          >
-            {isPending && activeAction === "checkout" ? (
-              <Loading />
+      <div className="booking-section-content">
+        {/* Date Selection */}
+        <div className="calendar-container">
+          <h2 className="section-title ">{t("booking.chooseDate")}</h2>
+          <div className="calendar-wrapper">
+            {isLoadingDates ? (
+              renderCalendarSkeleton()
             ) : (
               <>
-                {t("booking.checkOut")}{" "}
-                <span
-                  style={{
-                    color: "purple",
-                    opacity: isLoadingDates ? 0.5 : 1,
-                  }}
-                >
-                  {t("common.aed")} {totalPrice}
-                </span>
+                <div className="calendar-header">
+                  <button
+                    onClick={!isAtCurrentMonth ? handlePrevMonth : undefined}
+                    style={isAtCurrentMonth ? { visibility: "hidden" } : {}}
+                  >
+                    <img
+                      src={isDarkMode ? InvertLeftArrow : LeftArrow}
+                      alt="Left Arrow"
+                      className={currentLanguage === "ar" ? "rtl-arrow" : ""}
+                    />
+                  </button>
+                  <h3>{formatMonthYear(currentDate)}</h3>
+                  <button onClick={handleNextMonth}>
+                    <img
+                      src={isDarkMode ? InvertRightArrow : RightArrow}
+                      alt="Right Arrow"
+                      className={currentLanguage === "ar" ? "rtl-arrow" : ""}
+                    />
+                  </button>
+                </div>
+
+                <div className="calendar-body">
+                  <div className="calendar-weekdays">
+                    <span>{t("booking.weekDays.sun")}</span>
+                    <span>{t("booking.weekDays.mon")}</span>
+                    <span>{t("booking.weekDays.tue")}</span>
+                    <span>{t("booking.weekDays.wed")}</span>
+                    <span>{t("booking.weekDays.thu")}</span>
+                    <span>{t("booking.weekDays.fri")}</span>
+                    <span>{t("booking.weekDays.sat")}</span>
+                  </div>
+                  <div className="calendar-days">{generateCalendarDays()}</div>
+                </div>
               </>
             )}
-          </button>
-          <button
-            className="cart-btn"
-            onClick={handleSaveToCart}
-            disabled={isLoadingDates || isPending}
-            style={
-              isLoadingDates || isPending
-                ? { opacity: 0.5, pointerEvents: "none" }
-                : {}
+          </div>
+        </div>
+        <div className="booking-section-divider"></div>
+        {/* Guest Selection */}
+        <div className="guest-section">
+          <div className="guest-section-header-container">
+            <h2 className="section-title">
+              {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
+            </h2>
+            <div
+              className={`guest-section-scollable-container ${
+                Object.entries(guests).length > 1 ? "multiple-guests" : ""
+              }`}
+            >
+              <div className="guest-container">
+                {isLoadingDates ? (
+                  renderGuestSectionSkeleton()
+                ) : (
+                  <>
+                    <h3 className="guest-summary">
+                      {Object.entries(guests).map(
+                        ([productId, guestData], idx, arr) => (
+                          <span className="" key={productId}>
+                            {guestData.name}: {guestData.quantity}
+                            {idx < arr.length - 1 ? " / " : ""}
+                          </span>
+                        )
+                      )}
+                    </h3>
+                    <div className="guest-controls">
+                      {Object.entries(guests)?.map(
+                        ([productId, guestData], idx) => {
+                          const variantData = guestData.variant;
+                          const isAvailable = variantData?.hasperformance
+                            ? isVariantAvailableForDate(productId)
+                            : true;
+                          return (
+                            <div key={productId}>
+                              <div
+                                className={`guest-row ${
+                                  !isAvailable ? "unavailable-variant" : ""
+                                }`}
+                              >
+                                <div className="guest-label-container">
+                                  <span className="guest-label">
+                                    {guestData.name}{" "}
+                                    {variantData?.productvariantdesc && (
+                                      <span className="guest-label-desc">
+                                        ({variantData.productvariantdesc})
+                                      </span>
+                                    )}
+                                    {!isAvailable && (
+                                      <span className="unavailable-notice">
+                                        {!selectedDate
+                                          ? "- Please select a date first"
+                                          : "- Not available on selected date"}
+                                      </span>
+                                    )}
+                                  </span>
+                                  <span
+                                    className="guest-label-price"
+                                    style={
+                                      guestData?.quantity > 0
+                                        ? { opacity: "1" }
+                                        : { opacity: "0" }
+                                    }
+                                  >
+                                    {t("common.aed")}{" "}
+                                    {variantData?.gross * guestData.quantity}
+                                  </span>
+                                </div>
+                                <div className="counter-controls">
+                                  <button
+                                    className="counter-btn minus-btn"
+                                    onClick={() =>
+                                      setGuests((prev) => {
+                                        const currentValue =
+                                          prev[productId].quantity;
+                                        const newValue = Math.max(
+                                          variantData?.min_quantity || 0,
+                                          currentValue -
+                                            (variantData?.increment_number || 1)
+                                        );
+                                        return {
+                                          ...prev,
+                                          [productId]: {
+                                            ...prev[productId],
+                                            quantity: newValue,
+                                          },
+                                        };
+                                      })
+                                    }
+                                    disabled={
+                                      !isAvailable ||
+                                      guestData.quantity <=
+                                        (variantData?.min_quantity || 0)
+                                    }
+                                    style={{
+                                      opacity: !isAvailable ? 0.5 : 1,
+                                      cursor: !isAvailable
+                                        ? "not-allowed"
+                                        : "pointer",
+                                    }}
+                                  >
+                                    <img
+                                      src={
+                                        isDarkMode ? InvertMinusIcon : MinusIcon
+                                      }
+                                      alt="minus"
+                                    />
+                                  </button>
+                                  <span
+                                    className="counter-value"
+                                    style={{
+                                      opacity: !isAvailable ? 0.5 : 1,
+                                    }}
+                                  >
+                                    {guestData.quantity}
+                                  </span>
+                                  <button
+                                    className="counter-btn plus-btn"
+                                    onClick={() =>
+                                      setGuests((prev) => {
+                                        const currentValue =
+                                          prev[productId].quantity;
+                                        const newValue = Math.min(
+                                          variantData?.max_quantity || 100,
+                                          currentValue +
+                                            (variantData?.increment_number || 1)
+                                        );
+                                        return {
+                                          ...prev,
+                                          [productId]: {
+                                            ...prev[productId],
+                                            quantity: newValue,
+                                          },
+                                        };
+                                      })
+                                    }
+                                    disabled={
+                                      !isAvailable ||
+                                      guestData.quantity >=
+                                        (variantData?.max_quantity || 100)
+                                    }
+                                    style={{
+                                      opacity: !isAvailable ? 0.5 : 1,
+                                      cursor: !isAvailable
+                                        ? "not-allowed"
+                                        : "pointer",
+                                    }}
+                                  >
+                                    <img
+                                      src={
+                                        isDarkMode ? InvertPlusIcon : PlusIcon
+                                      }
+                                      alt="plus"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="guest-row-divider"></div>
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+
+                    <p className="guest-note"></p>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={
+              language === "العربية" ? "ar-booking-actions" : "booking-actions"
             }
           >
-            {isPending && activeAction === "cart" ? (
-              <Loading />
-            ) : (
-              t("booking.saveToCart")
-            )}
-          </button>
+            <button
+              className="checkout-btnn"
+              onClick={handleCheckout}
+              disabled={isLoadingDates || isPending}
+              style={
+                isLoadingDates || isPending
+                  ? { opacity: 0.5, pointerEvents: "none" }
+                  : {}
+              }
+            >
+              {isPending && activeAction === "checkout" ? (
+                <Loading />
+              ) : (
+                <>
+                  {t("booking.checkOut")}{" "}
+                  <span
+                    style={{
+                      color: "purple",
+                      opacity: isLoadingDates ? 0.5 : 1,
+                    }}
+                  >
+                    {t("common.aed")} {totalPrice}
+                  </span>
+                </>
+              )}
+            </button>
+            <button
+              className="cart-btn"
+              onClick={handleSaveToCart}
+              disabled={isLoadingDates || isPending}
+              style={
+                isLoadingDates || isPending
+                  ? { opacity: 0.5, pointerEvents: "none" }
+                  : {}
+              }
+            >
+              {isPending && activeAction === "cart" ? (
+                <Loading />
+              ) : (
+                t("booking.saveToCart")
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>

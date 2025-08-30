@@ -2514,17 +2514,38 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   padding: 0rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
+}
+.product-title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.product-title-container .product-title {
+  font-size: calc(2rem * var(--zoom-scale));
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-title-container .product-title {
+    font-size: calc(1.5rem * var(--zoom-scale));
+  }
+}
+
+.booking-section-content {
+  display: flex;
   gap: 3rem;
   align-items: stretch;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .booking-section {
+  .booking-section-content {
     gap: 1rem;
     flex-direction: column;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
-  .booking-section {
+  .booking-section-content {
     flex-direction: row;
   }
 }
@@ -10649,6 +10670,14 @@ html[lang=ar] .confirm-email__otp-actions button {
   opacity: 1;
 }
 
+.email-checkout__phone-container,
+.react-tel-input {
+  overflow: hidden;
+}
+.email-checkout__phone-container .flag-dropdown,
+.react-tel-input .flag-dropdown {
+  overflow: hidden;
+}
 .email-checkout__phone-container .flag-dropdown .country-list,
 .react-tel-input .flag-dropdown .country-list {
   background-color: var(--color-base-bg) !important;
@@ -12839,6 +12868,15 @@ html[lang=ar] .attraction-detail-modal__footer {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain; /* Prevent scroll chaining */
   }
+}
+
+.booking-modal__calendar-title {
+  font-size: calc(19px * var(--zoom-scale));
+  font-weight: 500;
+  color: var(--color-bkg-guest-title-clr);
+  text-align: center;
+  z-index: 2;
+  background: var(--color-bkg-body-bg);
 }
 
 .booking-modal__calendar {
