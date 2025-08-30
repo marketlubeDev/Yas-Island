@@ -267,6 +267,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
+  span {
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+  }
 }
 
 .cart-items {
@@ -512,6 +518,12 @@
 
   .controls {
     gap: 8px;
+
+    span {
+      min-width: 15px;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   .cart-summary {

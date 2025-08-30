@@ -752,14 +752,14 @@
     max-height: 44vh;
     height: fit-content;
     min-height: 32vh;
-    padding: 1rem;
+    padding: 0rem;
   }
 
   @include respond(bigDesktop) {
     max-height: 50vh;
     height: fit-content;
     min-height: 34vh;
-    padding: 1.25rem;
+    padding: 0rem;
   }
 
   .product-description {
