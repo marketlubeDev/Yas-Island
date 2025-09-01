@@ -196,6 +196,10 @@ const FormSelectWithSearch = ({
         value={selectedOption}
         onFocus={onClearError}
         onMenuOpen={onClearError}
+        menuPortalTarget={
+          typeof document !== "undefined" ? document.body : null
+        }
+        menuPosition="fixed"
         onChange={(selectedOption) => {
           onChange(selectedOption?.value || "");
           if (onClearError) onClearError();
@@ -249,6 +253,7 @@ const PhoneInputComponent = ({
       containerStyle={{
         width: "100%",
         position: "relative",
+        zIndex: 1000,
       }}
       inputStyle={{
         width: "100%",
@@ -275,6 +280,7 @@ const PhoneInputComponent = ({
         width: "40px",
         position: isRTL ? "absolute" : undefined,
         right: isRTL ? 0 : undefined,
+        zIndex: 1001,
       }}
     />
   </div>

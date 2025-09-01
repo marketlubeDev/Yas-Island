@@ -138,6 +138,17 @@ export default function PaymentDetails({ isCheckout }) {
       .replace(/[\u0000-\u001F\u007F]/g, "")
       .trim();
 
+  // Ensure phone is sent in international format starting with + or 00
+  const formatPhoneForApi = (val) => {
+    const raw = String(val == null ? "" : val).trim();
+    if (!raw) return "";
+    if (raw.startsWith("+") || raw.startsWith("00")) {
+      return raw.replace(/\s+/g, "");
+    }
+    const digits = raw.replace(/\D/g, "");
+    return digits ? `+${digits}` : "";
+  };
+
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
       toast.error(t("toastMessages.acceptTermsAndConditions"), {
@@ -161,7 +172,7 @@ export default function PaymentDetails({ isCheckout }) {
       amount: checkout?.netAmount,
       firstName: sanitize(checkout?.firstName),
       lastName: sanitize(checkout?.lastName),
-      phoneNumber: sanitize(checkout?.phoneNumber),
+      phoneNumber: formatPhoneForApi(checkout?.phoneNumber),
       countryCode: sanitize(checkout?.country),
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
