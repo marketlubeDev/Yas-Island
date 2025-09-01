@@ -508,12 +508,12 @@
 
             &-Content {
               color: var(--cart-total-price);
-              font-size: 14px;
+              font-size: calc(14px * var(--zoom-scale));
             }
 
             &-Value {
               color: var(--cart-total-price);
-              font-size: 14px;
+              font-size: calc(14px * var(--zoom-scale));
             }
           }
 
@@ -524,12 +524,12 @@
 
             &-Content {
               color: var(--cart-total-price);
-              font-size: 14px;
+              font-size: calc(14px * var(--zoom-scale));
             }
 
             &-Value {
               color: var(--cart-total-price);
-              font-size: 14px;
+              font-size: calc(14px * var(--zoom-scale));
             }
           }
         }
@@ -573,7 +573,7 @@
     margin-bottom: 16px;
 
     &-title {
-      font-size: 12px;
+      font-size: calc(12px * var(--zoom-scale));
       color: var(--cart-total-price);
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -604,7 +604,7 @@
         padding: 8px 12px;
         border: 1px solid var(--color-base-product-card-divider);
         border-radius: 6px;
-        font-size: 14px;
+        font-size: calc(14px * var(--zoom-scale));
         background-color: var(--summary-header-bg);
         color: var(--color-base-text);
         caret-color: var(--color-base-text);
@@ -647,11 +647,13 @@
     &-Content {
       font-weight: bold;
       color: var(--cart-total-price);
+      font-size: calc(14px * var(--zoom-scale));
     }
 
     &-Value {
       font-weight: bold;
       color: var(--cart-total-price);
+      font-size: calc(14px * var(--zoom-scale));
     }
   }
 
@@ -1143,7 +1145,7 @@
       min-width: 0;
 
       .item-title {
-        font-size: 14px;
+        font-size: calc(14px * var(--zoom-scale));
         font-weight: 500;
         color: var(--color-summary-title);
         margin: 0 0 6px 0;
@@ -1156,7 +1158,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 3px;
-        font-size: 12px;
+        font-size: calc(12px * var(--zoom-scale));
         color: #666;
         line-height: 1.2;
 
@@ -1195,7 +1197,7 @@
       flex-shrink: 0;
 
       .price-amount {
-        font-size: 14px;
+        font-size: calc(14px * var(--zoom-scale));
         font-weight: 500;
         color: var(--color-summary-title);
         font-family: "YAS Font", sans-serif;

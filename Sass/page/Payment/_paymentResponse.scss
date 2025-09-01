@@ -1,12 +1,23 @@
 @use "../../base/responive" as *;
 
+.payment-response-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 8rem);
+}
+
 .payment-response {
   display: flex;
   flex-direction: column;
   align-items: center;
   // min-height: 100vh;
-  width: 100%;
+  // width: 100%;
   background: var(--color-resend-btn-bg);
+  width: 90%;
+  padding: 24px;
+  border-radius: 1.8rem;
+  max-width: 1150px;
 
   .ticket-section {
     display: flex;
@@ -15,8 +26,8 @@
     margin-top: 40px;
 
     .ticket-image {
-      width: 100px;
-      height: 180px;
+      width: calc(100px * var(--zoom-scale));
+      height: calc(180px * var(--zoom-scale));
       object-fit: cover;
       border: 2px dashed #b3b3ff;
       border-radius: 10px;
@@ -30,21 +41,21 @@
       border-radius: 6px;
       padding: 6px 12px;
       color: var(--color-base-text);
-      font-size: 1.2rem;
+      font-size: calc(1.2rem * var(--zoom-scale));
       font-weight: 400;
       // text-transform: lowercase;
 
       @include respond(bigDesktop) {
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
       }
     }
 
     img {
-      height: 14rem;
+      height: calc(14rem * var(--zoom-scale));
       object-fit: contain;
 
       @include respond(tablets) {
-        height: 12rem;
+        height: calc(12rem * var(--zoom-scale));
       }
     }
   }
@@ -62,7 +73,7 @@
     align-items: center;
 
     .feedback-title {
-      font-size: 20px;
+      font-size: calc(20px * var(--zoom-scale));
       font-weight: 500;
       margin-bottom: 18px;
       text-align: center;
@@ -73,13 +84,13 @@
       line-height: normal;
 
       @include respond(bigDesktop) {
-        font-size: 1.1rem;
+        font-size: calc(1.1rem * var(--zoom-scale));
       }
     }
     .feedback-options {
       display: flex;
       justify-content: center;
-      gap: 48px;
+      gap: calc(48px * var(--zoom-scale));
     }
 
     .option {
@@ -89,8 +100,8 @@
     }
 
     .emoji {
-      width: 80px;
-      height: 80px;
+      width: calc(80px * var(--zoom-scale));
+      height: calc(80px * var(--zoom-scale));
       border-radius: 50%;
       border: 2.597px solid #d3b8ff;
 
@@ -120,17 +131,17 @@
 
     .label {
       margin-top: 4px;
-      font-size: 16px;
+      font-size: calc(16px * var(--zoom-scale));
       text-align: center;
       font-weight: 500;
       color: var(--color-base-text);
       text-align: center;
       // font-family: Urbanist;
-      font-size: 1.125rem;
+      font-size: calc(1.125rem * var(--zoom-scale));
       font-style: normal;
 
       @include respond(bigDesktop) {
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
       }
     }
   }
@@ -138,7 +149,7 @@
 
 .feedback-text {
   color: #594f67;
-  font-size: 17px;
+  font-size: calc(17px * var(--zoom-scale));
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -193,12 +204,12 @@
 }
 
 .smiley-img {
-  width: 70px;
-  height: 70px;
+  width: calc(70px * var(--zoom-scale));
+  height: calc(70px * var(--zoom-scale));
 }
 
 .feedback-text {
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--zoom-scale));
   color: #5a5363;
   font-weight: 600;
   text-align: center;

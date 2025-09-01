@@ -8,10 +8,8 @@ export default function PaymentResponseBody() {
   };
 
   return (
-    <div className="payment-checkout">
-      <div className="payment-checkout__content payment-checkout__content--no-header">
-        <PaymentResponse onBack={handleBackClick} />
-      </div>
+    <div className="payment-response-body">
+      <PaymentResponse onBack={handleBackClick} />
     </div>
   );
 }

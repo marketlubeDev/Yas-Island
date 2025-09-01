@@ -371,7 +371,7 @@
 
 .product-heading {
   @include respond(smallPhone) {
-    font-size: 20px !important;
+    font-size: calc(20px * var(--zoom-scale)) !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -382,7 +382,7 @@
 .product-description {
   @include respond(smallPhone) {
     // font-size: 1rem !important;
-    font-size: 14px !important;
+    font-size: calc(14px * var(--zoom-scale)) !important;
     font-style: normal;
     // font-weight: 500;
     line-height: normal;
