@@ -43,7 +43,7 @@ body.modal-open {
   &__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
     padding: calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
     background: var(--color-dtl-content-bg);
     flex-shrink: 0; // Prevent header from shrinking
@@ -56,15 +56,23 @@ body.modal-open {
     width: calc(20px * var(--zoom-scale));
     height: calc(20px * var(--zoom-scale));
     cursor: pointer;
+    position: absolute;
+    left: calc(18px * var(--zoom-scale));
+    z-index: 1;
+    @include respond(smallPhone) {
+      left: calc(12px * var(--zoom-scale));
+    }
   }
 
   &__title {
-    flex: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-right: 0px;
     font-size: calc(20px * var(--zoom-scale));
     font-weight: 700;
     color: var(--color-dtl-header-color);
+    width: auto;
     @include respond(smallPhone) {
       font-size: calc(18px * var(--zoom-scale));
     }

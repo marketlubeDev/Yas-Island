@@ -12337,7 +12337,7 @@ body.modal-open {
 .attraction-detail-modal__header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  position: relative;
   padding: calc(18px * var(--zoom-scale)) calc(18px * var(--zoom-scale));
   background: var(--color-dtl-content-bg);
   flex-shrink: 0;
@@ -12351,14 +12351,24 @@ body.modal-open {
   width: calc(20px * var(--zoom-scale));
   height: calc(20px * var(--zoom-scale));
   cursor: pointer;
+  position: absolute;
+  left: calc(18px * var(--zoom-scale));
+  z-index: 1;
+}
+@media only screen and (max-width: 575.98px) {
+  .attraction-detail-modal__back-icon {
+    left: calc(12px * var(--zoom-scale));
+  }
 }
 .attraction-detail-modal__title {
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  margin-right: 0px;
   font-size: calc(20px * var(--zoom-scale));
   font-weight: 700;
   color: var(--color-dtl-header-color);
+  width: auto;
 }
 @media only screen and (max-width: 575.98px) {
   .attraction-detail-modal__title {
