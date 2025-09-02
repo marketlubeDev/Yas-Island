@@ -25,13 +25,9 @@ function PromoBoxMbl() {
       const response = await validatePromocode(promoCodeInput.rawValue);
       if (!response?.data?.coupondetails?.coupon) {
         setStatus("invalid");
-        toast.error(
-          response?.data?.coupondetails?.error?.text ||
-            t("toastMessages.invalidPromoCode"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.invalidPromoCode"), {
+          position: "top-center",
+        });
       } else {
         setStatus("valid");
         toast.success(t("orderSummary.promoCodeApplied"), {

@@ -135,13 +135,9 @@ export default function OrderSummary({
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
-          toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
-            {
-              position: "top-center",
-            }
-          );
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
         } else {
           const orderDetails = res?.orderdetails?.order;
           const attemptingToApplyCoupon = Boolean(promoCode);
@@ -224,12 +220,9 @@ export default function OrderSummary({
         }
       },
       onError: (err) => {
-        toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
         setPromoCodeApplying(false);
         // Set loading to false on error
       },
@@ -277,7 +270,7 @@ export default function OrderSummary({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
+      toast.error(t("toastMessages.invalidPromoCode"), {
         position: "top-center",
       });
       setPromoCodeStatus("invalid");

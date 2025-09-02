@@ -22,9 +22,7 @@ function CheckOutSummaryMbl({
   const dispatch = useDispatch();
   const [showItems, setShowItems] = useState(false);
   // Use uppercase input hook for promo code with display transformation
-  const promoCodeInput = useUppercaseInput(
-    checkout?.coupons?.[0]?.code || ""
-  );
+  const promoCodeInput = useUppercaseInput(checkout?.coupons?.[0]?.code || "");
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const [promoCodeStatus, setPromoCodeStatus] = useState(null); // null | 'valid' | 'invalid'
   const [removingPromoCode, setRemovingPromoCode] = useState(false);
@@ -103,13 +101,9 @@ function CheckOutSummaryMbl({
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
-          toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
-            {
-              position: "top-center",
-            }
-          );
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
           setPromoCodeApplying(false);
         } else {
           const orderDetails = res?.orderdetails?.order;
@@ -183,7 +177,7 @@ function CheckOutSummaryMbl({
             promoCodeInput.reset();
             // Force component re-render to ensure totals update
           } else if (message) {
-            toast.error(message || t("toastMessages.invalidPromoCode"), {
+            toast.error(t("toastMessages.invalidPromoCode"), {
               position: "top-center",
             });
           } else if (isRemoveOperation) {
@@ -200,12 +194,9 @@ function CheckOutSummaryMbl({
 
       onError: (err) => {
         console.log(err, "err");
-        toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
         setPromoCodeApplying(false);
         setRemovingPromoCode(false);
       },
@@ -255,7 +246,7 @@ function CheckOutSummaryMbl({
       }
     } catch (error) {
       setPromoCodeApplying(false);
-      toast.error(error?.message || t("toastMessages.invalidPromoCode"), {
+      toast.error(t("toastMessages.invalidPromoCode"), {
         position: "top-center",
       });
       setPromoCodeStatus("invalid");
@@ -277,53 +268,53 @@ function CheckOutSummaryMbl({
       {/* Optimized Item Details Section - Two-line layout with inline styles for reliability */}
       {checkout?.items && checkout.items.length > 0 ? (
         checkout.items.map((item, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="order-item-compact"
             style={{
-              border: '1px solid var(--color-base-product-card-divider)',
-              borderRadius: '8px',
-              marginBottom: '10px',
-              padding: '12px',
-              transition: 'all 0.2s ease'
+              border: "1px solid var(--color-base-product-card-divider)",
+              borderRadius: "8px",
+              marginBottom: "10px",
+              padding: "12px",
+              transition: "all 0.2s ease",
             }}
           >
-            <div 
+            <div
               className="item-header"
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '6px',
-                gap: '8px'
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "6px",
+                gap: "8px",
               }}
             >
-              <span 
+              <span
                 className="item-title"
                 style={{
-                  flex: '1',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: 'var(--color-summary-title)',
-                  margin: '0',
-                  lineHeight: '1.3',
+                  flex: "1",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "var(--color-summary-title)",
+                  margin: "0",
+                  lineHeight: "1.3",
                   fontFamily: '"YAS Font", sans-serif',
-                  minWidth: '0',
-                  display: 'block'
+                  minWidth: "0",
+                  display: "block",
                 }}
               >
                 {getProduct(item.productId)?.product?.product_title ||
                   "Product"}
               </span>
-              <span 
+              <span
                 className="item-price"
                 style={{
-                  flexShrink: '0',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: 'var(--color-summary-title)',
+                  flexShrink: "0",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "var(--color-summary-title)",
                   fontFamily: '"YAS Font", sans-serif',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: "nowrap",
                 }}
               >
                 {t("common.aed")}{" "}
@@ -336,40 +327,46 @@ function CheckOutSummaryMbl({
                 ).toFixed(2)}
               </span>
             </div>
-            <div 
+            <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'nowrap',
-                gap: '4px',
-                fontSize: '12px',
-                color: '#666',
-                lineHeight: '1.2',
-                whiteSpace: 'nowrap'
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "nowrap",
+                gap: "4px",
+                fontSize: "12px",
+                color: "#666",
+                lineHeight: "1.2",
+                whiteSpace: "nowrap",
               }}
             >
-              <span style={{ fontWeight: '500', color: 'var(--color-base-product-card-price)' }}>
-                {getProduct(item.productId)?.productVariant?.productvariantname || "Adult"}
+              <span
+                style={{
+                  fontWeight: "500",
+                  color: "var(--color-base-product-card-price)",
+                }}
+              >
+                {getProduct(item.productId)?.productVariant
+                  ?.productvariantname || "Adult"}
               </span>
-              <span style={{ color: '#ccc', margin: '0 2px' }}>•</span>
-              <span style={{ color: '#888' }}>
+              <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+              <span style={{ color: "#888" }}>
                 {formatDate(item.validFrom)}
               </span>
-              <span style={{ color: '#ccc', margin: '0 2px' }}>•</span>
-              <span style={{ color: '#888', fontWeight: '500' }}>
+              <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+              <span style={{ color: "#888", fontWeight: "500" }}>
                 Qty: {item.quantity || 0}
               </span>
             </div>
           </div>
         ))
       ) : (
-        <div 
+        <div
           className="order-item-compact"
           style={{
-            border: '1px solid var(--color-base-product-card-divider)',
-            borderRadius: '8px',
-            marginBottom: '10px',
-            padding: '12px'
+            border: "1px solid var(--color-base-product-card-divider)",
+            borderRadius: "8px",
+            marginBottom: "10px",
+            padding: "12px",
           }}
         >
           <div className="item-header">

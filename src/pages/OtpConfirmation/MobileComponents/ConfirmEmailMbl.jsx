@@ -79,13 +79,9 @@ function ConfirmEmailMbl({ onBack }) {
         });
       },
       onError: (error) => {
-        toast.error(
-          error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       },
     });
   };
