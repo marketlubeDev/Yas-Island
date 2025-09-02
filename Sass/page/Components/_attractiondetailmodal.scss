@@ -73,6 +73,7 @@ body.modal-open {
     font-weight: 700;
     color: var(--color-dtl-header-color);
     width: auto;
+    white-space: nowrap;
     @include respond(smallPhone) {
       font-size: calc(18px * var(--zoom-scale));
     }
