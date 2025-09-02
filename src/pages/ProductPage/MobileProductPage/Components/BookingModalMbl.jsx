@@ -690,6 +690,11 @@ function BookingModalMbl({
       if (!isEmailVerification) {
         navigate("/email-verification");
       } else {
+        // Set session flag and timestamp before navigation
+        sessionStorage.setItem(
+          "paymentDetailsNavigationTime",
+          Date.now().toString()
+        );
         navigate("/payment-details", {
           state: {
             isCheckout: true,

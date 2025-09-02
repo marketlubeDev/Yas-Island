@@ -30,6 +30,26 @@ function PaymentDetailsMobile() {
   // Get checkout data from Redux
   const checkout = useSelector((state) => state.checkout);
 
+  useEffect(() => {
+    // Check if we have a valid navigation timestamp (set when navigating TO payment-details)
+    const navigationTimestamp = sessionStorage.getItem(
+      "paymentDetailsNavigationTime"
+    );
+    const currentTime = Date.now();
+
+    // Check if navigation happened within the last 5 seconds (normal navigation)
+    const isValidNavigation =
+      navigationTimestamp && currentTime - parseInt(navigationTimestamp) < 5000;
+
+    if (!isCheckout || !isValidNavigation) {
+      sessionStorage.removeItem("paymentDetailsNavigationTime");
+      navigate("/", { replace: true });
+      return;
+    }
+
+    sessionStorage.removeItem("paymentDetailsNavigationTime");
+  }, [isCheckout, navigate]);
+
   // Initialize local state with Redux values
   const [acceptTerms, setAcceptTerms] = useState(checkout.isTnCAgrred || false);
   const [receiveComms, setReceiveComms] = useState(

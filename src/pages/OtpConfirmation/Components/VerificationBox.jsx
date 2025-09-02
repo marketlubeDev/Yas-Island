@@ -157,6 +157,11 @@ export default function VerificationBox({ email }) {
       dispatch(setIsEmailVerification(true));
       dispatch(setVerificationEmail(email));
       dispatch(setCheckoutEmail(email));
+      // Set session flag and timestamp before navigation
+      sessionStorage.setItem(
+        "paymentDetailsNavigationTime",
+        Date.now().toString()
+      );
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
       toast.error(t("toastMessages.otpIncorrect"), {

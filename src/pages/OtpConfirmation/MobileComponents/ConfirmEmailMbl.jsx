@@ -54,6 +54,11 @@ function ConfirmEmailMbl({ onBack }) {
       dispatch(setIsEmailVerification(true));
       dispatch(setVerificationEmail(email));
 
+      // Set session flag and timestamp before navigation
+      sessionStorage.setItem(
+        "paymentDetailsNavigationTime",
+        Date.now().toString()
+      );
       navigate("/payment-details", { state: { isCheckout: true } });
     } else {
       toast.error(t("toastMessages.otpIncorrect"), {

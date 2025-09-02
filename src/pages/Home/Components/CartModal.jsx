@@ -76,6 +76,11 @@ const CartModal = ({ isOpen, onClose }) => {
       navigate("/email-verification");
     } else {
       dispatch(setCheckoutEmail(verificationEmail));
+      // Set session flag and timestamp before navigation
+      sessionStorage.setItem(
+        "paymentDetailsNavigationTime",
+        Date.now().toString()
+      );
       navigate("/payment-details", {
         state: {
           isCheckout: true,
