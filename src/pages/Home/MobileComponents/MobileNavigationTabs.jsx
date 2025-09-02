@@ -4,15 +4,19 @@ import { useSelector } from "react-redux";
 
 import allIcon from "../../../assets/icons/dash.svg";
 import allIconInverter from "../../../assets/icons/inverteddash.svg";
+import allIconHighContrast from "../../../assets/icons/allIconHighContrast.svg";
 import attractionsIcon from "../../../assets/icons/beach.svg";
 import attractionsIconInverter from "../../../assets/icons/invertedbeach.svg";
 import attractionsIconHighContrast from "../../../assets/icons/highbeach.svg";
 import packagesIcon from "../../../assets/icons/dropbox.svg";
 import packagesIconInverter from "../../../assets/icons/inverteddropbox.svg";
+import packagesIconHighContrast from "../../../assets/icons/packagesIconHighContrast.svg";
 import hotelsIcon from "../../../assets/icons/house.svg";
 import hotelsIconInverter from "../../../assets/icons/invertedhouse.svg";
+import hotelsIconHighContrast from "../../../assets/icons/hotelsIconHighContrast.svg";
 import diningIcon from "../../../assets/icons/chef.svg";
 import diningIconInverter from "../../../assets/icons/invertedchef.svg";
+import diningIconHighContrast from "../../../assets/icons/diningIconHighContrast.svg";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -42,6 +46,7 @@ function MobileNavigationTabs() {
   }, [pathname]);
 
   const allIconSrc = isDarkMode ? allIconInverter : allIcon;
+  const allIconSrcActive = isDarkMode ? allIconInverter : allIconHighContrast;
   const attractionsIconSrc = isDarkMode
     ? attractionsIconInverter
     : attractionsIcon;
@@ -50,12 +55,22 @@ function MobileNavigationTabs() {
       ? attractionsIconHighContrast
       : attractionsIconInverter;
   const packagesIconSrc = isDarkMode ? packagesIconInverter : packagesIcon;
+  const packagesIconSrcActive = isDarkMode
+    ? packagesIconInverter
+    : packagesIconHighContrast;
   const hotelsIconSrc = isDarkMode ? hotelsIconInverter : hotelsIcon;
+  const hotelsIconSrcActive = isDarkMode
+    ? hotelsIconInverter
+    : hotelsIconHighContrast;
   const diningIconSrc = isDarkMode ? diningIconInverter : diningIcon;
+  const diningIconSrcActive = isDarkMode
+    ? diningIconInverter
+    : diningIconHighContrast;
   const navigationItems = [
     {
       key: "all",
       icon: allIconSrc,
+      activeIcon: allIconSrcActive,
       label: t("sidebar.all"),
       alt: t("sidebar.all"),
       link: "/upcoming",
@@ -71,6 +86,7 @@ function MobileNavigationTabs() {
     {
       key: "packages",
       icon: packagesIconSrc,
+      activeIcon: packagesIconSrcActive,
       label: t("sidebar.packages"),
       alt: t("sidebar.packages"),
       link: "/packages",
@@ -78,6 +94,7 @@ function MobileNavigationTabs() {
     {
       key: "hotels",
       icon: hotelsIconSrc,
+      activeIcon: hotelsIconSrcActive,
       label: t("sidebar.hotels"),
       alt: t("sidebar.hotels"),
       link: "/hotels",
@@ -85,6 +102,7 @@ function MobileNavigationTabs() {
     {
       key: "dining",
       icon: diningIconSrc,
+      activeIcon: diningIconSrcActive,
       label: t("sidebar.dining"),
       alt: t("sidebar.dining"),
       link: "/dining",

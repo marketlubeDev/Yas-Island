@@ -14,12 +14,12 @@ const initialState = {
 const removeExpiredItems = (items) => {
   const currentDate = new Date();
 
-  const currentDateOnly = currentDate.toISOString().split("T")[0];
+  const currentDateOnly = currentDate?.toISOString()?.split("T")[0];
 
   const validItems = items.filter((item) => {
     const dateToCheck = item.validFrom;
 
-    const itemDateOnly = dateToCheck.split("T")[0];
+    const itemDateOnly = dateToCheck?.split("T")[0];
     const isExpired = itemDateOnly < currentDateOnly;
     const isQuantityZero = item.quantity === 0 || item.Quantity === 0;
 

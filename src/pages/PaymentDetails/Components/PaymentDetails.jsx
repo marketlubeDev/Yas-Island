@@ -6,10 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   updatePersonalDetails,
   setCheckoutEmail,
+  setCheckout,
 } from "../../../global/checkoutSlice";
 import { setOrderData } from "../../../global/orderSlice";
 import usePayment from "../../../apiHooks/payment/payment";
 import useGetProductList from "../../../apiHooks/product/product";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -24,6 +26,8 @@ export default function PaymentDetails({ isCheckout }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { mutate: createOrder, isPending } = usePayment();
+  const { mutate: checkBasket, isPending: isCheckingBasket } = useCheckBasket();
+  const productList = useSelector((state) => state.product.allProducts);
 
   // Ensure products are loaded for the current language
   useGetProductList();
@@ -149,6 +153,69 @@ export default function PaymentDetails({ isCheckout }) {
     return digits ? `+${digits}` : "";
   };
 
+  const handleBasketCheck = (onSuccess = () => {}) => {
+    const items = checkout?.items?.map((item) => ({
+      productId: item?.productId,
+      quantity: item?.quantity,
+      performance:
+        item?.performances && item?.performances.length > 0
+          ? [{ performanceId: item?.performances }]
+          : [],
+      validFrom: item?.validFrom,
+      validTo: item?.validTo,
+    }));
+
+    const data = {
+      coupons: [],
+      items: items,
+      capacityManagement: true,
+    };
+
+    checkBasket(data, {
+      onSuccess: (res) => {
+        if (res?.orderDetails?.error?.code) {
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
+        } else {
+          const orderDetails = res?.orderdetails?.order;
+          const updatedItems = orderDetails?.items?.map((item) => ({
+            productId: item?.productId,
+            quantity: item?.quantity,
+            performances: item?.performances ? item?.performances : [],
+            validFrom: item?.validFrom,
+            validTo: item?.validTo,
+            productMasterid:
+              productList.find((product) =>
+                product.product_variants.some(
+                  (variant) => variant.productid === item?.productId
+                )
+              )?.product_masterid || "",
+          }));
+
+          dispatch(
+            setCheckout({
+              ...checkout,
+              coupons: [],
+              items: updatedItems,
+              grossAmount: orderDetails?.total?.gross,
+              netAmount: orderDetails?.total?.net,
+              taxAmount: orderDetails?.total?.tax,
+              originalNetAmount: orderDetails?.total?.gross,
+            })
+          );
+          onSuccess();
+        }
+      },
+      onError: (err) => {
+        toast.error(t("toastMessages.checkoutFailed"), {
+          position: "top-center",
+        });
+        console.log("err", err);
+      },
+    });
+  };
+
   const handleProceedToPayment = () => {
     if (!checkout.isTnCAgrred) {
       toast.error(t("toastMessages.acceptTermsAndConditions"), {
@@ -157,58 +224,70 @@ export default function PaymentDetails({ isCheckout }) {
       return;
     }
 
-    const data = {
-      coupons: [],
-      items: checkout?.items.map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        performance: item.performances,
-        validFrom: item.validFrom,
-        validTo: item.validTo,
-        productMasterid: item.productMasterid,
-      })),
-      emailId: sanitize(checkout?.emailId),
-      language: currentLanguage,
-      amount: checkout?.netAmount,
-      firstName: sanitize(checkout?.firstName),
-      lastName: sanitize(checkout?.lastName),
-      phoneNumber: formatPhoneForApi(checkout?.phoneNumber),
-      countryCode: sanitize(checkout?.country),
-      isTnCAgrred: checkout.isTnCAgrred,
-      isConsentAgreed: checkout.isConsentAgreed,
-      nationality: sanitize(checkout?.nationality),
+    const createOrderData = () => {
+      const data = {
+        coupons: [],
+        items: checkout?.items.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          performance: item.performances,
+          validFrom: item.validFrom,
+          validTo: item.validTo,
+          productMasterid: item.productMasterid,
+        })),
+        emailId: sanitize(checkout?.emailId),
+        language: currentLanguage,
+        amount: checkout?.netAmount,
+        firstName: sanitize(checkout?.firstName),
+        lastName: sanitize(checkout?.lastName),
+        phoneNumber: formatPhoneForApi(checkout?.phoneNumber),
+        countryCode: sanitize(checkout?.country),
+        isTnCAgrred: checkout.isTnCAgrred,
+        isConsentAgreed: checkout.isConsentAgreed,
+        nationality: sanitize(checkout?.nationality),
+      };
+
+      // Validate data before proceeding
+      const validationErrors = validateData(data);
+
+      if (validationErrors.length > 0) {
+        validationErrors.forEach((error) => {
+          toast.error(error || t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
+        });
+        // trigger red placeholders in the form via a custom event
+        try {
+          window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
+        } catch {}
+        return;
+      }
+
+      createOrder(data, {
+        onSuccess: (responseData) => {
+          dispatch(setOrderData(responseData));
+          // Set session flag and timestamp before navigation
+          sessionStorage.setItem("paymentPageValid", "true");
+          sessionStorage.setItem(
+            "paymentNavigationTime",
+            Date.now().toString()
+          );
+          navigate("/card-payment", { state: { isCheckout: true } });
+        },
+        onError: (error) => {
+          toast.error(
+            error?.response?.data?.message ||
+              t("toastMessages.somethingWentWrong"),
+            {
+              position: "top-center",
+            }
+          );
+        },
+      });
     };
 
-    // Validate data before proceeding
-    const validationErrors = validateData(data);
-
-    if (validationErrors.length > 0) {
-      validationErrors.forEach((error) => {
-        toast.error(t("toastMessages.somethingWentWrong"), {
-          position: "top-center",
-        });
-      });
-      // trigger red placeholders in the form via a custom event
-      try {
-        window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
-      } catch {}
-      return;
-    }
-
-    createOrder(data, {
-      onSuccess: (responseData) => {
-        dispatch(setOrderData(responseData));
-        // Set session flag and timestamp before navigation
-        sessionStorage.setItem("paymentPageValid", "true");
-        sessionStorage.setItem("paymentNavigationTime", Date.now().toString());
-        navigate("/card-payment", { state: { isCheckout: true } });
-      },
-      onError: (error) => {
-        toast.error(t("toastMessages.somethingWentWrong"), {
-          position: "top-center",
-        });
-      },
-    });
+    // First check basket, then create order
+    handleBasketCheck(createOrderData);
   };
 
   return (
@@ -217,7 +296,7 @@ export default function PaymentDetails({ isCheckout }) {
         formData={formData}
         setFormData={setFormData}
         handleProceedToPayment={handleProceedToPayment}
-        isPending={isPending}
+        isPending={isPending || isCheckingBasket}
         checkout={checkout}
       />
       <div className="payment-form__right">
