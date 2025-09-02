@@ -167,6 +167,16 @@ function PaymentDetailsMobile() {
         .replace(/[\u0000-\u001F\u007F]/g, "")
         .trim();
 
+    const formatPhoneForApi = (val) => {
+      const raw = String(val == null ? "" : val).trim();
+      if (!raw) return "";
+      if (raw.startsWith("+") || raw.startsWith("00")) {
+        return raw.replace(/\s+/g, "");
+      }
+      const digits = raw.replace(/\D/g, "");
+      return digits ? `+${digits}` : "";
+    };
+
     const data = {
       coupons: [],
       items: checkout?.items.map((item) => ({
@@ -182,7 +192,7 @@ function PaymentDetailsMobile() {
       amount: checkout?.netAmount,
       firstName: sanitize(checkout?.firstName),
       lastName: sanitize(checkout?.lastName),
-      phoneNumber: sanitize(checkout?.phoneNumber),
+      phoneNumber: formatPhoneForApi(checkout?.phoneNumber),
       countryCode: sanitize(checkout?.country),
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
