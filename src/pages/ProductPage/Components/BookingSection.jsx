@@ -565,7 +565,6 @@ export default function BookingSection({ product, onBack }) {
           res?.orderDetails?.error?.code !== ""
         ) {
           console.log("res", res?.orderDetails?.error?.code);
-          alert("checkbasket failed");
           toast.error(t("toastMessages.somethingWentWrong"), {
             position: "top-center",
           });
@@ -703,7 +702,6 @@ export default function BookingSection({ product, onBack }) {
         }
       },
       onError: (err) => {
-        alert("checkbasket failed onError");
         setActiveAction("");
         console.log(err);
         let message =
