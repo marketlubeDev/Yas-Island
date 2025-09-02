@@ -13,7 +13,7 @@ export default function GlobalZoomEffect() {
     // Add zoom level class for conditional styling
     root.classList.remove("zoom-1x", "zoom-1-25x", "zoom-1-5x");
 
-    // Detect desktop viewport for stronger scaling at 1.25x
+    // Detect desktop viewport for distinct scaling on larger screens
     const isDesktop =
       typeof window !== "undefined"
         ? window.matchMedia("(min-width: 1025px)").matches
@@ -24,15 +24,15 @@ export default function GlobalZoomEffect() {
       // For 1x, ensure NO zoom scaling is applied
       root.style.setProperty("--zoom-scale", "1");
     } else if (zoomLevel === 1.12) {
-      // 1.25x in UI
+      // 1.25x in UI (keep 1.12 scale across devices for subtle bump)
       root.classList.add("zoom-1-25x");
       // Only apply zoom for non-1x levels
-      root.style.setProperty("--zoom-scale", isDesktop ? "1.25" : "1.12");
+      root.style.setProperty("--zoom-scale", "1.12");
     } else if (zoomLevel === 1.25) {
       // 1.5x in UI
       root.classList.add("zoom-1-5x");
       // Only apply zoom for non-1x levels
-      root.style.setProperty("--zoom-scale", "1.25");
+      root.style.setProperty("--zoom-scale", isDesktop ? "1.25" : "1.12");
     }
 
     return () => {
