@@ -62,13 +62,9 @@ function PromoCodeMbl({ onClose }) {
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
-          toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
-            {
-              position: "top-center",
-            }
-          );
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
         } else {
           const orderDetails = res?.orderdetails?.order;
           const items = orderDetails?.items?.map((item) => ({
@@ -102,12 +98,9 @@ function PromoCodeMbl({ onClose }) {
       },
       onError: (err) => {
         console.log(err, "err");
-        toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       },
     });
   };

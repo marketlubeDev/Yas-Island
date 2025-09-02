@@ -184,7 +184,7 @@ export default function PaymentDetails({ isCheckout }) {
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => {
-        toast.error(error || t("toastMessages.somethingWentWrong"), {
+        toast.error(t("toastMessages.somethingWentWrong"), {
           position: "top-center",
         });
       });
@@ -204,13 +204,9 @@ export default function PaymentDetails({ isCheckout }) {
         navigate("/card-payment", { state: { isCheckout: true } });
       },
       onError: (error) => {
-        toast.error(
-          error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       },
     });
   };

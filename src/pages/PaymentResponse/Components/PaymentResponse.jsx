@@ -56,12 +56,9 @@ export default function PaymentResponse() {
       }
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.response?.data || t("toastMessages.somethingWentWrong"),
-        {
-          position: "top-center",
-        }
-      );
+      toast.error(t("toastMessages.somethingWentWrong"), {
+        position: "top-center",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -73,7 +70,7 @@ export default function PaymentResponse() {
       {!showThankYou && (
         <>
           <div className="ticket-section">
-            <img src={Ticket} alt="Ticket"  />
+            <img src={Ticket} alt="Ticket" />
             <div className="ticket-message">
               {t("payment.response.ticketSent")}
             </div>

@@ -132,13 +132,9 @@ function MycartMbl({ onClose, visible }) {
     checkBasket(data, {
       onSuccess: (res) => {
         if (res?.orderDetails?.error?.code) {
-          toast.error(
-            res?.orderDetails?.error?.text ||
-              t("toastMessages.somethingWentWrong"),
-            {
-              position: "top-center",
-            }
-          );
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
         } else {
           const orderDetails = res?.orderdetails?.order;
           const items = orderDetails?.items?.map((item) => ({
@@ -201,12 +197,9 @@ function MycartMbl({ onClose, visible }) {
         }
       },
       onError: (err) => {
-        toast.error(
-          err?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-          {
-            position: "top-center",
-          }
-        );
+        toast.error(t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
       },
     });
   };
