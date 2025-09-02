@@ -192,7 +192,11 @@
 // Ensure react-phone-input-2 dropdown follows theme colors in mobile flow
 .email-checkout__phone-container,
 .react-tel-input {
+  overflow: hidden;
+
   .flag-dropdown {
+    overflow: hidden;
+
     .country-list {
       background-color: var(--color-base-bg) !important;
       border: 1px solid var(--ip-bodr-btm) !important;
@@ -224,6 +228,24 @@
       }
     }
   }
+
+  // // RTL specific styles for Arabic mode
+  // html[dir="rtl"] .selected-flag {
+  //   outline: none !important;
+  //   position: relative !important;
+  //   width: 0px !important;
+  //   height: 100% !important;
+  //   padding: 0 0 0 0px !important;
+  //   border-radius: 3px 0 0 3px !important;
+  // }
+  // html[dir="ltr"] .selected-flag {
+  //   outline: none;
+  //   position: relative !important;
+  //   width: 32px !important;
+  //   height: 100% !important;
+  //   padding: 0 0 0 8px !important;
+  //   border-radius: 3px 0 0 3px !important;
+  // }
 }
 
 // Phone input error styles (desktop and mobile)

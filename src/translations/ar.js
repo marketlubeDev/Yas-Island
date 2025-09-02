@@ -156,6 +156,7 @@ export const ar = {
     addToCart: "أضف إلى السلة",
   },
   booking: {
+    productTitle: "عنوان المنتج",
     chooseDate: "اختر تاريخك",
     chooseGuests: "اختر الضيوف",
     adults: "بالغ ( ١٢ سنة+ )",

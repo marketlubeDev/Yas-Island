@@ -398,6 +398,7 @@
 }
 
 .product-subheading {
+  color: var(--text-color) !important;
   @include respond(smallPhone) {
     font-size: 20px !important;
     font-style: normal;

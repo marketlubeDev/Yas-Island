@@ -10,7 +10,7 @@ const useGetProductList = () => {
 
   const response = useQuery({
     queryKey: ["productList", language],
-    queryFn: () => apiClient.get(`/products/GetProductList?lang=${language}`),
+    queryFn: () => apiClient.get(`/products/getproductlist?lang=${language}`),
   });
 
   // Dispatch to Redux only when data changes

@@ -270,6 +270,8 @@
   --color-base-checkbox-bg: #ffffff;
   --color-base-checkbox-border: #d9d9d9;
   --color-base-checkbox-check: #231942;
+  --color-base-checkbox-new: #18142b;
+  --color-base-checkbox-bgn: #fff;
   --color-email-otp-input-clr: #231942;
   --color-checkbox-clr: #908999;
   --color-checkbox-a-clr: #18142b;
@@ -1366,6 +1368,9 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 
+.product-subheading {
+  color: var(--text-color) !important;
+}
 @media only screen and (max-width: 575.98px) {
   .product-subheading {
     font-size: 20px !important;
@@ -2034,16 +2039,17 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 .product-modal .ant-modal .ant-modal-content {
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  transform: none !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   margin: 0 auto !important;
   max-width: 1100px;
   padding: 0 !important;
 }
 
-.product-modal .ant-modal-wrap {
-  display: flex !important;
+.product-modal .ant-modal-wrap,
+.product-modal-wrap {
+  display: flex;
   align-items: center !important;
   justify-content: center !important;
   min-height: 100vh !important;
@@ -2246,7 +2252,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     max-height: 44vh;
     height: fit-content;
     min-height: 32vh;
-    padding: 1rem;
+    padding: 0rem;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
@@ -2254,7 +2260,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     max-height: 50vh;
     height: fit-content;
     min-height: 34vh;
-    padding: 1.25rem;
+    padding: 0rem;
   }
 }
 .product-description-api .product-description {
@@ -2509,17 +2515,38 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   padding: 0rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
+}
+.product-title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.product-title-container .product-title {
+  font-size: calc(2rem * var(--zoom-scale));
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .product-title-container .product-title {
+    font-size: calc(1.5rem * var(--zoom-scale));
+  }
+}
+
+.booking-section-content {
+  display: flex;
   gap: 3rem;
   align-items: stretch;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .booking-section {
+  .booking-section-content {
     gap: 1rem;
     flex-direction: column;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
-  .booking-section {
+  .booking-section-content {
     flex-direction: row;
   }
 }
@@ -3708,6 +3735,11 @@ html[lang=ar] .guest-label {
   align-items: center;
   gap: 10px;
 }
+.controls span {
+  min-width: 20px;
+  text-align: center;
+  display: inline-block;
+}
 
 .cart-items {
   flex: 1 1 auto;
@@ -3927,6 +3959,11 @@ html[lang=ar] .guest-label {
   }
   .controls {
     gap: 8px;
+  }
+  .controls span {
+    min-width: 15px;
+    text-align: center;
+    display: inline-block;
   }
   .cart-summary {
     padding: 16px;
@@ -5175,6 +5212,7 @@ html[lang=ar] .guest-label {
     min-height: 58vh;
     flex-direction: column;
     padding: 0rem;
+    align-items: stretch;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -5493,13 +5531,13 @@ html[lang=ar] .guest-label {
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .order-summary-container {
     margin-top: 1rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .order-summary-container {
     margin-top: 1rem;
-    width: 80%;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
@@ -5511,6 +5549,16 @@ html[lang=ar] .guest-label {
 @media only screen and (max-width: 575.98px) {
   .order-summary-container {
     margin-top: 1.5rem;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .payment-container {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .payment-container {
     width: 100%;
   }
 }
@@ -10405,7 +10453,9 @@ html[lang=ar] .confirm-email__otp-actions button {
   font-size: calc(15px * var(--zoom-scale));
   font-weight: 600;
   cursor: pointer;
-  width: 75%;
+  text-wrap: nowrap;
+  width: 100%;
+  padding: 0.5rem 1rem;
   box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.06);
   transition: all 0.2s;
 }
@@ -10460,14 +10510,17 @@ html[lang=ar] .confirm-email__otp-actions button {
   width: 100%;
   height: 100%;
   background: transparent;
+  display: none;
   display: flex;
   flex-direction: column;
 }
 
 .email-checkout__container {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   background: var(--color-email-form-bg);
   overflow: hidden;
@@ -10479,7 +10532,6 @@ html[lang=ar] .confirm-email__otp-actions button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -30px;
   min-height: 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -10532,6 +10584,10 @@ html[lang=ar] .confirm-email__otp-actions button {
 
 .email-checkout__form-container {
   margin: calc(1.2rem * var(--zoom-scale));
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--color-email-form-box);
   border-radius: calc(18px * var(--zoom-scale));
   box-shadow: var(--color-email-form-box-shadow);
@@ -10624,6 +10680,47 @@ html[lang=ar] .confirm-email__otp-actions button {
 .form-group__input.error::placeholder {
   color: var(--color-error-text, #ff4d4f);
   opacity: 1;
+}
+
+.email-checkout__phone-container,
+.react-tel-input {
+  overflow: hidden;
+}
+.email-checkout__phone-container .flag-dropdown,
+.react-tel-input .flag-dropdown {
+  overflow: hidden;
+}
+.email-checkout__phone-container .flag-dropdown .country-list,
+.react-tel-input .flag-dropdown .country-list {
+  background-color: var(--color-base-bg) !important;
+  border: 1px solid var(--ip-bodr-btm) !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .country,
+.react-tel-input .flag-dropdown .country-list .country {
+  color: var(--color-email-form-label) !important;
+  background-color: transparent !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .country:hover, .email-checkout__phone-container .flag-dropdown .country-list .country.highlight,
+.react-tel-input .flag-dropdown .country-list .country:hover,
+.react-tel-input .flag-dropdown .country-list .country.highlight {
+  background-color: var(--color-base-hover) !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .country .dial-code,
+.email-checkout__phone-container .flag-dropdown .country-list .country .country-name,
+.react-tel-input .flag-dropdown .country-list .country .dial-code,
+.react-tel-input .flag-dropdown .country-list .country .country-name {
+  color: var(--color-email-form-label) !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .search,
+.react-tel-input .flag-dropdown .country-list .search {
+  background-color: var(--color-base-bg) !important;
+  border-bottom: 1px solid var(--ip-bodr-btm) !important;
+  color: var(--color-email-form-label) !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .search::placeholder,
+.react-tel-input .flag-dropdown .country-list .search::placeholder {
+  color: var(--color-base-text-secondary) !important;
+  opacity: 0.7;
 }
 
 .form-group__phone-input.error,
@@ -12785,6 +12882,15 @@ html[lang=ar] .attraction-detail-modal__footer {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain; /* Prevent scroll chaining */
   }
+}
+
+.booking-modal__calendar-title {
+  font-size: calc(19px * var(--zoom-scale));
+  font-weight: 500;
+  color: var(--color-bkg-guest-title-clr);
+  text-align: center;
+  z-index: 2;
+  background: var(--color-bkg-body-bg);
 }
 
 .booking-modal__calendar {

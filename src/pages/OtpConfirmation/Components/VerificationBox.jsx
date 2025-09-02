@@ -201,7 +201,9 @@ export default function VerificationBox({ email }) {
               type="text"
               maxLength="1"
               className={`code-input ${isExpired ? "expired" : ""} ${
-                index === 0 && !otp.some((digit) => digit) ? "blinking" : ""
+                index === 0 && !otp.some((digit) => digit) && !isExpired
+                  ? "blinking"
+                  : ""
               }`}
               value={otp[index]}
               onChange={(e) => handleChange(e.target, index)}
