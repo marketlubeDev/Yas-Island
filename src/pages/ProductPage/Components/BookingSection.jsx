@@ -158,12 +158,9 @@ export default function BookingSection({ product, onBack }) {
       }
     } catch (error) {
       console.log(error);
-      toast.error(
-        error?.response?.data?.message || t("toastMessages.somethingWentWrong"),
-        {
-          position: "top-center",
-        }
-      );
+      toast.error(t("toastMessages.somethingWentWrong"), {
+        position: "top-center",
+      });
       onBack();
     } finally {
       setIsLoadingDates(false);
