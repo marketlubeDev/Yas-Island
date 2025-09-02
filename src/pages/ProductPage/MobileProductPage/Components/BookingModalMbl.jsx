@@ -180,15 +180,9 @@ function BookingModalMbl({
       }
     } catch (error) {
       console.log(error);
-      toast.error(
-        sanitizeText(
-          error?.response?.data?.message ||
-            t("toastMessages.somethingWentWrong")
-        ),
-        {
-          position: "top-center",
-        }
-      );
+      toast.error(sanitizeText(t("toastMessages.somethingWentWrong")), {
+        position: "top-center",
+      });
       onBack();
     } finally {
       setIsLoadingDates(false);
@@ -516,8 +510,8 @@ function BookingModalMbl({
         if (res?.orderDetails?.error?.code) {
           toast.error(
             sanitizeText(
-              res?.orderDetails?.error?.text ||
-                t("toastMessages.somethingWentWrong")
+              // res?.orderDetails?.error?.text ||
+              t("toastMessages.somethingWentWrong")
             ),
             {
               position: "top-center",

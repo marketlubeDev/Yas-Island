@@ -27,7 +27,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
     (state) => state.product
   );
 
-  const [modalType, setModalType] = useState(null); // 'attraction' or 'booking'
+  const [modalType, setModalType] = useState(null);
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
