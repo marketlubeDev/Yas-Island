@@ -19,7 +19,6 @@ export default function AccessibilityModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const zoomLevel = useSelector((state) => state.accessibility.zoomLevel);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-
   const handleZoomClick = (level) => {
     dispatch(setZoomLevel(level));
   };
