@@ -44,7 +44,7 @@ export const en = {
     zoomMode: "Zoom Mode",
     continue: "Continue",
     close: "Close",
-    invertColors: "Invert",
+    invertColors: "High Contrast",
     highContrast: "High Contrast",
     default: "Default",
   },
@@ -276,7 +276,10 @@ export const en = {
         },
       },
       makePayment: "Make Payment",
+      errorTitle: "Order Failed",
       loadingSecurePaymentForm: "Loading secure payment form...",
+      errorMessage:
+        "The order could not be completed. Please contact our support.",
     },
     success: {
       title: "Payment Successful",
