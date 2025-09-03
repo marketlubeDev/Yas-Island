@@ -203,7 +203,7 @@ export default function PaymentDetails({ isCheckout }) {
       quantity: item?.quantity,
       performance:
         item?.performances && item?.performances.length > 0
-          ? [{ performanceId: item?.performances }]
+          ? [{ performanceId: item?.performances[0].performanceId }]
           : [],
       validFrom: item?.validFrom,
       validTo: item?.validTo,
