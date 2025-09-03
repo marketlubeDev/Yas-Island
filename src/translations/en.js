@@ -275,6 +275,7 @@ export const en = {
           placeholder: "***",
         },
       },
+      backToDetails: "Back To Home",
       makePayment: "Make Payment",
       errorTitle: "Order Failed",
       loadingSecurePaymentForm: "Loading secure payment form...",
