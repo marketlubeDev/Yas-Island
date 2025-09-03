@@ -154,6 +154,50 @@ export default function PaymentDetails({ isCheckout }) {
   };
 
   const handleBasketCheck = (onSuccess = () => {}) => {
+    // Create validation data structure similar to createOrderData
+    const validationData = {
+      coupons: [],
+      items: checkout?.items?.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        performance: item.performances,
+        validFrom: item.validFrom,
+        validTo: item.validTo,
+        productMasterid:
+          productList.find((product) =>
+            product.product_variants.some(
+              (variant) => variant.productid === item?.productId
+            )
+          )?.product_masterid || "",
+      })),
+      emailId: sanitize(checkout?.emailId),
+      language: currentLanguage,
+      amount: checkout?.netAmount,
+      firstName: sanitize(checkout?.firstName),
+      lastName: sanitize(checkout?.lastName),
+      phoneNumber: formatPhoneForApi(checkout?.phoneNumber),
+      countryCode: sanitize(checkout?.country),
+      isTnCAgrred: checkout.isTnCAgrred,
+      isConsentAgreed: checkout.isConsentAgreed,
+      nationality: sanitize(checkout?.nationality),
+    };
+
+    // Validate data before proceeding with basket check
+    const validationErrors = validateData(validationData);
+
+    if (validationErrors.length > 0) {
+      validationErrors.forEach((error) => {
+        toast.error(error || t("toastMessages.somethingWentWrong"), {
+          position: "top-center",
+        });
+      });
+      // trigger red placeholders in the form via a custom event
+      try {
+        window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
+      } catch {}
+      return;
+    }
+
     const items = checkout?.items?.map((item) => ({
       productId: item?.productId,
       quantity: item?.quantity,
@@ -246,22 +290,6 @@ export default function PaymentDetails({ isCheckout }) {
         isConsentAgreed: checkout.isConsentAgreed,
         nationality: sanitize(checkout?.nationality),
       };
-
-      // Validate data before proceeding
-      const validationErrors = validateData(data);
-
-      if (validationErrors.length > 0) {
-        validationErrors.forEach((error) => {
-          toast.error(error || t("toastMessages.somethingWentWrong"), {
-            position: "top-center",
-          });
-        });
-        // trigger red placeholders in the form via a custom event
-        try {
-          window.dispatchEvent(new CustomEvent("paymentForm:showFieldErrors"));
-        } catch {}
-        return;
-      }
 
       createOrder(data, {
         onSuccess: (responseData) => {
