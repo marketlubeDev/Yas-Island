@@ -3628,6 +3628,7 @@ html[lang=ar] .guest-label {
   flex-direction: column;
   justify-content: space-between;
   font-family: "YAS Font", sans-serif;
+  min-width: 0;
 }
 .item-details p {
   color: var(--cart-item-price);
@@ -3636,6 +3637,10 @@ html[lang=ar] .guest-label {
   font-weight: 700;
   line-height: normal;
   text-transform: capitalize;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .item-details p span {
   font-size: calc(0.7rem * var(--zoom-scale));
@@ -3650,6 +3655,11 @@ html[lang=ar] .guest-label {
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .item-details small {
@@ -3688,6 +3698,11 @@ html[lang=ar] .guest-label {
   font-weight: 600;
   line-height: normal;
   text-transform: capitalize;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100px;
 }
 
 [dir=rtl] .quantity-controls {
@@ -3869,6 +3884,10 @@ html[lang=ar] .guest-label {
   font-weight: 400;
   line-height: normal;
   text-transform: lowercase;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .validity-date span {
   color: var(--color-base-text);

@@ -145,6 +145,7 @@
   flex-direction: column;
   justify-content: space-between;
   font-family: "YAS Font", sans-serif;
+  min-width: 0; // Allow flex item to shrink below content size
 
   p {
     color: var(--cart-item-price);
@@ -153,6 +154,10 @@
     font-weight: 700;
     line-height: normal;
     text-transform: capitalize;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
     span {
       font-size: calc(0.7rem * var(--zoom-scale));
       // font: ;
@@ -168,6 +173,11 @@
   line-height: normal;
   text-transform: capitalize;
   font-family: "YAS Font", sans-serif;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .item-details small {
@@ -205,6 +215,11 @@
     font-weight: 600;
     line-height: normal;
     text-transform: capitalize;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100px;
   }
 }
 
@@ -394,6 +409,10 @@
   font-weight: 400;
   line-height: normal;
   text-transform: lowercase;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   span {
     color: var(--color-base-text);
