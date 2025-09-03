@@ -321,7 +321,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 padding: "16px",
                 background: isDarkMode
                   ? "black"
-                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.96))",
+                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,1))",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",
               }}
@@ -425,20 +425,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                       })}
                     </button>
                   )}
-                  <button
-                    type="button"
-                    onClick={handleRetry}
-                    style={{
-                      background: "#3182ce",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 8,
-                      padding: ".55rem 1rem",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {t("payment.cardPayment.retry", { defaultValue: "Retry" })}
-                  </button>
                 </div>
               </div>
             </div>
