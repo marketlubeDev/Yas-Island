@@ -212,7 +212,7 @@ export const ar = {
       lastName: "اسم العائلة *",
       countryOfResidence: "بلد الإقامة *",
       nationality: "الجنسية *",
-      phoneNumber: "رقم الهاتف ",
+      phoneNumber: "رقم الهاتف *",
       preferredNumber: "(الرقم المفضل) *",
       countries: {
         UAE: "الإمارات العربية المتحدة",

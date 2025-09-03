@@ -212,7 +212,7 @@ export const en = {
       lastName: "Last Name *",
       countryOfResidence: "Country Of Residence *",
       nationality: "Nationality *",
-      phoneNumber: "Phone Number ",
+      phoneNumber: "Phone Number *",
       preferredNumber: "(Preferred Number) *",
       countries: {
         UAE: "UAE",
