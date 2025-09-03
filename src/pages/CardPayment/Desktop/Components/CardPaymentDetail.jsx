@@ -319,9 +319,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "16px",
-                background: isDarkMode
-                  ? "black"
-                  : "linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,1))",
+                background: isDarkMode ? "black" : "white",
                 zIndex: 2,
                 backdropFilter: "blur(2px)",
               }}
