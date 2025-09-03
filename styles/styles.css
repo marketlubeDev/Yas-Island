@@ -771,7 +771,7 @@ body,
   border-bottom-left-radius: 18px;
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::before {
-  top: -39%;
+  top: -40%;
   left: -11%;
 }
 .ar-side-bar-list-item-container.active::after {
@@ -794,7 +794,7 @@ body,
   border-top-left-radius: 18px;
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::after {
-  bottom: -40%;
+  bottom: -39%;
   left: -11%;
 }
 
