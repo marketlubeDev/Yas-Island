@@ -2424,7 +2424,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     width: 16rem;
     height: 3.2rem;
     padding: 1rem 1.5rem;
-    font-size: 1rem;
+    font-size: calc(1rem * var(--zoom-scale));
     border-radius: 40px;
     gap: 0.5rem;
   }
@@ -2434,7 +2434,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     width: 20rem;
     height: 3.5rem;
     padding: 1rem 1.5rem;
-    font-size: 0.9rem;
+    font-size: calc(1rem * var(--zoom-scale));
     border-radius: 36px;
   }
 }
