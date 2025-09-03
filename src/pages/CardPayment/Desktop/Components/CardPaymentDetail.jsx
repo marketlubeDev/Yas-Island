@@ -389,7 +389,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                   {failureMessage ||
                     t("payment.cardPayment.errorMessage", {
                       defaultValue:
-                        "We couldn't complete your payment. Please review your details and try again.",
+                        "The order could not be completed. Please contact our support.",
                     })}
                 </div>
                 <div

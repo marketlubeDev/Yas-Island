@@ -122,9 +122,9 @@
 
 .cart-item {
   display: flex;
-  padding: 20px;
+  padding: calc(20px * var(--zoom-scale));
   border-bottom: 1px solid var(--color-cart-item-bdr);
-  gap: 15px;
+  gap: calc(15px * var(--zoom-scale));
 }
 
 // RTL support for cart items
@@ -201,7 +201,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: calc(30px * var(--zoom-scale));
   font-family: "YAS Font", sans-serif;
 
   @include respond(bigDesktop) {
@@ -250,13 +250,13 @@
   background-color: var(--color-cart-item-bg);
   border: 2px solid var(--color-cart-item-minus-border);
   display: flex;
-  width: 42.952px;
-  height: 45.27px;
-  border-radius: 47.725px;
-  padding: 15px 10px;
+  width: calc(42.952px * var(--zoom-scale));
+  height: calc(45.27px * var(--zoom-scale));
+  border-radius: calc(47.725px * var(--zoom-scale));
+  padding: calc(15px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
   justify-content: center;
   align-items: center;
-  gap: 6.818px;
+  gap: calc(6.818px * var(--zoom-scale));
   flex-shrink: 0;
 }
 
@@ -264,13 +264,13 @@
   background-color: var(--color-cart-item-bg);
   border: 2px solid var(--color-cart-item-minus-border);
   display: flex;
-  width: 42.952px;
-  height: 45.27px;
-  border-radius: 47.725px;
-  padding: 15px 10px;
+  width: calc(42.952px * var(--zoom-scale));
+  height: calc(45.27px * var(--zoom-scale));
+  border-radius: calc(47.725px * var(--zoom-scale));
+  padding: calc(15px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
   justify-content: center;
   align-items: center;
-  gap: 6.818px;
+  gap: calc(6.818px * var(--zoom-scale));
   flex-shrink: 0;
 }
 
@@ -281,10 +281,10 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: calc(10px * var(--zoom-scale));
 
   span {
-    min-width: 20px;
+    min-width: calc(20px * var(--zoom-scale));
     text-align: center;
     display: inline-block;
   }
@@ -310,16 +310,16 @@
 
 .cart-summary {
   margin-top: auto;
-  padding: 20px;
+  padding: calc(20px * var(--zoom-scale));
   background: var(--color-base-bg);
   box-shadow: 0px -10.908px 36.816px 0px rgba(27, 36, 53, 0.17);
-  border-radius: 12px;
+  border-radius: calc(12px * var(--zoom-scale));
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: calc(10px * var(--zoom-scale));
   font-family: "YAS Font", sans-serif;
 
   span {
@@ -332,8 +332,8 @@
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 18px;
-  margin: 20px 0;
+  font-size: calc(18px * var(--zoom-scale));
+  margin: calc(20px * var(--zoom-scale)) 0;
   font-family: "YAS Font", sans-serif;
 
   span {
@@ -343,7 +343,7 @@
 
 .cart-actions {
   display: flex;
-  gap: 10px;
+  gap: calc(10px * var(--zoom-scale));
 }
 
 .save-cart-btn {
@@ -381,7 +381,7 @@
   flex-shrink: 0;
   cursor: pointer;
   font-family: "YAS Font", sans-serif;
-  height: 3.25rem;
+  height: calc(3.25rem * var(--zoom-scale));
   font-size: calc(1rem * var(--zoom-scale));
 }
 
@@ -399,7 +399,7 @@
   width: 100%;
   height: 1.5px;
   background-color: var(--color-base-product-card-divider);
-  margin: 20px 0;
+  margin: calc(20px * var(--zoom-scale)) 0;
 }
 
 .validity-date {
@@ -426,7 +426,7 @@
 .cart-drawer {
   .expired-text {
     color: red !important;
-    font-size: 10px;
+    font-size: calc(10px * var(--zoom-scale));
     line-height: normal;
     font-weight: 600;
     margin-top: 4px;
@@ -464,45 +464,46 @@
   }
 
   .cart-header {
-    padding: 8px 16px 8px 16px;
+    padding: calc(8px * var(--zoom-scale)) calc(16px * var(--zoom-scale))
+      calc(8px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
 
     h2 {
-      font-size: 1.5rem;
+      font-size: calc(1.5rem * var(--zoom-scale));
     }
   }
 
   .booking-date {
-    padding: 12px 16px;
-    border-radius: 0.6rem;
+    padding: calc(12px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+    border-radius: calc(0.6rem * var(--zoom-scale));
 
     p {
-      font-size: 1rem;
+      font-size: calc(1rem * var(--zoom-scale));
 
       span {
-        font-size: 1rem;
+        font-size: calc(1rem * var(--zoom-scale));
       }
     }
   }
 
   .expand-icon {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: calc(1.3rem * var(--zoom-scale));
+    height: calc(1.3rem * var(--zoom-scale));
   }
 
   .cart-item {
-    padding: 16px;
-    gap: 12px;
+    padding: calc(16px * var(--zoom-scale));
+    gap: calc(12px * var(--zoom-scale));
 
     img {
-      width: 85px;
-      height: 60px;
-      border-radius: 6px;
+      width: calc(85px * var(--zoom-scale));
+      height: calc(60px * var(--zoom-scale));
+      border-radius: calc(6px * var(--zoom-scale));
     }
   }
 
   .item-details {
     h4 {
-      font-size: 0.75rem;
+      font-size: calc(0.75rem * var(--zoom-scale));
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -511,45 +512,45 @@
     }
 
     p {
-      font-size: 0.75rem;
+      font-size: calc(0.75rem * var(--zoom-scale));
       font-family: "YAS Font", sans-serif;
     }
 
     small {
-      font-size: 0.7rem;
+      font-size: calc(0.7rem * var(--zoom-scale));
       font-family: "YAS Font", sans-serif;
     }
   }
 
   .item-date .item-date {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--zoom-scale));
   }
 
   .quantity-controls {
-    gap: 25px;
+    gap: calc(25px * var(--zoom-scale));
 
     @include respond(bigDesktop) {
-      gap: 10px;
+      gap: calc(10px * var(--zoom-scale));
     }
 
     span {
-      font-size: 0.75rem;
+      font-size: calc(0.75rem * var(--zoom-scale));
     }
   }
 
   .controls {
-    gap: 8px;
+    gap: calc(8px * var(--zoom-scale));
 
     span {
-      min-width: 15px;
+      min-width: calc(15px * var(--zoom-scale));
       text-align: center;
       display: inline-block;
     }
   }
 
   .cart-summary {
-    padding: 16px;
-    border-radius: 10px;
+    padding: calc(16px * var(--zoom-scale));
+    border-radius: calc(10px * var(--zoom-scale));
   }
 
   .summary-row {
@@ -561,47 +562,47 @@
   }
 
   .total {
-    font-size: 16px;
-    margin: 16px 0;
+    font-size: calc(16px * var(--zoom-scale));
+    margin: calc(16px * var(--zoom-scale)) 0;
 
     span {
-      font-size: 16px;
+      font-size: calc(16px * var(--zoom-scale));
     }
   }
 
   .cart-actions {
-    gap: 8px;
+    gap: calc(8px * var(--zoom-scale));
   }
 
   .save-cart-btn {
-    padding: 0.7rem 1.8rem;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    padding: calc(0.7rem * var(--zoom-scale)) calc(1.8rem * var(--zoom-scale));
+    gap: calc(0.5rem * var(--zoom-scale));
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 
   .checkout-btn {
-    padding: 0.7rem 1.8rem;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    padding: calc(0.7rem * var(--zoom-scale)) calc(1.8rem * var(--zoom-scale));
+    gap: calc(0.5rem * var(--zoom-scale));
+    font-size: calc(0.9rem * var(--zoom-scale));
   }
 
   .delete-btn {
     img {
-      width: 1.1rem;
-      height: 1.1rem;
+      width: calc(1.1rem * var(--zoom-scale));
+      height: calc(1.1rem * var(--zoom-scale));
     }
   }
 
   .custom-divider {
     height: 1.2px;
-    margin: 16px 0;
+    margin: calc(16px * var(--zoom-scale)) 0;
   }
 
   .validity-date {
-    font-size: 11px;
+    font-size: calc(11px * var(--zoom-scale));
 
     span {
-      font-size: 11px;
+      font-size: calc(11px * var(--zoom-scale));
     }
   }
 }
