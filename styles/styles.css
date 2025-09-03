@@ -1757,11 +1757,19 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: calc(280px * var(--zoom-scale));
   font-family: "YAS Font", sans-serif;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__content__title {
@@ -1804,6 +1812,13 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   line-height: calc(28.8px * var(--zoom-scale));
   margin-top: 0.8rem;
   font-family: "YAS Font", sans-serif;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__content__description {
