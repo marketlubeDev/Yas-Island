@@ -1,8 +1,29 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   // withCredentials: true,
 });
+
+// Global network error handling: show a non-blocking toast and let components decide further
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Only toast for network or 5xx errors to avoid duplicating business-logic errors
+    const status = error?.response?.status;
+    if (!status || status >= 500) {
+      try {
+        toast.error(
+          "We\u2019re having trouble reaching the server. Please try again.",
+          {
+            position: "top-center",
+          }
+        );
+      } catch {}
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default apiClient;

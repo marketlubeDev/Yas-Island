@@ -14,6 +14,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "../config/reactQuery.js";
 import { Toaster } from "sonner";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -21,7 +22,9 @@ createRoot(document.getElementById("root")).render(
       <LanguageProvider>
         <QueryClientProvider client={queryClient}>
           <Toaster />
-          <RouterProvider router={router} />
+          <ErrorBoundary>
+            <RouterProvider router={router} />
+          </ErrorBoundary>
         </QueryClientProvider>
       </LanguageProvider>
     </PersistGate>

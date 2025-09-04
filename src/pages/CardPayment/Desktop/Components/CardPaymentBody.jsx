@@ -32,7 +32,7 @@ export default function CardPaymentBody({ isCheckout }) {
 
   const handleBackClick = () => {
     // Navigate back to payment details
-    navigate("/payment-details");
+    navigate("/");
   };
 
   const handlePaymentComplete = () => {
@@ -79,7 +79,7 @@ export default function CardPaymentBody({ isCheckout }) {
         className="payment-checkout__header-with-back"
         // style={{ opacity: "0" }}
       >
-        <button
+        {/* <button
           className={`checkout-back-button-circular ${
             isRTL ? "checkout-back-button-circular--rtl" : ""
           }`}
@@ -94,7 +94,7 @@ export default function CardPaymentBody({ isCheckout }) {
               isRTL ? "checkout-back-button-circular__icon--rtl" : ""
             }`}
           />
-        </button>
+        </button> */}
         <h1 className="payment-checkout__title">
           {t("payment.cardPayment.title")}
         </h1>
