@@ -97,8 +97,22 @@ const FormSelectWithSearch = ({
   };
 
   const customOption = ({ data, ...props }) => (
-    <div {...props.innerProps} className="country-option">
-      <ReactCountryFlag countryCode={data.code} svg className="country-flag" />
+    <div
+      {...props.innerProps}
+      className="country-option"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        padding: "10px 12px",
+      }}
+    >
+      <ReactCountryFlag
+        countryCode={data.code}
+        svg
+        className="country-flag"
+        style={{ width: 18, height: 12 }}
+      />
       <span className="country-name">{data.label}</span>
     </div>
   );
@@ -179,9 +193,18 @@ const FormSelectWithSearch = ({
         : state.isFocused
         ? "var(--color-base-hover)"
         : "transparent",
+      paddingTop: 10,
+      paddingBottom: 10,
+      lineHeight: 1.6,
+      minHeight: 44,
       "&:hover": {
         backgroundColor: "var(--color-base-hover)",
       },
+    }),
+    menuList: (base) => ({
+      ...base,
+      paddingTop: 4,
+      paddingBottom: 4,
     }),
     indicatorSeparator: () => ({
       display: "none",
