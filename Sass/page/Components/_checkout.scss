@@ -190,14 +190,22 @@
 }
 
 // Ensure react-phone-input-2 dropdown follows theme colors in mobile flow
+
 .email-checkout__phone-container,
 .react-tel-input {
-  overflow: hidden;
+  // Allow the country list dropdown to render outside the input bounds on mobile
+  overflow: visible;
 
   .flag-dropdown {
-    overflow: hidden;
+    // Ensure the dropdown menu is not clipped
+    overflow: visible;
 
     .country-list {
+      // Make sure the dropdown overlays other elements properly on mobile
+      position: absolute !important;
+      z-index: 10000 !important;
+      max-height: 260px !important;
+      overflow-y: auto !important;
       background-color: var(--color-base-bg) !important;
       border: 1px solid var(--ip-bodr-btm) !important;
 
