@@ -270,6 +270,10 @@
 
       .flag-dropdown {
         z-index: 1001;
+        background: transparent !important;
+        &:hover {
+          background: transparent !important;
+        }
 
         .country-list {
           background-color: var(--color-base-bg) !important;
@@ -332,6 +336,17 @@
 
       @include respond(desktop) {
         margin-left: -1.5rem;
+      }
+
+      // Remove white background on selected flag on hover/open
+      .selected-flag {
+        background: transparent !important;
+        &:hover {
+          background: transparent !important;
+        }
+      }
+      .open .selected-flag {
+        background: transparent !important;
       }
     }
 
