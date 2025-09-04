@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -262,6 +262,8 @@ const PhoneInputComponent = ({
   countryIso = "ae",
   isRTL = false,
   onFocus,
+  localization,
+  searchPlaceholder,
 }) => (
   <div className="form-group">
     <label className="form-group__label">{label}</label>
@@ -273,13 +275,15 @@ const PhoneInputComponent = ({
       containerClass="form-group__phone-container"
       buttonClass="form-group__phone-button"
       dropdownClass="form-group__phone-dropdown"
+      localization={localization}
       dropdownStyle={{
         position: "fixed",
         zIndex: 2000,
         maxHeight: 300,
         overflowY: "auto",
       }}
-      enableSearch={false}
+      enableSearch={true}
+      searchPlaceholder={searchPlaceholder}
       disableDropdown={false}
       countryCodeEditable={true}
       inputProps={{ onFocus }}
@@ -414,6 +418,20 @@ export default function PersonalDetailsForm({
   const RESIDENCE_COUNTRIES = ALL_COUNTRIES.filter(
     (c) => !EXCLUDED_RESIDENCE_ISOS.has(c.value)
   );
+
+  // Localize country names in phone dropdown for Arabic using react-phone-input-2 `localization`
+  const PHONE_LOCALIZATION = useMemo(() => {
+    if (currentLanguage !== "ar") return undefined;
+    const alpha2 = countries.getAlpha2Codes();
+    const map = {};
+    Object.keys(alpha2).forEach((code) => {
+      const nameAr = countries.getName(code, "ar");
+      if (nameAr) {
+        map[code.toLowerCase()] = nameAr;
+      }
+    });
+    return map;
+  }, [currentLanguage]);
 
   const handleInputChange = (field) => (value) => {
     const updateData = {};
@@ -670,6 +688,14 @@ export default function PersonalDetailsForm({
             (checkout.country || "AE").toLowerCase()
           )}
           isRTL={isRTL}
+          localization={PHONE_LOCALIZATION}
+          searchPlaceholder={
+            typeof t === "function"
+              ? t("payment.searchCountries", {
+                  defaultValue: "Search countries...",
+                })
+              : "Search countries..."
+          }
           onFocus={() =>
             setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
           }

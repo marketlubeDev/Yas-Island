@@ -336,6 +336,7 @@ const PhoneInputComponent = ({
   isRTL = false,
   onFocus,
   localization,
+  searchPlaceholder,
 }) => (
   <label className="email-checkout__label" id="phoneNumber">
     {label}
@@ -348,7 +349,8 @@ const PhoneInputComponent = ({
       buttonClass="email-checkout__phone-button"
       dropdownClass="email-checkout__phone-dropdown"
       localization={localization}
-      enableSearch={false}
+      enableSearch={true}
+      searchPlaceholder={searchPlaceholder}
       disableDropdown={false}
       countryCodeEditable={true}
       inputProps={{ onFocus }}
@@ -654,6 +656,13 @@ function InputFieldsMbl() {
             countryIso={selectedIso}
             isRTL={isRTL}
             localization={PHONE_LOCALIZATION}
+            searchPlaceholder={
+              typeof t === "function"
+                ? t("payment.searchCountries", {
+                    defaultValue: "Search countries...",
+                  })
+                : "Search countries..."
+            }
             onFocus={() =>
               setFieldErrors((prev) => ({ ...prev, phoneNumber: false }))
             }

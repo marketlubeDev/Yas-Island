@@ -224,14 +224,33 @@
         }
       }
 
+      // Search row container
       .search {
         background-color: var(--color-base-bg) !important;
-        border-bottom: 1px solid var(--ip-bodr-btm) !important;
-        color: var(--color-email-form-label) !important;
+        border: none !important;
+        padding: 8px !important;
 
-        &::placeholder {
-          color: var(--color-base-text-secondary) !important;
-          opacity: 0.7;
+        // The actual search input
+        input {
+          width: 100% !important;
+          height: 36px !important;
+          padding: 0 0 6px 0 !important;
+          border: none !important;
+          border-bottom: 1px solid var(--ip-bodr-btm) !important;
+          border-radius: 0 !important;
+          outline: none !important;
+          box-shadow: none !important;
+          background-color: transparent !important;
+          color: var(--color-email-form-label) !important;
+
+          &::placeholder {
+            color: var(--color-base-text-secondary) !important;
+            opacity: 0.7 !important;
+          }
+
+          &:focus {
+            border-bottom: 2px solid var(--color-email-form-input-focus) !important;
+          }
         }
       }
     }
