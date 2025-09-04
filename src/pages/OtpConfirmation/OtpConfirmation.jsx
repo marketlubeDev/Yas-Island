@@ -23,6 +23,18 @@ export default function OtpConfirmation() {
     }
   }, [navigationType, navigate]);
 
+  // Hide Yas Chat on OTP confirmation to prevent accidental launches
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.body.classList.add("page-payment-checkout");
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.classList.remove("page-payment-checkout");
+      }
+    };
+  }, []);
+
   return (
     <div className="payment-checkout-page">
       <Header />
