@@ -264,10 +264,18 @@
 
     // Phone Input Dropdown Modal Styling
     .react-tel-input {
+      position: relative;
+      overflow: visible !important;
+      z-index: 1000;
+
       .flag-dropdown {
+        z-index: 1001;
+
         .country-list {
           background-color: var(--color-base-bg) !important;
           border: 1px solid var(--ip-bodr-btm) !important;
+          z-index: 10000 !important;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 
           .country {
             color: var(--color-base-text-secondary) !important;

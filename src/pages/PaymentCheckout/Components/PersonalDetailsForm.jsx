@@ -273,6 +273,12 @@ const PhoneInputComponent = ({
       containerClass="form-group__phone-container"
       buttonClass="form-group__phone-button"
       dropdownClass="form-group__phone-dropdown"
+      dropdownStyle={{
+        position: "fixed",
+        zIndex: 2000,
+        maxHeight: 300,
+        overflowY: "auto",
+      }}
       enableSearch={false}
       disableDropdown={false}
       countryCodeEditable={true}
@@ -281,7 +287,8 @@ const PhoneInputComponent = ({
       containerStyle={{
         width: "100%",
         position: "relative",
-        zIndex: 1000,
+        overflow: "visible",
+        zIndex: "auto",
       }}
       inputStyle={{
         width: "100%",
@@ -308,7 +315,7 @@ const PhoneInputComponent = ({
         width: "40px",
         position: isRTL ? "absolute" : undefined,
         right: isRTL ? 0 : undefined,
-        zIndex: 1001,
+        zIndex: "auto",
       }}
     />
   </div>
