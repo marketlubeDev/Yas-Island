@@ -132,6 +132,11 @@ const FormSelectWithSearch = ({
           : "1px solid var(--ip-bodr-btm)",
       },
     }),
+    // Ensure dropdown overlays inputs like phone field
+    menuPortal: (base) => ({
+      ...base,
+      zIndex: 9999,
+    }),
     valueContainer: (provided) => ({
       ...provided,
       padding: "0",

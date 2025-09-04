@@ -120,23 +120,22 @@
     .upcoming-title {
       font-size: calc(2rem * var(--zoom-scale));
       font-weight: 600;
-      color: #4a4a4a;
+      color: #a1a1a1;
       margin: 0;
       line-height: 1.2;
     }
 
     .upcoming-subtitle {
       font-size: calc(1.1rem * var(--zoom-scale));
-      color: #6b6b6b;
+      color: #a1a1a1;
       margin: 0;
       line-height: 1.5;
 
       .highlight {
-        color: #4a4a4a;
         font-weight: 600;
         cursor: pointer;
         transition: color 0.3s ease;
-
+        color: #a1a1a1;
         &:hover {
           color: #2a2a2a;
           text-decoration: underline;
