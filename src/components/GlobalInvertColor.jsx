@@ -384,11 +384,7 @@ export default function GlobalInvertColor() {
 
     document.documentElement.style.setProperty(
       "--color-base-mobile-search-section-filter-btn-border",
-      isDarkMode
-        ? "rgba(255, 173, 51, 0.50)"
-        : isHighContrast
-        ? "#7E85B4"
-        : "#DCD6E5"
+      isDarkMode ? "#FFAD33" : isHighContrast ? "#7E85B4" : "#DCD6E5"
     );
 
     document.documentElement.style.setProperty(
