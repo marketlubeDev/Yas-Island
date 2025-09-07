@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { truncateText } from "../../../utils/helpers";
 
 export default function Selector({
   placeHolder = "Select",
@@ -134,7 +135,9 @@ export default function Selector({
               selectedLabel ? "has-value" : "is-placeholder"
             }`}
           >
-            {selectedLabel || placeHolder}
+            {selectedLabel
+              ? truncateText(String(selectedLabel), 15)
+              : placeHolder}
           </span>
           <svg
             width="20"
@@ -171,7 +174,7 @@ export default function Selector({
                 } ${focusedIndex === index ? "is-focused" : ""}`}
                 onClick={emitChange(option)}
               >
-                {option}
+                {truncateText(String(option), 15)}
               </li>
             ))}
           </ul>

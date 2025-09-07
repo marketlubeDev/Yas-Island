@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useQRCodeFromURL from "../hooks/useQRCodeFromURL";
 import {
@@ -84,7 +84,7 @@ const QRCodeDetector = () => {
             parsedCartData.forEach((item) => {
               const data = {
                 ...item,
-                performance: item?.performanceDetails?.performance,
+                performances: item?.performanceDetails?.PerformanceId,
                 productId: item?.VariantProductId,
                 quantity: item?.Quantity,
                 validFrom: item?.SelectedDate,
@@ -119,7 +119,6 @@ const QRCodeDetector = () => {
               dispatch(addToCart(data));
             });
           }
-
           // Store only the parsed cart data, not the entire response
           dispatch(setCartData(parsedCartData));
         } catch (error) {

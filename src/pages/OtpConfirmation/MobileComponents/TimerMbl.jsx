@@ -44,7 +44,6 @@ function TimerMbl({ setIsExpired, handleResendOTP, timer, setTimer }) {
       </span>
       <button
         className={`confirm-email__otp-resend ${!canResend ? "disabled" : ""}`}
-        style={{ margin: "0" }}
         onClick={handleResendOTP}
         disabled={!canResend}
       >

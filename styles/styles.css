@@ -3280,6 +3280,7 @@ html[lang=ar] .guest-label {
 }
 
 .accessibility-web-modal {
+  z-index: 1050;
   width: 40% !important;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -3307,6 +3308,8 @@ html[lang=ar] .guest-label {
   border: 2.353px solid var(--color-base-product-card-card-item-border);
   border-radius: 40px;
   padding: 3rem;
+  position: relative;
+  z-index: 1051;
 }
 .accessibility-web-modal .ant-modal-close {
   display: none;
@@ -3342,6 +3345,7 @@ html[lang=ar] .guest-label {
 .ant-modal-mask {
   background: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(8px) !important;
+  z-index: 1040 !important;
 }
 
 .accessibility-web-modal .close-button {
@@ -3410,7 +3414,7 @@ html[lang=ar] .guest-label {
   height: calc(4rem * var(--zoom-scale));
   border-radius: 3.31513rem;
   border: 3.183px solid #d3b8ff;
-  background: #e1f1ff;
+  background: transparent !important;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -3420,6 +3424,16 @@ html[lang=ar] .guest-label {
   border: 2px solid #007bff;
   border-radius: 8px;
   padding: 8px;
+}
+
+.option-card:hover .option-icon,
+.option-card:focus .option-icon {
+  background: transparent !important;
+}
+
+.option-icon img,
+.option-icon svg {
+  background: transparent !important;
 }
 
 .option-card p {
@@ -3483,10 +3497,10 @@ html[lang=ar] .guest-label {
   border-radius: 70.476px;
   border: 3.524px solid #dcd6e5;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.3411764706);
+  background: transparent;
 }
 .accessibility-modal .ant-modal-close:hover {
-  background: #fff;
+  background: transparent;
 }
 
 .vertical-divider-card {
@@ -6229,9 +6243,23 @@ html[dir=rtl] .back-button {
     font-size: 0.9rem;
   }
 }
+.payment-form__left .react-tel-input {
+  position: relative;
+  overflow: visible !important;
+  z-index: 1000;
+}
+.payment-form__left .react-tel-input .flag-dropdown {
+  z-index: 1001;
+  background: transparent !important;
+}
+.payment-form__left .react-tel-input .flag-dropdown:hover {
+  background: transparent !important;
+}
 .payment-form__left .react-tel-input .flag-dropdown .country-list {
   background-color: var(--color-base-bg) !important;
   border: 1px solid var(--ip-bodr-btm) !important;
+  z-index: 10000 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 .payment-form__left .react-tel-input .flag-dropdown .country-list .country {
   color: var(--color-base-text-secondary) !important;
@@ -6263,6 +6291,15 @@ html[dir=rtl] .back-button {
   .payment-form__left .form-group:has(.form-group__phone) .form-group__label {
     margin-left: -1.5rem;
   }
+}
+.payment-form__left .form-group:has(.form-group__phone) .form-group__label .selected-flag {
+  background: transparent !important;
+}
+.payment-form__left .form-group:has(.form-group__phone) .form-group__label .selected-flag:hover {
+  background: transparent !important;
+}
+.payment-form__left .form-group:has(.form-group__phone) .form-group__label .open .selected-flag {
+  background: transparent !important;
 }
 .payment-form__left .terms {
   margin-top: 1rem;
@@ -10471,7 +10508,16 @@ html[lang=ar] .confirm-email__input-underline {
   justify-content: center;
   font-size: calc(12px * var(--zoom-scale));
   color: var(--color-otp-action);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .confirm-email__otp-actions {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 }
 .confirm-email__otp-actions button {
   background: var(--color-email-form-box);
@@ -10492,6 +10538,8 @@ html[lang=ar] .confirm-email__input-underline {
 @media (max-width: 600px) {
   .confirm-email__otp-actions button {
     padding: calc(6px * var(--zoom-scale)) calc(15px * var(--zoom-scale));
+    margin-left: 0;
+    margin-top: calc(10px * var(--zoom-scale));
   }
 }
 
@@ -10747,14 +10795,18 @@ html[lang=ar] .confirm-email__otp-actions button {
 
 .email-checkout__phone-container,
 .react-tel-input {
-  overflow: hidden;
+  overflow: visible;
 }
 .email-checkout__phone-container .flag-dropdown,
 .react-tel-input .flag-dropdown {
-  overflow: hidden;
+  overflow: visible;
 }
 .email-checkout__phone-container .flag-dropdown .country-list,
 .react-tel-input .flag-dropdown .country-list {
+  position: absolute !important;
+  z-index: 10000 !important;
+  max-height: 260px !important;
+  overflow-y: auto !important;
   background-color: var(--color-base-bg) !important;
   border: 1px solid var(--ip-bodr-btm) !important;
 }
@@ -10777,13 +10829,30 @@ html[lang=ar] .confirm-email__otp-actions button {
 .email-checkout__phone-container .flag-dropdown .country-list .search,
 .react-tel-input .flag-dropdown .country-list .search {
   background-color: var(--color-base-bg) !important;
+  border: none !important;
+  padding: 8px !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .search input,
+.react-tel-input .flag-dropdown .country-list .search input {
+  width: 100% !important;
+  height: 36px !important;
+  padding: 0 0 6px 0 !important;
+  border: none !important;
   border-bottom: 1px solid var(--ip-bodr-btm) !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
   color: var(--color-email-form-label) !important;
 }
-.email-checkout__phone-container .flag-dropdown .country-list .search::placeholder,
-.react-tel-input .flag-dropdown .country-list .search::placeholder {
+.email-checkout__phone-container .flag-dropdown .country-list .search input::placeholder,
+.react-tel-input .flag-dropdown .country-list .search input::placeholder {
   color: var(--color-base-text-secondary) !important;
-  opacity: 0.7;
+  opacity: 0.7 !important;
+}
+.email-checkout__phone-container .flag-dropdown .country-list .search input:focus,
+.react-tel-input .flag-dropdown .country-list .search input:focus {
+  border-bottom: 2px solid var(--color-email-form-input-focus) !important;
 }
 
 .form-group__phone-input.error,

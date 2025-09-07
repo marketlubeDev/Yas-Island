@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { truncateText } from "../../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -189,7 +190,7 @@ const FormSelectWithSearch = ({
                   color: "var(--color-email-form-label)",
                 }}
               >
-                {selectedOption.label}
+                {truncateText(selectedOption.label, 20)}
               </span>
             </div>
           ) : (
@@ -303,7 +304,7 @@ const FormSelectWithSearch = ({
                     style={{ width: "20px", height: "15px" }}
                   />
                   <span style={{ color: "var(--color-email-form-label)" }}>
-                    {option.label}
+                    {truncateText(option.label, 20)}
                   </span>
                 </div>
               ))}

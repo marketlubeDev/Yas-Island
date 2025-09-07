@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { truncateText } from "../../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import colorblindIcon from "../../../assets/icons/colorblindness.svg";
 import zoomIcon from "../../../assets/icons/zoom.svg";
@@ -271,7 +272,7 @@ function AccessibilityPopUpMbl() {
                 outline: "none",
               }}
             >
-              {option.label}
+              {truncateText(option.label, 15)}
             </button>
           ))}
         </div>

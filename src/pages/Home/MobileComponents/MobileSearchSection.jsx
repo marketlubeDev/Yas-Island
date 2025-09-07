@@ -10,6 +10,7 @@ import {
 
 import searchIcon from "../../../assets/icons/lens.svg";
 import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
+import { truncateText } from "../../../utils/helpers";
 
 function MobileSearchSection() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -209,7 +210,7 @@ function MobileSearchSection() {
                     className="mobile-top-search-section__dropdown-option"
                     onClick={() => button.onOptionClick(option.value)}
                   >
-                    <span>{option.label}</span>
+                    <span>{truncateText(option.label, 20)}</span>
                     {option.isSelected && (
                       <span className="mobile-top-search-section__check">
                         ✓

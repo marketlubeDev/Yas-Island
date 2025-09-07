@@ -209,7 +209,9 @@ export default function AccessibilityModal({ isOpen, onClose }) {
                     outline: "none",
                   }}
                 >
-                  {option.label}
+                  {option.label && option.label.length > 20
+                    ? `${option.label.slice(0, 20)}...`
+                    : option.label}
                 </button>
               ))}
             </div>

@@ -14,6 +14,7 @@ import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout, setCheckoutEmail } from "../../../global/checkoutSlice";
 import { toast } from "sonner";
+import useGetProductList from "../../../apiHooks/product/product";
 
 const isDateExpired = (validToDate) => {
   if (!validToDate) return false;
@@ -59,6 +60,9 @@ function MycartMbl({ onClose, visible }) {
   const { mutate: checkBasket, isPending } = useCheckBasket();
   const productList = useSelector((state) => state.product.allProducts);
   const checkoutState = useSelector((state) => state.checkout);
+
+  // Ensure products are loaded for price lookup
+  useGetProductList();
 
   const backIconSrc = isDarkMode ? backIconInverter : backIcon;
   const deleteIconSrc = isDarkMode ? InvertDeleteIcon : DeleteIcon;
@@ -303,13 +307,13 @@ function MycartMbl({ onClose, visible }) {
                       <div className="mycart-modal__item-price">
                         <span className="mycart-modal__item-price-main">
                           {t("common.aed")}{" "}
-                          {productData?.selectedVariant?.price?.net}
+                          {productData?.selectedVariant?.net_amount}
                         </span>
                         <span className="mycart-modal__item-vat">
                           +
                           <span className="text-[13px] font-semibold text-[var(--color-email-form-label)]">
                             {" "}
-                            {productData?.selectedVariant?.price?.tax}{" "}
+                            {productData?.selectedVariant?.vat}{" "}
                             {t("common.netAndTax")}
                           </span>
                         </span>

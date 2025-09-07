@@ -36,12 +36,10 @@ const calculateCartTotals = (items, productList = []) => {
         (variant) => variant.productid === item.productId
       )
     );
-
     // Find the specific variant
     const variant = product?.product_variants?.find(
       (variant) => variant.productid === item.productId
     );
-
     if (variant) {
       return total + variant.net_amount * (item.quantity || 0);
     } else {
@@ -57,7 +55,6 @@ const calculateCartTotals = (items, productList = []) => {
         (variant) => variant.productid === item.productId
       )
     );
-
     // Find the specific variant
     const variant = product?.product_variants?.find(
       (variant) => variant.productid === item.productId
@@ -96,7 +93,6 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action, type = "cart") => {
       // Remove expired items first
-
       if (type === "cart") {
         const existingItemIndex = state.cartItems.findIndex(
           (item) =>
@@ -154,9 +150,6 @@ const cartSlice = createSlice({
       state.needsRecalculation = true;
     },
     updateQuantity: (state, action) => {
-      // Remove expired items first
-      // state.cartItems = removeExpiredItems(state.cartItems);
-
       state.cartItems = state.cartItems
         .map((item) =>
           item.productId === action.payload.id &&
