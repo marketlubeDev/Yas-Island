@@ -7,6 +7,8 @@ import store, { persistor } from "./global/store.js";
 import "./index.css";
 import "./../styles/styles.css";
 import "./../Sass/main.scss";
+import "./../Sass/main.css";
+
 import { router } from "./routes/router";
 import "./i18n";
 import { LanguageProvider } from "./context/LanguageContext";
