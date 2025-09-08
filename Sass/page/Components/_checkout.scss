@@ -196,9 +196,23 @@
   // Allow the country list dropdown to render outside the input bounds on mobile
   overflow: visible;
 
+  // Ensure the selected flag button never shows a white background
+  .selected-flag {
+    background: transparent !important;
+  }
+  .selected-flag:hover,
+  .flag-dropdown.open .selected-flag {
+    background: transparent !important;
+  }
+
   .flag-dropdown {
     // Ensure the dropdown menu is not clipped
     overflow: visible;
+    // Prevent hover white bg on the dropdown trigger (button area)
+    background: transparent !important;
+    &:hover {
+      background: transparent !important;
+    }
 
     .country-list {
       // Make sure the dropdown overlays other elements properly on mobile
