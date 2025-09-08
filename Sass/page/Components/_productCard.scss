@@ -560,6 +560,25 @@
   }
 }
 
+// iPad/iPad Mini specific centering fix: avoid transform-based centering
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .product-modal {
+    .ant-modal {
+      align-items: center !important;
+      justify-content: center !important;
+
+      .ant-modal-content {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+        margin: 0 auto !important;
+      }
+    }
+  }
+}
+
 // Additional centering for modal wrapper
 .product-modal .ant-modal-wrap,
 .product-modal-wrap {
