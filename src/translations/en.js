@@ -303,6 +303,9 @@ export const en = {
       redirecting: "You Will Be Redirected To The Home Page In",
       seconds: "Seconds",
     },
+    // Placeholders / misc
+    searchCountries: "Search countries...",
+    selectCountry: "Select a country",
   },
   promo: {
     applied: "Promo Code Applied",

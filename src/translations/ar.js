@@ -311,6 +311,9 @@ export const ar = {
       savings: "توفير رمز الخصم :",
       amount: "درهم",
     },
+    // Placeholders / misc
+    searchCountries: "...ابحث في البلدان",
+    selectCountry: "اختر بلداً",
   },
   promo: {
     applied: "تم تطبيق رمز الخصم",

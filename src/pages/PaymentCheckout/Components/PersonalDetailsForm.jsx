@@ -563,7 +563,7 @@ export default function PersonalDetailsForm({
       email:
         !checkout.emailId ||
         !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-      phoneNumber: phoneDigits.length <= 3,
+      phoneNumber: phoneDigits.length < 10,
       country: !checkout.country,
       nationality: !checkout.nationality,
     };
@@ -586,7 +586,7 @@ export default function PersonalDetailsForm({
         email:
           !checkout.emailId ||
           !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-        phoneNumber: phoneDigits.length <= 3,
+        phoneNumber: phoneDigits.length < 10,
         country: !checkout.country,
         nationality: !checkout.nationality,
       };
@@ -677,9 +677,9 @@ export default function PersonalDetailsForm({
           }
         />
         <PhoneInputComponent
-          key={normalizeIsoForDialCode(
+          key={`${normalizeIsoForDialCode(
             (checkout.country || "AE").toLowerCase()
-          )}
+          )}-${currentLanguage}`}
           label={t("payment.personalDetails.phoneNumber")}
           phoneNumber={checkout.phoneNumber || ""}
           onPhoneNumberChange={handleInputChange("phoneNumber")}

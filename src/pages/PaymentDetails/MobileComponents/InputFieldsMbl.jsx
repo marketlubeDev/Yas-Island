@@ -197,7 +197,11 @@ const FormSelectWithSearch = ({
             <span
               style={{ color: "var(--color-base-text-secondary)", opacity: 1 }}
             >
-              Select a country
+              {typeof t === "function"
+                ? t("payment.selectCountry", {
+                    defaultValue: "Select a country",
+                  })
+                : "Select a country"}
             </span>
           )}
           <div
@@ -455,7 +459,7 @@ function InputFieldsMbl() {
       email:
         !formData.email || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
       phoneNumber:
-        String((formData.phoneNumber || "").replace(/\D/g, "")).length <= 3,
+        String((formData.phoneNumber || "").replace(/\D/g, "")).length < 10,
       country: !formData.country,
       nationality: !formData.nationality,
     };
@@ -557,7 +561,7 @@ function InputFieldsMbl() {
           !formData.email ||
           !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
         phoneNumber:
-          String((formData.phoneNumber || "").replace(/\D/g, "")).length <= 3,
+          String((formData.phoneNumber || "").replace(/\D/g, "")).length < 10,
         country: !formData.country,
         nationality: !formData.nationality,
       };

@@ -131,7 +131,7 @@ function PaymentDetailsMobile() {
       );
     }
     const phoneDigits = String(data.phoneNumber || "").replace(/\D/g, "");
-    if (phoneDigits.length <= 3) {
+    if (phoneDigits.length < 10) {
       errors.push(t("toastMessages.invalidPhoneNumber"));
     }
     if (!data.countryCode) {
