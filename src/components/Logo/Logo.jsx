@@ -19,7 +19,7 @@ export default function Logo({ type = "default" }) {
           className="logo-img"
           loading="eager"
           decoding="async"
-          fetchpriority="high"
+          fetchPriority="high"
           onLoad={() => setIsLoaded(true)}
         />
       </div>
@@ -42,7 +42,7 @@ export default function Logo({ type = "default" }) {
           className="logo-img"
           loading="eager"
           decoding="async"
-          fetchpriority="high"
+          fetchPriority="high"
           onLoad={() => setIsLoaded(true)}
         />
         {/* <img src={desc} alt="desc" className="logo-desc" /> */}
