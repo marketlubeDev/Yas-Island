@@ -118,6 +118,22 @@
     @include respond(tablets) {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    // iPad Pro: ensure at least 3 columns
+    // 11" iPad Pro portrait (approx 834px width)
+    @media screen and (hover: none) and (pointer: coarse) and (min-width: 830px) and (max-width: 840px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    // 11" iPad Pro landscape (approx 1194px width)
+    @media screen and (hover: none) and (pointer: coarse) and (min-width: 1188px) and (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    // 12.9" iPad Pro portrait (approx 1024px width)
+    @media screen and (hover: none) and (pointer: coarse) and (min-width: 1020px) and (max-width: 1032px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &__card {
