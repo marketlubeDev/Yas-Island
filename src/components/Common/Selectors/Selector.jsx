@@ -136,7 +136,7 @@ export default function Selector({
             }`}
           >
             {selectedLabel
-              ? truncateText(String(selectedLabel), 15)
+              ? truncateText(String(selectedLabel), 22)
               : placeHolder}
           </span>
           <svg
@@ -174,7 +174,7 @@ export default function Selector({
                 } ${focusedIndex === index ? "is-focused" : ""}`}
                 onClick={emitChange(option)}
               >
-                {truncateText(String(option), 15)}
+                {truncateText(String(option), 22)}
               </li>
             ))}
           </ul>

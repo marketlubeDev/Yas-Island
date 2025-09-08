@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yas Island — Dist Installation (Simple Guide)</title>
+    <style>
+      :root {
+        --text: #111;
+        --muted: #555;
+        --bg: #fff;
+        --accent: #0a84ff;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background: var(--bg);
+      }
+      .container {
+        max-width: 860px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-size: 18px;
+        margin: 20px 0 8px;
+      }
+      p {
+        line-height: 1.6;
+        margin: 8px 0;
+        color: var(--muted);
+      }
+      code,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+      }
+      pre {
+        background: #f6f8fa;
+        border: 1px solid #eee;
+        padding: 12px;
+        border-radius: 6px;
+        overflow: auto;
+      }
+      ul {
+        margin: 8px 0 8px 16px;
+      }
+      .callout {
+        border-left: 3px solid var(--accent);
+        padding: 10px 12px;
+        background: #f5f9ff;
+        margin: 12px 0;
+      }
+      .footer {
+        margin-top: 24px;
+        font-size: 12px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Yas Island — Dist Installation (Simple Guide)</h1>
+      <p class="muted">
+        Version: 1.0 • Last updated: <span id="lastUpdated"></span>
+      </p>
+
+      <div class="callout">
+        This is a static website. You only need to serve the
+        <code>dist/</code> folder as-is. No build, no database, no server code.
+      </div>
+
+      <h2>What you received</h2>
+      <ul>
+        <li><code>dist/</code> — final production files</li>
+        <li>
+          <code>dist/index.html</code> — main entry file (must be accessible)
+        </li>
+        <li><code>dist/assets/</code> — JS, CSS, fonts, images</li>
+      </ul>
+
+      <h2>Local test (exactly on port 5173)</h2>
+      <p>
+        For local testing, the backend only allows requests from
+        <strong>http://localhost:5173</strong>. Use this command to serve the
+        <code>dist</code> folder on that port:
+      </p>
+      <pre><code>npx serve -s dist -l 5173
+# then open in your browser:
+http://localhost:5173</code></pre>
+
+      <h2>Node.js requirement (only for local test)</h2>
+      <p>
+        The above command requires Node.js. Recommended version:
+        <strong>Node.js 18+</strong> (LTS). Hosting providers do not need
+        Node.js if they only serve the static files.
+      </p>
+
+      <h2>Step-by-step (checklist)</h2>
+      <ol>
+        <li>
+          Install Node.js 18 or 20 (LTS).
+          <pre><code># macOS (Homebrew)
+brew install node
+
+# Windows/macOS/Linux (installer)
+# Download the LTS version from: https://nodejs.org</code></pre>
+        </li>
+        <li>
+          Verify installation:
+          <pre><code>node -v
+npm -v</code></pre>
+          Expected: <code>node</code> shows <code>v18.x</code> or newer.
+        </li>
+        <li>
+          Open a terminal in the folder that contains the <code>dist</code>
+          directory, then run:
+          <pre><code>npx serve -s dist -l 5173</code></pre>
+          If prompted:
+          <pre><code>Need to install the following packages:
+serve@14.2.5
+Ok to proceed? (y) y</code></pre>
+          Type <code>y</code> and press Enter. This installs the package
+          temporarily for this command; no global install needed.
+        </li>
+        <li>
+          Open the site:
+          <pre><code>http://localhost:5173</code></pre>
+        </li>
+        <li>
+          Stop the server when finished:
+          <pre><code>Press Ctrl + C in the terminal</code></pre>
+        </li>
+        <li>
+          If port 5173 is busy, close the other app using it or change the port
+          (e.g., <code>-l 5174</code>) just for testing. For backend allowlist,
+          use <strong>5173</strong>.
+        </li>
+      </ol>
+
+      <h2>Upload to any hosting</h2>
+      <ul>
+        <li>
+          Upload the <strong>contents</strong> of <code>dist/</code> to your web
+          root (so <code>index.html</code> is directly reachable).
+        </li>
+        <li>
+          This is a Single Page Application (SPA). If your host asks for a
+          404/Not-Found page, choose <code>index.html</code>.
+        </li>
+        <li>
+          No special server features are required. Just serve files as static
+          content.
+        </li>
+      </ul>
+
+      <h2>Important: Allowed origins</h2>
+      <ul>
+        <li>
+          <strong>Local/UAT:</strong> Use
+          <code>http://localhost:5173</code> exactly (whitelisted).
+        </li>
+        <li>
+          <strong>Production:</strong> Share the final domain with the backend
+          team to allowlist it for API/payment access.
+        </li>
+      </ul>
+
+      <h2>Quick checklist</h2>
+      <ul>
+        <li><code>index.html</code> loads in the browser.</li>
+        <li>
+          Navigation works (no 404 on internal links). If it does, set your
+          host's 404 page to <code>index.html</code>.
+        </li>
+        <li>
+          API/Payments work. If blocked, it is an allowlist issue — contact
+          backend to add your domain.
+        </li>
+      </ul>
+
+      <div class="footer">
+        If you need help, share: where it's hosted, the URL you are testing, and
+        a screenshot of any error.
+      </div>
+    </div>
+    <script>
+      document.getElementById("lastUpdated").textContent = new Date()
+        .toISOString()
+        .slice(0, 10);
+    </script>
+  </body>
+</html>

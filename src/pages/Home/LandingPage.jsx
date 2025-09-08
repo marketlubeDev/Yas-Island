@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import landingImage from "../../assets/images/MainImg.png";
+// import landingImage from "../../assets/images/MainImg.png";
 import YellowBtn from "../../components/buttons/YellowBtn";
 
 export default function LandingPage() {
@@ -15,7 +15,7 @@ export default function LandingPage() {
     <div
       className="landing-page"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${landingImage})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))`,
       }}
     >
       <div className="landing-page-body">

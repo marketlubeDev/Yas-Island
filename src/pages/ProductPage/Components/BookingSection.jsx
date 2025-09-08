@@ -18,6 +18,7 @@ import Loading from "../../../components/Loading/ButtonLoading";
 import { setCheckout } from "../../../global/checkoutSlice";
 import { setPerformanceData } from "../../../global/performanceSlice";
 import getPerformance from "../../../serivces/performance/performance";
+import { truncateText } from "../../../utils/helpers";
 
 export default function BookingSection({ product, onBack }) {
   const { mutate: checkBasket, isPending } = useCheckBasket();
@@ -870,7 +871,10 @@ export default function BookingSection({ product, onBack }) {
         <div className="guest-section">
           <div className="guest-section-header-container">
             <h2 className="section-title">
-              {selectedProduct?.quantitydesc || t("booking.chooseGuests")}
+              {truncateText(
+                selectedProduct?.quantitydesc || t("booking.chooseGuests"),
+                50
+              ) || t("booking.chooseGuests")}
             </h2>
             <div
               className={`guest-section-scollable-container ${

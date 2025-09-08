@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { setCheckout } from "../../../../global/checkoutSlice";
 import { setPerformanceData } from "../../../../global/performanceSlice";
 import getPerformance from "../../../../serivces/performance/performance";
+import { truncateText } from "../../../../utils/helpers";
 
 function BookingModalMbl({
   onClose,
@@ -1056,7 +1057,10 @@ function BookingModalMbl({
           {/* Guests */}
           <div className="booking-modal__guests-section">
             <div className="booking-modal__guests-title">
-              {product?.quantitydesc || t("booking.chooseGuests")}
+              {truncateText(
+                product?.quantitydesc || t("booking.chooseGuests"),
+                50
+              ) || t("booking.chooseGuests")}
             </div>
 
             <div className="guests-box-container">

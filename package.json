@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sass": "sass --watch --poll --no-source-map sass/main.scss:styles/styles.css"
+    "sass": "sass --watch --poll --no-source-map sass/main.scss:styles/styles.css",
+    "pdf": "node scripts/export-pdf.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -53,6 +54,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "puppeteer": "^24.19.0",
     "vite": "^6.3.5"
   }
 }
