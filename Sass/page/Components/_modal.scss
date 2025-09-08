@@ -544,12 +544,9 @@
   max-height: 80vh !important;
 }
 
-// .ant-modal-root,
-// .ant-modal-root .ant-modal-wrap,
-// .ant-modal-root .ant-modal,
-// .ant-modal-root .ant-modal-mask {
-//   z-index: 1000 !important;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
+.ant-modal-root {
+  z-index: 1000 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
