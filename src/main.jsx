@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./global/store.js";
-import "./index.css";
+// import "./index.css";
 import "./../styles/styles.css";
 import "./../Sass/main.scss";
 import "./../Sass/main.css";
