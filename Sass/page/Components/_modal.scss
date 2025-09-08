@@ -544,7 +544,8 @@
   max-height: 80vh !important;
 }
 
-.ant-modal-root {
+.ant-modal-root,
+.ant-modal-root .ant-modal-wrap {
   z-index: 1000 !important;
   display: flex;
   align-items: center;
