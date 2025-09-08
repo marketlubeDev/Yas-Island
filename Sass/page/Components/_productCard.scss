@@ -82,7 +82,7 @@
     @include respond(desktop) {
       grid-template-columns: repeat(4, 1fr);
       .zoom-1-25x & {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
       .zoom-1-5x & {
         grid-template-columns: repeat(3, 1fr);
@@ -92,7 +92,7 @@
     @include respond(bigDesktop) {
       grid-template-columns: repeat(4, 1fr);
       .zoom-1-25x & {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
       .zoom-1-5x & {
         grid-template-columns: repeat(4, 1fr);
