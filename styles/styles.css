@@ -1604,7 +1604,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     grid-template-columns: repeat(4, 1fr);
   }
   .zoom-1-25x .ProductCard__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   .zoom-1-5x .ProductCard__grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1615,7 +1615,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
     grid-template-columns: repeat(4, 1fr);
   }
   .zoom-1-25x .ProductCard__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   .zoom-1-5x .ProductCard__grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1640,6 +1640,21 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .ProductCard__grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (hover: none) and (pointer: coarse) and (min-width: 830px) and (max-width: 840px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (hover: none) and (pointer: coarse) and (min-width: 1188px) and (max-width: 1200px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (hover: none) and (pointer: coarse) and (min-width: 1020px) and (max-width: 1032px) {
+  .ProductCard__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 .ProductCard__card {
@@ -8271,13 +8286,13 @@ html[dir=rtl] .back-button {
 }
 .header-logo-ar {
   margin-right: 2rem;
-  margin-top: 0.5rem;
+  margin-top: 0;
   padding-left: 0;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .header-logo-ar {
     margin-right: 3rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 }
 .header-logo-img {
@@ -8287,7 +8302,7 @@ html[dir=rtl] .back-button {
   .header-logo {
     width: 6rem;
     margin-left: 3rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 }
 .header-logo-desc {
@@ -8302,14 +8317,14 @@ html[dir=rtl] .back-button {
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .header-logo-container.payment-route {
-    height: 70px;
-    min-height: 75px;
+    height: auto;
+    min-height: calc(6rem * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .header-logo-container.payment-route {
-    height: 80px;
-    min-height: 80px;
+    height: auto;
+    min-height: calc(6rem * var(--zoom-scale));
   }
 }
 .mobile-product-page {
@@ -10827,9 +10842,24 @@ html[lang=ar] .confirm-email__otp-actions button {
 .react-tel-input {
   overflow: visible;
 }
+.email-checkout__phone-container .selected-flag,
+.react-tel-input .selected-flag {
+  background: transparent !important;
+}
+.email-checkout__phone-container .selected-flag:hover,
+.email-checkout__phone-container .flag-dropdown.open .selected-flag,
+.react-tel-input .selected-flag:hover,
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background: transparent !important;
+}
 .email-checkout__phone-container .flag-dropdown,
 .react-tel-input .flag-dropdown {
   overflow: visible;
+  background: transparent !important;
+}
+.email-checkout__phone-container .flag-dropdown:hover,
+.react-tel-input .flag-dropdown:hover {
+  background: transparent !important;
 }
 .email-checkout__phone-container .flag-dropdown .country-list,
 .react-tel-input .flag-dropdown .country-list {
@@ -10917,7 +10947,7 @@ html[lang=ar] .confirm-email__otp-actions button {
   border-radius: calc(2rem * var(--zoom-scale));
   padding: calc(10px * var(--zoom-scale)) 0;
   font-size: calc(14px * var(--zoom-scale));
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   width: 75%;
   margin-top: calc(12px * var(--zoom-scale));
@@ -13128,6 +13158,12 @@ html[lang=ar] .attraction-detail-modal__footer {
   transition: background 0.2s;
 }
 
+.booking-modal__calendar-date.today:not(.selected) {
+  background: var(--color-today-bg);
+  border: 1px solid var(--color-today-border);
+  border-radius: 50%;
+}
+
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
@@ -14695,6 +14731,18 @@ html[lang=ar] .attraction-detail-modal__footer {
   flex-direction: column;
   height: auto !important;
   max-height: 80vh !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .ant-modal-root,
+  .ant-modal-root .ant-modal-wrap,
+  .ant-modal-root .ant-modal,
+  .ant-modal-root .ant-modal-mask {
+    z-index: 1000 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* From Uiverse.io by david-mohseni */

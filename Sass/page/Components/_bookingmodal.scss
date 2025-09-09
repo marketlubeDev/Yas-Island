@@ -160,6 +160,11 @@
   margin: 0 auto;
   transition: background 0.2s;
 }
+.booking-modal__calendar-date.today:not(.selected) {
+  background: var(--color-today-bg);
+  border: 1px solid var(--color-today-border);
+  border-radius: 50%;
+}
 .booking-modal__calendar-date.selected {
   background: var(--color-bkg-clndr-date-slct-bg);
   color: var(--color-bkg-clndr-date-slct-clr);
