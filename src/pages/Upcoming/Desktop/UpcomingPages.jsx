@@ -48,8 +48,8 @@ const UpcomingPages = () => {
               </p>
             </div>
           </div>
-          {/* <Footer /> */}
         </div>
+        <Footer />
       </div>
     </div>
   );
