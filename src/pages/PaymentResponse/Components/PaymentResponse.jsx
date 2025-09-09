@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Ticket from "../../../assets/icons/ticket.svg";
+import Ticket from "../../../assets/images/yas.png";
 import Excellent from "../../../assets/icons/great.svg";
 import Average from "../../../assets/icons/smile.svg";
 import Poor from "../../../assets/icons/poor.svg";
