@@ -26,7 +26,7 @@ export default function SideBar() {
       name: "all",
       icon: dash,
       translationKey: "sidebar.all",
-      link: "/upcoming",
+      link: "/all",
     },
     {
       name: "topAttractions",

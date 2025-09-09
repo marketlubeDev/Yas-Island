@@ -32,7 +32,7 @@ function MobileNavigationTabs() {
   const [isActive, setIsActive] = useState("");
 
   useEffect(() => {
-    if (pathname === "/upcoming") {
+    if (pathname === "/all") {
       setIsActive("all");
     } else if (pathname === "/packages") {
       setIsActive("packages");
@@ -73,7 +73,7 @@ function MobileNavigationTabs() {
       activeIcon: allIconSrcActive,
       label: t("sidebar.all"),
       alt: t("sidebar.all"),
-      link: "/upcoming",
+      link: "/all",
     },
     {
       key: "attractions",

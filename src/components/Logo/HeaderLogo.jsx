@@ -44,6 +44,7 @@ export default function HeaderLogo() {
 
   const isPaymentRoute =
     location.pathname === "/" ||
+    location.pathname === "/all" ||
     location.pathname === "/upcoming" ||
     location.pathname === "/packages" ||
     location.pathname === "/hotels" ||

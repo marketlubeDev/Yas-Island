@@ -11,7 +11,7 @@ import { toast } from "sonner";
 
 export default function PaymentResponse() {
   const { t } = useTranslation();
-  const [selectedEmoji, setSelectedEmoji] = useState(null); // 'excellent', 'average', 'poor', or null
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
   const emojiRef = useRef(null);
   const navigate = useNavigate();
   const [showThankYou, setShowThankYou] = useState(false);

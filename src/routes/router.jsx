@@ -32,6 +32,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "all",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobileProductPage}
+            DesktopComponent={ProductPage}
+          />
+        ),
+      },
+      {
         path: "product/:id",
         element: (
           <ResponsiveWrapper
