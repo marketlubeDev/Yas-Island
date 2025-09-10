@@ -55,18 +55,18 @@ export default function PaymentDetails({ isCheckout }) {
     promoCode: checkout?.promoCode || "",
   });
 
-  useEffect(() => {
-    dispatch(
-      updatePersonalDetails({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        country: formData.country,
-        nationality: formData.nationality,
-        emailId: formData.email,
-        phoneNumber: formData.phoneNumber,
-      })
-    );
-  }, [formData, dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     updatePersonalDetails({
+  //       firstName: formData.firstName,
+  //       lastName: formData.lastName,
+  //       country: formData.country,
+  //       nationality: formData.nationality,
+  //       emailId: formData.email,
+  //       phoneNumber: formData.phoneNumber,
+  //     })
+  //   );
+  // }, [formData, dispatch]);
 
   const validateData = (data) => {
     const errors = [];
@@ -243,8 +243,6 @@ export default function PaymentDetails({ isCheckout }) {
             orderDetails?.items?.reduce((total, item) => {
               return total + (item?.original || 0);
             }, 0) || orderDetails?.total?.net;
-
-          
 
           dispatch(
             setCheckout({
