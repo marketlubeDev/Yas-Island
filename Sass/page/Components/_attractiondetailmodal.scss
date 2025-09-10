@@ -36,7 +36,7 @@ body.modal-open {
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-height: 100dvh;
+    max-height: 96dvh;
     overflow: hidden; // Prevent container overflow
   }
 
@@ -352,20 +352,28 @@ body.modal-open {
 
 .attraction-detail-modal .ant-modal {
   max-width: calc(420px * var(--zoom-scale));
-  width: 98vw;
-  max-height: 100dvh;
+  width: 100%;
+  max-height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   top: 0 !important;
+  transform: none !important;
+  position: relative !important;
+
+  @include respond(smallPhone) {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 // This targets the modal content area
 .attraction-detail-modal .ant-modal-content {
   background-color: var(--color-dtl-content-bg);
   border: calc(2px * var(--zoom-scale)) solid var(--color-dtl-content-border);
-  height: 100dvh;
-  max-height: 100dvh;
+  height: 100%;
+  max-height: 100%;
   overflow: hidden; // Prevent content overflow
   scrollbar-width: thin;
   border-radius: calc(20px * var(--zoom-scale));
@@ -481,10 +489,21 @@ body.modal-open {
   -webkit-overflow-scrolling: touch;
   touch-action: none;
   display: flex !important;
-  align-items: center !important;
+  align-items: flex-start !important;
   justify-content: center !important;
   background: rgba(245, 245, 245, 0.39) !important;
-  transform: translateY(0%);
+  padding-top: calc(20px * var(--zoom-scale)) !important;
+  padding-left: calc(20px * var(--zoom-scale)) !important;
+  padding-right: calc(20px * var(--zoom-scale)) !important;
+  padding-bottom: calc(20px * var(--zoom-scale)) !important;
+  box-sizing: border-box !important;
+
+  @include respond(smallPhone) {
+    padding-top: calc(16px * var(--zoom-scale)) !important;
+    padding-left: calc(16px * var(--zoom-scale)) !important;
+    padding-right: calc(16px * var(--zoom-scale)) !important;
+    padding-bottom: calc(16px * var(--zoom-scale)) !important;
+  }
 }
 
 // Ensure the modal mask also prevents scrolling
