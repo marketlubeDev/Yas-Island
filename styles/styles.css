@@ -14774,13 +14774,11 @@ html[lang=ar] .attraction-detail-modal__footer {
 
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .ant-modal-root,
-  .ant-modal-root .ant-modal-wrap,
-  .ant-modal-root .ant-modal,
   .ant-modal-root .ant-modal-mask {
     z-index: 1000 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
