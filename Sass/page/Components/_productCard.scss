@@ -653,6 +653,23 @@
   backdrop-filter: blur(16.5px) !important;
 }
 
+// iPad/iPadOS Safari fix: avoid lingering compositing layer by disabling blur on tablets
+@media screen and (min-width: 744px) and (max-width: 1180px) {
+  .product-modal .ant-modal-mask {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+// Ensure hidden mask fully disappears when modal closes
+:where(.ant-modal-root) .ant-modal-mask[style*="display: none"],
+.ant-modal-mask-hidden,
+.product-modal-wrap ~ .ant-modal-root .ant-modal-mask-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .product-modal .ant-modal-close {
   position: absolute;
   top: -3.5rem;

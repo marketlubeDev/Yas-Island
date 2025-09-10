@@ -123,6 +123,8 @@ export default function ProductCard({ productList }) {
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
+        destroyOnClose
+        maskClosable
         width={showBookingSection ? "80vw" : "82vw"}
         style={{ maxWidth: "80vw" }}
         wrapClassName="product-modal-wrap"
