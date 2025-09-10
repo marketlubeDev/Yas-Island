@@ -134,90 +134,90 @@ export default function OrderSummary({
 
     checkBasket(data, {
       onSuccess: (res) => {
-        if (res?.orderDetails?.error?.code) {
-          toast.error(t("toastMessages.somethingWentWrong"), {
+        // if (res?.orderDetails?.error?.code) {
+        //   toast.error(t("toastMessages.somethingWentWrong"), {
+        //     position: "top-center",
+        //   });
+        // } else {
+        const orderDetails = res?.orderdetails?.order;
+        const attemptingToApplyCoupon = Boolean(promoCode);
+        const items = orderDetails?.items?.map((item) => ({
+          productId: item?.productId,
+          quantity: item?.quantity,
+          performances: item?.performances ? item?.performances : [],
+          validFrom: item?.validFrom,
+          validTo: item?.validTo,
+          productMasterid:
+            productList.find((product) =>
+              product.product_variants.some(
+                (variant) => variant.productid === item?.productId
+              )
+            )?.product_masterid || "",
+        }));
+        // Calculate original amount (before discounts)
+        const originalAmount =
+          orderDetails?.items?.reduce((total, item) => {
+            return total + (item?.original || 0);
+          }, 0) || orderDetails?.total?.net;
+
+        // If a coupon is being applied but totals did not change or discount is not present, do not apply it
+        const newGross = roundToTwoDecimals(orderDetails?.total?.gross);
+        const newNet = roundToTwoDecimals(orderDetails?.total?.net);
+        const prevGross = roundToTwoDecimals(checkout?.grossAmount);
+        const prevNet = roundToTwoDecimals(checkout?.netAmount);
+        const hasDiscount = Boolean(orderDetails?.promotions?.[0]?.discount);
+
+        if (
+          attemptingToApplyCoupon &&
+          (!hasDiscount || (newGross === prevGross && newNet === prevNet))
+        ) {
+          setPromoCodeApplying(false);
+          setPromoCodeStatus("invalid");
+          setIsModalVisible(false);
+          toast.error(t("toastMessages.invalidPromoCode"), {
             position: "top-center",
           });
-        } else {
-          const orderDetails = res?.orderdetails?.order;
-          const attemptingToApplyCoupon = Boolean(promoCode);
-          const items = orderDetails?.items?.map((item) => ({
-            productId: item?.productId,
-            quantity: item?.quantity,
-            performances: item?.performances ? item?.performances : [],
-            validFrom: item?.validFrom,
-            validTo: item?.validTo,
-            productMasterid:
-              productList.find((product) =>
-                product.product_variants.some(
-                  (variant) => variant.productid === item?.productId
-                )
-              )?.product_masterid || "",
-          }));
-          // Calculate original amount (before discounts)
-          const originalAmount =
-            orderDetails?.items?.reduce((total, item) => {
-              return total + (item?.original || 0);
-            }, 0) || orderDetails?.total?.net;
-
-          // If a coupon is being applied but totals did not change or discount is not present, do not apply it
-          const newGross = roundToTwoDecimals(orderDetails?.total?.gross);
-          const newNet = roundToTwoDecimals(orderDetails?.total?.net);
-          const prevGross = roundToTwoDecimals(checkout?.grossAmount);
-          const prevNet = roundToTwoDecimals(checkout?.netAmount);
-          const hasDiscount = Boolean(orderDetails?.promotions?.[0]?.discount);
-
-          if (
-            attemptingToApplyCoupon &&
-            (!hasDiscount || (newGross === prevGross && newNet === prevNet))
-          ) {
-            setPromoCodeApplying(false);
-            setPromoCodeStatus("invalid");
-            setIsModalVisible(false);
-            toast.error(t("toastMessages.invalidPromoCode"), {
-              position: "top-center",
-            });
-            return;
-          }
-
-          dispatch(
-            setCheckout({
-              coupons: orderDetails?.coupons,
-              items: items,
-              emailId: checkout?.emailId,
-              language: currentLanguage,
-              grossAmount: orderDetails?.total?.gross,
-              netAmount: orderDetails?.total?.net,
-              taxAmount: orderDetails?.total?.tax,
-              // Store original netAmount: use calculated original amount if coupons are applied
-              originalNetAmount:
-                orderDetails?.coupons?.length > 0
-                  ? originalAmount
-                  : orderDetails?.total?.gross,
-              firstName: checkout?.firstName,
-              lastName: checkout?.lastName,
-              phoneNumber: checkout?.phoneNumber,
-              countryCode: checkout?.countryCode,
-              isTnCAgrred: checkout?.isTnCAgrred,
-              isConsentAgreed: checkout?.isConsentAgreed,
-              promotions: orderDetails?.promotions,
-            })
-          );
-          setPromoCodeApplying(false);
-          if (attemptingToApplyCoupon) {
-            setIsModalVisible(true);
-            // Clear the promo code input since it's now applied
-            promoCodeInput.reset();
-          } else if (message) {
-            toast.error(message || t("toastMessages.invalidPromoCode"), {
-              position: "top-center",
-            });
-          } else if (isRemoveOperation) {
-            toast.success(t("orderSummary.promoCodeRemoved"), {
-              position: "top-center",
-            });
-          }
+          return;
         }
+
+        dispatch(
+          setCheckout({
+            coupons: orderDetails?.coupons,
+            items: items,
+            emailId: checkout?.emailId,
+            language: currentLanguage,
+            grossAmount: orderDetails?.total?.gross,
+            netAmount: orderDetails?.total?.net,
+            taxAmount: orderDetails?.total?.tax,
+            // Store original netAmount: use calculated original amount if coupons are applied
+            originalNetAmount:
+              orderDetails?.coupons?.length > 0
+                ? originalAmount
+                : orderDetails?.total?.gross,
+            firstName: checkout?.firstName,
+            lastName: checkout?.lastName,
+            phoneNumber: checkout?.phoneNumber,
+            countryCode: checkout?.countryCode,
+            isTnCAgrred: checkout?.isTnCAgrred,
+            isConsentAgreed: checkout?.isConsentAgreed,
+            promotions: orderDetails?.promotions,
+          })
+        );
+        setPromoCodeApplying(false);
+        if (attemptingToApplyCoupon) {
+          setIsModalVisible(true);
+          // Clear the promo code input since it's now applied
+          promoCodeInput.reset();
+        } else if (message) {
+          toast.error(message || t("toastMessages.invalidPromoCode"), {
+            position: "top-center",
+          });
+        } else if (isRemoveOperation) {
+          toast.success(t("orderSummary.promoCodeRemoved"), {
+            position: "top-center",
+          });
+        }
+        // }
       },
       onError: (err) => {
         toast.error(t("toastMessages.somethingWentWrong"), {
@@ -249,27 +249,45 @@ export default function OrderSummary({
       }
       const response = await validatePromocode(promoCodeInput.rawValue);
       let message = "";
-      if (!response?.data?.coupondetails?.coupon) {
-        setIsModalVisible(false);
+      // if (!response?.data?.coupondetails?.coupon) {
+      //   setIsModalVisible(false);
+      //   if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
+      //     setPromoCodeStatus("invalid");
+      //     message = t("toastMessages.tooManyRequests");
+      //     handleBasketCheck("", message);
+      //     return;
+      //   }
 
-        if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
-          setPromoCodeStatus("invalid");
-          message = t("toastMessages.tooManyRequests");
-          handleBasketCheck("", message);
-          return;
-        }
+      //   message = t("toastMessages.invalidPromoCode");
 
-        message = t("toastMessages.invalidPromoCode");
+      //   setPromoCodeStatus("invalid");
+      //   handleBasketCheck("", message);
+      // } else {
+      //   alert("else");
+      //   setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
+      //   setPromoCodeStatus("valid");
+      //   // handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+      //   handleBasketCheck(promoCodeInput.rawValue);
+      // }
 
-        setPromoCodeStatus("invalid");
-        handleBasketCheck("", message);
-      } else {
+      if (response?.data?.isValid) {
         setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
         setPromoCodeStatus("valid");
-        handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+        handleBasketCheck(promoCodeInput.rawValue);
+      } else {
+        message = t("toastMessages.invalidPromoCode");
+        setPromoCodeStatus("invalid");
+        handleBasketCheck("", message);
       }
     } catch (error) {
+      let message = "";
       setPromoCodeApplying(false);
+      if (error.status === 429) {
+        setPromoCodeStatus("invalid");
+        message = t("toastMessages.tooManyRequests");
+        handleBasketCheck("", message);
+        return;
+      }
       toast.error(t("toastMessages.invalidPromoCode"), {
         position: "top-center",
       });
