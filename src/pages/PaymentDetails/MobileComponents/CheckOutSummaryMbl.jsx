@@ -105,6 +105,7 @@ function CheckOutSummaryMbl({
             position: "top-center",
           });
           setPromoCodeApplying(false);
+          setPromoCodeStatus("invalid");
         } else {
           const orderDetails = res?.orderdetails?.order;
           const attemptingToApplyCoupon = Boolean(promoCodeInput.rawValue);
@@ -140,6 +141,7 @@ function CheckOutSummaryMbl({
             (!hasDiscount || (newGross === prevGross && newNet === prevNet))
           ) {
             setPromoCodeApplying(false);
+            setPromoCodeStatus("invalid");
             toast.error(t("toastMessages.invalidPromoCode"), {
               position: "top-center",
             });
@@ -193,12 +195,12 @@ function CheckOutSummaryMbl({
       },
 
       onError: (err) => {
-        console.log(err, "err");
         toast.error(t("toastMessages.somethingWentWrong"), {
           position: "top-center",
         });
         setPromoCodeApplying(false);
         setRemovingPromoCode(false);
+        setPromoCodeStatus("invalid");
       },
     });
   };
@@ -227,29 +229,45 @@ function CheckOutSummaryMbl({
       }
       const response = await validatePromocode(promoCodeInput.rawValue);
 
-      if (!response?.data?.coupondetails?.coupon) {
-        let message = "";
+      // if (!response?.data?.coupondetails?.coupon) {
+      //   let message = "";
 
-        if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
-          setPromoCodeStatus("invalid");
-          message = t("toastMessages.tooManyRequests");
-          handleBasketCheck("", message);
-          return;
-        }
-        message = t("toastMessages.invalidPromoCode");
-        setPromoCodeStatus("invalid");
-        handleBasketCheck("", message);
-      } else {
+      //   if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
+      //     setPromoCodeStatus("invalid");
+      //     message = t("toastMessages.tooManyRequests");
+      //     handleBasketCheck("", message);
+      //     return;
+      //   }
+      //   message = t("toastMessages.invalidPromoCode");
+      //   setPromoCodeStatus("invalid");
+      //   handleBasketCheck("", message);
+      // } else {
+      //   setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
+      //   setPromoCodeStatus("valid");
+      //   handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+      // }
+      if (response?.data?.isValid) {
         setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
         setPromoCodeStatus("valid");
-        handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
+        handleBasketCheck(promoCodeInput.rawValue);
+      } else {
+        let message = t("toastMessages.invalidPromoCode");
+        setPromoCodeStatus("invalid");
+        handleBasketCheck("", message);
       }
     } catch (error) {
       setPromoCodeApplying(false);
+      setPromoCodeStatus("invalid");
+      let message = "";
+      if (error.status === 429) {
+        setPromoCodeStatus("invalid");
+        message = t("toastMessages.tooManyRequests");
+        handleBasketCheck("", message);
+        return;
+      }
       toast.error(t("toastMessages.invalidPromoCode"), {
         position: "top-center",
       });
-      setPromoCodeStatus("invalid");
     }
   };
 
