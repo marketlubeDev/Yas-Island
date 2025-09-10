@@ -210,7 +210,10 @@ export default function PaymentDetails({ isCheckout }) {
     }));
 
     const data = {
-      coupons: [],
+      coupons:
+        checkout?.coupons && checkout?.coupons.length > 0
+          ? [{ couponCode: checkout?.coupons[0].code }]
+          : [],
       items: items,
       capacityManagement: true,
     };
@@ -236,16 +239,34 @@ export default function PaymentDetails({ isCheckout }) {
                 )
               )?.product_masterid || "",
           }));
+          const originalAmount =
+            orderDetails?.items?.reduce((total, item) => {
+              return total + (item?.original || 0);
+            }, 0) || orderDetails?.total?.net;
+
+          
 
           dispatch(
             setCheckout({
-              ...checkout,
-              coupons: [],
+              coupons: orderDetails?.coupons,
               items: updatedItems,
+              emailId: checkout?.emailId,
+              language: currentLanguage,
               grossAmount: orderDetails?.total?.gross,
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
-              originalNetAmount: orderDetails?.total?.gross,
+              // Store original netAmount: use calculated original amount if coupons are applied
+              originalNetAmount:
+                orderDetails?.coupons?.length > 0
+                  ? originalAmount
+                  : orderDetails?.total?.gross,
+              firstName: checkout?.firstName,
+              lastName: checkout?.lastName,
+              phoneNumber: checkout?.phoneNumber,
+              countryCode: checkout?.countryCode,
+              isTnCAgrred: checkout?.isTnCAgrred,
+              isConsentAgreed: checkout?.isConsentAgreed,
+              promotions: orderDetails?.promotions,
             })
           );
           onSuccess();
