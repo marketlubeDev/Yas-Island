@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { validateQRcodeEndpoint } from "../../../config/endpoints";
 
 const useValidateQRcode = (qrcode) => {
-  console.log(qrcode, "qrcode in qrcode");
   const response = useQuery({
     queryKey: ["validateQRcode", qrcode],
     queryFn: () =>

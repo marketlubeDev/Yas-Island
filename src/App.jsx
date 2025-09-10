@@ -12,6 +12,7 @@ import { useDynamicTitle } from "./hooks/useDynamicTitle";
 import QRCodeDetector from "./components/QRCodeDetector";
 import { cleanExpiredItems } from "./global/cartSlice";
 import YasChat from "./layouts/YasChat/YasChat";
+import QrLocation from "./components/QrLocation";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function App() {
       <YasChat />
       {/* QR Code Detection - handles QR code logic */}
       <QRCodeDetector />
+      <QrLocation />
       <Home>
         <Outlet />
       </Home>
