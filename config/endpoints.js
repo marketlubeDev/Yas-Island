@@ -1,1 +1,11 @@
 export const validatePromocodeEndpoint = "/products/validatepromocode";
+export const getProductListEndpoint = "/products/getproductlist";
+export const getPerformanceEndpoint = "/products/getperformances";
+export const checkBasketEndpoint = "/products/checkbasket";
+export const emailVerificationEndpoint = "/email/verifyemail";
+export const createOrderEndpoint = "/orders/createorder";
+export const updateSurveyEndpoint = "/survey/update-survey";
+export const getTermsAndConditionEndpoint = "/TermsAndCondition";
+export const getPerformanceEndpointList = "/products/getperformanceslist";
+export const validateQRcodeEndpoint = "/qrcode/log-locations";
+export const retriveCartEndpoint = "/qrcode/retrievecart";

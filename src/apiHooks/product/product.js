@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setParks, setProducts } from "../../global/productSlice";
+import { getProductListEndpoint } from "../../../config/endpoints";
 
 const useGetProductList = () => {
   const language = useSelector((state) => state.language.currentLanguage);
@@ -10,7 +11,7 @@ const useGetProductList = () => {
 
   const response = useQuery({
     queryKey: ["productList", language],
-    queryFn: () => apiClient.get(`/products/getproductlist?lang=${language}`),
+    queryFn: () => apiClient.get(`${getProductListEndpoint}?lang=${language}`),
   });
 
   // Dispatch to Redux only when data changes

@@ -1,8 +1,9 @@
 import apiClient from "../../../config/axiosInstance";
+import { updateSurveyEndpoint } from "../../../config/endpoints";
 
 const updateSurvey = async (answer) => {
   const response = await apiClient.get(
-    `/survey/update-survey?answerText=${answer}`
+    `${updateSurveyEndpoint}?answerText=${answer}`
   );
   return response;
 };
