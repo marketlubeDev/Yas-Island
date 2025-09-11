@@ -400,7 +400,7 @@
 .product-subheading {
   color: var(--text-color) !important;
   @include respond(smallPhone) {
-    font-size: 20px !important;
+    font-size: calc(20px * var(--zoom-scale)) !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -416,7 +416,7 @@
 
 .product-list-item {
   @include respond(smallPhone) {
-    font-size: 14px !important;
+    font-size: calc(14px * var(--zoom-scale)) !important;
     font-style: normal;
     line-height: normal;
     margin: 5px 0px !important;

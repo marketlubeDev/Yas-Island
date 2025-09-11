@@ -1382,7 +1382,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (max-width: 575.98px) {
   .product-subheading {
-    font-size: 20px !important;
+    font-size: calc(20px * var(--zoom-scale)) !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -1398,7 +1398,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 @media only screen and (max-width: 575.98px) {
   .product-list-item {
-    font-size: 14px !important;
+    font-size: calc(14px * var(--zoom-scale)) !important;
     font-style: normal;
     line-height: normal;
     margin: 5px 0px !important;
