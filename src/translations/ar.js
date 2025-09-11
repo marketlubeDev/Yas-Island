@@ -340,7 +340,7 @@ export const ar = {
     promoCodeSavings: "توفير رمز الخصم :",
     removePromoCode: "إزالة رمز الخصم",
     promoCodeRemoved: "تم إزالة رمز الخصم بنجاح",
-    couponApplied: "إزالة الكوبون",
+    couponApplied: "تم تطبيق الكوبون",
   },
   toastMessages: {
     invalidEmail: "يرجى إدخال بريد إلكتروني صالح",

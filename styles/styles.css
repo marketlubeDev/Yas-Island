@@ -2829,6 +2829,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   align-items: center;
   justify-content: center;
   font-size: calc(13px * var(--zoom-scale));
+  font-weight: 700;
   cursor: pointer;
   border-radius: 50%;
   color: var(--color-base-date-clr);
@@ -13150,6 +13151,7 @@ html[lang=ar] .attraction-detail-modal__footer {
   width: calc(28px * var(--zoom-scale));
   height: calc(28px * var(--zoom-scale));
   font-size: calc(13px * var(--zoom-scale));
+  font-weight: 700;
   color: var(--color-bkg-clndr-date-clr);
   cursor: pointer;
   margin: 0 auto;
