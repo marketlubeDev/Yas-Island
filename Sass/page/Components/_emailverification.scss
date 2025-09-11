@@ -60,10 +60,8 @@
   box-shadow: var(--color-email-form-box-shadow);
   padding: calc(38px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale))
     calc(34px * var(--zoom-scale)) calc(1.2rem * var(--zoom-scale)); // Consistent 1.2rem horizontal padding
-  margin-top: calc(24px * var(--zoom-scale));
   height: 100%;
   width: 100%;
-  margin-top: calc(-1rem * var(--zoom-scale));
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -103,7 +101,7 @@
   color: var(--color-email-form-label);
   font-weight: 600;
   margin-bottom: calc(18px * var(--zoom-scale));
-  margin-top: calc(100px * var(--zoom-scale));
+  margin-top: 0; // Remove extra top offset causing visual imbalance
   // margin-left: -10px;
   display: block;
 }
