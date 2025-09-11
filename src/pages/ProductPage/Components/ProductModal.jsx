@@ -157,7 +157,7 @@ export default function ProductModal({
                 {selectedProduct?.product_images?.image_urls?.map(
                   (image, index) => (
                     <SwiperSlide key={index}>
-                      <img src={image} alt={`Product ${index + 1}`} />
+                      <img src={image} alt={selectedProduct?.product_title} />
                     </SwiperSlide>
                   )
                 )}
