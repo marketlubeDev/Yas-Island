@@ -10,8 +10,14 @@ body.modal-open {
 
 .attraction-detail-modal {
   width: 100%;
-  max-width: calc(420px * var(--zoom-scale));
-  max-height: 100dvh; // Use dynamic viewport height like booking modal
+  /* Cap modal size by the smallest available dimension */
+  --attraction-modal-max-side: min(
+    100dvh,
+    100vw,
+    calc(420px * var(--zoom-scale))
+  );
+  max-width: var(--attraction-modal-max-side);
+  max-height: var(--attraction-modal-max-side); // Use min side to bound height
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -24,12 +30,12 @@ body.modal-open {
 
   @include respond(tablets) {
     width: 90vw !important;
-    max-width: 80vw !important;
+    max-width: var(--attraction-modal-max-side) !important;
   }
 
   @include respond(bigTablets) {
     width: 90vw !important;
-    max-width: 80vw !important;
+    max-width: var(--attraction-modal-max-side) !important;
   }
 
   &__container {
@@ -364,9 +370,10 @@ body.modal-open {
 }
 
 .attraction-detail-modal .ant-modal {
-  max-width: calc(420px * var(--zoom-scale));
+  /* Share the same bounding logic as the container */
   width: 100%;
-  max-height: 100%;
+  max-width: var(--attraction-modal-max-side);
+  max-height: var(--attraction-modal-max-side);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -376,8 +383,8 @@ body.modal-open {
 
   @include respond(smallPhone) {
     width: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: var(--attraction-modal-max-side);
+    max-height: var(--attraction-modal-max-side);
   }
 }
 
