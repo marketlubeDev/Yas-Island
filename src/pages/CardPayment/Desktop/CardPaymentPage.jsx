@@ -8,7 +8,7 @@ export default function CardPaymentPage() {
   const navigate = useNavigate();
   const [isDesktopViewport, setIsDesktopViewport] = useState(() => {
     if (typeof window === "undefined") return true;
-    return window.innerWidth > 1024;
+    return window.innerWidth >= 992;
   });
 
   // Check if state exists
@@ -53,7 +53,7 @@ export default function CardPaymentPage() {
   // Show header only on desktop; update on resize
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktopViewport(window.innerWidth > 1024);
+      setIsDesktopViewport(window.innerWidth >= 992);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
