@@ -333,7 +333,7 @@ export const en = {
     promoCodeSavings: "Promo Code Savings :",
     removePromoCode: "Remove Promo Code",
     promoCodeRemoved: "Promo Code Removed Successfully",
-    couponApplied: "Remove Coupon",
+    couponApplied: "Coupon Applied",
   },
   toastMessages: {
     invalidEmail: "Please Enter A Valid Email Address",
