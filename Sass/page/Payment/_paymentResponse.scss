@@ -11,8 +11,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // min-height: 100vh;
-  // width: 100%;
   background: var(--color-resend-btn-bg);
   width: 90%;
   padding: 24px;
@@ -23,27 +21,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
-
-    .ticket-image {
-      width: calc(100px * var(--zoom-scale));
-      height: calc(180px * var(--zoom-scale));
-      object-fit: cover;
-      border: 2px dashed #b3b3ff;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      background: #f6f6ff;
-    }
 
     .ticket-message {
-      margin-top: 8px;
       text-align: center;
-      border-radius: 6px;
-      padding: 6px 12px;
       color: var(--color-base-text);
       font-size: calc(1.2rem * var(--zoom-scale));
       font-weight: 400;
-      // text-transform: lowercase;
 
       @include respond(bigDesktop) {
         font-size: calc(1rem * var(--zoom-scale));
@@ -62,7 +45,7 @@
 
   .divider {
     width: 98%;
-    margin: 20px 0 20px 0;
+    margin: 20px 0;
     border: none;
     border-top: 2px solid var(--color-base-text);
   }
@@ -78,10 +61,6 @@
       margin-bottom: 18px;
       text-align: center;
       color: var(--color-base-text);
-      text-align: center;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
 
       @include respond(bigDesktop) {
         font-size: calc(1.1rem * var(--zoom-scale));
@@ -104,63 +83,32 @@
       height: calc(80px * var(--zoom-scale));
       border-radius: 50%;
       border: 2.597px solid #d3b8ff;
-
       display: flex;
       align-items: center;
       justify-content: center;
       background: #fff;
       margin-bottom: 12px;
-      box-sizing: border-box;
       box-shadow: 0 0 0 2px #e6eaff;
     }
 
-    .emoji.green {
-      padding: 15px;
-      background: #e1f1ff;
-    }
-
-    .emoji.yellow {
-      padding: 15px;
-      background: #e1f1ff;
-    }
-
+    .emoji.green,
+    .emoji.yellow,
     .emoji.red {
       padding: 15px;
       background: #e1f1ff;
     }
 
     .label {
-      margin-top: 4px;
-      font-size: calc(16px * var(--zoom-scale));
+      font-size: calc(1.125rem * var(--zoom-scale));
       text-align: center;
       font-weight: 500;
       color: var(--color-base-text);
-      text-align: center;
-      // font-family: Urbanist;
-      font-size: calc(1.125rem * var(--zoom-scale));
-      font-style: normal;
 
       @include respond(bigDesktop) {
         font-size: calc(1rem * var(--zoom-scale));
       }
     }
   }
-}
-
-.feedback-text {
-  color: #594f67;
-  font-size: calc(17px * var(--zoom-scale));
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  // text-transform: lowercase;
-}
-
-.payment-response {
-  // min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .thankyou-container {
@@ -181,8 +129,6 @@
   margin-bottom: 24px;
   box-shadow: 0 2px 8px rgba(100, 100, 200, 0.08);
 
-  // Remove the old border property
-
   &::before {
     content: "";
     position: absolute;
@@ -193,6 +139,7 @@
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     z-index: 0;
   }
@@ -213,5 +160,4 @@
   color: #5a5363;
   font-weight: 600;
   text-align: center;
-  margin-top: 0;
 }

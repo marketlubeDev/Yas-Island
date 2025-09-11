@@ -7919,22 +7919,9 @@ html[dir=rtl] .back-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-}
-.payment-response .ticket-section .ticket-image {
-  width: calc(100px * var(--zoom-scale));
-  height: calc(180px * var(--zoom-scale));
-  object-fit: cover;
-  border: 2px dashed #b3b3ff;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  background: #f6f6ff;
 }
 .payment-response .ticket-section .ticket-message {
-  margin-top: 8px;
   text-align: center;
-  border-radius: 6px;
-  padding: 6px 12px;
   color: var(--color-base-text);
   font-size: calc(1.2rem * var(--zoom-scale));
   font-weight: 400;
@@ -7955,7 +7942,7 @@ html[dir=rtl] .back-button {
 }
 .payment-response .divider {
   width: 98%;
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
   border: none;
   border-top: 2px solid var(--color-base-text);
 }
@@ -7970,10 +7957,6 @@ html[dir=rtl] .back-button {
   margin-bottom: 18px;
   text-align: center;
   color: var(--color-base-text);
-  text-align: center;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-response .feedback-section .feedback-title {
@@ -8000,49 +7983,24 @@ html[dir=rtl] .back-button {
   justify-content: center;
   background: #fff;
   margin-bottom: 12px;
-  box-sizing: border-box;
   box-shadow: 0 0 0 2px #e6eaff;
 }
-.payment-response .feedback-section .emoji.green {
-  padding: 15px;
-  background: #e1f1ff;
-}
-.payment-response .feedback-section .emoji.yellow {
-  padding: 15px;
-  background: #e1f1ff;
-}
+.payment-response .feedback-section .emoji.green,
+.payment-response .feedback-section .emoji.yellow,
 .payment-response .feedback-section .emoji.red {
   padding: 15px;
   background: #e1f1ff;
 }
 .payment-response .feedback-section .label {
-  margin-top: 4px;
-  font-size: calc(16px * var(--zoom-scale));
+  font-size: calc(1.125rem * var(--zoom-scale));
   text-align: center;
   font-weight: 500;
   color: var(--color-base-text);
-  text-align: center;
-  font-size: calc(1.125rem * var(--zoom-scale));
-  font-style: normal;
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .payment-response .feedback-section .label {
     font-size: calc(1rem * var(--zoom-scale));
   }
-}
-
-.feedback-text {
-  color: #594f67;
-  font-size: calc(17px * var(--zoom-scale));
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.payment-response {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .thankyou-container {
@@ -8072,6 +8030,7 @@ html[dir=rtl] .back-button {
   background: linear-gradient(to right, #d3b8ff, #66aae7);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   z-index: 0;
 }
@@ -8090,7 +8049,6 @@ html[dir=rtl] .back-button {
   color: #5a5363;
   font-weight: 600;
   text-align: center;
-  margin-top: 0;
 }
 
 .promo-modal-content {
