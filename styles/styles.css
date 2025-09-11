@@ -2928,12 +2928,12 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .section-title {
-    font-size: 1.5rem !important;
+    font-size: calc(1.5rem * var(--zoom-scale)) !important;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .section-title {
-    font-size: 1.5rem !important;
+    font-size: calc(1.5rem * var(--zoom-scale)) !important;
   }
 }
 

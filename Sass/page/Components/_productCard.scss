@@ -1445,11 +1445,11 @@
   text-align: center; /* center align section titles globally */
 
   @include respond(desktop) {
-    font-size: 1.5rem !important;
+    font-size: calc(1.5rem * var(--zoom-scale)) !important;
   }
 
   @include respond(bigDesktop) {
-    font-size: 1.5rem !important;
+    font-size: calc(1.5rem * var(--zoom-scale)) !important;
   }
 }
 
