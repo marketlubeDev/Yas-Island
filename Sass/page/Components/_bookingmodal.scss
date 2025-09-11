@@ -10,6 +10,10 @@
   justify-content: center;
   overflow: hidden; /* Prevent any overflow on overlay */
   touch-action: none; /* Prevent touch scrolling on overlay */
+  /* Dim and blur the page behind the modal */
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .booking-modal {

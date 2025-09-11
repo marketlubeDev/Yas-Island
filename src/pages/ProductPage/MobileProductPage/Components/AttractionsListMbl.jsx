@@ -193,12 +193,7 @@ const AttractionsListMbl = ({ productList, isLoading = false }) => {
         footer={null}
         closable={false}
         style={{ maxHeight: "100vh", overflow: "hidden" }}
-        // closeIcon={
-        //   <span className="custom-modal-close">
-        //     <img src={isDarkMode ? closeIconInverter : closeIcon} alt="close" />
-        //   </span>
-        // }
-        width="100%"
+        width="fitContent"
         className={
           modalType === "attraction"
             ? "attraction-detail-modal"

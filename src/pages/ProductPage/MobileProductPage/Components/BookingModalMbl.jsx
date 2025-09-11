@@ -969,7 +969,6 @@ function BookingModalMbl({
   return (
     <div
       className="booking-modal-overlay"
-      style={{ background: "var(--color-bkg-body-bg)" }}
       onScroll={(e) => e.preventDefault()}
       onTouchMove={(e) => {
         // Allow touch move inside modal content, prevent on overlay
