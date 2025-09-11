@@ -47,7 +47,7 @@ const useQRCodeFromURL = () => {
     const idFromRoot = isRootIdCandidate ? rootSegment : null;
 
     if (qrlocation) {
-      // setQrCode(qrlocation);
+      setQrCode(qrlocation);
       // setHasQRCode(true);
     } else if (productIdFromPath) {
       setQrCode(productIdFromPath);
