@@ -19,7 +19,7 @@ export const ar = {
     thisTicketIsExpired: "هذا التذكرة منتهية",
     vat: "ضريبة القيمة المضافة",
     tax: "ضريبة",
-    aed: "درهم",
+    aed: "AED",
   },
   noResults: {
     title: "لا توجد معالم متاحة",
