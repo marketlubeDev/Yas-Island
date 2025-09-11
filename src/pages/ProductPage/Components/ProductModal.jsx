@@ -189,7 +189,7 @@ export default function ProductModal({
                   </h3>
                   <p className="tax">
                     {defaultVariant(selectedProduct)?.net_amount} +{" "}
-                    {defaultVariant(selectedProduct)?.vat}
+                    {defaultVariant(selectedProduct)?.vat} +{" "}
                     {t("common.netAndTax")}
                   </p>
                 </div>
