@@ -158,7 +158,6 @@ export default function BookingSection({ product, onBack }) {
         setAvailableDates(getAvailableDates(product));
       }
     } catch (error) {
-      console.log(error);
       toast.error(t("toastMessages.somethingWentWrong"), {
         position: "top-center",
       });
@@ -524,7 +523,6 @@ export default function BookingSection({ product, onBack }) {
       });
     });
 
-    console.log("currentItems", currentItems);
 
     // For checkout, include existing cart items + current items
     let allItems = currentItems;
@@ -544,7 +542,6 @@ export default function BookingSection({ product, onBack }) {
       allItems = [...existingCartItems, ...currentItems];
     }
 
-    console.log("allItems", allItems);
 
     const data = {
       coupons: [],
@@ -565,7 +562,6 @@ export default function BookingSection({ product, onBack }) {
           res?.orderDetails?.error?.code &&
           res?.orderDetails?.error?.code !== ""
         ) {
-          console.log("res", res?.orderDetails?.error?.code);
           toast.error(t("toastMessages.somethingWentWrong"), {
             position: "top-center",
           });
@@ -704,7 +700,6 @@ export default function BookingSection({ product, onBack }) {
       },
       onError: (err) => {
         setActiveAction("");
-        console.log(err);
         let message =
           type === "cart"
             ? t("toastMessages.failedToAddToCart")

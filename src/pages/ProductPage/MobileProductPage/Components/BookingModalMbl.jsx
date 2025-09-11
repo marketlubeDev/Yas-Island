@@ -180,7 +180,6 @@ function BookingModalMbl({
         setAvailableDates(getAvailableDates(product));
       }
     } catch (error) {
-      console.log(error);
       toast.error(sanitizeText(t("toastMessages.somethingWentWrong")), {
         position: "top-center",
       });
@@ -654,7 +653,6 @@ function BookingModalMbl({
       },
       onError: (err) => {
         setActiveAction("");
-        console.log(err);
         toast.error(
           sanitizeText(t("toastMessages.thisProductIsCurrentlyNotAvailable")),
           {

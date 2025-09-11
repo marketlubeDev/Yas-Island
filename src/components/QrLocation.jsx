@@ -26,7 +26,7 @@ const QrLocation = () => {
               JSON.stringify(res.data)
             );
           } catch (e) {
-            console.log("Failed to persist QR session:", e);
+            console.error("Failed to persist QR session:", e);
           }
         }
       } catch (err) {

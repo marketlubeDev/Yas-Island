@@ -97,7 +97,6 @@ function PromoCodeMbl({ onClose }) {
         }
       },
       onError: (err) => {
-        console.log(err, "err");
         toast.error(t("toastMessages.somethingWentWrong"), {
           position: "top-center",
         });

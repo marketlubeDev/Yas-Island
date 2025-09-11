@@ -292,7 +292,6 @@ function PaymentDetailsMobile() {
         toast.error(t("toastMessages.checkoutFailed"), {
           position: "top-center",
         });
-        console.log("err", err);
       },
     });
   };

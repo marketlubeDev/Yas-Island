@@ -31,7 +31,7 @@ function EmailMbl() {
         try {
           sessionStorage.setItem("yasIsland_backup_email", emailValue);
         } catch (e) {
-          console.log("Failed to store email backup in sessionStorage:", e);
+          console.error("Failed to store email backup in sessionStorage:", e);
         }
 
         navigate("/otp-confirmation", {

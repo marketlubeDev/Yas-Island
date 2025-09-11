@@ -20,7 +20,7 @@ export const useMobileEmailPersistence = () => {
         sessionStorage.setItem("yasIsland_backup_email", email);
         localStorage.setItem("yasIsland_mobile_email", email);
       } catch (e) {
-        console.log("Failed to store email backup:", e);
+        console.error("Failed to store email backup:", e);
       }
     }
   }, [email]);
@@ -63,13 +63,13 @@ export const useMobileEmailPersistence = () => {
               sessionStorage.setItem("yasIsland_backup_email", foundEmail);
               localStorage.setItem("yasIsland_mobile_email", foundEmail);
             } catch (e) {
-              console.log("Failed to store restored email:", e);
+              console.error("Failed to store restored email:", e);
             }
 
             break;
           }
         } catch (e) {
-          console.log(`Error checking source ${i}:`, e);
+          console.error(`Error checking source ${i}:`, e);
           continue;
         }
       }

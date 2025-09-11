@@ -71,7 +71,7 @@ export default function VerificationBox({ email }) {
         });
       },
       onError: (error) => {
-        console.log(error, "error>>");
+        console.error(error);
       },
     });
   };

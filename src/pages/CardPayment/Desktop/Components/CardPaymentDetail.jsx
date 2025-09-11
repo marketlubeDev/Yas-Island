@@ -93,7 +93,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           body.style.display = "";
         }
       } catch (error) {
-        console.log("Error applying theme to iframe:", error.message);
+        console.error(error);
       }
     };
 
