@@ -523,7 +523,6 @@ export default function BookingSection({ product, onBack }) {
       });
     });
 
-
     // For checkout, include existing cart items + current items
     let allItems = currentItems;
     if (type === "checkout") {
@@ -541,7 +540,6 @@ export default function BookingSection({ product, onBack }) {
 
       allItems = [...existingCartItems, ...currentItems];
     }
-
 
     const data = {
       coupons: [],

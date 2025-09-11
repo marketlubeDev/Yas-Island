@@ -1343,6 +1343,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(13px * var(--zoom-scale)); // slightly smaller to fit
+  font-weight: 700;
   cursor: pointer;
   border-radius: 50%;
   color: var(--color-base-date-clr);
