@@ -5,6 +5,7 @@ const useQRCodeFromURL = () => {
   const location = useLocation();
   const [qrCode, setQrCode] = useState(null);
   const [hasQRCode, setHasQRCode] = useState(false);
+  const [loglocation, setLoglocation] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -48,6 +49,7 @@ const useQRCodeFromURL = () => {
 
     if (qrlocation) {
       setQrCode(qrlocation);
+      setLoglocation(true);
       // setHasQRCode(true);
     } else if (productIdFromPath) {
       setQrCode(productIdFromPath);
@@ -65,6 +67,7 @@ const useQRCodeFromURL = () => {
     qrCode,
     hasQRCode,
     isQRCodeInURL: hasQRCode,
+    loglocation,
   };
 };
 

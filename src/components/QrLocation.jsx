@@ -4,10 +4,10 @@ import apiClient from "../../config/axiosInstance";
 import { validateQRcodeEndpoint } from "../../config/endpoints";
 
 const QrLocation = () => {
-  const { qrCode } = useQRCodeFromURL();
+  const { qrCode, loglocation } = useQRCodeFromURL();
 
   useEffect(() => {
-    if (!qrCode) return;
+    if (!qrCode || !loglocation) return;
 
     const fetchValidation = async () => {
       try {
@@ -35,7 +35,7 @@ const QrLocation = () => {
     };
 
     fetchValidation();
-  }, [qrCode]);
+  }, [qrCode, loglocation]);
 
   return null;
 };
