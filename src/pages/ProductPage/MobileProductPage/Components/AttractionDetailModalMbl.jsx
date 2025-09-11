@@ -8,7 +8,6 @@ import {
   setProductId,
   setStartDate,
 } from "../../../../global/performanceSlice";
-import formatDate from "../../../../utils/dateFormatter";
 
 function AttractionDetailModalMbl({
   attraction,
@@ -123,6 +122,10 @@ function AttractionDetailModalMbl({
         <span className="attraction-detail-modal__title">
           {attraction?.product_title}
         </span>
+        <span
+          className="attraction-detail-modal__header-spacer"
+          aria-hidden="true"
+        ></span>
       </div>
       <div className="attraction-detail-modal__body">
         <img
