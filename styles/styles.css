@@ -1379,6 +1379,7 @@ html[dir=rtl] .side-bar-item-hidden-bg {
 
 .product-subheading {
   color: var(--text-color) !important;
+  font-size: calc(22px * var(--zoom-scale)) !important;
 }
 @media only screen and (max-width: 575.98px) {
   .product-subheading {
