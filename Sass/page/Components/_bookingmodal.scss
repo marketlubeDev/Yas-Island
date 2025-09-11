@@ -268,7 +268,7 @@
 
 .booking-modal__guests-title {
   font-size: calc(19px * var(--zoom-scale));
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-bkg-guest-title-clr);
   margin-bottom: calc(8px * var(--zoom-scale));
   text-align: center;
@@ -492,7 +492,7 @@
   .guests-summary {
     position: relative;
     font-size: calc(15px * var(--zoom-scale));
-    font-weight: 500;
+    font-weight: 700;
     color: var(--color-bkg-guest-summary-clr);
     margin-bottom: 0;
     text-align: center;
@@ -516,7 +516,7 @@
     padding: 0 calc(18px * var(--zoom-scale));
     font-size: calc(15px * var(--zoom-scale));
     color: var(--color-bkg-body-text);
-    font-weight: 500;
+    font-weight: 700;
     min-height: calc(44px * var(--zoom-scale));
     gap: calc(10px * var(--zoom-scale));
 
