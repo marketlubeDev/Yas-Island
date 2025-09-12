@@ -985,11 +985,27 @@ export default function BookingSection({ product, onBack }) {
                                       setGuests((prev) => {
                                         const currentValue =
                                           prev[productId].quantity;
+                                        const maxQuantity =
+                                          variantData?.max_quantity || 100;
+                                        const increment =
+                                          variantData?.increment_number || 1;
+
+                                        // If already at maximum, show a validation toast and do not change
+                                        if (currentValue >= maxQuantity) {
+                                          toast.error(
+                                            t("cart.maxQuantityExceeded", {
+                                              maxQuantity,
+                                            }),
+                                            { position: "top-center" }
+                                          );
+                                          return prev;
+                                        }
+
                                         const newValue = Math.min(
-                                          variantData?.max_quantity || 100,
-                                          currentValue +
-                                            (variantData?.increment_number || 1)
+                                          maxQuantity,
+                                          currentValue + increment
                                         );
+
                                         return {
                                           ...prev,
                                           [productId]: {
@@ -999,11 +1015,7 @@ export default function BookingSection({ product, onBack }) {
                                         };
                                       })
                                     }
-                                    disabled={
-                                      !isAvailable ||
-                                      guestData.quantity >=
-                                        (variantData?.max_quantity || 100)
-                                    }
+                                    disabled={!isAvailable}
                                     style={{
                                       opacity: !isAvailable ? 0.5 : 1,
                                       cursor: !isAvailable
