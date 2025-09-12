@@ -82,6 +82,26 @@ function CardPaymentMobile() {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
+        // Strictly trust only messages from known, allowed origins
+        const getBackendOrigin = () => {
+          try {
+            return new URL(import.meta.env.VITE_BASE_URL).origin;
+          } catch (_) {
+            return "";
+          }
+        };
+        const allowedOrigins = new Set(
+          [
+            getBackendOrigin(),
+            "https://checkout.payfort.com",
+            "https://sbcheckout.payfort.com",
+          ].filter(Boolean)
+        );
+        const eventOrigin = event?.origin || "";
+        if (!allowedOrigins.has(eventOrigin)) {
+          return;
+        }
+
         // Handle different payment statuses
         if (event.data) {
           if (

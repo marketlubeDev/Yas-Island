@@ -125,6 +125,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       form.style.display = "none";
       form.id = "payfort-form";
 
+      console.log(orderData.tokenizationResponse, "formParameters");
+
       const parameters = {
         ...orderData.tokenizationResponse.formParameters,
         language: currentLanguage,
@@ -147,6 +149,23 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       // Listen for messages from the iframe
       const handleMessage = (event) => {
         const data = event?.data;
+        console.log(event, "event");
+
+        // Strictly trust only messages from known, allowed origins
+        const getBackendOrigin = () => {
+          try {
+            return new URL(import.meta.env.VITE_BASE_URL).origin;
+          } catch (_) {
+            return "";
+          }
+        };
+
+        const allowedOrigins = new Set([getBackendOrigin()].filter(Boolean));
+
+        const eventOrigin = event?.origin || "";
+        if (!allowedOrigins.has(eventOrigin)) {
+          return;
+        }
 
         if (!data) return;
 
