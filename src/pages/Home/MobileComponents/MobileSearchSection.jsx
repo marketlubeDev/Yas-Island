@@ -8,8 +8,7 @@ import {
   setSearchQuery,
 } from "../../../global/productSlice";
 
-import searchIcon from "../../../assets/icons/lens.svg";
-import invertedSearchIcon from "../../../assets/icons/invertedlens.svg";
+import CommonIcons from "../../../assets/icons/CommonIcons.jsx";
 import { truncateText } from "../../../utils/helpers";
 
 function MobileSearchSection() {
@@ -23,7 +22,6 @@ function MobileSearchSection() {
   const { parks, currentPark, currentSort, searchQuery } = useSelector(
     (state) => state.product
   );
-  const searchIconSrc = isDarkMode ? invertedSearchIcon : searchIcon;
   const { language } = useLanguage();
 
   const sortOptions = [
@@ -124,7 +122,12 @@ function MobileSearchSection() {
           onChange={handleSearch}
         />
         <button>
-          <img src={searchIconSrc} alt="Search" />
+          <CommonIcons
+            type="search"
+            width="20px"
+            height="20px"
+            color={isDarkMode ? "#FFAD33" : "#231942"}
+          />
         </button>
       </div>
       <div className="mobile-top-search-section__filters">

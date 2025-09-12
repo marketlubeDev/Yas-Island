@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { truncateText } from "../../../utils/helpers";
 import { useNavigate } from "react-router-dom";
-import colorblindIcon from "../../../assets/icons/colorblindness.svg";
-import zoomIcon from "../../../assets/icons/zoom.svg";
+import ColorBlindIcon from "../../../assets/icons/ColorBlindIcon.jsx";
+import CommonIcons from "../../../assets/icons/CommonIcons.jsx";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { setZoomLevel, setColorMode } from "../../../global/accessibilitySlice";
@@ -123,11 +123,10 @@ function AccessibilityPopUpMbl() {
         style={{ cursor: "pointer", touchAction: "pan-y" }}
       >
         <div className="accessibility-popup-icon-circle">
-          <img
-            src={colorblindIcon}
-            alt="Color blindness"
-            width={32}
-            height={32}
+          <ColorBlindIcon
+            width="32px"
+            height="32px"
+            color={isDarkMode ? "#FFAD33" : "#231942"}
           />
         </div>
         <div className="accessibility-popup-label">
@@ -210,16 +209,25 @@ function AccessibilityPopUpMbl() {
       </div>
       <div
         ref={zoomRef}
-        className={`accessibility-popup-option ${
-          zoomLevel !== 1 ? "active" : ""
-        }`}
+        className={`accessibility-popup-option active`}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={() => onTouchEnd("zoom")}
-        style={{ cursor: "pointer", touchAction: "pan-y" }}
+        style={{
+          cursor: "pointer",
+          touchAction: "pan-y",
+          background: "var(--color-popup-box-bg)",
+          border: "1px solid var(--color-popup-box-border)",
+          boxShadow: "var(--color-popup-box-shadow)",
+        }}
       >
         <div className="accessibility-popup-icon-circle">
-          <img src={zoomIcon} alt="Zoom mode" width={32} height={32} />
+          <CommonIcons
+            type="search"
+            width="32px"
+            height="32px"
+            color={isDarkMode ? "#FFAD33" : "#231942"}
+          />
         </div>
         <div className="accessibility-popup-label">
           {t("accessibility.zoomMode") || "Zoom mode"}

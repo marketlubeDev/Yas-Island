@@ -1,8 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 // import "./_search.scss";
-import CommonIcons from "../../../assets/icons/lens.svg";
-import invertLens from "../../../assets/icons/invertLens.svg";
+import CommonIcons from "../../../assets/icons/CommonIcons.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchQuery } from "../../../global/productSlice";
 
@@ -19,15 +18,14 @@ export default function Search() {
 
   return (
     <div className="search base-filter" style={{ fontSize }}>
-      <img
-        src={isDarkMode ? invertLens : CommonIcons}
-        alt="search"
-        width="22px"
-        height="22px"
-        style={{
-          marginRight: "10px",
-        }}
-      />
+      <div style={{ marginRight: "10px" }}>
+        <CommonIcons
+          type="search"
+          width="22px"
+          height="22px"
+          color={isDarkMode ? "#FFAD33" : "#231942"}
+        />
+      </div>
       <input
         type="text"
         placeholder={t("common.searchPlaceholder")}

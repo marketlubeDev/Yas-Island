@@ -116,14 +116,14 @@
   cursor: pointer;
 
   &.active {
-    border: 2px solid #007bff;
+    border: 2px solid var(--color-base-accessibility-modal-card-border);
     border-radius: 8px;
     background-color: var(--color-base-accessibility-modal-card-bg);
   }
 }
 
 .option-card:hover {
-  border-color: #1976d2;
+  border-color: var(--color-base-accessibility-modal-card-border);
 }
 
 .option-icon {
@@ -139,7 +139,7 @@
   justify-content: center;
 
   &.active {
-    border: 2px solid #007bff;
+    border: 2px solid var(--color-base-accessibility-modal-card-border);
     border-radius: 8px;
     padding: 8px;
   }

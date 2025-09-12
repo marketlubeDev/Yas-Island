@@ -8,8 +8,8 @@ import {
   setColorMode,
 } from "../../../global/accessibilitySlice";
 
-import Invert from "../../../assets/icons/invert.svg";
-import Zoom from "../../../assets/icons/lens.svg";
+import ColorBlindIcon from "../../../assets/icons/ColorBlindIcon.jsx";
+import CommonIcons from "../../../assets/icons/CommonIcons.jsx";
 import closeIcon from "../../../assets/icons/close.svg";
 
 // import "./AccessibilityModal.css";
@@ -82,7 +82,11 @@ export default function AccessibilityModal({ isOpen, onClose }) {
             onClick={handleDarkModeClick}
           >
             <div className="option-icon">
-              <img src={Invert} alt={t("accessibility.colorBlindness")} />
+              <ColorBlindIcon
+                width="32px"
+                height="32px"
+                color={isDarkMode ? "#FFAD33" : "#231942"}
+              />
             </div>
             <p>{t("accessibility.colorBlindness")}</p>
             <div
@@ -160,12 +164,28 @@ export default function AccessibilityModal({ isOpen, onClose }) {
           </div>
 
           <div
-            className={`option-card ${zoomLevel !== 1 ? "active" : ""}`}
+            className={`option-card active`}
             onClick={handleZoomCardClick}
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              backgroundColor: "var(--color-base-accessibility-modal-card-bg)",
+              border:
+                "2px solid var(--color-base-accessibility-modal-card-border)",
+            }}
           >
-            <div className="option-icon">
-              <img src={Zoom} alt={t("accessibility.zoomMode")} />
+            <div
+              className="option-icon"
+              style={{
+                borderColor:
+                  "var(--color-base-accessibility-modal-card-border)",
+              }}
+            >
+              <CommonIcons
+                type="search"
+                width="32px"
+                height="32px"
+                color={isDarkMode ? "#FFAD33" : "#231942"}
+              />
             </div>
             <p>{t("accessibility.zoomMode")}</p>
             <div
