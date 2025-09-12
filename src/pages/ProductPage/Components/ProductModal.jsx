@@ -188,8 +188,16 @@ export default function ProductModal({
                     {defaultVariant(selectedProduct)?.gross}
                   </h3>
                   <p className="tax">
-                    {defaultVariant(selectedProduct)?.net_amount} +{"    "}
-                    {defaultVariant(selectedProduct)?.vat}
+                    <span> {defaultVariant(selectedProduct)?.net_amount}</span>
+                    <span
+                      style={{ margin: "0rem .4rem", marginRight: ".3rem" }}
+                    >
+                      +
+                    </span>
+                    <span style={{ marginRight: "0.2rem" }}>
+                      {" "}
+                      {defaultVariant(selectedProduct)?.vat}
+                    </span>
                     {t("common.netAndTax")}
                   </p>
                 </div>
