@@ -758,7 +758,7 @@ body,
   content: "";
   position: absolute;
   top: -44%;
-  left: -10%;
+  left: -9.7%;
   width: 40px;
   height: 28px;
   background-color: var(--color-base-product-card-card-item-bg);
@@ -774,13 +774,13 @@ body,
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::before {
   top: -39.5%;
-  left: -11%;
+  left: -10%;
 }
 .ar-side-bar-list-item-container.active::after {
   content: "";
   position: absolute;
   bottom: -44%;
-  left: -10%;
+  left: -9.7%;
   width: 40px;
   height: 28px;
   background-color: var(--color-base-product-card-card-item-bg);
@@ -796,7 +796,7 @@ body,
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::after {
   bottom: -39.5%;
-  left: -11%;
+  left: -10%;
 }
 
 .side-bar-item-hidden-bg {
