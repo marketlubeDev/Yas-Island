@@ -770,7 +770,7 @@ body,
 }
 .zoom-1-5x .ar-side-bar-list-item-container.active::before {
   top: -35.5%;
-  left: -10.5%;
+  left: -9.7%;
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::before {
   top: -39.5%;
@@ -792,7 +792,7 @@ body,
 }
 .zoom-1-5x .ar-side-bar-list-item-container.active::after {
   bottom: -35.5%;
-  left: -10.5%;
+  left: -9.7%;
 }
 .zoom-1-25x .ar-side-bar-list-item-container.active::after {
   bottom: -39.5%;
@@ -809,6 +809,10 @@ body,
   z-index: 10;
 }
 .zoom-1-5x .side-bar-item-hidden-bg {
+  top: -14%;
+  height: 7.2rem;
+}
+.zoom-1-25x .side-bar-item-hidden-bg {
   top: -14%;
   height: 7.2rem;
 }

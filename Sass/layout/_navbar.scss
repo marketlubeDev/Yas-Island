@@ -346,7 +346,7 @@
       transform: translateX(-0.5px) translateY(0px);
       .zoom-1-5x & {
         top: -35.5%;
-        left: -10.5%;
+        left: -9.7%;
         // border-bottom-left-radius: 30px;
       }
       .zoom-1-25x & {
@@ -372,7 +372,7 @@
       transform: translateX(-0.5px) translateY(0px);
       .zoom-1-5x & {
         bottom: -35.5%;
-        left: -10.5%;
+        left: -9.7%;
         // border-top-left-radius: 30px;
       }
       .zoom-1-25x & {
@@ -393,6 +393,11 @@
   z-index: 10;
 
   .zoom-1-5x & {
+    top: -14%;
+    height: 7.2rem;
+  }
+
+  .zoom-1-25x & {
     top: -14%;
     height: 7.2rem;
   }
