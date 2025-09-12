@@ -346,12 +346,12 @@
       /* Add a small overlap to prevent cracks */
       transform: translateX(-0.5px) translateY(0px);
       .zoom-1-5x & {
-        top: -36%;
+        top: -35.5%;
         left: -10.5%;
         border-bottom-left-radius: 18px;
       }
       .zoom-1-25x & {
-        top: -40%;
+        top: -39.5%;
         left: -11%;
       }
     }
@@ -371,12 +371,12 @@
       /* Add a small overlap to prevent cracks */
       transform: translateX(-0.5px) translateY(0px);
       .zoom-1-5x & {
-        bottom: -36%;
+        bottom: -35.5%;
         left: -10.5%;
         border-top-left-radius: 18px;
       }
       .zoom-1-25x & {
-        bottom: -39%;
+        bottom: -39.5%;
         left: -11%;
       }
     }
