@@ -55,7 +55,6 @@ export default function PaymentResponse() {
         setCountdown(3); // Reset countdown when thank you is shown
       }
     } catch (error) {
-      console.log(error);
       toast.error(t("toastMessages.somethingWentWrong"), {
         position: "top-center",
       });

@@ -27,7 +27,6 @@ function SmileSectionMbl({ selected, setSelected }) {
         }, 3000);
       }
     } catch (error) {
-      console.log(error);
       toast.error(t("toastMessages.somethingWentWrong"), {
         position: "top-center",
       });
