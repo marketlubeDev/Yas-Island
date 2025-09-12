@@ -274,11 +274,11 @@
       .zoom-1-5x & {
         top: -35.5%;
         right: -10.5%;
-        border-bottom-right-radius: 18px;
       }
       .zoom-1-25x & {
         top: -39.5%;
         right: -11%;
+        right: -10.5%;
       }
     }
 
@@ -298,7 +298,6 @@
       .zoom-1-5x & {
         bottom: -35.5%;
         right: -10.5%;
-        border-top-right-radius: 18px;
       }
 
       .zoom-1-25x & {
@@ -348,11 +347,12 @@
       .zoom-1-5x & {
         top: -35.5%;
         left: -10.5%;
-        border-bottom-left-radius: 18px;
+        border-bottom-left-radius: 30px;
       }
       .zoom-1-25x & {
         top: -39.5%;
         left: -11%;
+        border-bottom-left-radius: 30px;
       }
     }
 
@@ -373,11 +373,12 @@
       .zoom-1-5x & {
         bottom: -35.5%;
         left: -10.5%;
-        border-top-left-radius: 18px;
+        border-top-left-radius: 30px;
       }
       .zoom-1-25x & {
         bottom: -39.5%;
         left: -11%;
+        border-top-left-radius: 30px;
       }
     }
   }
