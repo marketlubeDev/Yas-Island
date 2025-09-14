@@ -367,7 +367,8 @@
     overflow-y: auto;
     min-height: 0;
     margin-bottom: calc(16px * var(--zoom-scale));
-    padding-right: calc(8px * var(--zoom-scale));
+    /* Use logical padding so the gap appears next to the scrollbar in RTL too */
+    padding-inline-end: calc(8px * var(--zoom-scale));
 
     /* Custom scrollbar for better UX */
     &::-webkit-scrollbar {

@@ -113,7 +113,8 @@
     max-height: 25vh;
     min-height: 24vh;
     overflow-y: auto;
-    padding-right: 8px;
+    /* Ensure a gap between items and the scrollbar in both LTR and RTL */
+    padding-inline-end: 8px;
     padding-bottom: 20px; /* Extra padding to ensure content isn't hidden by fadeout */
 
     /* Custom scrollbar for better UX */
