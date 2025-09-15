@@ -1,7 +1,9 @@
-import { en } from "./en";
-import { ar } from "./ar";
+// Simple translation index
+import { loadTranslations } from "../utils/translationLoader";
 
 export const translations = {
-  English: en,
-  العربية: ar,
+  English: "en",
+  العربية: "ar",
 };
+
+export { loadTranslations };
