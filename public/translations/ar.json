@@ -1,0 +1,371 @@
+{
+  "common": {
+    "back": "رجوع",
+    "viewCart": "عرض السلة",
+    "selectAttractions": "اختر المعالم",
+    "accessibility": "إمكانية الوصول",
+    "language": "اللغة",
+    "chatWithUs": "تواصل معنا",
+    "addToCart": "أضف إلى السلة",
+    "add": "أضف",
+    "searchPlaceholder": "ماذا تبحث عن؟",
+    "home": "الرئيسية",
+    "cart": "السلة",
+    "searchPlaceholderMobile": "ابحث عن معالم 'فيراري وورلد'",
+    "netAndTax": "صافي وضريبة القيمة المضافة",
+    "validFrom": "صالح من",
+    "to": "إلى",
+    "validTo": "صالح إلى",
+    "thisTicketIsExpired": "هذا التذكرة منتهية",
+    "vat": "ضريبة القيمة المضافة",
+    "tax": "ضريبة",
+    "aed": "AED"
+  },
+  "noResults": {
+    "title": "لا توجد معالم متاحة",
+    "titleWithFilters": "لم يتم العثور على نتائج",
+    "subtitle": "لا توجد معالم متاحة حالياً. يرجى التحقق لاحقاً أو التواصل مع فريق الدعم.",
+    "subtitleWithFilters": "لم نتمكن من العثور على أي معالم تطابق معايير البحث الخاصة بك. حاول تعديل المرشحات أو مصطلحات البحث.",
+    "activeFilters": "المرشحات النشطة:",
+    "searchFor": "البحث:",
+    "park": "المتنزه:",
+    "sort": "الترتيب:",
+    "clearFilters": "مسح المرشحات",
+    "exploreAll": "استكشف جميع المعالم"
+  },
+  "accessibility": {
+    "title": "إمكانية الوصول",
+    "subtitle": "اختر الخيارات",
+    "colorBlindness": "وضع عمى الألوان",
+    "mode": "الوضع",
+    "colorBlindnessMode1": "عمى الألوان",
+    "zoomMode": "وضع التكبير",
+    "continue": "متابعة",
+    "close": "إغلاق",
+    "invertColors": "عكس الألوان",
+    "highContrast": "تباين عالي",
+    "default": "الافتراضي"
+  },
+  "productHead": {
+    "sortBy": "ترتيب حسب السعر",
+    "filterBy": "تصفية حسب المتنزهات",
+    "priceHighToLow": "السعر (من الأعلى إلى الأقل)",
+    "priceLowToHigh": "السعر (من الأقل إلى الأعلى)",
+    "attractions": "المعالم",
+    "selectPark": "الكل",
+    "selectSort": "اختر الترتيب",
+    "SortByPrice": "فرز حسب السعر"
+  },
+  "sidebar": {
+    "all": "الكل",
+    "topAttractions": "أفضل المعالم",
+    "attractions": "المعالم",
+    "packages": "الباقات",
+    "hotels": "الفنادق",
+    "dining": "المطاعم",
+    "live": "بث مباشر",
+    "shopping": "التسوق"
+  },
+  "products": {
+    "drivingExperience": {
+      "name": "تجربة القيادة",
+      "description": "قم بقيادة سيارتك المفضلة مع مدرب من فيراري واستمتع بإثارة القيادة عالية الأداء على مضمار سباق احترافي."
+    },
+    "roofWalk": {
+      "name": "تجربة المشي على السطح",
+      "description": "استمتع بإثارة ركوب الكثبان وركوب الجمال والعشاء البدوي التقليدي تحت النجوم في الصحراء العربية."
+    },
+    "themeParks": {
+      "name": "4 حدائق ياس آيلاند",
+      "description": "استمتع برحلة يخت فاخرة على طول الساحل مع إطلالات خلابة وأنشطة مائية ومرطبات فاخرة."
+    },
+    "waterworld": {
+      "name": "ياس ووتروورلد ليوم واحد",
+      "description": "استمتع بإطلالات جوية خلابة لمعالم المدينة خلال جولة سياحية حصرية بالهليكوبتر."
+    },
+    "threeParks": {
+      "name": "3 حدائق ياس آيلاند",
+      "description": "استمتع بيوم كامل في منتجع صحي فاخر مع علاجات فاخرة وعلاج بالتدليك وأنشطة صحية."
+    },
+    "twoParks": {
+      "name": "2 حدائق ياس آيلاند",
+      "description": "تعلم إعداد المأكولات المحلية الأصيلة مع طهاة محترفين في مطبخ احترافي."
+    },
+    "warnerBros": {
+      "name": "وارنر برذرز وورلد ليوم واحد",
+      "description": "استمتع بإثارة القفز المظلي المزدوج فوق المناظر الطبيعية الخلابة."
+    },
+    "seaworld": {
+      "name": "سي وورلد ياس آيلاند ليوم واحد",
+      "description": "استمتع بلعبة الجولف في ملعب بطولة مع تعليمات احترافية وتأجير معدات فاخرة."
+    },
+    "ferrariWorld": {
+      "name": "فيراري وورلد ياس آيلاند ليوم واحد",
+      "description": "اكتشف التراث المحلي مع زيارات موجهة للمواقع التاريخية والمتاحف والأسواق التقليدية."
+    },
+    "vipExperience": {
+      "name": "تجربة VIP",
+      "description": "اكتشف التراث المحلي مع زيارات موجهة للمواقع التاريخية والمتاحف والأسواق التقليدية."
+    }
+  },
+  "checkout": {
+    "personalDetails": "البيانات الشخصية",
+    "phoneNumber": "رقم الهاتف (الرقم المفضل) *"
+  },
+  "cart": {
+    "title": "سلة المشتريات",
+    "empty": "سلة المشتريات فارغة",
+    "emptyMessage": "أضف بعض المنتجات إلى سلة المشتريات للبدء",
+    "bookingFor": "الحجز لـ",
+    "adults": "البالغين",
+    "subTotal": "المجموع الفرعي :",
+    "vat": "ضريبة القيمة المضافة",
+    "total": "المجموع :",
+    "saveCartAndPayLater": "حفظ السلة والدفع لاحقاً",
+    "checkOut": "إتمام الشراء",
+    "delete": "حذف",
+    "expand": "توسيع",
+    "item": {
+      "ferrariWorld": "فيراري وورلد ليوم واحد",
+      "price": "درهم 328.57",
+      "vatAndTax": "ضريبة القيمة المضافة 16.43"
+    },
+    "currency": "درهم",
+    "validFrom": "صالح من",
+    "to": "إلى",
+    "children": "الأطفال",
+    "vatAndTax": "ضريبة القيمة المضافة",
+    "vatUnit": "ضريبة القيمة المضاف",
+    "maxQuantityExceeded": "تم تجاوز الحد الأقصى للكمية {{maxQuantity}}",
+    "minQuantityRequired": "الحد الأدنى المطلوب للكمية {{minQuantity}}"
+  },
+  "product": {
+    "addToCart": "أضف إلى السلة"
+  },
+  "booking": {
+    "productTitle": "عنوان المنتج",
+    "chooseDate": "اختر تاريخك",
+    "chooseGuests": "اختر الضيوف",
+    "adults": "بالغ ( ١٢ سنة+ )",
+    "children": "أطفال ( <١٢ سنة )",
+    "kidsFree": "الأطفال أقل من ٣ سنوات مجاناً",
+    "checkOut": "إتمام الشراء",
+    "saveToCart": "حفظ في السلة",
+    "year": "٢٠٢٥",
+    "guestsSummary": "2 بالغ / 1 طفل",
+    "month": "فبراير",
+    "weekDays": {
+      "sun": "الأحد",
+      "mon": "الاثنين",
+      "tue": "الثلاثاء",
+      "wed": "الأربعاء",
+      "thu": "الخميس",
+      "fri": "الجمعة",
+      "sat": "السبت"
+    },
+    "productAddedToCart": "تم إضافة المنتج إلى السلة"
+  },
+  "payment": {
+    "title": "إتمام الدفع",
+    "back": "رجوع",
+    "arrow": "سهم الرجوع",
+    "steps": {
+      "step1": "الخطوة ١",
+      "step2": "الخطوة ٢",
+      "step3": "الخطوة ٣",
+      "emailVerification": "التحقق من البريد الإلكتروني",
+      "checkout": "إتمام الشراء",
+      "guestDetails": "تفاصيل الضيف",
+      "payment": "الدفع"
+    },
+    "emailConfirmation": {
+      "emailLabel": "البريد الإلكتروني *",
+      "emailPlaceholder": "البريد الإلكتروني",
+      "confirmButton": "تأكيد البريد الإلكتروني",
+      "completeVerification": "إكمال التحقق"
+    },
+    "verification": {
+      "enterCode": "أدخل رمز التحقق",
+      "codeSent": "تم إرسال رمز التحقق إلى",
+      "checkSpam": "يرجى التحقق من مجلد البريد المزعج أو غير المرغوب فيه",
+      "willExpire": "يمكنك طلب رمز تحقق جديد بعد",
+      "resend": "إعادة الإرسال",
+      "confirmOtp": "تأكيد رمز التحقق",
+      "expired": "رمز التحقق لقد انتهى",
+      "editEmail": "ليست بريدك الإلكتروني؟"
+    },
+    "personalDetails": {
+      "firstName": "الاسم الأول *",
+      "lastName": "اسم العائلة *",
+      "countryOfResidence": "بلد الإقامة *",
+      "nationality": "الجنسية *",
+      "phoneNumber": "رقم الهاتف *",
+      "preferredNumber": "(الرقم المفضل) *",
+      "countries": {
+        "UAE": "الإمارات العربية المتحدة",
+        "India": "الهند",
+        "USA": "الولايات المتحدة"
+      },
+      "nationalities": {
+        "UAE": "الإمارات العربية المتحدة",
+        "India": "الهند"
+      },
+      "phoneCodes": {
+        "UAE": "+٩٧١",
+        "India": "+٩١",
+        "USA": "+١"
+      },
+      "email": "البريد الإلكتروني *"
+    },
+    "orderSummary": {
+      "title": "فيراري وورلد ياس آيلاند ليوم واحد",
+      "datesAndGuests": "التواريخ والضيوف",
+      "adult": "بالغ",
+      "children": "أطفال",
+      "subTotal": "المجموع الفرعي :",
+      "vatAndTax": "ضريبة القيمة المضافة :",
+      "total": "المجموع :",
+      "qty": "الكمية :",
+      "promoCodeSavings": "توفير رمز الخصم :",
+      "promoCode": {
+        "label": "أدخل رمز الخصم للحصول على تخفيض",
+        "label2": "للحصول على تخفيض",
+        "placeholder": "أدخل رمز الخصم",
+        "apply": "تطبيق"
+      },
+      "terms": {
+        "acceptTerms": "لقد قرأت وأوافق على",
+        "termsAndConditions": "الشروط والأحكام *",
+        "receiveCommunications": "تلقي العروض الترويجية عبر البريد الإلكتروني"
+      }
+    },
+    "paymentDetails": {
+      "proceedToPayment": "المتابعة إلى الدفع"
+    },
+    "cardPayment": {
+      "title": "يرجى إدخال تفاصيل الدفع",
+      "paymentMethods": {
+        "creditDebitCard": "بطاقة ائتمان/خصم",
+        "paypal": "باي بال"
+      },
+      "form": {
+        "cardNumber": {
+          "label": "رقم بطاقة الائتمان/الخصم",
+          "placeholder": "0000 0000 0000 0000"
+        },
+        "expiryDate": {
+          "label": "تاريخ الانتهاء",
+          "placeholder": "MM/YYYY"
+        },
+        "cvv": {
+          "label": "رمز الأمان",
+          "placeholder": "***"
+        }
+      },
+      "makePayment": "إتمام الدفع",
+      "loadingSecurePaymentForm": "...جاري تحميل نموذج الدفع الآمن",
+      "errorTitle": "تم رفض الدفع",
+      "errorMessage": "تعذر إكمال عملية الدفع. يرجى مراجعة التفاصيل والمحاولة مرة أخرى.",
+      "retry": "إعادة المحاولة",
+      "backToDetails": "العودة إلى التفاصيل",
+      "errorToast": "فشلت معالجة الدفع. يرجى المحاولة مرة أخرى."
+    },
+    "success": {
+      "title": "تم الدفع بنجاح",
+      "message": "تمت معالجة الدفع بنجاح. ستصلك رسالة تأكيد بالبريد الإلكتروني قريباً.",
+      "viewBooking": "عرض الحجز",
+      "backToHome": "العودة إلى الصفحة الرئيسية",
+      "redirecting": "سيتم تحويلك إلى الصفحة الرئيسية في",
+      "seconds": "ثوانٍ"
+    },
+    "response": {
+      "ticketSent": "تم إرسال تذكرتك إلى البريد الإلكتروني المسجل!",
+      "ticketSent1": "تم إرسال تذكرتك",
+      "ticketSent2": "إلى البريد الإلكتروني المسجل",
+      "rateExperience": "كيف تقيم تجربتك",
+      "excellent": "ممتاز",
+      "average": "متوسط",
+      "poor": "ضعيف",
+      "thankYou": "شكراً لك! نتمنى زيارتك مرة أخرى",
+      "redirecting": "سيتم تحويلك إلى الصفحة الرئيسية في 3 ثوانٍ",
+      "seconds": "ثوانٍ"
+    },
+    "searchCountries": "...ابحث في البلدان",
+    "selectCountry": "اختر بلداً"
+  },
+  "promo": {
+    "applied": "تم تطبيق رمز الخصم",
+    "saved": "تم الحفظ! شعور رائع، أليس كذلك؟",
+    "savings": "توفير رمز الخصم :",
+    "amount": "درهم"
+  },
+  "orderSummary": {
+    "title": "ملخص الطلب",
+    "items": "عناصر",
+    "item": "عنصر",
+    "viewItems": "عرض العناصر",
+    "variants": "المتغيرات",
+    "date": "التاريخ",
+    "quantity": "الكمية",
+    "netAmount": "المبلغ الصافي",
+    "vat": "ضريبة القيمة المضافة",
+    "subTotal": "المجموع الفرعي",
+    "total": "المجموع",
+    "promoDiscount": "أدخل رمز الخصم للحصول على تخفيض",
+    "enterPromoCode": "أدخل رمز الخصم",
+    "apply": "تطبيق",
+    "securePayment": "دفع آمن",
+    "promoCodeSavings": "توفير رمز الخصم :",
+    "removePromoCode": "إزالة رمز الخصم",
+    "promoCodeRemoved": "تم إزالة رمز الخصم بنجاح",
+    "couponApplied": "تم تطبيق الكوبون"
+  },
+  "toastMessages": {
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
+    "invalidPhoneNumber": "يرجى إدخال رقم هاتف صالح",
+    "invalidFirstName": "يرجى إدخال الاسم الأول بشكل صحيح",
+    "invalidLastName": "يرجى إدخال اسم العائلة بشكل صحيح",
+    "invalidPromoCode": "يرجى إدخال رمز خصم صالح",
+    "invalidTerms": "يرجى قبول الشروط والأحكام للمتابعة",
+    "invalidNationality": "يرجى تحديد الجنسية",
+    "invalidCountry": "يرجى تحديد البلد",
+    "somethingWentWrong": "هناك خطأ ما",
+    "otpExpired": "رمز التحقق لقد انتهى. يرجى طلب واحد جديد.",
+    "invalidOTP": "يرجى إدخال رمز تحقق صالح",
+    "otpIncorrect": "رمز التحقق غير صالح ❌",
+    "failedToLoadTermsAndConditions": "فشل تحميل الشروط والأحكام",
+    "acceptTermsAndConditions": "يرجى قبول الشروط والأحكام للمتابعة",
+    "thisProductIsCurrentlyNotAvailable": "هذا المنتج غير متاح حالياً",
+    "pleaseSelectDateFirst": "يرجى تحديد تاريخ أولاً",
+    "pleaseEnterValidQuantity": "يرجى إدخال كمية صالحة",
+    "noPerformance": "لا يوجد أداء متاح لهذا التاريخ",
+    "checkoutFailed": "فشل إتمام الشراء. يرجى المحاولة مرة أخرى.",
+    "failedToAddToCart": "فشل إضافة المنتج إلى السلة. يرجى المحاولة مرة أخرى.",
+    "otpResent": "تم إرسال رمز التحقق إلى البريد الإلكتروني المسجل.",
+    "tooManyRequests": "عدد كبير جدًا من الطلبات، يرجى المحاولة مرة أخرى لاحقًا"
+  },
+  "mobile": {
+    "swipeToChange": "اسحب لتغيير"
+  },
+  "footer": {
+    "copyright": "© {{year}} Yas Island. جميع الحقوق محفوظة."
+  },
+  "pageTitle": {
+    "title": "جزيرة ياس | جزيرة ياس، واحدة من أكثر الوجهات السياحية شعبية في العالم، تقدم مركز ترفيهي عائلي لا مثيل له. احجز إجازتك اليوم.",
+    "home": "جزيرة ياس | احجز مغامرتك اليوم",
+    "emailVerification": "جزيرة ياس | التحقق من البريد الإلكتروني",
+    "otpConfirmation": "جزيرة ياس | تأكيد رمز التحقق",
+    "paymentDetails": "جزيرة ياس | تفاصيل الضيف والدفع",
+    "cardPayment": "جزيرة ياس | الدفع بالبطاقة",
+    "paymentSuccess": "جزيرة ياس | تم الدفع بنجاح",
+    "paymentResponse": "جزيرة ياس | رد الدفع",
+    "upcoming": "جزيرة ياس | قريباً",
+    "packages": "جزيرة ياس | الباقات"
+  },
+  "upcoming": {
+    "title": "سنقوم بإضافة المنتجات قريباً .",
+    "subtitle": "تحقق من",
+    "topAttractions": "المعالم الأفضل",
+    "subtitleEnd": "للمغامرات المتاحة الآن."
+  }
+}

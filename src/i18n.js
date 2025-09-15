@@ -1,12 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import store from "./global/store";
+import { loadTranslations } from "./utils/translationLoader";
 
-// Import translations
-import { en } from "./translations/en";
-import { ar } from "./translations/ar";
-
-// Determine initial language synchronously from persisted storage (avoids English flash)
+// Get initial language from localStorage
 const getInitialLanguage = () => {
   try {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -15,7 +12,6 @@ const getInitialLanguage = () => {
       );
       if (persisted) {
         const parsed = JSON.parse(persisted);
-        // redux-persist stores each field as a JSON string
         const storedLang = parsed?.currentLanguage
           ? JSON.parse(parsed.currentLanguage)
           : null;
@@ -23,30 +19,51 @@ const getInitialLanguage = () => {
       }
     }
   } catch (err) {
-    // no-op; fallback to default
+    // fallback to default
   }
   return "en";
 };
 
 const initialLanguage = getInitialLanguage();
 
+// Initialize i18n
 i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: en,
-    },
-    ar: {
-      translation: ar,
-    },
-  },
-  lng: initialLanguage, // default language from persisted state
+  resources: {},
+  lng: initialLanguage,
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },
+  react: {
+    useSuspense: false,
+  },
 });
 
-// Update document direction immediately based on initial language
+// Simple function to load translations
+async function loadLanguage(language) {
+  try {
+    const translations = await loadTranslations(language);
+    i18n.addResourceBundle(language, "translation", translations, true, true);
+    return translations;
+  } catch (error) {
+    console.error(`Error loading ${language} translations:`, error);
+    return null;
+  }
+}
+
+// Load initial language immediately
+(async () => {
+  try {
+    await loadLanguage(initialLanguage);
+    if (i18n.language !== initialLanguage) {
+      i18n.changeLanguage(initialLanguage);
+    }
+  } catch (error) {
+    console.error("Failed to load initial translations:", error);
+  }
+})();
+
+// Update document direction
 try {
   if (typeof document !== "undefined") {
     document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr";
@@ -54,10 +71,15 @@ try {
   }
 } catch {}
 
-// Subscribe to Redux store changes
-store.subscribe(() => {
+// Handle language changes from Redux store
+store.subscribe(async () => {
   const currentLanguage = store.getState().language.currentLanguage;
   if (i18n.language !== currentLanguage) {
+    // Load translation if not already loaded
+    if (!i18n.hasResourceBundle(currentLanguage, "translation")) {
+      await loadLanguage(currentLanguage);
+    }
+
     i18n.changeLanguage(currentLanguage);
     try {
       if (typeof document !== "undefined") {
