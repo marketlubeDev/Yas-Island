@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
@@ -16,18 +16,37 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "../config/reactQuery.js";
 import { Toaster } from "sonner";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { initEndpoints } from "../config/endpoints";
 
-createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <LanguageProvider>
-        <QueryClientProvider client={queryClient}>
-          <Toaster />
-          <ErrorBoundary>
-            <RouterProvider router={router} />
-          </ErrorBoundary>
-        </QueryClientProvider>
-      </LanguageProvider>
-    </PersistGate>
-  </Provider>
-);
+const Root = () => {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await initEndpoints();
+      } finally {
+        setReady(true);
+      }
+    })();
+  }, []);
+
+  if (!ready) return null;
+
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <LanguageProvider>
+          <QueryClientProvider client={queryClient}>
+            <Toaster />
+            <ErrorBoundary>
+              <RouterProvider router={router} />
+            </ErrorBoundary>
+          </QueryClientProvider>
+        </LanguageProvider>
+      </PersistGate>
+    </Provider>
+  );
+};
+
+createRoot(document.getElementById("root")).render(<Root />);
