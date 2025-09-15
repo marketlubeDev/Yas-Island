@@ -1,4 +1,9 @@
 {
+  "config":{
+    "languageCode": "en",
+    "name": "English",
+    "direction": "ltr"
+  },
   "common": {
     "back": "Back",
     "viewCart": "View Cart",

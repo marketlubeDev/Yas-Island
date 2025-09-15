@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { setLanguage } from "../../global/languageSlice";
+import {
+  displayNameToCode,
+  codeToDisplayName,
+} from "../../utils/languageUtils";
 import accessibility from "../../assets/icons/assess.svg";
 import invertAccessibility from "../../assets/icons/invertAccess.svg";
 import globe from "../../assets/icons/globe.svg";
@@ -56,7 +60,7 @@ export default function HeaderLogo() {
 
   // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();
-  const { toggleLanguage, language } = useLanguage();
+  const { toggleLanguage, language, availableLanguages } = useLanguage();
   const dispatch = useDispatch();
   // const cartItems = useSelector((state) => state.checkout.cartItems) || [];
   const { cartItems } = useSelector((state) => state.cart);
@@ -79,7 +83,7 @@ export default function HeaderLogo() {
       dispatch(setSearchQuery(""));
 
       // Update LanguageContext for UI display
-      const newLanguage = lng === "en" ? "English" : "العربية";
+      const newLanguage = codeToDisplayName(lng, availableLanguages);
       toggleLanguage(newLanguage);
     }
   };
@@ -155,10 +159,12 @@ export default function HeaderLogo() {
           >
             <Selector
               id="header-language"
-              options={["English", "العربية"]}
+              options={availableLanguages.map((lang) => lang.name)}
               value={language}
               onChange={(e) =>
-                changeLanguage(e.target.value === "English" ? "en" : "ar")
+                changeLanguage(
+                  displayNameToCode(e.target.value, availableLanguages)
+                )
               }
               style={{ minWidth: "calc(140px * var(--zoom-scale))" }}
               leftIcon={<img src={isDarkMode ? invertGlobe : globe} alt="" />}

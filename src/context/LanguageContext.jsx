@@ -2,6 +2,12 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLanguage } from "../global/languageSlice";
 import i18n from "../i18n";
+import {
+  getAvailableLanguages,
+  getLanguageDisplayName,
+  getLanguageDirection,
+  displayNameToCode,
+} from "../utils/languageUtils";
 
 const LanguageContext = createContext();
 
@@ -10,29 +16,72 @@ export const LanguageProvider = ({ children }) => {
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
-  const [language, setDisplayLanguage] = useState(
-    currentLanguage === "ar" ? "العربية" : "English"
-  );
-  const [isRTL, setIsRTL] = useState(currentLanguage === "ar");
+  const [availableLanguages, setAvailableLanguages] = useState([]);
+  const [language, setDisplayLanguage] = useState("");
+  const [isRTL, setIsRTL] = useState(false);
+
+  // Load available languages on component mount
+  useEffect(() => {
+    const loadLanguages = async () => {
+      try {
+        const languages = await getAvailableLanguages();
+        setAvailableLanguages(languages);
+
+        // Set initial display language
+        const displayLanguage = getLanguageDisplayName(
+          currentLanguage,
+          languages
+        );
+        setDisplayLanguage(displayLanguage);
+
+        // Set initial RTL state
+        const direction = getLanguageDirection(currentLanguage, languages);
+        setIsRTL(direction === "rtl");
+      } catch (error) {
+        console.error("Failed to load languages:", error);
+        // Fallback to hardcoded values
+        setAvailableLanguages([
+          { code: "en", name: "English", direction: "ltr" },
+          { code: "ar", name: "العربية", direction: "rtl" },
+        ]);
+        setDisplayLanguage(currentLanguage === "ar" ? "العربية" : "English");
+        setIsRTL(currentLanguage === "ar");
+      }
+    };
+
+    loadLanguages();
+  }, []);
 
   useEffect(() => {
-    const displayLanguage = currentLanguage === "ar" ? "العربية" : "English";
-    setDisplayLanguage(displayLanguage);
-    setIsRTL(currentLanguage === "ar");
+    if (availableLanguages.length > 0) {
+      const displayLanguage = getLanguageDisplayName(
+        currentLanguage,
+        availableLanguages
+      );
+      setDisplayLanguage(displayLanguage);
 
-    // Set document direction
-    document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = currentLanguage;
-  }, [currentLanguage]);
+      const direction = getLanguageDirection(
+        currentLanguage,
+        availableLanguages
+      );
+      setIsRTL(direction === "rtl");
+
+      // Set document direction
+      document.documentElement.dir = direction;
+      document.documentElement.lang = currentLanguage;
+    }
+  }, [currentLanguage, availableLanguages]);
 
   const toggleLanguage = (newDisplayLanguage) => {
-    const newLang = newDisplayLanguage === "العربية" ? "ar" : "en";
+    const newLang = displayNameToCode(newDisplayLanguage, availableLanguages);
     dispatch(setLanguage(newLang));
     i18n.changeLanguage(newLang);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, isRTL }}>
+    <LanguageContext.Provider
+      value={{ language, toggleLanguage, isRTL, availableLanguages }}
+    >
       {children}
     </LanguageContext.Provider>
   );

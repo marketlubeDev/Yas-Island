@@ -1,0 +1,377 @@
+{
+  "config":{
+    "languageCode": "ml",
+    "name": "മലയാളം",
+    "direction": "ltr"
+  },
+  "common": {
+    "back": "തിരികെ",
+    "viewCart": "കാർട്ട്",
+    "selectAttractions": "തിരഞ്ഞെടുക്കുക",
+    "accessibility": "സൗകര്യം",
+    "language": "ഭാഷ",
+    "chatWithUs": "ചാറ്റ്",
+    "addToCart": "കാർട്ട് ",
+    "add": "ചേർക്കുക",
+    "searchPlaceholder": "എന്താണ് തിരയുന്നത്?",
+    "home": "ഹോം",
+    "cart": "കാർട്ട്",
+    "searchPlaceholderMobile": "തിരയുക..",
+    "netAndTax": "നെറ്റ് & വാറ്റ്",
+    "validFrom": "മുതൽ",
+    "to": "വരെ",
+    "validTo": "വരെ",
+    "thisTicketIsExpired": "ടിക്കറ്റ് കാലഹരണപ്പെട്ടു",
+    "vat": "വാറ്റ്",
+    "tax": "നികുതി",
+    "aed": "AED",
+    "noResults": "ഫലമില്ല"
+  },
+  "noResults": {
+    "title": "ആകർഷണങ്ങളില്ല",
+    "titleWithFilters": "ഫലമില്ല",
+    "subtitle": "ആകർഷണങ്ങളില്ല. പിന്നീട് പരിശോധിക്കുക.",
+    "subtitleWithFilters": "തിരയൽ ഫലമില്ല. ഫിൽട്ടറുകൾ മാറ്റുക.",
+    "activeFilters": "ഫിൽട്ടറുകൾ:",
+    "searchFor": "തിരയുക:",
+    "park": "പാർക്ക്:",
+    "sort": "ക്രമം:",
+    "clearFilters": "മായ്ക്കുക",
+    "exploreAll": "എല്ലാം കാണുക"
+  },
+  "accessibility": {
+    "title": "സൗകര്യം",
+    "subtitle": "തിരഞ്ഞെടുക്കുക",
+    "colorBlindness": "വർണ്ണ മോഡ്",
+    "mode": "മോഡ്",
+    "colorBlindnessMode1": "വർണ്ണാന്ധത",
+    "zoomMode": "സൂം",
+    "continue": "തുടരുക",
+    "close": "അടയ്ക്കുക",
+    "invertColors": "കോൺട്രാസ്റ്റ്",
+    "highContrast": "കോൺട്രാസ്റ്റ്",
+    "default": "സാധാരണ"
+  },
+  "productHead": {
+    "sortBy": "വില ക്രമം",
+    "filterBy": "പാർക്ക് ഫിൽട്ടർ",
+    "priceHighToLow": "വില (കൂടുതൽ-കുറവ്)",
+    "priceLowToHigh": "വില (കുറവ്-കൂടുതൽ)",
+    "attractions": "ആകർഷണങ്ങൾ",
+    "selectPark": "എല്ലാം",
+    "selectSort": "ശുപാർശ",
+    "SortByPrice": "വില ക്രമം"
+  },
+  "sidebar": {
+    "all": "എല്ലാം",
+    "topAttractions": "മുഖ്യം",
+    "attractions": "ആകർഷണങ്ങൾ",
+    "packages": "പാക്കേജ്",
+    "hotels": "ഹോട്ടൽ",
+    "dining": "ഭക്ഷണം",
+    "live": "ലൈവ്",
+    "shopping": "ഷോപ്പിംഗ്"
+  },
+  "products": {
+    "drivingExperience": {
+      "name": "ഡ്രൈവിംഗ് അനുഭവം",
+      "description": "ഫെരാരി കാർ ഓടിക്കുകയും റേസ് ട്രാക്കിൽ ആവേശം അനുഭവിക്കുക."
+    },
+    "roofWalk": {
+      "name": "റൂഫ് വാക്ക്",
+      "description": "മരുഭൂമി സാഹസികതയും പരമ്പരാഗത അത്താഴവും."
+    },
+    "themeParks": {
+      "name": "4 തീം പാർക്ക്",
+      "description": "ലക്ഷ്വറി യാച്ച് ക്രൂയിസ് ആസ്വദിക്കുക."
+    },
+    "waterworld": {
+      "name": "1 ദിവസം വാട്ടർവേൾഡ്",
+      "description": "ഹെലികോപ്റ്റർ ടൂറിൽ ആകാശ കാഴ്ചകൾ."
+    },
+    "threeParks": {
+      "name": "3 യാസ് ഐലൻഡ് തീം പാർക്കുകൾ",
+      "description": "ലക്ഷ്വറി ട്രീറ്റ്മെന്റുകൾ, മസാജ് തെറാപ്പി, വെൽനെസ് ആക്ടിവിറ്റികൾ എന്നിവ ഉൾക്കൊള്ളുന്ന പൂർണ്ണ ദിന സ്പാ റിട്രീറ്റിൽ മുഴുകുക."
+    },
+    "twoParks": {
+      "name": "2 യാസ് ഐലൻഡ് തീം പാർക്കുകൾ",
+      "description": "പ്രൊഫഷണൽ കിച്ചൻ സെറ്റിംഗിൽ വിദഗ്ധ ഷെഫുകളുമായി ആധികാരിക പ്രാദേശിക പാചകരീതി തയ്യാറാക്കാൻ പഠിക്കുക."
+    },
+    "warnerBros": {
+      "name": "1 ദിവസം വാർണർ ബ്രോസ്. വേൾഡ്",
+      "description": "മനോഹരമായ ഭൂപ്രകൃതിയിൽ ടാൻഡം സ്കൈഡൈവിംഗ് ജമ്പിലൂടെ പരമമായ അഡ്രിനാലിൻ റഷ് അനുഭവിക്കുക."
+    },
+    "seaworld": {
+      "name": "1 ദിവസം സീവേൾഡ് യാസ് ഐലൻഡ്",
+      "description": "പ്രൊഫഷണൽ നിർദ്ദേശങ്ങളും പ്രീമിയം ഉപകരണ വാടകയും സഹിതം ചാമ്പ്യൻഷിപ്പ് കോഴ്സിൽ ഗോൾഫിന്റെ ഒരു റൗണ്ട് ആസ്വദിക്കുക."
+    },
+    "ferrariWorld": {
+      "name": "1 ദിവസം ഫെരാരി വേൾഡ് യാസ് ഐലൻഡ്",
+      "description": "ചരിത്രപരമായ സ്ഥലങ്ങൾ, മ്യൂസിയങ്ങൾ, പരമ്പരാഗത മാർക്കറ്റുകൾ എന്നിവയിലേക്കുള്ള ഗൈഡഡ് സന്ദർശനങ്ങളിലൂടെ പ്രാദേശിക പൈതൃകം കണ്ടെത്തുക."
+    },
+    "vipExperience": {
+      "name": "വിഐപി അനുഭവം",
+      "description": "ചരിത്രപരമായ സ്ഥലങ്ങൾ, മ്യൂസിയങ്ങൾ, പരമ്പരാഗത മാർക്കറ്റുകൾ എന്നിവയിലേക്കുള്ള ഗൈഡഡ് സന്ദർശനങ്ങളിലൂടെ പ്രാദേശിക പൈതൃകം കണ്ടെത്തുക."
+    }
+  },
+  "checkout": {
+    "personalDetails": "വിവരങ്ങൾ",
+    "phoneNumber": "ഫോൺ നമ്പർ *"
+  },
+  "cart": {
+    "title": "കാർട്ട്",
+    "empty": "കാർട്ട് ശൂന്യം",
+    "emptyMessage": "കാർട്ടിൽ ഇനങ്ങൾ ചേർക്കുക",
+    "bookingFor": "ബുക്കിംഗ്",
+    "currency": "AED",
+    "validFrom": "മുതൽ",
+    "to": "വരെ",
+    "adults": "മുതിർന്നവർ",
+    "children": "കുട്ടികൾ",
+    "subTotal": "ഉപമൊത്തം :",
+    "vatAndTax": "വാറ്റ് :",
+    "total": "മൊത്തം :",
+    "saveCartAndPayLater": "സേവ് & പിന്നീട് പേയ്",
+    "checkOut": "ചെക്ക്ഔട്ട്",
+    "delete": "ഡിലീറ്റ്",
+    "expand": "വികസിപ്പിക്കുക",
+    "item": {
+      "ferrariWorld": "1 ദിവസം ഫെരാരി വേൾഡ്",
+      "price": "AED 328.57",
+      "vatAndTax": "16.43 വാറ്റ് & നികുതി"
+    },
+    "vat": "വാറ്റ് :",
+    "vatUnit": "വാറ്റ്",
+    "maxQuantityExceeded": "മാക്സ് {{maxQuantity}} കവിഞ്ഞു",
+    "minQuantityRequired": "മിനിമം {{minQuantity}} വേണം"
+  },
+  "product": {
+    "addToCart": "കാർട്ടിൽ ചേർക്കുക",
+    "add": "കാർട്ടിൽ ചേർക്കുക"
+  },
+  "booking": {
+    "productTitle": "ഉൽപ്പന്നം",
+    "chooseDate": "തീയതി തിരഞ്ഞെടുക്കുക",
+    "chooseGuests": "അതിഥികൾ തിരഞ്ഞെടുക്കുക",
+    "adults": "മുതിർന്നവർ ( 12+ )",
+    "children": "കുട്ടികൾ ( <12 )",
+    "kidsFree": "3 വയസ്സിന് താഴെ സൗജന്യം",
+    "checkOut": "ചെക്ക്ഔട്ട്",
+    "year": "2025",
+    "month": "ഫെബ്രുവരി",
+    "saveToCart": "കാർട്ടിൽ സേവ്",
+    "guestsSummary": "2 മുതിർന്നവർ / 1 കുട്ടി",
+    "weekDays": {
+      "sun": "ഞായർ",
+      "mon": "തിങ്കൾ",
+      "tue": "ചൊവ്വ",
+      "wed": "ബുധൻ",
+      "thu": "വ്യാഴം",
+      "fri": "വെള്ളി",
+      "sat": "ശനി"
+    },
+    "productAddedToCart": "കാർട്ടിൽ ചേർത്തു"
+  },
+  "payment": {
+    "title": "വിവരങ്ങൾ & പേയ്മെന്റ്",
+    "back": "തിരികെ",
+    "arrow": "തിരികെ അമ്പ്",
+    "steps": {
+      "step1": "ഘട്ടം 1",
+      "step2": "ഘട്ടം 2",
+      "step3": "ഘട്ടം 3",
+      "emailVerification": "ഇമെയിൽ സ്ഥിരീകരണം",
+      "checkout": "ചെക്ക്ഔട്ട്",
+      "guestDetails": "അതിഥി വിവരങ്ങൾ",
+      "payment": "പേയ്മെന്റ്"
+    },
+    "emailConfirmation": {
+      "emailLabel": "ഇമെയിൽ *",
+      "emailPlaceholder": "example@email.com",
+      "confirmButton": "സ്ഥിരീകരിക്കുക",
+      "completeVerification": "സ്ഥിരീകരിക്കുക"
+    },
+    "verification": {
+      "enterCode": "കോഡ് നൽകുക",
+      "codeSent": "കോഡ് അയച്ചു",
+      "checkSpam": "സ്പാം ഫോൾഡർ പരിശോധിക്കുക",
+      "willExpire": "പുതിയ OTP അഭ്യർത്ഥിക്കാം",
+      "resend": "വീണ്ടും അയയ്ക്കുക",
+      "confirmOtp": "OTP സ്ഥിരീകരിക്കുക",
+      "expired": "OTP കാലഹരണപ്പെട്ടു",
+      "editEmail": "ഇമെയിൽ അല്ലേ?"
+    },
+    "personalDetails": {
+      "firstName": "മുന്പേര് *",
+      "lastName": "കുടുംബപ്പേര് *",
+      "countryOfResidence": "രാജ്യം *",
+      "nationality": "ദേശീയത *",
+      "phoneNumber": "ഫോൺ *",
+      "preferredNumber": "(മുഖ്യം) *",
+      "countries": {
+        "UAE": "യുഎഇ",
+        "India": "ഇന്ത്യ",
+        "USA": "യുഎസ്എ"
+      },
+      "nationalities": {
+        "UAE": "യുഎഇ",
+        "India": "ഇന്ത്യ"
+      },
+      "phoneCodes": {
+        "UAE": "+971",
+        "India": "+91",
+        "USA": "+1"
+      },
+      "email": "ഇമെയിൽ *"
+    },
+    "orderSummary": {
+      "title": "1 ദിവസം ഫെരാരി വേൾഡ് യാസ് ഐലൻഡ്",
+      "datesAndGuests": "തീയതികളും അതിഥികളും",
+      "adult": "മുതിർന്നവർ",
+      "children": "കുട്ടികൾ",
+      "subTotal": "ഉപമൊത്തം :",
+      "vatAndTax": "വാറ്റ് & നികുതി :",
+      "total": "മൊത്തം :",
+      "qty": "എണ്ണം:",
+      "promoCodeSavings": "പ്രോമോ കോഡ് ലാഭം :",
+      "promoCode": {
+        "label": "നിങ്ങളുടെ പ്രോമോ കോഡ് നൽകുക ",
+        "label2": "കിഴിവ് ലഭിക്കാൻ",
+        "placeholder": "പ്രോമോ കോഡ് നൽകുക",
+        "apply": "പ്രയോഗിക്കുക"
+      },
+      "terms": {
+        "acceptTerms": "ഞാൻ വായിച്ചു സ്വീകരിക്കുന്നു",
+        "termsAndConditions": "നിബന്ധനകളും വ്യവസ്ഥകളും *",
+        "receiveCommunications": "ഇമെയിൽ വഴി പ്രമോഷനുകൾ സ്വീകരിക്കുക"
+      }
+    },
+    "paymentDetails": {
+      "proceedToPayment": "പേയ്മെന്റിലേക്ക് മുന്നോട്ട് പോകുക"
+    },
+    "cardPayment": {
+      "title": "ദയവായി പേയ്മെന്റ് വിവരങ്ങൾ നൽകുക",
+      "paymentMethods": {
+        "creditDebitCard": "ക്രെഡിറ്റ്/ഡെബിറ്റ് കാർഡ്",
+        "paypal": "പേപാൽ"
+      },
+      "form": {
+        "cardNumber": {
+          "label": "ക്രെഡിറ്റ്/ഡെബിറ്റ് കാർഡ് നമ്പർ",
+          "placeholder": "0000 0000 0000 0000"
+        },
+        "expiryDate": {
+          "label": "കാലഹരണ തീയതി",
+          "placeholder": "MM/YYYY"
+        },
+        "cvv": {
+          "label": "CVV",
+          "placeholder": "***"
+        }
+      },
+      "backToDetails": "ഹോമിലേക്ക് തിരികെ",
+      "makePayment": "പേയ്മെന്റ് നടത്തുക",
+      "errorTitle": "ഓർഡർ പരാജയപ്പെട്ടു",
+      "loadingSecurePaymentForm": "സുരക്ഷിത പേയ്മെന്റ് ഫോം ലോഡ് ചെയ്യുന്നു...",
+      "errorMessage": "ഓർഡർ പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. ദയവായി ഞങ്ങളുടെ സപ്പോർട്ടിനെ ബന്ധപ്പെടുക."
+    },
+    "success": {
+      "title": "പേയ്മെന്റ് വിജയകരം",
+      "message": "നിങ്ങളുടെ പേയ്മെന്റ് വിജയകരമായി പ്രോസസ്സ് ചെയ്തു. നിങ്ങൾക്ക് ഉടൻ ഒരു സ്ഥിരീകരണ ഇമെയിൽ ലഭിക്കും.",
+      "viewBooking": "ബുക്കിംഗ് കാണുക",
+      "backToHome": "ഹോമിലേക്ക് തിരികെ",
+      "redirecting": "നിങ്ങളെ ഹോം പേജിലേക്ക് റീഡയറക്ട് ചെയ്യും",
+      "seconds": "സെക്കൻഡുകൾ"
+    },
+    "response": {
+      "ticketSent": "നിങ്ങളുടെ ടിക്കറ്റ് രജിസ്റ്റർ ചെയ്ത മെയിൽ ഐഡിയിലേക്ക് അയച്ചിരിക്കുന്നു!",
+      "ticketSent1": "നിങ്ങളുടെ ടിക്കറ്റ് അയച്ചിരിക്കുന്നു",
+      "ticketSent2": "രജിസ്റ്റർ ചെയ്ത മെയിൽ ഐഡിയിലേക്ക്",
+      "rateExperience": "നിങ്ങളുടെ അനുഭവം എങ്ങനെ റേറ്റ് ചെയ്യും",
+      "excellent": "മികച്ചത്",
+      "average": "ശരാശരി",
+      "poor": "മോശം",
+      "thankYou": "നന്ദി! വീണ്ടും സന്ദർശിക്കുക",
+      "redirecting": "നിങ്ങളെ ഹോം പേജിലേക്ക് റീഡയറക്ട് ചെയ്യും",
+      "seconds": "സെക്കൻഡുകൾ"
+    },
+    "searchCountries": "രാജ്യങ്ങൾ തിരയുക...",
+    "selectCountry": "ഒരു രാജ്യം തിരഞ്ഞെടുക്കുക"
+  },
+  "promo": {
+    "applied": "പ്രോമോ കോഡ് പ്രയോഗിച്ചു",
+    "saved": "സേവ് ചെയ്തു! അത് അതിശയകരമായി തോന്നുന്നു, അല്ലേ?",
+    "savings": "പ്രോമോ കോഡ് ലാഭം :",
+    "amount": "AED",
+    "redirecting": "നിങ്ങളെ 3 സെക്കൻഡിൽ ഹോം പേജിലേക്ക് റീഡയറക്ട് ചെയ്യും"
+  },
+  "orderSummary": {
+    "title": "ഓർഡർ സംഗ്രഹം",
+    "items": "ഇനങ്ങൾ",
+    "item": "ഇനം",
+    "viewItems": "ഇനങ്ങൾ കാണുക",
+    "variants": "വകഭേദങ്ങൾ",
+    "date": "തീയതി",
+    "quantity": "അളവ്",
+    "netAmount": "നെറ്റ് തുക",
+    "vat": "വാറ്റ്",
+    "subTotal": "ഉപമൊത്തം",
+    "total": "മൊത്തം",
+    "promoDiscount": "കിഴിവ് ലഭിക്കാൻ നിങ്ങളുടെ പ്രോമോ കോഡ് നൽകുക",
+    "enterPromoCode": "പ്രോമോ കോഡ് നൽകുക",
+    "apply": "പ്രയോഗിക്കുക",
+    "securePayment": "സുരക്ഷിത പേയ്മെന്റ്",
+    "promoCodeSavings": "പ്രോമോ കോഡ് ലാഭം :",
+    "removePromoCode": "പ്രോമോ കോഡ് നീക്കം ചെയ്യുക",
+    "promoCodeRemoved": "പ്രോമോ കോഡ് വിജയകരമായി നീക്കം ചെയ്തു",
+    "couponApplied": "കൂപ്പൺ പ്രയോഗിച്ചു"
+  },
+  "toastMessages": {
+    "invalidEmail": "സാധുവായ ഇമെയിൽ നൽകുക",
+    "invalidPhoneNumber": "സാധുവായ ഫോൺ നൽകുക",
+    "invalidFirstName": "സാധുവായ മുന്പേര് നൽകുക",
+    "invalidLastName": "സാധുവായ കുടുംബപ്പേര് നൽകുക",
+    "invalidTerms": "നിബന്ധനകൾ സ്വീകരിക്കുക",
+    "invalidNationality": "ദേശീയത തിരഞ്ഞെടുക്കുക",
+    "invalidCountry": "രാജ്യം തിരഞ്ഞെടുക്കുക",
+    "somethingWentWrong": "എന്തോ തെറ്റ് സംഭവിച്ചു",
+    "otpExpired": "OTP കാലഹരണപ്പെട്ടു. പുതിയത് അഭ്യർത്ഥിക്കുക.",
+    "invalidOTP": "സാധുവായ OTP നൽകുക",
+    "otpIncorrect": "OTP തെറ്റാണ് ❌",
+    "invalidPromoCode": "സാധുവായ പ്രോമോ കോഡ് നൽകുക",
+    "failedToLoadTermsAndConditions": "നിബന്ധനകൾ ലോഡ് പരാജയം",
+    "acceptTermsAndConditions": "നിബന്ധനകൾ സ്വീകരിക്കുക",
+    "thisProductIsCurrentlyNotAvailable": "ഉൽപ്പന്നം ലഭ്യമല്ല",
+    "pleaseSelectDateFirst": "ആദ്യം തീയതി തിരഞ്ഞെടുക്കുക",
+    "pleaseEnterValidQuantity": "സാധുവായ അളവ് നൽകുക",
+    "noPerformance": "ഈ തീയതിയിൽ ലഭ്യമല്ല",
+    "checkoutFailed": "ചെക്ക്ഔട്ട് പരാജയം. വീണ്ടും ശ്രമിക്കുക.",
+    "failedToAddToCart": "കാർട്ടിൽ ചേർക്കാൻ പരാജയം. വീണ്ടും ശ്രമിക്കുക.",
+    "otpResent": "OTP ഇമെയിലിലേക്ക് അയച്ചു.",
+    "tooManyRequests": "അധിക അഭ്യർത്ഥനകൾ. പിന്നീട് ശ്രമിക്കുക"
+  },
+  "mobile": {
+    "swipeToChange": "മാറ്റാൻ സ്വൈപ്പ് ചെയ്യുക"
+  },
+  "footer": {
+    "copyright": "© {{year}} യാസ് ഐലൻഡ്. എല്ലാ അവകാശങ്ങളും സംരക്ഷിതം."
+  },
+  "pageTitle": {
+    "title": "യാസ് ഐലൻഡ് | വിനോദ കേന്ദ്രം. ഇന്നേ ബുക്ക് ചെയ്യുക.",
+    "home": "യാസ് ഐലൻഡ് | സാഹസികത ബുക്ക് ചെയ്യുക",
+    "emailVerification": "യാസ് ഐലൻഡ് | ഇമെയിൽ സ്ഥിരീകരണം",
+    "otpConfirmation": "യാസ് ഐലൻഡ് | OTP സ്ഥിരീകരണം",
+    "paymentDetails": "യാസ് ഐലൻഡ് | വിവരങ്ങൾ & പേയ്മെന്റ്",
+    "cardPayment": "യാസ് ഐലൻഡ് | കാർഡ് പേയ്മെന്റ്",
+    "paymentSuccess": "യാസ് ഐലൻഡ് | പേയ്മെന്റ് വിജയം",
+    "paymentResponse": "യാസ് ഐലൻഡ് | പേയ്മെന്റ് പ്രതികരണം",
+    "upcoming": "യാസ് ഐലൻഡ് | ഉടൻ വരുന്നു",
+    "packages": "യാസ് ഐലൻഡ് | പാക്കേജ്"
+  },
+  "upcoming": {
+    "title": "ഉടൻ ഉൽപ്പന്നങ്ങൾ ചേർക്കും. ",
+    "subtitle": "പരിശോധിക്കുക",
+    "topAttractions": "മുഖ്യ ആകർഷണങ്ങൾ",
+    "subtitleEnd": "ഇപ്പോൾ ലഭ്യമായ സാഹസികതകൾക്കായി."
+  }
+}

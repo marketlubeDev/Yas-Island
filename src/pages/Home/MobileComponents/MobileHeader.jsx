@@ -12,6 +12,10 @@ import accessibilityIconInverter from "../../../assets/icons/assessinverter.svg"
 import globeIconInverter from "../../../assets/icons/invertGlob.svg";
 import { setLanguage } from "../../../global/languageSlice";
 import {
+  displayNameToCode,
+  codeToDisplayName,
+} from "../../../utils/languageUtils";
+import {
   setProducts,
   setCurrentSort,
   setCurrentPark,
@@ -25,7 +29,7 @@ function MobileHeader() {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showAccessibility, setShowAccessibility] = useState(false);
   const langBtnRef = useRef(null);
-  const { toggleLanguage } = useLanguage();
+  const { toggleLanguage, availableLanguages } = useLanguage();
 
   const isCardPaymentPage = location.pathname === "/card-payment";
   const accessibilityIconSrc = isDarkMode
@@ -50,7 +54,7 @@ function MobileHeader() {
       dispatch(setSearchQuery(""));
 
       // Update LanguageContext for UI display
-      const newLanguage = lng === "en" ? "English" : "العربية";
+      const newLanguage = codeToDisplayName(lng, availableLanguages);
       toggleLanguage(newLanguage);
     }
   };
@@ -136,30 +140,23 @@ function MobileHeader() {
                       : " mobile-header__lang-dropdown--en")
                   }
                 >
-                  <div
-                    className="mobile-header__lang-option"
-                    onClick={() => {
-                      changeLanguage("en");
-                      setShowLangDropdown(false);
-                    }}
-                  >
-                    <span className="mobile-header__lang-text">English</span>
-                    {currentLanguage === "en" && (
-                      <span className="mobile-header__lang-check">✓</span>
-                    )}
-                  </div>
-                  <div
-                    className="mobile-header__lang-option"
-                    onClick={() => {
-                      changeLanguage("ar");
-                      setShowLangDropdown(false);
-                    }}
-                  >
-                    <span className="mobile-header__lang-text">العربية</span>
-                    {currentLanguage === "ar" && (
-                      <span className="mobile-header__lang-check">✓</span>
-                    )}
-                  </div>
+                  {availableLanguages.map((lang) => (
+                    <div
+                      key={lang.code}
+                      className="mobile-header__lang-option"
+                      onClick={() => {
+                        changeLanguage(lang.code);
+                        setShowLangDropdown(false);
+                      }}
+                    >
+                      <span className="mobile-header__lang-text">
+                        {lang.name}
+                      </span>
+                      {currentLanguage === lang.code && (
+                        <span className="mobile-header__lang-check">✓</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

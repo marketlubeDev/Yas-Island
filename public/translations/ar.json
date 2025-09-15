@@ -1,4 +1,9 @@
 {
+  "config":{
+    "languageCode": "ar",
+    "name": "العربية",
+    "direction": "rtl"
+  },
   "common": {
     "back": "رجوع",
     "viewCart": "عرض السلة",
