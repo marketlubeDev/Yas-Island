@@ -19,7 +19,8 @@
     "thisTicketIsExpired": "هذا التذكرة منتهية",
     "vat": "ضريبة القيمة المضافة",
     "tax": "ضريبة",
-    "aed": "AED"
+    "aed": "AED",
+    "noResults": "لا توجد نتائج"
   },
   "noResults": {
     "title": "لا توجد معالم متاحة",

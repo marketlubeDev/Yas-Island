@@ -19,7 +19,8 @@
     "thisTicketIsExpired": "This Ticket Is Expired",
     "vat": "VAT",
     "tax": "Tax",
-    "aed": "AED"
+    "aed": "AED",
+    "noResults": "No Results"
   },
   "noResults": {
     "title": "No Attractions Available",
