@@ -1,0 +1,13 @@
+{
+  "validatePromocodeEndpoint": "/products/validatepromocode",
+  "getProductListEndpoint": "/products/getproductlist",
+  "getPerformanceEndpoint": "/products/getperformances",
+  "checkBasketEndpoint": "/products/checkbasket",
+  "emailVerificationEndpoint": "/email/verifyemail",
+  "createOrderEndpoint": "/orders/createorder",
+  "updateSurveyEndpoint": "/survey/update-survey",
+  "getTermsAndConditionEndpoint": "/TermsAndCondition",
+  "getPerformanceEndpointList": "/products/getperformanceslist",
+  "validateQRcodeEndpoint": "/qrcode/log-locations",
+  "retriveCartEndpoint": "/qrcode/retrievecart"
+}
