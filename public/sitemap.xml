@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>/</loc>
+  </url>
+  <url>
+    <loc>/all</loc>
+  </url>
+  <url>
+    <loc>/upcoming</loc>
+  </url>
+  <url>
+    <loc>/packages</loc>
+  </url>
+  <url>
+    <loc>/hotels</loc>
+  </url>
+  <url>
+    <loc>/dining</loc>
+  </url>
+  <url>
+    <loc>/live</loc>
+  </url>
+  <url>
+    <loc>/payment-details</loc>
+  </url>
+  <url>
+    <loc>/card-payment</loc>
+  </url>
+  <url>
+    <loc>/payment-success</loc>
+  </url>
+  <url>
+    <loc>/payment-response</loc>
+  </url>
+  <url>
+    <loc>/email-verification</loc>
+  </url>
+  <url>
+    <loc>/otp-confirmation</loc>
+  </url>
+</urlset>
+
+
