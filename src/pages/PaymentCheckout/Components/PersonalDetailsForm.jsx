@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Select from "react-select";
 import countries from "i18n-iso-countries";
 import ReactCountryFlag from "react-country-flag";
 import { FaEdit } from "react-icons/fa";
@@ -84,172 +83,279 @@ const FormSelectWithSearch = ({
   placeholder = "",
   onClearError,
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+
   const selectedOption =
     value && value !== ""
       ? options.find((option) => option.value === value)
       : null;
 
-  const handleInputChange = (inputValue, { action }) => {
-    if (action === "input-change") {
-      return inputValue.replace(/[0-9]/g, ""); // remove digits
-    }
-    return inputValue;
+  const handleSelect = (option) => {
+    onChange(option.value);
+    setIsOpen(false);
+    if (onClearError) onClearError();
   };
 
-  const customOption = ({ data, ...props }) => (
-    <div
-      {...props.innerProps}
-      className="country-option"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        padding: "10px 12px",
-      }}
-    >
-      <ReactCountryFlag
-        countryCode={data.code}
-        svg
-        className="country-flag"
-        style={{ width: 18, height: 12 }}
-      />
-      <span className="country-name">{data.label}</span>
-    </div>
-  );
+  const filteredOptions = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return options;
+    return options.filter((option) => {
+      return (
+        option.label.toLowerCase().includes(query) ||
+        String(option.value).toLowerCase().includes(query) ||
+        String(option.code).toLowerCase().includes(query)
+      );
+    });
+  }, [options, searchTerm]);
 
-  const customSingleValue = ({ data }) => (
-    <div className="country-single-value">
-      <ReactCountryFlag countryCode={data.code} svg className="country-flag" />
-      <span className="country-name">{data.label}</span>
-    </div>
-  );
+  // Reset search term when dropdown closes
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchTerm("");
+    }
+  }, [isOpen]);
 
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      border: "none",
-      borderBottom: hasError
-        ? "2px solid var(--color-error-text, #ff4d4f)"
-        : "1px solid var(--ip-bodr-btm)",
-      borderRadius: "0",
-      backgroundColor: "transparent",
-      boxShadow: "none",
-      minHeight: "40px",
-      height: "40px",
-      padding: "0",
-      cursor: "text",
-      display: "flex",
-      alignItems: "center",
-      "&:hover": {
-        borderBottom: hasError
-          ? "2px solid var(--color-error-text, #ff4d4f)"
-          : "1px solid var(--ip-bodr-btm)",
-      },
-    }),
-    // Ensure dropdown overlays inputs like phone field
-    menuPortal: (base) => ({
-      ...base,
-      zIndex: 9999,
-    }),
-    valueContainer: (provided) => ({
-      ...provided,
-      padding: "0",
-      height: "40px",
-      display: "flex",
-      alignItems: "center",
-    }),
-    input: (provided) => ({
-      ...provided,
-      color: "var(--color-base-text-secondary)",
-      margin: "0",
-      padding: "0",
-      height: "40px",
-      display: "flex",
-      alignItems: "center",
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: hasError
-        ? "var(--color-error-text, #ff4d4f)"
-        : "var(--color-base-text-secondary)",
-      height: "40px",
-      display: "flex",
-      alignItems: "center",
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      margin: "0",
-      padding: "0",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: "var(--color-base-bg)",
-      border: "1px solid var(--ip-bodr-btm)",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected
-        ? "var(--color-base-primary)"
-        : state.isFocused
-        ? "var(--color-base-hover)"
-        : "transparent",
-      paddingTop: 10,
-      paddingBottom: 10,
-      lineHeight: 1.6,
-      minHeight: 44,
-      "&:hover": {
-        backgroundColor: "var(--color-base-hover)",
-      },
-    }),
-    menuList: (base) => ({
-      ...base,
-      paddingTop: 4,
-      paddingBottom: 4,
-    }),
-    indicatorSeparator: () => ({
-      display: "none",
-    }),
-    dropdownIndicator: (provided) => ({
-      ...provided,
-      color: "var(--color-base-text-secondary)",
-      padding: "0 8px",
-    }),
+  // Handle clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const dropdownElement = document.getElementById(
+        `desktop-${label.toLowerCase().replace(/\s+/g, "")}`
+      );
+      if (dropdownElement && !dropdownElement.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen, label]);
+
+  // Utility function to truncate text
+  const truncateText = (text, maxLength) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
   };
 
   return (
     <div className="form-group">
       <label className="form-group__label">{label}</label>
-      <Select
-        key={`${label}-${value}`}
-        value={selectedOption}
-        onFocus={onClearError}
-        onMenuOpen={onClearError}
-        menuPortalTarget={
-          typeof document !== "undefined" ? document.body : null
-        }
-        menuPosition="fixed"
-        onChange={(selectedOption) => {
-          onChange(selectedOption?.value || "");
-          if (onClearError) onClearError();
-        }}
-        options={options}
-        onInputChange={handleInputChange}
-        components={{
-          Option: customOption,
-          SingleValue: customSingleValue,
-        }}
-        styles={customStyles}
-        placeholder={hasError ? placeholder || label : ""}
-        isSearchable={true}
-        isClearable={false}
-        blurInputOnSelect={false}
-        openMenuOnClick={true}
-        openMenuOnFocus={true}
-        closeMenuOnSelect={true}
-        hideSelectedOptions={false}
-        controlShouldRenderValue={true}
-        className={className}
-      />
+      <div
+        className="custom-select-container"
+        style={{ position: "relative" }}
+        id={`desktop-${label.toLowerCase().replace(/\s+/g, "")}`}
+      >
+        <div
+          className="custom-select-control"
+          style={{
+            border: "none",
+            borderBottom: hasError
+              ? "2px solid var(--color-error-text, #ff4d4f)"
+              : "1px solid var(--ip-bodr-btm)",
+            borderRadius: "0",
+            backgroundColor: "transparent",
+            minHeight: "40px",
+            height: "40px",
+            padding: "0",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            justifyContent: "space-between",
+            color: "var(--color-base-text-secondary)",
+          }}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            if (onClearError) onClearError();
+          }}
+        >
+          {selectedOption ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                overflow: "hidden",
+                flex: 1,
+              }}
+            >
+              <ReactCountryFlag
+                countryCode={selectedOption.code}
+                svg
+                style={{ width: "20px", height: "15px", flexShrink: 0 }}
+              />
+              <span
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  lineHeight: "1.2",
+                  fontSize: "1rem",
+                  color: "var(--color-base-text-secondary)",
+                }}
+              >
+                {truncateText(selectedOption.label, 25)}
+              </span>
+            </div>
+          ) : (
+            <span
+              style={{
+                color: hasError
+                  ? "var(--color-error-text, #ff4d4f)"
+                  : "var(--color-base-text-secondary)",
+                opacity: 1,
+              }}
+            >
+              {hasError && placeholder
+                ? placeholder
+                : typeof t === "function"
+                ? t("payment.selectCountry", {
+                    defaultValue: "Select a country",
+                  })
+                : "Select a country"}
+            </span>
+          )}
+          <div
+            style={{
+              color: "var(--color-base-text-secondary)",
+              padding: "0 8px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.2s ease",
+            }}
+          >
+            <svg
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {isOpen && (
+          <div
+            className="custom-select-menu"
+            style={{
+              position: "absolute",
+              top: "100%",
+              left: 0,
+              right: 0,
+              backgroundColor: "var(--color-base-bg)",
+              border: "1px solid var(--ip-bodr-btm)",
+              borderRadius: "4px",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              zIndex: 9999,
+              maxHeight: "260px",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                padding: "8px 8px 4px 8px",
+                borderBottom: "1px solid var(--ip-bodr-btm)",
+                backgroundColor: "var(--color-base-bg)",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                autoFocus
+                placeholder={
+                  typeof t === "function"
+                    ? t("payment.searchCountries", {
+                        defaultValue: "Search countries...",
+                      })
+                    : "Search countries..."
+                }
+                style={{
+                  width: "100%",
+                  height: "36px",
+                  padding: "0 10px",
+                  border: "1px solid var(--ip-bodr-btm)",
+                  borderRadius: "4px",
+                  backgroundColor: "transparent",
+                  color: "var(--color-base-text-secondary)",
+                  fontSize: "1rem",
+                }}
+              />
+            </div>
+            <div style={{ maxHeight: "220px", overflowY: "auto" }}>
+              {filteredOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className="custom-select-option"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                    backgroundColor:
+                      option.value === value
+                        ? "var(--color-base-hover)"
+                        : "transparent",
+                    color: "var(--color-base-text-secondary)",
+                    minHeight: "44px",
+                  }}
+                  onClick={() => handleSelect(option)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      "var(--color-base-hover)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor =
+                      option.value === value
+                        ? "var(--color-base-hover)"
+                        : "transparent";
+                  }}
+                >
+                  <ReactCountryFlag
+                    countryCode={option.code}
+                    svg
+                    style={{ width: "20px", height: "15px" }}
+                  />
+                  <span style={{ color: "var(--color-base-text-secondary)" }}>
+                    {truncateText(option.label, 25)}
+                  </span>
+                </div>
+              ))}
+              {filteredOptions.length === 0 && (
+                <div
+                  style={{
+                    padding: "10px 12px",
+                    color: "var(--color-base-text-secondary)",
+                  }}
+                >
+                  {(t && t("common.noResults")) ||
+                    t("payment.noResults", { defaultValue: "No results" }) ||
+                    "No results"}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
