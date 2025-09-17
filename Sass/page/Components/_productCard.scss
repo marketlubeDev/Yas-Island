@@ -527,6 +527,14 @@
   max-height: calc(100vh - 48px);
   overflow: hidden;
   // iPad mini/tablets: allow inner scroll and adjust padding
+  @include respond(desktop) {
+    padding: 2rem !important;
+    padding-top: 3.2rem;
+  }
+  @include respond(bigDesktop) {
+    padding: 2rem !important;
+    padding-top: 3.7rem;
+  }
   @include respond(tablets) {
     overflow: auto;
     scrollbar-width: none; /* Firefox */
@@ -1281,13 +1289,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-}
-
-/* Calendar body wrapper fills remaining space */
-.calendar-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  overflow: hidden; // prevent body from scrolling, let calendar-days handle it
 }
 
 /* Days of week header */
@@ -1319,11 +1321,37 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1px; // further reduced gap between calendar days
-  grid-template-rows: repeat(6, minmax(0, 1fr)); // ensure rows don't overflow
+  grid-template-rows: repeat(
+    6,
+    minmax(calc(40px * var(--zoom-scale)), auto)
+  ); // allow rows to expand as needed
   flex: 1 1 auto; // fill remaining space under header + weekdays
   place-items: center; // center day circles within their cells
   height: 100%;
   padding: 8px; // add some padding to reduce overall size
+  overflow-y: auto; // enable vertical scrolling
+  overflow-x: hidden; // prevent horizontal scrolling
+  -webkit-overflow-scrolling: touch; // smooth scrolling on iOS
+  scrollbar-width: thin; // thin scrollbar for Firefox
+
+  // Custom scrollbar styling for webkit browsers
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-base-product-card-card-item-bg);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-base-product-card-card-item-border);
+    border-radius: 3px;
+
+    &:hover {
+      background: var(--color-base-text);
+    }
+  }
 
   // keep cells square so inner circle remains perfect
   .day {
@@ -1334,6 +1362,32 @@
   @include respond(desktop) {
     gap: 1px; // further reduced gap for desktop too
     padding: 6px; // smaller padding for desktop
+  }
+
+  @include respond(bigTablets) {
+    // Ensure scrolling works well on tablets
+    max-height: 300px; // limit height to enable scrolling
+
+    .day {
+      width: min(calc(35px * var(--zoom-scale)), 80%);
+      height: min(calc(35px * var(--zoom-scale)), 80%);
+    }
+  }
+
+  @include respond(mobile) {
+    // Optimize for mobile devices
+    max-height: 250px; // smaller max height for mobile
+    padding: 6px;
+
+    .day {
+      width: min(calc(32px * var(--zoom-scale)), 75%);
+      height: min(calc(32px * var(--zoom-scale)), 75%);
+    }
+
+    // Larger scrollbar for touch devices
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
   }
 }
 
