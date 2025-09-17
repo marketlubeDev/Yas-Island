@@ -193,6 +193,30 @@ export default function BookingSection({ product, onBack }) {
     }
   }, [product]);
 
+  // Smart scroll when month changes - track navigation direction
+  const [navigationDirection, setNavigationDirection] = useState(null);
+
+  useEffect(() => {
+    const calendarDays = document.querySelector(".calendar-days");
+    if (calendarDays && navigationDirection) {
+      if (navigationDirection === "next") {
+        // Next month: scroll to top
+        calendarDays.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else if (navigationDirection === "prev") {
+        // Previous month: scroll to bottom
+        calendarDays.scrollTo({
+          top: calendarDays.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+      // Reset navigation direction after scrolling
+      setNavigationDirection(null);
+    }
+  }, [currentDate, navigationDirection]);
+
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -275,6 +299,12 @@ export default function BookingSection({ product, onBack }) {
 
     // If cross-month selection, update the view month
     if (clickedMonth !== currentMonth || clickedYear !== currentYear) {
+      // Determine if we're going forward or backward in time
+      const clickedDate = new Date(clickedYear, clickedMonth, 1);
+      const currentViewDate = new Date(currentYear, currentMonth, 1);
+      const isGoingForward = clickedDate > currentViewDate;
+
+      setNavigationDirection(isGoingForward ? "next" : "prev");
       setCurrentDate(new Date(clickedYear, clickedMonth, 1));
     }
 
@@ -430,12 +460,14 @@ export default function BookingSection({ product, onBack }) {
   };
 
   const handlePrevMonth = () => {
+    setNavigationDirection("prev");
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
     );
   };
 
   const handleNextMonth = () => {
+    setNavigationDirection("next");
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
     );
