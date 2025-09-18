@@ -2,13 +2,23 @@ import axios from "axios";
 import { toast } from "sonner";
 import { getConfig, initEnvironment } from "./environment.js";
 
-// Initialize environment first
-await initEnvironment();
+let BaseURL = "https://api.yasworld.com";
+
+initEnvironment()
+  .then(() => {
+    const config = getConfig();
+    if (config?.baseURL) {
+      BaseURL = config.baseURL;
+    }
+  })
+  .catch(console.error);
 
 const apiClient = axios.create({
-  baseURL: getConfig()?.baseURL,
+  baseURL: BaseURL, // Default fallback
   // withCredentials: true,
 });
+
+// Initialize environment and update baseURL
 
 // Global network error handling: show a non-blocking toast and let components decide further
 apiClient.interceptors.response.use(
