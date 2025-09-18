@@ -9,7 +9,6 @@ const discoverAvailableLanguages = async () => {
         .filter((code) => code && code.length > 0);
 
       if (languageCodes.length > 0) {
-        console.log("Languages discovered from manifest:", languageCodes);
         return languageCodes;
       }
     }
@@ -86,7 +85,6 @@ export const getAvailableLanguages = async () => {
       return acc;
     }, []);
 
-    console.log("Final available languages:", uniqueLanguages);
     return uniqueLanguages;
   } catch (error) {
     console.error("Error loading available languages:", error);

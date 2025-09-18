@@ -14,7 +14,6 @@ getConfig()
   .then((config) => {
     if (config?.baseURL) {
       apiClient.defaults.baseURL = config.baseURL;
-      console.log(config.baseURL, "BaseURL from env.json");
     }
   })
   .catch(console.error);
