@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart, setIsCartOpen } from "../../../../global/cartSlice";
 import { useSelector } from "react-redux";
-import { getConfig } from "../../../../../config/environment.js";
+import { getConfig } from "../../../../../config/environment";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -126,9 +126,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       form.style.display = "none";
       form.id = "payfort-form";
 
+      console.log(orderData.tokenizationResponse, "formParameters");
+
       const parameters = {
         ...orderData.tokenizationResponse.formParameters,
-        // language: currentLanguage,
+        language: currentLanguage,
       };
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
@@ -146,21 +148,22 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       // Form will only be removed on component unmount or payment completion
 
       // Listen for messages from the iframe
-      const handleMessage = (event) => {
+      const handleMessage = async (event) => {
         const data = event?.data;
-        console.log(event, "event");
 
         // Strictly trust only messages from known, allowed origins
-        const getBackendOrigin = () => {
+        const getBackendOrigin = async () => {
           try {
-            const config = getConfig();
-            return new URL(config?.baseURL).origin;
+            const config = await getConfig();
+            const origin = new URL(config?.baseURL).origin;
+            return origin;
           } catch (_) {
+            console.log("Error getting backend origin");
             return "";
           }
         };
-
-        const allowedOrigins = new Set([getBackendOrigin()].filter(Boolean));
+        const backendOrigin = await getBackendOrigin();
+        const allowedOrigins = new Set([backendOrigin].filter(Boolean));
 
         const eventOrigin = event?.origin || "";
         if (!allowedOrigins.has(eventOrigin)) {

@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import MobileHeader from "../../Home/MobileComponents/MobileHeader";
 import { clearCart } from "../../../global/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { getConfig } from "../../../../config/environment.js";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -86,8 +85,7 @@ function CardPaymentMobile() {
         // Strictly trust only messages from known, allowed origins
         const getBackendOrigin = () => {
           try {
-            const config = getConfig();
-            return new URL(config?.baseURL).origin;
+            return new URL(import.meta.env.VITE_BASE_URL).origin;
           } catch (_) {
             return "";
           }

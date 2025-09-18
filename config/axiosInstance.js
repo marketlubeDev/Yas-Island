@@ -1,24 +1,23 @@
 import axios from "axios";
 import { toast } from "sonner";
-import { getConfig, initEnvironment } from "./environment.js";
+import { getConfig } from "./environment.js";
 
 let BaseURL = "https://yas-uat-qrapi.dev.panashi.ae/api";
-
-initEnvironment()
-  .then(() => {
-    const config = getConfig();
-    if (config?.baseURL) {
-      BaseURL = config.baseURL;
-    }
-  })
-  .catch(console.error);
 
 const apiClient = axios.create({
   baseURL: BaseURL, // Default fallback
   // withCredentials: true,
 });
 
-// Initialize environment and update baseURL
+// Load environment and update baseURL
+getConfig()
+  .then((config) => {
+    if (config?.baseURL) {
+      apiClient.defaults.baseURL = config.baseURL;
+      console.log(config.baseURL, "BaseURL from env.json");
+    }
+  })
+  .catch(console.error);
 
 // Global network error handling: show a non-blocking toast and let components decide further
 apiClient.interceptors.response.use(

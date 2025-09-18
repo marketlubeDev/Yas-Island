@@ -1,8 +1,4 @@
-let envConfig = null;
-
-export const initEnvironment = async () => {
+export const getConfig = async () => {
   const response = await fetch("/config/env.json");
-  envConfig = await response.json();
+  return await response.json();
 };
-
-export const getConfig = () => envConfig;
