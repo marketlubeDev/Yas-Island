@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { getConfig, initEnvironment } from "./environment.js";
 
-let BaseURL = "https://api.yasworld.com";
+let BaseURL = "https://yas-uat-qrapi.dev.panashi.ae/api";
 
 initEnvironment()
   .then(() => {
