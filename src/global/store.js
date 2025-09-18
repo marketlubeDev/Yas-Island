@@ -77,7 +77,7 @@ const otpPersistConfig = {
   key: "yasIslandOTP",
   storage: mobileStorage, // Use mobile-friendly storage
   whitelist: ["email", "OTP"], // persist email and OTP data
-  debug: process.env.NODE_ENV === "development", // Add debugging for persistence
+  debug: false, // Add debugging for persistence
 };
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);

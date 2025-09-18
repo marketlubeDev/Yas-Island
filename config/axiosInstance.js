@@ -1,8 +1,12 @@
 import axios from "axios";
 import { toast } from "sonner";
+import { getConfig, initEnvironment } from "./environment.js";
+
+// Initialize environment first
+await initEnvironment();
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: getConfig()?.baseURL,
   // withCredentials: true,
 });
 

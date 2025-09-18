@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { clearCart, setIsCartOpen } from "../../../../global/cartSlice";
 import { useSelector } from "react-redux";
+import { getConfig } from "../../../../../config/environment.js";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -154,7 +155,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         // Strictly trust only messages from known, allowed origins
         const getBackendOrigin = () => {
           try {
-            return new URL(import.meta.env.VITE_BASE_URL).origin;
+            const config = getConfig();
+            return new URL(config?.baseURL).origin;
           } catch (_) {
             return "";
           }
