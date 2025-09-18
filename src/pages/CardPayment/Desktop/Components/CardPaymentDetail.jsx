@@ -125,11 +125,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       form.style.display = "none";
       form.id = "payfort-form";
 
-      console.log(orderData.tokenizationResponse, "formParameters");
-
       const parameters = {
         ...orderData.tokenizationResponse.formParameters,
-        language: currentLanguage,
+        // language: currentLanguage,
       };
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
