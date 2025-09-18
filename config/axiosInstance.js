@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { getConfig } from "./environment.js";
 
-let BaseURL = "https://yas-uat-qrapi.dev.panashi.ae/";
+let BaseURL = "https://yas-uat-qrapi.dev.panashi.ae/api";
 
 const apiClient = axios.create({
   baseURL: BaseURL, // Default fallback
