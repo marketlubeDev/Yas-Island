@@ -126,11 +126,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       form.style.display = "none";
       form.id = "payfort-form";
 
-      console.log(orderData.tokenizationResponse, "formParameters");
-
       const parameters = {
         ...orderData.tokenizationResponse.formParameters,
-        language: currentLanguage,
       };
 
       Object.entries(parameters || {}).forEach(([key, value]) => {
@@ -450,8 +447,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
             </div>
           )}
         </div>
-
-        {/* Fallback controls removed to prevent showing by default. */}
       </div>
     </div>
   );
