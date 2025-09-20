@@ -22,10 +22,13 @@ function SmileSectionMbl({
   const handleEmojiClick = async (emojiType) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
+
+    // First set the selected state to show visual feedback
+    setSelected(emojiType);
+
     try {
       const response = await updateSurvey(emojiType);
       if (response.status === 200) {
-        setSelected(emojiType);
         setShowThankYou(true);
         setCountdown(3); // Reset countdown when thank you is shown
       }
@@ -33,17 +36,26 @@ function SmileSectionMbl({
       toast.error(t("toastMessages.somethingWentWrong"), {
         position: "top-center",
       });
+      // Reset selection on error
+      setSelected(null);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="experience-rate-options">
+    <div
+      className="experience-rate-options"
+      style={{
+        pointerEvents: isSubmitting ? "none" : "auto",
+        opacity: isSubmitting ? 0.7 : 1,
+        transition: "opacity 0.3s",
+      }}
+    >
       <div
         className={`experience-rate-option${
           selected === "Satisfied" ? " selected-green" : ""
-        }`}
+        }${isSubmitting && selected === "Satisfied" ? " submitting" : ""}`}
         onClick={() => handleEmojiClick("Satisfied")}
       >
         <div className="smile-circle">
@@ -59,7 +71,7 @@ function SmileSectionMbl({
       <div
         className={`experience-rate-option${
           selected === "Neutral" ? " selected-yellow" : ""
-        }`}
+        }${isSubmitting && selected === "Neutral" ? " submitting" : ""}`}
         onClick={() => handleEmojiClick("Neutral")}
       >
         <div className="smile-circle">
@@ -75,7 +87,7 @@ function SmileSectionMbl({
       <div
         className={`experience-rate-option${
           selected === "Unsatisfied" ? " selected-red" : ""
-        }`}
+        }${isSubmitting && selected === "Unsatisfied" ? " submitting" : ""}`}
         onClick={() => handleEmojiClick("Unsatisfied")}
       >
         <div className="smile-circle">

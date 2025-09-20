@@ -12276,7 +12276,7 @@ html[lang=ar] .make-payment__summary-top {
   justify-content: center;
   margin-bottom: calc(4px * var(--zoom-scale));
   box-shadow: 0 calc(2px * var(--zoom-scale)) calc(8px * var(--zoom-scale)) rgba(44, 44, 84, 0.08);
-  transition: background 0.2s, border 0.2s;
+  transition: all 0.3s ease;
   position: relative;
 }
 .smile-circle .excellent-emoji {
@@ -12355,16 +12355,38 @@ html[lang=ar] .make-payment__summary-top {
 /* Selected states for the smile-circle */
 .selected-green .smile-circle {
   background: var(--color-fb-happy-bg) !important;
+  transform: scale(1.1);
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) rgba(46, 204, 113, 0.3);
 }
 
 .selected-yellow .smile-circle {
   background: var(--color-fb-smile-bg) !important;
+  transform: scale(1.1);
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) rgba(255, 230, 0, 0.3);
 }
 
 .selected-red .smile-circle {
   background: var(--color-fb-sad-bg) !important;
+  transform: scale(1.1);
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) rgba(255, 77, 79, 0.3);
 }
 
+/* Submitting state animation */
+.experience-rate-option.submitting .smile-circle {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
 .experience-outer-bg {
   background: var(--color-checkout-summary-bg);
   width: 100vw;
