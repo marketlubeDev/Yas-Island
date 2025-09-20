@@ -12159,31 +12159,33 @@ html[lang=ar] .make-payment__summary-top {
   align-items: center;
   justify-content: center;
   width: 100%;
-  overflow-y: auto;
+  overflow: hidden;
+  height: 100%;
 }
 
 .experience-ticket-img {
-  height: calc(15rem * var(--zoom-scale));
+  height: calc(10rem * var(--zoom-scale));
   object-fit: contain;
-  margin-bottom: calc(18px * var(--zoom-scale));
-  max-height: 50vh;
+  margin-bottom: calc(12px * var(--zoom-scale));
+  max-height: 25vh;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .experience-ticket-img {
-    height: calc(12rem * var(--zoom-scale));
-    max-height: 40vh;
+    height: calc(8rem * var(--zoom-scale));
+    max-height: 20vh;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .experience-ticket-img {
-    height: calc(8rem * var(--zoom-scale));
-    max-height: 35vh;
+    height: calc(6rem * var(--zoom-scale));
+    max-height: 18vh;
+    margin-bottom: calc(8px * var(--zoom-scale));
   }
 }
 @media screen and (max-width: 420px) {
   .experience-ticket-img {
-    height: calc(12rem * var(--zoom-scale));
-    max-height: 35vh;
+    height: calc(6rem * var(--zoom-scale));
+    max-height: 18vh;
   }
 }
 
@@ -12389,22 +12391,26 @@ html[lang=ar] .make-payment__summary-top {
 }
 .experience-outer-bg {
   background: var(--color-checkout-summary-bg);
+  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   padding: calc(10px * var(--zoom-scale));
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .experience-outer-bg {
-    padding: calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
-    height: calc(100vh - 6rem * var(--zoom-scale));
+    padding: calc(8px * var(--zoom-scale));
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   .experience-outer-bg {
-    padding: calc(10px * var(--zoom-scale)) calc(10px * var(--zoom-scale));
-    height: calc(100vh - 4rem * var(--zoom-scale));
+    padding: calc(5px * var(--zoom-scale));
   }
 }
 
@@ -12412,10 +12418,12 @@ html[lang=ar] .make-payment__summary-top {
   background: var(--color-email-form-box);
   border-radius: calc(16px * var(--zoom-scale));
   box-shadow: 0 calc(4px * var(--zoom-scale)) calc(24px * var(--zoom-scale)) rgba(44, 44, 84, 0.1);
-  padding: calc(32px * var(--zoom-scale)) calc(24px * var(--zoom-scale));
+  padding: calc(20px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
   max-width: 420px;
   width: 100%;
-  height: 84vh;
+  height: auto;
+  min-height: 70vh;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12423,19 +12431,29 @@ html[lang=ar] .make-payment__summary-top {
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .experience-content-container {
-    width: 80vw !important;
+    width: 90vw !important;
     max-width: 100vw !important;
-    height: 80vh !important;
+    min-height: 75vh !important;
+    max-height: 85vh !important;
+    padding: calc(16px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .experience-content-container {
+    width: 95vw !important;
+    min-height: 80vh !important;
+    max-height: 90vh !important;
+    padding: calc(12px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
   }
 }
 @media screen and (max-width: 420px) {
   .experience-content-container {
-    padding: calc(24px * var(--zoom-scale)) calc(16px * var(--zoom-scale));
+    padding: calc(16px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
   }
 }
 @media screen and (max-width: 375px) {
   .experience-content-container {
-    padding: calc(10px * var(--zoom-scale)) calc(12px * var(--zoom-scale));
+    padding: calc(12px * var(--zoom-scale)) calc(8px * var(--zoom-scale));
   }
 }
 

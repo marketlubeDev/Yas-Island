@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import updateSurvey from "../../../serivces/survey/survey";
 import smileGreen from "../../../assets/images/green.png";

@@ -13,9 +13,16 @@ function PaymentResponseMobile() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Scroll to top when component mounts
+  // Scroll to top and prevent body scroll when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Prevent body scroll
+    document.body.style.overflow = "hidden";
+
+    // Cleanup: restore body scroll when component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, []);
 
   // Handle countdown and redirect when thank you is shown
