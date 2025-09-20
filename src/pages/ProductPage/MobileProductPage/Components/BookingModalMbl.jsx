@@ -6,6 +6,10 @@ import leftIconDark from "../../../../assets/icons/invertLeft.svg";
 import { useLanguage } from "../../../../context/LanguageContext";
 import backIcon from "../../../../assets/icons/back copy.svg"; // Replace with your back arrow
 import backIconInverter from "../../../../assets/icons/invertedback.svg";
+import PlusIcon from "../../../../assets/icons/plus.svg";
+import MinusIcon from "../../../../assets/icons/minus.svg";
+import InvertMinusIcon from "../../../../assets/icons/invertminus.svg";
+import InvertPlusIcon from "../../../../assets/icons/invertplus.svg";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../../../components/Loading/ButtonLoading";
 import {
@@ -1125,7 +1129,6 @@ function BookingModalMbl({
                                 <button
                                   className="guests-btn"
                                   style={{
-                                    color: "var(--color-bkg-guest-title-clr)",
                                     opacity: !isAvailable ? 0.5 : 1,
                                     cursor: !isAvailable
                                       ? "not-allowed"
@@ -1155,7 +1158,16 @@ function BookingModalMbl({
                                       (variantData?.min_quantity || 0)
                                   }
                                 >
-                                  -
+                                  <img
+                                    src={
+                                      isDarkMode ? InvertMinusIcon : MinusIcon
+                                    }
+                                    alt="minus"
+                                    style={{
+                                      width: "calc(16px * var(--zoom-scale))",
+                                      height: "calc(16px * var(--zoom-scale))",
+                                    }}
+                                  />
                                 </button>
                                 <span
                                   className="guests-count"
@@ -1169,7 +1181,6 @@ function BookingModalMbl({
                                 <button
                                   className="guests-btn"
                                   style={{
-                                    color: "var(--color-bkg-guest-title-clr)",
                                     opacity: !isAvailable ? 0.5 : 1,
                                     cursor: !isAvailable
                                       ? "not-allowed"
@@ -1212,7 +1223,14 @@ function BookingModalMbl({
                                   }
                                   disabled={!isAvailable}
                                 >
-                                  +
+                                  <img
+                                    src={isDarkMode ? InvertPlusIcon : PlusIcon}
+                                    alt="plus"
+                                    style={{
+                                      width: "calc(16px * var(--zoom-scale))",
+                                      height: "calc(16px * var(--zoom-scale))",
+                                    }}
+                                  />
                                 </button>
                               </div>
                             </div>
