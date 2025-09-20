@@ -12423,6 +12423,45 @@ html[lang=ar] .make-payment__summary-top {
   font-size: calc(15px * var(--zoom-scale));
 }
 
+.experience-thankyou-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(20px * var(--zoom-scale));
+  height: 100%;
+}
+
+.experience-smiley-circle {
+  width: calc(80px * var(--zoom-scale));
+  height: calc(80px * var(--zoom-scale));
+  border-radius: 50%;
+  background: var(--color-feedback-circle-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: calc(20px * var(--zoom-scale));
+  box-shadow: 0 calc(4px * var(--zoom-scale)) calc(16px * var(--zoom-scale)) rgba(44, 44, 84, 0.1);
+}
+
+.experience-smiley-img {
+  width: calc(50px * var(--zoom-scale));
+  height: calc(50px * var(--zoom-scale));
+}
+
+.experience-feedback-text {
+  font-size: calc(16px * var(--zoom-scale));
+  color: var(--color-email-form-label);
+  margin: calc(8px * var(--zoom-scale)) 0;
+  font-weight: 500;
+}
+.experience-feedback-text:first-of-type {
+  font-size: calc(18px * var(--zoom-scale));
+  font-weight: 600;
+  margin-bottom: calc(12px * var(--zoom-scale));
+}
+
 .promo-popup-overlay {
   position: fixed;
   top: 0;

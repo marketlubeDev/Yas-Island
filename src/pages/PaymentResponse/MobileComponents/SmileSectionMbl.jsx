@@ -10,9 +10,13 @@ import smileYellowDark from "../../../assets/images/normal.png";
 import smileRed from "../../../assets/images/red.jpg";
 import smileRedDark from "../../../assets/images/sad.png";
 
-function SmileSectionMbl({ selected, setSelected }) {
+function SmileSectionMbl({
+  selected,
+  setSelected,
+  setShowThankYou,
+  setCountdown,
+}) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleEmojiClick = async (emojiType) => {
@@ -22,9 +26,8 @@ function SmileSectionMbl({ selected, setSelected }) {
       const response = await updateSurvey(emojiType);
       if (response.status === 200) {
         setSelected(emojiType);
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+        setShowThankYou(true);
+        setCountdown(3); // Reset countdown when thank you is shown
       }
     } catch (error) {
       toast.error(t("toastMessages.somethingWentWrong"), {
