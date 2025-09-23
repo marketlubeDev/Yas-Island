@@ -170,7 +170,9 @@
       "fri": "വെള്ളി",
       "sat": "ശനി"
     },
-    "productAddedToCart": "കാർട്ടിൽ ചേർത്തു"
+    "productAddedToCart": "കാർട്ടിൽ ചേർത്തു",
+    "pleaseSelectDateFirst": "ആദ്യം തീയതി തിരഞ്ഞെടുക്കുക",
+    "notAvailableOnSelectedDate": "തീയതിയിൽ ലഭ്യമല്ല"
   },
   "payment": {
     "title": "വിവരങ്ങൾ & പേയ്മെന്റ്",

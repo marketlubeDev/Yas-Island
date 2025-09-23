@@ -169,7 +169,9 @@
       "fri": "الجمعة",
       "sat": "السبت"
     },
-    "productAddedToCart": "تم إضافة المنتج إلى السلة"
+    "productAddedToCart": "تم إضافة المنتج إلى السلة",
+    "pleaseSelectDateFirst": "يرجى تحديد تاريخ أولاً",
+    "notAvailableOnSelectedDate": "غير متاح على التاريخ المحدد"
   },
   "payment": {
     "title": "إتمام الدفع",

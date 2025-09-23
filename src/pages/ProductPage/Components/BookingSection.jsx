@@ -318,24 +318,35 @@ export default function BookingSection({ product, onBack }) {
   };
 
   const isVariantAvailableForDate = (variantProductId) => {
-    // if (!selectedDate) {
-    //   return false;
-    // }
+    // If no date is selected, consider all variants as available (don't show warnings)
+    if (!selectedDate) {
+      return true;
+    }
 
-    if (!performanceData.length) {
-      return false;
+    // If performance data is still loading or empty, consider variants as available
+    if (!performanceData || !performanceData.length) {
+      return true;
     }
 
     const variantData = performanceData.find(
       (v) => v.variantProductId === variantProductId
     );
 
+    // If variant not found in performance data, consider it available (might not need performance)
     if (!variantData) {
-      return false;
+      return true;
     }
 
     // First check if the variant has any available dates at all
     if (!variantData.isAvailable) {
+      return false;
+    }
+
+    // Ensure availableDates exists and is an array
+    if (
+      !variantData.availableDates ||
+      !Array.isArray(variantData.availableDates)
+    ) {
       return false;
     }
 
@@ -946,8 +957,10 @@ export default function BookingSection({ product, onBack }) {
                                     {!isAvailable && (
                                       <span className="unavailable-notice">
                                         {!selectedDate
-                                          ? "- Please select a date first"
-                                          : "- Not available on selected date"}
+                                          ? t("booking.pleaseSelectDateFirst")
+                                          : t(
+                                              "booking.notAvailableOnSelectedDate"
+                                            )}
                                       </span>
                                     )}
                                   </span>

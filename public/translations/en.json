@@ -170,7 +170,9 @@
       "fri": "Fri",
       "sat": "Sat"
     },
-    "productAddedToCart": "Product Added To Cart"
+    "productAddedToCart": "Product Added To Cart",
+    "pleaseSelectDateFirst": "Please Select A Date First",
+    "notAvailableOnSelectedDate": "Not Available On Selected Date"
   },
   "payment": {
     "title": "Guest Details And Payment",
