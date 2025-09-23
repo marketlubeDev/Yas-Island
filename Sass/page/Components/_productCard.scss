@@ -395,28 +395,24 @@
           color: var(--color-base-text);
           font-size: calc(18px * var(--zoom-scale));
           font-style: normal;
-          font-weight: 600;
+          font-weight: bold;
           line-height: normal;
           text-transform: capitalize;
 
           @include respond(bigTablets) {
             font-size: calc(16px * var(--zoom-scale));
-            font-weight: 600;
           }
 
           @include respond(desktop) {
             font-size: calc(14px * var(--zoom-scale));
-            font-weight: 500;
           }
 
           @include respond(bigDesktop) {
             font-size: calc(15px * var(--zoom-scale));
-            font-weight: 500;
           }
 
           @include respond(extraBigDesktop) {
             font-size: calc(16px * var(--zoom-scale));
-            font-weight: 500;
           }
         }
 

@@ -1895,32 +1895,28 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   color: var(--color-base-text);
   font-size: calc(18px * var(--zoom-scale));
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   line-height: normal;
   text-transform: capitalize;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   .ProductCard__card__pricetag__price__text {
     font-size: calc(16px * var(--zoom-scale));
-    font-weight: 600;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
   .ProductCard__card__pricetag__price__text {
     font-size: calc(14px * var(--zoom-scale));
-    font-weight: 500;
   }
 }
 @media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
   .ProductCard__card__pricetag__price__text {
     font-size: calc(15px * var(--zoom-scale));
-    font-weight: 500;
   }
 }
 @media only screen and (min-width: 1700px) {
   .ProductCard__card__pricetag__price__text {
     font-size: calc(16px * var(--zoom-scale));
-    font-weight: 500;
   }
 }
 .ProductCard__card__pricetag__price__tax {
@@ -8650,12 +8646,11 @@ html[lang=ar] .attraction-card__action {
   align-items: center;
   gap: 8px;
   font-size: calc(13px * var(--zoom-scale));
-  font-weight: 500;
+  font-weight: bold;
   color: var(--color-base-mobile-product-page-price);
 }
 .zoom-1-5x .attraction-card__price {
   font-size: calc(18px * var(--zoom-scale));
-  font-weight: 600;
   gap: calc(12px * var(--zoom-scale));
 }
 html[lang=ar] .attraction-card__price {
