@@ -42,7 +42,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
     if (!iframe) return;
 
-    // Function to safely apply theme
     const applyTheme = () => {
       try {
         const iframeDoc =
