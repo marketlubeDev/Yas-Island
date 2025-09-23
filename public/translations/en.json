@@ -1,5 +1,5 @@
 {
-  "config":{
+  "config": {
     "languageCode": "en",
     "name": "English",
     "direction": "ltr"
@@ -322,7 +322,9 @@
     "apply": "Apply",
     "securePayment": "Secure Payment",
     "promoCodeSavings": "Promo Code Savings :",
+    "couponSavings": "Coupon Savings :",
     "removePromoCode": "Remove Promo Code",
+    "remove": "Remove",
     "promoCodeRemoved": "Promo Code Removed Successfully",
     "couponApplied": "Coupon Applied"
   },

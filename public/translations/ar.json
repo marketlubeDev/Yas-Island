@@ -1,5 +1,5 @@
 {
-  "config":{
+  "config": {
     "languageCode": "ar",
     "name": "العربية",
     "direction": "rtl"
@@ -322,7 +322,9 @@
     "apply": "تطبيق",
     "securePayment": "دفع آمن",
     "promoCodeSavings": "توفير رمز الخصم :",
+    "couponSavings": "توفير الكوبون :",
     "removePromoCode": "إزالة رمز الخصم",
+    "remove": "إزالة",
     "promoCodeRemoved": "تم إزالة رمز الخصم بنجاح",
     "couponApplied": "تم تطبيق الكوبون"
   },

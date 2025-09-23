@@ -11806,6 +11806,16 @@ html[lang=ar] .confirm-email__otp-actions button {
     transform: translateY(0);
   }
 }
+/* Coupon badge icon scaling */
+.coupon-badge-icon {
+  font-size: calc(24px * var(--zoom-scale)) !important;
+  width: calc(24px * var(--zoom-scale)) !important;
+  height: calc(24px * var(--zoom-scale)) !important;
+  min-width: calc(24px * var(--zoom-scale)) !important;
+  min-height: calc(24px * var(--zoom-scale)) !important;
+  flex-shrink: 0;
+}
+
 .make-payment-modal {
   background: var(--color-email-form-box);
   border-radius: 24px;

@@ -1,5 +1,5 @@
 {
-  "config":{
+  "config": {
     "languageCode": "ml",
     "name": "മലയാളം",
     "direction": "ltr"
@@ -322,7 +322,9 @@
     "apply": "പ്രയോഗിക്കുക",
     "securePayment": "സുരക്ഷിത പേയ്മെന്റ്",
     "promoCodeSavings": "പ്രോമോ കോഡ് ലാഭം :",
+    "couponSavings": "കൂപ്പൺ ലാഭം :",
     "removePromoCode": "പ്രോമോ കോഡ് നീക്കം ചെയ്യുക",
+    "remove": "നീക്കം ചെയ്യുക",
     "promoCodeRemoved": "പ്രോമോ കോഡ് വിജയകരമായി നീക്കം ചെയ്തു",
     "couponApplied": "കൂപ്പൺ പ്രയോഗിച്ചു"
   },

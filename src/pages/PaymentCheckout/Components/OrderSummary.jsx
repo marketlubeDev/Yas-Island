@@ -16,6 +16,7 @@ import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
 import { useResponsive } from "../../../hooks/responsiveHook/useResponsive";
 import { useUppercaseInput } from "../../../hooks/useUppercaseInput";
+import { HiOutlinePercentBadge } from "react-icons/hi2";
 
 export default function OrderSummary({
   formData,
@@ -33,6 +34,7 @@ export default function OrderSummary({
     checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
   );
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
+  const [removingPromoCode, setRemovingPromoCode] = useState(false);
   const [promoCodeStatus, setPromoCodeStatus] = useState(null); // null | 'valid' | 'invalid'
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
@@ -203,19 +205,23 @@ export default function OrderSummary({
             promotions: orderDetails?.promotions,
           })
         );
-        setPromoCodeApplying(false);
-        if (attemptingToApplyCoupon) {
-          setIsModalVisible(true);
-          // Clear the promo code input since it's now applied
-          promoCodeInput.reset();
-        } else if (message) {
-          toast.error(message || t("toastMessages.invalidPromoCode"), {
-            position: "top-center",
-          });
-        } else if (isRemoveOperation) {
+        // Clear appropriate loading state
+        if (isRemoveOperation) {
+          setRemovingPromoCode(false);
           toast.success(t("orderSummary.promoCodeRemoved"), {
             position: "top-center",
           });
+        } else {
+          setPromoCodeApplying(false);
+          if (attemptingToApplyCoupon) {
+            setIsModalVisible(true);
+            // Clear the promo code input since it's now applied
+            promoCodeInput.reset();
+          } else if (message) {
+            toast.error(message || t("toastMessages.invalidPromoCode"), {
+              position: "top-center",
+            });
+          }
         }
         // }
       },
@@ -224,13 +230,14 @@ export default function OrderSummary({
           position: "top-center",
         });
         setPromoCodeApplying(false);
+        setRemovingPromoCode(false);
         // Set loading to false on error
       },
     });
   };
 
   const handleRemovePromoCode = () => {
-    setPromoCodeApplying(true);
+    setRemovingPromoCode(true);
     promoCodeInput.reset();
     setPromoCodeStatus(null);
     handleBasketCheck("", "", true);
@@ -366,40 +373,9 @@ export default function OrderSummary({
       {/* End of scrollable wrapper */}
       {/* Sticky bottom section */}
       <div className="order-summary-sticky-bottom">
-        {/* Cost Breakdown - Mobile Style */}
-        <div className="email-checkout__summary-costBreakdown">
-          {checkout?.promotions?.[0]?.discount && (
-            <>
-              <div className="email-checkout__summary-costBreakdown-subTotal">
-                <span className="subTotal-Content">
-                  {t("orderSummary.subTotal")}
-                </span>
-                <span className="subTotal-Value">
-                  {t("common.aed")} {checkout?.originalNetAmount}
-                </span>
-              </div>
-
-              <div
-                className="email-checkout__summary-costBreakdown-promo"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <span className="promo-Content">
-                  {t("orderSummary.promoCodeSavings")}
-                </span>
-                <span
-                  className="promo-Value"
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  {`- ${t("common.aed")}`}{" "}
-                  {checkout?.promotions[0]?.discount?.replace("-", "")}
-                </span>
-              </div>
-            </>
-          )}
-        </div>
-
         {/* Promo Code Section - Mobile Style - Only show if no coupon is applied */}
-        {showPromoCode && !checkout?.promotions?.[0]?.discount && (
+
+        {showPromoCode && (
           <div className="email-checkout__summary-promoCode">
             <div className="email-checkout__summary-promoCode-title">
               {t("orderSummary.promoDiscount")}
@@ -423,13 +399,23 @@ export default function OrderSummary({
                 onCompositionStart={promoCodeInput.onCompositionStart}
                 onCompositionEnd={promoCodeInput.onCompositionEnd}
                 onFocus={() => setPromoCodeStatus(null)}
-                disabled={promoCodeApplying}
+                disabled={
+                  promoCodeApplying || checkout?.promotions?.[0]?.discount
+                }
               />
               <button
                 className="email-checkout__summary-promoCode-input-container-applyButton"
                 type="button"
                 onClick={handlePromoCode}
-                disabled={promoCodeApplying}
+                disabled={
+                  promoCodeApplying || checkout?.promotions?.[0]?.discount
+                }
+                style={{
+                  opacity: checkout?.promotions?.[0]?.discount ? 0.5 : 1,
+                  cursor: checkout?.promotions?.[0]?.discount
+                    ? "not-allowed"
+                    : "pointer",
+                }}
               >
                 {promoCodeApplying ? (
                   <ButtonLoading />
@@ -441,14 +427,9 @@ export default function OrderSummary({
           </div>
         )}
 
-        {/* Coupon Applied Indicator - Mobile Style */}
-        {showPromoCode && checkout?.promotions?.[0]?.discount && (
-          <div
-            className="email-checkout__summary-couponApplied"
-            onClick={handleRemovePromoCode}
-            style={{ cursor: promoCodeApplying ? "not-allowed" : "pointer" }}
-            disabled={promoCodeApplying}
-          >
+        {/* Coupon Applied Indicator - New Style */}
+        {checkout?.promotions?.[0]?.discount && (
+          <div className="email-checkout__summary-couponApplied">
             <div
               style={{
                 display: "flex",
@@ -456,33 +437,79 @@ export default function OrderSummary({
                 justifyContent: "space-between",
                 gap: "8px",
                 padding: "12px 16px",
-                backgroundColor: "#fce1d3",
-                border: "1px solid #ffbbaf",
+                backgroundColor: "var(--color-base-bg)",
+                border: "1px solid #e9ecef",
                 borderRadius: "8px",
                 margin: "10px 0",
-                opacity: promoCodeApplying ? 0.7 : 1,
               }}
             >
-              <span
-                style={{
-                  color: "#ff7158",
-                  fontWeight: "600",
-                  fontSize: "14px",
-                }}
-              >
-                {t("orderSummary.removePromoCode")}
-              </span>
-
-              {/* Loading/Remove indicator */}
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  minWidth: "20px",
-                }}
+                style={{ display: "flex", flexDirection: "column", gap: "2px" }}
               >
-                {promoCodeApplying && <ButtonLoading />}
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "4px" }}
+                >
+                  {/* Checkmark Icon */}
+                  <HiOutlinePercentBadge
+                    className="coupon-badge-icon"
+                    style={{
+                      fontSize: "calc(24px * var(--zoom-scale))",
+                      width: "calc(24px * var(--zoom-scale))",
+                      height: "calc(24px * var(--zoom-scale))",
+                    }}
+                  />
+                  <span
+                    style={{
+                      color: "var(--color-summary-title)",
+                      fontWeight: "500",
+                      fontSize: "calc(14px * var(--zoom-scale))",
+                    }}
+                  >
+                    {t("orderSummary.couponApplied")}{" "}
+                    <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                      {checkout?.coupons?.[0]?.code ||
+                        checkout?.promotions?.[0]?.code}
+                    </span>
+                  </span>
+                </div>
+                <div style={{ marginLeft: "28px" }}>
+                  <span
+                    style={{
+                      color: "#28a745",
+                      fontSize: "calc(12px * var(--zoom-scale))",
+                      fontWeight: "400",
+                    }}
+                  >
+                    {t("orderSummary.couponSavings")}{" "}
+                    {checkout?.promotions[0]?.discount?.replace("-", "")}
+                  </span>
+                </div>
               </div>
+
+              {/* Remove Button */}
+              {showPromoCode && (
+                <button
+                  onClick={handleRemovePromoCode}
+                  disabled={removingPromoCode}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "var(--color-summary-title)",
+                    fontWeight: "bold",
+                    fontSize: "calc(14px * var(--zoom-scale))",
+                    cursor: removingPromoCode ? "not-allowed" : "pointer",
+                    padding: "4px 8px",
+                    borderRadius: "4px",
+                    opacity: removingPromoCode ? 0.7 : 1,
+                  }}
+                >
+                  {removingPromoCode ? (
+                    <ButtonLoading />
+                  ) : (
+                    t("orderSummary.remove")
+                  )}
+                </button>
+              )}
             </div>
           </div>
         )}

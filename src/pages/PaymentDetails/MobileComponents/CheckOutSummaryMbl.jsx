@@ -9,6 +9,7 @@ import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import useGetProductList from "../../../apiHooks/product/product";
 import { useNavigate } from "react-router-dom";
 import { useUppercaseInput } from "../../../hooks/useUppercaseInput";
+import { HiOutlinePercentBadge } from "react-icons/hi2";
 
 function CheckOutSummaryMbl({
   formData,
@@ -393,30 +394,7 @@ function CheckOutSummaryMbl({
         </div>
       )}
 
-      {/* Simplified Cost Breakdown - Remove unnecessary wrapper */}
-      {checkout?.promotions?.[0]?.discount && (
-        <>
-          <div className="email-checkout__summary-costBreakdown-subTotal">
-            <span className="subTotal-Content">
-              {t("payment.orderSummary.subTotal")}
-            </span>
-            <span className="subTotal-Value">
-              {t("common.aed")} {checkout?.originalNetAmount}
-            </span>
-          </div>
-
-          <div className="email-checkout__summary-costBreakdown-promo">
-            <span className="promo-Content">
-              {t("orderSummary.promoCodeSavings")}
-            </span>
-            <span className="promo-Value">
-              {`- AED`} {checkout?.promotions[0]?.discount?.replace("-", "")}
-            </span>
-          </div>
-        </>
-      )}
-      {/* Promo Code Section - Only show if no coupon is applied */}
-      {showPromoCode && !checkout?.promotions?.[0]?.discount && (
+      {showPromoCode && (
         <div className="email-checkout__summary-promoCode">
           <div className="email-checkout__summary-promoCode-title">
             {t("orderSummary.promoDiscount")}
@@ -445,69 +423,107 @@ function CheckOutSummaryMbl({
               className="email-checkout__summary-promoCode-input-container-applyButton"
               type="button"
               onClick={handlePromoCode}
-              disabled={promoCodeApplying}
+              disabled={
+                promoCodeApplying || checkout?.promotions?.[0]?.discount
+              }
+              style={{
+                opacity: checkout?.promotions?.[0]?.discount ? 0.5 : 1,
+                cursor: checkout?.promotions?.[0]?.discount
+                  ? "not-allowed"
+                  : "pointer",
+              }}
             >
               {promoCodeApplying ? <ButtonLoading /> : t("orderSummary.apply")}
             </button>
           </div>
         </div>
       )}
-      {/* Coupon Applied Indicator */}
+
+      {/* Coupon Applied Indicator - New Style */}
       {checkout?.promotions?.[0]?.discount && (
-        <div
-          className="email-checkout__summary-couponApplied"
-          onClick={!removingPromoCode ? handleRemovePromoCode : undefined}
-          style={{ cursor: removingPromoCode ? "not-allowed" : "pointer" }}
-        >
+        <div className="email-checkout__summary-couponApplied">
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               gap: "8px",
-              padding: "6px 8px",
-              backgroundColor: "#fce1d3",
-              border: "1px solid #ffbbaf",
+              padding: "12px 16px",
+              backgroundColor: "var(--color-base-bg)",
+              border: "1px solid #e9ecef",
               borderRadius: "8px",
-              margin: "5px 0",
-              opacity: removingPromoCode ? 0.7 : 1,
+              margin: "10px 0",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#fba596"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "2px" }}
+            >
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "4px" }}
               >
-                <path d="M9 12l2 2 4-4" />
-                <circle cx="12" cy="12" r="10" />
-              </svg>
-              <span
-                style={{
-                  color: "#ff7158",
-                  fontWeight: "600",
-                  fontSize: "14px",
-                }}
-              >
-                {t("orderSummary.couponApplied")}
-              </span>
+                {/* Checkmark Icon */}
+                <HiOutlinePercentBadge
+                  className="coupon-badge-icon"
+                  style={{
+                    fontSize: "calc(24px * var(--zoom-scale))",
+                    width: "calc(24px * var(--zoom-scale))",
+                    height: "calc(24px * var(--zoom-scale))",
+                    minWidth: "calc(24px * var(--zoom-scale))",
+                    minHeight: "calc(24px * var(--zoom-scale))",
+                  }}
+                />
+                <span
+                  style={{
+                    color: "var(--color-summary-title)",
+                    fontWeight: "500",
+                    fontSize: "calc(14px * var(--zoom-scale))",
+                  }}
+                >
+                  {t("orderSummary.couponApplied")}{" "}
+                  <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                    {checkout?.coupons?.[0]?.code ||
+                      checkout?.promotions?.[0]?.code}
+                  </span>
+                </span>
+              </div>
+              <div style={{ marginLeft: "28px" }}>
+                <span
+                  style={{
+                    color: "#28a745",
+                    fontSize: "calc(12px * var(--zoom-scale))",
+                    fontWeight: "400",
+                  }}
+                >
+                  {t("orderSummary.couponSavings")}{" "}
+                  {checkout?.promotions[0]?.discount?.replace("-", "")}
+                </span>
+              </div>
             </div>
 
-            {/* Loading/Remove indicator */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                minWidth: "20px",
-              }}
-            >
-              {removingPromoCode && <ButtonLoading />}
-            </div>
+            {/* Remove Button */}
+            {showPromoCode && (
+              <button
+                onClick={!removingPromoCode ? handleRemovePromoCode : undefined}
+                disabled={removingPromoCode}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "var(--color-summary-title)",
+                  fontWeight: "bold",
+                  fontSize: "calc(14px * var(--zoom-scale))",
+                  cursor: removingPromoCode ? "not-allowed" : "pointer",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  opacity: removingPromoCode ? 0.7 : 1,
+                }}
+              >
+                {removingPromoCode ? (
+                  <ButtonLoading />
+                ) : (
+                  t("orderSummary.remove")
+                )}
+              </button>
+            )}
           </div>
         </div>
       )}
