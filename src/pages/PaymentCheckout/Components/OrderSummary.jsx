@@ -436,33 +436,43 @@ export default function OrderSummary({
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: "8px",
-                padding: "12px 16px",
+                padding: "6px",
                 backgroundColor: "var(--color-base-bg)",
                 border: "1px solid #e9ecef",
-                borderRadius: "8px",
+                borderRadius: "6px",
                 margin: "10px 0",
               }}
             >
               <div
-                style={{ display: "flex", flexDirection: "column", gap: "2px" }}
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
               >
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "4px" }}
-                >
-                  {/* Checkmark Icon */}
+                <div>
                   <HiOutlinePercentBadge
                     className="coupon-badge-icon"
                     style={{
                       fontSize: "calc(24px * var(--zoom-scale))",
                       width: "calc(24px * var(--zoom-scale))",
                       height: "calc(24px * var(--zoom-scale))",
+                      fontWeight: "bold",
                     }}
+                    strokeWidth={2}
                   />
-                  <span
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
+                  }}
+                >
+                  {/* Checkmark Icon */}
+
+                  <p
                     style={{
                       color: "var(--color-summary-title)",
-                      fontWeight: "500",
+
                       fontSize: "calc(14px * var(--zoom-scale))",
+                      fontWeight: "200",
                     }}
                   >
                     {t("orderSummary.couponApplied")}{" "}
@@ -470,19 +480,22 @@ export default function OrderSummary({
                       {checkout?.coupons?.[0]?.code ||
                         checkout?.promotions?.[0]?.code}
                     </span>
-                  </span>
-                </div>
-                <div style={{ marginLeft: "28px" }}>
-                  <span
+                  </p>
+                  <p
                     style={{
                       color: "#28a745",
                       fontSize: "calc(12px * var(--zoom-scale))",
-                      fontWeight: "400",
                     }}
                   >
-                    {t("orderSummary.couponSavings")}{" "}
-                    {checkout?.promotions[0]?.discount?.replace("-", "")}
-                  </span>
+                    <span style={{ fontWeight: "200" }}>
+                      {" "}
+                      {t("orderSummary.couponSavings")}{" "}
+                    </span>
+                    <span style={{ fontWeight: "bold" }}>
+                      {t("common.aed")}{" "}
+                      {checkout?.promotions[0]?.discount?.replace("-", "")}
+                    </span>
+                  </p>
                 </div>
               </div>
 
