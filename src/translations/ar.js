@@ -66,6 +66,7 @@ export const ar = {
     hotels: "الفنادق",
     dining: "المطاعم",
     live: "بث مباشر",
+    events: "الفعاليات",
     shopping: "التسوق",
   },
   products: {

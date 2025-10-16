@@ -53,10 +53,10 @@ export default function SideBar() {
       link: "/dining",
     },
     {
-      name: "live",
+      name: "events",
       icon: camera,
-      translationKey: "sidebar.live",
-      link: "/live",
+      translationKey: "sidebar.events",
+      link: "/events",
     },
     {
       name: "shopping",

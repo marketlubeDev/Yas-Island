@@ -66,6 +66,7 @@ export const en = {
     hotels: "Hotels",
     dining: "Dining",
     live: "Live",
+    events: "Events",
     shopping: "Shopping",
   },
   products: {

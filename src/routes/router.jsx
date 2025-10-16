@@ -135,7 +135,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "live",
+        path: "events",
         element: (
           <ResponsiveWrapper
             MobileComponent={MobileUpcomingPage}
