@@ -256,21 +256,12 @@
         line-height: normal;
         font-family: "YAS Font", sans-serif;
 
-        // Text wrapping and overflow handling
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-        hyphens: auto !important;
-        white-space: normal !important;
-        max-width: 100% !important;
-        width: 100% !important;
-
-        // Line clamping for multi-line ellipsis
-        display: -webkit-box !important;
-        -webkit-line-clamp: 2 !important;
-        -webkit-box-orient: vertical !important;
+        // Single-line truncation with ellipsis
+        white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        max-width: 100% !important;
+        width: 100% !important;
 
         @include respond(bigTablets) {
           font-size: calc(18px * var(--zoom-scale));
