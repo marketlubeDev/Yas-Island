@@ -49,7 +49,9 @@ export default function HeaderLogo() {
     location.pathname === "/hotels" ||
     location.pathname === "/dining" ||
     location.pathname === "/live" ||
-    location.pathname === "/shopping";
+    location.pathname === "/all" ||
+    location.pathname === "/shopping" ||
+    location.pathname === "/events";
 
   const isCardPaymentPage = location.pathname === "/card-payment";
 

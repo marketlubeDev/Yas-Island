@@ -1,8 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import ProductPage from "../pages/ProductPage/ProductPage";
+import AllProductsPage from "../pages/ProductPage/AllProductsPage";
 import PaymentCheckout from "../pages/EmailVerification/PaymentCheckout";
 import MobileProductPage from "../pages/ProductPage/MobileProductPage/MobileProductPage";
+import MobileAllProductsPage from "../pages/ProductPage/MobileProductPage/MobileAllProductsPage";
 import OtpConfirmation from "../pages/OtpConfirmation/OtpConfirmation";
 import PaymentDetailsPage from "../pages/PaymentDetails/PaymentDetailsPage";
 import CardPaymentPage from "../pages/CardPayment/Desktop/CardPaymentPage";
@@ -16,6 +18,16 @@ import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
 import UpcomingPages from "../pages/Upcoming/Desktop/UpcomingPages";
 import MobileUpcomingPage from "../pages/Upcoming/Mobile/MobileUpcomingPage";
+import PackagesPage from "../pages/Packages/Desktop/PackagesPage";
+import MobilePackagesPage from "../pages/Packages/Mobile/MobilePackagesPage";
+import HotelsPage from "../pages/Hotels/Desktop/HotelsPage";
+import MobileHotelsPage from "../pages/Hotels/Mobile/MobileHotelsPage";
+import DiningPage from "../pages/Dining/Desktop/DiningPage";
+import MobileDiningPage from "../pages/Dining/Mobile/MobileDiningPage";
+import EventsPage from "../pages/Events/Desktop/EventsPage";
+import MobileEventsPage from "../pages/Events/Mobile/MobileEventsPage";
+import ShoppingPage from "../pages/Shopping/Desktop/ShoppingPage";
+import MobileShoppingPage from "../pages/Shopping/Mobile/MobileShoppingPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +40,15 @@ export const router = createBrowserRouter([
           <ResponsiveWrapper
             MobileComponent={MobileProductPage}
             DesktopComponent={ProductPage}
+          />
+        ),
+      },
+      {
+        path: "all",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={MobileAllProductsPage}
+            DesktopComponent={AllProductsPage}
           />
         ),
       },
@@ -111,8 +132,8 @@ export const router = createBrowserRouter([
         path: "packages",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileUpcomingPage}
-            DesktopComponent={UpcomingPages}
+            MobileComponent={MobilePackagesPage}
+            DesktopComponent={PackagesPage}
           />
         ),
       },
@@ -120,8 +141,8 @@ export const router = createBrowserRouter([
         path: "hotels",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileUpcomingPage}
-            DesktopComponent={UpcomingPages}
+            MobileComponent={MobileHotelsPage}
+            DesktopComponent={HotelsPage}
           />
         ),
       },
@@ -129,8 +150,8 @@ export const router = createBrowserRouter([
         path: "dining",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileUpcomingPage}
-            DesktopComponent={UpcomingPages}
+            MobileComponent={MobileDiningPage}
+            DesktopComponent={DiningPage}
           />
         ),
       },
@@ -138,8 +159,8 @@ export const router = createBrowserRouter([
         path: "events",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileUpcomingPage}
-            DesktopComponent={UpcomingPages}
+            MobileComponent={MobileEventsPage}
+            DesktopComponent={EventsPage}
           />
         ),
       },
@@ -147,8 +168,8 @@ export const router = createBrowserRouter([
         path: "shopping",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileUpcomingPage}
-            DesktopComponent={UpcomingPages}
+            MobileComponent={MobileShoppingPage}
+            DesktopComponent={ShoppingPage}
           />
         ),
       },
