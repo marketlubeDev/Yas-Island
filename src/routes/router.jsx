@@ -28,7 +28,9 @@ import EventsPage from "../pages/Events/Desktop/EventsPage";
 import MobileEventsPage from "../pages/Events/Mobile/MobileEventsPage";
 import ShoppingPage from "../pages/Shopping/Desktop/ShoppingPage";
 import MobileShoppingPage from "../pages/Shopping/Mobile/MobileShoppingPage";
-
+import MobileIframeStatic from "../pages/iframe-static/Mobile/mobile-iframe-static";
+import IframeStatic from "../pages/iframe-static/Desktop/iframe-static";
+import IframeStaticMobile from "../pages/iframe-static/Mobile/mobile-iframe-static";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,8 +49,8 @@ export const router = createBrowserRouter([
         path: "all",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileAllProductsPage}
-            DesktopComponent={AllProductsPage}
+            MobileComponent={MobileProductPage}
+            DesktopComponent={ProductPage}
           />
         ),
       },
@@ -168,8 +170,8 @@ export const router = createBrowserRouter([
         path: "shopping",
         element: (
           <ResponsiveWrapper
-            MobileComponent={MobileShoppingPage}
-            DesktopComponent={ShoppingPage}
+            MobileComponent={MobileEventsPage}
+            DesktopComponent={EventsPage}
           />
         ),
       },

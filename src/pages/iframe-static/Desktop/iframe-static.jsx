@@ -5,7 +5,7 @@ import Header from "../../../layouts/Header/Header";
 import Footer from "../../../layouts/Footer/Footer";
 import { hotels as dummyHotels } from "../../../data/dummyAll";
 
-export default function DiningPage() {
+export default function IframeStatic() {
   const [footerVisible, setFooterVisible] = useState(false);
   const containerRef = useRef(null);
   const sentinelRef = useRef(null);
@@ -102,8 +102,8 @@ export default function DiningPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Dining.html"
-      : "/dist/statics/Yas_Dining.html";
+      ? "/dist/statics/ar.html"
+      : "/dist/statics/en.html";
 
   return (
     <div className="product">

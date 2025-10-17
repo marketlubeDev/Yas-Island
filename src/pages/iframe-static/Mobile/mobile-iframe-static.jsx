@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 
-export default function MobileEventsPage() {
+export default function IframeStaticMobile() {
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(null);
   const currentLanguage = useSelector(
@@ -53,8 +53,8 @@ export default function MobileEventsPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Events.html"
-      : "/dist/statics/Yas_Events.html";
+      ? "/dist/statics/ar.html"
+      : "/dist/statics/en.html";
 
   return (
     <>
