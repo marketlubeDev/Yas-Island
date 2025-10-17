@@ -58,12 +58,12 @@ export default function SideBar() {
       translationKey: "sidebar.events",
       link: "/events",
     },
-    {
-      name: "shopping",
-      icon: shop,
-      translationKey: "sidebar.shopping",
-      link: "/shopping",
-    },
+    // {
+    //   name: "shopping",
+    //   icon: shop,
+    //   translationKey: "sidebar.shopping",
+    //   link: "/shopping",
+    // },
   ];
 
   const handleClick = (item) => {
