@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/all", "destination": "/index.html" },
+    { "source": "/product/**", "destination": "/index.html" },
+    { "source": "/email-verification", "destination": "/index.html" },
+    { "source": "/otp-confirmation", "destination": "/index.html" },
+    { "source": "/payment-details", "destination": "/index.html" },
+    { "source": "/card-payment", "destination": "/index.html" },
+    { "source": "/payment-success", "destination": "/index.html" },
+    { "source": "/payment-response", "destination": "/index.html" },
+    { "source": "/upcoming", "destination": "/index.html" },
+    { "source": "/packages", "destination": "/index.html" },
+    { "source": "/hotels", "destination": "/index.html" },
+    { "source": "/dining", "destination": "/index.html" },
+    { "source": "/events", "destination": "/index.html" },
+    { "source": "/shopping", "destination": "/index.html" }
+  ],
+  "cleanUrls": true
+}
