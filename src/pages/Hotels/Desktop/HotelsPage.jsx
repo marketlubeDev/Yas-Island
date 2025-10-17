@@ -102,8 +102,8 @@ export default function HotelsPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Hotels.html"
-      : "/dist/statics/Yas_Hotels.html";
+      ? "/statics/Yas_Hotels.html"
+      : "/statics/Yas_Hotels.html";
 
   return (
     <div className="product">

@@ -102,8 +102,8 @@ export default function DiningPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Dining.html"
-      : "/dist/statics/Yas_Dining.html";
+      ? "/statics/Yas_Dining.html"
+      : "/statics/Yas_Dining.html";
 
   return (
     <div className="product">

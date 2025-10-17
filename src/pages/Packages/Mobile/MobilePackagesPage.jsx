@@ -53,8 +53,8 @@ export default function PackagesMobilePage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Packages.html"
-      : "/dist/statics/Yas_Packages.html";
+      ? "/statics/Yas_Packages.html"
+      : "/statics/Yas_Packages.html";
 
   return (
     <>

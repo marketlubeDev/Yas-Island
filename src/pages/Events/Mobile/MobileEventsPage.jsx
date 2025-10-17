@@ -53,8 +53,8 @@ export default function MobileEventsPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Events.html"
-      : "/dist/statics/Yas_Events.html";
+      ? "/statics/Yas_Events.html"
+      : "/statics/Yas_Events.html";
 
   return (
     <>

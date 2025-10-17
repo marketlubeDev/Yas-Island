@@ -102,8 +102,8 @@ export default function PackagesPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Packages.html"
-      : "/dist/statics/Yas_Packages.html";
+      ? "/statics/Yas_Packages.html"
+      : "/statics/Yas_Packages.html";
 
   return (
     <div className="product">

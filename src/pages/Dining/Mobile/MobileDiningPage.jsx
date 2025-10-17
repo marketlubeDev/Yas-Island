@@ -53,8 +53,8 @@ export default function MobileDiningPage() {
 
   const iframeSrc =
     currentLanguage === "ar"
-      ? "/dist/statics/Yas_Dining.html"
-      : "/dist/statics/Yas_Dining.html";
+      ? "/statics/Yas_Dining.html"
+      : "/statics/Yas_Dining.html";
 
   return (
     <>
