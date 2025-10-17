@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
+import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
 
 export default function PackagesMobilePage() {
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(null);
+  const [iframeError, setIframeError] = useState(null);
+  const [reloadToken, setReloadToken] = useState(0);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -15,6 +18,7 @@ export default function PackagesMobilePage() {
     const iframe = iframeRef.current;
     if (!iframe) return;
     try {
+      setIframeError(null);
       const doc = iframe.contentWindow?.document;
       if (!doc) return;
       const computeHeight = () => {
@@ -39,6 +43,16 @@ export default function PackagesMobilePage() {
     }
   };
 
+  const handleIframeError = () => {
+    setIframeError("Unable to load content. Please try again.");
+  };
+
+  const retryIframeLoad = () => {
+    setIframeError(null);
+    setIframeHeight(null);
+    setReloadToken((t) => t + 1);
+  };
+
   useEffect(() => {
     return () => {
       const ro = iframeRef.current?._yasResizeObserver;
@@ -60,19 +74,24 @@ export default function PackagesMobilePage() {
     <>
       <MobileTop className="mobile-topnav" />
       <div className="packages-page" style={{ padding: 0 }}>
-        <iframe
-          title="Static Content"
-          src={iframeSrc}
-          ref={iframeRef}
-          onLoad={handleIframeLoad}
-          style={{
-            border: 0,
-            width: "100%",
-            height: iframeHeight ? `${iframeHeight}px` : "auto",
-            display: "block",
-          }}
-        />
-        <MobileBottomNav />
+        {iframeError ? (
+          <UpcomingPages />
+        ) : (
+          <iframe
+            title="Static Content"
+            src={`${iframeSrc}?v=${reloadToken}`}
+            ref={iframeRef}
+            onLoad={handleIframeLoad}
+            onError={handleIframeError}
+            style={{
+              border: 0,
+              width: "100%",
+              height: iframeHeight ? `${iframeHeight}px` : "auto",
+              display: "block",
+            }}
+          />
+        )}
+        {!iframeError && <MobileBottomNav />}
       </div>
     </>
   );

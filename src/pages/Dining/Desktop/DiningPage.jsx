@@ -4,6 +4,7 @@ import SideBar from "../../../layouts/SideBar/SideBar";
 import Header from "../../../layouts/Header/Header";
 import Footer from "../../../layouts/Footer/Footer";
 import { hotels as dummyHotels } from "../../../data/dummyAll";
+import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
 
 export default function DiningPage() {
   const [footerVisible, setFooterVisible] = useState(false);
@@ -11,6 +12,8 @@ export default function DiningPage() {
   const sentinelRef = useRef(null);
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(null);
+  const [iframeError, setIframeError] = useState(null);
+  const [reloadToken, setReloadToken] = useState(0);
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
@@ -37,6 +40,7 @@ export default function DiningPage() {
     const iframe = iframeRef.current;
     if (!iframe) return;
     try {
+      setIframeError(null);
       const doc = iframe.contentWindow?.document;
       if (!doc) return;
       const computeHeight = () => {
@@ -61,6 +65,16 @@ export default function DiningPage() {
     } catch (e) {
       // Cross-origin safety: if access fails, skip dynamic sizing
     }
+  };
+
+  const handleIframeError = () => {
+    setIframeError("Unable to load content. Please try again.");
+  };
+
+  const retryIframeLoad = () => {
+    setIframeError(null);
+    setIframeHeight(null);
+    setReloadToken((t) => t + 1);
   };
 
   useEffect(() => {
@@ -119,23 +133,30 @@ export default function DiningPage() {
             className="packages-page"
             style={{ backgroundColor: "transparent", padding: 0 }}
           >
-            <iframe
-              title="Static Content"
-              src={iframeSrc}
-              ref={iframeRef}
-              onLoad={handleIframeLoad}
-              style={{
-                border: 0,
-                width: "100%",
-                height: iframeHeight ? `${iframeHeight}px` : "auto",
-                display: "block",
-              }}
-            />
+            {iframeError ? (
+              <UpcomingPages />
+            ) : (
+              <iframe
+                title="Static Content"
+                src={`${iframeSrc}?v=${reloadToken}`}
+                ref={iframeRef}
+                onLoad={handleIframeLoad}
+                onError={handleIframeError}
+                style={{
+                  border: 0,
+                  width: "100%",
+                  height: iframeHeight ? `${iframeHeight}px` : "auto",
+                  display: "block",
+                }}
+              />
+            )}
           </div>
         </div>
-        <div style={styles.footerOverlay(footerVisible)}>
-          <Footer />
-        </div>
+        {!iframeError && (
+          <div style={styles.footerOverlay(footerVisible)}>
+            <Footer />
+          </div>
+        )}
       </div>
     </div>
   );
