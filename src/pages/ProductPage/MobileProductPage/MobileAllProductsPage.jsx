@@ -1,8 +1,7 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
-import AttractionsListMbl from "../../ProductPage/MobileProductPage/Components/AttractionsListMbl";
+import AttractionsListMbl from "./Components/AttractionsListMbl";
 import {
   packages,
   hotels,
@@ -11,8 +10,7 @@ import {
   shopping,
 } from "../../../data/dummyAll";
 
-const UpcomingPages = () => {
-  const { t } = useTranslation();
+export default function MobileAllProductsPage() {
   const [showBottomNav, setShowBottomNav] = useState(true);
   const scrollPositionRef = useRef(0);
   const scrollContainerRef = useRef(null);
@@ -30,16 +28,21 @@ const UpcomingPages = () => {
       .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
   }, []);
 
+  console.log(allDummyProducts, "askhgdkasgkgskdgaks");
+
   useEffect(() => {
     const handleScroll = () => {
       const container = scrollContainerRef.current;
       if (!container) return;
       const currentScrollTop = container.scrollTop;
-      const diff = currentScrollTop - scrollPositionRef.current;
+      const scrollDifference = currentScrollTop - scrollPositionRef.current;
       const threshold = 5;
-      if (Math.abs(diff) > threshold) {
-        if (diff < 0) setShowBottomNav(true);
-        else if (diff > 0) setShowBottomNav(false);
+      if (Math.abs(scrollDifference) > threshold) {
+        if (scrollDifference < 0) {
+          setShowBottomNav(true);
+        } else if (scrollDifference > 0) {
+          setShowBottomNav(false);
+        }
         scrollPositionRef.current = currentScrollTop;
       }
     };
@@ -60,6 +63,4 @@ const UpcomingPages = () => {
       <MobileBottomNav isVisible={showBottomNav} />
     </div>
   );
-};
-
-export default UpcomingPages;
+}

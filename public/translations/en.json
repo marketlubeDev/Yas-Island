@@ -70,7 +70,8 @@
     "hotels": "Hotels",
     "dining": "Dining",
     "live": "Live",
-    "shopping": "Shopping"
+    "shopping": "Shopping",
+    "events": "Events"
   },
   "products": {
     "drivingExperience": {
