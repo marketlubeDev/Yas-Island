@@ -1,5 +1,21 @@
 {
   "rewrites": [
+    {
+      "source": "/statics/Yas_Packages.html",
+      "destination": "/statics/Yas_Packages.html"
+    },
+    {
+      "source": "/statics/Yas_Dining.html",
+      "destination": "/statics/Yas_Dining.html"
+    },
+    {
+      "source": "/statics/Yas_Events.html",
+      "destination": "/statics/Yas_Events.html"
+    },
+    {
+      "source": "/statics/Yas_Hotels.html",
+      "destination": "/statics/Yas_Hotels.html"
+    },
     { "source": "/", "destination": "/index.html" },
     { "source": "/all", "destination": "/index.html" },
     { "source": "/product/**", "destination": "/index.html" },
@@ -16,5 +32,16 @@
     { "source": "/events", "destination": "/index.html" },
     { "source": "/shopping", "destination": "/index.html" }
   ],
-  "cleanUrls": true
+  "cleanUrls": false,
+  "headers": [
+    {
+      "source": "/statics/**",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
+      ]
+    }
+  ]
 }
