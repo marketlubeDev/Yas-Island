@@ -76,9 +76,65 @@
         background: #f0f0f0;
         transition: all 0.3s ease;
       }
+
+      /* JavaScript-controlled dark mode classes */
+      .dark-mode body {
+        background: #0b0c0c !important;
+      }
+
+      .dark-mode .greeting {
+        color: #e7ebd4 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
     </style>
   </head>
   <body>
     <div class="greeting">Yas Island Dining</div>
+
+    <script>
+      // Function to detect and apply color scheme
+      function applyColorScheme() {
+        const isDarkMode = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const html = document.documentElement;
+
+        if (isDarkMode) {
+          html.classList.add("dark-mode");
+        } else {
+          html.classList.remove("dark-mode");
+        }
+      }
+
+      // Apply color scheme on page load
+      applyColorScheme();
+
+      // Listen for color scheme changes
+      if (window.matchMedia) {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+        // For older browsers that don't support addEventListener
+        if (mediaQuery.addListener) {
+          mediaQuery.addListener(applyColorScheme);
+        } else if (mediaQuery.addEventListener) {
+          mediaQuery.addEventListener("change", applyColorScheme);
+        }
+      }
+
+      // Force update on iOS Safari
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        // Additional iOS-specific handling
+        setTimeout(applyColorScheme, 100);
+        setTimeout(applyColorScheme, 500);
+
+        // Listen for visibility change (when user switches apps and comes back)
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) {
+            setTimeout(applyColorScheme, 100);
+          }
+        });
+      }
+    </script>
   </body>
 </html>
