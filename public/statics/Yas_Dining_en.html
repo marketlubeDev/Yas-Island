@@ -4,6 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      content="#f0f0f0"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b0c0c"
+      media="(prefers-color-scheme: dark)"
+    />
     <title>Yas Island Dining — Centered English</title>
     <style>
       html,
@@ -11,6 +21,7 @@
         height: 100%;
         margin: 0;
         color-scheme: light dark;
+        -webkit-color-scheme: light dark;
       }
 
       /* Center horizontally and vertically */
@@ -32,6 +43,25 @@
           color: #e7ebd4 !important;
           background: transparent !important;
           box-shadow: none !important;
+        }
+      }
+
+      /* iOS Safari specific fixes */
+      @supports (-webkit-touch-callout: none) {
+        body {
+          -webkit-text-size-adjust: 100%;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          body {
+            background: #0b0c0c !important;
+          }
+
+          .greeting {
+            color: #e7ebd4 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+          }
         }
       }
 
