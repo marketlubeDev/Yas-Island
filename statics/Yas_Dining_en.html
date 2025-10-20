@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Yas Island Dining — Centered English</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        color-scheme: light dark;
+      }
+
+      /* Center horizontally and vertically */
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f7f7;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      /* Dark theme styles */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #1a1a1a;
+        }
+
+        .greeting {
+          color: #f9fafb;
+          background: rgba(0, 0, 0, 0.6);
+          box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      .greeting {
+        font-size: 4rem; /* adjust size as needed */
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        color: #1f2937;
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="greeting">Yas Island Dining</div>
+  </body>
+</html>

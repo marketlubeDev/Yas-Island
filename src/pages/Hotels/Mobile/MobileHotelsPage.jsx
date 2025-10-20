@@ -68,7 +68,7 @@ export default function MobileHotelsPage() {
   const iframeSrc =
     currentLanguage === "ar"
       ? "/statics/Yas_Hotels_ar.html"
-      : "/statics/Yas_Hotels.html";
+      : "/statics/Yas_Hotels_en.html";
 
   return (
     <>
