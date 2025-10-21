@@ -4,22 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>مرحبًا — Centered Arabic</title>
+    <title>باقات جزيرة ياس — أكثر باقاتنا شعبية</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       html,
       body {
         height: 100%;
-        margin: 0;
         color-scheme: light dark;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
       }
 
-      /* Center horizontally and vertically */
       body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: #f0f0f0;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        padding: 60px 20px;
+        min-height: 100vh;
       }
 
       /* Dark theme styles */
@@ -28,27 +31,1466 @@
           background: #0b0c0c !important;
         }
 
-        .greeting {
+        .section-title {
           color: #e7ebd4 !important;
-          background: transparent !important;
-          box-shadow: none !important;
+        }
+
+        .section-description {
+          color: #b8bcc8 !important;
+        }
+
+        .package-card {
+          background: #1a1a1a !important;
+          border: 1px solid #333 !important;
+        }
+
+        .package-title {
+          color: #e7ebd4 !important;
+        }
+
+        .package-description {
+          color: #b8bcc8 !important;
         }
       }
 
-      .greeting {
-        font-size: 4rem; /* adjust size as needed */
+      .packages-section {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 60px;
+        margin-bottom: 60px;
+        text-align: left;
+      }
+
+      .section-title {
+        font-size: 2rem;
         font-weight: 700;
-        line-height: 1;
-        text-align: center;
         color: #1f2937;
-        padding: 0.5rem 1rem;
+        margin-bottom: 0;
+        line-height: 1.2;
+        flex: 0 0 40%;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        color: #4b5563;
+        margin-bottom: 0;
+        line-height: 1.6;
+        flex: 1;
+        padding-top: 10px;
+      }
+
+      .packages-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 0;
+      }
+
+      .package-card {
+        background: #ffffff;
         border-radius: 12px;
-        background: #f0f0f0;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e5e7eb;
+      }
+
+      .package-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .package-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .package-content {
+        padding: 25px;
+        text-align: left;
+      }
+
+      .package-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .package-description {
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .package-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #ffffff;
+        color: #1f2937;
+        text-decoration: none;
+        border: 2px solid #fbbf24;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.95rem;
         transition: all 0.3s ease;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .package-button:hover {
+        background: #fbbf24;
+        color: #1f2937;
+        transform: translateY(-2px);
+      }
+
+      /* Responsive design */
+      @media (max-width: 1024px) {
+        .packages-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section-header {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+
+        .section-title {
+          flex: none;
+          font-size: 2rem;
+        }
+
+        .section-description {
+          flex: none;
+          font-size: 1rem;
+          padding-top: 0;
+        }
+
+        .packages-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .package-content {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 40px 15px;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .section-header {
+          gap: 15px;
+        }
+
+        .packages-grid {
+          gap: 15px;
+        }
+      }
+
+      /* Birthday Packages Section */
+      .birthday-section {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+      }
+
+      .birthday-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .birthday-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .birthday-content {
+        padding: 40px 0;
+      }
+
+      .birthday-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1e40af;
+        margin-bottom: 25px;
+        line-height: 1.2;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .birthday-description {
+        font-size: 1.1rem;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 35px;
+      }
+
+      .birthday-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: transparent;
+        color: #1e40af;
+        text-decoration: none;
+        border: 2px solid #fbbf24;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .birthday-button:hover {
+        background: #fbbf24;
+        color: #1e40af;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+      }
+
+      /* Dark theme styles for birthday section */
+      @media (prefers-color-scheme: dark) {
+        .birthday-title {
+          color: #60a5fa !important;
+        }
+
+        .birthday-description {
+          color: #9ca3af !important;
+        }
+
+        .birthday-button {
+          color: #60a5fa !important;
+        }
+
+        .birthday-button:hover {
+          color: #1e40af !important;
+        }
+      }
+
+      /* Responsive design for birthday section */
+      @media (max-width: 1024px) {
+        .birthday-container {
+          gap: 40px;
+        }
+
+        .birthday-title {
+          font-size: 2.2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .birthday-container {
+          grid-template-columns: 1fr;
+          gap: 30px;
+          text-align: center;
+        }
+
+        .birthday-image {
+          height: 300px;
+        }
+
+        .birthday-content {
+          padding: 20px 0;
+        }
+
+        .birthday-title {
+          font-size: 2rem;
+        }
+
+        .birthday-description {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .birthday-section {
+          margin: 60px auto 0;
+        }
+
+        .birthday-container {
+          gap: 20px;
+        }
+
+        .birthday-image {
+          height: 250px;
+        }
+
+        .birthday-title {
+          font-size: 1.8rem;
+        }
+
+        .birthday-content {
+          padding: 15px 0;
+        }
+      }
+
+      /* YAS MAGAZINE Section */
+      .magazine-section {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+      }
+
+      .magazine-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .magazine-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .magazine-content {
+        padding: 40px 0;
+      }
+
+      .magazine-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 25px;
+        line-height: 1.2;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .magazine-description {
+        font-size: 1.1rem;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 40px;
+      }
+
+      .magazine-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .magazine-button {
+        display: inline-block;
+        padding: 15px 20px;
+        background: transparent;
+        color: #1f2937;
+        text-decoration: none;
+        border: 2px solid #fbbf24;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      .magazine-button:hover {
+        background: #fbbf24;
+        color: #1f2937;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+      }
+
+      /* Dark theme styles for magazine section */
+      @media (prefers-color-scheme: dark) {
+        .magazine-title {
+          color: #e7ebd4 !important;
+        }
+
+        .magazine-description {
+          color: #9ca3af !important;
+        }
+
+        .magazine-button {
+          color: #e7ebd4 !important;
+        }
+
+        .magazine-button:hover {
+          color: #1f2937 !important;
+        }
+      }
+
+      /* Responsive design for magazine section */
+      @media (max-width: 1024px) {
+        .magazine-container {
+          gap: 40px;
+        }
+
+        .magazine-title {
+          font-size: 2.2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .magazine-container {
+          grid-template-columns: 1fr;
+          gap: 30px;
+          text-align: center;
+        }
+
+        .magazine-image {
+          height: 300px;
+        }
+
+        .magazine-content {
+          padding: 20px 0;
+        }
+
+        .magazine-title {
+          font-size: 2rem;
+        }
+
+        .magazine-description {
+          font-size: 1rem;
+        }
+
+        .magazine-buttons {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .magazine-section {
+          margin: 60px auto 0;
+        }
+
+        .magazine-container {
+          gap: 20px;
+        }
+
+        .magazine-image {
+          height: 250px;
+        }
+
+        .magazine-title {
+          font-size: 1.8rem;
+        }
+
+        .magazine-content {
+          padding: 15px 0;
+        }
+
+        .magazine-buttons {
+          gap: 10px;
+        }
+
+        .magazine-button {
+          padding: 12px 15px;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Single Day Tickets Section */
+      .single-day-section {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+      }
+
+      .single-day-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .single-day-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .single-day-description {
+        font-size: 1.1rem;
+        color: #6b7280;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .single-day-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 0;
+      }
+
+      .single-day-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .single-day-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .single-day-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .single-day-content {
+        padding: 25px;
+        text-align: left;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .single-day-card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .single-day-card-description {
+        font-size: 0.95rem;
+        color: #4b5563;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        flex: 1;
+      }
+
+      .single-day-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #fbbf24;
+        color: #1f2937;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        cursor: pointer;
+      }
+
+      .single-day-button:hover {
+        background: #f59e0b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+      }
+
+      /* Dark theme styles for single day section */
+      @media (prefers-color-scheme: dark) {
+        .single-day-title {
+          color: #e7ebd4 !important;
+        }
+
+        .single-day-description {
+          color: #9ca3af !important;
+        }
+
+        .single-day-card {
+          background: #1a1a1a !important;
+          border: 1px solid #333 !important;
+        }
+
+        .single-day-card-title {
+          color: #e7ebd4 !important;
+        }
+
+        .single-day-card-description {
+          color: #b8bcc8 !important;
+        }
+      }
+
+      /* Responsive design for single day section */
+      @media (max-width: 1024px) {
+        .single-day-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .single-day-title {
+          font-size: 2rem;
+        }
+
+        .single-day-description {
+          font-size: 1rem;
+        }
+
+        .single-day-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .single-day-content {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .single-day-section {
+          margin: 60px auto 0;
+        }
+
+        .single-day-title {
+          font-size: 1.8rem;
+        }
+
+        .single-day-grid {
+          gap: 15px;
+        }
+
+        .single-day-content {
+          padding: 15px;
+        }
+
+        .single-day-card-title {
+          font-size: 1.1rem;
+        }
+
+        .single-day-card-description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Social Media Gallery Section */
+      .social-gallery-section {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+      }
+
+      .social-gallery-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .social-gallery-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin: 0;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .social-gallery-handle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin: 0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .social-gallery-handle:hover {
+        color: #fbbf24;
+      }
+
+      .social-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 0;
+      }
+
+      .social-gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .social-gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+
+      .social-gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .social-gallery-username {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: #ffffff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+        backdrop-filter: blur(4px);
+        transition: opacity 0.3s ease;
+      }
+
+      .social-gallery-item:hover .social-gallery-username {
+        opacity: 0.9;
+      }
+
+      /* Dark theme styles for social gallery section */
+      @media (prefers-color-scheme: dark) {
+        .social-gallery-title {
+          color: #9ca3af !important;
+        }
+
+        .social-gallery-handle {
+          color: #9ca3af !important;
+        }
+
+        .social-gallery-handle:hover {
+          color: #fbbf24 !important;
+        }
+      }
+
+      /* Responsive design for social gallery section */
+      @media (max-width: 1024px) {
+        .social-gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .social-gallery-section {
+          margin: 60px auto 0;
+        }
+
+        .social-gallery-header {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .social-gallery-title {
+          font-size: 1.3rem;
+        }
+
+        .social-gallery-handle {
+          font-size: 1.3rem;
+        }
+
+        .social-gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(6, 1fr);
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .social-gallery-section {
+          margin: 40px auto 0;
+        }
+
+        .social-gallery-title {
+          font-size: 1.2rem;
+        }
+
+        .social-gallery-handle {
+          font-size: 1.2rem;
+        }
+
+        .social-gallery-grid {
+          gap: 8px;
+        }
+
+        .social-gallery-username {
+          font-size: 0.7rem;
+          padding: 3px 6px;
+        }
+      }
+
+      /* Multi Park Experiences Section */
+      .multi-park-section {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 0 20px;
+      }
+
+      .multi-park-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 60px;
+        margin-bottom: 60px;
+        text-align: left;
+      }
+
+      .multi-park-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0;
+        line-height: 1.2;
+        flex: 0 0 40%;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .multi-park-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .multi-park-description {
+        font-size: 1.1rem;
+        color: #4b5563;
+        margin-bottom: 0;
+        line-height: 1.6;
+        padding-top: 10px;
+      }
+
+      .learn-more-link {
+        color: #1f2937;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        align-self: flex-start;
+        transition: color 0.3s ease;
+      }
+
+      .learn-more-link:hover {
+        color: #fbbf24;
+      }
+
+      /* Theme Park Cards Section */
+      .theme-park-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .theme-park-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 0;
+      }
+
+      .theme-park-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e5e7eb;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .theme-park-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .theme-park-card.dark {
+        background: #1f2937;
+        border-color: #374151;
+      }
+
+      .theme-park-card.light {
+        background: #ffffff;
+      }
+
+      .theme-park-content {
+        padding: 40px 30px;
+        text-align: left;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .theme-park-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      .theme-park-card.dark .theme-park-title {
+        color: #ffffff;
+      }
+
+      .theme-park-card.light .theme-park-title {
+        color: #1f2937;
+      }
+
+      .theme-park-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.4;
+        font-weight: 500;
+      }
+
+      .theme-park-card.dark .theme-park-subtitle {
+        color: #ffffff;
+      }
+
+      .theme-park-card.light .theme-park-subtitle {
+        color: #1f2937;
+      }
+
+      .theme-park-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #fbbf24;
+        color: #1f2937;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        cursor: pointer;
+      }
+
+      .theme-park-button:hover {
+        background: #f59e0b;
+        transform: translateY(-2px);
+      }
+
+      /* Dark theme styles for new sections */
+      @media (prefers-color-scheme: dark) {
+        .multi-park-title {
+          color: #e7ebd4 !important;
+        }
+
+        .multi-park-description {
+          color: #b8bcc8 !important;
+        }
+
+        .learn-more-link {
+          color: #e7ebd4 !important;
+        }
+
+        .learn-more-link:hover {
+          color: #fbbf24 !important;
+        }
+
+        .theme-park-card.light {
+          background: #1a1a1a !important;
+          border: 1px solid #333 !important;
+        }
+
+        .theme-park-card.light .theme-park-title {
+          color: #e7ebd4 !important;
+        }
+
+        .theme-park-card.light .theme-park-subtitle {
+          color: #b8bcc8 !important;
+        }
+      }
+
+      /* Responsive design for new sections */
+      @media (max-width: 1024px) {
+        .theme-park-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+
+        .multi-park-header {
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .multi-park-header {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+
+        .multi-park-title {
+          flex: none;
+          font-size: 2rem;
+        }
+
+        .multi-park-content {
+          flex: none;
+        }
+
+        .multi-park-description {
+          font-size: 1rem;
+          padding-top: 0;
+        }
+
+        .theme-park-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .theme-park-content {
+          padding: 30px 25px;
+        }
+
+        .theme-park-title {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .multi-park-section {
+          margin: 60px auto 0;
+        }
+
+        .multi-park-header {
+          gap: 15px;
+        }
+
+        .multi-park-title {
+          font-size: 1.8rem;
+        }
+
+        .theme-park-grid {
+          gap: 15px;
+        }
+
+        .theme-park-content {
+          padding: 25px 20px;
+        }
+
+        .theme-park-title {
+          font-size: 1.8rem;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="greeting">حزم جزيرة ياس</div>
+    <div class="packages-section">
+      <div class="section-header">
+        <h1 class="section-title">أكثر باقاتنا شعبية</h1>
+        <p class="section-description">
+          احصل على أقصى استفادة من عطلتك في جزيرة ياس مع باقاتنا الحصرية، بما في
+          ذلك الإقامة في أفضل الفنادق مع عروض فنادق جزيرة ياس المثيرة والوصول
+          إلى بعض التجارب الأكثر طلباً في جزيرة ياس.
+        </p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Stay & Play Package -->
+        <div class="package-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/packages2025/snp2025/snp2025_900x600.jpg"
+            alt="Stay & Play Water Park"
+            class="package-image"
+          />
+          <div class="package-content">
+            <h3 class="package-title">إقامة ولعب</h3>
+            <p class="package-description">
+              احجز باقة الإقامة واللعب الآن واستمتع بالوصول إلى حدائقنا
+              الترفيهية الحاصلة على أرقام قياسية أثناء الإقامة في أحد فنادقنا
+              عالمية المستوى.
+            </p>
+            <a href="#" class="package-button">احجز الباقة</a>
+          </div>
+        </div>
+
+        <!-- Yas Island Romantic Getaway Package -->
+        <div class="package-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/f1-eventcard.jpg"
+            alt="F1 Abu Dhabi Grand Prix"
+            class="package-image"
+          />
+          <div class="package-content">
+            <h3 class="package-title">رحلة رومانسية في جزيرة ياس</h3>
+            <p class="package-description">
+              استمتع برحلة رومانسية في جزيرة ياس، بما في ذلك ترقيات الغرف
+              المجانية، والوصول إلى نادي الشاطئ، وخصومات المطاعم والسبا في
+              الفنادق المشاركة.
+            </p>
+            <a href="#" class="package-button">تفاصيل أكثر</a>
+          </div>
+        </div>
+
+        <!-- Mary Poppins Live Package -->
+        <div class="package-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg"
+            alt="Mary Poppins Live Show"
+            class="package-image"
+          />
+          <div class="package-content">
+            <h3 class="package-title">ماري بوبينز مباشرة في جزيرة ياس</h3>
+            <p class="package-description">
+              احجز باقة العطلة للاستمتاع بالإقامة في أحد فنادق جزيرة ياس عالمية
+              المستوى بالإضافة إلى تذاكر ذهبية أو فضية لهذا العرض المباشر السحري
+              من 25 مارس – 15 أبريل 2026.
+            </p>
+            <a href="#" class="package-button">احجز الباقة</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Birthday Packages Section -->
+    <div class="birthday-section">
+      <div class="birthday-container">
+        <div>
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/birthdaypackage/newcardbday.jpg"
+            alt="Children celebrating birthday at Yas Island"
+            class="birthday-image"
+          />
+        </div>
+        <div class="birthday-content">
+          <h2 class="birthday-title">
+            باقات أعياد الميلاد الحصرية في جزيرة ياس
+          </h2>
+          <p class="birthday-description">
+            احتفل بعيد ميلادك بأناقة في جزيرة ياس، حيث كل لحظة مليئة بالإثارة
+            والمغامرة والذكريات التي لا تُنسى.
+          </p>
+          <a href="#" class="birthday-button">اعرف المزيد</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="multi-park-section">
+      <div class="multi-park-header">
+        <h2 class="multi-park-title">تجارب المتنزهات المتعددة</h2>
+        <div class="multi-park-content">
+          <p class="multi-park-description">
+            مدد المرح واستمتع بأسعار حصرية عند حجز إحدى تجارب جزيرة ياس متعددة
+            المتنزهات. استعد لمغامرات مليئة بالإثارة في حدائقنا الترفيهية
+            الحاصلة على أرقام قياسية!
+          </p>
+          <a href="#" class="learn-more-link">← اعرف المزيد</a>
+        </div>
+      </div>
+    </div>
+    <!-- Theme Park Cards Section -->
+    <div class="theme-park-section">
+      <div class="theme-park-grid">
+        <!-- 2 Theme Parks Card -->
+        <div class="theme-park-card dark">
+          <div class="theme-park-content">
+            <div>
+              <h3 class="theme-park-title">متنزهان ترفيهيان</h3>
+              <p class="theme-park-subtitle">
+                تجارب جزيرة ياس متعددة المتنزهات
+              </p>
+            </div>
+            <button class="theme-park-button">احجز التجربة</button>
+          </div>
+        </div>
+
+        <!-- 3 Theme Parks Card -->
+        <div class="theme-park-card light">
+          <div class="theme-park-content">
+            <div>
+              <h3 class="theme-park-title">ثلاثة متنزهات ترفيهية</h3>
+              <p class="theme-park-subtitle">
+                تجارب جزيرة ياس متعددة المتنزهات
+              </p>
+            </div>
+            <button class="theme-park-button">احجز التجربة</button>
+          </div>
+        </div>
+
+        <!-- 4 Theme Parks Card -->
+        <div class="theme-park-card light">
+          <div class="theme-park-content">
+            <div>
+              <h3 class="theme-park-title">أربعة متنزهات ترفيهية</h3>
+              <p class="theme-park-subtitle">
+                تجارب جزيرة ياس متعددة المتنزهات
+              </p>
+            </div>
+            <button class="theme-park-button">احجز التجربة</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YAS MAGAZINE Section -->
+    <div class="magazine-section">
+      <div class="magazine-container">
+        <div>
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/kgf_2025/yww-magazineaug25-modified.png"
+            alt="Girl sliding down water slide at Yas Island"
+            class="magazine-image"
+          />
+        </div>
+        <div class="magazine-content">
+          <h2 class="magazine-title">مجلة ياس</h2>
+          <p class="magazine-description">
+            احصل على نظرة داخلية على ما هو رائج في جزيرة ياس هذا الموسم.
+          </p>
+          <div class="magazine-buttons">
+            <a href="#" class="magazine-button">عرض باللغة الإنجليزية</a>
+            <a href="#" class="magazine-button">عرض باللغة العربية</a>
+            <a href="#" class="magazine-button">عرض باللغة الروسية</a>
+            <a href="#" class="magazine-button">عرض باللغة الصينية</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single Day Tickets Section -->
+    <div class="single-day-section">
+      <div class="single-day-header">
+        <h2 class="single-day-title">تذاكر اليوم الواحد</h2>
+        <p class="single-day-description">
+          اشتر إحدى تذاكر الدخول العامة واحصل على وصول ليوم كامل من المرح في
+          حديقتك الترفيهية المفضلة الحاصلة على أرقام قياسية.
+        </p>
+      </div>
+
+      <div class="single-day-grid">
+        <!-- Ferrari World Card -->
+        <div class="single-day-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/general-pages/2-theme-parks--attractions/ffdesktop.png"
+            alt="Ferrari World roller coaster"
+            class="single-day-image"
+          />
+          <div class="single-day-content">
+            <h3 class="single-day-card-title">عالم فيراري جزيرة ياس، أبوظبي</h3>
+            <p class="single-day-card-description">
+              اختبر قوة وشغف أشهر علامة تجارية في فورمولا 1 من خلال الوصول
+              لسرعات قوة الجاذبية.
+            </p>
+            <button class="single-day-button">اشتر الآن</button>
+          </div>
+        </div>
+
+        <!-- Warner Bros. World Card -->
+        <div class="single-day-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/general-pages/2-theme-parks--attractions/wbdesktop.png"
+            alt="Warner Bros. World Batman experience"
+            class="single-day-image"
+          />
+          <div class="single-day-content">
+            <h3 class="single-day-card-title">
+              عالم وارنر بروس جزيرة ياس، أبوظبي
+            </h3>
+            <p class="single-day-card-description">
+              انضم إلى أبطالك الخارقين وشخصيات الرسوم المتحركة المفضلة في ست
+              عوالم غامرة في أكبر حديقة ترفيهية داخلية في المنطقة.
+            </p>
+            <button class="single-day-button">اشتر الآن</button>
+          </div>
+        </div>
+
+        <!-- Yas Waterworld Card -->
+        <div class="single-day-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/general-pages/2-theme-parks--attractions/yaswaterworlddesktop.png"
+            alt="Yas Waterworld water slide"
+            class="single-day-image"
+          />
+          <div class="single-day-content">
+            <h3 class="single-day-card-title">
+              عالم ياس المائي جزيرة ياس، أبوظبي
+            </h3>
+            <p class="single-day-card-description">
+              عالم ياس المائي، أحد أبرز حدائق المياه في العالم، مليء بالألعاب
+              المثيرة والزلاقات الملحمية والتجارب المذهلة.
+            </p>
+            <button class="single-day-button">اشتر الآن</button>
+          </div>
+        </div>
+
+        <!-- SeaWorld Card -->
+        <div class="single-day-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/general-pages/2-theme-parks--attractions/swadcarousel2.png"
+            alt="SeaWorld marine life experience"
+            class="single-day-image"
+          />
+          <div class="single-day-content">
+            <h3 class="single-day-card-title">عالم البحار جزيرة ياس، أبوظبي</h3>
+            <p class="single-day-card-description">
+              من القطبين إلى المناطق الاستوائية: تجول عبر ثمانية عوالم محيطية
+              وشاهد الحياة البحرية المذهلة والألوان المهيبة والترفيه الرائع.
+            </p>
+            <button class="single-day-button">اشتر الآن</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media Gallery Section -->
+    <div class="social-gallery-section">
+      <div class="social-gallery-header">
+        <h2 class="social-gallery-title">شارك المرح ووسمنا في</h2>
+        <a href="#" class="social-gallery-handle">← @YASISLAND</a>
+      </div>
+
+      <div class="social-gallery-grid">
+        <!-- Row 1 -->
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/40f7dc60-0fa3-047c-d614-586beed6bafd/500.jpg"
+            alt="Luxury resort with pool"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@PHILIPCOCHRANE</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/0e5cc4c0-aad9-f805-1933-a41ce7ab7c56/500.jpg"
+            alt="Yellow roller coaster"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@NATALIE_HOLIDAYSPLEASE</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/b75eb27b-7d8b-8b81-a70f-f68d26196332/500.jpg"
+            alt="SeaWorld aquarium"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@NATALIE_HOLIDAYSPLEASE</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/473a98e5-ab39-b4ae-f436-ffe789efcbf6/500.jpg"
+            alt="Warner Bros World entrance"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@TRAVELSENSEJULIE</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/98f7900d-2abd-4f10-c0f1-4291eb3695a1/375.jpg"
+            alt="Ferrari roller coaster"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@TAKETHEFAMILY</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/56341e1c-22ca-c048-2124-4d2351b49000/500.jpg"
+            alt="Water park selfie"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@TRAVELBIZMONITOR</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/5e50b256-6c09-b8ac-87ac-16c5657a67e2/375.jpg"
+            alt="Red looping roller coaster"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@MIRAIPIRALE</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/8a411ea0-af06-cfd1-688a-0892c7abb341/375.jpg"
+            alt="Children on water slide"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@BLUMONDOTOURISM</div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/48a4e54b-8f90-cb46-bcfc-908406039834/375.jpg"
+            alt="Amusement park ride"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@BLUMONDOTOURISM</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/b32b9d31-5d3f-907e-59ff-67ce76f957b2/500.jpg"
+            alt="Modern building with track"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@YIYAGOLF</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/277c91d5-59d4-d388-6e86-86857ddf1103/375.jpg"
+            alt="Warner Bros building"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@SIMPLY_SAVVYS</div>
+        </div>
+
+        <div class="social-gallery-item">
+          <img
+            src="https://cdn.crowdriff.com/in-use/7c20b6fb-a910-2dbe-ccf5-514e355cde16/375.jpg"
+            alt="Ferrari World at sunset"
+            class="social-gallery-image"
+          />
+          <div class="social-gallery-username">@PAMUSHDA</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

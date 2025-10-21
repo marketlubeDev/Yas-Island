@@ -16,81 +16,574 @@
     />
     <title>Yas Island Dining — Centered English</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       html,
       body {
         height: 100%;
         margin: 0;
-        color-scheme: light dark;
-        -webkit-color-scheme: light dark;
-      }
-
-      /* Center horizontally and vertically */
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f0f0f0;
         font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        overflow-x: hidden;
       }
 
-      /* Dark theme styles */
+      body {
+        background: #f0f0f0;
+      }
+
+      /* Dark mode styles */
       @media (prefers-color-scheme: dark) {
         body {
-          background: #0b0c0c !important;
+          background: #0b0c0c;
         }
 
-        .greeting {
-          color: #e7ebd4 !important;
-          background: transparent !important;
-          box-shadow: none !important;
+        .header-area {
+          background: #0b0c0c;
+        }
+
+        .main-heading {
+          color: #ffffff;
+        }
+
+        .description {
+          color: #cccccc;
+        }
+
+        .cta-button {
+          color: #ffffff;
+        }
+
+        .pagination {
+          color: #ffffff;
+        }
+
+        .featured-restaurants-section {
+          background: #0b0c0c;
+        }
+
+        .featured-title {
+          color: #ffffff;
+        }
+
+        .featured-description {
+          color: #cccccc;
+        }
+
+        .featured-cta {
+          color: #ffffff;
+        }
+
+        .restaurant-card {
+          background: #1a1a1a;
+          color: #ffffff;
+        }
+
+        .restaurant-card.active {
+          background: #2d5a4a;
+          color: white;
+        }
+
+        .restaurant-overlay {
+          background: #1a1a1a;
+        }
+
+        .restaurant-name {
+          color: #cccccc;
+        }
+
+        .restaurant-headline {
+          color: #ffffff;
         }
       }
 
-      /* iOS Safari specific fixes */
-      @supports (-webkit-touch-callout: none) {
-        body {
-          -webkit-text-size-adjust: 100%;
-        }
-
-        @media (prefers-color-scheme: dark) {
-          body {
-            background: #0b0c0c !important;
-          }
-
-          .greeting {
-            color: #e7ebd4 !important;
-            background: transparent !important;
-            box-shadow: none !important;
-          }
-        }
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
       }
 
-      .greeting {
-        font-size: 4rem; /* adjust size as needed */
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        color: #1f2937;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
+      .header-area {
         background: #f0f0f0;
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        z-index: 10;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .main-heading {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2d5a4a;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .description {
+        font-size: 1rem;
+        color: #666;
+        max-width: 300px;
+        line-height: 1.4;
+      }
+
+      .cta-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+      }
+
+      .cta-button {
+        background: none;
+        border: none;
+        color: #2d5a4a;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: opacity 0.3s ease;
+      }
+
+      .cta-button:hover {
+        opacity: 0.8;
+      }
+
+      .pagination {
+        color: #2d5a4a;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .content-area {
+        flex: 1;
+        position: relative;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://static.myconnect.ae/-/media/yasconnect/project/yasisland/tabswithslider/fining-dining/tabs-with-slider/asia-asia/restaurantsm.jpg?w=767");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+        padding: 3rem;
+        min-height: 40vh;
+      }
+
+      .overlay-content {
+        color: white;
+        max-width: 600px;
+      }
+
+      .overlay-heading {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .overlay-button {
+        background: #f4d03f;
+        color: #333;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
         transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
       }
 
-      /* JavaScript-controlled dark mode classes */
-      .dark-mode body {
-        background: #0b0c0c !important;
+      .overlay-button:hover {
+        background: #f1c40f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(244, 208, 63, 0.3);
       }
 
-      .dark-mode .greeting {
-        color: #e7ebd4 !important;
-        background: transparent !important;
-        box-shadow: none !important;
+      .restaurant-logos {
+        position: absolute;
+        bottom: 2rem;
+        left: 3rem;
+        display: flex;
+        gap: 2rem;
+        z-index: 5;
+      }
+
+      .logo {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-area {
+          padding: 1.5rem;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .main-heading {
+          font-size: 2rem;
+        }
+
+        .overlay-heading {
+          font-size: 2rem;
+        }
+
+        .content-area {
+          padding: 2rem 1.5rem;
+        }
+
+        .restaurant-logos {
+          left: 1.5rem;
+          bottom: 1rem;
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-heading {
+          font-size: 1.5rem;
+        }
+
+        .overlay-heading {
+          font-size: 1.5rem;
+        }
+
+        .description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Featured Restaurants Section */
+      .featured-restaurants-section {
+        background: #f0f0f0;
+        padding: 4rem 0rem;
+        max-width: 1400px;
+        /* margin: 0 auto; */
+      }
+
+      .featured-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+      }
+
+      .featured-title-area {
+        flex: 1;
+      }
+
+      .featured-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2d5a4a;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .featured-description {
+        font-size: 1rem;
+        color: #666;
+        max-width: 400px;
+        line-height: 1.4;
+      }
+
+      .featured-cta {
+        color: #2d5a4a;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: opacity 0.3s ease;
+      }
+
+      .featured-cta:hover {
+        opacity: 0.8;
+      }
+
+      .restaurant-selection {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .restaurant-card {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        min-width: 120px;
+        text-align: center;
+      }
+
+      .restaurant-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .restaurant-card.active {
+        background: #2d5a4a;
+        color: white;
+      }
+
+      .restaurant-logo {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .main-restaurant-display {
+        position: relative;
+        height: 350px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      }
+
+      .restaurant-image {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-start;
+        padding: 3rem;
+      }
+
+      .restaurant-overlay {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 400px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+
+      .restaurant-name {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .restaurant-headline {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2d5a4a;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+
+      .restaurant-button {
+        background: #f4d03f;
+        color: #333;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .restaurant-button:hover {
+        background: #f1c40f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(244, 208, 63, 0.3);
+      }
+
+      /* Responsive Design for Featured Section */
+      @media (max-width: 768px) {
+        .featured-restaurants-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .featured-header {
+          flex-direction: column;
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .featured-title {
+          font-size: 2rem;
+        }
+
+        .restaurant-selection {
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .restaurant-card {
+          min-width: 100px;
+          padding: 0.8rem 1rem;
+        }
+
+        .restaurant-logo {
+          font-size: 0.8rem;
+        }
+
+        .main-restaurant-display {
+          height: 300px;
+        }
+
+        .restaurant-image {
+          padding: 2rem 1.5rem;
+        }
+
+        .restaurant-overlay {
+          padding: 1.5rem;
+          max-width: 100%;
+        }
+
+        .restaurant-headline {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .featured-title {
+          font-size: 1.5rem;
+        }
+
+        .restaurant-selection {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .restaurant-card {
+          width: 100%;
+          max-width: 200px;
+        }
+
+        .main-restaurant-display {
+          height: 250px;
+        }
+
+        .restaurant-headline {
+          font-size: 1.5rem;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="greeting">Yas Island Dining</div>
+    <div class="hero-section">
+      <!-- Header Area -->
+      <div class="header-area">
+        <div class="header-content">
+          <div class="left-content">
+            <h1 class="main-heading">
+              THE FINEST RESTAURANTS ON YAS<br />
+              ISLAND
+            </h1>
+            <p class="description">
+              Take your taste buds on a global culinary journey at these
+              sophisticated, top-rated restaurants.
+            </p>
+          </div>
+          <div class="cta-section">
+            <a href="#" class="cta-button"> → SEE ALL RESTAURANTS </a>
+            <div class="pagination">1/2 →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="content-area">
+        <!-- Restaurant Logos -->
+        <div class="restaurant-logos">
+          <div class="logo">ASIA ASIA</div>
+          <div class="logo">BUSHIDO</div>
+        </div>
+
+        <!-- Overlay Content -->
+        <div class="overlay-content">
+          <h2 class="overlay-heading">
+            SAVOR AWARD-WINNING<br />
+            PAN-ASIAN FUSION<br />
+            CUISINE
+          </h2>
+          <a href="#" class="overlay-button">MORE DETAILS</a>
+        </div>
+      </div>
+      <!-- Featured Restaurants Section -->
+      <div class="featured-restaurants-section">
+        <div class="featured-header">
+          <div class="featured-title-area">
+            <h2 class="featured-title">FEATURED RESTAURANTS</h2>
+            <p class="featured-description">
+              Take your taste buds on a global culinary journey at these
+              sophisticated, top-rated restaurants.
+            </p>
+          </div>
+          <a href="#" class="featured-cta">→ SEE ALL RESTAURANTS</a>
+        </div>
+
+        <div class="restaurant-selection">
+          <div class="restaurant-card active">
+            <div class="restaurant-logo">GARAGE</div>
+          </div>
+          <div class="restaurant-card">
+            <div class="restaurant-logo">iris</div>
+          </div>
+          <div class="restaurant-card">
+            <div class="restaurant-logo">the director's club</div>
+          </div>
+          <div class="restaurant-card">
+            <div class="restaurant-logo">Jardin du CAFE</div>
+          </div>
+        </div>
+
+        <div class="main-restaurant-display">
+          <div class="restaurant-image">
+            <div class="restaurant-overlay">
+              <div class="restaurant-name">GARAGE</div>
+              <h3 class="restaurant-headline">AN EPICUREAN'S DELIGHT</h3>
+              <button class="restaurant-button">MORE DETAILS</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       // Function to detect and apply color scheme
