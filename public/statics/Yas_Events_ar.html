@@ -4,22 +4,52 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>فعاليات جزيرة ياس — Centered Arabic</title>
+    <title>أحداث جزيرة ياس — العربية</title>
     <style>
       html,
       body {
         height: 100%;
         margin: 0;
+        padding: 0;
         color-scheme: light dark;
       }
 
-      /* Center horizontally and vertically */
       body {
+        background: #f0f0f0;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f0f0f0;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        min-height: 100vh;
+      }
+
+      .hero-section {
+        max-width: 1200px;
+        width: 100%;
+        padding: 80px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #1a3a4a;
+        margin: 0 0 30px 0;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-description {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: #4a5c6a;
+        margin: 0;
+        max-width: 70%;
+        font-weight: 400;
       }
 
       /* Dark theme styles */
@@ -28,26 +58,57 @@
           background: #0b0c0c !important;
         }
 
-        .greeting {
+        .hero-title {
           color: #e7ebd4 !important;
-          background: transparent !important;
-          box-shadow: none !important;
+        }
+
+        .hero-description {
+          color: #a0a8b0 !important;
         }
       }
-      .greeting {
-        font-size: 4rem; /* adjust size as needed */
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        color: #1f2937;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
-        background: #f0f0f0;
-        transition: all 0.3s ease;
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 60px 20px;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-description {
+          font-size: 1rem;
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-description {
+          font-size: 0.95rem;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="greeting">فعاليات جزيرة ياس</div>
+    <div class="hero-section">
+      <h1 class="hero-title">اكتشف فعالياتنا في أبوظبي</h1>
+      <p class="hero-description">
+        جزيرة ياس هي المكان المثالي لحضور حفلات أبوظبي والعروض المختلفة. لا يهم
+        أي نوع من الموسيقى تحب، أو ما يثير ضحكك، أو أي مشهد يفتنك؛ جزيرة ياس
+        لديها فعالية تناسبك. اختر من أفضل الحفلات في دولة الإمارات، عروض
+        الكوميديا التي تضم فنانين عالميين، المسرحيات الموسيقية للأطفال والكبار،
+        بالإضافة إلى العروض المسرحية، مباريات الدوري الأمريكي لكرة السلة،
+        مباريات UFC، فعاليات حلبة مرسى ياس حول جائزة أبوظبي الكبرى والكثير
+        غيرها. من الفنانين الأكثر شهرة حالياً، إلى العروض الكلاسيكية، هناك شيء
+        للجميع. تابع هذا المكان لمعرفة الفعاليات القادمة في أبوظبي، واحصل على
+        التذاكر قبل نفادها!
+      </p>
+    </div>
+    <div></div>
   </body>
 </html>
