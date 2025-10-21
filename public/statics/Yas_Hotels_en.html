@@ -4,22 +4,108 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Yas Island Hotels — Centered English</title>
+    <title>Yas Island Hotels — Choose From The Best</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       html,
       body {
         height: 100%;
-        margin: 0;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
         color-scheme: light dark;
       }
 
-      /* Center horizontally and vertically */
       body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: #f0f0f0;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem;
+        min-height: 100vh;
+      }
+
+      .hotels-container {
+        max-width: 1400px;
+        width: 100%;
+        background: #f0f0f0;
+        border-radius: 16px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); */
+        padding: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .title-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .main-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #072839;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+
+      .description-section {
+        padding: 0 1rem;
+      }
+
+      .description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #4b5563;
+        text-align: left;
+      }
+
+      .cta-section {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: none;
+        border: none;
+        color: #072839;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+      }
+
+      .cta-button:hover {
+        background: #f1f5f9;
+        transform: translateX(4px);
+      }
+
+      .arrow-icon {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover .arrow-icon {
+        transform: translateX(4px);
       }
 
       /* Dark theme styles */
@@ -28,27 +114,906 @@
           background: #0b0c0c !important;
         }
 
-        .greeting {
-          color: #e7ebd4 !important;
-          background: transparent !important;
-          box-shadow: none !important;
+        .hotels-container {
+          background: #0b0c0c !important;
+        }
+
+        .main-title {
+          color: #e2e8f0 !important;
+        }
+
+        .description {
+          color: #94a3b8 !important;
+        }
+
+        .cta-button {
+          color: #e2e8f0 !important;
+        }
+
+        .cta-button:hover {
+          background: #334155 !important;
         }
       }
 
-      .greeting {
-        font-size: 4rem; /* adjust size as needed */
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        color: #1f2937;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .hotels-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 2rem;
+          text-align: center;
+        }
+
+        .main-title {
+          font-size: 1.75rem;
+        }
+
+        .description {
+          text-align: center;
+        }
+
+        .cta-section {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 1rem;
+        }
+
+        .hotels-container {
+          padding: 1.5rem;
+        }
+
+        .main-title {
+          font-size: 1.5rem;
+        }
+
+        .description {
+          font-size: 1rem;
+        }
+      }
+
+      /* Hotel Cards Section Styles */
+      .hotels-cards-section {
+        max-width: 1400px;
+        width: 100%;
+        margin-top: 3rem;
         background: #f0f0f0;
+        border-radius: 16px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); */
+        padding: 3rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+        gap: 2rem;
+      }
+
+      .header-content {
+        flex: 1;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #072839;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #4b5563;
+        max-width: 500px;
+      }
+
+      .section-cta {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .all-hotels-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #072839;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
         transition: all 0.3s ease;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+      }
+
+      .all-hotels-link:hover {
+        background: #f1f5f9;
+        transform: translateX(4px);
+      }
+
+      .all-hotels-link .arrow-icon {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        transition: transform 0.3s ease;
+      }
+
+      .all-hotels-link:hover .arrow-icon {
+        transform: translateX(4px);
+      }
+
+      .hotels-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .hotel-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid #e5e7eb;
+      }
+
+      .hotel-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .hotel-image {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hotel-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .hotel-card:hover .hotel-image img {
+        transform: scale(1.05);
+      }
+
+      .hotel-content {
+        padding: 1.5rem;
+      }
+
+      .hotel-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #072839;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+      }
+
+      .hotel-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .hotel-button {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: 2px solid #fbbf24;
+        color: #072839;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .hotel-button:hover {
+        background: #fbbf24;
+        color: #072839;
+        transform: translateY(-2px);
+      }
+
+      /* Dark theme for hotel cards */
+      @media (prefers-color-scheme: dark) {
+        .hotels-cards-section {
+          background: #0b0c0c !important;
+          /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important; */
+        }
+
+        .section-title {
+          color: #e2e8f0 !important;
+        }
+
+        .section-description {
+          color: #94a3b8 !important;
+        }
+
+        .all-hotels-link {
+          color: #e2e8f0 !important;
+        }
+
+        .all-hotels-link:hover {
+          background: #334155 !important;
+        }
+
+        .hotel-card {
+          background: #334155 !important;
+          border-color: #475569 !important;
+        }
+
+        .hotel-name {
+          color: #e2e8f0 !important;
+        }
+
+        .hotel-description {
+          color: #94a3b8 !important;
+        }
+
+        .hotel-button {
+          color: #e2e8f0 !important;
+          border-color: #fbbf24 !important;
+        }
+
+        .hotel-button:hover {
+          background: #fbbf24 !important;
+          color: #1e3a8a !important;
+        }
+      }
+
+      /* Responsive design for hotel cards */
+      @media (max-width: 1024px) {
+        .hotels-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+
+        .section-cta {
+          align-self: flex-start;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hotels-cards-section {
+          padding: 2rem;
+          margin-top: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .section-description {
+          font-size: 1rem;
+        }
+
+        .hotels-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .hotel-image {
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hotels-cards-section {
+          padding: 1.5rem;
+        }
+
+        .section-title {
+          font-size: 1.75rem;
+        }
+
+        .hotel-content {
+          padding: 1.25rem;
+        }
+
+        .hotel-name {
+          font-size: 1.1rem;
+        }
+
+        .hotel-description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Multi Park Experiences Section Styles */
+      .multi-park-section {
+        max-width: 1400px;
+        width: 100%;
+        margin-top: 3rem;
+        background: #f0f0f0;
+        border-radius: 16px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); */
+        padding: 3rem;
+      }
+
+      .multi-park-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+        gap: 2rem;
+      }
+
+      .multi-park-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #072839;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+
+      .multi-park-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #4b5563;
+        max-width: 500px;
+      }
+
+      .learn-more-section {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .learn-more-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #072839;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+      }
+
+      .learn-more-link:hover {
+        background: #f1f5f9;
+        transform: translateX(4px);
+      }
+
+      .learn-more-link .arrow-icon {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        transition: transform 0.3s ease;
+      }
+
+      .learn-more-link:hover .arrow-icon {
+        transform: translateX(4px);
+      }
+
+      .theme-park-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .park-card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid #e5e7eb;
+        position: relative;
+      }
+
+      .park-card.highlighted {
+        background: #374151;
+        border-color: #374151;
+      }
+
+      .park-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .park-content {
+        padding: 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 200px;
+      }
+
+      .park-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #072839;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+
+      .park-card.highlighted .park-title {
+        color: #ffffff;
+      }
+
+      .park-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #6b7280;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .park-card.highlighted .park-subtitle {
+        color: #ffffff;
+      }
+
+      .park-button {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        background: #fbbf24;
+        border: 2px solid #fbbf24;
+        color: #072839;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .park-card:not(.highlighted) .park-button {
+        background: transparent;
+        border: 2px solid #fbbf24;
+        color: #072839;
+      }
+
+      .park-button:hover {
+        background: #f59e0b;
+        border-color: #f59e0b;
+        transform: translateY(-2px);
+      }
+
+      .park-card:not(.highlighted) .park-button:hover {
+        background: #fbbf24;
+      }
+
+      /* Dark theme for multi park section */
+      @media (prefers-color-scheme: dark) {
+        .multi-park-section {
+          background: #0b0c0c !important;
+          /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important; */
+        }
+
+        .multi-park-title {
+          color: #e2e8f0 !important;
+        }
+
+        .multi-park-description {
+          color: #94a3b8 !important;
+        }
+
+        .learn-more-link {
+          color: #e2e8f0 !important;
+        }
+
+        .learn-more-link:hover {
+          background: #334155 !important;
+        }
+
+        .park-card {
+          background: #334155 !important;
+          border-color: #475569 !important;
+        }
+
+        .park-card.highlighted {
+          background: #1f2937 !important;
+          border-color: #1f2937 !important;
+        }
+
+        .park-title {
+          color: #e2e8f0 !important;
+        }
+
+        .park-card.highlighted .park-title {
+          color: #ffffff !important;
+        }
+
+        .park-subtitle {
+          color: #94a3b8 !important;
+        }
+
+        .park-card.highlighted .park-subtitle {
+          color: #ffffff !important;
+        }
+
+        .park-button {
+          color: #072839 !important;
+        }
+
+        .park-card:not(.highlighted) .park-button {
+          color: #e2e8f0 !important;
+        }
+      }
+
+      /* Responsive design for multi park section */
+      @media (max-width: 1024px) {
+        .theme-park-cards {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .multi-park-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+
+        .learn-more-section {
+          align-self: flex-start;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .multi-park-section {
+          padding: 2rem;
+          margin-top: 2rem;
+        }
+
+        .multi-park-title {
+          font-size: 2rem;
+        }
+
+        .multi-park-description {
+          font-size: 1rem;
+        }
+
+        .theme-park-cards {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .park-content {
+          min-height: 180px;
+          padding: 1.5rem;
+        }
+
+        .park-title {
+          font-size: 1.75rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .multi-park-section {
+          padding: 1.5rem;
+        }
+
+        .multi-park-title {
+          font-size: 1.75rem;
+        }
+
+        .park-content {
+          padding: 1.25rem;
+          min-height: 160px;
+        }
+
+        .park-title {
+          font-size: 1.5rem;
+        }
+
+        .park-subtitle {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Introductory Text Section Styles */
+      .intro-section {
+        max-width: 1400px;
+        width: 100%;
+        margin-top: 3rem;
+        background: #f0f0f0;
+        border-radius: 16px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); */
+        padding: 4rem 3rem;
+      }
+
+      .intro-content {
+        max-width: 100%;
+      }
+
+      .intro-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #072839;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 2rem;
+      }
+
+      .intro-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #4b5563;
+        font-weight: 400;
+        text-align: left;
+        max-width: 800px;
+      }
+
+      /* Dark theme for intro section */
+      @media (prefers-color-scheme: dark) {
+        .intro-section {
+          background: #0b0c0c !important;
+          /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important; */
+        }
+
+        .intro-title {
+          color: #e2e8f0 !important;
+        }
+
+        .intro-description {
+          color: #94a3b8 !important;
+        }
+      }
+
+      /* Responsive design for intro section */
+      @media (max-width: 1024px) {
+        .intro-section {
+          padding: 3rem 2rem;
+        }
+
+        .intro-title {
+          font-size: 2.5rem;
+        }
+
+        .intro-description {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .intro-section {
+          padding: 2.5rem 2rem;
+          margin-top: 2rem;
+        }
+
+        .intro-title {
+          font-size: 2.25rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .intro-description {
+          font-size: 1.1rem;
+          line-height: 1.6;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .intro-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .intro-title {
+          font-size: 1.875rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .intro-description {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="greeting">Yas Island Hotels</div>
+    <div class="hotels-container">
+      <div class="title-section">
+        <h1 class="main-title">Choose From The Best<br />Yas Island Hotels</h1>
+      </div>
+
+      <div class="description-section">
+        <p class="description">
+          From comfortable family-friendly stays to five-star luxury, there is a
+          hotel for everyone on Yas Island. Make your trip even more special by
+          tapping into everything Yas Island has to offer, like world-class
+          events, sporting spectacles, family entertainment and a whole lot
+          more. Club your stay at a Yas Island hotel with theme park tickets or
+          event passes to save when you make a booking!
+        </p>
+      </div>
+
+      <div class="cta-section">
+        <a href="#" class="cta-button">
+          <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+            <path
+              d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8.5H2.75a.75.75 0 0 1 0-1.5h8.69L8.22 4.03a.75.75 0 0 1 0-1.06Z"
+            />
+          </svg>
+          See All Hotels
+        </a>
+      </div>
+    </div>
+    <!-- Hotel Cards Section -->
+    <div class="hotels-cards-section">
+      <div class="section-header">
+        <div class="header-content">
+          <h2 class="section-title">THE BEST FAMILY GETAWAYS</h2>
+          <p class="section-description">
+            Both adults and kids alike will experience relaxation and fun like
+            never before at these family-friendly hotels in the middle of all
+            the Yas Island action.
+          </p>
+        </div>
+        <div class="section-cta">
+          <a href="#" class="all-hotels-link">
+            <span>ALL HOTELS</span>
+            <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8.5H2.75a.75.75 0 0 1 0-1.5h8.69L8.22 4.03a.75.75 0 0 1 0-1.06Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hotels-grid">
+        <!-- WB Abu Dhabi Hotel Card -->
+        <div class="hotel-card">
+          <div class="hotel-image">
+            <img
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="WB Abu Dhabi Hotel"
+            />
+          </div>
+          <div class="hotel-content">
+            <h3 class="hotel-name">WB™ ABU DHABI HOTEL</h3>
+            <p class="hotel-description">
+              MEET YOUR FAVORITE CHARACTERS AT THE WB™ ABU DHABI HOTEL, CURIO
+              COLLECTION BY HILTON
+            </p>
+            <button class="hotel-button">MORE DETAILS</button>
+          </div>
+        </div>
+
+        <!-- Crowne Plaza Abu Dhabi Card -->
+        <div class="hotel-card">
+          <div class="hotel-image">
+            <img
+              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Crowne Plaza Abu Dhabi"
+            />
+          </div>
+          <div class="hotel-content">
+            <h3 class="hotel-name">CROWNE PLAZA ABU DHABI</h3>
+            <p class="hotel-description">
+              IT'S PLAY TIME AT THE KIDS' CLUB IN THE CROWNE PLAZA ABU DHABI -
+              YAS ISLAND
+            </p>
+            <button class="hotel-button">MORE DETAILS</button>
+          </div>
+        </div>
+
+        <!-- DoubleTree by Hilton Card -->
+        <div class="hotel-card">
+          <div class="hotel-image">
+            <img
+              src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="DoubleTree by Hilton"
+            />
+          </div>
+          <div class="hotel-content">
+            <h3 class="hotel-name">DOUBLETREE BY HILTON</h3>
+            <p class="hotel-description">
+              A HOME AWAY FROM HOME AT DOUBLETREE BY HILTON ABU DHABI YAS ISLAND
+              RESIDENCES
+            </p>
+            <button class="hotel-button">MORE DETAILS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi Park Experiences Section -->
+    <div class="multi-park-section">
+      <div class="multi-park-header">
+        <div class="header-content">
+          <h2 class="multi-park-title">MULTI PARK EXPERIENCES</h2>
+          <p class="multi-park-description">
+            Extend the fun and enjoy exclusive rates when you book one of our
+            Yas Island Multi-Park Experiences. Get ready for some action-packed
+            adventures at our record-breaking theme parks!
+          </p>
+        </div>
+        <div class="learn-more-section">
+          <a href="#" class="learn-more-link">
+            <span>LEARN MORE</span>
+            <svg class="arrow-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8.5H2.75a.75.75 0 0 1 0-1.5h8.69L8.22 4.03a.75.75 0 0 1 0-1.06Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="theme-park-cards">
+        <!-- 2 Theme Parks Card (Highlighted) -->
+        <div class="park-card highlighted">
+          <div class="park-content">
+            <h3 class="park-title">2 THEME PARKS</h3>
+            <p class="park-subtitle">Yas Island Multi-Park Experiences</p>
+            <button class="park-button">BOOK EXPERIENCE</button>
+          </div>
+        </div>
+
+        <!-- 3 Theme Parks Card -->
+        <div class="park-card">
+          <div class="park-content">
+            <h3 class="park-title">3 THEME PARKS</h3>
+            <p class="park-subtitle">Yas Island Multi-Park Experiences</p>
+            <button class="park-button">BOOK EXPERIENCE</button>
+          </div>
+        </div>
+
+        <!-- 4 Theme Parks Card -->
+        <div class="park-card">
+          <div class="park-content">
+            <h3 class="park-title">4 THEME PARKS</h3>
+            <p class="park-subtitle">Yas Island Multi-Park Experiences</p>
+            <button class="park-button">BOOK EXPERIENCE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Introductory Text Section -->
+    <div class="intro-section">
+      <div class="intro-content">
+        <h1 class="intro-title">
+          HEAD TO THE BEST ABU DHABI HOTELS ON YAS ISLAND
+        </h1>
+        <p class="intro-description">
+          As millions of travellers agree, Yas Island is equally perfect for a
+          quick city staycation or a longer family vacation. Whether you're
+          flying in from a different part of the world, or live right here in
+          the country, our 5-star hotels in Abu Dhabi will transport you to a
+          different world. Reserve your room today and get set for all the fun
+          and entertainment that the Island is known for.
+        </p>
+      </div>
+    </div>
   </body>
 </html>
