@@ -233,6 +233,12 @@ export default function GlobalInvertColor() {
       isDarkMode ? "#1A1206" : isHighContrast ? "#E5EDF9" : "#fff8a5"
     );
 
+    // Product title container background
+    document.documentElement.style.setProperty(
+      "--color-product-title-container-bg",
+      isDarkMode ? "#161616" : "#eef7fe"
+    );
+
     document.documentElement.style.setProperty(
       "--color-otp-input-border",
       isDarkMode ? "#DCE1D4" : "#6F677C"
@@ -1299,6 +1305,10 @@ export default function GlobalInvertColor() {
       document.documentElement.style.setProperty(
         "--color-base-product-card-add-cart-btn-bg",
         "#fff8a5"
+      );
+      document.documentElement.style.setProperty(
+        "--color-product-title-container-bg",
+        "#eef7fe"
       );
       document.documentElement.style.setProperty(
         "--color-base-product-card-card-item-border-calendar",

@@ -521,17 +521,17 @@
 }
 
 .product-modal.booking-active .ant-modal-content {
-  padding: 4rem !important; // keep same padding when booking is active
+  padding: 2rem 0 !important; // keep same padding when booking is active
   padding-top: 3.7rem;
   max-height: calc(100vh - 48px);
   overflow: hidden;
   // iPad mini/tablets: allow inner scroll and adjust padding
   @include respond(desktop) {
-    padding: 2rem !important;
+    padding: 2rem 0 !important;
     padding-top: 3.2rem;
   }
   @include respond(bigDesktop) {
-    padding: 2rem !important;
+    padding: 2rem 0 !important;
     padding-top: 3.7rem;
   }
   @include respond(tablets) {
@@ -1119,6 +1119,8 @@
 .product-title-container {
   text-align: center;
   margin-bottom: 1rem;
+  background-color: var(--color-product-title-container-bg);
+  padding: 10px 0;
 
   .product-title {
     font-size: calc(2rem * var(--zoom-scale));
@@ -1157,7 +1159,7 @@
 .calendar-container {
   background: var(--color-base-product-card-card-item-bg);
   border-radius: 16px;
-  padding: 0; // remove inner padding for uniform modal edges
+  padding: 0 0 0 4rem; // remove inner padding for uniform modal edges
   width: 50%;
   flex: 1 1 50%;
   overflow: hidden;
@@ -1446,7 +1448,7 @@
 }
 
 .guest-section {
-  padding: 0;
+  padding: 0 4rem 0 0;
   width: 50%;
   flex: 1 1 50%;
   height: auto;
@@ -1862,7 +1864,7 @@ html[lang="ar"] {
   border: none;
   border-radius: 30px;
   padding: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   width: min(32.875rem, 80%);
   text-align: center;
@@ -1885,7 +1887,7 @@ html[lang="ar"] {
   border: 4px solid var(--cart-btn-brd-save);
   border-radius: 30px;
   padding: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   width: min(32.875rem, 80%);
   margin-left: 50%;
