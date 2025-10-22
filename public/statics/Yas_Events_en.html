@@ -12,6 +12,9 @@
         margin: 0;
         padding: 0;
         color-scheme: light dark;
+
+        display: flex;
+        flex-direction: column;
       }
 
       body {
@@ -24,7 +27,7 @@
       }
 
       .hero-section {
-        max-width: 1200px;
+        max-width: 1400px;
         width: 100%;
         padding: 80px 40px;
         display: flex;
@@ -52,6 +55,208 @@
         font-weight: 400;
       }
 
+      /* Events Section Styles */
+      .events-section {
+        max-width: 1400px;
+        width: 100%;
+        padding: 0 40px 80px 40px;
+        margin-top: 60px;
+      }
+
+      .events-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .events-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a3a4a;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+
+      .events-count {
+        font-size: 1rem;
+        color: #4a5c6a;
+        margin: 10px 0 0 0;
+        font-weight: 400;
+      }
+
+      .filters-section {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .filter-dropdowns {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .filter-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1a3a4a;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .filter-dropdown {
+        padding: 12px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #f8f9fa;
+        color: #1a3a4a;
+        font-size: 0.875rem;
+        min-width: 150px;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 12px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        padding-right: 40px;
+      }
+
+      .clear-all {
+        color: #1a3a4a;
+        font-size: 0.875rem;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      .clear-all:hover {
+        text-decoration: underline;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .event-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+
+      .event-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .event-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        position: relative;
+      }
+
+      .event-favorite {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .event-favorite:hover {
+        background: #ffd700;
+      }
+
+      .event-favorite svg {
+        width: 16px;
+        height: 16px;
+        fill: #ffd700;
+      }
+
+      .event-content {
+        padding: 24px;
+      }
+
+      .event-venue {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .event-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a3a4a;
+        margin: 0 0 12px 0;
+        line-height: 1.3;
+      }
+
+      .event-description {
+        font-size: 0.875rem;
+        color: #4a5c6a;
+        line-height: 1.6;
+        margin: 0 0 16px 0;
+      }
+
+      .event-date {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 20px;
+      }
+
+      .event-date svg {
+        width: 16px;
+        height: 16px;
+        fill: #6b7280;
+      }
+
+      .event-button {
+        background: #ffd700;
+        color: #1a3a4a;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: 100%;
+      }
+
+      .event-button:hover {
+        background: #ffed4e;
+      }
+
       /* Dark theme styles */
       @media (prefers-color-scheme: dark) {
         body {
@@ -64,6 +269,52 @@
 
         .hero-description {
           color: #a0a8b0 !important;
+        }
+
+        .events-title {
+          color: #e7ebd4 !important;
+        }
+
+        .events-count {
+          color: #a0a8b0 !important;
+        }
+
+        .filter-label {
+          color: #e7ebd4 !important;
+        }
+
+        .filter-dropdown {
+          background: #1a1a1a !important;
+          border-color: #333 !important;
+          color: #e7ebd4 !important;
+        }
+
+        .clear-all {
+          color: #e7ebd4 !important;
+        }
+
+        .event-card {
+          background: #1a1a1a !important;
+        }
+
+        .event-venue {
+          color: #a0a8b0 !important;
+        }
+
+        .event-title {
+          color: #e7ebd4 !important;
+        }
+
+        .event-description {
+          color: #a0a8b0 !important;
+        }
+
+        .event-date {
+          color: #a0a8b0 !important;
+        }
+
+        .event-date svg {
+          fill: #a0a8b0 !important;
         }
       }
 
@@ -81,6 +332,44 @@
           font-size: 1rem;
           max-width: 100%;
         }
+
+        .events-section {
+          padding: 0 20px 60px 20px;
+        }
+
+        .events-title {
+          font-size: 2rem;
+        }
+
+        .filters-section {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .filter-group {
+          width: 100%;
+        }
+
+        .filter-dropdowns {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .filter-dropdown {
+          width: 100%;
+          min-width: auto;
+        }
+
+        .events-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .clear-all {
+          margin-left: 0;
+          margin-top: 10px;
+        }
       }
 
       @media (max-width: 480px) {
@@ -90,6 +379,18 @@
 
         .hero-description {
           font-size: 0.95rem;
+        }
+
+        .events-title {
+          font-size: 1.75rem;
+        }
+
+        .event-content {
+          padding: 20px;
+        }
+
+        .event-title {
+          font-size: 1.25rem;
         }
       }
     </style>
@@ -110,6 +411,165 @@
         they sell out!
       </p>
     </div>
-    <div></div>
+
+    <!-- Events Section -->
+    <div class="events-section">
+      <div class="events-header">
+        <div>
+          <h2 class="events-title">EXPLORE OUR EVENTS</h2>
+          <p class="events-count">24 EVENTS</p>
+        </div>
+      </div>
+
+      <!-- Filters Section -->
+      <div class="filters-section">
+        <div class="filter-group">
+          <label class="filter-label">SORTING</label>
+          <select class="filter-dropdown">
+            <option>DATE</option>
+            <option>Name A-Z</option>
+            <option>Name Z-A</option>
+            <option>Price Low-High</option>
+            <option>Price High-Low</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">FILTERS</label>
+          <div class="filter-dropdowns">
+            <select class="filter-dropdown">
+              <option>EXPLORE BY</option>
+              <option>Concerts</option>
+              <option>Sports</option>
+              <option>Comedy</option>
+              <option>Family</option>
+            </select>
+            <select class="filter-dropdown">
+              <option>VENUE</option>
+              <option>Etihad Arena</option>
+              <option>Yas Beach</option>
+              <option>Yas Marina Circuit</option>
+              <option>Other Venues</option>
+            </select>
+            <select class="filter-dropdown">
+              <option>UPCOMING EVENTS</option>
+              <option>This Week</option>
+              <option>This Month</option>
+              <option>Next 3 Months</option>
+            </select>
+          </div>
+        </div>
+
+        <a href="#" class="clear-all">CLEAR ALL</a>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="events-grid">
+        <!-- UFC 321 Event Card -->
+        <div class="event-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ufc321/cardufc.jpg"
+            alt="UFC 321"
+            class="event-image"
+          />
+          <div class="event-favorite">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </div>
+          <div class="event-content">
+            <div class="event-venue">ETIHAD ARENA</div>
+            <h3 class="event-title">UFC 321</h3>
+            <p class="event-description">
+              UFC 321 is a mixed martial arts event announced for October 25th
+              at Etihad Arena. This highly anticipated event will feature some
+              of the world's top fighters competing in the octagon. Don't miss
+              out on this spectacular night of combat sports action.
+            </p>
+            <div class="event-date">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                />
+              </svg>
+              <span>25 OCT</span>
+            </div>
+            <button class="event-button">REGISTER NOW</button>
+          </div>
+        </div>
+
+        <!-- Enrique Iglesias Event Card -->
+        <div class="event-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg"
+            alt="Enrique Iglesias"
+            class="event-image"
+          />
+          <div class="event-favorite">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </div>
+          <div class="event-content">
+            <div class="event-venue">ETIHAD ARENA</div>
+            <h3 class="event-title">Enrique Iglesias</h3>
+            <p class="event-description">
+              Enrique Iglesias returns to Abu Dhabi for an unforgettable night
+              of music. Presented by Live Nation Middle East, this concert on
+              November 1, 2025, promises to deliver all his greatest hits in an
+              electrifying performance that fans have been eagerly awaiting.
+            </p>
+            <div class="event-date">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                />
+              </svg>
+              <span>1 NOV</span>
+            </div>
+            <button class="event-button">BOOK NOW</button>
+          </div>
+        </div>
+
+        <!-- Afrobiano Fest Event Card -->
+        <div class="event-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg"
+            alt="Afrobiano Fest"
+            class="event-image"
+          />
+          <div class="event-favorite">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </div>
+          <div class="event-content">
+            <div class="event-venue">YAS BEACH</div>
+            <h3 class="event-title">Afrobiano Fest</h3>
+            <p class="event-description">
+              The biggest Afrobeats & Amapiano music festival in the UAE is back
+              and louder than ever! Immerse yourself in the vibrant sounds and
+              energy of Afrobiano Fest at Yas Beach. This spectacular event
+              promises to be hotter and bolder than ever before.
+            </p>
+            <div class="event-date">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                />
+              </svg>
+              <span>1 NOV</span>
+            </div>
+            <button class="event-button">BOOK NOW</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
