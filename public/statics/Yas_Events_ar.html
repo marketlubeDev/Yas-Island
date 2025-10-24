@@ -19,11 +19,13 @@
 
       body {
         background: #f0f0f0;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "Segoe UI", "Tahoma", "Arial", sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        direction: rtl;
+        text-align: right;
       }
 
       .hero-section {
@@ -32,8 +34,9 @@
         padding: 80px 40px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: center;
+        text-align: right;
       }
 
       .hero-title {
@@ -53,6 +56,7 @@
         margin: 0;
         max-width: 70%;
         font-weight: 400;
+        text-align: right;
       }
 
       /* Events Section Styles */
@@ -66,8 +70,9 @@
       .events-header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 40px;
+        flex-direction: row-reverse;
       }
 
       .events-title {
@@ -136,7 +141,7 @@
         font-size: 0.875rem;
         text-decoration: none;
         font-weight: 500;
-        margin-left: auto;
+        margin-right: auto;
         cursor: pointer;
       }
 
@@ -257,6 +262,30 @@
         background: #ffed4e;
       }
 
+      .explore-all-button {
+        /* background: 1a3a4a; */
+        color: #1a3a4a;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(26, 58, 74, 0.3);
+      }
+
+      .explore-all-button:hover {
+        /* background: #2a4a5a; */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(26, 58, 74, 0.4);
+        text-decoration: none;
+        color: #1a3a4a;
+      }
+
       /* Dark theme styles */
       @media (prefers-color-scheme: dark) {
         body {
@@ -316,6 +345,16 @@
         .event-date svg {
           fill: #a0a8b0 !important;
         }
+
+        .explore-all-button {
+          background: #e7ebd4 !important;
+          color: #1a3a4a !important;
+        }
+
+        .explore-all-button:hover {
+          background: #d4d8c4 !important;
+          color: #1a3a4a !important;
+        }
       }
 
       /* Responsive design */
@@ -339,6 +378,16 @@
 
         .events-title {
           font-size: 2rem;
+        }
+
+        .events-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+
+        .explore-all-button {
+          align-self: flex-start;
         }
 
         .filters-section {
@@ -367,7 +416,7 @@
         }
 
         .clear-all {
-          margin-left: 0;
+          margin-right: 0;
           margin-top: 10px;
         }
       }
@@ -397,16 +446,17 @@
   </head>
   <body>
     <div class="hero-section">
-      <h1 class="hero-title">اكتشف فعالياتنا في أبوظبي</h1>
+      <h1 class="hero-title">استكشف فعالياتنا في أبوظبي</h1>
       <p class="hero-description">
-        جزيرة ياس هي المكان المثالي لحضور حفلة أو عرض في أبوظبي. لا يهم أي نوع
-        من الموسيقى تحب، أو ما يضحكك، أو أي مشهد يثير إعجابك؛ جزيرة ياس لديها
-        فعالية تناسبك. اختر من أفضل الحفلات في دولة الإمارات، عروض الكوميديا
-        المميزة التي تضم كوميديين عالميين، مسرحيات موسيقية للأطفال والكبار،
-        بالإضافة إلى عروض المسرح، مباريات الدوري الأمريكي لكرة السلة، مواجهات
-        UFC، فعاليات حلبة مرسى ياس حول جائزة أبوظبي الكبرى وأكثر من ذلك بكثير.
-        من الفنانين الحاليين إلى العروض الكلاسيكية، هناك شيء للجميع. تابع هذا
-        المكان لمتابعة الأحداث القادمة في أبوظبي، واحصل على التذاكر قبل نفادها!
+        جزيرة ياس هي المكان المثالي لحضور حفلات أو عروض أبوظبي. لا يهم أي نوع من
+        الموسيقى تحب، أو ما يثير إعجابك من الكوميديا، أو ما يبهرك من العروض؛
+        جزيرة ياس لديها فعالية تناسبك. اختر من أفضل الحفلات في دولة الإمارات،
+        عروض الكوميديا مع فنانين عالميين، المسرحيات الموسيقية للأطفال والكبار،
+        بالإضافة إلى العروض المسرحية، مباريات الدوري الأمريكي لكرة السلة،
+        مباريات UFC، فعاليات حلبة مرسى ياس حول جائزة أبوظبي الكبرى والكثير
+        غيرها. من الفنانين الأكثر شعبية حالياً، إلى العروض الكلاسيكية، هناك شيء
+        للجميع. تابع هذا المكان لمعرفة آخر الفعاليات القادمة في أبوظبي، واحجز
+        تذكرتك قبل نفادها!
       </p>
     </div>
 
@@ -414,9 +464,15 @@
     <div class="events-section">
       <div class="events-header">
         <div>
-          <h2 class="events-title">اكتشف فعالياتنا</h2>
+          <h2 class="events-title">استكشف فعالياتنا</h2>
           <p class="events-count">24 فعالية</p>
         </div>
+        <a
+          href="https://www.yasisland.com/ar/events"
+          class="explore-all-button"
+          target="_blank"
+          >استكشف جميع الفعاليات</a
+        >
       </div>
 
       <!-- Filters Section -->
@@ -450,7 +506,7 @@
               <option>أماكن أخرى</option>
             </select>
             <select class="filter-dropdown">
-              <option>الأحداث القادمة</option>
+              <option>الفعاليات القادمة</option>
               <option>هذا الأسبوع</option>
               <option>هذا الشهر</option>
               <option>الـ 3 أشهر القادمة</option>
@@ -478,13 +534,13 @@
             </svg>
           </div>
           <div class="event-content">
-            <div class="event-venue">إتيهاد أرينا</div>
-            <h3 class="event-title">يو إف سي 321</h3>
+            <div class="event-venue">إتihad Arena</div>
+            <h3 class="event-title">UFC 321</h3>
             <p class="event-description">
-              يو إف سي 321 هو حدث فنون قتالية مختلطة مُعلن عنه في 25 أكتوبر في
-              إتيهاد أرينا. سيضم هذا الحدث المنتظر بشغف بعض من أفضل المقاتلين في
-              العالم يتنافسون في القفص. لا تفوت هذه الليلة المذهلة من أحداث
-              الرياضات القتالية.
+              UFC 321 هو حدث فنون قتالية مختلطة أُعلن عنه في 25 أكتوبر في إتihad
+              Arena. سيتضمن هذا الحدث المنتظر بشدة بعض من أفضل المقاتلين في
+              العالم يتنافسون في القفص. لا تفوت هذه الليلة المذهلة من رياضة
+              القتال.
             </p>
             <div class="event-date">
               <svg viewBox="0 0 24 24">
@@ -494,7 +550,12 @@
               </svg>
               <span>25 أكتوبر</span>
             </div>
-            <button class="event-button">سجل الآن</button>
+            <a
+              href="https://visitabudhabi.ae/ar/campaign/ufc-showdown-week?_affclk=ttuk:492510:2575023::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >سجل الآن</a
+            >
           </div>
         </div>
 
@@ -513,11 +574,11 @@
             </svg>
           </div>
           <div class="event-content">
-            <div class="event-venue">إتيهاد أرينا</div>
-            <h3 class="event-title">إنريكي إغليسياس</h3>
+            <div class="event-venue">إتihad Arena</div>
+            <h3 class="event-title">Enrique Iglesias</h3>
             <p class="event-description">
               يعود إنريكي إغليسياس إلى أبوظبي لليلة موسيقية لا تُنسى. مقدمة من
-              لايف نايشن الشرق الأوسط، يعد هذا الحفل في 1 نوفمبر 2025 بتقديم
+              Live Nation Middle East، هذه الحفلة في 1 نوفمبر 2025، تعد بتقديم
               جميع أعظم أغانيه في أداء مذهل ينتظره المعجبون بفارغ الصبر.
             </p>
             <div class="event-date">
@@ -528,7 +589,12 @@
               </svg>
               <span>1 نوفمبر</span>
             </div>
-            <button class="event-button">احجز الآن</button>
+            <a
+              href="https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&utm_medium=cpc&utm_campaign=22364157258&utm_content=176456931306-741209516760--b-&utm_term=enrique%20iglesias%202025&gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE&_affclk=ttuk:492510:2574938::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >احجز الآن</a
+            >
           </div>
         </div>
 
@@ -552,7 +618,7 @@
             <p class="event-description">
               أكبر مهرجان موسيقي للأفروبيتس والأمابيانو في دولة الإمارات يعود
               وأعلى صوتاً من أي وقت مضى! اغمر نفسك في الأصوات النابضة بالحياة
-              وطاقة مهرجان أفروبيانو في شاطئ ياس. يعد هذا الحدث المذهل بأن يكون
+              وطاقة مهرجان أفروبيانو في شاطئ ياس. هذا الحدث المذهل يعد بأن يكون
               أكثر سخونة وجرأة من أي وقت مضى.
             </p>
             <div class="event-date">
@@ -563,7 +629,12 @@
               </svg>
               <span>1 نوفمبر</span>
             </div>
-            <button class="event-button">احجز الآن</button>
+            <a
+              href="https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest?_affclk=ttuk:492510:2574849::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >احجز الآن</a
+            >
           </div>
         </div>
       </div>

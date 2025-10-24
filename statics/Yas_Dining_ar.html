@@ -38,7 +38,7 @@
       /* Dark mode styles */
       @media (prefers-color-scheme: dark) {
         body {
-          background: #0b0c0c;
+          background: #0b0c0c !important;
         }
 
         .header-area {
@@ -46,19 +46,19 @@
         }
 
         .main-heading {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
         .description {
-          color: #cccccc;
+          color: #cccccc !important;
         }
 
         .cta-button {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
         .pagination {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
         .featured-restaurants-section {
@@ -66,37 +66,49 @@
         }
 
         .featured-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
         .featured-description {
-          color: #cccccc;
+          color: #cccccc !important;
         }
 
         .featured-cta {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
         .restaurant-card {
-          background: #1a1a1a;
-          color: #ffffff;
+          background: #1a1a1a !important;
+          color: #ffffff !important;
         }
 
         .restaurant-card.active {
-          background: #2d5a4a;
-          color: white;
+          background: #2d5a4a !important;
+          color: white !important;
         }
 
         .restaurant-overlay {
-          background: #1a1a1a;
+          background: #1a1a1a !important;
         }
 
         .restaurant-name {
-          color: #cccccc;
+          color: #cccccc !important;
         }
 
         .restaurant-headline {
-          color: #ffffff;
+          color: #ffffff !important;
+        }
+
+        .restaurant-logo {
+          color: #ffffff !important;
+        }
+
+        .restaurant-card .restaurant-logo {
+          color: #ffffff !important;
+        }
+
+        .restaurant-card.active .restaurant-logo {
+          color: white !important;
         }
       }
 
@@ -593,15 +605,25 @@
           "(prefers-color-scheme: dark)"
         ).matches;
         const html = document.documentElement;
+        const body = document.body;
 
         if (isDarkMode) {
           html.classList.add("dark-mode");
+          body.style.setProperty("--bg-color", "#0b0c0c");
+          body.style.setProperty("--text-color", "#ffffff");
+          body.style.setProperty("--text-secondary", "#cccccc");
+          body.style.setProperty("--card-bg", "#1a1a1a");
         } else {
           html.classList.remove("dark-mode");
+          body.style.removeProperty("--bg-color");
+          body.style.removeProperty("--text-color");
+          body.style.removeProperty("--text-secondary");
+          body.style.removeProperty("--card-bg");
         }
       }
 
       // Apply color scheme on page load
+      document.addEventListener("DOMContentLoaded", applyColorScheme);
       applyColorScheme();
 
       // Listen for color scheme changes
@@ -629,6 +651,9 @@
           }
         });
       }
+
+      // Additional fallback for immediate application
+      window.addEventListener("load", applyColorScheme);
     </script>
   </body>
 </html>

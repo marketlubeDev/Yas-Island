@@ -66,7 +66,7 @@
       .events-header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 40px;
       }
 
@@ -257,6 +257,30 @@
         background: #ffed4e;
       }
 
+      .explore-all-button {
+        /* background: 1a3a4a; */
+        color: #1a3a4a;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(26, 58, 74, 0.3);
+      }
+
+      .explore-all-button:hover {
+        /* background: #2a4a5a; */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(26, 58, 74, 0.4);
+        text-decoration: none;
+        color: #1a3a4a;
+      }
+
       /* Dark theme styles */
       @media (prefers-color-scheme: dark) {
         body {
@@ -316,6 +340,16 @@
         .event-date svg {
           fill: #a0a8b0 !important;
         }
+
+        .explore-all-button {
+          background: #e7ebd4 !important;
+          color: #1a3a4a !important;
+        }
+
+        .explore-all-button:hover {
+          background: #d4d8c4 !important;
+          color: #1a3a4a !important;
+        }
       }
 
       /* Responsive design */
@@ -339,6 +373,16 @@
 
         .events-title {
           font-size: 2rem;
+        }
+
+        .events-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+
+        .explore-all-button {
+          align-self: flex-start;
         }
 
         .filters-section {
@@ -419,6 +463,12 @@
           <h2 class="events-title">EXPLORE OUR EVENTS</h2>
           <p class="events-count">24 EVENTS</p>
         </div>
+        <a
+          href="https://www.yasisland.com/en/events"
+          class="explore-all-button"
+          target="_blank"
+          >EXPLORE ALL EVENTS</a
+        >
       </div>
 
       <!-- Filters Section -->
@@ -496,7 +546,12 @@
               </svg>
               <span>25 OCT</span>
             </div>
-            <button class="event-button">REGISTER NOW</button>
+            <a
+              href="https://visitabudhabi.ae/en/campaign/ufc-showdown-week?_affclk=ttuk:492510:2575023::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >REGISTER NOW</a
+            >
           </div>
         </div>
 
@@ -531,7 +586,12 @@
               </svg>
               <span>1 NOV</span>
             </div>
-            <button class="event-button">BOOK NOW</button>
+            <a
+              href="https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&utm_medium=cpc&utm_campaign=22364157258&utm_content=176456931306-741209516760--b-&utm_term=enrique%20iglesias%202025&gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE&_affclk=ttuk:492510:2574938::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >BOOK NOW</a
+            >
           </div>
         </div>
 
@@ -566,7 +626,12 @@
               </svg>
               <span>1 NOV</span>
             </div>
-            <button class="event-button">BOOK NOW</button>
+            <a
+              href="https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest?_affclk=ttuk:492510:2574849::90ak0u1915362__492510______1761200707.hZ2007i:"
+              class="event-button"
+              target="_blank"
+              >BOOK NOW</a
+            >
           </div>
         </div>
       </div>
