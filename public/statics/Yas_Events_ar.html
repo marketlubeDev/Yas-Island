@@ -598,13 +598,6 @@
             alt="UFC 321"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">الاتحاد أرينا</div>
             <h3 class="event-title">UFC 321</h3>
@@ -637,13 +630,6 @@
             alt="إنريكي إغليسياس"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">الاتحاد أرينا</div>
             <h3 class="event-title">إنريكي إغليسياس</h3>
@@ -676,13 +662,6 @@
             alt="مهرجان أفروبيانو"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">شاطئ ياس</div>
             <h3 class="event-title">مهرجان أفروبيانو</h3>
@@ -1879,12 +1858,6 @@
             imgDiv.className = "card-image";
             const src = getFirstImageSrc(item);
             if (src) imgDiv.style.backgroundImage = `url('${src}')`;
-
-            const fav = document.createElement("button");
-            fav.className = "fav";
-            fav.setAttribute("aria-label", "Add to favorites");
-            fav.innerHTML = "\u2606";
-            imgDiv.appendChild(fav);
 
             const body = document.createElement("div");
             body.className = "card-body";

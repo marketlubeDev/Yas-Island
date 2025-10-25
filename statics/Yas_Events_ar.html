@@ -12,6 +12,10 @@
         margin: 0;
         padding: 0;
         color-scheme: light dark;
+        /* Base zoom variable used throughout; default to 1 */
+        --zoom-scale: 1;
+        /* Scale root font sizing using zoom variable so rem-based sizes follow */
+        font-size: calc(16px * var(--zoom-scale));
 
         display: flex;
         flex-direction: column;
@@ -594,13 +598,6 @@
             alt="UFC 321"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">الاتحاد أرينا</div>
             <h3 class="event-title">UFC 321</h3>
@@ -633,13 +630,6 @@
             alt="إنريكي إغليسياس"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">الاتحاد أرينا</div>
             <h3 class="event-title">إنريكي إغليسياس</h3>
@@ -672,13 +662,6 @@
             alt="مهرجان أفروبيانو"
             class="event-image"
           />
-          <div class="event-favorite">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              />
-            </svg>
-          </div>
           <div class="event-content">
             <div class="event-venue">شاطئ ياس</div>
             <h3 class="event-title">مهرجان أفروبيانو</h3>
@@ -1876,12 +1859,6 @@
             const src = getFirstImageSrc(item);
             if (src) imgDiv.style.backgroundImage = `url('${src}')`;
 
-            const fav = document.createElement("button");
-            fav.className = "fav";
-            fav.setAttribute("aria-label", "Add to favorites");
-            fav.innerHTML = "\u2606";
-            imgDiv.appendChild(fav);
-
             const body = document.createElement("div");
             body.className = "card-body";
 
@@ -1950,5 +1927,75 @@
         })();
       </script>
     </div>
+    <script>
+      (function () {
+        try {
+          var keys = [
+            "persist:yasIslandAccessibility",
+            "yasIslandAccessibility",
+          ];
+          var raw = null;
+          for (var i = 0; i < keys.length; i++) {
+            raw = localStorage.getItem(keys[i]);
+            if (raw) break;
+          }
+          function parsePersisted(value) {
+            try {
+              return JSON.parse(value);
+            } catch (e) {
+              return {};
+            }
+          }
+          function coerce(v) {
+            if (typeof v === "string") {
+              try {
+                return JSON.parse(v);
+              } catch (e) {
+                return v;
+              }
+            }
+            return v;
+          }
+          function applyTheme(dark) {
+            var root = document.documentElement;
+            root.classList.remove("theme-light", "theme-dark");
+            root.classList.add(dark ? "theme-dark" : "theme-light");
+            root.style.colorScheme = dark ? "dark" : "light";
+          }
+          function applyZoom(zoomLevel) {
+            var root = document.documentElement;
+            var scale = 1;
+            if (zoomLevel === 1 || zoomLevel === "1") {
+              scale = 1;
+            } else if (zoomLevel === 1.12 || zoomLevel === "1.12") {
+              scale = 1.12;
+            } else if (zoomLevel === 1.25 || zoomLevel === "1.25") {
+              scale = 1.25;
+            } else if (typeof zoomLevel === "number") {
+              scale = zoomLevel;
+            }
+            root.style.setProperty("--zoom-scale", String(scale));
+          }
+          if (raw) {
+            var data = parsePersisted(raw);
+            var theme = coerce(data.theme);
+            var isDark = coerce(data.isDarkMode);
+            var zoom = coerce(data.zoomLevel);
+            var dark = theme === "theme-dark" || isDark === true;
+            applyTheme(dark);
+            applyZoom(zoom);
+          }
+          window.addEventListener("storage", function (e) {
+            if (!keys.includes(e.key)) return;
+            var data = parsePersisted(e.newValue || "{}");
+            var theme = coerce(data.theme);
+            var isDark = coerce(data.isDarkMode);
+            var zoom = coerce(data.zoomLevel);
+            applyTheme(theme === "theme-dark" || isDark === true);
+            applyZoom(zoom);
+          });
+        } catch (err) {}
+      })();
+    </script>
   </body>
 </html>
