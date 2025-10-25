@@ -17,6 +17,10 @@
         height: 100%;
         color-scheme: light dark;
         font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        /* Base zoom variable used throughout; default to 1 */
+        --zoom-scale: 1;
+        /* Scale root font sizing using zoom variable so rem-based sizes follow */
+        font-size: calc(16px * var(--zoom-scale));
       }
 
       body {
@@ -1671,5 +1675,75 @@
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+        try {
+          var keys = [
+            "persist:yasIslandAccessibility",
+            "yasIslandAccessibility",
+          ];
+          var raw = null;
+          for (var i = 0; i < keys.length; i++) {
+            raw = localStorage.getItem(keys[i]);
+            if (raw) break;
+          }
+          function parsePersisted(value) {
+            try {
+              return JSON.parse(value);
+            } catch (e) {
+              return {};
+            }
+          }
+          function coerce(v) {
+            if (typeof v === "string") {
+              try {
+                return JSON.parse(v);
+              } catch (e) {
+                return v;
+              }
+            }
+            return v;
+          }
+          function applyTheme(dark) {
+            var root = document.documentElement;
+            root.classList.remove("theme-light", "theme-dark");
+            root.classList.add(dark ? "theme-dark" : "theme-light");
+            root.style.colorScheme = dark ? "dark" : "light";
+          }
+          function applyZoom(zoomLevel) {
+            var root = document.documentElement;
+            var scale = 1;
+            if (zoomLevel === 1 || zoomLevel === "1") {
+              scale = 1;
+            } else if (zoomLevel === 1.12 || zoomLevel === "1.12") {
+              scale = 1.12;
+            } else if (zoomLevel === 1.25 || zoomLevel === "1.25") {
+              scale = 1.25;
+            } else if (typeof zoomLevel === "number") {
+              scale = zoomLevel;
+            }
+            root.style.setProperty("--zoom-scale", String(scale));
+          }
+          if (raw) {
+            var data = parsePersisted(raw);
+            var theme = coerce(data.theme);
+            var isDark = coerce(data.isDarkMode);
+            var zoom = coerce(data.zoomLevel);
+            var dark = theme === "theme-dark" || isDark === true;
+            applyTheme(dark);
+            applyZoom(zoom);
+          }
+          window.addEventListener("storage", function (e) {
+            if (!keys.includes(e.key)) return;
+            var data = parsePersisted(e.newValue || "{}");
+            var theme = coerce(data.theme);
+            var isDark = coerce(data.isDarkMode);
+            var zoom = coerce(data.zoomLevel);
+            applyTheme(theme === "theme-dark" || isDark === true);
+            applyZoom(zoom);
+          });
+        } catch (err) {}
+      })();
+    </script>
   </body>
 </html>
