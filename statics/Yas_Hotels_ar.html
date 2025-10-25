@@ -3822,6 +3822,16 @@
         a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
         a.textContent = book.label || "اعرف المزيد";
 
+        // Force "Book a Package" CTAs to open the official Hotels listing in a new tab
+        const hasBookNow =
+          (item.raw && item.raw.fmorepackagebooknowlink32545) ||
+          (book.label && (/book/i.test(book.label) || /احجز/.test(book.label)));
+        if (hasBookNow) {
+          a.href = "https://www.yasisland.com/en/hotels/listing";
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        }
+
         body.appendChild(h3);
         body.appendChild(p);
         body.appendChild(ul);

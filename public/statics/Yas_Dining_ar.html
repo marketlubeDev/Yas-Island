@@ -952,7 +952,7 @@
               '[{"desktopImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/dine/dine-may/asia-asia/asia-listing-dy.jpg","html":""},"mobileImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/dine/dine-may/asia-asia/asia-listing-m.jpg","html":""},"tabletImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/dine/dine-may/asia-asia/asia-listing-dy.jpg","html":""}}]',
             fz95xtemplatename32545: "Dine",
             fmorepackagebooknowlink32545:
-              '{"Html":"<a href=\'/en/yasisland/restaurants/asia-asia\'>VIEW RESTAURANT </a>","Href":"/en/restaurants/asia-asia","Label":"VIEW RESTAURANT ","Title":"","Target":""}',
+              '{"Html":"<a href=\'https://www.yasisland.com/en/yasisland/restaurants/asia-asia\' target=\'_blank\' rel=\'noopener\'>VIEW RESTAURANT </a>","Href":"https://www.yasisland.com/en/yasisland/restaurants/asia-asia","Label":"VIEW RESTAURANT ","Title":"","Target":"_blank"}',
             flocation32545: "YAS BAY WATERFRONT, YAS ISLAND, ABU DHABI, UAE",
             fid32545: "5da8c83af62d426e91d16bc8cf41b935",
           },
@@ -4389,19 +4389,31 @@
         }
       }
 
+      function toAbsoluteUrl(href) {
+        try {
+          if (!href) return "#";
+          const str = String(href).trim();
+          if (/^https?:\/\//i.test(str)) return str;
+          if (str.startsWith("/")) return `https://www.yasisland.com${str}`;
+          return str;
+        } catch (_) {
+          return href || "#";
+        }
+      }
+
       function getLinkFromRaw(rawLink, fallbackHref) {
         if (!rawLink)
           return {
-            href: fallbackHref || "#",
+            href: toAbsoluteUrl(fallbackHref || "#"),
             label: "عرض المطعم",
-            target: "",
+            target: "_blank",
           };
         try {
           const link = JSON.parse(rawLink);
           return {
-            href: link.Href || link.href || fallbackHref || "#",
+            href: toAbsoluteUrl(link.Href || link.href || fallbackHref || "#"),
             label: (link.Label || "عرض المطعم").trim(),
-            target: link.Target || "",
+            target: link.Target || "_blank",
           };
         } catch (e) {
           // Try to parse from embedded HTML
@@ -4409,9 +4421,9 @@
             /href=['"]([^'\"]+)['"][^>]*>(.*?)</i
           );
           return {
-            href: (m && m[1]) || fallbackHref || "#",
+            href: toAbsoluteUrl((m && m[1]) || fallbackHref || "#"),
             label: (m && m[2]) || "عرض المطعم",
-            target: String(rawLink).includes("target='_blank'") ? "_blank" : "",
+            target: "_blank",
           };
         }
       }
@@ -4476,8 +4488,8 @@
         const a = document.createElement("a");
         a.className = "card-cta";
         a.href = book.href || "#";
-        if (book.target) a.target = book.target;
-        a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
+        a.target = book.target || "_blank";
+        a.rel = "noopener noreferrer";
         a.textContent = "عرض المطعم";
 
         body.appendChild(h3);

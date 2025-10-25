@@ -27,9 +27,9 @@
       }
 
       .hero-section {
-        max-width: 1400px;
+        max-width: 1500px;
         width: 100%;
-        padding: 80px 40px;
+        padding: 80px 40px 0 40px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -57,7 +57,7 @@
 
       /* Events Section Styles */
       .events-section {
-        max-width: 1400px;
+        max-width: 1500px;
         width: 100%;
         padding: 0 40px 80px 40px;
         margin-top: 60px;
@@ -149,6 +149,109 @@
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 30px;
         margin-bottom: 40px;
+      }
+
+      /* Hotel-style cards reused for Events */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;+
+      }
+
+      @media (max-width: 992px) {
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: transparent;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .card-image {
+        position: relative;
+        height: 220px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+      }
+
+      .fav {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .card-body {
+        padding: 1.25rem 0 1.25rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0b0c0c;
+        margin: 0 !important;
+      }
+
+      .card-desc {
+        color: #666;
+        line-height: 1.5;
+        margin: 0 !important;
+      }
+
+      .card-meta {
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0;
+        color: #0b0c0c;
+        font-size: 0.9rem;
+      }
+
+      .card-meta li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .card-meta .geo {
+        width: 6px;
+        height: 6px;
+        background: #2d5a4a;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .card-cta {
+        align-self: flex-start;
+        margin-top: 0.5rem;
+        background: #f4d03f;
+        color: #0b0c0c;
+        font-weight: 800;
+        padding: 0.6rem 0.9rem;
+        border-radius: 999px;
+        text-decoration: none;
       }
 
       .event-card {
@@ -350,12 +453,31 @@
           background: #d4d8c4 !important;
           color: #1a3a4a !important;
         }
+
+        .card {
+          background: transparent;
+          box-shadow: none;
+        }
+        .card-title {
+          color: #ffffff;
+        }
+        .card-desc {
+          color: #cccccc;
+        }
+        .card-meta {
+          color: #dddddd;
+        }
+        .fav {
+          background: #0b0c0c;
+          border-color: #333333;
+          color: #eeeeee;
+        }
       }
 
       /* Responsive design */
       @media (max-width: 768px) {
         .hero-section {
-          padding: 60px 20px;
+          padding: 60px 20px 0 20px;
         }
 
         .hero-title {
@@ -463,58 +585,10 @@
           <h2 class="events-title">EXPLORE OUR EVENTS</h2>
           <p class="events-count">24 EVENTS</p>
         </div>
-        <a
-          href="https://www.yasisland.com/en/events"
-          class="explore-all-button"
-          target="_blank"
-          >EXPLORE ALL EVENTS</a
-        >
       </div>
 
-      <!-- Filters Section -->
-      <div class="filters-section">
-        <div class="filter-group">
-          <label class="filter-label">SORTING</label>
-          <select class="filter-dropdown">
-            <option>DATE</option>
-            <option>Name A-Z</option>
-            <option>Name Z-A</option>
-            <option>Price Low-High</option>
-            <option>Price High-Low</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label class="filter-label">FILTERS</label>
-          <div class="filter-dropdowns">
-            <select class="filter-dropdown">
-              <option>EXPLORE BY</option>
-              <option>Concerts</option>
-              <option>Sports</option>
-              <option>Comedy</option>
-              <option>Family</option>
-            </select>
-            <select class="filter-dropdown">
-              <option>VENUE</option>
-              <option>Etihad Arena</option>
-              <option>Yas Beach</option>
-              <option>Yas Marina Circuit</option>
-              <option>Other Venues</option>
-            </select>
-            <select class="filter-dropdown">
-              <option>UPCOMING EVENTS</option>
-              <option>This Week</option>
-              <option>This Month</option>
-              <option>Next 3 Months</option>
-            </select>
-          </div>
-        </div>
-
-        <a href="#" class="clear-all">CLEAR ALL</a>
-      </div>
-
-      <!-- Events Grid -->
-      <div class="events-grid">
+      <!-- Events Grid (hotel-style) -->
+      <div class="cards-grid" id="events-grid">
         <!-- UFC 321 Event Card -->
         <div class="event-card">
           <img
@@ -635,6 +709,1356 @@
           </div>
         </div>
       </div>
+
+      <script id="events-data" type="application/json">
+        {
+          "results": [
+            {
+              "title": "Enrique Iglesias",
+              "uri": "sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/en/Version/42",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/en/Version/42",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Lj9yqðSeK2uYñw2V",
+                "fz95xlanguage32545": "en",
+                "urihash": "Lj9yqðSeK2uYñw2V",
+                "fmorepackagecardtitle32545": "Enrique Iglesias",
+                "fdescription32545": "Live Nation Middle East is thrilled to announce that multi-platinum global sensation Enrique Iglesias is set to take the stage at Etihad Arena on November 1, 2025. Due to overwhelming demand from his last show, Iglesias is returning to the UAE to deliver another electrifying performance. Known for his record-breaking hits in both English and Spanish, Iglesias will bring his signature energy, passion, and chart-topping music to Abu Dhabi for an unforgettable night. ",
+                "permanentid": "493CBACAC1CB47FDB45FBC21546411FE",
+                "fversion32545": "42",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=22364157258&amp;utm_content=176456931306-741209516760--b-&amp;utm_term=enrique%20iglesias%202025&amp;gad_source=1&amp;gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE'>Book Now</a>\",\"Href\":\"https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&utm_medium=cpc&utm_campaign=22364157258&utm_content=176456931306-741209516760--b-&utm_term=enrique%20iglesias%202025&gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1761940800000,
+                "flocation32545": "1 Nov",
+                "fid32545": "493cbacac1cb47fdb45fbc21546411fe"
+              },
+              "Title": "Enrique Iglesias",
+              "Uri": "sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/en/Version/42",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/en/Version/42",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Afrobiano Fest",
+              "uri": "sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/en/Version/45",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/afrobiano2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/afrobiano2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/en/Version/45",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "4gz4CZUdIO1YqFBT",
+                "fz95xlanguage32545": "en",
+                "urihash": "4gz4CZUdIO1YqFBT",
+                "fmorepackagecardtitle32545": "Afrobiano Fest",
+                "fdescription32545": "After the massive success of AfroBiano Seasons 1 & 2... we’re back louder, bolder, and hotter than ever. We’re bringing the biggest Afrobeats and Amapiano energy straight to Yas Beach, Abu Dhabi and trust us, it’s not just a party, it’s an experience.",
+                "permanentid": "F15A5FD56F07496FAA89B589B1A30F84",
+                "fversion32545": "45",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas Beach",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest'>Book Now</a>\",\"Href\":\"https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1761940800000,
+                "flocation32545": "1 Nov",
+                "fid32545": "f15a5fd56f07496faa89b589b1a30f84"
+              },
+              "Title": "Afrobiano Fest",
+              "Uri": "sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/en/Version/45",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/afrobiano2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/afrobiano2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/en/Version/45",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Symphony Of Stars",
+              "uri": "sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/en/Version/47",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/en/Version/47",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "URnbIRfjzzy3URmt",
+                "fz95xlanguage32545": "en",
+                "urihash": "URnbIRfjzzy3URmt",
+                "fmorepackagecardtitle32545": "Symphony Of Stars ",
+                "fdescription32545": "The legendary music icons, Atif Aslam and Sami Yusuf will be performing on 7 Nov 2025 at the prestigious Etihad Arena in Abu Dhabi. 'Symphony of Stars' is a must watch musical extravaganza that will showcase Atif's Aslam and Sami Yusuf’s hits. ",
+                "permanentid": "108BCE0AAB8C4B4093199A2476E2DC3D",
+                "fversion32545": "47",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='http://etihadarena.ae/en/event-booking/symphony-of-stars'>Book Now</a>\",\"Href\":\"http://etihadarena.ae/en/event-booking/symphony-of-stars\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1762459200000,
+                "flocation32545": "7 Nov",
+                "fid32545": "108bce0aab8c4b4093199a2476e2dc3d"
+              },
+              "Title": "Symphony Of Stars",
+              "Uri": "sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/en/Version/47",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/en/Version/47",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Abu Dhabi Championship",
+              "uri": "sitecore://database/web/ItemId/81CC71A7-6AD7-4511-9689-B4655C6388A1/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/golfchampionship",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/golfchampionship",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/81CC71A7-6AD7-4511-9689-B4655C6388A1/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "R7dm6ofsIuVsDF4i",
+                "fz95xlanguage32545": "en",
+                "urihash": "R7dm6ofsIuVsDF4i",
+                "fmorepackagecardtitle32545": "Abu Dhabi Championship  ",
+                "fdescription32545": "Watch world class golfers in action and enjoy unmissable entertainment throughout the day in the tournament village. Enjoy a special day out at this stunning links golf course. ",
+                "permanentid": "81CC71A76AD745119689B4655C6388A1",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas Links",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/golfchampion.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/golfchampion.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/golfchampion.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='http://www.abudhabichampionship.com'>Book Now</a>\",\"Href\":\"http://www.abudhabichampionship.com\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1762632000000,
+                "flocation32545": "6-9 Nov",
+                "fid32545": "81cc71a76ad745119689b4655c6388a1"
+              },
+              "Title": "Abu Dhabi Championship",
+              "Uri": "sitecore://database/web/ItemId/81CC71A7-6AD7-4511-9689-B4655C6388A1/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/golfchampionship",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/golfchampionship",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/81CC71A7-6AD7-4511-9689-B4655C6388A1/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Open Fire Food Festival 2025",
+              "uri": "sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/en/Version/39",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/openfire2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/openfire2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/en/Version/39",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Z1g7ETO6WbTFepO2",
+                "fz95xlanguage32545": "en",
+                "urihash": "Z1g7ETO6WbTFepO2",
+                "fmorepackagecardtitle32545": "Open Fire Food Festival 2025 ",
+                "fdescription32545": "The Open Fire Food Festival (OFFF) is a 2-day celebration of fire-grilled flavors, celebrity BBQ chefs, live-fire demos, music, and family fun—bringing communities together over open flames. ",
+                "permanentid": "782D776023204F20B52E7D44D4C5C6F2",
+                "fversion32545": "39",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://openfirefest.com/'>Book Now</a>\",\"Href\":\"https://openfirefest.com/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1762632000000,
+                "flocation32545": "8 - 9 Nov",
+                "fid32545": "782d776023204f20b52e7d44d4c5c6f2"
+              },
+              "Title": "Open Fire Food Festival 2025",
+              "Uri": "sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/en/Version/39",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/openfire2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/openfire2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/en/Version/39",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Taste of Abu Dhabi 2025",
+              "uri": "sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Qx9Tw6MKoaG8Efzf",
+                "fz95xlanguage32545": "en",
+                "urihash": "Qx9Tw6MKoaG8Efzf",
+                "fmorepackagecardtitle32545": "Taste of Abu Dhabi 2025",
+                "fdescription32545": "Calling all foodies, families and friends for the ultimate celebration of food, drinks and music! The festival will showcase Abu Dhabi's best restaurants, feature workshops hosted by celeb chefs, and provide non-stop live music from day to night! ",
+                "permanentid": "F31DE0681F724F4D81A099488A0B9899",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas North",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://tasteofabudhabifestival.com/'>Book Now</a>\",\"Href\":\"https://tasteofabudhabifestival.com/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "14 - 16 Nov",
+                "fid32545": "f31de0681f724f4d81a099488a0b9899"
+              },
+              "Title": "Taste of Abu Dhabi 2025",
+              "Uri": "sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "A2RL – Abu Dhabi Autonomous Racing League 2025",
+              "uri": "sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/a2rl-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/a2rl-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "f82leFHrBwDñkGbð",
+                "fz95xlanguage32545": "en",
+                "urihash": "f82leFHrBwDñkGbð",
+                "fmorepackagecardtitle32545": "A2RL – Abu Dhabi Autonomous Racing League 2025",
+                "fdescription32545": "Experience the future of motorsport at A2RL 2025, the world’s premier autonomous racing league, returning to Yas Marina Circuit this November. Watch cutting-edge, AI-driven race cars compete at incredible speedsو no drivers, just pure technology and precision.",
+                "permanentid": "CDD827E0FE624163A8EDFC584DA80287",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas Marina Circuit",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://a2rl.io/'>Learn More</a>\",\"Href\":\"https://a2rl.io/\",\"Label\":\"Learn More\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "15 Nov",
+                "fid32545": "cdd827e0fe624163a8edfc584da80287"
+              },
+              "Title": "A2RL – Abu Dhabi Autonomous Racing League 2025",
+              "Uri": "sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/a2rl-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/a2rl-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Travis Scott: CIRCUS MAXIMUS WORLD TOUR",
+              "uri": "sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/en/Version/39",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/travis25",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/travis25",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/en/Version/39",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "5gðJGpEDmtiEtuok",
+                "fz95xlanguage32545": "en",
+                "urihash": "5gðJGpEDmtiEtuok",
+                "fmorepackagecardtitle32545": "Travis Scott: CIRCUS MAXIMUS WORLD TOUR",
+                "fdescription32545": "Internationally acclaimed superstar Travis Scott has added an Abu Dhabi, UAE date to his 2025 CIRCUS MAXIMUS WORLD TOUR. The show is set to take place on Saturday, Nov 15 at Etihad Park. ",
+                "permanentid": "ED8C3328227E497FA2C007CF85BF0D07",
+                "fversion32545": "39",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/event/travis-scott-circus-maximus-tour-tickets/864162459'>Book Now</a>\",\"Href\":\"https://www.ticketmaster.ae/event/travis-scott-circus-maximus-tour-tickets/864162459\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "15 Nov",
+                "fid32545": "ed8c3328227e497fa2c007cf85bf0d07"
+              },
+              "Title": "Travis Scott: CIRCUS MAXIMUS WORLD TOUR",
+              "Uri": "sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/en/Version/39",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/travis25",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/travis25",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/en/Version/39",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Mansour the Festival",
+              "uri": "sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mansour-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mansour-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "HOpwcYElRtMñVsAk",
+                "fz95xlanguage32545": "en",
+                "urihash": "HOpwcYElRtMñVsAk",
+                "fmorepackagecardtitle32545": "Mansour the Festival  ",
+                "fdescription32545": "A fun-filled family festival with themed inflatables, creative workshops, live shows, parades, food trucks, and dazzling nightly drone and fireworks displays, offering entertainment for all ages. ",
+                "permanentid": "13074367CEAF4945BC9D3607AE8352B1",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas North",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.mansourfestival.ae/'>Book Now</a>\",\"Href\":\"https://www.mansourfestival.ae/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763582400000,
+                "flocation32545": "20 - 23 Nov",
+                "fid32545": "13074367ceaf4945bc9d3607ae8352b1"
+              },
+              "Title": "Mansour the Festival",
+              "Uri": "sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mansour-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mansour-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Dream Concert",
+              "uri": "sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "H6Yn0hIgQjmRQPGC",
+                "fz95xlanguage32545": "en",
+                "urihash": "H6Yn0hIgQjmRQPGC",
+                "fmorepackagecardtitle32545": "Dream Concert ",
+                "fdescription32545": "DREAM Concert, K-pop’s longest-running show, lands in the UAE for the first time! Since 1995, this iconic event has brought top artists, epic stages, and massive fan energy. Now celebrating its 31st edition, it hits Etihad Park, Yas Island for a night every K-pop fan will want to experience.",
+                "permanentid": "8EAEFB5438C94104BF4F19894F9A516D",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://dreamconcert.ae/'>Book Now</a>\",\"Href\":\"https://dreamconcert.ae/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763755200000,
+                "flocation32545": "22 Nov",
+                "fid32545": "8eaefb5438c94104bf4f19894f9a516d"
+              },
+              "Title": "Dream Concert",
+              "Uri": "sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Beetlejuice the Musical",
+              "uri": "sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/en/Version/39",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/en/Version/39",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "4wlBVM5oñpu1RBBJ",
+                "fz95xlanguage32545": "en",
+                "urihash": "4wlBVM5oñpu1RBBJ",
+                "fmorepackagecardtitle32545": "Beetlejuice the Musical",
+                "fdescription32545": "Proactiv Entertainment has partnered up with the Department of Culture and Tourism – Abu Dhabi, and Miral, the leading creator of immersive destinations and experiences in Abu Dhabi, to bring the next big musical,  Beetlejuice the Musical to Etihad Arena, Yas Island from 20-30 November.",
+                "permanentid": "B7A9FFF2AEC34658826BF6EFF29B1F4C",
+                "fversion32545": "39",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='https://www.etihadarena.ae/en/event-booking/beetlejuice-the-musical'>Book Now</a>\",\"Href\":\"https://www.etihadarena.ae/en/event-booking/beetlejuice-the-musical\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1764100800000,
+                "flocation32545": "20 - 30 Nov",
+                "fid32545": "b7a9fff2aec34658826bf6eff29b1f4c"
+              },
+              "Title": "Beetlejuice the Musical",
+              "Uri": "sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/en/Version/39",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/en/Version/39",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Karan Aujla - It Was All A Dream",
+              "uri": "sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/en/Version/39",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/karanconcert25",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/karanconcert25",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/en/Version/39",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "azwX5yyðt6GVULAB",
+                "fz95xlanguage32545": "en",
+                "urihash": "azwX5yyðt6GVULAB",
+                "fmorepackagecardtitle32545": "Karan Aujla - It Was All A Dream",
+                "fdescription32545": "Punjabi sensation Karan Aujla is set to ignite the stage at Etihad Park, Abu Dhabi, on 29 Nov 2025! Experience his chart-topping hits live in an electrifying night of music, energy, and unforgettable vibes. Don’t miss this epic concert—get your tickets now! ",
+                "permanentid": "9C489957D80B4D95864051826183912B",
+                "fversion32545": "39",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/artist/karan-aujla-it-was-all-a-dream-tour-live-in-abu-dhabi-tickets/1022794'>Book Now</a>\",\"Href\":\"https://www.ticketmaster.ae/artist/karan-aujla-it-was-all-a-dream-tour-live-in-abu-dhabi-tickets/1022794\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764360000000,
+                "flocation32545": "29 Nov",
+                "fid32545": "9c489957d80b4d95864051826183912b"
+              },
+              "Title": "Karan Aujla - It Was All A Dream",
+              "Uri": "sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/en/Version/39",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/karanconcert25",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/karanconcert25",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/en/Version/39",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Formula 1 Etihad Airways Abu Dhabi Grand Prix",
+              "uri": "sitecore://database/web/ItemId/F6E04DC8-D723-4A19-9E51-5438F612326D/Language/en/Version/15",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/f1-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/f1-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/F6E04DC8-D723-4A19-9E51-5438F612326D/Language/en/Version/15",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "RDib7cMmwqSEFXcl",
+                "fz95xlanguage32545": "en",
+                "urihash": "RDib7cMmwqSEFXcl",
+                "fmorepackagecardtitle32545": "Formula 1 Etihad Airways Abu Dhabi Grand Prix",
+                "fdescription32545": "Get ready for the most explosive sporting event in the region as the fastest drivers on the planet come for wheel-to-wheel battles, season ending duels between teams and drivers, and fights for season closing positions in the Formula 1® Etihad Airways Abu Dhabi Grand Prix 2025 at Yas Marina Circuit from 5-7 Dec.",
+                "permanentid": "F6E04DC8D7234A199E515438F612326D",
+                "fversion32545": "15",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas Marina Circuit",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/f1-eventcard.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/f1-eventcard.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/f1-eventcard.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='/en/yasisland/packages-and-offers/formula-1-etihad-airways-abu-dhabi-grand-prix'>Book Now</a>\",\"Href\":\"/en/packages-and-offers/formula-1-etihad-airways-abu-dhabi-grand-prix\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1764705600000,
+                "flocation32545": "5 - 7 Dec",
+                "fid32545": "f6e04dc8d7234a199e515438f612326d"
+              },
+              "Title": "Formula 1 Etihad Airways Abu Dhabi Grand Prix",
+              "Uri": "sitecore://database/web/ItemId/F6E04DC8-D723-4A19-9E51-5438F612326D/Language/en/Version/15",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/f1-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/f1-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/F6E04DC8-D723-4A19-9E51-5438F612326D/Language/en/Version/15",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Yasalam After-Race Concerts - Benson Boone",
+              "uri": "sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/en/Version/15",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/en/Version/15",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "1wpADNUwrjEzxBPr",
+                "fz95xlanguage32545": "en",
+                "urihash": "1wpADNUwrjEzxBPr",
+                "fmorepackagecardtitle32545": "Yasalam After-Race Concerts - Benson Boone",
+                "fdescription32545": "Benson Boone, the Grammy-nominated singer-songwriter, and the rising star behind smash hits such as Beautiful Things and Slow It Down will bring his emotionally charged vocals and captivating stage presence to fans on Yas Island.  ",
+                "permanentid": "1F8B187A836646C3A7F07589B4F7E429",
+                "fversion32545": "15",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/en/formula1/tickets-2025/'>Book Now</a>\",\"Href\":\"https://www.abudhabigp.com/en/formula1/tickets-2025/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764792000000,
+                "flocation32545": "4 Dec",
+                "fid32545": "1f8b187a836646c3a7f07589b4f7e429"
+              },
+              "Title": "Yasalam After-Race Concerts - Benson Boone",
+              "Uri": "sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/en/Version/15",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/en/Version/15",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Keinemusik",
+              "uri": "sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "5sf66c27v0Mi42ep",
+                "fz95xlanguage32545": "en",
+                "urihash": "5sf66c27v0Mi42ep",
+                "fmorepackagecardtitle32545": "Keinemusik",
+                "fdescription32545": "The Kloud touches down in the capital as Keinemusik makes its long-awaited UAE return, ready to take over Yas Gateway Park on December 5th with pure sonic energy. From the depths of Berlin’s legendary underground scene to Abu Dhabi, the group will unleash a pulse-racing set that blurs the line between dance and dream. ",
+                "permanentid": "B5EEEE7A929C488583760480343F4E7E",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Yas Gateway Park South ",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/artist/keinemusik-tickets/1321963?int_cmp_name=Keinemusik&amp;int_cmp_id=AE-Home-909&amp;int_cmp_creative=Home-discover-1&amp;tm_link=tm_ccp_Home_discover_Keinemusik'>Book Now</a>\",\"Href\":\"https://www.ticketmaster.ae/artist/keinemusik-tickets/1321963?int_cmp_name=Keinemusik&int_cmp_id=AE-Home-909&int_cmp_creative=Home-discover-1&tm_link=tm_ccp_Home_discover_Keinemusik\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764878400000,
+                "flocation32545": "5 Dec",
+                "fid32545": "b5eeee7a929c488583760480343f4e7e"
+              },
+              "Title": "Keinemusik",
+              "Uri": "sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Yasalam After-Race Concerts – Elyanna",
+              "uri": "sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/en/Version/15",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/en/Version/15",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "mBNeJoGNj29kmjjJ",
+                "fz95xlanguage32545": "en",
+                "urihash": "mBNeJoGNj29kmjjJ",
+                "fmorepackagecardtitle32545": "Yasalam After-Race Concerts – Elyanna",
+                "fdescription32545": "Get ready for global fusion as Elyanna takes the stage on Friday, 5 December! Blending Arabic soul with Latin flair, the Palestinian-Chilean trailblazer brings her Arab-pop sound to the After-Race Concerts. With over 100 million streams and a history-making Coachella performance, Elyanna promises a celebration of culture at Etihad Park.",
+                "permanentid": "3A90547FBAD249119D567EC38C515F0B",
+                "fversion32545": "15",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/en/formula1/tickets-2025/'>Book Now</a>\",\"Href\":\"https://www.abudhabigp.com/en/formula1/tickets-2025/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764964800000,
+                "flocation32545": "5 Dec",
+                "fid32545": "3a90547fbad249119d567ec38c515f0b"
+              },
+              "Title": "Yasalam After-Race Concerts – Elyanna",
+              "Uri": "sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/en/Version/15",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/en/Version/15",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Yasalam After-Race Concerts – Post Malone",
+              "uri": "sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/en/Version/15",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/en/Version/15",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "bq6Erq9sdZDvrx01",
+                "fz95xlanguage32545": "en",
+                "urihash": "bq6Erq9sdZDvrx01",
+                "fmorepackagecardtitle32545": "Yasalam After-Race Concerts – Post Malone ",
+                "fdescription32545": "Nine-time diamond-certified GRAMMY® Award-nominated global superstar Post Malone will join a star-studded line-up of artists for the 2025 Formula 1 Etihad Airways Abu Dhabi Grand Prix After-Race Concerts, organized by Ethara ",
+                "permanentid": "36C16E68E0704DD8A1F3297A3B60FAC0",
+                "fversion32545": "15",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/en/formula1/tickets-2025/'>Book Now</a>\",\"Href\":\"https://www.abudhabigp.com/en/formula1/tickets-2025/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764964800000,
+                "flocation32545": "5 Dec",
+                "fid32545": "36c16e68e0704dd8a1f3297a3b60fac0"
+              },
+              "Title": "Yasalam After-Race Concerts – Post Malone",
+              "Uri": "sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/en/Version/15",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/en/Version/15",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Yasalam After-Race Concerts - Katy Perry",
+              "uri": "sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/en/Version/15",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/en/Version/15",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "D9EGYJN2LM2REOgð",
+                "fz95xlanguage32545": "en",
+                "urihash": "D9EGYJN2LM2REOgð",
+                "fmorepackagecardtitle32545": "Yasalam After-Race Concerts - Katy Perry",
+                "fdescription32545": "One of the best-selling artists of all time, Katy Perry will bring her spectacular stage presence and chart-topping hits to Abu Dhabi for an unforgettable night of entertainment. Fans can expect a thrilling performance featuring her biggest anthems, including “Firework,” “Roar,” “Dark Horse,” and “Teenage Dream.” ",
+                "permanentid": "29E786BD5A054FE0988C26282BE64853",
+                "fversion32545": "15",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Park",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/en/formula1/tickets-2025/'>Book Now</a>\",\"Href\":\"https://www.abudhabigp.com/en/formula1/tickets-2025/\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764964800000,
+                "flocation32545": "7 Dec",
+                "fid32545": "29e786bd5a054fe0988c26282be64853"
+              },
+              "Title": "Yasalam After-Race Concerts - Katy Perry",
+              "Uri": "sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/en/Version/15",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/en/Version/15",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "ROD STEWART",
+              "uri": "sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/en/Version/40",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/rodsteward2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/rodsteward2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/en/Version/40",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "W3ApYJXTfSP9oDus",
+                "fz95xlanguage32545": "en",
+                "urihash": "W3ApYJXTfSP9oDus",
+                "fmorepackagecardtitle32545": "ROD STEWART",
+                "fdescription32545": "Sir Rod Stewart, the legendary two-time Rock & Roll Hall of Fame inducted singer-songwriter, will be performing at Etihad Arena in Yas Island, Abu Dhabi on 17 Dec 2025, brought to you by Live Nation Middle East and in partnership with the Department of Culture and Tourism - Abu Dhabi and Miral, the leading creator of immersive destinations and experiences in Abu Dhabi. ",
+                "permanentid": "A9925FADA3AF44248363C9112D9E1429",
+                "fversion32545": "40",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.etihadarena.ae/en/event-booking/rod-stewart'>Book Now</a>\",\"Href\":\"https://www.etihadarena.ae/en/event-booking/rod-stewart\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1765915200000,
+                "flocation32545": "17 Dec",
+                "fid32545": "a9925fada3af44248363c9112d9e1429"
+              },
+              "Title": "ROD STEWART",
+              "Uri": "sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/en/Version/40",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/rodsteward2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/rodsteward2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/en/Version/40",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Arijit Singh Live in Concert",
+              "uri": "sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/en/Version/42",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/arijith2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/arijith2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/en/Version/42",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "SoIGJ3fYLzjabSS9",
+                "fz95xlanguage32545": "en",
+                "urihash": "SoIGJ3fYLzjabSS9",
+                "fmorepackagecardtitle32545": "Arijit Singh Live in Concert ",
+                "fdescription32545": "Arijit Singh, the globally acclaimed Bollywood singer, is set to captivate audiences with his soulful lyrics, enchanting vocals, and unforgettable performance. Known for mastering various musical genres. Currently ranked as Bollywood's No. 1 singer ",
+                "permanentid": "630670FA13F14E36B9428E79D2105B7A",
+                "fversion32545": "42",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.etihadarena.ae/en/event-booking/arijit-singh-live-in-concert'>Book Now</a>\",\"Href\":\"https://www.etihadarena.ae/en/event-booking/arijit-singh-live-in-concert\",\"Label\":\"Book Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1766088000000,
+                "flocation32545": "19 Dec",
+                "fid32545": "630670fa13f14e36b9428e79d2105b7a"
+              },
+              "Title": "Arijit Singh Live in Concert",
+              "Uri": "sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/en/Version/42",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/arijith2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/arijith2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/en/Version/42",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Live Nation Presents: Cem Yılmaz",
+              "uri": "sitecore://database/web/ItemId/C85B6B69-CF21-480E-BAEE-A2ECFDCF0CB1/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/cem2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/cem2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/C85B6B69-CF21-480E-BAEE-A2ECFDCF0CB1/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Ið48LVhkiABo30mn",
+                "fz95xlanguage32545": "en",
+                "urihash": "Ið48LVhkiABo30mn",
+                "fmorepackagecardtitle32545": "Live Nation Presents: Cem Yılmaz ",
+                "fdescription32545": "For the first time ever, Turkish comedy legend Cem Yılmaz is bringing his critically acclaimed stand-up show to the UAE, performing his show in Turkish, live at Etihad Arena, Yas Island on 17 January 2026.",
+                "permanentid": "C85B6B69CF21480EBAEEA2ECFDCF0CB1",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/cy900x600.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/cy900x600.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/cy900x600.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.etihadarena.ae/'>Learn More</a>\",\"Href\":\"https://www.etihadarena.ae/\",\"Label\":\"Learn More\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1768507200000,
+                "flocation32545": "17 Jan 2026",
+                "fid32545": "c85b6b69cf21480ebaeea2ecfdcf0cb1"
+              },
+              "Title": "Live Nation Presents: Cem Yılmaz",
+              "Uri": "sitecore://database/web/ItemId/C85B6B69-CF21-480E-BAEE-A2ECFDCF0CB1/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/cem2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/cem2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/C85B6B69-CF21-480E-BAEE-A2ECFDCF0CB1/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "Live Nation Presents: Linkin Park",
+              "uri": "sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/en/Version/42",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/linkinpark",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/linkinpark",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/en/Version/42",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "9usFgUkðdcGT7tiI",
+                "fz95xlanguage32545": "en",
+                "urihash": "9usFgUkðdcGT7tiI",
+                "fmorepackagecardtitle32545": "Live Nation Presents: Linkin Park ",
+                "fdescription32545": "LINKIN PARK - Mike Shinoda, Dave “Phoenix” Farrell, Joe Hahn, Emily Armstrong, and Colin Brittain – announce their highly anticipated return to the UAE on 20 Jan, 2026 on the From Zero World Tour – their first visit since 2010.",
+                "permanentid": "7B04921A2FAA46AB9E1913A031A36E3D",
+                "fversion32545": "42",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://eform.etihadarena.ae/cn/ajzk1/linkinpark-signup'>Register Now</a>\",\"Href\":\"https://eform.etihadarena.ae/cn/ajzk1/linkinpark-signup\",\"Label\":\"Register Now\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1768852800000,
+                "flocation32545": "20 Jan",
+                "fid32545": "7b04921a2faa46ab9e1913a031a36e3d"
+              },
+              "Title": "Live Nation Presents: Linkin Park",
+              "Uri": "sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/en/Version/42",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/linkinpark",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/linkinpark",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/en/Version/42",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "MARY POPPINS LIVE ON YAS ISLAND",
+              "uri": "sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/en/Version/43",
+              "printableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "clickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/en/Version/43",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "rBIe8Rhmrqm3roiL",
+                "fz95xlanguage32545": "en",
+                "urihash": "rBIe8Rhmrqm3roiL",
+                "fmorepackagecardtitle32545": "MARY POPPINS LIVE ON YAS ISLAND",
+                "fdescription32545": "Book our Vacation Package to enjoy a stay at one of Yas Island’s world-class hotels plus Gold or Silver tickets to this magical live show running from 25 Mar – 15 Apr 2026.",
+                "permanentid": "1DFE18C59FA54E2C94D69694DEBA4987",
+                "fversion32545": "43",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "Etihad Arena",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='/en/yasisland/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi'>Book Package</a>\",\"Href\":\"/en/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi\",\"Label\":\"Book Package\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1775937600000,
+                "flocation32545": "25 Mar – 15 Apr 2026",
+                "fid32545": "1dfe18c59fa54e2c94d69694deba4987"
+              },
+              "Title": "MARY POPPINS LIVE ON YAS ISLAND",
+              "Uri": "sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/en/Version/43",
+              "PrintableUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "ClickUri": "https://author.myconnect.ae/en/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/en/Version/43",
+              "Excerpt": "",
+              "FirstSentences": null
+            }
+          ]
+        }
+      </script>
+      <script>
+        (function () {
+          const FALLBACK = [];
+
+          function tryParseJson(str, fallback) {
+            try {
+              const v = JSON.parse(str);
+              return v == null ? fallback : v;
+            } catch (_) {
+              return fallback;
+            }
+          }
+
+          function readEventsData() {
+            const el = document.getElementById("events-data");
+            if (el && el.textContent && el.textContent.trim()) {
+              try {
+                const parsed = JSON.parse(el.textContent);
+                if (Array.isArray(parsed?.results)) return parsed.results;
+              } catch (e) {}
+            }
+            return FALLBACK;
+          }
+
+          function getFirstImageSrc(item) {
+            const imagesRaw = item?.raw?.fmorepackagecardimages32545;
+            const arr =
+              typeof imagesRaw === "string"
+                ? tryParseJson(imagesRaw, [])
+                : imagesRaw || [];
+            const first = Array.isArray(arr) && arr.length ? arr[0] : null;
+            return first?.desktopImage?.src || first?.mobileImage?.src || "";
+          }
+
+          function getCta(item) {
+            const raw = item?.raw?.fmorepackagebooknowlink32545;
+            const obj =
+              typeof raw === "string" ? tryParseJson(raw, {}) : raw || {};
+            return {
+              href: obj.Href || item?.clickUri || "#",
+              label: obj.Label || "BOOK NOW",
+              target: obj.Target || (obj.Href ? "_blank" : ""),
+            };
+          }
+
+          function createCardNode(item) {
+            const article = document.createElement("article");
+            article.className = "card";
+
+            const imgDiv = document.createElement("div");
+            imgDiv.className = "card-image";
+            const src = getFirstImageSrc(item);
+            if (src) imgDiv.style.backgroundImage = `url('${src}')`;
+
+            const fav = document.createElement("button");
+            fav.className = "fav";
+            fav.setAttribute("aria-label", "Add to favorites");
+            fav.innerHTML = "\u2606";
+            imgDiv.appendChild(fav);
+
+            const body = document.createElement("div");
+            body.className = "card-body";
+
+            const h3 = document.createElement("h3");
+            h3.className = "card-title";
+            h3.textContent = item.title || item.Title || "Untitled";
+
+            const p = document.createElement("p");
+            p.className = "card-desc";
+            p.textContent = item?.raw?.fdescription32545 || "";
+
+            const ul = document.createElement("ul");
+            ul.className = "card-meta";
+            const liVenue = document.createElement("li");
+            const dotVenue = document.createElement("span");
+            dotVenue.className = "geo";
+            liVenue.appendChild(dotVenue);
+            liVenue.appendChild(
+              document.createTextNode(
+                " " + (item?.raw?.fmorepackagetagtype32545 || "")
+              )
+            );
+            ul.appendChild(liVenue);
+
+            const liDate = document.createElement("li");
+            const dotDate = document.createElement("span");
+            dotDate.className = "geo";
+            liDate.appendChild(dotDate);
+            liDate.appendChild(
+              document.createTextNode(" " + (item?.raw?.flocation32545 || ""))
+            );
+            ul.appendChild(liDate);
+
+            const cta = getCta(item);
+            const a = document.createElement("a");
+            a.className = "card-cta";
+            a.href = cta.href || "#";
+            if (cta.target) a.target = cta.target;
+            a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
+            a.textContent = cta.label || "BOOK NOW";
+
+            body.appendChild(h3);
+            body.appendChild(p);
+            body.appendChild(ul);
+            body.appendChild(a);
+
+            article.appendChild(imgDiv);
+            article.appendChild(body);
+            return article;
+          }
+
+          function renderEvents() {
+            const grid = document.getElementById("events-grid");
+            const countEl = document.querySelector(".events-count");
+            if (!grid) return;
+            const data = readEventsData();
+            grid.innerHTML = "";
+            data.forEach((item) => grid.appendChild(createCardNode(item)));
+            if (countEl) countEl.textContent = `${data.length} EVENTS`;
+          }
+
+          document.addEventListener("DOMContentLoaded", renderEvents);
+        })();
+      </script>
     </div>
   </body>
 </html>

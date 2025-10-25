@@ -4245,19 +4245,31 @@
         }
       }
 
+      function toAbsoluteUrl(href) {
+        try {
+          if (!href) return "#";
+          const str = String(href).trim();
+          if (/^https?:\/\//i.test(str)) return str;
+          if (str.startsWith("/")) return `https://www.yasisland.com${str}`;
+          return str;
+        } catch (_) {
+          return href || "#";
+        }
+      }
+
       function getLinkFromRaw(rawLink, fallbackHref) {
         if (!rawLink)
           return {
-            href: fallbackHref || "#",
+            href: toAbsoluteUrl(fallbackHref || "#"),
             label: "VIEW RESTAURANT",
-            target: "",
+            target: "_blank",
           };
         try {
           const link = JSON.parse(rawLink);
           return {
-            href: link.Href || link.href || fallbackHref || "#",
+            href: toAbsoluteUrl(link.Href || link.href || fallbackHref || "#"),
             label: (link.Label || "VIEW RESTAURANT").trim(),
-            target: link.Target || "",
+            target: link.Target || "_blank",
           };
         } catch (e) {
           // Try to parse from embedded HTML
@@ -4265,9 +4277,9 @@
             /href=['"]([^'\"]+)['"][^>]*>(.*?)</i
           );
           return {
-            href: (m && m[1]) || fallbackHref || "#",
+            href: toAbsoluteUrl((m && m[1]) || fallbackHref || "#"),
             label: (m && m[2]) || "VIEW RESTAURANT",
-            target: String(rawLink).includes("target='_blank'") ? "_blank" : "",
+            target: "_blank",
           };
         }
       }
@@ -4320,8 +4332,8 @@
         const a = document.createElement("a");
         a.className = "card-cta";
         a.href = book.href || "#";
-        if (book.target) a.target = book.target;
-        a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
+        a.target = book.target || "_blank";
+        a.rel = "noopener noreferrer";
         a.textContent = book.label || "VIEW RESTAURANT";
 
         body.appendChild(h3);

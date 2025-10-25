@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>أحداث جزيرة ياس — العربية</title>
+    <title>فعاليات جزيرة ياس — العربية</title>
     <style>
       html,
       body {
@@ -19,24 +19,21 @@
 
       body {
         background: #f0f0f0;
-        font-family: "Segoe UI", "Tahoma", "Arial", sans-serif;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        direction: rtl;
-        text-align: right;
       }
 
       .hero-section {
-        max-width: 1400px;
+        max-width: 1500px;
         width: 100%;
-        padding: 80px 40px;
+        padding: 80px 40px 0 40px;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: center;
-        text-align: right;
       }
 
       .hero-title {
@@ -56,12 +53,11 @@
         margin: 0;
         max-width: 70%;
         font-weight: 400;
-        text-align: right;
       }
 
       /* Events Section Styles */
       .events-section {
-        max-width: 1400px;
+        max-width: 1500px;
         width: 100%;
         padding: 0 40px 80px 40px;
         margin-top: 60px;
@@ -72,7 +68,6 @@
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 40px;
-        flex-direction: row-reverse;
       }
 
       .events-title {
@@ -141,7 +136,7 @@
         font-size: 0.875rem;
         text-decoration: none;
         font-weight: 500;
-        margin-right: auto;
+        margin-left: auto;
         cursor: pointer;
       }
 
@@ -154,6 +149,109 @@
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 30px;
         margin-bottom: 40px;
+      }
+
+      /* Hotel-style cards reused for Events */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      @media (max-width: 992px) {
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: transparent;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .card-image {
+        position: relative;
+        height: 220px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+      }
+
+      .fav {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .card-body {
+        padding: 1.25rem 0 1.25rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0b0c0c;
+        margin: 0 !important;
+      }
+
+      .card-desc {
+        color: #666;
+        line-height: 1.5;
+        margin: 0 !important;
+      }
+
+      .card-meta {
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0;
+        color: #0b0c0c;
+        font-size: 0.9rem;
+      }
+
+      .card-meta li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .card-meta .geo {
+        width: 6px;
+        height: 6px;
+        background: #2d5a4a;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .card-cta {
+        align-self: flex-start;
+        margin-top: 0.5rem;
+        background: #f4d03f;
+        color: #0b0c0c;
+        font-weight: 800;
+        padding: 0.6rem 0.9rem;
+        border-radius: 999px;
+        text-decoration: none;
       }
 
       .event-card {
@@ -355,12 +453,31 @@
           background: #d4d8c4 !important;
           color: #1a3a4a !important;
         }
+
+        .card {
+          background: transparent;
+          box-shadow: none;
+        }
+        .card-title {
+          color: #ffffff;
+        }
+        .card-desc {
+          color: #cccccc;
+        }
+        .card-meta {
+          color: #dddddd;
+        }
+        .fav {
+          background: #0b0c0c;
+          border-color: #333333;
+          color: #eeeeee;
+        }
       }
 
       /* Responsive design */
       @media (max-width: 768px) {
         .hero-section {
-          padding: 60px 20px;
+          padding: 60px 20px 0 20px;
         }
 
         .hero-title {
@@ -416,7 +533,7 @@
         }
 
         .clear-all {
-          margin-right: 0;
+          margin-left: 0;
           margin-top: 10px;
         }
       }
@@ -448,15 +565,14 @@
     <div class="hero-section">
       <h1 class="hero-title">استكشف فعالياتنا في أبوظبي</h1>
       <p class="hero-description">
-        جزيرة ياس هي المكان المثالي لحضور حفلات أو عروض أبوظبي. لا يهم أي نوع من
-        الموسيقى تحب، أو ما يثير إعجابك من الكوميديا، أو ما يبهرك من العروض؛
-        جزيرة ياس لديها فعالية تناسبك. اختر من أفضل الحفلات في دولة الإمارات،
-        عروض الكوميديا مع فنانين عالميين، المسرحيات الموسيقية للأطفال والكبار،
-        بالإضافة إلى العروض المسرحية، مباريات الدوري الأمريكي لكرة السلة،
-        مباريات UFC، فعاليات حلبة مرسى ياس حول جائزة أبوظبي الكبرى والكثير
-        غيرها. من الفنانين الأكثر شعبية حالياً، إلى العروض الكلاسيكية، هناك شيء
-        للجميع. تابع هذا المكان لمعرفة آخر الفعاليات القادمة في أبوظبي، واحجز
-        تذكرتك قبل نفادها!
+        تُعد جزيرة ياس الوجهة المثالية لمتابعة الحفلات والعروض في أبوظبي. مهما
+        كان نوع الموسيقى المفضّل لديك أو العروض التي تُسعدك، ستجد على جزيرة ياس
+        فعالية تناسب ذوقك. اختر من بين أفضل الحفلات الموسيقية في الدولة، وعروض
+        الكوميديا العالمية، والمسرحيات المناسبة للصغار والكبار، إلى جانب العروض
+        الحية، ومباريات الدوري الأمريكي لكرة السلة NBA، ونزالات UFC، وفعاليات
+        حلبة ياس مارينا حول جائزة أبوظبي الكبرى، والعديد غيرها. من أبرز النجوم
+        الحاليين إلى العروض الكلاسيكية، هناك ما يرضي الجميع. تابع هذه الصفحة
+        لمعرفة أحدث الفعاليات القادمة في أبوظبي، وسارع بحجز تذاكرك قبل نفادها!
       </p>
     </div>
 
@@ -465,61 +581,13 @@
       <div class="events-header">
         <div>
           <h2 class="events-title">استكشف فعالياتنا</h2>
-          <p class="events-count">24 فعالية</p>
+          <p class="events-count">٢٤ فعالية</p>
         </div>
-        <a
-          href="https://www.yasisland.com/ar/events"
-          class="explore-all-button"
-          target="_blank"
-          >استكشف جميع الفعاليات</a
-        >
       </div>
 
-      <!-- Filters Section -->
-      <div class="filters-section">
-        <div class="filter-group">
-          <label class="filter-label">الترتيب</label>
-          <select class="filter-dropdown">
-            <option>التاريخ</option>
-            <option>الاسم أ-ي</option>
-            <option>الاسم ي-أ</option>
-            <option>السعر من الأقل للأعلى</option>
-            <option>السعر من الأعلى للأقل</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label class="filter-label">المرشحات</label>
-          <div class="filter-dropdowns">
-            <select class="filter-dropdown">
-              <option>استكشف حسب</option>
-              <option>الحفلات</option>
-              <option>الرياضة</option>
-              <option>الكوميديا</option>
-              <option>العائلة</option>
-            </select>
-            <select class="filter-dropdown">
-              <option>المكان</option>
-              <option>إتihad Arena</option>
-              <option>شاطئ ياس</option>
-              <option>حلبة مرسى ياس</option>
-              <option>أماكن أخرى</option>
-            </select>
-            <select class="filter-dropdown">
-              <option>الفعاليات القادمة</option>
-              <option>هذا الأسبوع</option>
-              <option>هذا الشهر</option>
-              <option>الـ 3 أشهر القادمة</option>
-            </select>
-          </div>
-        </div>
-
-        <a href="#" class="clear-all">مسح الكل</a>
-      </div>
-
-      <!-- Events Grid -->
-      <div class="events-grid">
-        <!-- UFC 321 Event Card -->
+      <!-- Events Grid (hotel-style) -->
+      <div class="cards-grid" id="events-grid">
+        <!-- UFC 321 Event Card (Arabic) -->
         <div class="event-card">
           <img
             src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ufc321/cardufc.jpg"
@@ -534,13 +602,12 @@
             </svg>
           </div>
           <div class="event-content">
-            <div class="event-venue">إتihad Arena</div>
+            <div class="event-venue">الاتحاد أرينا</div>
             <h3 class="event-title">UFC 321</h3>
             <p class="event-description">
-              UFC 321 هو حدث فنون قتالية مختلطة أُعلن عنه في 25 أكتوبر في إتihad
-              Arena. سيتضمن هذا الحدث المنتظر بشدة بعض من أفضل المقاتلين في
-              العالم يتنافسون في القفص. لا تفوت هذه الليلة المذهلة من رياضة
-              القتال.
+              بطولة فنون القتال المختلطة UFC 321 ستُقام في ٢٥ أكتوبر في الاتحاد
+              أرينا، بمشاركة نخبة من أبرز المقاتلين حول العالم في أمسية حماسية
+              لا تُفوّت لعشّاق الرياضات القتالية.
             </p>
             <div class="event-date">
               <svg viewBox="0 0 24 24">
@@ -548,22 +615,22 @@
                   d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
                 />
               </svg>
-              <span>25 أكتوبر</span>
+              <span>٢٥ أكتوبر</span>
             </div>
             <a
-              href="https://visitabudhabi.ae/ar/campaign/ufc-showdown-week?_affclk=ttuk:492510:2575023::90ak0u1915362__492510______1761200707.hZ2007i:"
+              href="https://visitabudhabi.ae/en/campaign/ufc-showdown-week?_affclk=ttuk:492510:2575023::90ak0u1915362__492510______1761200707.hZ2007i:"
               class="event-button"
               target="_blank"
-              >سجل الآن</a
+              >سجّل الآن</a
             >
           </div>
         </div>
 
-        <!-- Enrique Iglesias Event Card -->
+        <!-- Enrique Iglesias Event Card (Arabic) -->
         <div class="event-card">
           <img
             src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg"
-            alt="Enrique Iglesias"
+            alt="إنريكي إغليسياس"
             class="event-image"
           />
           <div class="event-favorite">
@@ -574,12 +641,12 @@
             </svg>
           </div>
           <div class="event-content">
-            <div class="event-venue">إتihad Arena</div>
-            <h3 class="event-title">Enrique Iglesias</h3>
+            <div class="event-venue">الاتحاد أرينا</div>
+            <h3 class="event-title">إنريكي إغليسياس</h3>
             <p class="event-description">
-              يعود إنريكي إغليسياس إلى أبوظبي لليلة موسيقية لا تُنسى. مقدمة من
-              Live Nation Middle East، هذه الحفلة في 1 نوفمبر 2025، تعد بتقديم
-              جميع أعظم أغانيه في أداء مذهل ينتظره المعجبون بفارغ الصبر.
+              يعود إنريكي إغليسياس إلى أبوظبي في ليلة لا تُنسى من الموسيقى
+              والإحساس، يوم ١ نوفمبر ٢٠٢٥، ليقدّم أبرز نجاحاته في عرض حافل
+              بالطاقة والحماس.
             </p>
             <div class="event-date">
               <svg viewBox="0 0 24 24">
@@ -587,7 +654,7 @@
                   d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
                 />
               </svg>
-              <span>1 نوفمبر</span>
+              <span>١ نوفمبر</span>
             </div>
             <a
               href="https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&utm_medium=cpc&utm_campaign=22364157258&utm_content=176456931306-741209516760--b-&utm_term=enrique%20iglesias%202025&gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE&_affclk=ttuk:492510:2574938::90ak0u1915362__492510______1761200707.hZ2007i:"
@@ -598,11 +665,11 @@
           </div>
         </div>
 
-        <!-- Afrobiano Fest Event Card -->
+        <!-- Afrobiano Fest Event Card (Arabic) -->
         <div class="event-card">
           <img
             src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg"
-            alt="Afrobiano Fest"
+            alt="مهرجان أفروبيانو"
             class="event-image"
           />
           <div class="event-favorite">
@@ -616,10 +683,9 @@
             <div class="event-venue">شاطئ ياس</div>
             <h3 class="event-title">مهرجان أفروبيانو</h3>
             <p class="event-description">
-              أكبر مهرجان موسيقي للأفروبيتس والأمابيانو في دولة الإمارات يعود
-              وأعلى صوتاً من أي وقت مضى! اغمر نفسك في الأصوات النابضة بالحياة
-              وطاقة مهرجان أفروبيانو في شاطئ ياس. هذا الحدث المذهل يعد بأن يكون
-              أكثر سخونة وجرأة من أي وقت مضى.
+              يعود أكبر مهرجان لأغاني الأفروبِيتس والأمابيانو في الإمارات
+              العربية المتحدة بحلّة أقوى من أي وقت مضى! استمتع بالأجواء النابضة
+              بالحياة في شاطئ ياس.
             </p>
             <div class="event-date">
               <svg viewBox="0 0 24 24">
@@ -627,7 +693,7 @@
                   d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
                 />
               </svg>
-              <span>1 نوفمبر</span>
+              <span>١ نوفمبر</span>
             </div>
             <a
               href="https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest?_affclk=ttuk:492510:2574849::90ak0u1915362__492510______1761200707.hZ2007i:"
@@ -638,6 +704,1251 @@
           </div>
         </div>
       </div>
+
+      <script id="events-data" type="application/json">
+        {
+          "results": [
+            {
+              "title": "إنريكي إغليسياس",
+              "uri": "sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "mh0EWð9px7mwPdvT",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "mh0EWð9px7mwPdvT",
+                "fmorepackagecardtitle32545": "إنريكي إغليسياس",
+                "fdescription32545": "يسرّ لايف نيشن الشرق الأوسط أن تعلن عن حفل الفنان العالمي الشهير، إنريكي إغليسياس، الحائز على جوائز بلاتينية متعددة، على مسرح الاتحاد أرينا في الأول من نوفمبر 2025.      نظرًا للإقبال الكبير على حفله الأخير، يعود إغليسياس إلى الإمارات العربية المتحدة لتقديم عرضٍ موسيقيٍّ آسرٍ آخر. يشتهر إغليسياس بأغانيه التي حطمت الأرقام القياسية باللغتين الإنجليزية والإسبانية، وسيُضفي على أبوظبي ليلةً لا تُنسى طابعه الفنيّ الخاص، شغفه، وموسيقاه التي تصدّرت قوائم الأغاني",
+                "permanentid": "493CBACAC1CB47FDB45FBC21546411FE",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/ei900x600.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=22364157258&amp;utm_content=176456931306-741209516760--b-&amp;utm_term=enrique%20iglesias%202025&amp;gad_source=1&amp;gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE'>احجز الآن</a>\",\"Href\":\"https://abu-dhabi.platinumlist.net/event-tickets/98385/live-nation-middle-east-presents-enrique-iglesias?utm_source=google&utm_medium=cpc&utm_campaign=22364157258&utm_content=176456931306-741209516760--b-&utm_term=enrique%20iglesias%202025&gad_source=1&gclid=CjwKCAjwtdi_BhACEiwA97y8BJfZCqQUyXl2i0qe8cIMn97lm_pn65DeEWJCIUhbCfnGquz1MtCePxoCxs8QAvD_BwE\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1761940800000,
+                "flocation32545": "نوفمبر 1",
+                "fid32545": "493cbacac1cb47fdb45fbc21546411fe"
+              },
+              "Title": "إنريكي إغليسياس",
+              "Uri": "sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/enrique-iglesias",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/493CBACA-C1CB-47FD-B45F-BC21546411FE/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "مهرجان افروبيانو",
+              "uri": "sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/ar-AE/Version/33",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/afrobiano2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/afrobiano2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/ar-AE/Version/33",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "UYgS9jñ6Ng8Kf6SX",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "UYgS9jñ6Ng8Kf6SX",
+                "fmorepackagecardtitle32545": "مهرجان افروبيانو",
+                "fdescription32545": "بعد النجاح الكبير الذي حققناه في موسمي AfroBiano الأول والثاني… نعود إليكم بصوت أعلى، وأسلوب أجرأ، وأجواء أكثر حماسًا من أي وقت مضى. نحن نحضر إليكم أقوى طاقة من موسيقى الأفروبيت والأمابيانو مباشرة إلى شاطئ ياس في أبوظبي، وصدقونا… الأمر ليس مجرد حفلة، بل تجربة متكاملة لا تُنسى.",
+                "permanentid": "F15A5FD56F07496FAA89B589B1A30F84",
+                "fversion32545": "33",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "شاطئ ياس",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/afrobiano2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest'>احجز الآن</a>\",\"Href\":\"https://abu-dhabi.platinumlist.net/event-tickets/afrobiano-fest\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1761940800000,
+                "flocation32545": "1 نوفمبر",
+                "fid32545": "f15a5fd56f07496faa89b589b1a30f84"
+              },
+              "Title": "مهرجان افروبيانو",
+              "Uri": "sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/ar-AE/Version/33",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/afrobiano2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/afrobiano2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/F15A5FD5-6F07-496F-AA89-B589B1A30F84/Language/ar-AE/Version/33",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "مهرجان أوبن فاير فود ٢٠٢٥",
+              "uri": "sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/ar-AE/Version/30",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/openfire2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/openfire2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/ar-AE/Version/30",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Rtxr6mocl64XðaEY",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "Rtxr6mocl64XðaEY",
+                "fmorepackagecardtitle32545": "مهرجان أوبن فاير فود ٢٠٢٥ ",
+                "fdescription32545": "مهرجان \"أوبن فاير فود فيستيفال\" (OFFF) هو احتفال لمدة يومين بنكهات الشواء على النار، والطهاة المشاهير المتخصصين في الشواء، وعروض الطهي المباشر على اللهب، والموسيقى، والأنشطة العائلية الممتعة – حيث يجتمع المجتمع حول نار مشتعلة وأجواء مليئة بالحيوية. ",
+                "permanentid": "782D776023204F20B52E7D44D4C5C6F2",
+                "fversion32545": "30",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/openfoodfire2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://openfirefest.com/ '>احجز الآن</a>\",\"Href\":\"https://openfirefest.com/ \",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1762632000000,
+                "flocation32545": "8 - 9 نوفمبر",
+                "fid32545": "782d776023204f20b52e7d44d4c5c6f2"
+              },
+              "Title": "مهرجان أوبن فاير فود ٢٠٢٥",
+              "Uri": "sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/ar-AE/Version/30",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/openfire2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/openfire2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/782D7760-2320-4F20-B52E-7D44D4C5C6F2/Language/ar-AE/Version/30",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "سمفونية النجوم",
+              "uri": "sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/ar-AE/Version/34",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/ar-AE/Version/34",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "LCN2RGARygkHw9l8",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "LCN2RGARygkHw9l8",
+                "fmorepackagecardtitle32545": "سمفونية النجوم ",
+                "fdescription32545": "سيؤدي أيقونات الموسيقى الأسطورية، عاطف أسلم وسامي يوسف في 7 نوفمبر 2025 في الاتحاد ارينا في أبو ظبي. \"سيمفونية النجوم\" هي روعة موسيقية يجب أن تشاهدها والتي ستعرض أغاني أسلم عاطف وسامي يوسف.",
+                "permanentid": "108BCE0AAB8C4B4093199A2476E2DC3D",
+                "fversion32545": "34",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/93/symphony1.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='http://etihadarena.ae/en/event-booking/symphony-of-stars'>احجز الآن</a>\",\"Href\":\"http://etihadarena.ae/en/event-booking/symphony-of-stars\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1762632000000,
+                "flocation32545": "7 نوفمبر",
+                "fid32545": "108bce0aab8c4b4093199a2476e2dc3d"
+              },
+              "Title": "سمفونية النجوم",
+              "Uri": "sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/ar-AE/Version/34",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/symphony-of-stars-2025-2",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/108BCE0A-AB8C-4B40-9319-9A2476E2DC3D/Language/ar-AE/Version/34",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "تيست أوف أبوظبي 2025",
+              "uri": "sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "ñ83aoHOAnoDvðic5",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "ñ83aoHOAnoDvðic5",
+                "fmorepackagecardtitle32545": "تيست أوف أبوظبي 2025",
+                "fdescription32545": "نداء إلى جميع عشاق الطعام والعائلات والأصدقاء للاحتفال بالطعام والمشروبات والموسيقى!‏ سيقدم المهرجان أفضل مطاعم أبوظبي، وورش عمل يقدمها أشهر الطهاة، بالإضافة إلى موسيقى حية متواصلة من النهار إلى الليل! ",
+                "permanentid": "F31DE0681F724F4D81A099488A0B9899",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "ياس شمال",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/toad25.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://tasteofabudhabifestival.com/'>احجز الآن</a>\",\"Href\":\"https://tasteofabudhabifestival.com/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "14 - 16 نوفمبر ",
+                "fid32545": "f31de0681f724f4d81a099488a0b9899"
+              },
+              "Title": "تيست أوف أبوظبي 2025",
+              "Uri": "sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/taste-of-abu-dhabi-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/F31DE068-1F72-4F4D-81A0-99488A0B9899/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "ترافيس سكوت - سيرك ماكسيموس",
+              "uri": "sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/ar-AE/Version/30",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/travis25",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/travis25",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/ar-AE/Version/30",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "B1EXGA4DvWHBxOO2",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "B1EXGA4DvWHBxOO2",
+                "fmorepackagecardtitle32545": "ترافيس سكوت - سيرك ماكسيموس",
+                "fdescription32545": "أضاف النجم العالمي ترافيس سكوت موعدًا جديدًا في أبوظبي، الإمارات العربية المتحدة، إلى جولته العالمية \"سيرك ماكسيموس\" لعام 2025. من المقرر أن يُقام العرض يوم السبت 15 نوفمبر في حديقة الاتحاد",
+                "permanentid": "ED8C3328227E497FA2C007CF85BF0D07",
+                "fversion32545": "30",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/travis25-event.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/event/travis-scott-circus-maximus-tour-tickets/864162459'>احجز الآن</a>\",\"Href\":\"https://www.ticketmaster.ae/event/travis-scott-circus-maximus-tour-tickets/864162459\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "15 نوفمبر",
+                "fid32545": "ed8c3328227e497fa2c007cf85bf0d07"
+              },
+              "Title": "ترافيس سكوت - سيرك ماكسيموس",
+              "Uri": "sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/ar-AE/Version/30",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/travis25",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/travis25",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/ED8C3328-227E-497F-A2C0-07CF85BF0D07/Language/ar-AE/Version/30",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "بطولة أبوظبي للسباقات الذاتية – A2RL 2025",
+              "uri": "sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/a2rl-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/a2rl-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "nwrgZ0cxYmklAUB0",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "nwrgZ0cxYmklAUB0",
+                "fmorepackagecardtitle32545": "بطولة أبوظبي للسباقات الذاتية – A2RL 2025",
+                "fdescription32545": "استعد لاكتشاف مستقبل رياضة السيارات مع بطولة A2RL 2025، أول دوري عالمي للسباقات الذاتية القيادة، والذي يعود هذا العام إلى حلبة مرسى ياس في عرض مذهل يجمع بين السرعة والتكنولوجيا والابتكار.",
+                "permanentid": "CDD827E0FE624163A8EDFC584DA80287",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "حلبة مرسى ياس ",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/a2rl.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://a2rl.io/'>معرفة المزيد</a>\",\"Href\":\"https://a2rl.io/\",\"Label\":\"معرفة المزيد\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763150400000,
+                "flocation32545": "5 ديسمبر",
+                "fid32545": "cdd827e0fe624163a8edfc584da80287"
+              },
+              "Title": "بطولة أبوظبي للسباقات الذاتية – A2RL 2025",
+              "Uri": "sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/a2rl-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/a2rl-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/CDD827E0-FE62-4163-A8ED-FC584DA80287/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "مهرجان منصور",
+              "uri": "sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mansour-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mansour-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "igGlQGGf5BrYgUñ5",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "igGlQGGf5BrYgUñ5",
+                "fmorepackagecardtitle32545": "مهرجان منصور ",
+                "fdescription32545": "مهرجان عائلي ممتع يضم ألعابًا هوائية، ورش عمل إبداعية، عروضًا حية، مواكب، شاحنات طعام، وعروض طائرات درون وألعاب نارية ليلية تبهر جميع الأعمار. ",
+                "permanentid": "13074367CEAF4945BC9D3607AE8352B1",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "ياس شمال",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/mansour2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.mansourfestival.ae/'>احجز الآن</a>\",\"Href\":\"https://www.mansourfestival.ae/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763582400000,
+                "flocation32545": "20 - 23 نوفمبر",
+                "fid32545": "13074367ceaf4945bc9d3607ae8352b1"
+              },
+              "Title": "مهرجان منصور",
+              "Uri": "sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mansour-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mansour-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/13074367-CEAF-4945-BC9D-3607AE8352B1/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "حفل دريم",
+              "uri": "sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "XQZAPXKI4Vhffr4l",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "XQZAPXKI4Vhffr4l",
+                "fmorepackagecardtitle32545": "حفل دريم ",
+                "fdescription32545": "حفل دريم، أطول حفلات الكيبوب استمراريةً، يحطّ رحاله في الإمارات للمرة الأولى!   منذ عام 1995، جمع هذا الحدث الأيقوني أفضل الفنانين، والمسارح الضخمة، وطاقة جماهيرية هائلة.   واليوم، في نسخته الحادية والثلاثين، يحتفي الحفل في قلب جزيرة ياس، داخل حديقة الاتحاد، حيث تتحول الليلة إلى حلم نابض لكل عاشق للكيبوب. ",
+                "permanentid": "8EAEFB5438C94104BF4F19894F9A516D",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/dream2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://dreamconcert.ae/'>احجز الآن</a>\",\"Href\":\"https://dreamconcert.ae/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1763755200000,
+                "flocation32545": "22 نوفمبر",
+                "fid32545": "8eaefb5438c94104bf4f19894f9a516d"
+              },
+              "Title": "حفل دريم",
+              "Uri": "sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/dream-concert-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/8EAEFB54-38C9-4104-BF4F-19894F9A516D/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "بيتلجوس ذا ميوزيكال",
+              "uri": "sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/ar-AE/Version/30",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/ar-AE/Version/30",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Zl5MXsJUA5Axpxð8",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "Zl5MXsJUA5Axpxð8",
+                "fmorepackagecardtitle32545": "بيتلجوس ذا ميوزيكال",
+                "fdescription32545": "تعاونت شركة بروأكتيف إنترتينمنت مع دائرة الثقافة والسياحة - أبوظبي، وميرال، الشركة الرائدة في ابتكار الوجهات والتجارب الغامرة في أبوظبي، لتقديم العرض الموسيقي الكبير القادم، بيتلجوس ذا ميوزيكال، في الاتحاد أرينا، جزيرة ياس من 20 إلى 30 نوفمبر.",
+                "permanentid": "B7A9FFF2AEC34658826BF6EFF29B1F4C",
+                "fversion32545": "30",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/beetlejuice12.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='https://www.etihadarena.ae/en/event-booking/beetlejuice-the-musical'>احجز الآن</a>\",\"Href\":\"https://www.etihadarena.ae/en/event-booking/beetlejuice-the-musical\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1764014400000,
+                "flocation32545": "20 - 30 نوفمبر",
+                "fid32545": "b7a9fff2aec34658826bf6eff29b1f4c"
+              },
+              "Title": "بيتلجوس ذا ميوزيكال",
+              "Uri": "sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/ar-AE/Version/30",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/beetlejuice2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/B7A9FFF2-AEC3-4658-826B-F6EFF29B1F4C/Language/ar-AE/Version/30",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "حفل كاران اوجلا",
+              "uri": "sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/ar-AE/Version/30",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/karanconcert25",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/karanconcert25",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/ar-AE/Version/30",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Z3cjVA7u3ñQNTc3w",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "Z3cjVA7u3ñQNTc3w",
+                "fmorepackagecardtitle32545": "حفل كاران اوجلا ",
+                "fdescription32545": "النجم البنجابي المتألق كاران أوجلا يستعد لإشعال المسرح في الاتحاد  بارك، أبوظبي يوم 29 نوفمبر 2025! استمتعوا بأغانيه التي تصدّرت قوائم النجاح مباشرة في ليلة موسيقية مليئة بالطاقة والحماس والأجواء التي لا تُنسى. لا تفوّتوا هذا الحفل الأسطوري — احجزوا تذاكركم الآن!",
+                "permanentid": "9C489957D80B4D95864051826183912B",
+                "fversion32545": "30",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/karan-show.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/artist/karan-aujla-it-was-all-a-dream-tour-live-in-abu-dhabi-tickets/1022794'>احجز الآن</a>\",\"Href\":\"https://www.ticketmaster.ae/artist/karan-aujla-it-was-all-a-dream-tour-live-in-abu-dhabi-tickets/1022794\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764360000000,
+                "flocation32545": "29 نوفمبر",
+                "fid32545": "9c489957d80b4d95864051826183912b"
+              },
+              "Title": "حفل كاران اوجلا",
+              "Uri": "sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/ar-AE/Version/30",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/karanconcert25",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/karanconcert25",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/9C489957-D80B-4D95-8640-51826183912B/Language/ar-AE/Version/30",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "بينسون بون | حفلات ما بعد",
+              "uri": "sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/ar-AE/Version/14",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/ar-AE/Version/14",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "2qnciGrwNoKoqGxY",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "2qnciGrwNoKoqGxY",
+                "fmorepackagecardtitle32545": "بينسون بون | حفلات ما بعد",
+                "fdescription32545": "بينسون بون، المغني وكاتب الأغاني المرشح لجائزة الغرامي والنجم الصاعد خلف النجاحات الغنائية الكبيرة مثل Beautiful Things  وSlow It Down، سيقدم صوته العاطفي القوي وحضوره المسرحي الآسر لجمهوره في جزيرة ياس. ",
+                "permanentid": "1F8B187A836646C3A7F07589B4F7E429",
+                "fversion32545": "14",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/bensonbooneysl.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/ar/formula1/tickets-2025/'>احجز الآن</a>\",\"Href\":\"https://www.abudhabigp.com/ar/formula1/tickets-2025/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764792000000,
+                "flocation32545": "4 ديسمبر",
+                "fid32545": "1f8b187a836646c3a7f07589b4f7e429"
+              },
+              "Title": "بينسون بون | حفلات ما بعد",
+              "Uri": "sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/ar-AE/Version/14",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-bneson",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/1F8B187A-8366-46C3-A7F0-7589B4F7E429/Language/ar-AE/Version/14",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "كاينميوسك",
+              "uri": "sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "ykCvCS47tLKcTZuL",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "ykCvCS47tLKcTZuL",
+                "fmorepackagecardtitle32545": "كاينميوسك ",
+                "fdescription32545": " من أعماق مشهد برلين الأسطوري تحت الأرض إلى أبوظبي، سيُطلِق الفريق عرضًا نابضًا بالإيقاع يمحو الحدود بين الرقص والحلم. تَجهَّزوا للرقص حتى الصباح مع الفرقة الإلكترونية الألمانية الأسطورية التي ستجلب طاقتها وصوتها الفريد الذي لا يُخطئه أحد.",
+                "permanentid": "B5EEEE7A929C488583760480343F4E7E",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "حديقة جزيرة ياس الجنوبية ",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/keinemusik2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.ticketmaster.ae/artist/keinemusik-tickets/1321963?int_cmp_name=Keinemusik&amp;int_cmp_id=AE-Home-909&amp;int_cmp_creative=Home-discover-1&amp;tm_link=tm_ccp_Home_discover_Keinemusik'>احجز الآن</a>\",\"Href\":\"https://www.ticketmaster.ae/artist/keinemusik-tickets/1321963?int_cmp_name=Keinemusik&int_cmp_id=AE-Home-909&int_cmp_creative=Home-discover-1&tm_link=tm_ccp_Home_discover_Keinemusik\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1764878400000,
+                "flocation32545": "5 ديسمبر",
+                "fid32545": "b5eeee7a929c488583760480343f4e7e"
+              },
+              "Title": "كاينميوسك",
+              "Uri": "sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/keinemusik-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/B5EEEE7A-929C-4885-8376-0480343F4E7E/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "إليانا | حفلات ما بعد",
+              "uri": "sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/ar-AE/Version/14",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/ar-AE/Version/14",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "lkFXxJaðbh89Jz6K",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "lkFXxJaðbh89Jz6K",
+                "fmorepackagecardtitle32545": "إليانا | حفلات ما بعد",
+                "fdescription32545": "كن مستعداً للاندماج العالمي مع إليانا على المسرح يوم الجمعة 5 ديسمبر! تمزج الفنانة الفلسطينية-التشيلية الرائدة بين السول العربي والذوق اللاتيني، حيث ستقدم إليانا ذات الأصول الفلسطينية صوتها العربي-البوب في حفلات ما بعد السباق. مع أكثر من 100 مليون مشاهدة وأداء تاريخي في مهرجان كوتشيلا، تعد إليانا باحتفال ثقافي في حديقة الاتحاد.",
+                "permanentid": "3A90547FBAD249119D567EC38C515F0B",
+                "fversion32545": "14",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-elyanaa.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/ar/formula1/tickets-2025/'>احجز الآن</a>\",\"Href\":\"https://www.abudhabigp.com/ar/formula1/tickets-2025/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1765051200000,
+                "flocation32545": "5 ديسمبر",
+                "fid32545": "3a90547fbad249119d567ec38c515f0b"
+              },
+              "Title": "إليانا | حفلات ما بعد",
+              "Uri": "sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/ar-AE/Version/14",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-elyanna",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/3A90547F-BAD2-4911-9D56-7EC38C515F0B/Language/ar-AE/Version/14",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "بوست مالون | حفلات ما بعد",
+              "uri": "sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/ar-AE/Version/14",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/ar-AE/Version/14",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "jhRlRJJ8ñqTzW7CZ",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "jhRlRJJ8ñqTzW7CZ",
+                "fmorepackagecardtitle32545": "بوست مالون | حفلات ما بعد",
+                "fdescription32545": "النجم العالمي بوست مالون، المرشح لجائزة GRAMMY®  والحاصل على شهادة الألماس تسع مرات، سينضم إلى مجموعة من أبرز النجوم في حفلات ما بعد السباق لجائزة الاتحاد للطيران الكبرى للفورمولا 1  في أبوظبي لعام 2025، التي تنظمها شركة إثارة. ",
+                "permanentid": "36C16E68E0704DD8A1F3297A3B60FAC0",
+                "fversion32545": "14",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/yslm-post.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/ar/formula1/tickets-2025/'>احجز الآن</a>\",\"Href\":\"https://www.abudhabigp.com/ar/formula1/tickets-2025/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1765051200000,
+                "flocation32545": "5 ديسمبر",
+                "fid32545": "36c16e68e0704dd8a1f3297a3b60fac0"
+              },
+              "Title": "بوست مالون | حفلات ما بعد",
+              "Uri": "sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/ar-AE/Version/14",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/mc2025-postmalone",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/36C16E68-E070-4DD8-A1F3-297A3B60FAC0/Language/ar-AE/Version/14",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "كاتي بيري | حفلات ما بعد",
+              "uri": "sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/ar-AE/Version/14",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/ar-AE/Version/14",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "ry3QjnñOXa7QzF7i",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "ry3QjnñOXa7QzF7i",
+                "fmorepackagecardtitle32545": "كاتي بيري | حفلات ما بعد",
+                "fdescription32545": "إحدى أشهر الفنانات في العالم، كاتي بيري، ستأخذك في رحلة موسيقية لا تُنسى في أبوظبي! استعدوا لليلة مليئة بالطاقة مع أشهر أغانيها مثل \"Firework\"، \"Roar\"، \"Dark Horse\"، و\"Teenage Dream\". ",
+                "permanentid": "29E786BD5A054FE0988C26282BE64853",
+                "fversion32545": "14",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد بارك",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/katyperryysl1.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.abudhabigp.com/ar/formula1/tickets-2025/'>احجز الآن</a>\",\"Href\":\"https://www.abudhabigp.com/ar/formula1/tickets-2025/\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1765051200000,
+                "flocation32545": "7 ديسمبر",
+                "fid32545": "29e786bd5a054fe0988c26282be64853"
+              },
+              "Title": "كاتي بيري | حفلات ما بعد",
+              "Uri": "sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/ar-AE/Version/14",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/ymc2025-katyperry",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/29E786BD-5A05-4FE0-988C-26282BE64853/Language/ar-AE/Version/14",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "رود ستيوارت",
+              "uri": "sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/rodsteward2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/rodsteward2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "Nf87J3bCnseðoipk",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "Nf87J3bCnseðoipk",
+                "fmorepackagecardtitle32545": "رود ستيوارت ",
+                "fdescription32545": "جنيفر لوبيز، واحدة من أبرز الفنانات في عصرنا، تعود إلى مسرح أبوظبي مع عرض \"جنيفر لوبيز: أب أول نايت لايف 2025\". ستبهر لوبيز جمهورها يوم الثلاثاء 29 يوليو في الاتحاد أرينا بجزيرة ياس، في العرض الوحيد لها في الشرق الأوسط ضمن جولتها \"أب أول نايت: لايف 2025\". يمكن للجمهور توقع أداء مميزاً ومليئاً بالحماس لأشهر أغانيها التي تصدّرت القوائم الموسيقية طوال مسيرتها الأسطورية. ",
+                "permanentid": "A9925FADA3AF44248363C9112D9E1429",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/rodstewardcard2025.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://www.etihadarena.ae/ar/event-booking/rod-stewart'>احجز الآن</a>\",\"Href\":\"https://www.etihadarena.ae/ar/event-booking/rod-stewart\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1765915200000,
+                "flocation32545": "17 ديسمبر",
+                "fid32545": "a9925fada3af44248363c9112d9e1429"
+              },
+              "Title": "رود ستيوارت",
+              "Uri": "sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/rodsteward2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/rodsteward2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/A9925FAD-A3AF-4424-8363-C9112D9E1429/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "أريجيت سينغ في حفل غنائي مباشر",
+              "uri": "sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/arijith2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/arijith2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "z0MH15hbKJX3B2ðq",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "z0MH15hbKJX3B2ðq",
+                "fmorepackagecardtitle32545": "أريجيت سينغ في حفل غنائي مباشر ",
+                "fdescription32545": "أريجيت سينغ، المغني العالمي الشهير في بوليوود، يستعد لإبهار الجماهير بكلماته العاطفية وألحانه الساحرة وأدائه الذي لا يُنسى. معروف بإتقانه لأنواع موسيقية متنوعة. ويُصنَّف حالياً كالمغني رقم 1 في بوليوود. ",
+                "permanentid": "630670FA13F14E36B9428E79D2105B7A",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/arijit25-card.png\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='https://www.etihadarena.ae/ar/event-booking/arijit-singh-live-in-concert'>احجز الآن</a>\",\"Href\":\"https://www.etihadarena.ae/ar/event-booking/arijit-singh-live-in-concert\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1766088000000,
+                "flocation32545": "19 ديسمبر",
+                "fid32545": "630670fa13f14e36b9428e79d2105b7a"
+              },
+              "Title": "أريجيت سينغ في حفل غنائي مباشر",
+              "Uri": "sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/arijith2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/arijith2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/630670FA-13F1-4E36-B942-8E79D2105B7A/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "لينكن بارك",
+              "uri": "sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/ar-AE/Version/32",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/linkinpark",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/linkinpark",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/ar-AE/Version/32",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "fhHf4ZNMcwmTlM1a",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "fhHf4ZNMcwmTlM1a",
+                "fmorepackagecardtitle32545": "لينكن بارك",
+                "fdescription32545": "لينكين بارك يعلنون عودتهم المرتقبة إلى الإمارات العربية المتحدة في 20 يناير 2026 في جولة \"فروم زيرو\" العالمية - وهي زيارتهم الأولى منذ عام 2010",
+                "permanentid": "7B04921A2FAA46AB9E1913A031A36E3D",
+                "fversion32545": "32",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/eventslisting25/linkinpark.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a target='_blank' rel='noopener noreferrer' href='https://eform.etihadarena.ae/cn/ajzk1/linkinpark-signup'>قم بالتسجيل</a>\",\"Href\":\"https://eform.etihadarena.ae/cn/ajzk1/linkinpark-signup\",\"Label\":\"قم بالتسجيل\",\"Title\":\"\",\"Target\":\"_blank\"}",
+                "fdaterange32545": 1768852800000,
+                "flocation32545": "20 يناير",
+                "fid32545": "7b04921a2faa46ab9e1913a031a36e3d"
+              },
+              "Title": "لينكن بارك",
+              "Uri": "sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/ar-AE/Version/32",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/linkinpark",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/linkinpark",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/7B04921A-2FAA-46AB-9E19-13A031A36E3D/Language/ar-AE/Version/32",
+              "Excerpt": "",
+              "FirstSentences": null
+            },
+            {
+              "title": "ماري بوبينز مباشرة على جزيرة ياس",
+              "uri": "sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/ar-AE/Version/31",
+              "printableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "clickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "uniqueId": "42.65475$sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/ar-AE/Version/31",
+              "excerpt": "",
+              "firstSentences": null,
+              "summary": null,
+              "flags": "SkipSentencesScoring;HasAllMetaDataStream",
+              "hasHtmlVersion": false,
+              "hasMobileHtmlVersion": false,
+              "score": 0,
+              "percentScore": 0.0,
+              "rankingInfo": null,
+              "rating": 0.0,
+              "isTopResult": false,
+              "isRecommendation": false,
+              "isUserActionView": false,
+              "titleHighlights": [],
+              "firstSentencesHighlights": [],
+              "excerptHighlights": [],
+              "printableUriHighlights": [],
+              "summaryHighlights": [],
+              "parentResult": null,
+              "childResults": [],
+              "totalNumberOfChildResults": 0,
+              "absentTerms": [],
+              "raw": {
+                "sysurihash": "H3AkoDSGkDHQJ1vG",
+                "fz95xlanguage32545": "ar-AE",
+                "urihash": "H3AkoDSGkDHQJ1vG",
+                "fmorepackagecardtitle32545": "ماري بوبينز مباشرة على جزيرة ياس",
+                "fdescription32545": "احجزوا باقة العطلة واستمتعوا بإقامة في أحد فنادق جزيرة ياس الفاخرة مع تذاكر ذهبية أو فضية لهذا العرض المباشر الساحر من 25 مارس إلى 15 أبريل 2026",
+                "permanentid": "1DFE18C59FA54E2C94D69694DEBA4987",
+                "fversion32545": "31",
+                "ftenantinfo32545": "YIB2C",
+                "fmorepackagetagtype32545": "اتحاد أرينا",
+                "fmorepackagecardimages32545": "[{\"desktopImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"},\"mobileImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"},\"tabletImage\":{\"src\":\"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/aaa-events-2025/marypoppins/mp-card.jpg\",\"html\":\"\"}}]",
+                "fz95xtemplatename32545": "Event",
+                "fmorepackagebooknowlink32545": "{\"Html\":\"<a href='/en/yasisland/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi'>احجز الآن</a>\",\"Href\":\"/en/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi\",\"Label\":\"احجز الآن\",\"Title\":\"\",\"Target\":\"\"}",
+                "fdaterange32545": 1775937600000,
+                "flocation32545": " مارس إلى 15 أبريل 2026",
+                "fid32545": "1dfe18c59fa54e2c94d69694deba4987"
+              },
+              "Title": "ماري بوبينز مباشرة على جزيرة ياس",
+              "Uri": "sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/ar-AE/Version/31",
+              "PrintableUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "ClickUri": "https://author.myconnect.ae/ar/yasisland/events/event-listing-data/events/marypoppins-2025",
+              "UniqueId": "42.65475$sitecore://database/web/ItemId/1DFE18C5-9FA5-4E2C-94D6-9694DEBA4987/Language/ar-AE/Version/31",
+              "Excerpt": "",
+              "FirstSentences": null
+            }
+          ]
+        }
+      </script>
+      <script>
+        (function () {
+          const FALLBACK = [];
+
+          function tryParseJson(str, fallback) {
+            try {
+              const v = JSON.parse(str);
+              return v == null ? fallback : v;
+            } catch (_) {
+              return fallback;
+            }
+          }
+
+          function readEventsData() {
+            const el = document.getElementById("events-data");
+            if (el && el.textContent && el.textContent.trim()) {
+              try {
+                const parsed = JSON.parse(el.textContent);
+                if (Array.isArray(parsed?.results)) return parsed.results;
+              } catch (e) {}
+            }
+            return FALLBACK;
+          }
+
+          function getFirstImageSrc(item) {
+            const imagesRaw = item?.raw?.fmorepackagecardimages32545;
+            const arr =
+              typeof imagesRaw === "string"
+                ? tryParseJson(imagesRaw, [])
+                : imagesRaw || [];
+            const first = Array.isArray(arr) && arr.length ? arr[0] : null;
+            return first?.desktopImage?.src || first?.mobileImage?.src || "";
+          }
+
+          function getCta(item) {
+            const raw = item?.raw?.fmorepackagebooknowlink32545;
+            const obj =
+              typeof raw === "string" ? tryParseJson(raw, {}) : raw || {};
+            const map = {
+              "BOOK NOW": "احجز الآن",
+              "Book Now": "احجز الآن",
+              "Register Now": "سجّل الآن",
+              "REGISTER NOW": "سجّل الآن",
+              "Learn More": "اعرف المزيد",
+              "Learn more": "اعرف المزيد",
+              "Book Package": "احجز الباقة",
+              "Book package": "احجز الباقة",
+            };
+            const labelEn = obj.Label || "BOOK NOW";
+            return {
+              href: obj.Href || item?.clickUri || "#",
+              label: map[labelEn] || "احجز الآن",
+              target: obj.Target || (obj.Href ? "_blank" : ""),
+            };
+          }
+
+          function toArabicDigits(value) {
+            const map = {
+              0: "٠",
+              1: "١",
+              2: "٢",
+              3: "٣",
+              4: "٤",
+              5: "٥",
+              6: "٦",
+              7: "٧",
+              8: "٨",
+              9: "٩",
+            };
+            return String(value).replace(/[0-9]/g, (d) => map[d]);
+          }
+
+          function arabizeDateString(str) {
+            if (!str) return "";
+            const months = {
+              Jan: "يناير",
+              Feb: "فبراير",
+              Mar: "مارس",
+              Apr: "أبريل",
+              May: "مايو",
+              Jun: "يونيو",
+              Jul: "يوليو",
+              Aug: "أغسطس",
+              Sep: "سبتمبر",
+              Oct: "أكتوبر",
+              Nov: "نوفمبر",
+              Dec: "ديسمبر",
+            };
+            let out = str.replace(
+              /Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/g,
+              (m) => months[m] || m
+            );
+            out = out.replace(/[0-9]/g, (d) => toArabicDigits(d));
+            return out;
+          }
+
+          function createCardNode(item) {
+            const article = document.createElement("article");
+            article.className = "card";
+
+            const imgDiv = document.createElement("div");
+            imgDiv.className = "card-image";
+            const src = getFirstImageSrc(item);
+            if (src) imgDiv.style.backgroundImage = `url('${src}')`;
+
+            const fav = document.createElement("button");
+            fav.className = "fav";
+            fav.setAttribute("aria-label", "Add to favorites");
+            fav.innerHTML = "\u2606";
+            imgDiv.appendChild(fav);
+
+            const body = document.createElement("div");
+            body.className = "card-body";
+
+            const h3 = document.createElement("h3");
+            h3.className = "card-title";
+            h3.textContent = item.title || item.Title || "Untitled";
+
+            const p = document.createElement("p");
+            p.className = "card-desc";
+            p.textContent = item?.raw?.fdescription32545 || "";
+
+            const ul = document.createElement("ul");
+            ul.className = "card-meta";
+            const liVenue = document.createElement("li");
+            const dotVenue = document.createElement("span");
+            dotVenue.className = "geo";
+            liVenue.appendChild(dotVenue);
+            liVenue.appendChild(
+              document.createTextNode(
+                " " + (item?.raw?.fmorepackagetagtype32545 || "")
+              )
+            );
+            ul.appendChild(liVenue);
+
+            const liDate = document.createElement("li");
+            const dotDate = document.createElement("span");
+            dotDate.className = "geo";
+            liDate.appendChild(dotDate);
+            liDate.appendChild(
+              document.createTextNode(
+                " " + arabizeDateString(item?.raw?.flocation32545 || "")
+              )
+            );
+            ul.appendChild(liDate);
+
+            const cta = getCta(item);
+            const a = document.createElement("a");
+            a.className = "card-cta";
+            a.href = cta.href || "#";
+            if (cta.target) a.target = cta.target;
+            a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
+            a.textContent = cta.label || "BOOK NOW";
+
+            body.appendChild(h3);
+            body.appendChild(p);
+            body.appendChild(ul);
+            body.appendChild(a);
+
+            article.appendChild(imgDiv);
+            article.appendChild(body);
+            return article;
+          }
+
+          function renderEvents() {
+            const grid = document.getElementById("events-grid");
+            const countEl = document.querySelector(".events-count");
+            if (!grid) return;
+            const data = readEventsData();
+            grid.innerHTML = "";
+            data.forEach((item) => grid.appendChild(createCardNode(item)));
+            if (countEl)
+              countEl.textContent = `${toArabicDigits(data.length)} فعالية`;
+          }
+
+          document.addEventListener("DOMContentLoaded", renderEvents);
+        })();
+      </script>
     </div>
   </body>
 </html>
