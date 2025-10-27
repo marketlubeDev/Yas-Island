@@ -545,7 +545,7 @@
       }
 
       .restaurants-explore {
-        padding: 3rem 0rem 4rem;
+        padding: 3rem 40px 4rem;
         max-width: 1500px;
         margin: 0 auto;
       }
@@ -637,6 +637,12 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+      }
+
+      @media (max-width: 1300px) {
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       @media (max-width: 992px) {
@@ -732,11 +738,10 @@
       }
 
       .card-meta .geo {
-        width: 6px;
-        height: 6px;
-        background: #2d5a4a;
-        border-radius: 50%;
+        width: 16px;
+        height: 16px;
         display: inline-block;
+        vertical-align: middle;
       }
 
       .card-cta {
@@ -4511,6 +4516,8 @@
         const li = document.createElement("li");
         const dot = document.createElement("span");
         dot.className = "geo";
+        dot.innerHTML =
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2d5a4a" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
         li.appendChild(dot);
         li.appendChild(document.createTextNode(" " + arLocation));
         ul.appendChild(li);
