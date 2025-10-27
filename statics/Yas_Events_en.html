@@ -448,6 +448,16 @@
           fill: #a0a8b0 !important;
         }
 
+        .event-button {
+          background: #ffd700 !important;
+          color: #1a3a4a !important;
+        }
+
+        .event-button:hover {
+          background: #ffed4e !important;
+          color: #1a3a4a !important;
+        }
+
         .explore-all-button {
           background: #e7ebd4 !important;
           color: #1a3a4a !important;
@@ -1956,8 +1966,14 @@
             const raw = item?.raw?.fmorepackagebooknowlink32545;
             const obj =
               typeof raw === "string" ? tryParseJson(raw, {}) : raw || {};
+            function toAbsoluteUrl(url) {
+              if (!url) return "";
+              if (/^https?:\/\//i.test(url)) return url;
+              if (url[0] === "/") return "https://www.yasisland.com" + url;
+              return url;
+            }
             return {
-              href: obj.Href || item?.clickUri || "#",
+              href: toAbsoluteUrl(obj.Href || item?.clickUri || "#"),
               label: obj.Label || "BOOK NOW",
               target: obj.Target || (obj.Href ? "_blank" : ""),
             };

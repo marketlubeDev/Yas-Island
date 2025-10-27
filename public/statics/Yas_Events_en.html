@@ -448,6 +448,16 @@
           fill: #a0a8b0 !important;
         }
 
+        .event-button {
+          background: #ffd700 !important;
+          color: #1a3a4a !important;
+        }
+
+        .event-button:hover {
+          background: #ffed4e !important;
+          color: #1a3a4a !important;
+        }
+
         .explore-all-button {
           background: #e7ebd4 !important;
           color: #1a3a4a !important;
@@ -2111,31 +2121,6 @@
             applyZoom(zoom);
           });
         } catch (err) {}
-      })();
-    </script>
-    <script>
-      (function () {
-        document.addEventListener("click", function (e) {
-          try {
-            var anchor =
-              e.target && e.target.closest
-                ? e.target.closest("a.event-button, a.card-cta")
-                : null;
-            if (!anchor) return;
-            var href = anchor.getAttribute("href") || anchor.href || "";
-            if (!href) return;
-            e.preventDefault();
-            console.info("Redirecting to:", href);
-            var target = (anchor.getAttribute("target") || "").toLowerCase();
-            setTimeout(function () {
-              if (target === "_blank") {
-                window.open(href, "_blank", "noopener,noreferrer");
-              } else {
-                window.location.href = href;
-              }
-            }, 50);
-          } catch (_) {}
-        });
       })();
     </script>
   </body>
