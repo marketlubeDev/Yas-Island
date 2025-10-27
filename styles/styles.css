@@ -1347,6 +1347,20 @@ html[dir=rtl] .side-bar-item-hidden-bg {
   }
 }
 
+.product-top-events {
+  height: calc(6rem * var(--zoom-scale)) !important;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .product-top-events {
+    height: calc(6rem * var(--zoom-scale)) !important;
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1699.98px) {
+  .product-top-events {
+    height: calc(6rem * var(--zoom-scale)) !important;
+  }
+}
+
 .product-top-pay {
   min-height: calc(6rem * var(--zoom-scale));
   max-height: calc(6rem * var(--zoom-scale));

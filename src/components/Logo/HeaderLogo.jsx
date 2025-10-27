@@ -60,6 +60,15 @@ export default function HeaderLogo() {
 
   const isCardPaymentPage = location.pathname === "/card-payment";
 
+  const routesWithoutProductHead = [
+    "/events",
+    "/dining",
+    "/hotels",
+    "/packages",
+  ];
+  const shouldShowProductHead =
+    isPaymentRoute && !routesWithoutProductHead.includes(location.pathname);
+
   // Use common Selector component for language dropdown UI
   const { t, i18n } = useTranslation();
   const { toggleLanguage, language, availableLanguages } = useLanguage();
@@ -216,11 +225,15 @@ export default function HeaderLogo() {
         <div
           className={`${
             !isPaymentRoute ? "product-top-pay" : "product-top-sec"
+          } ${
+            routesWithoutProductHead.includes(location.pathname)
+              ? "product-top-events"
+              : ""
           }`}
           style={{ width: "100%" }}
         >
           {headerActions}
-          {isPaymentRoute && <ProductHead />}
+          {shouldShowProductHead && <ProductHead />}
         </div>
       </div>
 

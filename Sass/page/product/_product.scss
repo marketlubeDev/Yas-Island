@@ -363,6 +363,18 @@
     height: calc(11.3rem * var(--zoom-scale));
   }
 }
+
+.product-top-events {
+  height: calc(6rem * var(--zoom-scale)) !important;
+
+  @include respond(desktop) {
+    height: calc(6rem * var(--zoom-scale)) !important;
+  }
+
+  @include respond(bigDesktop) {
+    height: calc(6rem * var(--zoom-scale)) !important;
+  }
+}
 .product-top-pay {
   min-height: calc(6rem * var(--zoom-scale));
   max-height: calc(6rem * var(--zoom-scale));
