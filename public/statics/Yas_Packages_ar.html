@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>باقات جزيرة ياس — أكثر باقاتنا شعبية</title>
+    <title>باقات جزيرة ياس — باقاتنا الأكثر شعبية</title>
     <style>
       * {
         margin: 0;
@@ -16,10 +16,8 @@
       body {
         height: 100%;
         color-scheme: light dark;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
-        /* Base zoom variable used throughout; default to 1 */
+        font-family: "BebasNeue", sans-serif;
         --zoom-scale: 1;
-        /* Scale root font sizing using zoom variable so rem-based sizes follow */
         font-size: calc(16px * var(--zoom-scale));
       }
 
@@ -83,7 +81,7 @@
       .section-title {
         font-size: 2rem;
         font-weight: 700;
-        color: #1f2937;
+        color: #072839;
         margin-bottom: 0;
         line-height: 1.2;
         flex: 0 0 40%;
@@ -91,7 +89,7 @@
 
       .section-description {
         font-size: 1.1rem;
-        color: #4b5563;
+        color: #67757c;
         margin-bottom: 0;
         line-height: 1.6;
         flex: 1;
@@ -107,7 +105,7 @@
 
       .package-card {
         background: transparent;
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
         /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -121,7 +119,7 @@
 
       .package-image {
         width: 100%;
-        height: 200px;
+        height: 300px;
         object-fit: cover;
         display: block;
         border-radius: 16px;
@@ -133,40 +131,48 @@
       }
 
       .package-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #1f2937;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         line-height: 1.3;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .package-description {
         font-size: 1rem;
         color: #4b5563;
-        line-height: 1.6;
-        margin-bottom: 25px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .package-button {
-        display: inline-block;
-        padding: 12px 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 22px;
         background: transparent;
         color: #1f2937;
         text-decoration: none;
         border: 2px solid #fbbf24;
-        border-radius: 6px;
-        font-weight: 600;
+        border-radius: 9999px; /* pill */
+        font-family: "BebasNeue", sans-serif;
+        font-weight: 700;
         font-size: 0.95rem;
         transition: all 0.3s ease;
         text-align: center;
-        width: 100%;
+        width: auto;
         box-sizing: border-box;
       }
 
       .package-button:hover {
         background: #fbbf24;
-        color: #1f2937;
+        color: #111827;
         transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
       }
 
       /* Responsive design */
@@ -251,16 +257,16 @@
       }
 
       .birthday-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
-        color: #1e40af;
+        color: #072839;
         margin-bottom: 25px;
         line-height: 1.2;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .birthday-description {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #6b7280;
         line-height: 1.6;
         margin-bottom: 35px;
@@ -268,12 +274,12 @@
 
       .birthday-button {
         display: inline-block;
-        padding: 15px 30px;
+        padding: 10px 22px;
         background: transparent;
-        color: #1e40af;
+        color: #072839;
         text-decoration: none;
         border: 2px solid #fbbf24;
-        border-radius: 8px;
+        border-radius: 48px;
         font-weight: 700;
         font-size: 1rem;
         transition: all 0.3s ease;
@@ -282,7 +288,7 @@
 
       .birthday-button:hover {
         background: #fbbf24;
-        color: #1e40af;
+        color: #072839;
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
       }
@@ -396,7 +402,7 @@
         color: #1f2937;
         margin-bottom: 25px;
         line-height: 1.2;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .magazine-description {
@@ -414,17 +420,18 @@
 
       .magazine-button {
         display: inline-block;
-        padding: 15px 20px;
+        padding: 12px 25px;
         background: transparent;
         color: #1f2937;
         text-decoration: none;
-        border: 2px solid #fbbf24;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 0.9rem;
+        border: 3px solid #fbbf24;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.85rem;
         transition: all 0.3s ease;
         text-align: center;
         line-height: 1.4;
+        white-space: nowrap;
       }
 
       .magazine-button:hover {
@@ -532,25 +539,30 @@
       }
 
       .single-day-header {
-        text-align: center;
+        display: flex;
+        align-items: flex-start;
+        gap: 60px;
         margin-bottom: 60px;
+        text-align: left;
       }
 
       .single-day-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
-        color: #1f2937;
-        margin-bottom: 20px;
+        color: #072839;
+        margin-bottom: 0;
         line-height: 1.2;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        flex: 0 0 40%;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .single-day-description {
         font-size: 1.1rem;
-        color: #6b7280;
+        color: #67757c;
         line-height: 1.6;
-        max-width: 600px;
-        margin: 0 auto;
+        margin-bottom: 0;
+        flex: 1;
+        padding-top: 10px;
       }
 
       .single-day-grid {
@@ -573,19 +585,18 @@
 
       .single-day-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       }
 
       .single-day-image {
         width: 100%;
-        height: 320px;
+        height: 300px;
         object-fit: cover;
         display: block;
         border-radius: 16px;
       }
 
       .single-day-content {
-        padding: 25px;
+        padding: 25px 0;
         text-align: left;
         flex: 1;
         display: flex;
@@ -594,28 +605,29 @@
       }
 
       .single-day-overline {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         letter-spacing: 0.08em;
         color: #6b7280;
-        font-weight: 700;
+        font-weight: 600;
         text-transform: uppercase;
-        margin: 18px 0 8px;
+        margin: 0 0 8px;
       }
 
       .single-day-card-title {
-        font-size: 2rem;
-        font-weight: 800;
+        font-size: 1.5rem;
+        font-weight: 700;
         color: #1f2937;
         margin-bottom: 12px;
-        line-height: 1.2;
+        line-height: 1.3;
         text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .single-day-card-description {
-        font-size: 0.95rem;
+        font-size: 1rem;
         color: #4b5563;
-        line-height: 1.6;
-        margin-bottom: 25px;
+        line-height: 1.7;
+        margin-bottom: 20px;
         flex: 1;
       }
 
@@ -623,16 +635,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 18px;
+        padding: 10px 22px;
         background: transparent;
         color: #1f2937;
         text-decoration: none;
         border-radius: 9999px;
-        font-weight: 800;
-        font-size: 0.9rem;
+        font-weight: 700;
+        font-size: 0.95rem;
         transition: all 0.3s ease;
-        text-align: center;
-        width: auto;
+        text-align: left;
+        width: fit-content;
         box-sizing: border-box;
         border: 2px solid #fbbf24;
         cursor: pointer;
@@ -683,12 +695,21 @@
       }
 
       @media (max-width: 768px) {
+        .single-day-header {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+
         .single-day-title {
+          flex: none;
           font-size: 2rem;
         }
 
         .single-day-description {
+          flex: none;
           font-size: 1rem;
+          padding-top: 0;
         }
 
         .single-day-grid {
@@ -704,6 +725,10 @@
       @media (max-width: 480px) {
         .single-day-section {
           margin: 60px auto 0;
+        }
+
+        .single-day-header {
+          gap: 15px;
         }
 
         .single-day-title {
@@ -732,7 +757,7 @@
       /* Social Media Gallery Section */
       .social-gallery-section {
         max-width: 1400px;
-        margin: 80px auto 80px;
+        margin: 80px auto 180px;
         padding: 0;
       }
 
@@ -750,7 +775,7 @@
         font-weight: 600;
         color: #4b5563;
         margin: 0;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .social-gallery-handle {
@@ -911,14 +936,15 @@
         margin-bottom: 0;
         line-height: 1.2;
         flex: 0 0 40%;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .multi-park-content {
         flex: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 20px;
+        align-items: flex-start;
       }
 
       .multi-park-description {
@@ -927,6 +953,7 @@
         margin-bottom: 0;
         line-height: 1.6;
         padding-top: 10px;
+        flex: 1;
       }
 
       .learn-more-link {
@@ -934,7 +961,9 @@
         text-decoration: none;
         font-weight: 600;
         font-size: 1rem;
-        align-self: flex-start;
+        white-space: nowrap;
+        padding-top: 10px;
+        flex-shrink: 0;
         transition: color 0.3s ease;
       }
 
@@ -982,6 +1011,16 @@
         background: #ffffff;
       }
 
+      .theme-park-card.light:hover {
+        background: #1f2937;
+        border-color: #374151;
+      }
+
+      .theme-park-card.light:hover .theme-park-title,
+      .theme-park-card.light:hover .theme-park-subtitle {
+        color: #ffffff;
+      }
+
       .theme-park-content {
         padding: 40px 30px;
         text-align: left;
@@ -989,6 +1028,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: flex-start;
       }
 
       .theme-park-title {
@@ -996,7 +1036,7 @@
         font-weight: 700;
         margin-bottom: 15px;
         line-height: 1.2;
-        font-family: "Segoe UI", Roboto, "Helvetica Neue", "Arial", sans-serif;
+        font-family: "BebasNeue", sans-serif;
       }
 
       .theme-park-card.dark .theme-park-title {
@@ -1024,24 +1064,42 @@
 
       .theme-park-button {
         display: inline-block;
-        padding: 15px 30px;
-        background: #fbbf24;
+        padding: 12px 28px;
+        background: transparent;
         color: #1f2937;
         text-decoration: none;
-        border-radius: 6px;
+        border-radius: 25px;
+        border: 2px solid #fbbf24;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         transition: all 0.3s ease;
         text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-        border: none;
+        letter-spacing: 0.5px;
         cursor: pointer;
+        width: auto;
+        white-space: nowrap;
       }
 
       .theme-park-button:hover {
-        background: #f59e0b;
+        background: #fbbf24;
         transform: translateY(-2px);
+        color: #1f2937;
+      }
+
+      .theme-park-card.dark .theme-park-button {
+        color: #ffffff;
+        border-color: #fbbf24;
+      }
+
+      .theme-park-card.dark .theme-park-button:hover {
+        background: #fbbf24;
+        color: #1f2937;
+      }
+
+      /* Button changes when hovering the card */
+      .theme-park-card:hover .theme-park-button {
+        background: #fbbf24;
+        color: #1f2937;
       }
 
       /* Dark theme styles for new sections */
@@ -1153,7 +1211,7 @@
   <body>
     <div class="packages-section">
       <div class="section-header">
-        <h1 class="section-title">أكثر باقاتنا شعبية</h1>
+        <h1 class="section-title">باقاتنا الأكثر شعبية</h1>
         <p class="section-description">
           احصل على أقصى استفادة من عطلتك في جزيرة ياس مع باقاتنا الحصرية، بما في
           ذلك الإقامة في أفضل الفنادق مع عروض فنادق جزيرة ياس المثيرة والوصول
@@ -1170,14 +1228,13 @@
             class="package-image"
           />
           <div class="package-content">
-            <h3 class="package-title">إقامة ولعب</h3>
+            <h3 class="package-title">الإقامة واللعب</h3>
             <p class="package-description">
-              احجز باقة الإقامة واللعب الآن واستمتع بالوصول إلى حدائقنا
-              الترفيهية الحاصلة على أرقام قياسية بينما تقيم في أحد فنادقنا
-              العالمية.
+              احجز باقة الإقامة واللعب الآن واستمتع بالوصول إلى مدننا الترفيهية
+              القياسية أثناء إقامتك في أحد فنادقنا العالمية.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers"
+              href="https://www.yasisland.com/ar/packages-and-offers"
               target="_blank"
               class="package-button"
               >احجز الباقة</a
@@ -1193,17 +1250,17 @@
             class="package-image"
           />
           <div class="package-content">
-            <h3 class="package-title">رحلة رومانسية في جزيرة ياس</h3>
+            <h3 class="package-title">عطلة رومانسية في جزيرة ياس</h3>
             <p class="package-description">
-              استمتع برحلة رومانسية في جزيرة ياس، بما في ذلك ترقيات الغرف
-              المجانية، والوصول إلى نادي الشاطئ، وخصومات المطاعم والسبا في
+              استمتع بعطلة رومانسية في جزيرة ياس، تشمل ترقيات مجانية للغرف
+              والوصول إلى نادي الشاطئ وخصومات على المطاعم والمنتجعات الصحية في
               الفنادق المشاركة.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers/formula-1-etihad-airways-abu-dhabi-grand-prix"
+              href="https://www.yasisland.com/ar/packages-and-offers/formula-1-etihad-airways-abu-dhabi-grand-prix"
               target="_blank"
               class="package-button"
-              >تفاصيل أكثر</a
+              >احجز الباقة</a
             >
           </div>
         </div>
@@ -1216,14 +1273,14 @@
             class="package-image"
           />
           <div class="package-content">
-            <h3 class="package-title">ماري بوبينز مباشرة في جزيرة ياس</h3>
+            <h3 class="package-title">ماري بوبينز مباشرة على جزيرة ياس</h3>
             <p class="package-description">
-              احجز باقة العطلة الخاصة بنا للاستمتاع بالإقامة في أحد فنادق جزيرة
+              احجز باقة العطلات الخاصة بنا للاستمتاع بالإقامة في أحد فنادق جزيرة
               ياس العالمية بالإضافة إلى تذاكر ذهبية أو فضية لهذا العرض المباشر
-              السحري من 25 مارس إلى 15 أبريل 2026.
+              الساحر الذي يمتد من 25 مارس إلى 15 أبريل 2026.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi"
+              href="https://www.yasisland.com/ar/packages-and-offers/mary-poppins-musical-yasisland-abu-dhabi"
               target="_blank"
               class="package-button"
               >احجز الباقة</a
@@ -1244,15 +1301,13 @@
           />
         </div>
         <div class="birthday-content">
-          <h2 class="birthday-title">
-            باقات أعياد الميلاد الحصرية في جزيرة ياس
-          </h2>
+          <h2 class="birthday-title">باقات عيد الميلاد الحصرية في جزيرة ياس</h2>
           <p class="birthday-description">
             احتفل بعيد ميلادك بأناقة في جزيرة ياس، حيث كل لحظة مليئة بالإثارة
             والمغامرة والذكريات التي لا تُنسى.
           </p>
           <a
-            href="https://www.yasisland.com/en/packages-and-offers/multi-park-experience"
+            href="https://www.yasisland.com/ar/packages-and-offers/multi-park-experience"
             target="_blank"
             class="birthday-button"
             >اعرف المزيد</a
@@ -1263,18 +1318,18 @@
 
     <div class="multi-park-section">
       <div class="multi-park-header">
-        <h2 class="multi-park-title">تجارب متعددة الحدائق</h2>
+        <h2 class="multi-park-title">تجارب المدن المتعددة</h2>
         <div class="multi-park-content">
           <p class="multi-park-description">
-            مدد المرح واستمتع بأسعار حصرية عند حجز إحدى تجارب جزيرة ياس متعددة
-            الحدائق. استعد لمغامرات مليئة بالإثارة في حدائقنا الترفيهية الحاصلة
-            على أرقام قياسية!
+            مدّد متعتك واستمتع بأسعار حصرية عند حجز إحدى تجارب المدن المتعددة في
+            جزيرة ياس. استعد لبعض المغامرات المليئة بالحركة في مدننا الترفيهية
+            القياسية!
           </p>
           <a
-            href="https://www.yasisland.com/en/packages-and-offers/multi-park-experience"
+            href="https://www.yasisland.com/ar/packages-and-offers/multi-park-experience"
             target="_blank"
             class="learn-more-link"
-            >→ اعرف المزيد</a
+            >← اعرف المزيد</a
           >
         </div>
       </div>
@@ -1286,11 +1341,13 @@
         <div class="theme-park-card dark">
           <div class="theme-park-content">
             <div>
-              <h3 class="theme-park-title">حديقتان ترفيهيتان</h3>
-              <p class="theme-park-subtitle">تجارب جزيرة ياس متعددة الحدائق</p>
+              <h3 class="theme-park-title">مدينتان ترفيهيتان</h3>
+              <p class="theme-park-subtitle">
+                تجارب المدن المتعددة في جزيرة ياس
+              </p>
             </div>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers/multi-park-experience"
+              href="https://www.yasisland.com/ar/packages-and-offers/multi-park-experience"
               target="_blank"
               class="theme-park-button"
               >احجز التجربة</a
@@ -1302,11 +1359,13 @@
         <div class="theme-park-card light">
           <div class="theme-park-content">
             <div>
-              <h3 class="theme-park-title">ثلاث حدائق ترفيهية</h3>
-              <p class="theme-park-subtitle">تجارب جزيرة ياس متعددة الحدائق</p>
+              <h3 class="theme-park-title">3 مدن ترفيهية</h3>
+              <p class="theme-park-subtitle">
+                تجارب المدن المتعددة في جزيرة ياس
+              </p>
             </div>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers/multi-park-experience"
+              href="https://www.yasisland.com/ar/packages-and-offers/multi-park-experience"
               target="_blank"
               class="theme-park-button"
               >احجز التجربة</a
@@ -1318,11 +1377,13 @@
         <div class="theme-park-card light">
           <div class="theme-park-content">
             <div>
-              <h3 class="theme-park-title">أربع حدائق ترفيهية</h3>
-              <p class="theme-park-subtitle">تجارب جزيرة ياس متعددة الحدائق</p>
+              <h3 class="theme-park-title">4 مدن ترفيهية</h3>
+              <p class="theme-park-subtitle">
+                تجارب المدن المتعددة في جزيرة ياس
+              </p>
             </div>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers/multi-park-experience"
+              href="https://www.yasisland.com/ar/packages-and-offers/multi-park-experience"
               target="_blank"
               class="theme-park-button"
               >احجز التجربة</a
@@ -1345,32 +1406,32 @@
         <div class="magazine-content">
           <h2 class="magazine-title">مجلة ياس</h2>
           <p class="magazine-description">
-            احصل على نظرة داخلية على ما هو رائج في جزيرة ياس هذا الموسم.
+            احصل على نظرة من الداخل على ما هو جديد في جزيرة ياس هذا الموسم.
           </p>
           <div class="magazine-buttons">
             <a
               href="https://online.flippingbook.com/view/792066777/2-3/?_affclk=ttuk:492510:2577551::90ak0u1915362__492510______1761200707.hZ2007i:"
               target="_blank"
               class="magazine-button"
-              >عرض باللغة الإنجليزية</a
+              >عرض بالإنجليزية</a
             >
             <a
               href="https://online.flippingbook.com/view/291310339/?_affclk=ttuk:492510:2577511::90ak0u1915362__492510______1761200707.hZ2007i:"
               target="_blank"
               class="magazine-button"
-              >عرض باللغة العربية</a
+              >عرض بالعربية</a
             >
             <a
               href="https://online.flippingbook.com/view/291160817/?_affclk=ttuk:492510:2577479::90ak0u1915362__492510______1761200707.hZ2007i:"
               target="_blank"
               class="magazine-button"
-              >عرض باللغة الروسية</a
+              >عرض بالروسية</a
             >
             <a
               href="https://online.flippingbook.com/view/1009308835/?_affclk=ttuk:492510:2577463::90ak0u1915362__492510______1761200707.hZ2007i:"
               target="_blank"
               class="magazine-button"
-              >عرض باللغة الصينية</a
+              >عرض بالصينية</a
             >
           </div>
         </div>
@@ -1382,8 +1443,8 @@
       <div class="single-day-header">
         <h2 class="single-day-title">تذاكر يوم واحد</h2>
         <p class="single-day-description">
-          اشتر إحدى تذاكر الدخول العامة واحصل على وصول ليوم كامل من المرح في
-          حديقتك الترفيهية المفضلة الحاصلة على أرقام قياسية.
+          اشترِ أحد تذاكر الدخول العام واحصل على وصول ليوم كامل من المرح في
+          مدينتك الترفيهية المفضلة.
         </p>
       </div>
 
@@ -1397,18 +1458,16 @@
           />
           <div class="single-day-content">
             <div class="single-day-overline">تجارب جزيرة ياس</div>
-            <h3 class="single-day-card-title">
-              عالم فيراري جزيرة ياس، أبو ظبي
-            </h3>
+            <h3 class="single-day-card-title">عالم فيراري جزيرة ياس، أبوظبي</h3>
             <p class="single-day-card-description">
-              اختبر قوة وشغف أشهر علامة تجارية في فورمولا 1 من خلال الوصول
-              لسرعات قوة الجاذبية.
+              اختبر قوة وشغف العلامة التجارية الأكثر شهرة في الفورمولا 1 من خلال
+              الوصول إلى سرعات قوة الجاذبية.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers#daycation"
+              href="https://www.yasisland.com/ar/packages-and-offers#daycation"
               target="_blank"
               class="single-day-button"
-              >اشتر الآن</a
+              >اشترِ الآن</a
             >
           </div>
         </div>
@@ -1423,17 +1482,17 @@
           <div class="single-day-content">
             <div class="single-day-overline">تجارب جزيرة ياس</div>
             <h3 class="single-day-card-title">
-              عالم وارنر براذرز جزيرة ياس، أبو ظبي
+              عالم وارنر براذرز جزيرة ياس، أبوظبي
             </h3>
             <p class="single-day-card-description">
-              انضم إلى أبطالك الخارقين وشخصيات الكارتون المفضلة في ستة عوالم
-              تفاعلية في أكبر حديقة ترفيهية داخلية في المنطقة.
+              انضم إلى أبطالك الخارقين المفضلين وشخصيات الرسوم المتحركة في ستة
+              عوالم غامرة في أكبر مدينة ترفيهية مغلقة في المنطقة.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers#daycation"
+              href="https://www.yasisland.com/ar/packages-and-offers#daycation"
               target="_blank"
               class="single-day-button"
-              >اشتر الآن</a
+              >اشترِ الآن</a
             >
           </div>
         </div>
@@ -1448,17 +1507,17 @@
           <div class="single-day-content">
             <div class="single-day-overline">تجارب جزيرة ياس</div>
             <h3 class="single-day-card-title">
-              عالم ياس المائي جزيرة ياس، أبو ظبي
+              عالم ياس المائي جزيرة ياس، أبوظبي
             </h3>
             <p class="single-day-card-description">
-              عالم ياس المائي، أحد أهم حدائق المياه في العالم، مليء بالألعاب
-              المثيرة والزحاليق الرائعة والتجارب المذهلة.
+              عالم ياس المائي، واحد من أفضل المدن المائية في العالم، مليء
+              بالألعاب المثيرة والمنزلقات الملحمية والتجارب المذهلة.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers#daycation"
+              href="https://www.yasisland.com/ar/packages-and-offers#daycation"
               target="_blank"
               class="single-day-button"
-              >اشتر الآن</a
+              >اشترِ الآن</a
             >
           </div>
         </div>
@@ -1472,16 +1531,16 @@
           />
           <div class="single-day-content">
             <div class="single-day-overline">تجارب جزيرة ياس</div>
-            <h3 class="single-day-card-title">سيف وورلد جزيرة ياس، أبو ظبي</h3>
+            <h3 class="single-day-card-title">سي وورلد جزيرة ياس، أبوظبي</h3>
             <p class="single-day-card-description">
-              من القطبين إلى المناطق الاستوائية: تجول عبر ثمانية عوالم محيطية
-              وشاهد الحياة البحرية المذهلة والألوان المهيبة والترفيه الرائع.
+              من القطبين إلى المناطق الاستوائية: تجول عبر ثمانية عوالم بحرية
+              وشاهد الحياة البحرية الخلابة والألوان المهيبة والترفيه الرائع.
             </p>
             <a
-              href="https://www.yasisland.com/en/packages-and-offers#daycation"
+              href="https://www.yasisland.com/ar/packages-and-offers#daycation"
               target="_blank"
               class="single-day-button"
-              >اشتر الآن</a
+              >اشترِ الآن</a
             >
           </div>
         </div>
@@ -1491,12 +1550,12 @@
     <!-- Social Media Gallery Section -->
     <div class="social-gallery-section">
       <div class="social-gallery-header">
-        <h2 class="social-gallery-title">شارك المرح ووسمنا في</h2>
+        <h2 class="social-gallery-title">شارك المتعة وضع علامة علينا على</h2>
         <a
           href="https://www.instagram.com/yasisland"
           target="_blank"
           class="social-gallery-handle"
-          >→ @YASISLAND</a
+          >← @YASISLAND</a
         >
       </div>
 
