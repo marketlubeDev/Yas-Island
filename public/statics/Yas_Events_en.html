@@ -1956,8 +1956,14 @@
             const raw = item?.raw?.fmorepackagebooknowlink32545;
             const obj =
               typeof raw === "string" ? tryParseJson(raw, {}) : raw || {};
+            function toAbsoluteUrl(url) {
+              if (!url) return "";
+              if (/^https?:\/\//i.test(url)) return url;
+              if (url[0] === "/") return "https://www.yasisland.com" + url;
+              return url;
+            }
             return {
-              href: obj.Href || item?.clickUri || "#",
+              href: toAbsoluteUrl(obj.Href || item?.clickUri || "#"),
               label: obj.Label || "BOOK NOW",
               target: obj.Target || (obj.Href ? "_blank" : ""),
             };
@@ -2105,6 +2111,31 @@
             applyZoom(zoom);
           });
         } catch (err) {}
+      })();
+    </script>
+    <script>
+      (function () {
+        document.addEventListener("click", function (e) {
+          try {
+            var anchor =
+              e.target && e.target.closest
+                ? e.target.closest("a.event-button, a.card-cta")
+                : null;
+            if (!anchor) return;
+            var href = anchor.getAttribute("href") || anchor.href || "";
+            if (!href) return;
+            e.preventDefault();
+            console.info("Redirecting to:", href);
+            var target = (anchor.getAttribute("target") || "").toLowerCase();
+            setTimeout(function () {
+              if (target === "_blank") {
+                window.open(href, "_blank", "noopener,noreferrer");
+              } else {
+                window.location.href = href;
+              }
+            }, 50);
+          } catch (_) {}
+        });
       })();
     </script>
   </body>
