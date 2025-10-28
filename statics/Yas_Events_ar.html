@@ -6,6 +6,35 @@
     <meta name="color-scheme" content="light dark" />
     <title>فعاليات جزيرة ياس — العربية</title>
     <style>
+      @font-face {
+        font-family: "YASfont";
+        src: url("../../fonts/Yas Font/YASfont-Regular.otf") format("opentype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "YASfont";
+        src: url("../../fonts/Yas Font/YASfont-RegularItalic.otf")
+          format("opentype");
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: "YASfont";
+        src: url("../../fonts/Yas Font/YASfont-Bold.otf") format("opentype");
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "YASfont";
+        src: url("../../fonts/Yas Font/YASfont-Light.otf") format("opentype");
+        font-weight: 300;
+        font-style: normal;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -28,7 +57,7 @@
 
       body {
         background: #f0f0f0;
-        font-family: "BebasNeue", "Bebas Neue", sans-serif;
+        font-family: "YASfont", sans-serif;
         min-height: 100vh;
         overflow-x: hidden;
       }
@@ -268,6 +297,31 @@
         background-position: center;
         border-radius: 1rem;
         background-repeat: no-repeat;
+      }
+
+      /* Media Queries for different screen sizes */
+      @media (min-width: 1500px) and (max-width: 1650px) {
+        .card-image {
+          height: 280px;
+        }
+      }
+
+      @media (min-width: 1400px) and (max-width: 1500px) {
+        .card-image {
+          height: 330px;
+        }
+      }
+
+      @media (min-width: 1200px) and (max-width: 1400px) {
+        .card-image {
+          height: 240px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .card-image {
+          height: 200px;
+        }
       }
 
       .fav {
