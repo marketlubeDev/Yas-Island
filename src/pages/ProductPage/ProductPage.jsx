@@ -7,6 +7,7 @@ import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 import Header from "../../layouts/Header/Header";
 import Footer from "../../layouts/Footer/Footer";
+import NoResultsFound from "../../components/NoResultsFound/NoResultsFound";
 
 export default function ProductPage() {
   const { productList, currentPark, currentSort, searchQuery } = useSelector(
@@ -115,8 +116,6 @@ export default function ProductPage() {
     return () => obs.disconnect();
   }, [isLoading, filteredProducts.length]);
 
-  if (isError) return <div>Error loading products...</div>;
-
   const styles = {
     productContent: {
       position: "relative",
@@ -148,6 +147,25 @@ export default function ProductPage() {
       willChange: "transform, opacity",
     }),
   };
+
+  if (isError) {
+    return (
+      <div className="product">
+        <SideBar />
+        <div className="product-content" style={styles.productContent}>
+          <Header />
+          <div style={styles.centerPane}>
+            <NoResultsFound
+              searchQuery=""
+              currentPark=""
+              currentSort=""
+              onClearFilters={null}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="product">
