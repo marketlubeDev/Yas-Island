@@ -6,6 +6,7 @@ import Footer from "../../../layouts/Footer/Footer";
 import { hotels as dummyHotels } from "../../../data/dummyAll";
 
 import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
+import ErrorDisplay from "../../../components/ErrorDisplay/ErrorDisplay";
 export default function PackagesPage() {
   const [footerVisible, setFooterVisible] = useState(false);
   const containerRef = useRef(null);
@@ -134,7 +135,14 @@ export default function PackagesPage() {
             style={{ backgroundColor: "transparent", padding: 0 }}
           >
             {iframeError ? (
-              <UpcomingPages />
+              <ErrorDisplay
+                title={"Unable to load packages"}
+                message={
+                  "We couldn't load the packages content. Please try again or check your connection."
+                }
+                onRetry={retryIframeLoad}
+                showRetryButton
+              />
             ) : (
               <iframe
                 title="Static Content"

@@ -5,6 +5,7 @@ import Header from "../../../layouts/Header/Header";
 import Footer from "../../../layouts/Footer/Footer";
 import { hotels as dummyHotels } from "../../../data/dummyAll";
 import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
+import ErrorDisplay from "../../../components/ErrorDisplay/ErrorDisplay";
 
 export default function DiningPage() {
   const [footerVisible, setFooterVisible] = useState(false);
@@ -134,7 +135,14 @@ export default function DiningPage() {
             style={{ backgroundColor: "transparent", padding: 0 }}
           >
             {iframeError ? (
-              <UpcomingPages />
+              <ErrorDisplay
+                title={"Unable to load dining"}
+                message={
+                  "We couldn't load the dining content. Please try again or check your connection."
+                }
+                onRetry={retryIframeLoad}
+                showRetryButton
+              />
             ) : (
               <iframe
                 title="Static Content"

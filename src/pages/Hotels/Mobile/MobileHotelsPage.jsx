@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
+import ErrorDisplay from "../../../components/ErrorDisplay/ErrorDisplay";
 
 export default function MobileHotelsPage() {
   const iframeRef = useRef(null);
@@ -75,7 +76,14 @@ export default function MobileHotelsPage() {
       <MobileTop className="mobile-topnav" />
       <div className="packages-page" style={{ padding: 0 }}>
         {iframeError ? (
-          <UpcomingPages />
+          <ErrorDisplay
+            title={"Unable to load hotels"}
+            message={
+              "We couldn't load the hotels content. Please try again or check your connection."
+            }
+            onRetry={retryIframeLoad}
+            showRetryButton
+          />
         ) : (
           <iframe
             title="Static Content"

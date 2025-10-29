@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import MobileTop from "../../Home/MobileComponents/MobileTop";
 import MobileBottomNav from "../../Home/MobileComponents/MobilebottomNav";
 import UpcomingPages from "../../Upcoming/Desktop/UpcomingPages";
+import ErrorDisplay from "../../../components/ErrorDisplay/ErrorDisplay";
 
 export default function PackagesMobilePage() {
   const iframeRef = useRef(null);
@@ -74,8 +75,15 @@ export default function PackagesMobilePage() {
     <>
       <MobileTop className="mobile-topnav" />
       <div className="packages-page" style={{ padding: 0 }}>
-        {iframeError ? (
-          <UpcomingPages />
+        {!iframeError ? (
+          <ErrorDisplay
+            title={"Unable to load packages"}
+            message={
+              "We couldn't load the packages content. Please try again or check your connection."
+            }
+            onRetry={retryIframeLoad}
+            showRetryButton
+          />
         ) : (
           <iframe
             title="Static Content"
