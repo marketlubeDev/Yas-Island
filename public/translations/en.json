@@ -39,6 +39,12 @@
     "clearFilters": "Clear Filters",
     "exploreAll": "Explore All Attractions"
   },
+  "error": {
+    "title": "Oops! Something Went Wrong",
+    "message": "We Encountered An Error While Loading The Products. This Could Be Due To A Network Issue Or Server Problem.",
+    "suggestions": "Please Try Refreshing The Page Or Check Your Internet Connection. If The Problem Persists, Contact Our Support Team.",
+    "retry": "Try Again"
+  },
   "accessibility": {
     "title": "Accessibility",
     "subtitle": "Choose Options",

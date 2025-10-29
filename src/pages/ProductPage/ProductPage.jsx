@@ -7,7 +7,7 @@ import useGetProductList from "../../apiHooks/product/product";
 import Loader from "../../components/Loading/Loader";
 import Header from "../../layouts/Header/Header";
 import Footer from "../../layouts/Footer/Footer";
-import NoResultsFound from "../../components/NoResultsFound/NoResultsFound";
+import ErrorDisplay from "../../components/ErrorDisplay/ErrorDisplay";
 
 export default function ProductPage() {
   const { productList, currentPark, currentSort, searchQuery } = useSelector(
@@ -23,7 +23,7 @@ export default function ProductPage() {
   const [isAccessibilityModalOpen, setIsAccessibilityModalOpen] =
     useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
-  const { isLoading, isError } = useGetProductList();
+  const { isLoading, isError, refetch } = useGetProductList();
 
   const containerRef = useRef(null);
   const sentinelRef = useRef(null);
@@ -155,12 +155,7 @@ export default function ProductPage() {
         <div className="product-content" style={styles.productContent}>
           <Header />
           <div style={styles.centerPane}>
-            <NoResultsFound
-              searchQuery=""
-              currentPark=""
-              currentSort=""
-              onClearFilters={null}
-            />
+            <ErrorDisplay onRetry={refetch} showRetryButton={true} />
           </div>
         </div>
       </div>

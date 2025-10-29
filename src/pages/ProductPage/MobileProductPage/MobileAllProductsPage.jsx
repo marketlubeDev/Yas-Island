@@ -28,8 +28,6 @@ export default function MobileAllProductsPage() {
       .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
   }, []);
 
-  console.log(allDummyProducts, "askhgdkasgkgskdgaks");
-
   useEffect(() => {
     const handleScroll = () => {
       const container = scrollContainerRef.current;

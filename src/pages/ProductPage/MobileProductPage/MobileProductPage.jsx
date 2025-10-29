@@ -5,6 +5,7 @@ import MobileTop from "../../Home/MobileComponents/MobileTop";
 import AttractionsListMbl from "./Components/AttractionsListMbl";
 import { useSelector } from "react-redux";
 import useGetProductList from "../../../apiHooks/product/product";
+import ErrorDisplay from "../../../components/ErrorDisplay/ErrorDisplay";
 
 function MobileProductPage() {
   const productList = useSelector((state) => state.product.allProducts);
@@ -12,7 +13,7 @@ function MobileProductPage() {
   const currentSort = useSelector((state) => state.product.currentSort);
   const searchQuery = useSelector((state) => state.product.searchQuery);
 
-  const { isLoading, isError } = useGetProductList();
+  const { isLoading, isError, refetch } = useGetProductList();
 
   // State for bottom nav visibility
   const [showBottomNav, setShowBottomNav] = useState(true);
@@ -115,6 +116,18 @@ function MobileProductPage() {
       return () => container.removeEventListener("scroll", handleScroll);
     }
   }, []);
+
+  if (isError) {
+    return (
+      <div className="mobile-product-page">
+        <MobileTop className="mobile-topnav" />
+        <div className="mobile-content" ref={scrollContainerRef}>
+          <ErrorDisplay onRetry={refetch} showRetryButton={true} />
+        </div>
+        <MobileBottomNav isVisible={showBottomNav} />
+      </div>
+    );
+  }
 
   return (
     <div className="mobile-product-page">
