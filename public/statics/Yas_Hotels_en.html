@@ -817,7 +817,7 @@
       <section class="restaurants-explore">
         <div class="explore-header">
           <h1 class="explore-title">EXPLORE OUR HOTELS</h1>
-          <div class="explore-subtitle">43 hotels</div>
+          <div class="explore-subtitle">43 HOTELS</div>
         </div>
 
         <div class="cards-grid">
@@ -3755,7 +3755,7 @@
 
       // Ensure we render 54 cards even if the dataset above is partial
       (function ensureFiftyFour() {
-        const TARGET = 54;
+        const TARGET = 43;
         if (
           Array.isArray(restaurantsData) &&
           restaurantsData.length < TARGET &&
@@ -3902,7 +3902,7 @@
           grid.appendChild(createCardNode(item));
         });
         if (subtitle) {
-          subtitle.textContent = `${data.length} restaurants`;
+          subtitle.textContent = `${data.length} hotels`;
         }
       }
 
