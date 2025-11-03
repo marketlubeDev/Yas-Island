@@ -7,7 +7,7 @@ function MobileTop({ className }) {
   const location = useLocation();
 
   // Routes where search section should be hidden
-  const hideSearchRoutes = ["/packages", "/hotels", "/dining"];
+  const hideSearchRoutes = ["/packages", "/hotels", "/dining", "/events"];
   const shouldHideSearch = hideSearchRoutes.includes(location.pathname);
 
   return (
