@@ -33,6 +33,7 @@ function MobileNavigationTabs() {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActive, setIsActive] = useState("");
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
   const listRef = useRef(null);
   const isRTL = (i18n && i18n.dir && i18n.dir() === "rtl") ||
     (typeof document !== "undefined" && document.dir === "rtl");
@@ -53,6 +54,14 @@ function MobileNavigationTabs() {
       setIsActive("attractions");
     }
   }, [pathname]);
+
+  // Track small devices (e.g., iPhone SE width <= 375px)
+  useEffect(() => {
+    const updateIsSmall = () => setIsSmallDevice(window.innerWidth <= 375);
+    updateIsSmall();
+    window.addEventListener("resize", updateIsSmall);
+    return () => window.removeEventListener("resize", updateIsSmall);
+  }, []);
 
   const allIconSrc = isDarkMode ? allIconInverter : allIcon;
   const allIconSrcActive = isDarkMode ? allIconInverter : allIconHighContrast;
@@ -152,7 +161,11 @@ function MobileNavigationTabs() {
     <div
       className="mobile-top"
       ref={listRef}
-      style={isRTL ? { paddingRight: "1rem", paddingLeft: 0 } : { paddingLeft: "1rem", paddingRight: 0 }}
+      style={
+        isRTL
+          ? { paddingRight: isSmallDevice ? "3rem" : "1rem", paddingLeft: 0 }
+          : { paddingLeft: isSmallDevice ? "3rem" : "1rem", paddingRight: 0 }
+      }
     >
       {navigationItems.map((item, index) => (
         <div
