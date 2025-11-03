@@ -34,6 +34,8 @@ function MobileNavigationTabs() {
   const pathname = location.pathname;
   const [isActive, setIsActive] = useState("");
   const [isSmallDevice, setIsSmallDevice] = useState(false);
+  const zoomLevel = useSelector((state) => state.accessibility && state.accessibility.zoomLevel);
+  const [isZoom1x, setIsZoom1x] = useState(true);
   const listRef = useRef(null);
   const isRTL = (i18n && i18n.dir && i18n.dir() === "rtl") ||
     (typeof document !== "undefined" && document.dir === "rtl");
@@ -62,6 +64,22 @@ function MobileNavigationTabs() {
     window.addEventListener("resize", updateIsSmall);
     return () => window.removeEventListener("resize", updateIsSmall);
   }, []);
+
+  // Track zoom level (1x only). Prefer Redux value; fallback to CSS var --zoom-scale
+  useEffect(() => {
+    const computeIsZoom1x = () => {
+      if (zoomLevel === 1 || zoomLevel === "1") return true;
+      if (zoomLevel != null) return false;
+      const root = document.documentElement;
+      const scaleRaw = getComputedStyle(root).getPropertyValue("--zoom-scale").trim();
+      const scale = parseFloat(scaleRaw || "1");
+      return Math.abs(scale - 1) < 0.01;
+    };
+    setIsZoom1x(computeIsZoom1x());
+    const onStorage = () => setIsZoom1x(computeIsZoom1x());
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [zoomLevel]);
 
   const allIconSrc = isDarkMode ? allIconInverter : allIcon;
   const allIconSrcActive = isDarkMode ? allIconInverter : allIconHighContrast;
@@ -163,8 +181,8 @@ function MobileNavigationTabs() {
       ref={listRef}
       style={
         isRTL
-          ? { paddingRight: isSmallDevice ? "3rem" : "1rem", paddingLeft: 0 }
-          : { paddingLeft: isSmallDevice ? "3rem" : "1rem", paddingRight: 0 }
+          ? { paddingRight: isSmallDevice && isZoom1x ? "3rem" : "0", paddingLeft: 0 }
+          : { paddingLeft: isSmallDevice && isZoom1x ? "3rem" : "0", paddingRight: 0 }
       }
     >
       {navigationItems.map((item, index) => (
