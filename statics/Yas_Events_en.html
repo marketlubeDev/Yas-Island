@@ -255,9 +255,9 @@
           font-size: 1.75rem;
         }
 
-        .card-image {
+        /* .card-image {
           height: 250px;
-        }
+        } */
       }
 
       @media (max-width: 640px) {
@@ -292,36 +292,13 @@
 
       .card-image {
         position: relative;
-        height: 318px;
-        background-size: cover;
-        background-position: center;
         border-radius: 1rem;
-        background-repeat: no-repeat;
       }
 
-      /* Media Queries for different screen sizes */
-      @media (min-width: 1500px) and (max-width: 1650px) {
-        .card-image {
-          height: 280px;
-        }
-      }
-
-      @media (min-width: 1400px) and (max-width: 1500px) {
-        .card-image {
-          height: 330px;
-        }
-      }
-
-      @media (min-width: 1200px) and (max-width: 1400px) {
-        .card-image {
-          height: 240px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .card-image {
-          height: 200px;
-        }
+      .card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
       .fav {
@@ -2244,7 +2221,12 @@
               const imgDiv = document.createElement("div");
               imgDiv.className = "card-image";
               const src = getFirstImageSrc(item);
-              if (src) imgDiv.style.backgroundImage = `url('${src}')`;
+              if (src) {
+                const imgEl = document.createElement("img");
+                imgEl.src = src;
+                imgEl.alt = item.title || item.Title || "";
+                imgDiv.appendChild(imgEl);
+              }
 
               const body = document.createElement("div");
               body.className = "card-body";
