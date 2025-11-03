@@ -75,7 +75,7 @@ export default function PackagesMobilePage() {
     <>
       <MobileTop className="mobile-topnav" />
       <div className="packages-page" style={{ padding: 0 }}>
-        {!iframeError ? (
+        {iframeError ? (
           <ErrorDisplay
             title={"Unable to load packages"}
             message={
