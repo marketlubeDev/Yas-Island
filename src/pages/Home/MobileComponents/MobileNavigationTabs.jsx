@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
@@ -17,11 +17,14 @@ import hotelsIconHighContrast from "../../../assets/icons/hotelsIconHighContrast
 import diningIcon from "../../../assets/icons/chef.svg";
 import diningIconInverter from "../../../assets/icons/invertedchef.svg";
 import diningIconHighContrast from "../../../assets/icons/diningIconHighContrast.svg";
+import camera from "../../../assets/icons/cam.svg";
+import cameraIconHighContrast from "../../../assets/icons/cameraIconHighContrast.svg";
+import cameraIconInverter from "../../../assets/icons/cameraIconInverter.svg";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function MobileNavigationTabs() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const isHighContrast = useSelector(
@@ -30,6 +33,9 @@ function MobileNavigationTabs() {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActive, setIsActive] = useState("");
+  const listRef = useRef(null);
+  const isRTL = (i18n && i18n.dir && i18n.dir() === "rtl") ||
+    (typeof document !== "undefined" && document.dir === "rtl");
 
   useEffect(() => {
     if (pathname === "/all") {
@@ -40,6 +46,9 @@ function MobileNavigationTabs() {
       setIsActive("hotels");
     } else if (pathname === "/dining") {
       setIsActive("dining");
+    }
+    else if (pathname === "/events") {
+      setIsActive("events");
     } else {
       setIsActive("attractions");
     }
@@ -66,6 +75,8 @@ function MobileNavigationTabs() {
   const diningIconSrcActive = isDarkMode
     ? diningIconInverter
     : diningIconHighContrast;
+  const eventsIconSrc = isDarkMode ? cameraIconInverter : camera;
+  const eventsIconSrcActive = isDarkMode ? cameraIconInverter : cameraIconHighContrast;
   const navigationItems = [
     {
       key: "all",
@@ -107,19 +118,67 @@ function MobileNavigationTabs() {
       alt: t("sidebar.dining"),
       link: "/dining",
     },
+    {
+      key: "events",
+      icon: eventsIconSrc,
+      activeIcon: eventsIconSrcActive,
+      label: t("sidebar.events"),
+      alt: t("sidebar.events"),
+      link: "/events",
+    },
   ];
 
+
+  useEffect(() => {
+    const activeIndex = navigationItems.findIndex((i) => i.key === isActive);
+    const itemEl = document.getElementById(`mobile-top-item-${activeIndex}`);
+    if (itemEl) {
+      const isFirst = activeIndex <= 0;
+      const isLast = activeIndex >= navigationItems.length - 1;
+      const inlineAlign = isFirst
+        ? (isRTL ? "end" : "start")
+        : isLast
+        ? (isRTL ? "start" : "end")
+        : "center";
+      itemEl.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: inlineAlign,
+      });
+    }
+  }, [isActive, isRTL]);
+
   return (
-    <div className="mobile-top">
+    <div
+      className="mobile-top"
+      ref={listRef}
+      style={isRTL ? { paddingRight: "1rem", paddingLeft: 0 } : { paddingLeft: "1rem", paddingRight: 0 }}
+    >
       {navigationItems.map((item, index) => (
         <div
           key={item.key}
+          id={`mobile-top-item-${index}`}
           className={`mobile-top__item ${
             item.key === isActive ? "mobile-top__item--active" : ""
           }`}
           onClick={() => {
             setIsActive(item.key);
             navigate(item.link);
+            const isFirst = index <= 0;
+            const isLast = index >= navigationItems.length - 1;
+            const itemEl = document.getElementById(`mobile-top-item-${index}`);
+            if (itemEl) {
+              const inlineAlign = isFirst
+                ? (isRTL ? "end" : "start")
+                : isLast
+                ? (isRTL ? "start" : "end")
+                : "center";
+              itemEl.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: inlineAlign,
+              });
+            }
           }}
         >
           <img
