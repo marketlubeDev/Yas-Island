@@ -288,7 +288,15 @@ export default function PaymentDetails({ isCheckout }) {
 
     const createOrderData = () => {
       const data = {
-        coupons: [],
+        coupons:
+          checkout?.coupons && checkout?.coupons.length > 0
+            ? checkout.coupons
+                .map((c) => c?.couponCode || c?.code)
+                .filter(Boolean)
+                .map((code) => ({ couponCode: code }))
+            : checkout?.promoCode
+            ? [{ couponCode: checkout.promoCode }]
+            : [],
         items: checkout?.items.map((item) => ({
           productId: item.productId,
           quantity: item.quantity,
