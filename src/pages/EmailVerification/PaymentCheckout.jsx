@@ -17,6 +17,7 @@ export default function PaymentCheckout() {
   return (
     <div className="payment-checkout-page">
       <Header />
+      {/* edited */}
       <PaymentCheckoutBody />
     </div>
   );
