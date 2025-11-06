@@ -731,6 +731,42 @@
         color: #0b0c0c;
       }
 
+      .card-title .card-rating {
+        display: block !important;
+        margin: 0.35rem 0 0 0;
+      }
+
+      /* Rating Stars */
+      .card-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 0.25rem;
+      }
+      .card-rating .stars {
+        display: inline-flex;
+        gap: 4px;
+        line-height: 1;
+      }
+      .card-rating .star {
+        color: #d8d8d8;
+        font-size: 1rem;
+      }
+      .card-rating .star.filled {
+        color: #67757c;
+      }
+      .card-rating .rating-number {
+        color: #0b0c0c;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .card-rating svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+        shape-rendering: geometricPrecision;
+      }
+
       .card-desc {
         color: #666;
         line-height: 1.5;
@@ -772,6 +808,29 @@
         text-decoration: none;
       }
 
+      /* Actions row: left Book button, right Know More link */
+      .card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .card-more {
+        color: #0b0c0c;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .card-more svg {
+        width: 14px;
+        height: 14px;
+        display: block;
+      }
+
       /* Dark mode overrides for explore section */
       @media (prefers-color-scheme: dark) {
         .explore-title {
@@ -808,6 +867,9 @@
           background: #0b0c0c;
           border-color: #333333;
           color: #eeeeee;
+        }
+        .card-rating .rating-number {
+          color: #ffffff;
         }
       }
     </style>
@@ -966,7 +1028,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-hyatt-abu-dhabi-hotel-and-villas",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-hyatt-abu-dhabi-hotel-and-villas",
+            "https://www.yasisland.com/ar/hotels/park-hyatt-abu-dhabi-hotel-and-villas",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/DFBC2B93-0B45-4124-9B54-76BE268D27AE/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1030,8 +1092,7 @@
           uri: "sitecore://database/web/ItemId/63D1C358-094A-4B39-BA8C-E76915472BE7/Language/ar-AE/Version/4",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/le-meridien",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/le-meridien",
+          clickUri: "https://www.yasisland.com/ar/hotels/le-meriedien",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/63D1C358-094A-4B39-BA8C-E76915472BE7/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1097,7 +1158,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/pearl-rotana-capital-centre",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/pearl-rotana-capital-centre",
+            "https://www.yasisland.com/ar/hotels/pearl-rotana-capital-centre",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/7D2C9F3A-D7CE-42E1-A695-59604B854D1E/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1163,7 +1224,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/ramada-by-wyndham-abu-dhabi-corniche",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/ramada-by-wyndham-abu-dhabi-corniche",
+            "https://www.yasisland.com/ar/hotels/ramada-by-wyndham-abu-dhabi-corniche",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/E38473BB-1BAF-485D-BEE8-3D94CB0DB30A/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1229,7 +1290,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/tryp-by-wyndham-abu-dhabi-city-center",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/tryp-by-wyndham-abu-dhabi-city-center",
+            "https://www.yasisland.com/ar/hotels/tryp-by-wyndham-abu-dhabi-city-center",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/A8E40864-68D6-4E39-842E-380A79416182/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1293,8 +1354,7 @@
           uri: "sitecore://database/web/ItemId/0B60C388-79FE-462D-8E9E-760D8A1F079F/Language/ar-AE/Version/3",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/sheraton-abu-dhabi",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/sheraton-abu-dhabi",
+          clickUri: "https://www.yasisland.com/ar/hotels/sheraton-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/0B60C388-79FE-462D-8E9E-760D8A1F079F/Language/ar-AE/Version/3",
           excerpt: "",
@@ -1359,7 +1419,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/grand-millennium-al-wahda",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/grand-millennium-al-wahda",
+            "https://www.yasisland.com/ar/hotels/grand-millennium-al-wahda",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/DB07D900-74B8-4056-B464-098E89FB4437/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1424,8 +1484,7 @@
           uri: "sitecore://database/web/ItemId/FACDE7E5-88A9-4B3F-8B23-8578F9125E36/Language/ar-AE/Version/4",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/royal-rose-abu-dhabi",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/royal-rose-abu-dhabi",
+          clickUri: "https://www.yasisland.com/ar/hotels/royal-rose-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/FACDE7E5-88A9-4B3F-8B23-8578F9125E36/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1490,7 +1549,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/khalidiya-palace-rayhaan",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/khalidiya-palace-rayhaan",
+            "https://www.yasisland.com/ar/hotels/khalidiya-palace-rayhaan",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/E6B40C86-6FF0-4CF4-BB63-0B12FCF3E0C5/Language/ar-AE/Version/3",
           excerpt: "",
@@ -1555,8 +1614,7 @@
           uri: "sitecore://database/web/ItemId/64101D7C-3545-4409-B4E1-3C3F081C08C0/Language/ar-AE/Version/4",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/bab-al-qasr-hotel",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/bab-al-qasr-hotel",
+          clickUri: "https://www.yasisland.com/ar/hotels/bab-al-qasr-hotel",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/64101D7C-3545-4409-B4E1-3C3F081C08C0/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1622,7 +1680,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/conrad-abu-dhabi-etihad-towers",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/conrad-abu-dhabi-etihad-towers",
+            "https://www.yasisland.com/ar/hotels/conrad-abu-dhabi-etihad-towers",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/FA2FB9A9-2E3F-47E0-9B84-1F5EE681B95E/Language/ar-AE/Version/4",
           excerpt: "",
@@ -1687,7 +1745,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/city-seasons-al-hamra-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/city-seasons-al-hamra-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/city-seasons-al-hamra-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/ABCF395B-5CDC-4336-AD66-70A3E159CDF8/Language/ar-AE/Version/6",
           excerpt: "",
@@ -1751,8 +1809,7 @@
           uri: "sitecore://database/web/ItemId/444F72BF-064C-4921-92BC-B50C0855F767/Language/ar-AE/Version/6",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/rixosmarina",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/rixosmarina",
+          clickUri: "https://www.yasisland.com/ar/hotels/rixosmarina",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/444F72BF-064C-4921-92BC-B50C0855F767/Language/ar-AE/Version/6",
           excerpt: "",
@@ -1816,7 +1873,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/beach-rotana-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/beach-rotana-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/beach-rotana-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/7DE53340-BC4B-4C98-996A-120DF4C3F0CC/Language/ar-AE/Version/5",
           excerpt: "",
@@ -1881,8 +1938,7 @@
           uri: "sitecore://database/web/ItemId/4C7F70F5-8AAB-4961-B73D-02906C6B3124/Language/ar-AE/Version/7",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/southern-sun",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/southern-sun",
+          clickUri: "https://www.yasisland.com/ar/hotels/southern-sun",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/4C7F70F5-8AAB-4961-B73D-02906C6B3124/Language/ar-AE/Version/7",
           excerpt: "",
@@ -1946,7 +2002,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/vogo-abu-dhabi-golf-resort-and-spa",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/vogo-abu-dhabi-golf-resort-and-spa",
+            "https://www.yasisland.com/ar/hotels/vogo-abu-dhabi-golf-resort-and-spa",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/EEF73B4F-188B-492D-A94D-6CBDF25B8727/Language/ar-AE/Version/6",
           excerpt: "",
@@ -2012,7 +2068,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/traders-qaryat-al-beri",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/traders-qaryat-al-beri",
+            "https://www.yasisland.com/ar/hotels/traders-qaryat-al-beri",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/718C683B-C21C-4A07-8EEA-D16090061AA6/Language/ar-AE/Version/6",
           excerpt: "",
@@ -2075,8 +2131,7 @@
           uri: "sitecore://database/web/ItemId/6D4B2D51-60A0-4DB1-9177-B457DD753A01/Language/ar-AE/Version/5",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-rotana",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-rotana",
+          clickUri: "https://www.yasisland.com/ar/hotels/park-rotana",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/6D4B2D51-60A0-4DB1-9177-B457DD753A01/Language/ar-AE/Version/5",
           excerpt: "",
@@ -2142,7 +2197,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/marriot-hotel-downtown-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/marriot-hotel-downtown-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/marriot-hotel-downtown-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/1F80AB06-E7FF-4906-BEEA-1D51B01DBD13/Language/ar-AE/Version/4",
           excerpt: "",
@@ -2208,7 +2263,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/le-royal-meridien-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/le-royal-meridien-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/le-royal-meridien-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/E6131B5D-A6A2-447A-9AB5-BCB1B4644722/Language/ar-AE/Version/6",
           excerpt: "",
@@ -2271,8 +2326,7 @@
           uri: "sitecore://database/web/ItemId/25524DA1-6A59-4E89-8EA9-D4421214D117/Language/ar-AE/Version/5",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/jannahalarab",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/jannahalarab",
+          clickUri: "https://www.yasisland.com/ar/hotels/jannahalarab",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/25524DA1-6A59-4E89-8EA9-D4421214D117/Language/ar-AE/Version/5",
           excerpt: "",
@@ -2336,8 +2390,7 @@
           uri: "sitecore://database/web/ItemId/5EB06EEB-0CEF-49AA-9F74-6F84BF0F20C8/Language/ar-AE/Version/6",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/emirates-palace",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/emirates-palace",
+          clickUri: "https://www.yasisland.com/ar/hotels/emirates-palace",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/5EB06EEB-0CEF-49AA-9F74-6F84BF0F20C8/Language/ar-AE/Version/6",
           excerpt: "",
@@ -2401,8 +2454,7 @@
           uri: "sitecore://database/web/ItemId/174439C2-8BC1-4D3C-BC8F-0775F0FD78B5/Language/ar-AE/Version/7",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/courtyard-by-marriott",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/courtyard-by-marriott",
+          clickUri: "https://www.yasisland.com/ar/hotels/courtyard-by-marriott",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/174439C2-8BC1-4D3C-BC8F-0775F0FD78B5/Language/ar-AE/Version/7",
           excerpt: "",
@@ -2467,8 +2519,7 @@
           uri: "sitecore://database/web/ItemId/B2C9B4B5-2190-4E62-8DAF-EAA6CAF5102E/Language/ar-AE/Version/5",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/andaz-capital-gate",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/andaz-capital-gate",
+          clickUri: "https://www.yasisland.com/ar/hotels/andaz-capital-gate",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/B2C9B4B5-2190-4E62-8DAF-EAA6CAF5102E/Language/ar-AE/Version/5",
           excerpt: "",
@@ -2532,8 +2583,7 @@
           uri: "sitecore://database/web/ItemId/27657ED1-89BA-486F-B662-8BB85283B9BD/Language/ar-AE/Version/3",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/al-raha-beach-hotel",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/al-raha-beach-hotel",
+          clickUri: "https://www.yasisland.com/ar/hotels/al-raha-beach-hotel",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/27657ED1-89BA-486F-B662-8BB85283B9BD/Language/ar-AE/Version/3",
           excerpt: "",
@@ -2597,8 +2647,7 @@
           uri: "sitecore://database/web/ItemId/76F6186D-D560-4A1E-AF58-73A2FF80C0AF/Language/ar-AE/Version/2",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/st-regis-saadiyat",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/st-regis-saadiyat",
+          clickUri: "https://www.yasisland.com/ar/hotels/st-regis-saadiyat",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/76F6186D-D560-4A1E-AF58-73A2FF80C0AF/Language/ar-AE/Version/2",
           excerpt: "",
@@ -2663,7 +2712,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/rixos-premium-saadiyat-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/rixos-premium-saadiyat-island",
+            "https://www.yasisland.com/ar/hotels/rixos-premium-saadiyat-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/06EC0865-F88E-45DC-B081-7EB0FC959260/Language/ar-AE/Version/3",
           excerpt: "",
@@ -2728,7 +2777,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/jumeirah-at-saadiyat-island-resort",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/jumeirah-at-saadiyat-island-resort",
+            "https://www.yasisland.com/ar/hotels/jumeirah-at-saadiyat-island-resort",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/48781185-10AF-47CA-A498-506952EE6CA1/Language/ar-AE/Version/4",
           excerpt: "",
@@ -2793,7 +2842,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/saadiyat-rotana-resort-and-villas",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/saadiyat-rotana-resort-and-villas",
+            "https://www.yasisland.com/ar/hotels/saadiyat-rotana-resort-and-villas",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/C589C7F9-B20B-4E47-8012-EF04BF44A408/Language/ar-AE/Version/15",
           excerpt: "",
@@ -2858,7 +2907,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/the-ritz-carlton-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/the-ritz-carlton-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/the-ritz-carlton-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/D4224202-4192-4A6B-BBE8-D586B0165239/Language/ar-AE/Version/5",
           excerpt: "",
@@ -2921,9 +2970,8 @@
           title: "فيرمونت باب البحر أبو ظبي",
           uri: "sitecore://database/web/ItemId/2A61C739-E5AB-40B1-AA90-602A6D8BF41A/Language/ar-AE/Version/5",
           printableUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/fairmont-bab-al-bahr",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/fairmont-bab-al-bahr",
+            "https://www.yasisland.com/ar/hotels/fairmont-bab-al-bahr",
+          clickUri: "https://www.yasisland.com/ar/hotels/fairmont-bab-al-bahr",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/2A61C739-E5AB-40B1-AA90-602A6D8BF41A/Language/ar-AE/Version/5",
           excerpt: "",
@@ -2988,7 +3036,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/marriott-al-forsan-abu-dhabi",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/marriott-al-forsan-abu-dhabi",
+            "https://www.yasisland.com/ar/hotels/marriott-al-forsan-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/1612BFB1-C418-4A59-98E3-D38419A7F41D/Language/ar-AE/Version/5",
           excerpt: "",
@@ -3052,8 +3100,7 @@
           uri: "sitecore://database/web/ItemId/B99AE88B-4DC4-4A4B-BEC2-822E7A3DC20A/Language/ar-AE/Version/5",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/dusit-thani",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/dusit-thani",
+          clickUri: "https://www.yasisland.com/ar/hotels/dusit-thani",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/B99AE88B-4DC4-4A4B-BEC2-822E7A3DC20A/Language/ar-AE/Version/5",
           excerpt: "",
@@ -3118,7 +3165,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/staybridge-suites-abu-dhabi---yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/staybridge-suites-abu-dhabi---yas-island",
+            "https://www.yasisland.com/ar/hotels/staybridge-suites-abu-dhabi---yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/1953759B-A430-4178-92C4-CBC0BC6C6A61/Language/ar-AE/Version/4",
           excerpt: "",
@@ -3183,7 +3230,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/yas-island-rotana",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/yas-island-rotana",
+            "https://www.yasisland.com/ar/hotels/yas-island-rotana",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/5D41E0F7-B986-4108-A580-7A2FBA96A05C/Language/ar-AE/Version/4",
           excerpt: "",
@@ -3247,7 +3294,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/centro-yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/centro-yas-island",
+            " https://www.yasisland.com/ar/hotels/centro-yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/E87A236F-4271-4B1F-9D9B-3AD2DFA5C3BE/Language/ar-AE/Version/5",
           excerpt: "",
@@ -3311,7 +3358,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/radisson-blu-abu-dhabi-yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/radisson-blu-abu-dhabi-yas-island",
+            "https://www.yasisland.com/ar/hotels/radisson-blu-abu-dhabi-yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/4F9EB3B7-2595-4071-A75A-EC0FABB72D1D/Language/ar-AE/Version/3",
           excerpt: "",
@@ -3377,7 +3424,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-inn-by-radisson-abu-dhabi-yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/park-inn-by-radisson-abu-dhabi-yas-island",
+            "https://www.yasisland.com/ar/hotels/park-inn-by-radisson-abu-dhabi-yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/C6CCC046-9BC1-44EA-BD97-0144192BAFE9/Language/ar-AE/Version/3",
           excerpt: "",
@@ -3442,8 +3489,7 @@
           uri: "sitecore://database/web/ItemId/2E4B18C4-8334-4282-B56A-BF8FD89176F6/Language/ar-AE/Version/6",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/doubletree-hotel",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/doubletree-hotel",
+          clickUri: "https://www.yasisland.com/ar/hotels/doubletree-hotel",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/2E4B18C4-8334-4282-B56A-BF8FD89176F6/Language/ar-AE/Version/6",
           excerpt: "",
@@ -3507,8 +3553,7 @@
           uri: "sitecore://database/web/ItemId/F109749A-6AD4-4AA3-9F3F-E2E87EBFA61A/Language/ar-AE/Version/4",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/hilton-abu-dhabi",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/hilton-abu-dhabi",
+          clickUri: "https://www.yasisland.com/ar/hotels/hilton-abu-dhabi",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/F109749A-6AD4-4AA3-9F3F-E2E87EBFA61A/Language/ar-AE/Version/4",
           excerpt: "",
@@ -3574,7 +3619,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/w-abu-dhabi---yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/w-abu-dhabi---yas-island",
+            "https://www.yasisland.com/ar/hotels/w-abu-dhabi---yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/0CBAEE0E-5483-45E8-8FED-39AF2092A959/Language/ar-AE/Version/3",
           excerpt: "",
@@ -3640,7 +3685,7 @@
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/crowne-plaza-yas-island",
           clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/crowne-plaza-yas-island",
+            "https://www.yasisland.com/ar/hotels/crowne-plaza-yas-island",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/14BD93D4-BE4C-4071-BF92-2533F6EF11C3/Language/ar-AE/Version/5",
           excerpt: "",
@@ -3705,8 +3750,7 @@
           uri: "sitecore://database/web/ItemId/721B0DEC-E0DC-4360-AFD9-9E875E3C35B9/Language/ar-AE/Version/4",
           printableUri:
             "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/warner-brothers-hotel",
-          clickUri:
-            "https://author.myconnect.ae/ar/yasisland/hotels/listing/hotels/warner-brothers-hotel",
+          clickUri: "https://www.yasisland.com/ar/hotels/warner-brothers-hotel",
           uniqueId:
             "42.65475$sitecore://database/web/ItemId/721B0DEC-E0DC-4360-AFD9-9E875E3C35B9/Language/ar-AE/Version/4",
           excerpt: "",
@@ -3826,6 +3870,41 @@
         }
       }
 
+      function buildRatingStars(rating) {
+        const container = document.createElement("div");
+        container.className = "card-rating";
+        container.style.display = "inline-flex";
+        const stars = document.createElement("span");
+        stars.className = "stars";
+        const full = Math.max(0, Math.min(5, parseInt(rating, 10) || 0));
+        function createStar(isFilled) {
+          const wrapper = document.createElement("span");
+          wrapper.className = "star" + (isFilled ? " filled" : "");
+          const svg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+          );
+          svg.setAttribute("viewBox", "0 0 24 24");
+          const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+          );
+          path.setAttribute(
+            "d",
+            "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.974 2.888a1 1 0 00-.364 1.118l1.518 4.674c.3.921-.755 1.688-1.538 1.118l-3.974-2.888a1 1 0 00-1.176 0l-3.974 2.888c-.783.57-1.838-.197-1.539-1.118l1.519-4.674a1 1 0 00-.365-1.118L2.079 10.1c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.518-4.674z"
+          );
+          path.setAttribute("fill", isFilled ? "currentColor" : "#d8d8d8");
+          svg.appendChild(path);
+          wrapper.appendChild(svg);
+          return wrapper;
+        }
+        for (let i = 1; i <= full; i++) {
+          stars.appendChild(createStar(true));
+        }
+        container.appendChild(stars);
+        return container;
+      }
+
       function createCardNode(item) {
         const title =
           (item.raw && item.raw.fmorepackagecardtitle32545) ||
@@ -3837,10 +3916,14 @@
         const img = getImageFromRaw(
           item.raw && item.raw.fmorepackagecardimages32545
         );
+        const ratingRaw = item.raw && item.raw.fmorepackagerating32545;
+        const rating = Math.max(0, Math.min(5, parseInt(ratingRaw, 10) || 0));
         const book = getLinkFromRaw(
-          item.raw &&
-            (item.raw.fmorepackagebooknowlink32545 ||
-              item.raw.fmorepackagelink32545),
+          item.raw && item.raw.fmorepackagebooknowlink32545,
+          item.clickUri || item.ClickUri || "#"
+        );
+        const knowMore = getLinkFromRaw(
+          item.raw && item.raw.fmorepackagelink32545,
           item.clickUri || item.ClickUri || "#"
         );
         // Localize CTA label if it's in English
@@ -3864,6 +3947,10 @@
         const h3 = document.createElement("h3");
         h3.className = "card-title";
         h3.textContent = titleAr;
+        if (rating > 0) {
+          const ratingEl = buildRatingStars(rating);
+          h3.appendChild(ratingEl);
+        }
         const p = document.createElement("p");
         p.className = "card-desc";
         if (descAr) {
@@ -3886,6 +3973,53 @@
         a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
         a.textContent = book.label || "اعرف المزيد";
 
+        // Right-side Know More link
+        const more = document.createElement("a");
+        more.className = "card-more";
+        more.href = knowMore.href || "#";
+        if (knowMore.target) more.target = knowMore.target;
+        more.rel = more.target === "_blank" ? "noopener noreferrer" : "";
+        const clickUrl = item.clickUri || item.ClickUri;
+        if (clickUrl) {
+          more.href = clickUrl;
+          more.target = "_blank";
+          more.rel = "noopener noreferrer";
+        }
+        const icon = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+        icon.setAttribute("viewBox", "0 0 24 24");
+        icon.setAttribute("aria-hidden", "true");
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", "5");
+        line.setAttribute("y1", "12");
+        line.setAttribute("x2", "19");
+        line.setAttribute("y2", "12");
+        line.setAttribute("stroke", "currentColor");
+        line.setAttribute("stroke-width", "2");
+        line.setAttribute("stroke-linecap", "round");
+        line.setAttribute("stroke-linejoin", "round");
+        const head = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "polyline"
+        );
+        head.setAttribute("points", "12 5 19 12 12 19");
+        head.setAttribute("fill", "none");
+        head.setAttribute("stroke", "currentColor");
+        head.setAttribute("stroke-width", "2");
+        head.setAttribute("stroke-linecap", "round");
+        head.setAttribute("stroke-linejoin", "round");
+        icon.appendChild(line);
+        icon.appendChild(head);
+        const moreText = document.createElement("span");
+        moreText.textContent = (knowMore.label || "اعرف المزيد").trim();
+        more.appendChild(icon);
+        more.appendChild(moreText);
+
         // Force "Book a Package" CTAs to open the official Hotels listing in a new tab
         const hasBookNow =
           (item.raw && item.raw.fmorepackagebooknowlink32545) ||
@@ -3896,10 +4030,15 @@
           a.rel = "noopener noreferrer";
         }
 
+        const actions = document.createElement("div");
+        actions.className = "card-actions";
+        actions.appendChild(a);
+        actions.appendChild(more);
+
         body.appendChild(h3);
         body.appendChild(p);
         body.appendChild(ul);
-        body.appendChild(a);
+        body.appendChild(actions);
 
         article.appendChild(imgDiv);
         article.appendChild(body);
