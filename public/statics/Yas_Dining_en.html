@@ -1150,7 +1150,7 @@
               '[{"desktopImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/restaurants2025/eln/elnlisting.jpg","html":""},"mobileImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/restaurants2025/eln/elnlisting.jpg","html":""},"tabletImage":{"src":"https://static.myconnect.ae/-/media/yasconnect/project/yasisland/restaurants2025/eln/elnlisting.jpg","html":""}}]',
             fz95xtemplatename32545: "Dine",
             fmorepackagebooknowlink32545:
-              '{"Html":"<a target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://ae.elnlondon.com/pages/yas-bay\'>View Restaurant</a>","Href":"https://ae.elnlondon.com/pages/yas-bay","Label":"View Restaurant","Title":"","Target":"_blank"}',
+              '{"Html":"<a target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://ae.elnlondon.com/pages/yas-bay\'>VIEW RESTAURANT</a>","Href":"https://ae.elnlondon.com/pages/yas-bay","Label":"View Restaurant","Title":"","Target":"_blank"}',
             flocation32545: "YAS BAY WATERFRONT, YAS ISLAND, ABU DHABI, UAE",
             fid32545: "88d7f118cf164ab4af2332d77a14fc58",
           },
@@ -4344,7 +4344,7 @@
           const link = JSON.parse(rawLink);
           return {
             href: toAbsoluteUrl(link.Href || link.href || fallbackHref || "#"),
-            label: (link.Label || "VIEW RESTAURANT").trim(),
+            label: (link.Label || "VIEW RESTAURANT").trim().toUpperCase(),
             target: link.Target || "_blank",
           };
         } catch (e) {
@@ -4354,7 +4354,7 @@
           );
           return {
             href: toAbsoluteUrl((m && m[1]) || fallbackHref || "#"),
-            label: (m && m[2]) || "VIEW RESTAURANT",
+            label: ((m && m[2]) || "VIEW RESTAURANT").toUpperCase(),
             target: "_blank",
           };
         }
@@ -4409,7 +4409,7 @@
         a.href = book.href || "#";
         a.target = book.target || "_blank";
         a.rel = "noopener noreferrer";
-        a.textContent = book.label || "VIEW RESTAURANT";
+        a.textContent = (book.label || "VIEW RESTAURANT").toUpperCase();
 
         body.appendChild(h3);
         body.appendChild(p);
