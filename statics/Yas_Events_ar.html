@@ -289,12 +289,23 @@
       .card-image {
         position: relative;
         border-radius: 1rem;
+        overflow: hidden;
       }
 
       .card-image img {
         width: 100%;
         height: auto;
         display: block;
+      }
+
+      .card-location {
+        display: block;
+        margin: 20px 0 0;
+        color: #6b7280;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
       /* Media Queries for different screen sizes */
@@ -316,7 +327,7 @@
       }
 
       .card-body {
-        padding: 1.25rem 0 1.25rem 0;
+        padding: 0.5rem 0 1.25rem 0;
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
@@ -603,6 +614,9 @@
           background: #0b0c0c;
           border-color: #333333;
           color: #eeeeee;
+        }
+        .card-location {
+          color: #a0a8b0 !important;
         }
       }
 
@@ -2200,6 +2214,14 @@
                 imgDiv.appendChild(imgEl);
               }
 
+              const locationLabel = item?.raw?.fmorepackagetagtype32545 || "";
+              let locationEl = null;
+              if (locationLabel) {
+                locationEl = document.createElement("div");
+                locationEl.className = "card-location";
+                locationEl.textContent = locationLabel;
+              }
+
               const body = document.createElement("div");
               body.className = "card-body";
 
@@ -2213,20 +2235,6 @@
 
               const ul = document.createElement("ul");
               ul.className = "card-meta";
-
-              // Venue with location pin icon
-              const liVenue = document.createElement("li");
-              const dotVenue = document.createElement("span");
-              dotVenue.className = "geo";
-              dotVenue.innerHTML =
-                '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
-              liVenue.appendChild(dotVenue);
-              liVenue.appendChild(
-                document.createTextNode(
-                  " " + (item?.raw?.fmorepackagetagtype32545 || "")
-                )
-              );
-              ul.appendChild(liVenue);
 
               // Date with calendar icon
               const liDate = document.createElement("li");
@@ -2252,10 +2260,13 @@
 
               body.appendChild(h3);
               body.appendChild(p);
-              body.appendChild(ul);
+              if (ul.childNodes.length) {
+                body.appendChild(ul);
+              }
               body.appendChild(a);
 
               article.appendChild(imgDiv);
+              if (locationEl) article.appendChild(locationEl);
               article.appendChild(body);
               return article;
             }

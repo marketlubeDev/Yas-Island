@@ -3945,14 +3945,16 @@
         const dot = document.createElement("span");
         dot.className = "geo";
         li.appendChild(dot);
-        li.appendChild(document.createTextNode(" " + location));
+        li.appendChild(
+          document.createTextNode(" " + String(location).toUpperCase())
+        );
         ul.appendChild(li);
         const a = document.createElement("a");
         a.className = "card-cta";
         a.href = book.href || "#";
         if (book.target) a.target = book.target;
         a.rel = a.target === "_blank" ? "noopener noreferrer" : "";
-        a.textContent = book.label || "BOOK A PACKAGE";
+        a.textContent = (book.label || "BOOK A PACKAGE").toUpperCase();
 
         // Right-side Know More link
         const more = document.createElement("a");
