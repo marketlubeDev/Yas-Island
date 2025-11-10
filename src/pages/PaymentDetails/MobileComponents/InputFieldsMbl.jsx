@@ -13,6 +13,7 @@ import {
   setCheckoutEmail,
   updatePersonalDetails,
 } from "../../../global/checkoutSlice";
+import { parsePhoneNumber } from "libphonenumber-js";
 
 // Import language files
 import enCountries from "i18n-iso-countries/langs/en.json";
@@ -472,8 +473,10 @@ function InputFieldsMbl() {
       lastName: !formData.lastName || formData.lastName.trim().length < 1,
       email:
         !formData.email || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-      phoneNumber:
-        String((formData.phoneNumber || "").replace(/\D/g, "")).length < 10,
+      phoneNumber: !validatePhoneNumberByCountry(
+        formData.phoneNumber,
+        formData.country
+      ),
       country: !formData.country,
       nationality: !formData.nationality,
     };
@@ -502,6 +505,54 @@ function InputFieldsMbl() {
       gi: "gb",
     };
     return m[iso] || iso || "ae";
+  };
+
+  // Validate phone number based on country using libphonenumber-js
+  const validatePhoneNumberByCountry = (phoneNumber, countryIso) => {
+    if (!phoneNumber || !countryIso) return false;
+
+    try {
+      // Normalize country ISO code for libphonenumber-js (needs uppercase)
+      const normalizedIso = normalizeIsoForDialCode(
+        (countryIso || "ae").toLowerCase()
+      ).toUpperCase();
+
+      // react-phone-input-2 provides the phone number with country code as digits
+      // e.g., "971501234567" for UAE number +971 50 123 4567
+      // libphonenumber-js needs "+" prefix for proper parsing
+      const phoneNumberStr = String(phoneNumber).trim();
+
+      // Add "+" prefix if not present (react-phone-input-2 provides digits only)
+      const formattedNumber = phoneNumberStr.startsWith("+")
+        ? phoneNumberStr
+        : `+${phoneNumberStr}`;
+
+      // Try to parse and validate the phone number
+      const parsedNumber = parsePhoneNumber(formattedNumber, normalizedIso);
+
+      if (!parsedNumber) return false;
+
+      // Validate the parsed number
+      const isValid = parsedNumber.isValid();
+
+      // Debug log for troubleshooting (can be removed in production)
+      if (process.env.NODE_ENV === "development") {
+        console.log("Phone Validation:", {
+          countryIso: normalizedIso,
+          phoneNumber: formattedNumber,
+          isValid,
+          formatted: parsedNumber.formatInternational(),
+        });
+      }
+
+      return isValid;
+    } catch (error) {
+      // If parsing fails, the number is invalid
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Phone validation error:", error);
+      }
+      return false;
+    }
   };
 
   const handleInputChange = (field) => (value) => {
@@ -574,8 +625,10 @@ function InputFieldsMbl() {
         email:
           !formData.email ||
           !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-        phoneNumber:
-          String((formData.phoneNumber || "").replace(/\D/g, "")).length < 10,
+        phoneNumber: !validatePhoneNumberByCountry(
+          formData.phoneNumber,
+          formData.country
+        ),
         country: !formData.country,
         nationality: !formData.nationality,
       };

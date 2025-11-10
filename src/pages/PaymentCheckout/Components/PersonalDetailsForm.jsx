@@ -15,6 +15,7 @@ import {
 import getTermsAndCondition from "../../../serivces/termsandconditon/termsandconditionon";
 import { toast } from "sonner";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
+import { parsePhoneNumber } from "libphonenumber-js";
 
 // Import language files
 import enCountries from "i18n-iso-countries/langs/en.json";
@@ -480,6 +481,54 @@ export default function PersonalDetailsForm({
     return m[iso] || iso || "ae";
   };
 
+  // Validate phone number based on country using libphonenumber-js
+  const validatePhoneNumberByCountry = (phoneNumber, countryIso) => {
+    if (!phoneNumber || !countryIso) return false;
+
+    try {
+      // Normalize country ISO code for libphonenumber-js (needs uppercase)
+      const normalizedIso = normalizeIsoForDialCode(
+        (countryIso || "ae").toLowerCase()
+      ).toUpperCase();
+
+      // react-phone-input-2 provides the phone number with country code as digits
+      // e.g., "971501234567" for UAE number +971 50 123 4567
+      // libphonenumber-js needs "+" prefix for proper parsing
+      const phoneNumberStr = String(phoneNumber).trim();
+
+      // Add "+" prefix if not present (react-phone-input-2 provides digits only)
+      const formattedNumber = phoneNumberStr.startsWith("+")
+        ? phoneNumberStr
+        : `+${phoneNumberStr}`;
+
+      // Try to parse and validate the phone number
+      const parsedNumber = parsePhoneNumber(formattedNumber, normalizedIso);
+
+      if (!parsedNumber) return false;
+
+      // Validate the parsed number
+      const isValid = parsedNumber.isValid();
+
+      // Debug log for troubleshooting (can be removed in production)
+      if (process.env.NODE_ENV === "development") {
+        console.log("Phone Validation:", {
+          countryIso: normalizedIso,
+          phoneNumber: formattedNumber,
+          isValid,
+          formatted: parsedNumber.formatInternational(),
+        });
+      }
+
+      return isValid;
+    } catch (error) {
+      // If parsing fails, the number is invalid
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Phone validation error:", error);
+      }
+      return false;
+    }
+  };
+
   // Exclude territories that don't reliably map to dial codes in react-phone-input-2
   const EXCLUDED_RESIDENCE_ISOS = new Set([
     "AX", // Åland Islands
@@ -554,10 +603,12 @@ export default function PersonalDetailsForm({
         break;
 
       case "phoneNumber":
+        console.log("Phone Number Value:", value);
         updateData.phoneNumber = value;
         break;
 
       case "country":
+        console.log("Country Value:", value);
         updateData.country = value;
         updateData.phoneNumber = "";
         break;
@@ -655,7 +706,6 @@ export default function PersonalDetailsForm({
   }, [checkout.country, dispatch]);
 
   const validateFieldsForPlaceholders = () => {
-    const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
     const next = {
       firstName:
         !checkout.firstName ||
@@ -668,7 +718,10 @@ export default function PersonalDetailsForm({
       email:
         !checkout.emailId ||
         !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-      phoneNumber: phoneDigits.length < 10,
+      phoneNumber: !validatePhoneNumberByCountry(
+        checkout.phoneNumber,
+        checkout.country
+      ),
       country: !checkout.country,
       nationality: !checkout.nationality,
     };
@@ -678,7 +731,6 @@ export default function PersonalDetailsForm({
 
   useEffect(() => {
     const showErrors = () => {
-      const phoneDigits = String(checkout.phoneNumber || "").replace(/\D/g, "");
       const next = {
         firstName:
           !checkout.firstName ||
@@ -691,7 +743,10 @@ export default function PersonalDetailsForm({
         email:
           !checkout.emailId ||
           !String(checkout.emailId).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-        phoneNumber: phoneDigits.length < 10,
+        phoneNumber: !validatePhoneNumberByCountry(
+          checkout.phoneNumber,
+          checkout.country
+        ),
         country: !checkout.country,
         nationality: !checkout.nationality,
       };
@@ -898,7 +953,47 @@ export default function PersonalDetailsForm({
             errs.country ||
             errs.nationality
           ) {
-            // do nothing, PaymentDetails.validate will also toast; placeholders will show
+            // Show toast messages for validation errors
+            if (errs.firstName) {
+              toast.error(
+                t("toastMessages.invalidFirstName") ||
+                  t("toastMessages.somethingWentWrong"),
+                {
+                  position: "top-center",
+                }
+              );
+            }
+            if (errs.lastName) {
+              toast.error(
+                t("toastMessages.invalidLastName") ||
+                  t("toastMessages.somethingWentWrong"),
+                {
+                  position: "top-center",
+                }
+              );
+            }
+            if (errs.email) {
+              toast.error(t("toastMessages.invalidEmail"), {
+                position: "top-center",
+              });
+            }
+            if (errs.phoneNumber) {
+              toast.error(t("toastMessages.invalidPhoneNumber"), {
+                position: "top-center",
+              });
+            }
+            if (errs.country) {
+              toast.error(t("toastMessages.invalidCountry"), {
+                position: "top-center",
+              });
+            }
+            if (errs.nationality) {
+              toast.error(t("toastMessages.invalidNationality"), {
+                position: "top-center",
+              });
+            }
+            // Prevent navigation if there are validation errors
+            return;
           }
           handleProceedToPayment();
         }}
