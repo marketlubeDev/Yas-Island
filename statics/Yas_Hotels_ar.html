@@ -695,11 +695,15 @@
 
       .card-image {
         position: relative;
-        height: 330px;
-        background-size: cover;
-        background-position: center;
         border-radius: 1rem;
-        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: inherit;
       }
 
       .fav {
@@ -3936,7 +3940,12 @@
 
         const imgDiv = document.createElement("div");
         imgDiv.className = "card-image";
-        if (img) imgDiv.style.backgroundImage = `url('${img}')`;
+        if (img) {
+          const imgEl = document.createElement("img");
+          imgEl.src = img;
+          imgEl.alt = titleAr || "";
+          imgDiv.appendChild(imgEl);
+        }
         // Removed favorite button (heart icon)
 
         const body = document.createElement("div");
