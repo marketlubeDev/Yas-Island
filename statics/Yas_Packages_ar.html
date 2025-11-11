@@ -127,7 +127,7 @@
 
       .packages-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 30px;
         margin-top: 0;
       }
@@ -205,7 +205,14 @@
       }
 
       /* Responsive design */
-      @media (max-width: 1024px) {
+      @media (max-width: 1600px) {
+        .packages-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 1400px) {
         .packages-grid {
           grid-template-columns: repeat(2, 1fr);
           gap: 25px;
@@ -1269,6 +1276,29 @@
           </div>
         </div>
 
+        <!-- New Package Card -->
+        <div class="package-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/packages2025/premiumvacation/pv900x600.png"
+            alt="Package Image"
+            class="package-image"
+          />
+          <div class="package-content">
+            <h3 class="package-title">الإقامة واللعب المميزة</h3>
+            <p class="package-description">
+              احجز الآن واستمتع بإقامة فاخرة في أحد فنادق جزيرة ياس أو فنادق
+              جوار ياس ذات الخمس نجوم، مع الوصول إلى مدننا الترفيهية القياسية
+              وبطاقة مميزة لتخطي الطوابير لكل ليلة من إقامتك.
+            </p>
+            <a
+              href="https://www.yasisland.com/ar/packages-and-offers"
+              target="_blank"
+              class="package-button"
+              >احجز الباقة</a
+            >
+          </div>
+        </div>
+
         <!-- Yas Island Romantic Getaway Package -->
         <div class="package-card">
           <img
@@ -1277,10 +1307,11 @@
             class="package-image"
           />
           <div class="package-content">
-            <h3 class="package-title">الإقامة واللعب</h3>
+            <h3 class="package-title">فورمولا 1 أبوظبي</h3>
             <p class="package-description">
-              احجز باقة الإقامة واللعب الآن واستمتع بالوصول إلى مدننا الترفيهية
-              القياسية أثناء إقامتك في أحد فنادقنا العالمية.
+              احجز باقة عطلة فورمولا 1 الخاصة بنا والتي تشمل إقامة لمدة 3 ليالٍ
+              من 5 إلى 8 ديسمبر، استمتع بمشاهد ممتازة من المدرج الواقع بين
+              المنعطفين 5 و 6.
             </p>
             <a
               href="https://www.yasisland.com/ar/packages-and-offers/formula-1-etihad-airways-abu-dhabi-grand-prix"

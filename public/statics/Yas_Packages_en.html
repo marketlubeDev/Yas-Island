@@ -127,7 +127,7 @@
 
       .packages-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 30px;
         margin-top: 0;
       }
@@ -204,7 +204,14 @@
       }
 
       /* Responsive design */
-      @media (max-width: 1024px) {
+      @media (max-width: 1600px) {
+        .packages-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 1400px) {
         .packages-grid {
           grid-template-columns: repeat(2, 1fr);
           gap: 25px;
@@ -1260,6 +1267,30 @@
               Book your Stay & Play package now and enjoy access to our
               record-breaking theme parks while staying at one of our
               world-class hotels.
+            </p>
+            <a
+              href="https://www.yasisland.com/en/packages-and-offers"
+              target="_blank"
+              class="package-button"
+              >BOOK PACKAGE</a
+            >
+          </div>
+        </div>
+
+        <!-- New Package Card -->
+        <div class="package-card">
+          <img
+            src="https://static.myconnect.ae/-/media/yasconnect/project/yasisland/packages2025/premiumvacation/pv900x600.png"
+            alt="Package Image"
+            class="package-image"
+          />
+          <div class="package-content">
+            <h3 class="package-title">PREMIUM STAY & PLAY</h3>
+            <p class="package-description">
+              Book now and enjoy a luxurious stay at one of the 5-star Yas
+              Island or Yas Neighbour Hotels, with access to our record-breaking
+              theme parks and a premium pass to skip the lines for every night
+              of your stay.
             </p>
             <a
               href="https://www.yasisland.com/en/packages-and-offers"
