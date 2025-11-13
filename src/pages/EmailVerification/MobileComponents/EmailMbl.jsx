@@ -25,7 +25,13 @@ function EmailMbl() {
     }
     verification(emailValue, {
       onSuccess: (res) => {
-        dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
+        dispatch(
+          setOtp({
+            email: emailValue,
+            OTP: res.hashedOTP,
+            metadata: res.metadata || res.metaData || "",
+          })
+        );
 
         // Store email in sessionStorage as backup for mobile
         try {

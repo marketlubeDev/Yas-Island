@@ -7,6 +7,7 @@ export let getProductListEndpoint = "";
 export let getPerformanceEndpoint = "";
 export let checkBasketEndpoint = "";
 export let emailVerificationEndpoint = "";
+export let validateOTPEndpoint = "";
 export let createOrderEndpoint = "";
 export let updateSurveyEndpoint = "";
 export let getTermsAndConditionEndpoint = "";
@@ -24,6 +25,7 @@ export const initEndpoints = async () => {
   getPerformanceEndpoint = cachedEndpoints.getPerformanceEndpoint;
   checkBasketEndpoint = cachedEndpoints.checkBasketEndpoint;
   emailVerificationEndpoint = cachedEndpoints.emailVerificationEndpoint;
+  validateOTPEndpoint = cachedEndpoints.validateOTPEndpoint;
   createOrderEndpoint = cachedEndpoints.createOrderEndpoint;
   updateSurveyEndpoint = cachedEndpoints.updateSurveyEndpoint;
   getTermsAndConditionEndpoint = cachedEndpoints.getTermsAndConditionEndpoint;

@@ -14,11 +14,12 @@ import {
   setIsEmailVerification,
   setVerificationEmail,
 } from "../../../global/cartSlice";
+import validateOTPService from "../../../serivces/validateOTP/validateOTP";
 
 function ConfirmEmailMbl({ onBack }) {
   const { mutate: verification, isPending } = useVerification();
   const { t } = useTranslation();
-  const { email } = useSelector((state) => state.otp);
+  const { email, metadata } = useSelector((state) => state.otp);
   const { OTP } = useSelector((state) => state.otp);
   const [otp, setOtpInput] = useState(new Array(6).fill(""));
   const [isExpired, setIsExpired] = useState(false);
@@ -41,27 +42,25 @@ function ConfirmEmailMbl({ onBack }) {
       return;
     }
     const otpString = otp.join("");
-    if (otpString.length !== 6) {
-      toast.error(t("toastMessages.invalidOTP"), {
-        position: "top-center",
-      });
-      return;
-    }
-
-    const isValid = await validateOTP(otpString, OTP);
-    if (isValid) {
-      dispatch(setCheckoutEmail(email));
-      dispatch(setIsEmailVerification(true));
-      dispatch(setVerificationEmail(email));
-
-      // Set session flag and timestamp before navigation
-      sessionStorage.setItem(
-        "paymentDetailsNavigationTime",
-        Date.now().toString()
-      );
-      navigate("/payment-details", { state: { isCheckout: true } });
-    } else {
-      toast.error(t("toastMessages.otpIncorrect"), {
+    try {
+      const response = await validateOTPService(email, otpString, metadata);
+      if (response && response.status === 200) {
+        dispatch(setCheckoutEmail(email));
+        dispatch(setIsEmailVerification(true));
+        dispatch(setVerificationEmail(email));
+        // Set session flag and timestamp before navigation
+        sessionStorage.setItem(
+          "paymentDetailsNavigationTime",
+          Date.now().toString()
+        );
+        navigate("/payment-details", { state: { isCheckout: true } });
+      }
+    } catch (error) {
+      const errorMessage =
+        t("toastMessages.otpIncorrect") ||
+        error?.response?.data?.message ||
+        error?.message;
+      toast.error(errorMessage, {
         position: "top-center",
       });
     }
@@ -70,7 +69,13 @@ function ConfirmEmailMbl({ onBack }) {
   const handleResendOTP = () => {
     verification(email, {
       onSuccess: (res) => {
-        dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
+        dispatch(
+          setOtp({
+            email: email,
+            OTP: res.hashedOTP,
+            metadata: res.metadata || res.metaData || "",
+          })
+        );
         setTimer(120);
         setIsExpired(false);
         setOtpInput(new Array(6).fill(""));

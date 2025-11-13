@@ -4,6 +4,7 @@
   "getPerformanceEndpoint": "/products/getperformances",
   "checkBasketEndpoint": "/products/checkbasket",
   "emailVerificationEndpoint": "/email/verifyemail",
+  "validateOTPEndpoint": "/email/validateotp",
   "createOrderEndpoint": "/orders/createorder",
   "updateSurveyEndpoint": "/survey/update-survey",
   "getTermsAndConditionEndpoint": "/TermsAndCondition",

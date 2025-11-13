@@ -24,7 +24,13 @@ export default function EmailConfirmation() {
     }
     verification(emailValue, {
       onSuccess: (res) => {
-        dispatch(setOtp({ email: emailValue, OTP: res.hashedOTP }));
+        dispatch(
+          setOtp({
+            email: emailValue,
+            OTP: res.hashedOTP,
+            metadata: res.metadata,
+          })
+        );
         navigate("/otp-confirmation", {
           state: { fromEmailVerification: true },
         });

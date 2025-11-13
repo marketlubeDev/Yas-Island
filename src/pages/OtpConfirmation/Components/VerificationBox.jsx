@@ -11,6 +11,7 @@ import {
   setVerificationEmail,
 } from "../../../global/cartSlice";
 import { setCheckoutEmail } from "../../../global/checkoutSlice";
+import validateOTPService from "../../../serivces/validateOTP/validateOTP";
 
 export default function VerificationBox({ email }) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function VerificationBox({ email }) {
   const { t } = useTranslation();
   const [otp, setOtpInput] = useState(new Array(6).fill(""));
   const inputRefs = useRef([]);
-  const { OTP } = useSelector((state) => state.otp);
+  const { OTP, metadata } = useSelector((state) => state.otp);
   const navigate = useNavigate();
   const [timer, setTimer] = useState(120);
   const [canResend, setCanResend] = useState(false);
@@ -61,7 +62,13 @@ export default function VerificationBox({ email }) {
 
     verification(email, {
       onSuccess: (res) => {
-        dispatch(setOtp({ email: email, OTP: res.hashedOTP }));
+        dispatch(
+          setOtp({
+            email: email,
+            OTP: res.hashedOTP,
+            metadata: res.metadata || res.metaData || "",
+          })
+        );
         setTimer(120);
         setCanResend(false);
         setIsExpired(false);
@@ -146,25 +153,26 @@ export default function VerificationBox({ email }) {
       return;
     }
     const otpString = otp.join("");
-    if (otpString.length !== 6) {
-      toast.error(t("toastMessages.invalidOTP"), {
-        position: "top-center",
-      });
-      return;
-    }
-    const isValid = await validateOTP(otpString, OTP);
-    if (isValid) {
-      dispatch(setIsEmailVerification(true));
-      dispatch(setVerificationEmail(email));
-      dispatch(setCheckoutEmail(email));
-      // Set session flag and timestamp before navigation
-      sessionStorage.setItem(
-        "paymentDetailsNavigationTime",
-        Date.now().toString()
-      );
-      navigate("/payment-details", { state: { isCheckout: true } });
-    } else {
-      toast.error(t("toastMessages.otpIncorrect"), {
+    // const isValid = await validateOTP(otpString, OTP);
+    try {
+      const response = await validateOTPService(email, otpString, metadata);
+      if (response && response.status === 200) {
+        dispatch(setIsEmailVerification(true));
+        dispatch(setVerificationEmail(email));
+        dispatch(setCheckoutEmail(email));
+        // Set session flag and timestamp before navigation
+        sessionStorage.setItem(
+          "paymentDetailsNavigationTime",
+          Date.now().toString()
+        );
+        navigate("/payment-details", { state: { isCheckout: true } });
+      }
+    } catch (error) {
+      const errorMessage =
+        t("toastMessages.otpIncorrect") ||
+        error?.response?.data?.message ||
+        error?.message;
+      toast.error(errorMessage, {
         position: "top-center",
       });
     }
