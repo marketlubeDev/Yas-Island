@@ -169,7 +169,11 @@ export default function CardPaymentDetail({ orderData, onBack }) {
         if (!data) return;
 
         // Preferred explicit provider payload
-        if (data.type === "payment_result") {
+        if (
+          data.payment_status === true ||
+          data.paymentStatus === true ||
+          data.type === "payment_result"
+        ) {
           if (data.success === true) {
             handlePaymentSuccess();
           } else {
@@ -186,8 +190,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
         // Fallback: derive from generic status strings
         const rawStatus = (
-          data.status ||
           data.payment_status ||
+          data.status ||
           data.result ||
           ""
         ).toString();
@@ -216,6 +220,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
                 "We couldn't complete your payment. Please review your details and try again.",
             })
           );
+
           setPaymentStatus("failed");
         }
       };
