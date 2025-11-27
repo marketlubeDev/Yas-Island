@@ -26,10 +26,64 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { theme, isDarkMode } = useSelector((state) => state.accessibility);
   const { currentLanguage } = useSelector((state) => state.language);
 
-  const handlePaymentSuccess = () => {
+  const handlePaymentSuccess = (data) => {
+    console.log(data, "zxcvbnm");
+
     setPaymentStatus("success");
     dispatch(clearCart());
-    navigate("/payment-success", { replace: true });
+
+    if (data?.redirectUrl) {
+      let targetPath = data.redirectUrl;
+
+      try {
+        // Try to parse as absolute URL and extract pathname
+        const parsed = new URL(data.redirectUrl);
+        targetPath = parsed.pathname;
+      } catch (_) {
+        // If it's already a relative path, ensure it starts with /
+        targetPath = data.redirectUrl.startsWith("/")
+          ? data.redirectUrl
+          : `/${data.redirectUrl}`;
+      }
+
+      // Navigate using the path only (not full URL)
+      navigate(targetPath);
+    }
+  };
+
+  const handlePaymentFailure = (data) => {
+    console.log(data, "payment failure");
+
+    // Set failure message from data or use default translation
+    const errorMessage =
+      data?.message ||
+      data?.errorMessage ||
+      t("payment.cardPayment.errorMessage", {
+        defaultValue:
+          "We couldn't complete your payment. Please review your details and try again.",
+      });
+
+    setFailureMessage(errorMessage);
+
+    // Don't clear cart on failure - user might want to retry
+
+    if (data?.redirectUrl) {
+      let targetPath = data.redirectUrl;
+
+      try {
+        // Try to parse as absolute URL and extract pathname
+        const parsed = new URL(data.redirectUrl);
+        targetPath = parsed.pathname;
+      } catch (_) {
+        // If it's already a relative path, ensure it starts with /
+        targetPath = data.redirectUrl.startsWith("/")
+          ? data.redirectUrl
+          : `/${data.redirectUrl}`;
+      }
+      console.log(targetPath, "targetPath");
+      navigate(targetPath);
+    }
+    setPaymentStatus("failed");
   };
 
   useEffect(() => {
@@ -175,15 +229,9 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           data.type === "payment_result"
         ) {
           if (data.success === true) {
-            handlePaymentSuccess();
+            handlePaymentSuccess(data);
           } else {
-            setFailureMessage(
-              t("payment.cardPayment.errorMessage", {
-                defaultValue:
-                  "We couldn't complete your payment. Please review your details and try again.",
-              })
-            );
-            setPaymentStatus("failed");
+            handlePaymentFailure(data);
           }
           return;
         }
@@ -214,14 +262,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           status === "cancelled" ||
           status === "declined"
         ) {
-          setFailureMessage(
-            t("payment.cardPayment.errorMessage", {
-              defaultValue:
-                "We couldn't complete your payment. Please review your details and try again.",
-            })
-          );
-
-          setPaymentStatus("failed");
+          handlePaymentFailure(data);
         }
       };
 

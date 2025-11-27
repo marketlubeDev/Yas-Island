@@ -75,26 +75,7 @@ export default function CardPaymentBody({ isCheckout }) {
   return (
     <div className="payment-checkout">
       {!isMobile && <CheckoutSteps currentStep="card" />}
-      <div
-        className="payment-checkout__header-with-back"
-        // style={{ opacity: "0" }}
-      >
-        {/* <button
-          className={`checkout-back-button-circular ${
-            isRTL ? "checkout-back-button-circular--rtl" : ""
-          }`}
-          onClick={handleCheckoutBackClick}
-          data-testid="checkout-back-button"
-          aria-label={t("common.back")}
-        >
-          <img
-            src={backIconSrc}
-            alt={t("payment.arrow")}
-            className={`checkout-back-button-circular__icon ${
-              isRTL ? "checkout-back-button-circular__icon--rtl" : ""
-            }`}
-          />
-        </button> */}
+      <div className="payment-checkout__header-with-back">
         <h1 className="payment-checkout__title">
           {t("payment.cardPayment.title")}
         </h1>

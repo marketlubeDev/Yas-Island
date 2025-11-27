@@ -16,6 +16,8 @@ import OtpConfirmationMobile from "../pages/OtpConfirmation/OtpConfirmationMobil
 import PaymentDetailsMobile from "../pages/PaymentDetails/PaaymentDetailMobile";
 import PaymentSuccessMobile from "../pages/PaymentSuccess/PaymentSuccessMobile";
 import PaymentResponseMobile from "../pages/PaymentResponse/PaymentResponseMobile";
+import OrderDetailsPage from "../pages/OrderDetails/Desktop/OrderDetailsPage";
+import OrderDetailsMobile from "../pages/OrderDetails/Mobile/OrderDetailsMobile";
 import UpcomingPages from "../pages/Upcoming/Desktop/UpcomingPages";
 import MobileUpcomingPage from "../pages/Upcoming/Mobile/MobileUpcomingPage";
 import PackagesPage from "../pages/Packages/Desktop/PackagesPage";
@@ -122,6 +124,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "order-details/:status",
+        element: (
+          <ResponsiveWrapper
+            MobileComponent={OrderDetailsMobile}
+            DesktopComponent={OrderDetailsPage}
+          />
+        ),
+      },
+      {
         path: "upcoming",
         element: (
           <ResponsiveWrapper
@@ -176,10 +187,10 @@ export const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "*",
-        element: <Navigate to="/" replace />,
-      },
+      // {
+      //   path: "*",
+      //   element: <Navigate to="/" replace />,
+      // },
     ],
   },
 ]);
