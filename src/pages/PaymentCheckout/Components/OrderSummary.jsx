@@ -40,7 +40,7 @@ export default function OrderSummary({
     (state) => state.language.currentLanguage
   );
   const navigate = useNavigate();
-
+  console.log(checkout, "checkoutajgsdoqwkbaksbdkb");
   // Ensure products are loaded for the current language
   useGetProductList();
 
@@ -339,6 +339,14 @@ export default function OrderSummary({
                         <span className="item-quantity">
                           {t("payment.orderSummary.qty")} {item.quantity || 0}
                         </span>
+                        {item.discount < 0 && (
+                          <>
+                            <span className="item-separator">•</span>
+                            <span className="item-discount">
+                              {t("orderSummary.discount")}: {item.discount}
+                            </span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="item-price">

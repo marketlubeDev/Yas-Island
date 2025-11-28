@@ -147,6 +147,10 @@ function MycartMbl({ onClose, visible }) {
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            discount: item?.discount,
+            itemPromotionList: item?.itemPromotionList
+              ? item?.itemPromotionList
+              : [],
             productMasterid:
               productList.find((product) =>
                 product.product_variants.some(

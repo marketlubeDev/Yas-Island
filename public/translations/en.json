@@ -25,7 +25,8 @@
     "vat": "VAT",
     "tax": "Tax",
     "aed": "AED",
-    "noResults": "No Results"
+    "noResults": "No Results",
+    "save": "Save"
   },
   "noResults": {
     "title": "No Attractions Available",
@@ -326,6 +327,7 @@
     "vat": "VAT",
     "subTotal": "Sub Total",
     "total": "Total",
+    "discount": "Discount",
     "promoDiscount": "Enter Your Promo Code To Get Discount",
     "enterPromoCode": "Enter Promo Code",
     "apply": "Apply",

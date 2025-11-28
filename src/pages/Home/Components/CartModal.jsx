@@ -208,6 +208,10 @@ const CartModal = ({ isOpen, onClose }) => {
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            discount: item?.discount,
+            itemPromotionList: item?.itemPromotionList
+              ? item.itemPromotionList
+              : [],
             productMasterid:
               productList.find((product) =>
                 product.product_variants.some(
@@ -225,9 +229,6 @@ const CartModal = ({ isOpen, onClose }) => {
               netAmount: orderDetails?.total?.net,
               taxAmount: orderDetails?.total?.tax,
               originalNetAmount: orderDetails?.total?.gross,
-              // firstName: "",
-              // lastName: "",
-              // phoneNumber: "",
               countryCode: "",
               isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
               isConsentAgreed: checkoutState?.isConsentAgreed ?? false,

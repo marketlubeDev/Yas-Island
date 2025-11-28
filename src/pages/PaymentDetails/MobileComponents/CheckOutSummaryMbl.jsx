@@ -30,6 +30,7 @@ function CheckOutSummaryMbl({
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
+  const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const navigate = useNavigate();
   useGetProductList();
 
@@ -350,12 +351,11 @@ function CheckOutSummaryMbl({
               style={{
                 display: "flex",
                 alignItems: "center",
-                flexWrap: "nowrap",
+                flexWrap: "wrap",
                 gap: "4px",
                 fontSize: "12px",
                 color: "#666",
                 lineHeight: "1.2",
-                whiteSpace: "nowrap",
               }}
             >
               <span
@@ -375,6 +375,27 @@ function CheckOutSummaryMbl({
               <span style={{ color: "#888", fontWeight: "500" }}>
                 Qty: {item.quantity || 0}
               </span>
+              {item.discount < 0 && (
+                <>
+                  <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+                  <span
+                    className="item-discount"
+                    style={{
+                      color: isDarkMode ? "#4ade80" : "#28a745",
+                      fontWeight: "600",
+                      fontSize: "11px",
+                      padding: "2px 6px",
+                      backgroundColor: isDarkMode
+                        ? "rgba(74, 222, 128, 0.15)"
+                        : "#d4edda",
+                      borderRadius: "4px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {t("orderSummary.discount")}: {item.discount}
+                  </span>
+                </>
+              )}
             </div>
           </div>
         ))
@@ -485,7 +506,7 @@ function CheckOutSummaryMbl({
                     fontSize: "calc(14px * var(--zoom-scale))",
                     fontWeight: "200",
                   }}
-                > 
+                >
                   {t("orderSummary.couponApplied")}{" "}
                   <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
                     {checkout?.coupons?.[0]?.code ||
