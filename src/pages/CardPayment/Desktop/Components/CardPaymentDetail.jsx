@@ -224,8 +224,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
         // Preferred explicit provider payload
         if (
-          data.payment_status === true ||
           data.paymentStatus === true ||
+          data.payment_status === true ||
           data.type === "payment_result"
         ) {
           if (data.success === true) {

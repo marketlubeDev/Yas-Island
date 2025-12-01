@@ -4,10 +4,7 @@ import { Modal } from "antd";
 import PromoCodeModalContent from "./PromoCodeModalContent";
 import closeIcon from "../../../assets/icons/close.svg";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setCheckout,
-  // updateTermsAcceptance,
-} from "../../../global/checkoutSlice";
+import { setCheckout } from "../../../global/checkoutSlice";
 import validatePromocode from "../../../serivces/promocode/promocode";
 import { toast } from "sonner";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
@@ -40,7 +37,7 @@ export default function OrderSummary({
     (state) => state.language.currentLanguage
   );
   const navigate = useNavigate();
-  console.log(checkout, "checkoutajgsdoqwkbaksbdkb");
+
   // Ensure products are loaded for the current language
   useGetProductList();
 
@@ -93,24 +90,6 @@ export default function OrderSummary({
       navigate("/");
     }
   }, []);
-
-  // const handleTermsChange = (type, checked) => {
-  //   if (type === "terms") {
-  //     dispatch(
-  //       updateTermsAcceptance({
-  //         isTnCAgrred: checked,
-  //         isConsentAgreed: checkout.isConsentAgreed,
-  //       })
-  //     );
-  //   } else if (type === "consent") {
-  //     dispatch(
-  //       updateTermsAcceptance({
-  //         isTnCAgrred: checkout.isTnCAgrred,
-  //         isConsentAgreed: checked,
-  //       })
-  //     );
-  //   }
-  // };
 
   const handleBasketCheck = (
     promoCode = "",
