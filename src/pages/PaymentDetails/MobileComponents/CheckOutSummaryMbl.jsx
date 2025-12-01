@@ -118,6 +118,10 @@ function CheckOutSummaryMbl({
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            discount: item?.discount,
+            itemPromotionList: item?.itemPromotionList
+              ? item?.itemPromotionList
+              : [],
             productMasterid:
               productList.find((product) =>
                 product.product_variants.some(
@@ -444,14 +448,10 @@ function CheckOutSummaryMbl({
               className="email-checkout__summary-promoCode-input-container-applyButton"
               type="button"
               onClick={handlePromoCode}
-              disabled={
-                promoCodeApplying || checkout?.promotions?.[0]?.discount
-              }
+              disabled={promoCodeApplying}
               style={{
-                opacity: checkout?.promotions?.[0]?.discount ? 0.5 : 1,
-                cursor: checkout?.promotions?.[0]?.discount
-                  ? "not-allowed"
-                  : "pointer",
+                opacity: promoCodeApplying ? 0.5 : 1,
+                cursor: promoCodeApplying ? "not-allowed" : "pointer",
               }}
             >
               {promoCodeApplying ? <ButtonLoading /> : t("orderSummary.apply")}
@@ -461,103 +461,109 @@ function CheckOutSummaryMbl({
       )}
 
       {/* Coupon Applied Indicator - New Style */}
-      {/* Coupon Applied Indicator - New Style */}
-      {checkout?.promotions?.[0]?.discount && (
-        <div className="email-checkout__summary-couponApplied">
+      {checkout?.promotions
+        ?.filter((promotion) => promotion?.discount)
+        .map((promotion, index) => (
           <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "8px",
-              padding: "6px",
-              backgroundColor: "var(--color-base-bg)",
-              border: "1px solid #e9ecef",
-              borderRadius: "6px",
-              margin: "10px 0",
-            }}
+            key={promotion?.code || index}
+            className="email-checkout__summary-couponApplied"
           >
-            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <div>
-                <HiOutlinePercentBadge
-                  className="coupon-badge-icon"
-                  style={{
-                    fontSize: "calc(24px * var(--zoom-scale))",
-                    width: "calc(24px * var(--zoom-scale))",
-                    height: "calc(24px * var(--zoom-scale))",
-                    fontWeight: "bold",
-                  }}
-                  strokeWidth={2}
-                />
-              </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "8px",
+                padding: "6px",
+                backgroundColor: "var(--color-base-bg)",
+                border: "1px solid #e9ecef",
+                borderRadius: "6px",
+                margin: "10px 0",
+              }}
+            >
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "column",
-                  gap: "4px",
+                  gap: "8px",
+                  alignItems: "center",
                 }}
               >
-                {/* Checkmark Icon */}
-
-                <p
+                <div>
+                  <HiOutlinePercentBadge
+                    className="coupon-badge-icon"
+                    style={{
+                      fontSize: "calc(24px * var(--zoom-scale))",
+                      width: "calc(24px * var(--zoom-scale))",
+                      height: "calc(24px * var(--zoom-scale))",
+                      fontWeight: "bold",
+                    }}
+                    strokeWidth={2}
+                  />
+                </div>
+                <div
                   style={{
-                    color: "var(--color-summary-title)",
-
-                    fontSize: "calc(14px * var(--zoom-scale))",
-                    fontWeight: "200",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
                   }}
                 >
-                  {t("orderSummary.couponApplied")}{" "}
-                  <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
-                    {checkout?.coupons?.[0]?.code ||
-                      checkout?.promotions?.[0]?.code}
-                  </span>
-                </p>
-                <p
-                  style={{
-                    color: "#28a745",
-                    fontSize: "calc(12px * var(--zoom-scale))",
-                  }}
-                >
-                  <span style={{ fontWeight: "200" }}>
-                    {" "}
-                    {t("orderSummary.couponSavings")}{" "}
-                  </span>
-                  <span style={{ fontWeight: "bold" }}>
-                    {t("common.aed")}{" "}
-                    {checkout?.promotions[0]?.discount?.replace("-", "")}
-                  </span>
-                </p>
+                  {/* Coupon label */}
+                  <p
+                    style={{
+                      color: "var(--color-summary-title)",
+                      fontSize: "calc(14px * var(--zoom-scale))",
+                      fontWeight: "200",
+                    }}
+                  >
+                    {t("orderSummary.couponApplied")}{" "}
+                    <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                      {checkout?.coupons?.[index]?.code || promotion?.code}
+                    </span>
+                  </p>
+                  <p
+                    style={{
+                      color: "#28a745",
+                      fontSize: "calc(12px * var(--zoom-scale))",
+                    }}
+                  >
+                    <span style={{ fontWeight: "200" }}>
+                      {t("orderSummary.couponSavings")}{" "}
+                    </span>
+                    <span style={{ fontWeight: "bold" }}>
+                      {t("common.aed")}{" "}
+                      {promotion?.discount?.toString().replace("-", "")}
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Remove Button */}
-            {showPromoCode && (
-              <button
-                onClick={handleRemovePromoCode}
-                disabled={removingPromoCode}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "var(--color-summary-title)",
-                  fontWeight: "bold",
-                  fontSize: "calc(14px * var(--zoom-scale))",
-                  cursor: removingPromoCode ? "not-allowed" : "pointer",
-                  padding: "4px 8px",
-                  borderRadius: "4px",
-                  opacity: removingPromoCode ? 0.7 : 1,
-                }}
-              >
-                {removingPromoCode ? (
-                  <ButtonLoading />
-                ) : (
-                  t("orderSummary.remove")
-                )}
-              </button>
-            )}
+              {/* Remove Button */}
+              {showPromoCode && (
+                <button
+                  onClick={handleRemovePromoCode}
+                  disabled={removingPromoCode}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "var(--color-summary-title)",
+                    fontWeight: "bold",
+                    fontSize: "calc(14px * var(--zoom-scale))",
+                    cursor: removingPromoCode ? "not-allowed" : "pointer",
+                    padding: "4px 8px",
+                    borderRadius: "4px",
+                    opacity: removingPromoCode ? 0.7 : 1,
+                  }}
+                >
+                  {removingPromoCode ? (
+                    <ButtonLoading />
+                  ) : (
+                    t("orderSummary.remove")
+                  )}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        ))}
       {/* Total */}
       <div className="email-checkout__summary-grandTotal">
         <span className="grandTotal-Content">

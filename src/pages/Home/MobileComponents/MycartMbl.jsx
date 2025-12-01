@@ -185,7 +185,7 @@ function MycartMbl({ onClose, visible }) {
           } else {
             dispatch(
               setCheckout({
-                coupons: [],
+                coupons: orderDetails?.coupons || [],
                 items: items,
                 emailId: "",
                 language: language,
@@ -197,7 +197,7 @@ function MycartMbl({ onClose, visible }) {
                 isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
                 isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
                 promoCode: "",
-                promotions: [],
+                promotions: orderDetails?.promotions || [],
               })
             );
           }

@@ -580,6 +580,10 @@ function BookingModalMbl({
           } else if (type === "checkout") {
             const items = orderDetails?.order?.items?.map((item) => ({
               ...item,
+              discount: item?.discount,
+              itemPromotionList: item?.itemPromotionList
+                ? item?.itemPromotionList
+                : [],
               productMasterid:
                 productList.find((product) =>
                   product.product_variants.some(
@@ -589,7 +593,7 @@ function BookingModalMbl({
             }));
 
             const checkoutData = {
-              coupons: [],
+              coupons: orderDetails?.order?.coupons || [],
               items: items,
               emailId: verificationEmail || "",
               // country: "",
@@ -606,7 +610,7 @@ function BookingModalMbl({
               isTnCAgrred: checkout?.isTnCAgrred ?? false,
               isConsentAgreed: checkout?.isConsentAgreed ?? false,
               promoCode: "",
-              promotions: [],
+              promotions: orderDetails?.order?.promotions || [],
               originalNetAmount: orderDetails?.order?.total?.gross,
             };
             dispatch(setCheckout(checkoutData));

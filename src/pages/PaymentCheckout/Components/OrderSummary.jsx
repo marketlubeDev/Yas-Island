@@ -115,7 +115,8 @@ export default function OrderSummary({
   const handleBasketCheck = (
     promoCode = "",
     message = "",
-    isRemoveOperation = false
+    isRemoveOperation = false,
+    couponToRemoveCode = null
   ) => {
     let items = [];
     checkout?.items?.forEach((item) => {
@@ -128,8 +129,26 @@ export default function OrderSummary({
       });
     });
 
+    // Build coupons payload:
+    // - When applying a coupon: send the single promoCode
+    // - When removing a specific coupon: send all remaining coupons except the one being removed
+    let couponsPayload = [];
+
+    if (isRemoveOperation && couponToRemoveCode) {
+      const remainingCoupons =
+        checkout?.coupons?.filter(
+          (coupon) => coupon?.code && coupon.code !== couponToRemoveCode
+        ) || [];
+
+      couponsPayload = remainingCoupons.map((coupon) => ({
+        couponCode: coupon.code,
+      }));
+    } else if (promoCode) {
+      couponsPayload = [{ couponCode: promoCode }];
+    }
+
     const data = {
-      coupons: promoCode ? [{ couponCode: promoCode }] : [],
+      coupons: couponsPayload,
       items: items,
       capacityManagement: true,
     };
@@ -149,6 +168,10 @@ export default function OrderSummary({
           performances: item?.performances ? item?.performances : [],
           validFrom: item?.validFrom,
           validTo: item?.validTo,
+          discount: item?.discount,
+          itemPromotionList: item?.itemPromotionList
+            ? item?.itemPromotionList
+            : [],
           productMasterid:
             productList.find((product) =>
               product.product_variants.some(
@@ -236,11 +259,11 @@ export default function OrderSummary({
     });
   };
 
-  const handleRemovePromoCode = () => {
+  const handleRemovePromoCode = (couponCodeToRemove) => {
     setRemovingPromoCode(true);
     promoCodeInput.reset();
     setPromoCodeStatus(null);
-    handleBasketCheck("", "", true);
+    handleBasketCheck("", "", true, couponCodeToRemove);
   };
 
   const handlePromoCode = async () => {
@@ -256,26 +279,6 @@ export default function OrderSummary({
       }
       const response = await validatePromocode(promoCodeInput.rawValue);
       let message = "";
-      // if (!response?.data?.coupondetails?.coupon) {
-      //   setIsModalVisible(false);
-      //   if (response?.data?.coupondetails?.error?.code === "TooManyRequests") {
-      //     setPromoCodeStatus("invalid");
-      //     message = t("toastMessages.tooManyRequests");
-      //     handleBasketCheck("", message);
-      //     return;
-      //   }
-
-      //   message = t("toastMessages.invalidPromoCode");
-
-      //   setPromoCodeStatus("invalid");
-      //   handleBasketCheck("", message);
-      // } else {
-      //   alert("else");
-      //   setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
-      //   setPromoCodeStatus("valid");
-      //   // handleBasketCheck(response?.data?.coupondetails?.coupon?.code);
-      //   handleBasketCheck(promoCodeInput.rawValue);
-      // }
 
       if (response?.data?.isValid) {
         setFormData({ ...formData, promoCode: promoCodeInput.rawValue });
@@ -407,22 +410,16 @@ export default function OrderSummary({
                 onCompositionStart={promoCodeInput.onCompositionStart}
                 onCompositionEnd={promoCodeInput.onCompositionEnd}
                 onFocus={() => setPromoCodeStatus(null)}
-                disabled={
-                  promoCodeApplying || checkout?.promotions?.[0]?.discount
-                }
+                disabled={promoCodeApplying}
               />
               <button
                 className="email-checkout__summary-promoCode-input-container-applyButton"
                 type="button"
                 onClick={handlePromoCode}
-                disabled={
-                  promoCodeApplying || checkout?.promotions?.[0]?.discount
-                }
+                disabled={promoCodeApplying}
                 style={{
-                  opacity: checkout?.promotions?.[0]?.discount ? 0.5 : 1,
-                  cursor: checkout?.promotions?.[0]?.discount
-                    ? "not-allowed"
-                    : "pointer",
+                  opacity: promoCodeApplying ? 0.5 : 1,
+                  cursor: promoCodeApplying ? "not-allowed" : "pointer",
                 }}
               >
                 {promoCodeApplying ? (
@@ -436,104 +433,123 @@ export default function OrderSummary({
         )}
 
         {/* Coupon Applied Indicator - New Style */}
-        {checkout?.promotions?.[0]?.discount && (
-          <div className="email-checkout__summary-couponApplied">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "8px",
-                padding: "6px",
-                backgroundColor: "var(--color-base-bg)",
-                border: "1px solid #e9ecef",
-                borderRadius: "6px",
-                margin: "10px 0",
-              }}
-            >
+        {checkout?.promotions
+          ?.filter((promotion) => promotion?.discount)
+          .map((promotion, index) => {
+            // Show the remove button only if this promotion code
+            // also exists in checkout.coupons
+            const hasMatchingCoupon = checkout?.coupons?.some(
+              (coupon) =>
+                coupon?.code &&
+                promotion?.code &&
+                coupon.code === promotion.code
+            );
+
+            return (
               <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                key={promotion?.code || index}
+                className="email-checkout__summary-couponApplied"
               >
-                <div>
-                  <HiOutlinePercentBadge
-                    className="coupon-badge-icon"
-                    style={{
-                      fontSize: "calc(24px * var(--zoom-scale))",
-                      width: "calc(24px * var(--zoom-scale))",
-                      height: "calc(24px * var(--zoom-scale))",
-                      fontWeight: "bold",
-                    }}
-                    strokeWidth={2}
-                  />
-                </div>
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    gap: "4px",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "8px",
+                    padding: "6px",
+                    backgroundColor: "var(--color-base-bg)",
+                    border: "1px solid #e9ecef",
+                    borderRadius: "6px",
+                    margin: "10px 0",
                   }}
                 >
-                  {/* Checkmark Icon */}
-
-                  <p
+                  <div
                     style={{
-                      color: "var(--color-summary-title)",
-
-                      fontSize: "calc(14px * var(--zoom-scale))",
-                      fontWeight: "200",
+                      display: "flex",
+                      gap: "8px",
+                      alignItems: "center",
                     }}
                   >
-                    {t("orderSummary.couponApplied")}{" "}
-                    <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
-                      {checkout?.coupons?.[0]?.code ||
-                        checkout?.promotions?.[0]?.code}
-                    </span>
-                  </p>
-                  <p
-                    style={{
-                      color: "#28a745",
-                      fontSize: "calc(12px * var(--zoom-scale))",
-                    }}
-                  >
-                    <span style={{ fontWeight: "200" }}>
-                      {" "}
-                      {t("orderSummary.couponSavings")}{" "}
-                    </span>
-                    <span style={{ fontWeight: "bold" }}>
-                      {t("common.aed")}{" "}
-                      {checkout?.promotions[0]?.discount?.replace("-", "")}
-                    </span>
-                  </p>
+                    <div>
+                      <HiOutlinePercentBadge
+                        className="coupon-badge-icon"
+                        style={{
+                          fontSize: "calc(24px * var(--zoom-scale))",
+                          width: "calc(24px * var(--zoom-scale))",
+                          height: "calc(24px * var(--zoom-scale))",
+                          fontWeight: "bold",
+                        }}
+                        strokeWidth={2}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                      }}
+                    >
+                      {/* Checkmark Icon */}
+
+                      <p
+                        style={{
+                          color: "var(--color-summary-title)",
+
+                          fontSize: "calc(14px * var(--zoom-scale))",
+                          fontWeight: "200",
+                        }}
+                      >
+                        {t("orderSummary.couponApplied")}{" "}
+                        <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                          {checkout?.coupons?.[index]?.code || promotion?.code}
+                        </span>
+                      </p>
+                      <p
+                        style={{
+                          color: "#28a745",
+                          fontSize: "calc(12px * var(--zoom-scale))",
+                        }}
+                      >
+                        <span style={{ fontWeight: "200" }}>
+                          {" "}
+                          {t("orderSummary.couponSavings")}{" "}
+                        </span>
+                        <span style={{ fontWeight: "bold" }}>
+                          {t("common.aed")}{" "}
+                          {promotion?.discount?.toString().replace("-", "")}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Remove Button */}
+                  {showPromoCode && hasMatchingCoupon && (
+                    <button
+                      onClick={() => handleRemovePromoCode(promotion?.code)}
+                      disabled={removingPromoCode}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "var(--color-summary-title)",
+                        fontWeight: "bold",
+                        fontSize: "calc(14px * var(--zoom-scale))",
+                        cursor: removingPromoCode ? "not-allowed" : "pointer",
+                        padding: "4px 8px",
+                        borderRadius: "4px",
+                        opacity: removingPromoCode ? 0.7 : 1,
+                      }}
+                    >
+                      {removingPromoCode ? (
+                        <ButtonLoading />
+                      ) : (
+                        t("orderSummary.remove")
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
-
-              {/* Remove Button */}
-              {showPromoCode && (
-                <button
-                  onClick={handleRemovePromoCode}
-                  disabled={removingPromoCode}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "var(--color-summary-title)",
-                    fontWeight: "bold",
-                    fontSize: "calc(14px * var(--zoom-scale))",
-                    cursor: removingPromoCode ? "not-allowed" : "pointer",
-                    padding: "4px 8px",
-                    borderRadius: "4px",
-                    opacity: removingPromoCode ? 0.7 : 1,
-                  }}
-                >
-                  {removingPromoCode ? (
-                    <ButtonLoading />
-                  ) : (
-                    t("orderSummary.remove")
-                  )}
-                </button>
-              )}
-            </div>
-          </div>
-        )}
+            );
+          })}
 
         {/* Total - Mobile Style */}
         <div className="email-checkout__summary-grandTotal">

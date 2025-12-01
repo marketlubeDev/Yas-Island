@@ -174,7 +174,7 @@ function PaymentDetailsMobile() {
 
     // Create validation data structure similar to createOrderData
     const validationData = {
-      coupons: [],
+      coupons: checkout?.coupons || [],
       items: checkout?.items?.map((item) => ({
         productId: item.productId,
         quantity: item.quantity,
@@ -198,6 +198,7 @@ function PaymentDetailsMobile() {
       isTnCAgrred: checkout.isTnCAgrred,
       isConsentAgreed: checkout.isConsentAgreed,
       nationality: sanitize(checkout?.nationality),
+      promotions: checkout?.promotions || [],
     };
 
     // Validate data before proceeding with basket check
@@ -250,6 +251,10 @@ function PaymentDetailsMobile() {
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            discount: item?.discount,
+            itemPromotionList: item?.itemPromotionList
+              ? item?.itemPromotionList
+              : [],
             productMasterid:
               productList.find((product) =>
                 product.product_variants.some(
@@ -265,7 +270,7 @@ function PaymentDetailsMobile() {
 
           dispatch(
             setCheckout({
-              coupons: orderDetails?.coupons,
+              coupons: orderDetails?.coupons || [],
               items: updatedItems,
               emailId: checkout?.emailId,
               language: currentLanguage,
@@ -283,7 +288,7 @@ function PaymentDetailsMobile() {
               countryCode: checkout?.countryCode,
               isTnCAgrred: checkout?.isTnCAgrred,
               isConsentAgreed: checkout?.isConsentAgreed,
-              promotions: orderDetails?.promotions,
+              promotions: orderDetails?.promotions || [],
             })
           );
           onSuccess();
@@ -481,6 +486,7 @@ function PaymentDetailsMobile() {
           validTo: item.validTo,
           productMasterid: item.productMasterid,
         })),
+        promotions: checkout?.promotions || [],
         emailId: sanitize(checkout?.emailId),
         language: currentLanguage,
         amount: checkout?.grossAmount,

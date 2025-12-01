@@ -232,6 +232,10 @@ export default function PaymentDetails({ isCheckout }) {
             performances: item?.performances ? item?.performances : [],
             validFrom: item?.validFrom,
             validTo: item?.validTo,
+            discount: item?.discount,
+            itemPromotionList: item?.itemPromotionList
+              ? item?.itemPromotionList
+              : [],
             productMasterid:
               productList.find((product) =>
                 product.product_variants.some(
@@ -305,6 +309,7 @@ export default function PaymentDetails({ isCheckout }) {
           validTo: item.validTo,
           productMasterid: item.productMasterid,
         })),
+        promotions: checkout?.promotions || [],
         emailId: sanitize(checkout?.emailId),
         language: currentLanguage,
         amount: checkout?.grossAmount,

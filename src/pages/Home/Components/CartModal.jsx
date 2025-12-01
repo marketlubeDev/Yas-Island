@@ -221,7 +221,7 @@ const CartModal = ({ isOpen, onClose }) => {
           }));
           dispatch(
             setCheckout({
-              coupons: [],
+              coupons: orderDetails?.coupons || [],
               items: items,
               emailId: checkoutEmail || verificationEmail || "",
               language: language,
@@ -233,7 +233,7 @@ const CartModal = ({ isOpen, onClose }) => {
               isTnCAgrred: checkoutState?.isTnCAgrred ?? false,
               isConsentAgreed: checkoutState?.isConsentAgreed ?? false,
               promoCode: "",
-              promotions: [],
+              promotions: orderDetails?.promotions || [],
             })
           );
           onSuccess();

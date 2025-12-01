@@ -608,6 +608,7 @@ export default function BookingSection({ product, onBack }) {
           });
         } else {
           const orderDetails = res?.orderdetails;
+
           if (type === "cart") {
             // For cart, add only the new items to cart
             // Filter to only include current items (not existing cart items)
@@ -664,6 +665,10 @@ export default function BookingSection({ product, onBack }) {
           } else if (type === "checkout") {
             const items = orderDetails?.order?.items?.map((item) => ({
               ...item,
+              discount: item?.discount,
+              itemPromotionList: item?.itemPromotionList
+                ? item?.itemPromotionList
+                : [],
               productMasterid:
                 productList.find((product) =>
                   product.product_variants.some(
@@ -673,7 +678,7 @@ export default function BookingSection({ product, onBack }) {
             }));
 
             const checkoutData = {
-              coupons: [],
+              coupons: orderDetails?.order?.coupons || [],
               items: items,
               emailId: verificationEmail || "",
               // country: "",
@@ -690,9 +695,10 @@ export default function BookingSection({ product, onBack }) {
               isTnCAgrred: checkout?.isTnCAgrred ?? false,
               isConsentAgreed: checkout?.isConsentAgreed ?? false,
               promoCode: "",
-              promotions: [],
+              promotions: orderDetails?.order?.promotions || [],
               originalNetAmount: orderDetails?.order?.total?.gross,
             };
+
             dispatch(setCheckout(checkoutData));
             dispatch(clearCart());
 
