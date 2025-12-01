@@ -1098,7 +1098,7 @@ export default function BookingSection({ product, onBack }) {
             }
           >
             <button
-              className="checkout-btnn"
+              className="cart-btn"
               onClick={handleCheckout}
               disabled={isLoadingDates || isPending}
               style={
@@ -1124,7 +1124,7 @@ export default function BookingSection({ product, onBack }) {
               )}
             </button>
             <button
-              className="cart-btn"
+              className="checkout-btnn"
               onClick={handleSaveToCart}
               disabled={isLoadingDates || isPending}
               style={

@@ -1247,7 +1247,7 @@ function BookingModalMbl({
         </div>
         <div className="booking-modal__footer">
           <button
-            className="booking-modal__checkout"
+            className="booking-modal__save"
             onClick={handleCheckout}
             disabled={isLoadingDates || isPending}
             style={
@@ -1268,7 +1268,7 @@ function BookingModalMbl({
             )}
           </button>
           <button
-            className="booking-modal__save"
+            className="booking-modal__checkout"
             onClick={handleSaveToCart}
             disabled={isLoadingDates || isPending}
             style={
