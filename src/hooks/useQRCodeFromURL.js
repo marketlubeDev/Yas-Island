@@ -25,7 +25,7 @@ const useQRCodeFromURL = () => {
 
     // Also accept plain root path: /{id} (but ignore known app routes)
     const reserved = new Set([
-      "",
+      "all",
       "email-verification",
       "otp-confirmation",
       "payment-details",
