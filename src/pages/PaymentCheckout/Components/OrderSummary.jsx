@@ -321,17 +321,16 @@ export default function OrderSummary({
                         <span className="item-quantity">
                           {t("payment.orderSummary.qty")} {item.quantity || 0}
                         </span>
-                        {item.discount < 0 && (
-                          <>
-                            <span className="item-separator">•</span>
-                            <span className="item-discount">
-                              {t("orderSummary.discount")}: {item.discount}
-                            </span>
-                          </>
-                        )}
                       </div>
                     </div>
-                    <div className="item-price">
+                    <div
+                      className="item-price"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                      }}
+                    >
                       <span className="price-amount">
                         {t("common.aed")}{" "}
                         {(
@@ -343,6 +342,22 @@ export default function OrderSummary({
                             (item.quantity || 0)
                         ).toFixed(2)}
                       </span>
+                      {item.discount < 0 && (
+                        <span
+                          className="item-discount"
+                          style={{
+                            marginTop: "4px",
+                            fontSize: "12px",
+                            color: "#28a745",
+                            backgroundColor: "#e6f4ea",
+                            padding: "2px 8px",
+                            borderRadius: "4px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          {t("orderSummary.discount")}: {item.discount}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
