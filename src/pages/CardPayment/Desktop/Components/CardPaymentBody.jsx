@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CardPaymentDetail from "./CardPaymentDetail";
 import OrderSummary from "../../../PaymentCheckout/Components/OrderSummary";
@@ -7,9 +7,11 @@ import CheckoutSteps from "../../../PaymentCheckout/Components/CheckoutSteps";
 import leftIcon from "../../../../assets/icons/left.svg";
 import leftIconDark from "../../../../assets/icons/invertLeft.svg";
 import { useTranslation } from "react-i18next";
+import { clearCart, setIsCartOpen } from "../../../../global/cartSlice";
 
 export default function CardPaymentBody({ isCheckout }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const orderData = useSelector((state) => state.order.orderData);
   const { t, i18n } = useTranslation();
   const checkout = useSelector((state) => state.checkout);
@@ -36,6 +38,9 @@ export default function CardPaymentBody({ isCheckout }) {
   };
 
   const handlePaymentComplete = () => {
+    // Clear cart after successful payment
+    dispatch(clearCart());
+
     // Navigate to payment success
     navigate("/payment-success", { replace: true });
   };
