@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CardPaymentDetail from "../../CardPayment/Desktop/Components/CardPaymentDetail";
 import OrderSummaryFailed from "../Components/ordersummaryFailed";
 import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 
 export default function PaymentFailed({ isCheckout }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const orderData = useSelector((state) => state.order.orderData);
   const { t, i18n } = useTranslation();
   const checkout = useSelector((state) => state.checkout);
@@ -20,6 +21,12 @@ export default function PaymentFailed({ isCheckout }) {
     (state) => state.responsive
   );
   const isRTL = i18n.language === "ar" || i18n.language === "العربية";
+
+  // Read orderId and paymentStatus from query params
+  const searchParams = new URLSearchParams(location.search);
+  const orderId = searchParams.get("orderId");
+  const paymentStatusParam = searchParams.get("paymentStatus");
+  const isPaymentStatusTrue = paymentStatusParam === "true";
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",
@@ -30,7 +37,9 @@ export default function PaymentFailed({ isCheckout }) {
     phoneNumber: checkout?.phoneNumber || "971",
     promoCode: checkout?.promoCode || "",
   });
-
+  console.log(orderId, "orderId");
+  console.log(paymentStatusParam, "paymentStatusParam");
+  console.log(isPaymentStatusTrue, "isPaymentStatusTrue");
   const handleBackClick = () => {
     // Navigate back to payment details
     navigate("/");
@@ -182,10 +191,31 @@ export default function PaymentFailed({ isCheckout }) {
                         color: isDarkMode ? "#b3b3b3" : "#4a5568",
                       }}
                     >
-                      {t("payment.cardPayment.errorMessage", {
-                        defaultValue:
-                          "The order could not be completed. Please contact our support.",
-                      })}
+                      {isPaymentStatusTrue ? (
+                        <>
+                          {t("payment.cardPayment.errorMessageWithSupport", {
+                            defaultValue:
+                              "The order could not be completed. Please contact our support.",
+                          })}
+                          {orderId && (
+                            <div
+                              style={{
+                                marginTop: 8,
+                                fontWeight: 600,
+                              }}
+                            >
+                              {t("payment.cardPayment.orderIdLabel", {
+                                defaultValue: "Order ID",
+                              })}
+                              : {orderId}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        t("payment.cardPayment.errorMessageWithoutSupport", {
+                          defaultValue: "The order could not be completed.",
+                        })
+                      )}
                     </div>
                     <div
                       style={{

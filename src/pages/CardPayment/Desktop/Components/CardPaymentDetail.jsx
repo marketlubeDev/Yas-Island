@@ -66,7 +66,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     setFailureMessage(errorMessage);
 
     // Don't clear cart on failure - user might want to retry
-
+    console.log(data, "dataerewrwe");
     if (data?.redirectUrl) {
       let targetPath = data.redirectUrl;
 
@@ -200,6 +200,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       // Listen for messages from the iframe
       const handleMessage = async (event) => {
         const data = event?.data;
+        console.log(data, "sdjklfldjgsljsdgfsad");
 
         // Strictly trust only messages from known, allowed origins
         const getBackendOrigin = async () => {
@@ -228,6 +229,8 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           data.payment_status === true ||
           data.type === "payment_result"
         ) {
+          console.log(data, "rtrwgvfgsgd");
+
           if (data.success === true) {
             handlePaymentSuccess(data);
           } else {

@@ -283,7 +283,10 @@
       "makePayment": "Make Payment",
       "errorTitle": "Order Failed",
       "loadingSecurePaymentForm": "Loading secure payment form...",
-      "errorMessage": "The order could not be completed. Please contact our support."
+      "errorMessage": "The order could not be completed. Please contact our support.",
+      "errorMessageWithSupport": "The order could not be completed. Please contact our support.",
+      "errorMessageWithoutSupport": "The order could not be completed.",
+      "orderIdLabel": "Order ID"
     },
     "success": {
       "title": "Payment Successful",
