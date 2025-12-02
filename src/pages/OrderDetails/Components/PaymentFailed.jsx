@@ -7,6 +7,8 @@ import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
 import leftIcon from "../../../assets/icons/left.svg";
 import leftIconDark from "../../../assets/icons/invertLeft.svg";
 import { useTranslation } from "react-i18next";
+import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import { toast } from "sonner";
 
 export default function PaymentFailed({ isCheckout }) {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ export default function PaymentFailed({ isCheckout }) {
   const checkout = useSelector((state) => state.checkout);
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
   const { theme } = useSelector((state) => state.accessibility);
+  const { mutate: checkBasket } = useCheckBasket();
 
   const { isSmallPhone, isPhone, isTablets } = useSelector(
     (state) => state.responsive
@@ -44,8 +47,52 @@ export default function PaymentFailed({ isCheckout }) {
   };
 
   const handleRetryClick = () => {
-    // Go back to payment details so user can try again
-    navigate("/payment-details");
+    // Before navigating back to payment details, validate basket
+    try {
+      let items = [];
+      checkout?.items?.forEach((item) => {
+        items.push({
+          productId: item?.productId,
+          quantity: item?.quantity,
+          performance: item?.performances ? item?.performances : [],
+          validFrom: item?.validFrom,
+          validTo: item?.validTo,
+        });
+      });
+
+      const data = {
+        coupons:
+          checkout?.coupons?.map((coupon) => ({
+            couponCode: coupon?.code,
+          })) || [],
+        items,
+        capacityManagement: true,
+      };
+
+      checkBasket(data, {
+        onSuccess: () => {
+          // Mark a recent, valid navigation to payment-details
+          try {
+            sessionStorage.setItem(
+              "paymentDetailsNavigationTime",
+              Date.now().toString()
+            );
+          } catch (e) {}
+
+          // Go back to payment details so user can try again
+          navigate("/payment-details", { state: { isCheckout: true } });
+        },
+        onError: () => {
+          toast.error(t("toastMessages.somethingWentWrong"), {
+            position: "top-center",
+          });
+        },
+      });
+    } catch (error) {
+      toast.error(t("toastMessages.somethingWentWrong"), {
+        position: "top-center",
+      });
+    }
   };
 
   const handlePaymentComplete = () => {
@@ -223,9 +270,9 @@ export default function PaymentFailed({ isCheckout }) {
                     <div
                       style={{
                         display: "flex",
-                        flexWrap: "wrap",
-                        gap: 8,
-                        justifyContent: "flex-end",
+                        flexWrap: isMobile ? "nowrap" : "wrap",
+                        gap: isMobile ? 6 : 8,
+                        justifyContent: isMobile ? "center" : "flex-end",
                         padding: "12px 16px",
                         background: isDarkMode ? "#262626" : "#fafafa",
                         borderTop: isDarkMode
@@ -243,7 +290,8 @@ export default function PaymentFailed({ isCheckout }) {
                             ? "1px solid #525252"
                             : "1px solid #ddd",
                           borderRadius: 8,
-                          padding: ".55rem 1rem",
+                          padding: isMobile ? ".4rem 0.7rem" : ".55rem 1rem",
+                          fontSize: isMobile ? "0.8rem" : "0.9rem",
                           cursor: "pointer",
                         }}
                       >
@@ -260,7 +308,8 @@ export default function PaymentFailed({ isCheckout }) {
                             color: "var(--cart-btn-text)",
                             border: "none",
                             borderRadius: 8,
-                            padding: ".5rem 1rem",
+                            padding: isMobile ? ".4rem 0.7rem" : ".5rem 1rem",
+                            fontSize: isMobile ? "0.8rem" : "0.9rem",
                             cursor: "pointer",
                           }}
                         >
