@@ -26,7 +26,7 @@ export default function PaymentDetailsPage() {
     }
     sessionStorage.removeItem("paymentDetailsNavigationTime");
   }, [isCheckout, navigate]);
-
+  console.log(isCheckout, "isCheckoutisCheckout");
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);

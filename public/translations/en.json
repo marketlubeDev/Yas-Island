@@ -284,8 +284,8 @@
       "errorTitle": "Order Failed",
       "loadingSecurePaymentForm": "Loading secure payment form...",
       "errorMessage": "The order could not be completed. Please contact our support.",
-      "errorMessageWithSupport": "The order could not be completed. Please contact our support.",
-      "errorMessageWithoutSupport": "The order could not be completed.",
+      "errorMessageWithSupport": "Payment failed. Please contact our support team and provide your Order ID.",
+      "errorMessageWithoutSupport": "Payment failed. Please try again.",
       "orderIdLabel": "Order ID"
     },
     "success": {

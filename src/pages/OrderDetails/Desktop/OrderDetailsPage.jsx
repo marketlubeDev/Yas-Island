@@ -15,8 +15,6 @@ export default function OrderDetailsPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(status, "statussdsdsds");
-
   // If no status is provided, redirect to home
   // if (!status) {
   //   return <Navigate to="/" replace />;

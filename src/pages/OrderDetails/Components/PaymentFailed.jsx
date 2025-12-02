@@ -39,8 +39,13 @@ export default function PaymentFailed({ isCheckout }) {
   });
 
   const handleBackClick = () => {
-    // Navigate back to payment details
+    // Navigate back to home
     navigate("/");
+  };
+
+  const handleRetryClick = () => {
+    // Go back to payment details so user can try again
+    navigate("/payment-details");
   };
 
   const handlePaymentComplete = () => {
@@ -193,7 +198,7 @@ export default function PaymentFailed({ isCheckout }) {
                         <>
                           {t("payment.cardPayment.errorMessageWithSupport", {
                             defaultValue:
-                              "The order could not be completed. Please contact our support.",
+                              "Payment failed. Please contact our support team and provide your Order ID.",
                           })}
                           {orderId && (
                             <div
@@ -211,7 +216,7 @@ export default function PaymentFailed({ isCheckout }) {
                         </>
                       ) : (
                         t("payment.cardPayment.errorMessageWithoutSupport", {
-                          defaultValue: "The order could not be completed.",
+                          defaultValue: "Payment failed. Please try again.",
                         })
                       )}
                     </div>
@@ -246,6 +251,24 @@ export default function PaymentFailed({ isCheckout }) {
                           defaultValue: "Back to details",
                         })}
                       </button>
+                      {!isPaymentStatusTrue && (
+                        <button
+                          type="button"
+                          onClick={handleRetryClick}
+                          style={{
+                            background: "var(--cart-btn-var)",
+                            color: "var(--cart-btn-text)",
+                            border: "none",
+                            borderRadius: 8,
+                            padding: ".5rem 1rem",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {t("payment.cardPayment.retryPayment", {
+                            defaultValue: "Retry payment",
+                          })}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
