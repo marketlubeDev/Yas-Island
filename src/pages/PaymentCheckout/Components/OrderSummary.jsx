@@ -578,7 +578,7 @@ export default function OrderSummary({
               {t("orderSummary.discount")}
             </span>
             <span className="email-checkout__summary-grandTotalNew-ValueNew">
-              -{t("common.aed")} {discountAmount.toFixed(2)}
+              -&nbsp;{t("common.aed")} {discountAmount.toFixed(2)}
             </span>
           </div>
         )}
