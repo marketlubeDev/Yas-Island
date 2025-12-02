@@ -27,9 +27,7 @@ export default function OrderSummary({
   const { isBigTablets } = useResponsive();
   const [isModalVisible, setIsModalVisible] = useState(false);
   // Use uppercase input hook for promo code with display transformation
-  const promoCodeInput = useUppercaseInput(
-    checkout?.coupons?.[0]?.code || checkout?.promotions?.[0]?.code || ""
-  );
+  const promoCodeInput = useUppercaseInput(checkout?.coupons?.[0]?.code || "");
   const [promoCodeApplying, setPromoCodeApplying] = useState(false);
   const [removingPromoCode, setRemovingPromoCode] = useState(false);
   const [promoCodeStatus, setPromoCodeStatus] = useState(null); // null | 'valid' | 'invalid'
