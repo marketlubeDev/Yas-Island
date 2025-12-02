@@ -308,80 +308,95 @@ function CheckOutSummaryMbl({
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center",
+                alignItems: "stretch",
                 marginBottom: "6px",
                 gap: "8px",
               }}
             >
-              <span
+              <div
                 className="item-title"
                 style={{
                   flex: "1",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  color: "var(--color-summary-title)",
-                  margin: "0",
-                  lineHeight: "1.3",
-                  fontFamily: '"YAS Font", sans-serif',
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.8rem",
                   minWidth: "0",
-                  display: "block",
+                  alignSelf: "flex-start",
                 }}
               >
-                {getProduct(item.productId)?.product?.product_title ||
-                  "Product"}
-              </span>
-              <span
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "var(--color-summary-title)",
+                    margin: "0",
+                    lineHeight: "1.3",
+                    fontFamily: '"YAS Font", sans-serif',
+                  }}
+                >
+                  {getProduct(item.productId)?.product?.product_title ||
+                    "Product"}
+                </span>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "4px",
+                    fontSize: "12px",
+                    color: "#666",
+                    lineHeight: "1.2",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontWeight: "500",
+                      color: "var(--color-base-product-card-price)",
+                    }}
+                  >
+                    {getProduct(item.productId)?.productVariant
+                      ?.productvariantname || "Adult"}
+                  </span>
+                  <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+                  <span style={{ color: "#888" }}>
+                    {formatDate(item.validFrom)}
+                  </span>
+                  <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+                  <span style={{ color: "#888", fontWeight: "500" }}>
+                    Qty: {item.quantity || 0}
+                  </span>
+                </span>
+              </div>
+              <div
                 className="item-price"
                 style={{
                   flexShrink: "0",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  color: "var(--color-summary-title)",
-                  fontFamily: '"YAS Font", sans-serif',
-                  whiteSpace: "nowrap",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  gap: "4px",
+                  alignSelf: "flex-start",
                 }}
               >
-                {t("common.aed")}{" "}
-                {(
-                  (getProduct(item.productId)?.productVariant?.net_amount ||
-                    0) *
-                    (item.quantity || 0) +
-                  (getProduct(item.productId)?.productVariant?.vat || 0) *
-                    (item.quantity || 0)
-                ).toFixed(2)}
-              </span>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: "4px",
-                fontSize: "12px",
-                color: "#666",
-                lineHeight: "1.2",
-              }}
-            >
-              <span
-                style={{
-                  fontWeight: "500",
-                  color: "var(--color-base-product-card-price)",
-                }}
-              >
-                {getProduct(item.productId)?.productVariant
-                  ?.productvariantname || "Adult"}
-              </span>
-              <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
-              <span style={{ color: "#888" }}>
-                {formatDate(item.validFrom)}
-              </span>
-              <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
-              <span style={{ color: "#888", fontWeight: "500" }}>
-                Qty: {item.quantity || 0}
-              </span>
-              {item.discount < 0 && (
-                <>
-                  <span style={{ color: "#ccc", margin: "0 2px" }}>•</span>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "var(--color-summary-title)",
+                    fontFamily: '"YAS Font", sans-serif',
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {t("common.aed")}{" "}
+                  {(
+                    (getProduct(item.productId)?.productVariant?.net_amount ||
+                      0) *
+                      (item.quantity || 0) +
+                    (getProduct(item.productId)?.productVariant?.vat || 0) *
+                      (item.quantity || 0)
+                  ).toFixed(2)}
+                </span>
+                {item.discount < 0 && (
                   <span
                     className="item-discount"
                     style={{
@@ -398,8 +413,8 @@ function CheckOutSummaryMbl({
                   >
                     {t("orderSummary.discount")}: {item.discount}
                   </span>
-                </>
-              )}
+                )}
+              </div>
             </div>
           </div>
         ))
