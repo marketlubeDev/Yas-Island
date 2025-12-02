@@ -89,7 +89,10 @@ export default function OrderSummary({ checkout }) {
                       </div>
                     </div>
                     <div className="item-price">
-                      <span className="price-amount">
+                      <div
+                        className="price-amount"
+                        style={{ textAlign: "right" }}
+                      >
                         {t("common.aed")}{" "}
                         {(
                           (getProduct(item.productId)?.productVariant
@@ -99,9 +102,9 @@ export default function OrderSummary({ checkout }) {
                             0) *
                             (item.quantity || 0)
                         ).toFixed(2)}
-                      </span>
+                      </div>
                       {item.discount < 0 && (
-                        <span
+                        <div
                           className="item-discount"
                           style={{
                             marginTop: "4px",
@@ -114,7 +117,7 @@ export default function OrderSummary({ checkout }) {
                           }}
                         >
                           {t("orderSummary.discount")}: {item.discount}
-                        </span>
+                        </div>
                       )}
                     </div>
                   </div>
