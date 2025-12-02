@@ -684,7 +684,7 @@
   &-grandTotal {
     display: flex;
     justify-content: space-between;
-    padding-top: 12px;
+    // padding-top: 12px;
 
     &-Content {
       font-weight: bold;
@@ -696,6 +696,23 @@
       font-weight: bold;
       color: var(--cart-total-price);
       font-size: calc(14px * var(--zoom-scale));
+    }
+  }
+  &-grandTotalNew {
+    display: flex;
+    justify-content: space-between;
+    // padding-top: 12px;
+
+    &-ContentNew {
+      font-weight: 400;
+      color: var(--cart-total-price);
+      font-size: calc(12px * var(--zoom-scale));
+    }
+
+    &-ValueNew {
+      font-weight: 400;
+      color: var(--cart-total-price);
+      font-size: calc(12px * var(--zoom-scale));
     }
   }
 

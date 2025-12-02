@@ -27,8 +27,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   const { currentLanguage } = useSelector((state) => state.language);
 
   const handlePaymentSuccess = (data) => {
-    console.log(data, "zxcvbnm");
-
     setPaymentStatus("success");
     dispatch(clearCart());
 
@@ -52,8 +50,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
   };
 
   const handlePaymentFailure = (data) => {
-    console.log(data, "payment failure");
-
     // Set failure message from data or use default translation
     const errorMessage =
       data?.message ||
@@ -66,7 +62,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
     setFailureMessage(errorMessage);
 
     // Don't clear cart on failure - user might want to retry
-    console.log(data, "dataerewrwe");
+
     if (data?.redirectUrl) {
       let targetPath = data.redirectUrl;
 
@@ -80,7 +76,7 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           ? data.redirectUrl
           : `/${data.redirectUrl}`;
       }
-      console.log(targetPath, "targetPath");
+
       navigate(targetPath);
     }
     setPaymentStatus("failed");
@@ -200,7 +196,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       // Listen for messages from the iframe
       const handleMessage = async (event) => {
         const data = event?.data;
-        console.log(data, "sdjklfldjgsljsdgfsad");
 
         // Strictly trust only messages from known, allowed origins
         const getBackendOrigin = async () => {
@@ -229,8 +224,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
           data.payment_status === true ||
           data.type === "payment_result"
         ) {
-          console.log(data, "rtrwgvfgsgd");
-
           if (data.success === true) {
             handlePaymentSuccess(data);
           } else {

@@ -277,7 +277,20 @@ function CheckOutSummaryMbl({
     }
   };
 
-  // Calculate totals with fallbacks
+  // Price breakdown values (match desktop OrderSummary)
+  // Subtotal = sum of all item amounts (net + VAT) * quantity
+  const subTotal = roundToTwoDecimals(
+    checkout?.items?.reduce((total, item) => {
+      const { productVariant } = getProduct(item.productId) || {};
+      const net = Number(productVariant?.net_amount) || 0;
+      const vat = Number(productVariant?.vat) || 0;
+      const qty = Number(item?.quantity) || 0;
+      return total + (net + vat) * qty;
+    }, 0) ?? 0
+  );
+  const totalAmount = roundToTwoDecimals(checkout?.grossAmount ?? 0);
+  const discountAmount =
+    subTotal > totalAmount ? roundToTwoDecimals(subTotal - totalAmount) : 0;
 
   return (
     <div className="email-checkout__summary">
@@ -579,11 +592,32 @@ function CheckOutSummaryMbl({
             </div>
           </div>
         ))}
-      {/* Total */}
-      <div className="email-checkout__summary-grandTotal">
-        <span className="grandTotal-Content">
-          {t("payment.orderSummary.total")}
+      {/* Price Breakdown - Mobile */}
+      {/* Subtotal */}
+      <div className="email-checkout__summary-grandTotalNew">
+        <span className="email-checkout__summary-grandTotalNew-ContentNew">
+          {t("orderSummary.subTotal")}
         </span>
+        <span className="email-checkout__summary-grandTotalNew-ValueNew">
+          {t("common.aed")} {subTotal.toFixed(2)}
+        </span>
+      </div>
+
+      {/* Discount (only show when applicable) */}
+      {discountAmount > 0 && (
+        <div className="email-checkout__summary-grandTotalNew">
+          <span className="email-checkout__summary-grandTotalNew-ContentNew">
+            {t("orderSummary.discount")}
+          </span>
+          <span className="email-checkout__summary-grandTotalNew-ValueNew">
+            -&nbsp;{t("common.aed")} {discountAmount.toFixed(2)}
+          </span>
+        </div>
+      )}
+
+      {/* Grand Total */}
+      <div className="email-checkout__summary-grandTotal">
+        <span className="grandTotal-Content">{t("orderSummary.total")}</span>
         <span className="grandTotal-Value">
           {t("common.aed")} {(checkout?.grossAmount || 0).toFixed(2)}
         </span>

@@ -37,9 +37,7 @@ export default function PaymentFailed({ isCheckout }) {
     phoneNumber: checkout?.phoneNumber || "971",
     promoCode: checkout?.promoCode || "",
   });
-  console.log(orderId, "orderId");
-  console.log(paymentStatusParam, "paymentStatusParam");
-  console.log(isPaymentStatusTrue, "isPaymentStatusTrue");
+
   const handleBackClick = () => {
     // Navigate back to payment details
     navigate("/");
