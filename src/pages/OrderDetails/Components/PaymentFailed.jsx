@@ -6,6 +6,7 @@ import OrderSummaryFailed from "../Components/ordersummaryFailed";
 import CheckoutSteps from "../../PaymentCheckout/Components/CheckoutSteps";
 import leftIcon from "../../../assets/icons/left.svg";
 import leftIconDark from "../../../assets/icons/invertLeft.svg";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import { useTranslation } from "react-i18next";
 import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
 import { toast } from "sonner";
@@ -30,6 +31,7 @@ export default function PaymentFailed({ isCheckout }) {
   const orderId = searchParams.get("orderId");
   const paymentStatusParam = searchParams.get("paymentStatus");
   const isPaymentStatusTrue = paymentStatusParam === "true";
+  const [isRetryLoading, setIsRetryLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: checkout?.firstName || "",
     lastName: checkout?.lastName || "",
@@ -47,6 +49,8 @@ export default function PaymentFailed({ isCheckout }) {
   };
 
   const handleRetryClick = () => {
+    if (isRetryLoading) return;
+    setIsRetryLoading(true);
     // Before navigating back to payment details, validate basket
     try {
       let items = [];
@@ -83,12 +87,14 @@ export default function PaymentFailed({ isCheckout }) {
           navigate("/payment-details", { state: { isCheckout: true } });
         },
         onError: () => {
+          setIsRetryLoading(false);
           toast.error(t("toastMessages.somethingWentWrong"), {
             position: "top-center",
           });
         },
       });
     } catch (error) {
+      setIsRetryLoading(false);
       toast.error(t("toastMessages.somethingWentWrong"), {
         position: "top-center",
       });
@@ -303,6 +309,7 @@ export default function PaymentFailed({ isCheckout }) {
                         <button
                           type="button"
                           onClick={handleRetryClick}
+                          disabled={isRetryLoading}
                           style={{
                             background: "var(--cart-btn-var)",
                             color: "var(--cart-btn-text)",
@@ -310,12 +317,18 @@ export default function PaymentFailed({ isCheckout }) {
                             borderRadius: 8,
                             padding: isMobile ? ".4rem 0.7rem" : ".5rem 1rem",
                             fontSize: isMobile ? "0.8rem" : "0.9rem",
-                            cursor: "pointer",
+                            minWidth: isMobile ? "130px" : "150px",
+                            cursor: isRetryLoading ? "not-allowed" : "pointer",
+                            opacity: isRetryLoading ? 0.7 : 1,
                           }}
                         >
-                          {t("payment.cardPayment.retryPayment", {
-                            defaultValue: "Retry payment",
-                          })}
+                          {isRetryLoading ? (
+                            <ButtonLoading height="20px" width="20px" />
+                          ) : (
+                            t("payment.cardPayment.retryPayment", {
+                              defaultValue: "Retry payment",
+                            })
+                          )}
                         </button>
                       )}
                     </div>

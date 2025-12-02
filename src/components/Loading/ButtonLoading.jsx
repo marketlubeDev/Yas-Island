@@ -1,8 +1,14 @@
 import React from "react";
 
-  function Loading({ height = "25px", width = "25px" }) {
+function Loading({ height = "25px", width = "25px" }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <div className="loader" style={{ height: height, width: width }}>
         <div className="bar1"></div>
         <div className="bar2"></div>
