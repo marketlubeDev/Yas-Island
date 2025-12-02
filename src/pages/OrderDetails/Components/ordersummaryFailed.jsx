@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from "react-redux";
-import useCheckBasket from "../../../apiHooks/Basket/checkbasket";
+import { useSelector } from "react-redux";
 import useGetProductList from "../../../apiHooks/product/product";
+import { HiOutlinePercentBadge } from "react-icons/hi2";
 
 export default function OrderSummary({ checkout }) {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const currentLanguage = useSelector(
     (state) => state.language.currentLanguage
   );
 
+  console.log(checkout, "checkoutordersummaryFailed");
   // Ensure products are loaded for the current language
   useGetProductList();
 
   const productList = useSelector((state) => state.product.allProducts);
-  const { mutate: checkBasket } = useCheckBasket();
 
   const getProduct = (item) => {
     const product = productList.find((product) =>
@@ -101,6 +100,22 @@ export default function OrderSummary({ checkout }) {
                             (item.quantity || 0)
                         ).toFixed(2)}
                       </span>
+                      {item.discount < 0 && (
+                        <span
+                          className="item-discount"
+                          style={{
+                            marginTop: "4px",
+                            fontSize: "12px",
+                            color: "#28a745",
+                            backgroundColor: "#e6f4ea",
+                            padding: "2px 8px",
+                            borderRadius: "4px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          {t("orderSummary.discount")}: {item.discount}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -121,6 +136,84 @@ export default function OrderSummary({ checkout }) {
       {/* End of scrollable wrapper */}
       {/* Sticky bottom section */}
       <div className="order-summary-sticky-bottom">
+        {/* Coupon Applied Indicator - show if any promotion with discount exists */}
+        {checkout?.promotions
+          ?.filter((promotion) => promotion?.discount)
+          .map((promotion, index) => (
+            <div
+              key={promotion?.code || index}
+              className="email-checkout__summary-couponApplied"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "8px",
+                  padding: "6px",
+                  backgroundColor: "var(--color-base-bg)",
+                  border: "1px solid #e9ecef",
+                  borderRadius: "6px",
+                  margin: "10px 0",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "8px",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>
+                    <HiOutlinePercentBadge
+                      className="coupon-badge-icon"
+                      style={{
+                        fontSize: "calc(24px * var(--zoom-scale))",
+                        width: "calc(24px * var(--zoom-scale))",
+                        height: "calc(24px * var(--zoom-scale))",
+                        fontWeight: "bold",
+                      }}
+                      strokeWidth={2}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "4px",
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "var(--color-summary-title)",
+                        fontSize: "calc(14px * var(--zoom-scale))",
+                        fontWeight: "200",
+                      }}
+                    >
+                      {t("orderSummary.couponApplied")}{" "}
+                      <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                        {checkout?.coupons?.[index]?.code || promotion?.code}
+                      </span>
+                    </p>
+                    <p
+                      style={{
+                        color: "#28a745",
+                        fontSize: "calc(12px * var(--zoom-scale))",
+                      }}
+                    >
+                      <span style={{ fontWeight: "200" }}>
+                        {t("orderSummary.couponSavings")}{" "}
+                      </span>
+                      <span style={{ fontWeight: "bold" }}>
+                        {t("common.aed")}{" "}
+                        {promotion?.discount?.toString().replace("-", "")}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         {/* Total - Mobile Style */}
         <div className="email-checkout__summary-grandTotal">
           <span className="email-checkout__summary-grandTotal-Content">
