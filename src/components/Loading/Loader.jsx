@@ -14,75 +14,59 @@ const imageStyle = {
 
 const loaderHtml = `<!DOCTYPE html>
 <html>
-  <head>
-    <title>Page Title</title>
-  </head>
-  <body style=" margin: 0; padding: 0; overflow: hidden;">
-    <div
-      style="
+<body>
+
+<!-- Inline styles removed, class "loader-container" added -->
+<div class="loader-container">
+    <div class="loader">
+        <!-- Inline variables removed, handled via CSS nth-child -->
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+
+        <svg class="arc-container" viewBox="0 0 100 100">
+            <circle class="arc" cx="50" cy="50" r="44"></circle>
+        </svg>
+    </div>
+</div>
+
+<style>
+    :root {
+        --loader-size: 100px;
+        --loader-background-size: 200px;
+        --dot-size: 12px;
+        --dot-color: #AEB9BE;
+        --arc-color: #FFEA00;
+        --loader-width: 14px;
+        --duration: 1.8s;
+        --continuous-gravity: cubic-bezier(0.68, 0.2, 0.32, 0.8);
+        --dots-duration: 7s;
+    }
+
+    /* New class replacing the inline styles on the outer div */
+    .loader-container {
         display: flex;
         border-radius: 50%;
-        background-color: #fefefe;
+        background-color: #FEFEFE;
         height: var(--loader-background-size);
         width: var(--loader-background-size);
         align-items: center;
         justify-content: center;
         border: none;
-      "
-    >
-      <div class="loader">
-        <div class="dot" style="--i: 0"></div>
-        <div class="dot" style="--i: 1"></div>
-        <div class="dot" style="--i: 2"></div>
-        <div class="dot" style="--i: 3"></div>
-        <div class="dot" style="--i: 4"></div>
-        <div class="dot" style="--i: 5"></div>
-        <div class="dot" style="--i: 6"></div>
-        <div class="dot" style="--i: 7"></div>
+    }
 
-        <svg class="arc-container" viewBox="0 0 100 100">
-          <circle class="arc" cx="50" cy="50" r="44"></circle>
-        </svg>
-      </div>
-    </div>
-
-    <style>
-      :root {
-        --loader-size: 140px;
-        --loader-background-size: 240px;
-        --dot-size: 14px;
-        --dot-color: #aeb9be;
-        --arc-color: #ffea00;
-        --loader-width: 14px;
-        /*
-               Duration: 2.4s
-               Enough time to see the speed variation clearly over 2 rotations.
-            */
-        --duration: 1.8s;
-        /*
-               UPDATED PHYSICS CURVE:
-               cubic-bezier(0.68, 0.2, 0.32, 0.8)
-
-               - The 0.2 (start Y) and 0.8 (end Y) ensure the slope never goes to zero.
-               - This prevents the "parking" or "stopping" visual.
-               - It keeps the motion continuous while still slowing down at the top.
-            */
-        --continuous-gravity: cubic-bezier(0.68, 0.2, 0.32, 0.8);
-        /*
-               Dots rotation: 45deg/s
-               360deg / 45deg/s = 8 seconds for full rotation
-            */
-        --dots-duration: 7s;
-      }
-
-      .loader {
+    .loader {
         position: relative;
         width: var(--loader-size);
         height: var(--loader-size);
-      }
+    }
 
-      /* --- The 8 Rotating Dots --- */
-      .dot {
+    .dot {
         position: absolute;
         width: var(--dot-size);
         height: var(--dot-size);
@@ -93,78 +77,71 @@ const loaderHtml = `<!DOCTYPE html>
         margin-top: calc(var(--dot-size) / -2);
         margin-left: calc(var(--dot-size) / -2);
         --radius: calc((var(--loader-size) - var(--dot-size)) / 2);
+        /* Default i variable */
+        --i: 0;
         transform: rotate(calc(var(--i) * 45deg)) translate(var(--radius));
-        /* Rotate dots independently at 45deg/s */
         animation: spin-dots var(--dots-duration) linear infinite;
-      }
+    }
 
-      /* --- The Rotating Arc --- */
-      .arc-container {
+    /* Assigning the index variable using nth-child to avoid inline styles */
+    .dot:nth-child(1) { --i: 0; }
+    .dot:nth-child(2) { --i: 1; }
+    .dot:nth-child(3) { --i: 2; }
+    .dot:nth-child(4) { --i: 3; }
+    .dot:nth-child(5) { --i: 4; }
+    .dot:nth-child(6) { --i: 5; }
+    .dot:nth-child(7) { --i: 6; }
+    .dot:nth-child(8) { --i: 7; }
+
+    .arc-container {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        animation: spin-continuous var(--duration) var(--continuous-gravity)
-          infinite;
-      }
+        animation: spin-continuous var(--duration) var(--continuous-gravity) infinite;
+    }
 
-      .arc {
+    .arc {
         fill: none;
         stroke: var(--arc-color);
         stroke-width: var(--loader-width);
         stroke-linecap: round;
         stroke-dasharray: 35 1000;
-        /* Syncs arc length with the speed */
-        animation: stretch-arc var(--duration) var(--continuous-gravity)
-          infinite;
-      }
+        animation: stretch-arc var(--duration) var(--continuous-gravity) infinite;
+    }
 
-      /* --- Keyframes --- */
-
-      @keyframes spin-dots {
+    @keyframes spin-dots {
         0% {
-          transform: rotate(calc(var(--i) * 45deg)) translate(var(--radius));
+            transform: rotate(calc(var(--i) * 45deg)) translate(var(--radius));
         }
-
         100% {
-          transform: rotate(calc(var(--i) * 45deg + 360deg))
-            translate(var(--radius));
+            transform: rotate(calc(var(--i) * 45deg + 360deg)) translate(var(--radius));
         }
-      }
+    }
 
-      @keyframes spin-continuous {
+    @keyframes spin-continuous {
         0% {
-          transform: rotate(-90deg); /* Start at Top */
+            transform: rotate(-90deg); /* Start at Top */
         }
-
         100% {
-          /*
-                   End at Top after 2 full rotations (720deg).
-                   -90 + 720 = 630
-                */
-          transform: rotate(630deg);
+            transform: rotate(630deg);
         }
-      }
+    }
 
-      @keyframes stretch-arc {
+    @keyframes stretch-arc {
         0% {
-          /* Slow phase: Short arc (approx 2 dots) */
-          stroke-dasharray: 35 1000;
+            stroke-dasharray: 35 1000;
         }
-
         50% {
-          /* Fast phase (Middle): Long arc (approx 3 dots) */
-          stroke-dasharray: 95 1000;
+            stroke-dasharray: 95 1000;
         }
-
         100% {
-          /* Slow phase: Short arc (approx 2 dots) */
-          stroke-dasharray: 35 1000;
+            stroke-dasharray: 35 1000;
         }
-      }
-    </style>
-  </body>
+    }
+</style>
+</body>
 </html>`;
 
 function Loader() {
