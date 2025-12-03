@@ -11,6 +11,7 @@ import "./../Sass/main.css";
 
 import { router } from "./routes/router";
 import "./i18n";
+import { translationsReady } from "./i18n";
 import { LanguageProvider } from "./context/LanguageContext";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "../config/reactQuery.js";
@@ -24,7 +25,8 @@ const Root = () => {
   useEffect(() => {
     (async () => {
       try {
-        await initEndpoints();
+        // Wait for both endpoints and translations to be ready
+        await Promise.all([initEndpoints(), translationsReady]);
       } finally {
         setReady(true);
       }

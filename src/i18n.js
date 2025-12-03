@@ -51,15 +51,17 @@ async function loadLanguage(language) {
   }
 }
 
-// Load initial language immediately
-(async () => {
+// Export a promise that resolves when initial translations are loaded
+export const translationsReady = (async () => {
   try {
     await loadLanguage(initialLanguage);
     if (i18n.language !== initialLanguage) {
-      i18n.changeLanguage(initialLanguage);
+      await i18n.changeLanguage(initialLanguage);
     }
+    return true;
   } catch (error) {
     console.error("Failed to load initial translations:", error);
+    return false;
   }
 })();
 
