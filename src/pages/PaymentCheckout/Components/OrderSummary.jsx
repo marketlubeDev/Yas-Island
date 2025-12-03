@@ -35,7 +35,8 @@ export default function OrderSummary({
     (state) => state.language.currentLanguage
   );
   const navigate = useNavigate();
-
+  console.log(isModalVisible, "dsjkhfjdhhdfhdsh");
+  console.log(checkout, "checkrtrtrtrtout");
   // Ensure products are loaded for the current language
   useGetProductList();
 
@@ -122,7 +123,7 @@ export default function OrderSummary({
     });
 
     // Build coupons payload:
-    // - When applying a coupon: send the single promoCode
+    // - When applying a coupon: send all existing coupons plus the new one
     // - When removing a specific coupon: send all remaining coupons except the one being removed
     let couponsPayload = [];
 
@@ -136,7 +137,35 @@ export default function OrderSummary({
         couponCode: coupon.code,
       }));
     } else if (promoCode) {
-      couponsPayload = [{ couponCode: promoCode }];
+      // Get all existing coupons
+      const existingCoupons =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => coupon.code) || [];
+
+      // Add the new coupon if it's not already in the list (case-insensitive check)
+      const promoCodeUpper = promoCode.toUpperCase();
+      const isDuplicate = existingCoupons.some(
+        (code) => code.toUpperCase() === promoCodeUpper
+      );
+
+      if (!isDuplicate) {
+        existingCoupons.push(promoCode);
+      }
+
+      // Map to the required format
+      couponsPayload = existingCoupons.map((code) => ({
+        couponCode: code,
+      }));
+    } else {
+      // If no promoCode is provided and it's not a remove operation,
+      // send all existing coupons
+      couponsPayload =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => ({
+            couponCode: coupon.code,
+          })) || [];
     }
 
     const data = {
@@ -228,9 +257,22 @@ export default function OrderSummary({
           });
         } else {
           setPromoCodeApplying(false);
+
           if (attemptingToApplyCoupon) {
-            setIsModalVisible(true);
-            // Clear the promo code input since it's now applied
+            // Only show success modal if the applied promo code
+            // is actually present in the coupons list returned from API
+            const isCouponInResponse = orderDetails?.coupons?.some(
+              (coupon) =>
+                coupon?.code &&
+                promoCode &&
+                coupon.code.toUpperCase() === promoCode.toUpperCase()
+            );
+
+            if (isCouponInResponse) {
+              setIsModalVisible(true);
+            }
+
+            // Clear the promo code input since it's now applied / processed
             promoCodeInput.reset();
           } else if (message) {
             toast.error(message || t("toastMessages.invalidPromoCode"), {
@@ -269,6 +311,22 @@ export default function OrderSummary({
         setPromoCodeStatus("invalid");
         return;
       }
+
+      // Check if coupon is already applied
+      const existingCouponCodes =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => coupon.code.toUpperCase()) || [];
+
+      if (existingCouponCodes.includes(promoCodeInput.rawValue.toUpperCase())) {
+        setPromoCodeApplying(false);
+        toast.error(t("toastMessages.invalidPromoCode"), {
+          position: "top-center",
+        });
+        setPromoCodeStatus("invalid");
+        return;
+      }
+
       const response = await validatePromocode(promoCodeInput.rawValue);
       let message = "";
 

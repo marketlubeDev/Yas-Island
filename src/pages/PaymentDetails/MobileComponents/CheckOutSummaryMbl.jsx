@@ -94,8 +94,47 @@ function CheckOutSummaryMbl({
         validTo: item?.validTo,
       });
     });
+
+    // Build coupons payload to match desktop OrderSummary behavior
+    let couponsPayload = [];
+
+    if (promoCode) {
+      // Get all existing coupons
+      const existingCoupons =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => coupon.code) || [];
+
+      // Add the new coupon if it's not already in the list (case-insensitive check)
+      const promoCodeUpper = promoCode.toUpperCase();
+      const isDuplicate = existingCoupons.some(
+        (code) => code.toUpperCase() === promoCodeUpper
+      );
+
+      if (!isDuplicate) {
+        existingCoupons.push(promoCode);
+      }
+
+      // Map to the required format
+      couponsPayload = existingCoupons.map((code) => ({
+        couponCode: code,
+      }));
+    } else if (!isRemoveOperation) {
+      // If no promoCode is provided and it's not a remove operation,
+      // send all existing coupons
+      couponsPayload =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => ({
+            couponCode: coupon.code,
+          })) || [];
+    } else {
+      // For remove operation, send an empty coupons array
+      couponsPayload = [];
+    }
+
     const data = {
-      coupons: promoCode ? [{ couponCode: promoCode }] : [],
+      coupons: couponsPayload,
       items: items,
       capacityManagement: true,
     };
@@ -177,26 +216,39 @@ function CheckOutSummaryMbl({
             })
           );
 
-          if (promoCodeInput.rawValue) {
-            toast.success(t("orderSummary.couponApplied"), {
-              position: "top-center",
-            });
-            // Clear the promo code input since it's now applied
-            promoCodeInput.reset();
-            // Force component re-render to ensure totals update
-          } else if (message) {
-            toast.error(t("toastMessages.invalidPromoCode"), {
-              position: "top-center",
-            });
-          } else if (isRemoveOperation) {
+          // Align behavior with desktop OrderSummary
+          if (isRemoveOperation) {
+            setRemovingPromoCode(false);
             toast.success(t("orderSummary.promoCodeRemoved"), {
               position: "top-center",
             });
-            setRemovingPromoCode(false);
-          }
+          } else {
+            setPromoCodeApplying(false);
 
-          // Clear loading states after successful operation
-          setPromoCodeApplying(false);
+            if (attemptingToApplyCoupon) {
+              // Only show success if the applied promo code
+              // is actually present in the coupons list returned from API
+              const isCouponInResponse = orderDetails?.coupons?.some(
+                (coupon) =>
+                  coupon?.code &&
+                  promoCode &&
+                  coupon.code.toUpperCase() === promoCode.toUpperCase()
+              );
+
+              if (isCouponInResponse) {
+                toast.success(t("orderSummary.couponApplied"), {
+                  position: "top-center",
+                });
+              }
+
+              // Clear the promo code input since it's now applied / processed
+              promoCodeInput.reset();
+            } else if (message) {
+              toast.error(message || t("toastMessages.invalidPromoCode"), {
+                position: "top-center",
+              });
+            }
+          }
         }
       },
 
