@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearCart, setIsCartOpen } from "../../../../global/cartSlice";
 import { useSelector } from "react-redux";
-import { getConfig } from "../../../../../config/environment";
 
 // Add keyframe animation
 const spinnerStyle = `
@@ -197,26 +195,37 @@ export default function CardPaymentDetail({ orderData, onBack }) {
       const handleMessage = async (event) => {
         const data = event?.data;
 
-        // Strictly trust only messages from known, allowed origins
-        const getBackendOrigin = async () => {
-          try {
-            const config = await getConfig();
-            const origin = new URL(config?.baseURL).origin;
-            return origin;
-          } catch (_) {
-            console.log("Error getting backend origin");
-            return "";
-          }
-        };
-        const backendOrigin = await getBackendOrigin();
-        const allowedOrigins = new Set([backendOrigin].filter(Boolean));
+        if (!data) return;
 
-        const eventOrigin = event?.origin || "";
-        if (!allowedOrigins.has(eventOrigin)) {
+        // Handle payment redirect request
+        if (data.type === "payment_redirect" && data.redirectUrl) {
+          try {
+            const redirectUrl = data.redirectUrl;
+
+            // Check if it's an external URL (different origin)
+            try {
+              const parsed = new URL(redirectUrl);
+              const currentOrigin = window.location.origin;
+
+              if (parsed.origin !== currentOrigin) {
+                // External URL - do a full page redirect
+                window.location.href = redirectUrl;
+              } else {
+                // Same origin - use React Router navigation with pathname only
+                navigate(parsed.pathname + parsed.search + parsed.hash);
+              }
+            } catch {
+              // Not a valid absolute URL, treat as relative path
+              const targetPath = redirectUrl.startsWith("/")
+                ? redirectUrl
+                : `/${redirectUrl}`;
+              navigate(targetPath);
+            }
+          } catch (error) {
+            console.error("Error handling payment redirect:", error);
+          }
           return;
         }
-
-        if (!data) return;
 
         // Preferred explicit provider payload
         if (
@@ -282,16 +291,6 @@ export default function CardPaymentDetail({ orderData, onBack }) {
 
   // Note: We intentionally do not show fallback controls by default
   // to avoid confusing users before any payment action occurs.
-
-  const handleRetry = () => {
-    toast.error(
-      t("payment.cardPayment.errorToast", {
-        defaultValue: "Payment processing failed. Please try again.",
-      }),
-      { position: "top-center" }
-    );
-    navigate("/");
-  };
 
   return (
     <div className="payment-container">

@@ -82,28 +82,38 @@ function CardPaymentMobile() {
 
       // Listen for messages from the iframe
       const handleMessage = (event) => {
-        // Strictly trust only messages from known, allowed origins
-        const getBackendOrigin = () => {
-          try {
-            return new URL(import.meta.env.VITE_BASE_URL).origin;
-          } catch (_) {
-            return "";
-          }
-        };
-        const allowedOrigins = new Set(
-          [
-            getBackendOrigin(),
-            "https://checkout.payfort.com",
-            "https://sbcheckout.payfort.com",
-          ].filter(Boolean)
-        );
-        const eventOrigin = event?.origin || "";
-        if (!allowedOrigins.has(eventOrigin)) {
-          return;
-        }
-
         // Handle different payment statuses
         if (event.data) {
+          // Handle payment redirect request
+          if (event.data.type === "payment_redirect" && event.data.redirectUrl) {
+            try {
+              const redirectUrl = event.data.redirectUrl;
+
+              // Check if it's an external URL (different origin)
+              try {
+                const parsed = new URL(redirectUrl);
+                const currentOrigin = window.location.origin;
+
+                if (parsed.origin !== currentOrigin) {
+                  // External URL - do a full page redirect
+                  window.location.href = redirectUrl;
+                } else {
+                  // Same origin - use React Router navigation with pathname only
+                  navigate(parsed.pathname + parsed.search + parsed.hash);
+                }
+              } catch {
+                // Not a valid absolute URL, treat as relative path
+                const targetPath = redirectUrl.startsWith("/")
+                  ? redirectUrl
+                  : `/${redirectUrl}`;
+                navigate(targetPath);
+              }
+            } catch (error) {
+              console.error("Error handling payment redirect:", error);
+            }
+            return;
+          }
+
           if (
             event.data.action === "redirect" ||
             event.data.status === "success"
