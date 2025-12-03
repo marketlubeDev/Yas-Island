@@ -94,8 +94,47 @@ function CheckOutSummaryMbl({
         validTo: item?.validTo,
       });
     });
+
+    // Build coupons payload to match desktop OrderSummary behavior
+    let couponsPayload = [];
+
+    if (promoCode) {
+      // Get all existing coupons
+      const existingCoupons =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => coupon.code) || [];
+
+      // Add the new coupon if it's not already in the list (case-insensitive check)
+      const promoCodeUpper = promoCode.toUpperCase();
+      const isDuplicate = existingCoupons.some(
+        (code) => code.toUpperCase() === promoCodeUpper
+      );
+
+      if (!isDuplicate) {
+        existingCoupons.push(promoCode);
+      }
+
+      // Map to the required format
+      couponsPayload = existingCoupons.map((code) => ({
+        couponCode: code,
+      }));
+    } else if (!isRemoveOperation) {
+      // If no promoCode is provided and it's not a remove operation,
+      // send all existing coupons
+      couponsPayload =
+        checkout?.coupons
+          ?.filter((coupon) => coupon?.code)
+          .map((coupon) => ({
+            couponCode: coupon.code,
+          })) || [];
+    } else {
+      // For remove operation, send an empty coupons array
+      couponsPayload = [];
+    }
+
     const data = {
-      coupons: promoCode ? [{ couponCode: promoCode }] : [],
+      coupons: couponsPayload,
       items: items,
       capacityManagement: true,
     };
@@ -177,26 +216,39 @@ function CheckOutSummaryMbl({
             })
           );
 
-          if (promoCodeInput.rawValue) {
-            toast.success(t("orderSummary.couponApplied"), {
-              position: "top-center",
-            });
-            // Clear the promo code input since it's now applied
-            promoCodeInput.reset();
-            // Force component re-render to ensure totals update
-          } else if (message) {
-            toast.error(t("toastMessages.invalidPromoCode"), {
-              position: "top-center",
-            });
-          } else if (isRemoveOperation) {
+          // Align behavior with desktop OrderSummary
+          if (isRemoveOperation) {
+            setRemovingPromoCode(false);
             toast.success(t("orderSummary.promoCodeRemoved"), {
               position: "top-center",
             });
-            setRemovingPromoCode(false);
-          }
+          } else {
+            setPromoCodeApplying(false);
 
-          // Clear loading states after successful operation
-          setPromoCodeApplying(false);
+            if (attemptingToApplyCoupon) {
+              // Only show success if the applied promo code
+              // is actually present in the coupons list returned from API
+              const isCouponInResponse = orderDetails?.coupons?.some(
+                (coupon) =>
+                  coupon?.code &&
+                  promoCode &&
+                  coupon.code.toUpperCase() === promoCode.toUpperCase()
+              );
+
+              if (isCouponInResponse) {
+                toast.success(t("orderSummary.couponApplied"), {
+                  position: "top-center",
+                });
+              }
+
+              // Clear the promo code input since it's now applied / processed
+              promoCodeInput.reset();
+            } else if (message) {
+              toast.error(message || t("toastMessages.invalidPromoCode"), {
+                position: "top-center",
+              });
+            }
+          }
         }
       },
 
@@ -491,107 +543,116 @@ function CheckOutSummaryMbl({
       {/* Coupon Applied Indicator - New Style */}
       {checkout?.promotions
         ?.filter((promotion) => promotion?.discount)
-        .map((promotion, index) => (
-          <div
-            key={promotion?.code || index}
-            className="email-checkout__summary-couponApplied"
-          >
+        .map((promotion, index) => {
+          // Match desktop OrderSummary condition: only show remove button
+          // if this promotion code also exists in checkout.coupons
+          const hasMatchingCoupon = checkout?.coupons?.some(
+            (coupon) =>
+              coupon?.code && promotion?.code && coupon.code === promotion.code
+          );
+
+          return (
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "8px",
-                padding: "6px",
-                backgroundColor: "var(--color-base-bg)",
-                border: "1px solid #e9ecef",
-                borderRadius: "6px",
-                margin: "10px 0",
-              }}
+              key={promotion?.code || index}
+              className="email-checkout__summary-couponApplied"
             >
               <div
                 style={{
                   display: "flex",
-                  gap: "8px",
                   alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "8px",
+                  padding: "6px",
+                  backgroundColor: "var(--color-base-bg)",
+                  border: "1px solid #e9ecef",
+                  borderRadius: "6px",
+                  margin: "10px 0",
                 }}
               >
-                <div>
-                  <HiOutlinePercentBadge
-                    className="coupon-badge-icon"
-                    style={{
-                      fontSize: "calc(24px * var(--zoom-scale))",
-                      width: "calc(24px * var(--zoom-scale))",
-                      height: "calc(24px * var(--zoom-scale))",
-                      fontWeight: "bold",
-                    }}
-                    strokeWidth={2}
-                  />
-                </div>
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    gap: "4px",
+                    gap: "8px",
+                    alignItems: "center",
                   }}
                 >
-                  {/* Coupon label */}
-                  <p
+                  <div>
+                    <HiOutlinePercentBadge
+                      className="coupon-badge-icon"
+                      style={{
+                        fontSize: "calc(24px * var(--zoom-scale))",
+                        width: "calc(24px * var(--zoom-scale))",
+                        height: "calc(24px * var(--zoom-scale))",
+                        fontWeight: "bold",
+                      }}
+                      strokeWidth={2}
+                    />
+                  </div>
+                  <div
                     style={{
-                      color: "var(--color-summary-title)",
-                      fontSize: "calc(14px * var(--zoom-scale))",
-                      fontWeight: "200",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "4px",
                     }}
                   >
-                    {t("orderSummary.couponApplied")}{" "}
-                    <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
-                      {checkout?.coupons?.[index]?.code || promotion?.code}
-                    </span>
-                  </p>
-                  <p
-                    style={{
-                      color: "#28a745",
-                      fontSize: "calc(12px * var(--zoom-scale))",
-                    }}
-                  >
-                    <span style={{ fontWeight: "200" }}>
-                      {t("orderSummary.couponSavings")}{" "}
-                    </span>
-                    <span style={{ fontWeight: "bold" }}>
-                      {t("common.aed")}{" "}
-                      {promotion?.discount?.toString().replace("-", "")}
-                    </span>
-                  </p>
+                    {/* Coupon label */}
+                    <p
+                      style={{
+                        color: "var(--color-summary-title)",
+                        fontSize: "calc(14px * var(--zoom-scale))",
+                        fontWeight: "200",
+                      }}
+                    >
+                      {t("orderSummary.couponApplied")}{" "}
+                      <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
+                        {checkout?.coupons?.[index]?.code || promotion?.code}
+                      </span>
+                    </p>
+                    <p
+                      style={{
+                        color: "#28a745",
+                        fontSize: "calc(12px * var(--zoom-scale))",
+                      }}
+                    >
+                      <span style={{ fontWeight: "200" }}>
+                        {t("orderSummary.couponSavings")}{" "}
+                      </span>
+                      <span style={{ fontWeight: "bold" }}>
+                        {t("common.aed")}{" "}
+                        {promotion?.discount?.toString().replace("-", "")}
+                      </span>
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              {/* Remove Button */}
-              {showPromoCode && (
-                <button
-                  onClick={handleRemovePromoCode}
-                  disabled={removingPromoCode}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "var(--color-summary-title)",
-                    fontWeight: "bold",
-                    fontSize: "calc(14px * var(--zoom-scale))",
-                    cursor: removingPromoCode ? "not-allowed" : "pointer",
-                    padding: "4px 8px",
-                    borderRadius: "4px",
-                    opacity: removingPromoCode ? 0.7 : 1,
-                  }}
-                >
-                  {removingPromoCode ? (
-                    <ButtonLoading />
-                  ) : (
-                    t("orderSummary.remove")
-                  )}
-                </button>
-              )}
+                {/* Remove Button */}
+                {showPromoCode && hasMatchingCoupon && (
+                  <button
+                    onClick={handleRemovePromoCode}
+                    disabled={removingPromoCode}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "var(--color-summary-title)",
+                      fontWeight: "bold",
+                      fontSize: "calc(14px * var(--zoom-scale))",
+                      cursor: removingPromoCode ? "not-allowed" : "pointer",
+                      padding: "4px 8px",
+                      borderRadius: "4px",
+                      opacity: removingPromoCode ? 0.7 : 1,
+                    }}
+                  >
+                    {removingPromoCode ? (
+                      <ButtonLoading />
+                    ) : (
+                      t("orderSummary.remove")
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       {/* Price Breakdown - Mobile */}
       {/* Subtotal */}
       <div className="email-checkout__summary-grandTotalNew">
