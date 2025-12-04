@@ -544,12 +544,18 @@ function CheckOutSummaryMbl({
       {checkout?.promotions
         ?.filter((promotion) => promotion?.discount)
         .map((promotion, index) => {
-          // Match desktop OrderSummary condition: only show remove button
-          // if this promotion code also exists in checkout.coupons
-          const hasMatchingCoupon = checkout?.coupons?.some(
+          // Find a coupon that actually matches this promotion's code
+          const matchingCoupon = checkout?.coupons?.find(
             (coupon) =>
               coupon?.code && promotion?.code && coupon.code === promotion.code
           );
+
+          // Match desktop OrderSummary condition: only show remove button
+          // if this promotion code also exists in checkout.coupons
+          const hasMatchingCoupon = Boolean(matchingCoupon);
+
+          // Use the matching coupon code when it exists; otherwise fall back to promotion code
+          const displayCode = matchingCoupon?.code || promotion?.code;
 
           return (
             <div
@@ -605,7 +611,7 @@ function CheckOutSummaryMbl({
                     >
                       {t("orderSummary.couponApplied")}{" "}
                       <span style={{ fontWeight: "bold", marginLeft: "4px" }}>
-                        {checkout?.coupons?.[index]?.code || promotion?.code}
+                        {displayCode}
                       </span>
                     </p>
                     <p

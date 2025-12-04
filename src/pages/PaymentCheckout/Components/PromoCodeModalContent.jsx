@@ -4,13 +4,24 @@ import { useTranslation } from "react-i18next";
 export default function PromoCodeModalContent({ checkout }) {
   const { t } = useTranslation();
 
-  // Find the first promotion that has a discount
+  // Prefer the coupon that the user actually applied
+  const appliedCoupon = checkout?.coupons?.[0];
+
+  // Try to find the promotion that corresponds to the applied coupon code.
+  // Fallbacks:
+  //  - any promotion of type "2" (coupon-type promotion)
+  //  - first promotion that has a discount
+  //  - first promotion in the list
   const appliedPromotion =
+    checkout?.promotions?.find(
+      (promotion) =>
+        appliedCoupon?.code && promotion?.code === appliedCoupon.code
+    ) ||
+    checkout?.promotions?.find((promotion) => promotion?.type === "2") ||
     checkout?.promotions?.find((promotion) => promotion?.discount) ||
     checkout?.promotions?.[0];
 
-  const appliedCouponCode =
-    appliedPromotion?.code || checkout?.coupons?.[0]?.code || "";
+  const appliedCouponCode = appliedCoupon?.code || appliedPromotion?.code || "";
 
   const rawDiscount =
     appliedPromotion?.discount ?? checkout?.promotions?.[0]?.discount ?? 0;
