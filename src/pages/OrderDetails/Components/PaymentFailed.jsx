@@ -251,7 +251,7 @@ export default function PaymentFailed({ isCheckout }) {
                         <>
                           {t("payment.cardPayment.errorMessageWithSupport", {
                             defaultValue:
-                              "Payment failed. Please contact our support team and provide your Order ID.",
+                              "Your payment was successful, but your order could not be completed. Please contact our support team.",
                           })}
                           {orderId && (
                             <div
