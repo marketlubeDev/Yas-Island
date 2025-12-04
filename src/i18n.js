@@ -2,6 +2,13 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import store from "./global/store";
 import { loadTranslations } from "./utils/translationLoader";
+import manifest from "../public/translations/manifest.json";
+
+// Build supported languages dynamically from the manifest file
+const SUPPORTED_LANGUAGES = manifest.availableTranslations.map((f) =>
+  f.replace(".json", "")
+);
+
 
 // Get initial language from localStorage
 const getInitialLanguage = () => {
@@ -15,7 +22,10 @@ const getInitialLanguage = () => {
         const storedLang = parsed?.currentLanguage
           ? JSON.parse(parsed.currentLanguage)
           : null;
-        if (storedLang === "ar" || storedLang === "en") return storedLang;
+        // Use the stored language only if it's in the supported list
+        if (storedLang && SUPPORTED_LANGUAGES.includes(storedLang)) {
+          return storedLang;
+        }
       }
     }
   } catch (err) {
@@ -71,7 +81,7 @@ try {
     document.documentElement.dir = initialLanguage === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = initialLanguage;
   }
-} catch {}
+} catch { }
 
 // Handle language changes from Redux store
 store.subscribe(async () => {
@@ -88,7 +98,7 @@ store.subscribe(async () => {
         document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
         document.documentElement.lang = currentLanguage;
       }
-    } catch {}
+    } catch { }
   }
 });
 

@@ -1,7 +1,3 @@
 {
-  "availableTranslations": [
-    "en.json",
-    "ar.json",
-    "ml.json"
-  ]
+  "availableTranslations": ["en.json", "ar.json", "ml.json"]
 }
