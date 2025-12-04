@@ -291,6 +291,12 @@
   }
 }
 
+// RTL variant: move the circular back button to the right side for Arabic layouts
+.checkout-back-button-circular--rtl {
+  left: auto;
+  right: 0;
+}
+
 .checkout-back-button-circular__icon {
   width: 18px;
   height: 18px;
