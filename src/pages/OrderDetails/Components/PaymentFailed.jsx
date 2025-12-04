@@ -237,7 +237,7 @@ export default function PaymentFailed({ isCheckout }) {
                         }}
                       >
                         {t("payment.cardPayment.errorTitle", {
-                          defaultValue: "Payment was rejected",
+                          defaultValue: "Order Failed",
                         })}
                       </div>
                     </div>
