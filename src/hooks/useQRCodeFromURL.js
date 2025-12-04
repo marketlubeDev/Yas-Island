@@ -38,6 +38,7 @@ const useQRCodeFromURL = () => {
       "dining",
       "live",
       "shopping",
+      "order-details",
     ]);
     const rootPathMatch = (safePathname || "").match(/^\/([^/?#]+)/);
     const rootSegment = rootPathMatch
