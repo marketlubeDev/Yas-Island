@@ -30,13 +30,18 @@ const initialLanguage = getInitialLanguage();
 i18n.use(initReactI18next).init({
   resources: {},
   lng: initialLanguage,
-  fallbackLng: "en",
+  fallbackLng: false, // Disable fallback to prevent showing English when Arabic is selected
   interpolation: {
     escapeValue: false,
   },
   react: {
     useSuspense: false,
   },
+  // Return the key itself if translation is missing (instead of falling back)
+  returnEmptyString: false,
+  returnNull: false,
+  // This ensures we get the key back instead of English text
+  saveMissing: false,
 });
 
 // Simple function to load translations

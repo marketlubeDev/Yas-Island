@@ -17,11 +17,12 @@ import TranslationSkeleton from "./components/TranslationSkeleton/TranslationSke
 
 export default function App() {
   const dispatch = useDispatch();
+  const { isRTL, isLoadingTranslations } = useLanguage();
+
+  // Call all hooks (React requires hooks to be called in the same order)
   useResponsive();
   useI18nSync();
   useDynamicTitle();
-
-  const { isRTL, isLoadingTranslations } = useLanguage();
 
   // Clean expired cart items when app loads
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function App() {
   }, [dispatch]);
 
   // Show skeleton loader while translations are loading
+  // This prevents any content from rendering with English fallback text
   if (isLoadingTranslations) {
     return <TranslationSkeleton />;
   }

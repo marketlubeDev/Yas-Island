@@ -1,15 +1,33 @@
 const loaderStyle = {
-  width: "240px",
-  height: "240px",
+  width: "200px",
+  height: "200px",
+  minWidth: "200px",
+  minHeight: "200px",
+  maxWidth: "200px",
+  maxHeight: "200px",
+  aspectRatio: "1 / 1",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  flexShrink: 0,
+  boxSizing: "border-box",
+  position: "relative",
 };
 
 const imageStyle = {
-  width: "100%",
-  height: "100%",
+  width: "200px",
+  height: "200px",
+  minWidth: "200px",
+  minHeight: "200px",
+  maxWidth: "200px",
+  maxHeight: "200px",
+  aspectRatio: "1 / 1",
   border: "none",
+  borderRadius: "50%",
+  overflow: "hidden",
+  display: "block",
+  flexShrink: 0,
+  boxSizing: "border-box",
 };
 
 const loaderHtml = `<!DOCTYPE html>
@@ -50,14 +68,56 @@ const loaderHtml = `<!DOCTYPE html>
 
     /* New class replacing the inline styles on the outer div */
     .loader-container {
-        display: flex;
-        border-radius: 50%;
-        background-color: #FEFEFE;
-        height: var(--loader-background-size);
-        width: var(--loader-background-size);
-        align-items: center;
-        justify-content: center;
-        border: none;
+        display: flex !important;
+        border-radius: 50% !important;
+        background-color: #FEFEFE !important;
+        height: var(--loader-background-size) !important;
+        width: var(--loader-background-size) !important;
+        min-width: var(--loader-background-size) !important;
+        min-height: var(--loader-background-size) !important;
+        max-width: var(--loader-background-size) !important;
+        max-height: var(--loader-background-size) !important;
+        aspect-ratio: 1 / 1 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: none !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        width: var(--loader-background-size) !important;
+        height: var(--loader-background-size) !important;
+        min-width: var(--loader-background-size) !important;
+        min-height: var(--loader-background-size) !important;
+        max-width: var(--loader-background-size) !important;
+        max-height: var(--loader-background-size) !important;
+        aspect-ratio: 1 / 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+    html {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        width: var(--loader-background-size) !important;
+        height: var(--loader-background-size) !important;
+        min-width: var(--loader-background-size) !important;
+        min-height: var(--loader-background-size) !important;
+        max-width: var(--loader-background-size) !important;
+        max-height: var(--loader-background-size) !important;
+        aspect-ratio: 1 / 1 !important;
+        box-sizing: border-box !important;
     }
 
     .loader {
@@ -147,12 +207,39 @@ const loaderHtml = `<!DOCTYPE html>
 function Loader() {
   return (
     <div style={loaderStyle}>
-      <iframe
-        srcDoc={loaderHtml}
-        title="Loading..."
-        style={imageStyle}
-        frameBorder="0"
-      />
+      <div
+        style={{
+          width: "200px",
+          height: "200px",
+          minWidth: "200px",
+          minHeight: "200px",
+          maxWidth: "200px",
+          maxHeight: "200px",
+          aspectRatio: "1 / 1",
+          borderRadius: "50%",
+          overflow: "hidden",
+          flexShrink: 0,
+          boxSizing: "border-box",
+          position: "relative",
+          display: "block",
+        }}
+      >
+        <iframe
+          srcDoc={loaderHtml}
+          title="Loading..."
+          style={{
+            ...imageStyle,
+            position: "absolute",
+            top: "0",
+            left: "0",
+            margin: "0",
+            padding: "0",
+          }}
+          frameBorder="0"
+          scrolling="no"
+          allowTransparency="true"
+        />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLanguage } from "../global/languageSlice";
 import i18n from "../i18n";
@@ -18,8 +24,46 @@ export const LanguageProvider = ({ children }) => {
   );
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const [language, setDisplayLanguage] = useState("");
-  const [isRTL, setIsRTL] = useState(false);
+  // Initialize isRTL immediately based on currentLanguage (ar = rtl, others = ltr)
+  const [isRTL, setIsRTL] = useState(currentLanguage === "ar");
+  // Always start with loading true to prevent any content from showing
+  // We'll check and update this immediately in useEffect
   const [isLoadingTranslations, setIsLoadingTranslations] = useState(true);
+
+  // Use useLayoutEffect for synchronous check before first paint
+  useLayoutEffect(() => {
+    const direction = currentLanguage === "ar" ? "rtl" : "ltr";
+    setIsRTL(direction === "rtl");
+
+    // Set document direction immediately
+    if (typeof document !== "undefined") {
+      document.documentElement.dir = direction;
+      document.documentElement.lang = currentLanguage;
+    }
+
+    // Set i18n language immediately to prevent fallback to English
+    // This ensures that even if translations aren't loaded, i18n knows the correct language
+    if (i18n.language !== currentLanguage) {
+      i18n.changeLanguage(currentLanguage);
+    }
+
+    // Check if translations are loaded for this language
+    const hasTranslations = i18n.hasResourceBundle(
+      currentLanguage,
+      "translation"
+    );
+
+    // If translations are not loaded, show loader
+    // If translations are loaded, still show loader briefly (300ms) for better UX
+    if (!hasTranslations) {
+      setIsLoadingTranslations(true);
+    } else {
+      // Keep loader visible for at least 300ms even if translations are cached
+      setTimeout(() => {
+        setIsLoadingTranslations(false);
+      }, 300);
+    }
+  }, [currentLanguage]);
 
   // Load available languages on component mount
   useEffect(() => {
@@ -35,7 +79,7 @@ export const LanguageProvider = ({ children }) => {
         );
         setDisplayLanguage(displayLanguage);
 
-        // Set initial RTL state
+        // Update RTL state based on loaded languages (more accurate)
         const direction = getLanguageDirection(currentLanguage, languages);
         setIsRTL(direction === "rtl");
       } catch (error) {
@@ -67,9 +111,11 @@ export const LanguageProvider = ({ children }) => {
       );
       setIsRTL(direction === "rtl");
 
-      // Set document direction
-      document.documentElement.dir = direction;
-      document.documentElement.lang = currentLanguage;
+      // Update document direction (already set in first useEffect, but update for accuracy)
+      if (typeof document !== "undefined") {
+        document.documentElement.dir = direction;
+        document.documentElement.lang = currentLanguage;
+      }
     }
   }, [currentLanguage, availableLanguages]);
 
@@ -77,23 +123,40 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     let timeoutId;
     let intervalId;
+    let minimumDisplayTime = false;
 
     const checkTranslationsLoaded = () => {
       const hasTranslations = i18n.hasResourceBundle(
         currentLanguage,
         "translation"
       );
-      setIsLoadingTranslations(!hasTranslations);
+
+      // Only set to false if translations are loaded AND minimum display time has passed
+      if (hasTranslations && minimumDisplayTime) {
+        setIsLoadingTranslations(false);
+      } else if (!hasTranslations) {
+        setIsLoadingTranslations(true);
+      }
+
       return hasTranslations;
     };
+
+    // Ensure loader shows for at least 300ms for visibility
+    setTimeout(() => {
+      minimumDisplayTime = true;
+      checkTranslationsLoaded();
+    }, 300);
 
     // Check immediately
     const isLoaded = checkTranslationsLoaded();
 
-    // If already loaded, no need to poll
+    // If already loaded, wait for minimum display time then set to false
     if (isLoaded) {
       return;
     }
+
+    // If not loaded, ensure loading state is true
+    setIsLoadingTranslations(true);
 
     // Set up interval to check periodically (translations load asynchronously)
     intervalId = setInterval(() => {

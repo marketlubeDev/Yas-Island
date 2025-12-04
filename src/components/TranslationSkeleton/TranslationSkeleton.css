@@ -5,8 +5,11 @@
   right: 0;
   bottom: 0;
   background-color: #f5f5f5;
-  z-index: 9999;
+  z-index: 99999;
   overflow: hidden;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .translation-skeleton-container {
@@ -15,4 +18,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.translation-skeleton-container > * {
+  flex-shrink: 0;
+}
+
+/* Ensure loader maintains perfect circle */
+.translation-skeleton-container iframe {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: contain !important;
 }
