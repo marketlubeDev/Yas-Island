@@ -44,6 +44,8 @@ async function loadLanguage(language) {
   try {
     const translations = await loadTranslations(language);
     i18n.addResourceBundle(language, "translation", translations, true, true);
+    // Emit event when translations are loaded
+    i18n.emit("loaded", language);
     return translations;
   } catch (error) {
     console.error(`Error loading ${language} translations:`, error);
@@ -58,8 +60,12 @@ async function loadLanguage(language) {
     if (i18n.language !== initialLanguage) {
       i18n.changeLanguage(initialLanguage);
     }
+    // Emit event when initial translations are loaded
+    i18n.emit("initialized");
   } catch (error) {
     console.error("Failed to load initial translations:", error);
+    // Still emit initialized event even on error
+    i18n.emit("initialized");
   }
 })();
 

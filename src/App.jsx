@@ -13,6 +13,7 @@ import QRCodeDetector from "./components/QRCodeDetector";
 import { cleanExpiredItems } from "./global/cartSlice";
 import YasChat from "./layouts/YasChat/YasChat";
 import QrLocation from "./components/QrLocation";
+import TranslationSkeleton from "./components/TranslationSkeleton/TranslationSkeleton";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -20,12 +21,17 @@ export default function App() {
   useI18nSync();
   useDynamicTitle();
 
-  const { isRTL } = useLanguage();
+  const { isRTL, isLoadingTranslations } = useLanguage();
 
   // Clean expired cart items when app loads
   useEffect(() => {
     dispatch(cleanExpiredItems());
   }, [dispatch]);
+
+  // Show skeleton loader while translations are loading
+  if (isLoadingTranslations) {
+    return <TranslationSkeleton />;
+  }
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
