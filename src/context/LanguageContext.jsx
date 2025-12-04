@@ -18,7 +18,9 @@ export const LanguageProvider = ({ children }) => {
   );
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const [language, setDisplayLanguage] = useState("");
-  const [isRTL, setIsRTL] = useState(false);
+  // Initialize RTL state immediately from the persisted Redux language
+  // so the first render already uses the correct direction and avoids LTR→RTL flicker.
+  const [isRTL, setIsRTL] = useState(currentLanguage === "ar");
 
   // Load available languages on component mount
   useEffect(() => {

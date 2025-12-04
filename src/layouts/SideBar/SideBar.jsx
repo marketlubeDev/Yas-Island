@@ -17,7 +17,7 @@ export default function SideBar() {
   const [activeItem, setActiveItem] = useState("topAttractions");
   const { t } = useTranslation();
   const isDarkMode = useSelector((state) => state.accessibility.isDarkMode);
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const navigate = useNavigate();
 
   // Define the sidebar items with translation keys
@@ -101,21 +101,17 @@ export default function SideBar() {
     // Small delay to ensure DOM is fully rendered
     const timer = setTimeout(scrollToActive, 200);
     return () => clearTimeout(timer);
-  }, [activeItem, language]); // Added language dependency
+  }, [activeItem]); // do not re-trigger on language change to avoid extra animations
 
   return (
-    <nav
-      className={`side-bar  normal-title-txt ${
-        language === "العربية" ? "side-bar-ar" : ""
-      }`}
-    >
+    <nav className={`side-bar  normal-title-txt ${isRTL ? "side-bar-ar" : ""}`}>
       <Logo />
       <ul className="side-bar-list">
         {sideBarItems.map((item) => (
           <div
             key={item.name}
             className={
-              language === "العربية"
+              isRTL
                 ? `ar-side-bar-list-item-container ${
                     activeItem === item.name ? "active" : ""
                   }`
@@ -131,7 +127,7 @@ export default function SideBar() {
           >
             <li
               className={
-                language === "العربية"
+                isRTL
                   ? `ar-side-bar-list-item ${
                       activeItem === item.name ? "activeItem" : ""
                     }`
@@ -174,7 +170,7 @@ export default function SideBar() {
       <div
         className="side-bar-bottom"
         style={
-          language === "العربية"
+          isRTL
             ? { paddingLeft: "1rem", paddingRight: "0rem" }
             : { paddingRight: "1rem", paddingLeft: "0rem" }
         }
