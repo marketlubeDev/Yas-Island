@@ -13858,6 +13858,11 @@ html[lang=ar] .attraction-detail-modal__footer {
   font-style: italic;
 }
 
+.booking-section [dir=rtl] .calendar-container,
+html[dir=rtl] .calendar-container {
+  padding: 0 4rem 0 0;
+}
+
 .payment-header__container {
   display: flex;
   flex-direction: column;

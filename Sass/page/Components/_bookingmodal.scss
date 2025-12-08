@@ -696,3 +696,7 @@
     font-style: italic;
   }
 }
+.booking-section [dir="rtl"] .calendar-container,
+html[dir="rtl"] .calendar-container {
+  padding: 0 4rem 0 0;
+}
