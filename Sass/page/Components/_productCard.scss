@@ -1463,6 +1463,10 @@
     height: 100%;
   }
 }
+html[dir="rtl"] .guest-section,
+.booking-section [dir="rtl"] .guest-section {
+  padding: 0 0 0 4rem;
+}
 
 .guest-section-header-container {
   display: flex;
