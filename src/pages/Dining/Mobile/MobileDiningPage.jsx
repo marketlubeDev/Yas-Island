@@ -30,23 +30,59 @@ export default function MobileDiningPage() {
       // Disable scrolling on iframe's document
       if (doc.body) {
         doc.body.style.overflow = "hidden";
+        // Remove bottom padding that causes extra space
+        const bodyStyle = win.getComputedStyle(doc.body);
+        const paddingBottom = parseInt(bodyStyle.paddingBottom) || 0;
+        if (paddingBottom > 0) {
+          doc.body.style.paddingBottom = "0";
+        }
       }
       if (doc.documentElement) {
         doc.documentElement.style.overflow = "hidden";
       }
 
+      // Remove bottom padding from the last section
+      const lastSection = doc.querySelector(
+        ".social-gallery-section, [class*='section']:last-of-type"
+      );
+      if (lastSection) {
+        lastSection.style.paddingBottom = "0";
+        lastSection.style.marginBottom = "0";
+      }
+
       const computeHeight = () => {
         const body = doc.body;
-        const html = doc.documentElement;
-        const newHeight = Math.max(
-          body?.scrollHeight || 0,
-          body?.offsetHeight || 0,
-          html?.clientHeight || 0,
-          html?.scrollHeight || 0,
-          html?.offsetHeight || 0
-        );
+        if (!body) return;
+
+        // Find the last section element
+        const sections = doc.querySelectorAll("[class*='section']");
+        let lastSection = null;
+        let maxBottom = 0;
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.height > 0 && rect.bottom > maxBottom) {
+            maxBottom = rect.bottom;
+            lastSection = section;
+          }
+        });
+
+        // Calculate height from top of body to bottom of last section
+        let newHeight = 0;
+        if (lastSection) {
+          const lastRect = lastSection.getBoundingClientRect();
+          const bodyRect = body.getBoundingClientRect();
+          // Get the actual bottom position relative to body top
+          newHeight = lastRect.bottom - bodyRect.top;
+          // Add a small buffer (10px) for any final spacing, but not the excessive padding
+          newHeight += 10;
+        } else {
+          // Fallback: use body scrollHeight
+          newHeight = body.scrollHeight;
+        }
+
         if (newHeight > 0) {
-          setIframeHeight(newHeight);
+          setIframeHeight(Math.ceil(newHeight));
         }
       };
 
@@ -139,7 +175,7 @@ export default function MobileDiningPage() {
   return (
     <>
       <MobileTop className="mobile-topnav" />
-      <div className="packages-page" style={{ padding: 0 }}>
+      <div className="packages-page" style={{ padding: 0, margin: 0 }}>
         {isLoading && (
           <div
             style={{
@@ -176,9 +212,11 @@ export default function MobileDiningPage() {
               border: 0,
               width: "100%",
               height: iframeHeight ? `${iframeHeight}px` : "calc(100vh - 8rem)",
-              minHeight: "calc(100vh - 8rem)",
+              minHeight: iframeHeight ? "auto" : "calc(100vh - 8rem)",
               display: isLoading ? "none" : "block",
               overflow: "hidden",
+              margin: 0,
+              padding: 0,
             }}
           />
         )}
